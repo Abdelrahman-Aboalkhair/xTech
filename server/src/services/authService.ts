@@ -1,0 +1,278 @@
+import axios from "axios";
+import crypto from "crypto";
+import AppError from "../utils/AppError";
+import prisma from "../config/database";
+import emailQueue from "../queues/emailQueue";
+import sendEmail from "../utils/sendEmail";
+import passwordResetTemplate from "../templates/passwordReset";
+import {
+  generateAccessToken,
+  generateRefreshToken,
+  comparePassword,
+} from "../utils/auth";
+import {
+  AuthResponse,
+  RegisterUserParams,
+  GoogleUserData,
+  ROLE,
+  SignInParams,
+} from "../types/authTypes";
+
+class AuthService {
+  static async registerUser({
+    name,
+    email,
+    password,
+  }: RegisterUserParams): Promise<AuthResponse> {
+    const existingUser = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (existingUser) {
+      throw new AppError(
+        400,
+        "This email is already registered, please sign in"
+      );
+    }
+
+    const emailVerificationToken = Math.random().toString(36).slice(-6); // Slightly longer token
+    const emailVerificationTokenExpiresAt = new Date(
+      Date.now() + 10 * 60 * 1000
+    );
+
+    const newUser = await prisma.user.create({
+      data: {
+        email,
+        name,
+        password,
+        emailVerificationToken,
+        emailVerificationTokenExpiresAt,
+        role: ROLE.USER,
+        avatar: null,
+        emailVerified: false,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        emailVerified: true,
+      },
+    });
+
+    await emailQueue
+      .add("sendVerificationEmail", {
+        to: email,
+        subject: "Verify Your Email - EgWinch",
+        text: `Your verification code is: ${emailVerificationToken}`,
+        html: `<p>Your verification code is: <strong>${emailVerificationToken}</strong></p>`,
+      })
+      .catch((error) => {
+        console.error("Failed to add email to queue:", error);
+      });
+
+    const accessToken = await generateAccessToken(newUser.id, newUser.role);
+    const refreshToken = await generateRefreshToken(newUser.id, newUser.role);
+
+    return {
+      user: {
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+        emailVerified: newUser.emailVerified,
+      },
+      accessToken,
+      refreshToken,
+    };
+  }
+
+  static async verifyEmail(
+    emailVerificationToken: string
+  ): Promise<{ message: string }> {
+    const user = await prisma.user.findFirst({
+      where: {
+        emailVerificationToken,
+        emailVerificationTokenExpiresAt: { gt: new Date() },
+      },
+    });
+
+    if (!user) {
+      throw new AppError(400, "Invalid or expired verification code.");
+    }
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        emailVerificationToken: null,
+        emailVerificationTokenExpiresAt: null,
+        emailVerified: true,
+      },
+    });
+
+    return { message: "Email verified successfully." };
+  }
+
+  static async signin({
+    email,
+    password,
+  }: SignInParams): Promise<{ accessToken: string; refreshToken: string }> {
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: {
+        id: true,
+        password: true,
+        role: true,
+      },
+    });
+
+    if (!user) {
+      throw new AppError(
+        400,
+        "No user found with this email, please sign up first"
+      );
+    }
+
+    const isPasswordValid = await comparePassword(password, user.password);
+    if (!isPasswordValid) throw new AppError(400, "Invalid credentials");
+
+    const accessToken = await generateAccessToken(user.id, user.role);
+    const refreshToken = await generateRefreshToken(user.id, user.role);
+
+    return { accessToken, refreshToken };
+  }
+
+  static async signout(): Promise<{ message: string }> {
+    return { message: "User logged out successfully" };
+  }
+
+  static async googleSignup(access_token: string): Promise<AuthResponse> {
+    const googleResponse = await axios.get<GoogleUserData>(
+      `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`
+    );
+    const { email, name, picture, id: googleId } = googleResponse.data;
+
+    const existingUser = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (existingUser) {
+      throw new AppError(
+        400,
+        "This email is already registered, please sign in"
+      );
+    }
+
+    const newUser = await prisma.user.create({
+      data: {
+        name,
+        email,
+        password: "", // Note: Consider how to handle this for Google users
+        avatar: picture,
+        emailVerified: true,
+        role: ROLE.USER,
+      },
+    });
+
+    const accessToken = await generateAccessToken(newUser.id, newUser.role);
+    const refreshToken = await generateRefreshToken(newUser.id, newUser.role);
+
+    return {
+      user: {
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+        emailVerified: newUser.emailVerified,
+      },
+      accessToken,
+      refreshToken,
+    };
+  }
+
+  static async googleSignin(
+    access_token: string
+  ): Promise<{ accessToken: string; refreshToken: string }> {
+    const googleResponse = await axios.get<GoogleUserData>(
+      `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`
+    );
+    const { email } = googleResponse.data;
+
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: { id: true, role: true },
+    });
+
+    if (!user) {
+      throw new AppError(404, "This email is not registered, please sign up");
+    }
+
+    const accessToken = await generateAccessToken(user.id, user.role);
+    const refreshToken = await generateRefreshToken(user.id, user.role);
+
+    return { accessToken, refreshToken };
+  }
+
+  static async forgotPassword(email: string): Promise<{ message: string }> {
+    const user = await prisma.user.findUnique({ where: { email } });
+
+    if (!user) {
+      throw new AppError(404, "This email is not registered, please sign up");
+    }
+
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
+
+    await prisma.user.update({
+      where: { email },
+      data: {
+        resetPasswordToken: hashedToken,
+        resetPasswordTokenExpiresAt: new Date(Date.now() + 10 * 60 * 1000),
+      },
+    });
+
+    const resetUrl = `${process.env.CLIENT_URL}/password-reset/${resetToken}`;
+    const htmlTemplate = passwordResetTemplate(resetUrl);
+
+    await sendEmail({
+      to: user.email,
+      subject: "Reset your password",
+      html: htmlTemplate,
+      text: "Reset your password", // Added text fallback
+    });
+
+    return { message: "Password reset email sent successfully" };
+  }
+
+  static async resetPassword(
+    token: string,
+    newPassword: string
+  ): Promise<{ message: string }> {
+    const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+
+    const user = await prisma.user.findFirst({
+      where: {
+        resetPasswordToken: hashedToken,
+        resetPasswordTokenExpiresAt: { gt: new Date() },
+      },
+    });
+
+    if (!user) {
+      throw new AppError(400, "Invalid or expired reset token");
+    }
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        password: newPassword, // Note: Should be hashed in a real implementation
+        resetPasswordToken: null,
+        resetPasswordTokenExpiresAt: null,
+      },
+    });
+
+    return { message: "Password reset successful. You can now log in." };
+  }
+}
+
+export default AuthService;

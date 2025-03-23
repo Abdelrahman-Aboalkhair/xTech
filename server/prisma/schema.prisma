@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+enum ROLE {
+  ADMIN
+  USER
+  SUPERADMIN
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  name      String
+  avatar    String?
+  emailVerified Boolean
+  emailVerificationToken String?
+  emailVerificationTokenExpiresAt DateTime?
+  resetPasswordToken String?
+  resetPasswordTokenExpiresAt DateTime?
+  role      ROLE    @default(USER)
+  orders    Order[] 
+  payments  Payment[]  
+  addresses Address[] 
+  carts     Cart[]    
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Product {
+  id           Int              @id @default(autoincrement())
+  name         String
+  description  String?
+  price        Float
+  stock        Int
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  category     ProductCategory? @relation(fields: [categoryId], references: [id]) 
+  categoryId   Int?             
+  orders       Order[]          @relation("OrderProduct") 
+  carts        Cart[]           @relation("CartProduct")  
+}
+
+model Order {
+  order_no     String      @id
+  amount       Float
+  order_date   DateTime
+  user         User        @relation(fields: [userId], references: [id]) 
+  userId       Int         
+  products     Product[]   @relation("OrderProduct") 
+  tracking     TrackingDetail? 
+}
+
+model Payment {
+  id        Int      @id @default(autoincrement())
+  method    String
+  amount    Float
+  user      User     @relation(fields: [userId], references: [id]) // Relation: Payment belongs to one User
+  userId    Int      
+}
+
+model Address {
+  id        Int      @id @default(autoincrement())
+  city      String
+  state     String
+  country   String
+  user      User     @relation(fields: [userId], references: [id]) // Relation: Address belongs to one User
+  userId    Int      
+}
+
+model TrackingDetail {
+  id        Int      @id @default(autoincrement())
+  status    String
+  order     Order    @relation(fields: [order_no], references: [order_no]) // Relation: TrackingDetail belongs to one Order
+  order_no  String   @unique // Foreign key for Order (using order_no)
+}
+
+model Cart {
+  cart_id   String    @id // Using cart_id as the primary key (string as per ERD)
+  user      User      @relation(fields: [userId], references: [id]) // Relation: Cart belongs to one User
+  userId    Int       
+  products  Product[] @relation("CartProduct") // Many-to-Many with Product
+}
+
+model ProductCategory {
+  id        Int       @id @default(autoincrement())
+  name      String
+  products  Product[] // Relation: ProductCategory has many Products
+}
