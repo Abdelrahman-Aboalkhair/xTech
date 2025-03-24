@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import AppError from "../utils/AppError";
+import prisma from "../config/database";
 
 interface UserPayload {
   id: number;
@@ -19,10 +21,7 @@ const protect = async (
   try {
     const accessToken = req.headers.authorization?.split(" ")[1];
     if (!accessToken) {
-      return res.status(401).json({
-        success: false,
-        message: "You are not authorized to access this resource.",
-      });
+      return next(new AppError(401, "Invalid access token, please log in"));
     }
 
     const decoded = jwt.verify(
@@ -30,13 +29,23 @@ const protect = async (
       process.env.ACCESS_TOKEN_SECRET as string
     ) as UserPayload;
 
-    req.user = decoded;
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.id },
+      select: { id: true, emailVerified: true, role: true },
+    });
+
+    if (!user) {
+      return next(new AppError(401, "User no longer exists."));
+    }
+
+    if (!user.emailVerified) {
+      return next(new AppError(403, "Please verify your email to continue."));
+    }
+
+    req.user = { ...decoded, emailVerified: user.emailVerified };
     next();
   } catch (error) {
-    return res.status(401).json({
-      success: false,
-      message: "Invalid or expired token. Please log in again.",
-    });
+    return next(new AppError(401, "Invalid access token, please log in"));
   }
 };
 

@@ -12,10 +12,8 @@ interface CustomError extends Error {
   stack?: string;
 }
 
-// Error handler type
 type ErrorHandler = (err: CustomError) => AppError;
 
-// Error handlers map
 const errorHandlers: { [key: string]: ErrorHandler } = {
   ValidationError: (err: CustomError) =>
     new AppError(
@@ -42,14 +40,16 @@ const globalError = (
   res: Response,
   next: NextFunction
 ): void => {
-  let error: AppError = err instanceof AppError ? err : (err as CustomError);
+  let error: AppError =
+    err instanceof AppError ? err : new AppError(500, err.message);
 
-  // Apply specific error handler if it exists
-  if (errorHandlers[err.name] || errorHandlers[err.code as number]) {
-    error = (errorHandlers[err.name] || errorHandlers[err.code as number])(err);
+  if (errorHandlers[err.name] || (err as CustomError).code) {
+    error = (
+      errorHandlers[err.name] ||
+      errorHandlers[(err as CustomError).code as number]
+    )(err);
   }
 
-  // Development logging
   if (process.env.NODE_ENV === "development") {
     console.error("Error Stack:", err.stack);
     logger.error({
@@ -61,14 +61,12 @@ const globalError = (
     });
   }
 
-  // Production logging for operational errors
   if (process.env.NODE_ENV === "production" && error.isOperational) {
     logger.error(
       `[${req.method}] ${req.originalUrl} - ${error.statusCode} - ${error.message}`
     );
   }
 
-  // Send response
   res.status(error.statusCode || 500).json({
     status:
       error.statusCode >= 400 && error.statusCode < 500 ? "fail" : "error",

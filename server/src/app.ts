@@ -11,6 +11,8 @@ import hpp from "hpp";
 import morgan from "morgan";
 import logger from "./config/logger";
 import compression from "compression";
+import authRoutes from "./routes/authRoutes";
+import globalError from "./middlewares/globalError";
 
 dotenv.config();
 
@@ -80,6 +82,15 @@ app.use(
     },
   })
 );
+
 app.use(compression());
+app.use("/api/v1/auth", authRoutes);
+
+app.all("*", (req, res, next) => {
+  next(new AppError(404, `Can't find ${req.originalUrl} on this server!`));
+});
+
+// Global Error Handler
+app.use(globalError);
 
 export default app;

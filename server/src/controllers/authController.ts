@@ -1,27 +1,11 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { cookieParserOptions } from "../constants";
+import { cookieOptions } from "../constants";
 import asyncHandler from "../utils/asyncHandler";
 import sendResponse from "../utils/sendResponse";
 import AuthService from "../services/authService";
-import prisma from "../config/database"; // Assuming this is your Prisma client import
+import prisma from "../config/database";
 import { generateAccessToken, generateRefreshToken } from "../utils/auth";
-
-// Define user response type based on schema
-interface UserResponse {
-  id: number;
-  name: string;
-  email: string;
-  role: "ADMIN" | "USER" | "SUPERADMIN";
-  emailVerified: boolean;
-  avatar?: string | null;
-}
-
-interface AuthResponseData {
-  user: UserResponse;
-  accessToken: string;
-  refreshToken?: string;
-}
 
 export const register = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
@@ -32,19 +16,19 @@ export const register = asyncHandler(
       password,
     });
 
-    res.cookie("refreshToken", refreshToken, cookieParserOptions);
+    res.cookie("refreshToken", refreshToken, cookieOptions);
 
-    sendResponse<AuthResponseData>(
+    sendResponse(
       res,
       201,
       {
         user: {
-          id: user.id, // Changed from _id to id to match Prisma schema
+          id: user.id,
           name: user.name,
           email: user.email,
           role: user.role,
           emailVerified: user.emailVerified,
-          avatar: user.avatar || null, // Changed from profilePicture to avatar
+          avatar: user.avatar || null,
         },
         accessToken,
       },
@@ -53,10 +37,19 @@ export const register = asyncHandler(
   }
 );
 
+export const getVerificationEmail = asyncHandler(
+  async (req: Request, res: Response): Promise<void> => {
+    const { email } = req.params;
+    const result = await AuthService.sendVerificationEmail(email);
+
+    sendResponse(res, 200, {}, result.message);
+  }
+);
+
 export const verifyEmail = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
-    const { emailVerificationCode } = req.body;
-    const result = await AuthService.verifyEmail(emailVerificationCode);
+    const { emailVerificationToken } = req.body;
+    const result = await AuthService.verifyEmail(emailVerificationToken);
 
     sendResponse(res, 200, {}, result.message);
   }
@@ -70,19 +63,19 @@ export const signin = asyncHandler(
       password,
     });
 
-    res.cookie("refreshToken", refreshToken, cookieParserOptions);
+    res.cookie("refreshToken", refreshToken, cookieOptions);
 
-    sendResponse<AuthResponseData>(
+    sendResponse(
       res,
       200,
       {
         user: {
-          id: user.id, // Changed from _id to id
+          id: user.id,
           name: user.name,
           email: user.email,
           role: user.role,
           emailVerified: user.emailVerified,
-          avatar: user.avatar || null, // Removed phoneNumber and complex profilePicture
+          avatar: user.avatar || null,
         },
         accessToken,
       },
@@ -107,9 +100,9 @@ export const googleSignup = asyncHandler(
       access_token
     );
 
-    res.cookie("refreshToken", refreshToken, cookieParserOptions);
+    res.cookie("refreshToken", refreshToken, cookieOptions);
 
-    sendResponse<AuthResponseData>(
+    sendResponse(
       res,
       201,
       {
@@ -135,9 +128,9 @@ export const googleSignin = asyncHandler(
       access_token
     );
 
-    res.cookie("refreshToken", refreshToken, cookieParserOptions);
+    res.cookie("refreshToken", refreshToken, cookieOptions);
 
-    sendResponse<AuthResponseData>(
+    sendResponse(
       res,
       200,
       {
@@ -185,13 +178,13 @@ export const refreshToken = asyncHandler(
     jwt.verify(
       refreshToken,
       process.env.REFRESH_TOKEN_SECRET as string,
-      async (err, decoded: any) => {
+      async (err: any, decoded: any) => {
         if (err) {
           return sendResponse(res, 403, {}, "Invalid or expired refresh token");
         }
 
         const user = await prisma.user.findUnique({
-          where: { id: decoded.userId },
+          where: { id: decoded.id },
           select: {
             id: true,
             name: true,
@@ -209,9 +202,9 @@ export const refreshToken = asyncHandler(
         const newAccessToken = await generateAccessToken(user.id, user.role);
         const newRefreshToken = await generateRefreshToken(user.id, user.role);
 
-        res.cookie("refreshToken", newRefreshToken, cookieParserOptions);
+        res.cookie("refreshToken", newRefreshToken, cookieOptions);
 
-        sendResponse<AuthResponseData>(
+        sendResponse(
           res,
           200,
           {

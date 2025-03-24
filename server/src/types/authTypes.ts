@@ -1,8 +1,4 @@
-export enum ROLE {
-  ADMIN = "ADMIN",
-  USER = "USER",
-  SUPERADMIN = "SUPERADMIN",
-}
+import { ROLE } from "@prisma/client";
 
 export interface RegisterUserParams {
   name: string;
@@ -17,18 +13,20 @@ export interface SignInParams {
 
 export interface AuthResponse {
   user: {
+    id: number;
     name: string;
     email: string;
     role: ROLE;
     emailVerified: boolean;
+    avatar: string | null;
   };
   accessToken: string;
   refreshToken: string;
 }
 
 export interface GoogleUserData {
+  id: number;
   email: string;
   name: string;
   picture: string;
-  id: string;
 }

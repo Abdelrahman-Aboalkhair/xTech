@@ -14,9 +14,9 @@ import {
   AuthResponse,
   RegisterUserParams,
   GoogleUserData,
-  ROLE,
   SignInParams,
 } from "../types/authTypes";
+import { ROLE, User } from "@prisma/client";
 
 class AuthService {
   static async registerUser({
@@ -35,7 +35,7 @@ class AuthService {
       );
     }
 
-    const emailVerificationToken = Math.random().toString(36).slice(-6); // Slightly longer token
+    const emailVerificationToken = Math.random().toString(36).slice(-6);
     const emailVerificationTokenExpiresAt = new Date(
       Date.now() + 10 * 60 * 1000
     );
@@ -48,7 +48,6 @@ class AuthService {
         emailVerificationToken,
         emailVerificationTokenExpiresAt,
         role: ROLE.USER,
-        avatar: null,
         emailVerified: false,
       },
       select: {
@@ -57,6 +56,7 @@ class AuthService {
         email: true,
         role: true,
         emailVerified: true,
+        avatar: true,
       },
     });
 
@@ -76,14 +76,50 @@ class AuthService {
 
     return {
       user: {
+        id: newUser.id,
         name: newUser.name,
         email: newUser.email,
         role: newUser.role,
         emailVerified: newUser.emailVerified,
+        avatar: null,
       },
       accessToken,
       refreshToken,
     };
+  }
+
+  static async sendVerificationEmail(
+    email: string
+  ): Promise<{ message: string }> {
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    const emailVerificationToken = Math.random().toString(36).slice(-6);
+    const emailVerificationTokenExpiresAt = new Date(
+      Date.now() + 10 * 60 * 1000
+    );
+
+    await prisma.user.update({
+      where: { id: user?.id },
+      data: {
+        emailVerificationToken,
+        emailVerificationTokenExpiresAt,
+      },
+    });
+
+    await emailQueue
+      .add("sendVerificationEmail", {
+        to: email,
+        subject: "Verify Your Email - KgKraft",
+        text: `Your verification code is: ${emailVerificationToken}`,
+        html: `<p>Your verification code is: <strong>${emailVerificationToken}</strong></p>`,
+      })
+      .catch((error) => {
+        console.error("Failed to add email to queue:", error);
+      });
+
+    return { message: "A new verification code has been sent to your email" };
   }
 
   static async verifyEmail(
@@ -112,16 +148,28 @@ class AuthService {
     return { message: "Email verified successfully." };
   }
 
-  static async signin({
-    email,
-    password,
-  }: SignInParams): Promise<{ accessToken: string; refreshToken: string }> {
+  static async signin({ email, password }: SignInParams): Promise<{
+    user: {
+      id: number;
+      role: ROLE;
+      name: string;
+      email: string;
+      emailVerified: boolean;
+      avatar: string | null;
+    };
+    accessToken: string;
+    refreshToken: string;
+  }> {
     const user = await prisma.user.findUnique({
       where: { email },
       select: {
         id: true,
         password: true,
         role: true,
+        name: true,
+        email: true,
+        emailVerified: true,
+        avatar: true,
       },
     });
 
@@ -138,7 +186,7 @@ class AuthService {
     const accessToken = await generateAccessToken(user.id, user.role);
     const refreshToken = await generateRefreshToken(user.id, user.role);
 
-    return { accessToken, refreshToken };
+    return { accessToken, refreshToken, user };
   }
 
   static async signout(): Promise<{ message: string }> {
@@ -166,7 +214,7 @@ class AuthService {
       data: {
         name,
         email,
-        password: "", // Note: Consider how to handle this for Google users
+        password: "",
         avatar: picture,
         emailVerified: true,
         role: ROLE.USER,
@@ -178,8 +226,10 @@ class AuthService {
 
     return {
       user: {
+        id: newUser.id,
         name: newUser.name,
         email: newUser.email,
+        avatar: newUser.avatar,
         role: newUser.role,
         emailVerified: newUser.emailVerified,
       },
@@ -190,7 +240,7 @@ class AuthService {
 
   static async googleSignin(
     access_token: string
-  ): Promise<{ accessToken: string; refreshToken: string }> {
+  ): Promise<{ accessToken: string; refreshToken: string; user: User }> {
     const googleResponse = await axios.get<GoogleUserData>(
       `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`
     );
@@ -198,7 +248,6 @@ class AuthService {
 
     const user = await prisma.user.findUnique({
       where: { email },
-      select: { id: true, role: true },
     });
 
     if (!user) {
@@ -208,7 +257,7 @@ class AuthService {
     const accessToken = await generateAccessToken(user.id, user.role);
     const refreshToken = await generateRefreshToken(user.id, user.role);
 
-    return { accessToken, refreshToken };
+    return { user, accessToken, refreshToken };
   }
 
   static async forgotPassword(email: string): Promise<{ message: string }> {
@@ -239,7 +288,7 @@ class AuthService {
       to: user.email,
       subject: "Reset your password",
       html: htmlTemplate,
-      text: "Reset your password", // Added text fallback
+      text: "Reset your password",
     });
 
     return { message: "Password reset email sent successfully" };
@@ -265,7 +314,7 @@ class AuthService {
     await prisma.user.update({
       where: { id: user.id },
       data: {
-        password: newPassword, // Note: Should be hashed in a real implementation
+        password: newPassword,
         resetPasswordToken: null,
         resetPasswordTokenExpiresAt: null,
       },
