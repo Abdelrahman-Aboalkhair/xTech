@@ -56,16 +56,10 @@ const Navbar = () => {
         KgKraft
       </Link>
 
-      <div className="flex items-center justify-center gap-12">
-        <Link className="font-medium text-[17px]" href="/">
-          Home
-        </Link>
-        <Link className="font-medium text-[17px]" href="/about">
-          About
-        </Link>
-        <Link className="font-medium text-[17px]" href="/contact">
-          Contact
-        </Link>
+      <div className="flex items-center justify-center gap-12 text-[16px]">
+        <Link href="/">Home</Link>
+        <Link href="/about">About</Link>
+        <Link href="/contact">Contact</Link>
       </div>
 
       <div className="flex items-center gap-10">

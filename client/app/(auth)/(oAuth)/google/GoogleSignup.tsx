@@ -35,7 +35,7 @@ const GoogleSignup = ({ onError }) => {
   return (
     <button
       onClick={() => signup()}
-      className="flex items-center justify-center gap-2 border-[2.5px] bg-gray-50 border-gray-100 text-black py-4 font-medium rounded-md w-full"
+      className="flex items-center justify-center gap-2 border-[2.8px] border-gray-200/90 text-black py-4 rounded-md w-full"
     >
       <Image
         src={GoogleIcon}

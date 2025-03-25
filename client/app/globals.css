@@ -4,6 +4,10 @@
   .bg-primary {
     background-color: var(--primary);
   }
+
+  .text-primary {
+    color: var(--primary);
+  }
 }
 
 @layer base {
@@ -14,14 +18,13 @@
     --secondary: #fefae0;
     --lightText: #f5f3f3;
     --darkText: #283618;
+    --font-poppins: "Poppins", sans-serif;
   }
-}
 
-body {
-  @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] font-normal antialiased;
+    font-family: var(--font-poppins);
+  }
 }
 
 .th {

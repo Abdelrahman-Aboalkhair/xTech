@@ -51,8 +51,8 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
             return result.success || result.error.errors[0].message;
           },
         })}
-        className="p-[17px] pl-3 pr-10 w-full border border-gray-300 text-gray-800 placeholder:text-gray-600 
-              rounded focus:outline-none focus:ring-[2px] focus:ring-lime-700"
+        className="p-[17px] pl-3 pr-10 w-full border-b-2 border-gray-300 text-gray-800 placeholder:text-gray-600 
+              sfocus:outline-none focus:border-gray-700"
       />
       {errors[name] && (
         <p className="text-red-500 text-sm mt-1">
@@ -67,7 +67,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
               key={index}
               className="h-[6px] flex-1 rounded w-[100px]"
               initial={{ scaleX: 0 }}
-              animate={{ scaleX: strength > index ? 1 : 0.93 }}
+              animate={{ scaleX: strength > index ? 0.97 : 0.93 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
               style={{
                 backgroundColor:
