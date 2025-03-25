@@ -6,7 +6,16 @@ import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { clearAuthState } from "../../store/slices/AuthSlice";
 import { useSignOutMutation } from "../../store/apis/AuthApi";
 import { useRouter } from "next/navigation";
-import { LayoutDashboard, Home, User, LogOut } from "lucide-react";
+import {
+  LayoutDashboard,
+  Home,
+  User,
+  LogOut,
+  ShoppingCart,
+  Users,
+  Settings,
+  ShieldCheck,
+} from "lucide-react";
 import Button from "../atoms/Button";
 
 const UserMenu = ({ menuOpen, closeMenu }: any) => {
@@ -25,6 +34,71 @@ const UserMenu = ({ menuOpen, closeMenu }: any) => {
     }
   };
 
+  // Define routes based on role
+  const getRoutesForRole = () => {
+    switch (user?.role) {
+      case "SUPERADMIN":
+        return [
+          {
+            href: "/superadmin-dashboard",
+            label: "Dashboard",
+            icon: <LayoutDashboard size={18} />,
+          },
+          {
+            href: "/manage-users",
+            label: "Manage Users",
+            icon: <Users size={18} />,
+          },
+          {
+            href: "/manage-admins",
+            label: "Manage Admins",
+            icon: <ShieldCheck size={18} />,
+          },
+          {
+            href: "/orders",
+            label: "Orders",
+            icon: <ShoppingCart size={18} />,
+          },
+          {
+            href: "/settings",
+            label: "Settings",
+            icon: <Settings size={18} />,
+          },
+        ];
+      case "ADMIN":
+        return [
+          {
+            href: "/admin-dashboard",
+            label: "Dashboard",
+            icon: <LayoutDashboard size={18} />,
+          },
+          {
+            href: "/manage-users",
+            label: "Manage Users",
+            icon: <Users size={18} />,
+          },
+          {
+            href: "/orders",
+            label: "Orders",
+            icon: <ShoppingCart size={18} />,
+          },
+        ];
+      case "USER":
+        return [
+          {
+            href: "/orders",
+            label: "My Orders",
+            icon: <ShoppingCart size={18} />,
+          },
+          { href: "/me", label: "Profile", icon: <User size={18} /> },
+        ];
+      default:
+        return [];
+    }
+  };
+
+  const roleBasedRoutes = getRoutesForRole();
+
   return (
     menuOpen && (
       <motion.div
@@ -37,14 +111,6 @@ const UserMenu = ({ menuOpen, closeMenu }: any) => {
 
         <div className="flex flex-col text-gray-700">
           <Link
-            href={`/${user?.role || "driver"}-dashboard`}
-            className="flex items-center px-4 py-3 gap-2 hover:bg-gray-100 transition"
-            onClick={closeMenu}
-          >
-            <LayoutDashboard size={18} />
-            <span>Dashboard</span>
-          </Link>
-          <Link
             href="/"
             className="flex items-center px-4 py-3 gap-2 hover:bg-gray-100 transition"
             onClick={closeMenu}
@@ -52,14 +118,19 @@ const UserMenu = ({ menuOpen, closeMenu }: any) => {
             <Home size={18} />
             <span>Home</span>
           </Link>
-          <Link
-            href="/me"
-            className="flex items-center px-4 py-3 gap-2 hover:bg-gray-100 transition"
-            onClick={closeMenu}
-          >
-            <User size={18} />
-            <span>Your Profile</span>
-          </Link>
+
+          {roleBasedRoutes.map((route) => (
+            <Link
+              key={route.href}
+              href={route.href}
+              className="flex items-center px-4 py-3 gap-2 hover:bg-gray-100 transition"
+              onClick={closeMenu}
+            >
+              {route.icon}
+              <span>{route.label}</span>
+            </Link>
+          ))}
+
           <Button
             onClick={() => {
               handleSignOut();

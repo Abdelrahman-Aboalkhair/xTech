@@ -9,11 +9,13 @@ import { generateAccessToken, generateRefreshToken } from "../utils/auth";
 
 export const register = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
+    console.log("req.body: ", req.body);
     const { user, accessToken, refreshToken } = await AuthService.registerUser({
       name,
       email,
       password,
+      role,
     });
 
     res.cookie("refreshToken", refreshToken, cookieOptions);

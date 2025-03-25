@@ -58,9 +58,30 @@ const Navbar = () => {
       </Link>
 
       <div className="flex items-center justify-center gap-12 text-[16px]">
-        <Link href="/">Home</Link>
-        <Link href="/about">About</Link>
-        <Link href="/contact">Contact</Link>
+        <Link
+          className={
+            pathname === "/" ? "border-b-2 border-[var(--primary)]" : ""
+          }
+          href="/"
+        >
+          Home
+        </Link>
+        <Link
+          className={
+            pathname === "/about" ? "border-b-2 border-[var(--primary)]" : ""
+          }
+          href="/about"
+        >
+          About
+        </Link>
+        <Link
+          className={
+            pathname === "/contact" ? "border-b-2 border-[var(--primary)]" : ""
+          }
+          href="/contact"
+        >
+          Contact
+        </Link>
       </div>
 
       <div className="flex items-center gap-10">

@@ -40,13 +40,19 @@ model Product {
   name         String
   description  String?
   price        Float
+  discount     Float
+  images       String[]
   stock        Int
+  salesCount   Int @default(0)
+  bestSeller   Boolean @default(false)
+  featured     Boolean @default(false)
   createdAt    DateTime         @default(now())
   updatedAt    DateTime         @updatedAt
-  category     ProductCategory? @relation(fields: [categoryId], references: [id]) 
+  category     Category? @relation(fields: [categoryId], references: [id]) 
   categoryId   Int?             
   orders       Order[]          @relation("OrderProduct") 
   carts        Cart[]           @relation("CartProduct")  
+  orderItems   OrderItem[]
 }
 
 model Order {
@@ -57,13 +63,23 @@ model Order {
   userId       Int         
   products     Product[]   @relation("OrderProduct") 
   tracking     TrackingDetail? 
+  orderItems   OrderItem[]
+}
+
+model OrderItem {
+  id      Int      @id @default(autoincrement())
+  orderId   String
+  productId Int
+  quantity  Int     @default(1)
+  order   Order   @relation(fields: [orderId], references: [order_no])
+  product Product @relation(fields: [productId], references: [id])
 }
 
 model Payment {
   id        Int      @id @default(autoincrement())
   method    String
   amount    Float
-  user      User     @relation(fields: [userId], references: [id]) // Relation: Payment belongs to one User
+  user      User     @relation(fields: [userId], references: [id]) 
   userId    Int      
 }
 
@@ -72,26 +88,26 @@ model Address {
   city      String
   state     String
   country   String
-  user      User     @relation(fields: [userId], references: [id]) // Relation: Address belongs to one User
+  user      User     @relation(fields: [userId], references: [id])
   userId    Int      
 }
 
 model TrackingDetail {
   id        Int      @id @default(autoincrement())
   status    String
-  order     Order    @relation(fields: [order_no], references: [order_no]) // Relation: TrackingDetail belongs to one Order
-  order_no  String   @unique // Foreign key for Order (using order_no)
+  order     Order    @relation(fields: [order_no], references: [order_no])
+  order_no  String   @unique 
 }
 
 model Cart {
-  cart_id   String    @id // Using cart_id as the primary key (string as per ERD)
-  user      User      @relation(fields: [userId], references: [id]) // Relation: Cart belongs to one User
+  cart_id   String    @id 
+  user      User      @relation(fields: [userId], references: [id]) 
   userId    Int       
-  products  Product[] @relation("CartProduct") // Many-to-Many with Product
+  products  Product[] @relation("CartProduct")
 }
 
-model ProductCategory {
+model Category {
   id        Int       @id @default(autoincrement())
   name      String
-  products  Product[] // Relation: ProductCategory has many Products
+  products  Product[] 
 }

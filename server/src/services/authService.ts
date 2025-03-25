@@ -23,7 +23,9 @@ class AuthService {
     name,
     email,
     password,
+    role,
   }: RegisterUserParams): Promise<AuthResponse> {
+    console.log("role recieved: ", role);
     const existingUser = await prisma.user.findUnique({
       where: { email },
     });
@@ -47,7 +49,7 @@ class AuthService {
         password,
         emailVerificationToken,
         emailVerificationTokenExpiresAt,
-        role: ROLE.USER,
+        role: role || ROLE.USER,
         emailVerified: false,
       },
       select: {

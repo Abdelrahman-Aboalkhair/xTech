@@ -1,41 +1,57 @@
 import { Request, Response } from "express";
-import * as productService from "../services/productService";
+import asyncHandler from "../utils/asyncHandler";
+import sendResponse from "../utils/sendResponse";
+import ProductService from "../services/productService";
 
-export const getProducts = async (req: Request, res: Response) => {
-  try {
-    const products = await productService.getAllProducts();
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching products", error });
-  }
-};
+const getAllProducts = asyncHandler(async (req: Request, res: Response) => {
+  const products = await ProductService.getAllProducts();
+  sendResponse(res, 200, { products }, "Products fetched successfully");
+});
 
-export const addProduct = async (req: Request, res: Response) => {
-  try {
-    const product = await productService.createProduct(req.body);
-    res.status(201).json(product);
-  } catch (error) {
-    res.status(400).json({ message: "Error creating product", error });
-  }
-};
+const getProductById = asyncHandler(async (req: Request, res: Response) => {
+  const { id: productId } = req.params;
+  const product = await ProductService.getProductById(Number(productId));
+  sendResponse(res, 200, { product }, "Product fetched successfully");
+});
 
-export const updateProduct = async (req: Request, res: Response) => {
-  try {
-    const product = await productService.updateProduct(
-      parseInt(req.params.id),
-      req.body
-    );
-    res.json(product);
-  } catch (error) {
-    res.status(400).json({ message: "Error updating product", error });
-  }
-};
+const createProduct = asyncHandler(async (req: Request, res: Response) => {
+  const { name, description, price, discount, images, stock, categoryId } =
+    req.body;
 
-export const deleteProduct = async (req: Request, res: Response) => {
-  try {
-    await productService.deleteProduct(parseInt(req.params.id));
-    res.sendStatus(204);
-  } catch (error) {
-    res.status(400).json({ message: "Error deleting product", error });
-  }
+  const { product } = await ProductService.createProduct({
+    name,
+    description,
+    price,
+    discount,
+    images,
+    stock,
+    categoryId,
+  });
+
+  sendResponse(res, 201, { product }, "Product created successfully");
+});
+
+const updateProduct = asyncHandler(async (req: Request, res: Response) => {
+  const { id: productId } = req.params;
+  const updatedData = req.body;
+
+  const product = await ProductService.updateProduct(
+    Number(productId),
+    updatedData
+  );
+  sendResponse(res, 200, { product }, "Product updated successfully");
+});
+
+const deleteProduct = asyncHandler(async (req: Request, res: Response) => {
+  const { id: productId } = req.params;
+  await ProductService.deleteProduct(Number(productId));
+  sendResponse(res, 204, {}, "Product deleted successfully");
+});
+
+export {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
 };
