@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .bg-primary {
+    background-color: var(--primary);
+  }
+}
+
+@layer base {
+  :root {
+    --primary: #db4444;
+    --background: #fdfdfd;
+    --foreground: #171717;
+    --secondary: #fefae0;
+    --lightText: #f5f3f3;
+    --darkText: #283618;
+  }
+}
+
+body {
+  @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.th {
+  @apply p-3 text-left font-semibold text-[16px] capitalize;
+}
+
+.td {
+  @apply p-3 text-[13.5px] font-medium capitalize;
+}
