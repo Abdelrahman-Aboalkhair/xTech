@@ -52,7 +52,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
           },
         })}
         className="p-[17px] pl-3 pr-10 w-full border-b-2 border-gray-300 text-gray-800 placeholder:text-gray-600 
-              sfocus:outline-none focus:border-gray-700"
+              focus:outline-none focus:border-gray-700"
       />
       {errors[name] && (
         <p className="text-red-500 text-sm mt-1">

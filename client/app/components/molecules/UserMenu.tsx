@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { LayoutDashboard, Home, User, LogOut } from "lucide-react";
 import Button from "../atoms/Button";
 
-const UserMenu = ({ menuOpen, closeMenu }) => {
+const UserMenu = ({ menuOpen, closeMenu }: any) => {
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const [signOut] = useSignOutMutation();

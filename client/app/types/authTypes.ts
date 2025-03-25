@@ -2,10 +2,7 @@ export interface User {
   name: string;
   email: string;
   role: string;
-  profilePicture: {
-    public_id: string;
-    secure_url: string;
-  };
+  avatar: string | null;
   emailVerified: boolean;
   permissions: string[];
 }

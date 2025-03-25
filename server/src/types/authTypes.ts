@@ -25,7 +25,7 @@ export interface AuthResponse {
 }
 
 export interface GoogleUserData {
-  id: number;
+  googleId: string;
   email: string;
   name: string;
   picture: string;

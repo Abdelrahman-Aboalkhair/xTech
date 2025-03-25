@@ -16,6 +16,7 @@ enum ROLE {
 
 model User {
   id        Int       @id @default(autoincrement())
+  googleId  String?
   email     String    @unique
   password  String
   name      String

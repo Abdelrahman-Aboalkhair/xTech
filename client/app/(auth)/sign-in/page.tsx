@@ -10,6 +10,7 @@ import { useState } from "react";
 import MainLayout from "@/app/components/templates/MainLayout";
 import Image from "next/image";
 import GirlShoppingImage from "@/app/assets/images/girl_shopping.png";
+import { Loader2 } from "lucide-react";
 
 interface InputForm {
   name: string;

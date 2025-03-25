@@ -21,7 +21,7 @@ export const authApi = apiSlice.injectEndpoints({
     }),
     signup: builder.mutation<{ user: User; accessToken: string }, FormData>({
       query: (data) => ({
-        url: "/auth/sign-up",
+        url: "/auth/register",
         method: "POST",
         body: data,
       }),
@@ -30,28 +30,6 @@ export const authApi = apiSlice.injectEndpoints({
         console.log("data ");
         dispatch(setCredentials({ accessToken: data.accessToken }));
       },
-    }),
-    registerDriver: builder.mutation<
-      { user: User; accessToken: string },
-      {
-        email: string;
-        password: string;
-        name: string;
-        phoneNumber: string;
-        address: string;
-        licenseNumber: string;
-        licenseExpiry: string;
-        licenseImage: string;
-        vehicleType: string;
-        experienceYears: number;
-        profilePicture: string;
-      }
-    >({
-      query: (data) => ({
-        url: "/auth/register-driver",
-        method: "POST",
-        body: data,
-      }),
     }),
     signOut: builder.mutation<void, void>({
       query: () => ({
@@ -118,7 +96,6 @@ export const authApi = apiSlice.injectEndpoints({
 export const {
   useSignInMutation,
   useSignupMutation,
-  useRegisterDriverMutation,
   useSignOutMutation,
   useVerifyEmailMutation,
   useForgotPasswordMutation,

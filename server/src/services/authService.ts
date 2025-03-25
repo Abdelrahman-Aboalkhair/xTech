@@ -197,7 +197,8 @@ class AuthService {
     const googleResponse = await axios.get<GoogleUserData>(
       `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`
     );
-    const { email, name, picture, id: googleId } = googleResponse.data;
+    const { email, name, picture, googleId } = googleResponse.data;
+    console.log("picture: ", picture);
 
     const existingUser = await prisma.user.findUnique({
       where: { email },
@@ -212,6 +213,7 @@ class AuthService {
 
     const newUser = await prisma.user.create({
       data: {
+        googleId,
         name,
         email,
         password: "",

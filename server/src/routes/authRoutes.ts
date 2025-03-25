@@ -17,12 +17,8 @@ router.post("/google-signin", validateGoogleAuth, authController.googleSignin);
 router.post("/register", validateRegister, authController.register);
 router.post("/verify-email", validateVerifyEmail, authController.verifyEmail);
 router.get("/verification-email/:email", authController.getVerificationEmail);
-router.post("/signin", validateSignin, authController.signin);
-router.post(
-  "/refresh-token",
-  validateRefreshToken,
-  authController.refreshToken
-);
+router.post("/sign-in", validateSignin, authController.signin);
+router.get("/refresh-token", validateRefreshToken, authController.refreshToken);
 router.post(
   "/forgot-password",
   validateForgotPassword,

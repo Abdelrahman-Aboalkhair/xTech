@@ -14,6 +14,7 @@ type SearchFormValues = {
 
 const Navbar = () => {
   const { isLoggedIn, user } = useAppSelector((state) => state.auth);
+  console.log("isLoggedIn: ", isLoggedIn);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -95,9 +96,9 @@ const Navbar = () => {
                 setMenuOpen(!menuOpen);
               }}
             >
-              {user?.profilePicture?.secure_url ? (
+              {user?.avatar ? (
                 <Image
-                  src={user.profilePicture.secure_url}
+                  src={user?.avatar}
                   alt="User Profile"
                   className="rounded-full cursor-pointer"
                   width={40}
