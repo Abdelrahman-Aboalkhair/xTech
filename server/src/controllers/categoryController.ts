@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import asyncHandler from "../utils/asyncHandler";
 import sendResponse from "../utils/sendResponse";
 import CategoryService from "../services/categoryService";
-import slugify from "../utils/slugify";
 
 const getAllCategories = asyncHandler(async (req: Request, res: Response) => {
   const categories = await CategoryService.getAllCategories();
@@ -12,9 +11,7 @@ const getAllCategories = asyncHandler(async (req: Request, res: Response) => {
 const createCategory = asyncHandler(async (req: Request, res: Response) => {
   const { name } = req.body;
 
-  const slugifiedName = slugify(name);
-
-  const { category } = await CategoryService.createCategory(slugifiedName);
+  const { category } = await CategoryService.createCategory(name);
 
   sendResponse(res, 201, { category }, "Category created successfully");
 });

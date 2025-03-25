@@ -44,9 +44,9 @@ const createProductSchema: Schema = Joi.object({
     "any.required": "Stock quantity is required",
   }),
 
-  categoryId: Joi.number().integer().optional().messages({
-    "number.base": "Category ID must be a valid number",
-    "number.integer": "Category ID must be an integer",
+  categoryId: Joi.string().guid({ version: "uuidv4" }).required().messages({
+    "string.guid": "Invalid UUID format for category ID",
+    "any.required": "Category ID is required",
   }),
 
   bestSeller: Joi.boolean().default(false).messages({
@@ -95,11 +95,10 @@ const updateProductSchema: Schema = Joi.object({
     "number.min": "Stock cannot be negative",
   }),
 
-  categoryId: Joi.number().integer().messages({
-    "number.base": "Category ID must be a valid number",
-    "number.integer": "Category ID must be an integer",
+  categoryId: Joi.string().guid({ version: "uuidv4" }).required().messages({
+    "string.guid": "Invalid UUID format for category ID",
+    "any.required": "Category ID is required",
   }),
-
   bestSeller: Joi.boolean().messages({
     "boolean.base": "BestSeller must be a boolean value",
   }),

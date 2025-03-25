@@ -6,7 +6,6 @@ import sendResponse from "../utils/sendResponse";
 import AuthService from "../services/authService";
 import prisma from "../config/database";
 import { generateAccessToken, generateRefreshToken } from "../utils/auth";
-import slugify from "../utils/slugify";
 
 export const register = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {

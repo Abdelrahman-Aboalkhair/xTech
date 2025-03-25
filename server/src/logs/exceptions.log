@@ -11476,3 +11476,263 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-25T19:15:04.131Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:40
+
+  185   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  186 }
+  187 
+→ 188 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+PrismaClientValidationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:40
+
+  185   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  186 }
+  187 
+→ 188 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+    at Cn (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at Wn.handleRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:7177)
+    at Wn.handleAndLogRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6858)
+    at Wn.request (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6565)
+    at async l (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:130:10067)
+    at async /home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:22
+[2025-03-25T19:16:22.471Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:40
+
+  185   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  186 }
+  187 
+→ 188 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+PrismaClientValidationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:40
+
+  185   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  186 }
+  187 
+→ 188 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+    at Cn (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at Wn.handleRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:7177)
+    at Wn.handleAndLogRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6858)
+    at Wn.request (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6565)
+    at async l (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:130:10067)
+    at async /home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:22
+[2025-03-25T19:22:09.781Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:40
+
+  185   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  186 }
+  187 
+→ 188 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+PrismaClientValidationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:40
+
+  185   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  186 }
+  187 
+→ 188 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+    at Cn (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at Wn.handleRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:7177)
+    at Wn.handleAndLogRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6858)
+    at Wn.request (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6565)
+    at async l (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:130:10067)
+    at async /home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:22
+[2025-03-25T19:23:00.767Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:40
+
+  185   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  186 }
+  187 
+→ 188 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+PrismaClientValidationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:40
+
+  185   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  186 }
+  187 
+→ 188 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+    at Cn (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at Wn.handleRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:7177)
+    at Wn.handleAndLogRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6858)
+    at Wn.request (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6565)
+    at async l (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:130:10067)
+    at async /home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:22
+[2025-03-25T19:24:15.893Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:187:40
+
+  184   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  185 }
+  186 
+→ 187 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+PrismaClientValidationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:187:40
+
+  184   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  185 }
+  186 
+→ 187 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+    at Cn (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at Wn.handleRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:7177)
+    at Wn.handleAndLogRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6858)
+    at Wn.request (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6565)
+    at async l (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:130:10067)
+    at async /home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:187:22
