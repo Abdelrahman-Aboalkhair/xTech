@@ -3,11 +3,10 @@ import AppError from "../utils/AppError";
 
 class ProductService {
   static async getAllProducts() {
-    const products = await prisma.product.findMany();
-    return { products };
+    return await prisma.product.findMany();
   }
 
-  static async getProductById(productId: number) {
+  static async getProductById(productId: string) {
     const product = await prisma.product.findUnique({
       where: { id: productId },
     });
@@ -19,19 +18,20 @@ class ProductService {
 
   static async createProduct(data: {
     name: string;
+    slug: string;
     description?: string;
     price: number;
     discount: number;
     images: string[];
     stock: number;
-    categoryId?: number;
+    categoryId?: string;
   }) {
     const product = await prisma.product.create({ data });
     return { product };
   }
 
   static async updateProduct(
-    productId: number,
+    productId: string,
     updatedData: Partial<{
       name: string;
       description: string;
@@ -39,7 +39,7 @@ class ProductService {
       discount: number;
       images: string[];
       stock: number;
-      categoryId?: number;
+      categoryId?: string;
     }>
   ) {
     const existingProduct = await prisma.product.findUnique({
@@ -58,7 +58,7 @@ class ProductService {
     return product;
   }
 
-  static async deleteProduct(productId: number) {
+  static async deleteProduct(productId: string) {
     const product = await prisma.product.findUnique({
       where: { id: productId },
     });

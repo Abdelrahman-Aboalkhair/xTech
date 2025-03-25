@@ -1,18 +1,20 @@
 import prisma from "../config/database";
 import AppError from "../utils/AppError";
+import slugify from "../utils/slugify";
 
 class CategoryService {
   static async getAllCategories() {
-    const categories = await prisma.category.findMany();
-    return { categories };
+    return await prisma.category.findMany();
   }
 
   static async createCategory(name: string) {
-    const category = await prisma.category.create({ data: { name } });
+    const category = await prisma.category.create({
+      data: { name, slug: slugify(name) },
+    });
     return { category };
   }
 
-  static async deleteCategory(categoryId: number) {
+  static async deleteCategory(categoryId: string) {
     const category = await prisma.category.findUnique({
       where: { id: categoryId },
     });

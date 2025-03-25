@@ -4,7 +4,7 @@ import AppError from "../utils/AppError";
 import prisma from "../config/database";
 
 interface UserPayload {
-  id: number;
+  id: string;
   role: string;
   [key: string]: any;
 }

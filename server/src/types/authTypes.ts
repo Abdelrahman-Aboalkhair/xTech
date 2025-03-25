@@ -14,7 +14,7 @@ export interface SignInParams {
 
 export interface AuthResponse {
   user: {
-    id: number;
+    id: string;
     name: string;
     email: string;
     role: ROLE;

@@ -2,63 +2,23 @@
 import React, { useState } from "react";
 import { Heart, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useGetAllProductsQuery } from "@/app/store/apis/ProductApi";
 
 // Define the product type
 interface Product {
   id: number;
   name: string;
-  originalPrice: number;
+  price: number;
   discountedPrice: number;
   discountPercentage: number;
-  rating: number;
-  reviewCount: number;
+  ratings: number;
+  averageRating: number;
 }
 
 const FlashSaleSection: React.FC = () => {
-  // State to track which product is being hovered
+  const { data, error } = useGetAllProductsQuery({});
   const [hoveredProductId, setHoveredProductId] = useState<number | null>(null);
 
-  // Placeholder product data
-  const products: Product[] = [
-    {
-      id: 1,
-      name: "HAVIT HV-G92 Gamepad",
-      originalPrice: 160,
-      discountedPrice: 120,
-      discountPercentage: 40,
-      rating: 5,
-      reviewCount: 88,
-    },
-    {
-      id: 2,
-      name: "AK-900 Wired Keyboard",
-      originalPrice: 160,
-      discountedPrice: 960,
-      discountPercentage: 35,
-      rating: 5,
-      reviewCount: 75,
-    },
-    {
-      id: 3,
-      name: "IPS LCD Gaming Monitor",
-      originalPrice: 400,
-      discountedPrice: 370,
-      discountPercentage: 30,
-      rating: 5,
-      reviewCount: 99,
-    },
-    {
-      id: 4,
-      name: "S-Series Comfort Chair",
-      originalPrice: 400,
-      discountedPrice: 375,
-      discountPercentage: 25,
-      rating: 5,
-      reviewCount: 99,
-    },
-  ];
-
-  // Render star rating
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
       <span
@@ -84,7 +44,7 @@ const FlashSaleSection: React.FC = () => {
           </h2>{" "}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
+          {data?.products?.map((product: Product) => (
             <motion.div
               key={product.id}
               className="bg-white rounded-md shadow-md overflow-hidden relative group"
@@ -135,7 +95,7 @@ const FlashSaleSection: React.FC = () => {
                       ${product.discountedPrice}
                     </span>
                     <span className="text-gray-400 line-through">
-                      ${product.originalPrice}
+                      ${product.price}
                     </span>
                   </div>
 

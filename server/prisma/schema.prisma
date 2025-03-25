@@ -7,7 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 enum ROLE {
   ADMIN
   USER
@@ -15,7 +14,7 @@ enum ROLE {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
+  id        String    @id @default(uuid()) 
   googleId  String?
   email     String    @unique
   password  String
@@ -36,78 +35,82 @@ model User {
 }
 
 model Product {
-  id           Int              @id @default(autoincrement())
+  id           String    @id @default(uuid()) 
   name         String
   description  String?
   price        Float
   discount     Float
+  slug         String    @unique
   images       String[]
   stock        Int
   salesCount   Int @default(0)
   bestSeller   Boolean @default(false)
   featured     Boolean @default(false)
-  createdAt    DateTime         @default(now())
-  updatedAt    DateTime         @updatedAt
+  ratings      Float  @default(0)
+  averageRating Float @default(0)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
   category     Category? @relation(fields: [categoryId], references: [id]) 
-  categoryId   Int?             
-  orders       Order[]          @relation("OrderProduct") 
-  carts        Cart[]           @relation("CartProduct")  
+  categoryId   String?   
+  orders       Order[]   @relation("OrderProduct") 
+  carts        Cart[]    @relation("CartProduct")  
   orderItems   OrderItem[]
 }
 
 model Order {
-  order_no     String      @id
+  order_no     String    @id @default(uuid()) 
   amount       Float
   order_date   DateTime
-  user         User        @relation(fields: [userId], references: [id]) 
-  userId       Int         
-  products     Product[]   @relation("OrderProduct") 
+  user         User      @relation(fields: [userId], references: [id]) 
+  userId       String    
+  products     Product[] @relation("OrderProduct") 
   tracking     TrackingDetail? 
   orderItems   OrderItem[]
 }
 
 model OrderItem {
-  id      Int      @id @default(autoincrement())
+  id        String  @id @default(uuid()) 
   orderId   String
-  productId Int
+  productId String
   quantity  Int     @default(1)
-  order   Order   @relation(fields: [orderId], references: [order_no])
-  product Product @relation(fields: [productId], references: [id])
+  order     Order   @relation(fields: [orderId], references: [order_no])
+  product   Product @relation(fields: [productId], references: [id])
 }
 
 model Payment {
-  id        Int      @id @default(autoincrement())
+  id        String  @id @default(uuid()) 
   method    String
   amount    Float
-  user      User     @relation(fields: [userId], references: [id]) 
-  userId    Int      
+  user      User    @relation(fields: [userId], references: [id]) 
+  userId    String  
 }
 
 model Address {
-  id        Int      @id @default(autoincrement())
+  id        String  @id @default(uuid()) 
   city      String
   state     String
   country   String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int      
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String  
 }
 
 model TrackingDetail {
-  id        Int      @id @default(autoincrement())
+  id        String  @id @default(uuid()) 
   status    String
-  order     Order    @relation(fields: [order_no], references: [order_no])
-  order_no  String   @unique 
+  order     Order   @relation(fields: [order_no], references: [order_no])
+  order_no  String  @unique 
 }
 
 model Cart {
-  cart_id   String    @id 
-  user      User      @relation(fields: [userId], references: [id]) 
-  userId    Int       
+  cart_id   String   @id @default(uuid()) 
+  user      User     @relation(fields: [userId], references: [id]) 
+  userId    String   
   products  Product[] @relation("CartProduct")
 }
 
 model Category {
-  id        Int       @id @default(autoincrement())
+  id        String  @id @default(uuid()) 
+  slug      String  @unique
   name      String
   products  Product[] 
 }

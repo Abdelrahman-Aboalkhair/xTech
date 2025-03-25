@@ -8,13 +8,13 @@ export async function comparePassword(
   return await bcrypt.compare(plainPassword, hashedPassword);
 }
 
-export function generateAccessToken(id: number, role: string): string {
+export function generateAccessToken(id: string, role: string): string {
   return jwt.sign({ id, role }, process.env.ACCESS_TOKEN_SECRET!, {
     expiresIn: "1h",
   });
 }
 
-export function generateRefreshToken(id: number, role: string): string {
+export function generateRefreshToken(id: string, role: string): string {
   return jwt.sign({ id, role }, process.env.REFRESH_TOKEN_SECRET!, {
     expiresIn: "1d",
   });

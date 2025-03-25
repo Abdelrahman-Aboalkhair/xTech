@@ -6,11 +6,11 @@ import sendResponse from "../utils/sendResponse";
 import AuthService from "../services/authService";
 import prisma from "../config/database";
 import { generateAccessToken, generateRefreshToken } from "../utils/auth";
+import slugify from "../utils/slugify";
 
 export const register = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     const { name, email, password, role } = req.body;
-    console.log("req.body: ", req.body);
     const { user, accessToken, refreshToken } = await AuthService.registerUser({
       name,
       email,
@@ -201,8 +201,8 @@ export const refreshToken = asyncHandler(
           return sendResponse(res, 404, {}, "User not found");
         }
 
-        const newAccessToken = await generateAccessToken(user.id, user.role);
-        const newRefreshToken = await generateRefreshToken(user.id, user.role);
+        const newAccessToken = generateAccessToken(user.id, user.role);
+        const newRefreshToken = generateRefreshToken(user.id, user.role);
 
         res.cookie("refreshToken", newRefreshToken, cookieOptions);
 

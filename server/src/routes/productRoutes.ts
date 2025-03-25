@@ -15,7 +15,7 @@ router.get("/:id", productController.getProductById);
 router.post(
   "/",
   protect,
-  authorizeRole("admin", "superadmin"),
+  authorizeRole("ADMIN", "SUPERADMIN"),
   validateCreateProduct,
   productController.createProduct
 );
@@ -23,7 +23,7 @@ router.post(
 router.put(
   "/:id",
   protect,
-  authorizeRole("admin", "superadmin"),
+  authorizeRole("ADMIN", "SUPERADMIN"),
   validateUpdateProduct,
   productController.updateProduct
 );
@@ -31,7 +31,7 @@ router.put(
 router.delete(
   "/:id",
   protect,
-  authorizeRole("admin", "superadmin"),
+  authorizeRole("ADMIN", "SUPERADMIN"),
   productController.deleteProduct
 );
 

@@ -17,6 +17,7 @@ import {
   SignInParams,
 } from "../types/authTypes";
 import { ROLE, User } from "@prisma/client";
+import slugify from "../utils/slugify";
 
 class AuthService {
   static async registerUser({
@@ -25,7 +26,6 @@ class AuthService {
     password,
     role,
   }: RegisterUserParams): Promise<AuthResponse> {
-    console.log("role recieved: ", role);
     const existingUser = await prisma.user.findUnique({
       where: { email },
     });
@@ -73,8 +73,8 @@ class AuthService {
         console.error("Failed to add email to queue:", error);
       });
 
-    const accessToken = await generateAccessToken(newUser.id, newUser.role);
-    const refreshToken = await generateRefreshToken(newUser.id, newUser.role);
+    const accessToken = generateAccessToken(newUser.id, newUser.role);
+    const refreshToken = generateRefreshToken(newUser.id, newUser.role);
 
     return {
       user: {
@@ -152,7 +152,7 @@ class AuthService {
 
   static async signin({ email, password }: SignInParams): Promise<{
     user: {
-      id: number;
+      id: string;
       role: ROLE;
       name: string;
       email: string;

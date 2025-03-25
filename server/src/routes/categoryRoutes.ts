@@ -10,14 +10,14 @@ router.get("/", categoryController.getAllCategories);
 router.post(
   "/",
   protect,
-  authorizeRole("admin", "superadmin"),
+  authorizeRole("ADMIN", "SUPERADMIN"),
   validateCreateCategory,
   categoryController.createCategory
 );
 router.delete(
   "/:id",
   protect,
-  authorizeRole("admin", "superadmin"),
+  authorizeRole("ADMIN", "SUPERADMIN"),
   categoryController.deleteCategory
 );
 

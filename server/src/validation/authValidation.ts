@@ -17,6 +17,7 @@ const signupSchema: Schema = Joi.object({
       "string.email": "Please enter a valid email address",
       "any.required": "Email is required",
     }),
+  role: Joi.string().valid("USER", "ADMIN").default("USER").optional(),
 
   password: Joi.string()
     .min(8)
@@ -41,13 +42,12 @@ const signupSchema: Schema = Joi.object({
       "any.required": "New password is required",
     }),
 
-  profilePicture: Joi.object({
-    public_id: Joi.string().optional(),
-    secure_url: Joi.string().uri().optional().messages({
-      "string.uri": "Profile picture secure_url must be a valid URL",
-    }),
-  }).optional(),
-}).options({ stripUnknown: true }); // Removes unexpected fields
+  avatar: Joi.string().allow(null, "").uri().messages({
+    "string.uri": "Avatar must be a valid URL",
+  }),
+})
+  .optional()
+  .options({ stripUnknown: true }); // Removes unexpected fields
 
 const verifyEmailSchema: Schema = Joi.object({
   emailVerificationToken: Joi.string().length(6).required(),
