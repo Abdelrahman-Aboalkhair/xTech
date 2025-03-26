@@ -12346,3 +12346,67 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T01:22:40.457Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/productController.ts[0m:[93m20[0m:[93m40[0m - [91merror[0m[90m TS2551: [0mProperty 'getProductBySlug' does not exist on type 'typeof ProductService'. Did you mean 'getProductById'?
+
+[7m20[0m   const product = await ProductService.getProductBySlug(productSlug);
+[7m  [0m [91m                                       ~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/services/productService.ts[0m:[93m24[0m:[93m16[0m
+    [7m24[0m   static async getProductById(productId: string) {
+    [7m  [0m [96m               ~~~~~~~~~~~~~~[0m
+    'getProductById' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/productController.ts[0m:[93m20[0m:[93m40[0m - [91merror[0m[90m TS2551: [0mProperty 'getProductBySlug' does not exist on type 'typeof ProductService'. Did you mean 'getProductById'?
+
+[7m20[0m   const product = await ProductService.getProductBySlug(productSlug);
+[7m  [0m [91m                                       ~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/services/productService.ts[0m:[93m24[0m:[93m16[0m
+    [7m24[0m   static async getProductById(productId: string) {
+    [7m  [0m [96m               ~~~~~~~~~~~~~~[0m
+    'getProductById' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T01:23:12.911Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/productRoutes.ts[0m:[93m14[0m:[93m45[0m - [91merror[0m[90m TS2551: [0mProperty 'getProductBySlug' does not exist on type 'typeof import("/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/productController")'. Did you mean 'getProductById'?
+
+[7m14[0m router.get("/slug/:slug", productController.getProductBySlug);
+[7m  [0m [91m                                            ~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/productRoutes.ts[0m:[93m14[0m:[93m45[0m - [91merror[0m[90m TS2551: [0mProperty 'getProductBySlug' does not exist on type 'typeof import("/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/productController")'. Did you mean 'getProductById'?
+
+[7m14[0m router.get("/slug/:slug", productController.getProductBySlug);
+[7m  [0m [91m                                            ~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T01:45:08.658Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
+Error: EIO: i/o error, write
+    at writeSync (node:fs:925:3)
+    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
+    at writeOrBuffer (node:internal/streams/writable:570:12)
+    at _write (node:internal/streams/writable:499:10)
+    at SyncWriteStream.Writable.write (node:internal/streams/writable:508:10)
+    at console.value (node:internal/console/constructor:298:16)
+    at console.log (node:internal/console/constructor:384:26)
+    at connectDB (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/config/database.ts:31:13)

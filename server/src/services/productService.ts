@@ -31,6 +31,16 @@ class ProductService {
     return product;
   }
 
+  static async getProductBySlug(productSlug: string) {
+    const product = await prisma.product.findUnique({
+      where: { slug: productSlug },
+    });
+    if (!product) {
+      throw new AppError(404, "Product not found");
+    }
+    return product;
+  }
+
   static async createProduct(data: {
     name: string;
     slug: string;

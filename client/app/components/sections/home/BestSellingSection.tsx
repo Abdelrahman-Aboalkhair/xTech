@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Product } from "@/app/types/productTypes";
 import { useGetAllProductsQuery } from "@/app/store/apis/ProductApi";
 import Rating from "../../feedback/Rating";
+import Image from "next/image";
+import Link from "next/link";
 
 const BestSellingSection: React.FC = () => {
   const { data } = useGetAllProductsQuery({});
@@ -49,17 +51,20 @@ const BestSellingSection: React.FC = () => {
               >
                 <Heart size={20} className="text-gray-600" />
               </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+              <Link
+                href={`/products/${product.slug}`}
                 className="bg-white/70 rounded-full p-2 hover:bg-white/90 transition"
               >
                 <Eye size={20} className="text-gray-600" />
-              </motion.button>
+              </Link>
             </div>
-
-            <div className="bg-gray-200 h-48 w-full flex items-center justify-center">
-              Placeholder Image
+            <div className="w-full flex items-center justify-center py-4 pt-[4rem]">
+              <Image
+                src={product.images[0]}
+                alt={product.name}
+                width={100}
+                height={100}
+              />
             </div>
 
             <div className="p-4 relative">

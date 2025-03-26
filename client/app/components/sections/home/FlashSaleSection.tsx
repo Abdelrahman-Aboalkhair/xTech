@@ -6,9 +6,11 @@ import { useGetAllProductsQuery } from "@/app/store/apis/ProductApi";
 import { Product } from "@/app/types/productTypes";
 import Link from "next/link";
 import Rating from "../../feedback/Rating";
+import Image from "next/image";
 
 const FlashSaleSection: React.FC = () => {
   const { data } = useGetAllProductsQuery({});
+  console.log("Products => ", data?.products);
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
 
   const handleAddToCart = () => {};
@@ -43,24 +45,24 @@ const FlashSaleSection: React.FC = () => {
               </div>
 
               <div className="absolute top-4 right-4 flex space-x-2 z-10">
-                <Link
-                  href={"#"}
-                  className="bg-white/70 rounded-full p-2 hover:bg-white/90 transition"
-                >
+                <button className="bg-white/70 rounded-full p-2 hover:bg-white/90 transition">
                   <Heart size={20} className="text-gray-600" />
-                </Link>
+                </button>
                 <Link
-                  href={`/shop/${product.id}`}
+                  href={`/products/${product.slug}`}
                   className="bg-white/70 rounded-full p-2 hover:bg-white/90 transition"
                 >
                   <Eye size={20} className="text-gray-600" />
                 </Link>
               </div>
-
-              <div className="bg-gray-200 h-48 w-full flex items-center justify-center">
-                Placeholder Image
+              <div className="w-full flex items-center justify-center py-4 pt-[4rem]">
+                <Image
+                  src={product.images[0]}
+                  alt={product.name}
+                  width={100}
+                  height={100}
+                />
               </div>
-
               <div className="p-4 relative">
                 <h3 className="font-medium text-lg mb-2">{product.name}</h3>
 

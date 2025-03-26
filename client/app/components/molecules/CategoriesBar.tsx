@@ -12,7 +12,6 @@ interface Category {
 
 const CategoriesBar = () => {
   const { data, error } = useGetAllCategoriesQuery({});
-  console.log("data: ", data);
 
   if (error) {
     console.log("error occured while fetching categories", error);

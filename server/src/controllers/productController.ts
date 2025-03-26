@@ -15,6 +15,12 @@ const getProductById = asyncHandler(async (req: Request, res: Response) => {
   sendResponse(res, 200, { product }, "Product fetched successfully");
 });
 
+const getProductBySlug = asyncHandler(async (req: Request, res: Response) => {
+  const { slug: productSlug } = req.params;
+  const product = await ProductService.getProductBySlug(productSlug);
+  sendResponse(res, 200, { product }, "Product fetched successfully");
+});
+
 const createProduct = asyncHandler(async (req: Request, res: Response) => {
   const { name, description, price, discount, images, stock, categoryId } =
     req.body;
@@ -51,6 +57,7 @@ const deleteProduct = asyncHandler(async (req: Request, res: Response) => {
 export {
   getAllProducts,
   getProductById,
+  getProductBySlug,
   createProduct,
   updateProduct,
   deleteProduct,
