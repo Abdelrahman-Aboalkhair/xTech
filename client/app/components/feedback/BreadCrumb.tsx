@@ -8,7 +8,7 @@ const BreadCrumb: React.FC = () => {
   const pathSegments = pathname.split("/").filter(Boolean);
 
   return (
-    <nav aria-label="breadcrumb" className="p-4">
+    <nav aria-label="breadcrumb">
       <ul className="flex items-center text-sm text-gray-600">
         <li>
           <Link href="/" className="hover:text-red-700">
