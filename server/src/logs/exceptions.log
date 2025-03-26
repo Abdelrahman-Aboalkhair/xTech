@@ -12498,3 +12498,883 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T15:03:05.404Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T15:03:51.223Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T15:04:22.341Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T15:04:33.153Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T15:05:04.303Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T15:05:08.487Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T15:05:11.707Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T15:05:17.625Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T15:06:17.755Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T15:06:22.325Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllCarts' does not exist on type 'typeof CartService'.
+
+[7m14[0m   const carts = await CartService.getAllCarts();
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m21[0m:[93m44[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m21[0m     const cart = await CartService.getCart(req.user.id);
+[7m  [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m70[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m38[0m     const cart = await CartService.addToCart(req.user.id, productId, quantity);
+[7m  [0m [91m                                                                     ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m47[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }'.
+  Type '{ productId: string; quantity: number; }' is missing the following properties from type '{ id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }': id, createdAt, updatedAt, cartId
+
+[7m47[0m     else req.session.cart.push({ productId, quantity });
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m65[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m65[0m       quantity
+[7m  [0m [91m      ~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m88[0m:[93m51[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m88[0m     const cart = await CartService.removeFromCart(req.user.id, productId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m107[0m:[93m49[0m - [91merror[0m[90m TS2559: [0mType 'string' has no properties in common with type 'CartLookupParams'.
+
+[7m107[0m   if (req.user?.id) await CartService.clearCart(req.user.id);
+[7m   [0m [91m                                                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m108[0m:[93m8[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m108[0m   else req.session.cart = [];
+[7m   [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m115[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'typeof CartService'.
+
+[7m115[0m   await CartService.mergeGuestCart(req.user.id, req.session.cart);
+[7m   [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

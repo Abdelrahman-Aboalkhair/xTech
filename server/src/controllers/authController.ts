@@ -5,7 +5,12 @@ import asyncHandler from "../utils/asyncHandler";
 import sendResponse from "../utils/sendResponse";
 import AuthService from "../services/authService";
 import prisma from "../config/database";
-import { generateAccessToken, generateRefreshToken } from "../utils/auth";
+import {
+  blacklistToken,
+  generateAccessToken,
+  generateRefreshToken,
+  isTokenBlacklisted,
+} from "../utils/auth";
 import AppError from "../utils/AppError";
 
 export const register = asyncHandler(
@@ -88,10 +93,25 @@ export const signin = asyncHandler(
 
 export const signout = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
-    const result = await AuthService.signout();
-    res.clearCookie("refreshToken");
+    const refreshToken = req?.cookies?.refreshToken;
 
-    sendResponse(res, 200, {}, result.message);
+    if (refreshToken) {
+      const decoded: any = jwt.decode(refreshToken);
+      if (decoded && decoded.absExp) {
+        const now = Math.floor(Date.now() / 1000);
+        /* Check if the refresh token still has time to live 
+        (In order to invalidate it cause the user is signing out) */
+        const ttl = decoded.absExp - now;
+        if (ttl > 0) {
+          // Blacklist it if it still has time to live
+          await blacklistToken(refreshToken, ttl);
+        }
+      }
+    }
+
+    res.clearCookie("refreshToken", cookieOptions);
+
+    sendResponse(res, 200, {}, "Logged out successfully");
   }
 );
 
@@ -171,18 +191,29 @@ export const resetPassword = asyncHandler(
 
 export const refreshToken = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
-    const refreshToken = req?.cookies?.refreshToken;
+    const oldRefreshToken = req?.cookies?.refreshToken;
 
-    if (!refreshToken) {
+    if (!oldRefreshToken) {
       throw new AppError(401, "Refresh token not found");
     }
 
+    // This checks if this token is cached under this key "backlist:token"
+    if (await isTokenBlacklisted(oldRefreshToken)) {
+      throw new AppError(401, "Refresh token is invalidated");
+    }
+
     jwt.verify(
-      refreshToken,
+      oldRefreshToken,
       process.env.REFRESH_TOKEN_SECRET as string,
       async (err: any, decoded: any) => {
         if (err) {
           throw new AppError(401, "Invalid or expired refresh token");
+        }
+
+        const absoluteExpiration = decoded.absExp;
+        const now = Math.floor(Date.now() / 1000);
+        if (now > absoluteExpiration) {
+          throw new AppError(401, "Session expired. Please log in again.");
         }
 
         const user = await prisma.user.findUnique({
@@ -202,7 +233,14 @@ export const refreshToken = asyncHandler(
         }
 
         const newAccessToken = generateAccessToken(user.id, user.role);
-        const newRefreshToken = generateRefreshToken(user.id, user.role);
+        const newRefreshToken = generateRefreshToken(
+          user.id,
+          user.role,
+          absoluteExpiration
+        );
+
+        const oldTokenTTL = absoluteExpiration - now; // * old token remaining time to live
+        await blacklistToken(oldRefreshToken, oldTokenTTL);
 
         res.cookie("refreshToken", newRefreshToken, cookieOptions);
 
