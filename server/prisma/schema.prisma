@@ -20,16 +20,19 @@ model User {
   password  String
   name      String
   avatar    String?
+  
   emailVerified Boolean
   emailVerificationToken String?
   emailVerificationTokenExpiresAt DateTime?
   resetPasswordToken String?
   resetPasswordTokenExpiresAt DateTime?
-  role      ROLE    @default(USER)
-  orders    Order[] 
-  payments  Payment[]  
-  addresses Address[] 
-  carts     Cart[]    
+
+  role      ROLE      @default(USER)
+  orders    Order[]
+  payments  Payment[]
+  addresses Address[]
+  cart      Cart?    
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
@@ -44,40 +47,49 @@ model Product {
   images       String[]
   stock        Int
   salesCount   Int @default(0)
+
   bestSeller   Boolean @default(false)
   featured     Boolean @default(false)
   promotional  Boolean @default(false)  
   newArrival   Boolean @default(false)  
   ratings      Float  @default(0)
   averageRating Float @default(0)
+
+  category     Category? @relation(fields: [categoryId], references: [id]) 
+  categoryId   String?
+
+  orderItems   OrderItem[]
+  cartItems    CartItem[]
+
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
-  category     Category? @relation(fields: [categoryId], references: [id]) 
-  categoryId   String?   
-  orders       Order[]   @relation("OrderProduct") 
-  carts        Cart[]    @relation("CartProduct")  
-  orderItems   OrderItem[]
 }
 
-
 model Order {
-  order_no     String    @id @default(uuid()) 
-  amount       Float
-  order_date   DateTime
-  user         User      @relation(fields: [userId], references: [id]) 
-  userId       String    
-  products     Product[] @relation("OrderProduct") 
-  tracking     TrackingDetail? 
-  orderItems   OrderItem[]
+  id          String    @id @default(uuid()) 
+  amount      Float
+  orderDate   DateTime  @default(now())
+  
+  user        User      @relation(fields: [userId], references: [id]) 
+  userId      String    
+
+  orderItems  OrderItem[]
+  tracking    TrackingDetail?
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model OrderItem {
   id        String  @id @default(uuid()) 
-  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String  
+  product   Product @relation(fields: [productId], references: [id])
   productId String
   quantity  Int     @default(1)
-  order     Order   @relation(fields: [orderId], references: [order_no])
-  product   Product @relation(fields: [productId], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Payment {
@@ -86,6 +98,9 @@ model Payment {
   amount    Float
   user      User    @relation(fields: [userId], references: [id]) 
   userId    String  
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Address {
@@ -95,20 +110,44 @@ model Address {
   country   String
   user      User    @relation(fields: [userId], references: [id])
   userId    String  
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model TrackingDetail {
   id        String  @id @default(uuid()) 
   status    String
-  order     Order   @relation(fields: [order_no], references: [order_no])
-  order_no  String  @unique 
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String  @unique 
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Cart {
-  cart_id   String   @id @default(uuid()) 
-  user      User     @relation(fields: [userId], references: [id]) 
-  userId    String   
-  products  Product[] @relation("CartProduct")
+  id        String   @id @default(uuid()) 
+  user      User?     @relation(fields: [userId], references: [id]) 
+  userId    String?   @unique
+
+  cartItems CartItem[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model CartItem {
+  id        String   @id @default(uuid()) 
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId    String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int      @default(1)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([cartId, productId]) // Ensures unique product per cart
 }
 
 model Category {
@@ -117,5 +156,5 @@ model Category {
   name      String
   products  Product[] 
   createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt @default(now())
+  updatedAt DateTime  @updatedAt
 }

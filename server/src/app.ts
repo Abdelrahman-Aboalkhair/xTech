@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import globalError from "./middlewares/globalError";
 import cookieParser from "cookie-parser";
 import { cookieParserOptions } from "./constants";
 import helmet from "helmet";
@@ -14,7 +15,7 @@ import compression from "compression";
 import authRoutes from "./routes/authRoutes";
 import productRoutes from "./routes/productRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
-import globalError from "./middlewares/globalError";
+import cartRoutes from "./routes/cartRoutes";
 
 dotenv.config();
 
@@ -89,6 +90,7 @@ app.use(compression());
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/categories", categoryRoutes);
+app.use("/api/v1/cart", cartRoutes);
 
 app.all("*", (req, res, next) => {
   next(new AppError(404, `Can't find ${req.originalUrl} on this server!`));
