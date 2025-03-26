@@ -5,12 +5,14 @@ import { ChevronRight } from "lucide-react";
 import { useGetAllCategoriesQuery } from "@/app/store/apis/CategoryApi";
 
 interface Category {
-  id: number;
+  id: string;
   name: string;
+  slug: string;
 }
 
 const CategoriesBar = () => {
   const { data, error } = useGetAllCategoriesQuery({});
+  console.log("data: ", data);
 
   if (error) {
     console.log("error occured while fetching categories", error);
@@ -24,8 +26,8 @@ const CategoriesBar = () => {
           {categories.map((category: Category, index: number) => (
             <React.Fragment key={category.id + index}>
               <Link
-                href={`/category/${category.id}`}
-                className="flex items-center text-gray-700 hover:text-black transition-colors font-medium text-[16px]"
+                href={`/category/${category.slug}`}
+                className="flex items-center text-gray-700 hover:text-black transition-colors font-medium text-[16px] capitalize"
               >
                 {category.name}
                 <ChevronRight size={16} className="ml-1" />

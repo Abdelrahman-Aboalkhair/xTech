@@ -1,9 +1,24 @@
 import prisma from "../config/database";
 import AppError from "../utils/AppError";
+import ApiFeatures from "../utils/ApiFeatures";
 
 class ProductService {
-  static async getAllProducts() {
-    return await prisma.product.findMany();
+  static async getAllProducts(queryString: Record<string, any>) {
+    const apiFeatures = new ApiFeatures(queryString)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate()
+      .build();
+
+    const { where, orderBy, skip, take } = apiFeatures;
+
+    return await prisma.product.findMany({
+      where,
+      orderBy: orderBy || { createdAt: "desc" },
+      skip,
+      take,
+    });
   }
 
   static async getProductById(productId: string) {

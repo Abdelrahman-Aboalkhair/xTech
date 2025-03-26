@@ -6,6 +6,7 @@ import sendResponse from "../utils/sendResponse";
 import AuthService from "../services/authService";
 import prisma from "../config/database";
 import { generateAccessToken, generateRefreshToken } from "../utils/auth";
+import AppError from "../utils/AppError";
 
 export const register = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
@@ -173,7 +174,7 @@ export const refreshToken = asyncHandler(
     const refreshToken = req?.cookies?.refreshToken;
 
     if (!refreshToken) {
-      return sendResponse(res, 401, {}, "Refresh token is required");
+      throw new AppError(401, "Refresh token not found");
     }
 
     jwt.verify(
@@ -181,7 +182,7 @@ export const refreshToken = asyncHandler(
       process.env.REFRESH_TOKEN_SECRET as string,
       async (err: any, decoded: any) => {
         if (err) {
-          return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+          throw new AppError(401, "Invalid or expired refresh token");
         }
 
         const user = await prisma.user.findUnique({
@@ -197,7 +198,7 @@ export const refreshToken = asyncHandler(
         });
 
         if (!user) {
-          return sendResponse(res, 404, {}, "User not found");
+          throw new AppError(401, "User not found");
         }
 
         const newAccessToken = generateAccessToken(user.id, user.role);

@@ -2,79 +2,18 @@
 import React, { useState } from "react";
 import { Heart, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-// Define the product type
-interface Product {
-  id: number;
-  name: string;
-  originalPrice: number;
-  discountedPrice: number;
-  discountPercentage: number;
-  rating: number;
-  reviewCount: number;
-}
+import { Product } from "@/app/types/productTypes";
+import { useGetAllProductsQuery } from "@/app/store/apis/ProductApi";
+import Rating from "../../feedback/Rating";
 
 const BestSellingSection: React.FC = () => {
-  // State to track which product is being hovered
-  const [hoveredProductId, setHoveredProductId] = useState<number | null>(null);
+  const { data } = useGetAllProductsQuery({});
+  const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
 
-  // Placeholder product data
-  const products: Product[] = [
-    {
-      id: 1,
-      name: "HAVIT HV-G92 Gamepad",
-      originalPrice: 160,
-      discountedPrice: 120,
-      discountPercentage: 40,
-      rating: 5,
-      reviewCount: 88,
-    },
-    {
-      id: 2,
-      name: "AK-900 Wired Keyboard",
-      originalPrice: 160,
-      discountedPrice: 960,
-      discountPercentage: 35,
-      rating: 5,
-      reviewCount: 75,
-    },
-    {
-      id: 3,
-      name: "IPS LCD Gaming Monitor",
-      originalPrice: 400,
-      discountedPrice: 370,
-      discountPercentage: 30,
-      rating: 5,
-      reviewCount: 99,
-    },
-    {
-      id: 4,
-      name: "S-Series Comfort Chair",
-      originalPrice: 400,
-      discountedPrice: 375,
-      discountPercentage: 25,
-      rating: 5,
-      reviewCount: 99,
-    },
-  ];
-
-  // Render star rating
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <span
-        key={index}
-        className={`text-yellow-500 ${
-          index < rating ? "text-opacity-100" : "text-opacity-30"
-        }`}
-      >
-        ★
-      </span>
-    ));
-  };
+  const handleAddToCart = () => {};
 
   return (
     <div className="container mx-auto px-4 py-[5%]">
-      {/* Header Section with Title & Button */}
       <div className="flex items-center justify-between mb-8">
         <h2
           className="text-2xl font-semibold capitalize relative before:content-[''] 
@@ -88,9 +27,8 @@ const BestSellingSection: React.FC = () => {
         </button>
       </div>
 
-      {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {data?.products.map((product: Product) => (
           <motion.div
             key={product.id}
             className="bg-white rounded-md shadow-md overflow-hidden relative group"
@@ -103,7 +41,6 @@ const BestSellingSection: React.FC = () => {
               transition: { duration: 0.3 },
             }}
           >
-            {/* Wishlist and Quick View Icons */}
             <div className="absolute top-4 right-4 flex space-x-2 z-10">
               <motion.button
                 whileHover={{ scale: 1.1 }}
@@ -121,29 +58,27 @@ const BestSellingSection: React.FC = () => {
               </motion.button>
             </div>
 
-            {/* Placeholder Image */}
             <div className="bg-gray-200 h-48 w-full flex items-center justify-center">
               Placeholder Image
             </div>
 
-            {/* Product Details */}
             <div className="p-4 relative">
               <h3 className="font-medium text-lg mb-2">{product.name}</h3>
 
               <div className="flex items-center justify-between">
                 <div>
                   <span className="text-red-500 font-semibold mr-2">
-                    ${product.discountedPrice}
+                    ${product.discount}
                   </span>
                   <span className="text-gray-400 line-through">
-                    ${product.originalPrice}
+                    ${product.price}
                   </span>
                 </div>
 
                 <div className="flex items-center">
-                  {renderStars(product.rating)}
+                  <Rating rating={product.averageRating} />
                   <span className="text-gray-500 ml-2 text-sm">
-                    ({product.reviewCount})
+                    ({product.ratings})
                   </span>
                 </div>
               </div>
@@ -151,6 +86,7 @@ const BestSellingSection: React.FC = () => {
               <AnimatePresence>
                 {hoveredProductId === product.id && (
                   <motion.button
+                    onClick={handleAddToCart}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}

@@ -10,17 +10,12 @@ import {
   MoveRight,
   MoveLeft,
 } from "lucide-react";
-
-const categories = [
-  { name: "Phones", icon: Phone },
-  { name: "Computers", icon: Monitor },
-  { name: "SmartWatch", icon: Watch },
-  { name: "Camera", icon: Camera },
-  { name: "HeadPhones", icon: Headphones },
-  { name: "Gaming", icon: Gamepad2 },
-];
+import { useGetAllCategoriesQuery } from "@/app/store/apis/CategoryApi";
+import { Category } from "@/app/types/productTypes";
 
 const CategoryBrowser = () => {
+  const { data } = useGetAllCategoriesQuery({});
+  console.log("categories => ", data);
   const [activeCategory, setActiveCategory] = useState("Camera");
 
   return (
@@ -44,17 +39,16 @@ const CategoryBrowser = () => {
       </div>
 
       <div className="grid grid-cols-6 gap-4 w-full">
-        {categories.map(({ name, icon: Icon }) => (
+        {data?.categories.map(({ name, slug }: Category) => (
           <button
-            key={name}
-            onClick={() => setActiveCategory(name)}
+            key={slug}
+            onClick={() => setActiveCategory(slug)}
             className={`flex flex-col items-center justify-center w-full h-32 border rounded-lg transition ${
-              activeCategory === name
+              activeCategory === slug
                 ? "bg-red-500 text-white"
                 : "border-gray-300 text-black hover:bg-gray-100"
             }`}
           >
-            <Icon size={32} />
             <span className="mt-2 font-medium">{name}</span>
           </button>
         ))}

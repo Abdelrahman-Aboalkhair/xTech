@@ -4,12 +4,13 @@ import sendResponse from "../utils/sendResponse";
 import CategoryService from "../services/categoryService";
 
 const getAllCategories = asyncHandler(async (req: Request, res: Response) => {
-  const categories = await CategoryService.getAllCategories();
+  const categories = await CategoryService.getAllCategories(req.query);
   sendResponse(res, 200, { categories }, "Categories fetched successfully");
 });
 
 const createCategory = asyncHandler(async (req: Request, res: Response) => {
   const { name } = req.body;
+  console.log("req.body => ", req.body);
 
   const { category } = await CategoryService.createCategory(name);
 

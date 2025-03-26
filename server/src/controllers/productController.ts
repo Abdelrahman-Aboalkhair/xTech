@@ -5,7 +5,7 @@ import ProductService from "../services/productService";
 import slugify from "../utils/slugify";
 
 const getAllProducts = asyncHandler(async (req: Request, res: Response) => {
-  const products = await ProductService.getAllProducts();
+  const products = await ProductService.getAllProducts(req.query);
   sendResponse(res, 200, { products }, "Products fetched successfully");
 });
 

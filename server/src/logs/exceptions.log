@@ -11736,3 +11736,613 @@ Argument `id`: Invalid value provided. Expected String, provided Int.
     at Wn.request (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6565)
     at async l (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:130:10067)
     at async /home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:187:22
+[2025-03-25T23:02:00.110Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:187:40
+
+  184   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  185 }
+  186 
+→ 187 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+PrismaClientValidationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:187:40
+
+  184   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  185 }
+  186 
+→ 187 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+    at Cn (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at Wn.handleRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:7177)
+    at Wn.handleAndLogRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6858)
+    at Wn.request (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6565)
+    at async l (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:130:10067)
+    at async /home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:187:22
+[2025-03-25T23:04:12.565Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:187:40
+
+  184   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  185 }
+  186 
+→ 187 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+PrismaClientValidationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:187:40
+
+  184   return sendResponse(res, 403, {}, "Invalid or expired refresh token");
+  185 }
+  186 
+→ 187 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+    at Cn (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at Wn.handleRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:7177)
+    at Wn.handleAndLogRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6858)
+    at Wn.request (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6565)
+    at async l (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:130:10067)
+    at async /home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:187:22
+[2025-03-25T23:09:35.294Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:40
+
+  185   throw new AppError(401, "Invalid or expired refresh token");
+  186 }
+  187 
+→ 188 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+PrismaClientValidationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:40
+
+  185   throw new AppError(401, "Invalid or expired refresh token");
+  186 }
+  187 
+→ 188 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+    at Cn (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at Wn.handleRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:7177)
+    at Wn.handleAndLogRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6858)
+    at Wn.request (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6565)
+    at async l (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:130:10067)
+    at async /home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:188:22
+[2025-03-25T23:12:09.282Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:190:40
+
+  187   throw new AppError(401, "Invalid or expired refresh token");
+  188 }
+  189 
+→ 190 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+PrismaClientValidationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:190:40
+
+  187   throw new AppError(401, "Invalid or expired refresh token");
+  188 }
+  189 
+→ 190 const user = await prisma.user.findUnique({
+        where: {
+          id: 11
+              ~~
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          emailVerified: true,
+          avatar: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected String, provided Int.
+    at Cn (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at Wn.handleRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:7177)
+    at Wn.handleAndLogRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6858)
+    at Wn.request (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:121:6565)
+    at async l (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/@prisma/client/runtime/library.js:130:10067)
+    at async /home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/controllers/authController.ts:190:22
+[2025-03-25T23:55:30.288Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/productController.ts[0m:[93m8[0m:[93m41[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m8[0m   const products = await ProductService.getAllProducts();
+[7m [0m [91m                                        ~~~~~~~~~~~~~~[0m
+
+  [96msrc/services/productService.ts[0m:[93m6[0m:[93m31[0m
+    [7m6[0m   static async getAllProducts(queryString: Record<string, any>) {
+    [7m [0m [96m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'queryString' was not provided.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/productController.ts[0m:[93m8[0m:[93m41[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m8[0m   const products = await ProductService.getAllProducts();
+[7m [0m [91m                                        ~~~~~~~~~~~~~~[0m
+
+  [96msrc/services/productService.ts[0m:[93m6[0m:[93m31[0m
+    [7m6[0m   static async getAllProducts(queryString: Record<string, any>) {
+    [7m [0m [96m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'queryString' was not provided.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:17:37.501Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m11[0m:[93m8[0m - [91merror[0m[90m TS2339: [0mProperty 'sort' does not exist on type 'void'.
+
+[7m11[0m       .sort()
+[7m  [0m [91m       ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m11[0m:[93m8[0m - [91merror[0m[90m TS2339: [0mProperty 'sort' does not exist on type 'void'.
+
+[7m11[0m       .sort()
+[7m  [0m [91m       ~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:20:07.260Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/categoryController.ts[0m:[93m7[0m:[93m61[0m - [91merror[0m[90m TS2554: [0mExpected 0 arguments, but got 1.
+
+[7m7[0m   const categories = await CategoryService.getAllCategories(req.query);
+[7m [0m [91m                                                            ~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/categoryController.ts[0m:[93m7[0m:[93m61[0m - [91merror[0m[90m TS2554: [0mExpected 0 arguments, but got 1.
+
+[7m7[0m   const categories = await CategoryService.getAllCategories(req.query);
+[7m [0m [91m                                                            ~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:24:05.094Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/categoryService.ts[0m:[93m8[0m:[93m41[0m - [91merror[0m[90m TS2304: [0mCannot find name 'query'.
+
+[7m8[0m     const apiFeatures = new ApiFeatures(query, queryString)
+[7m [0m [91m                                        ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/categoryService.ts[0m:[93m8[0m:[93m41[0m - [91merror[0m[90m TS2304: [0mCannot find name 'query'.
+
+[7m8[0m     const apiFeatures = new ApiFeatures(query, queryString)
+[7m [0m [91m                                        ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:25:07.883Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/categoryService.ts[0m:[93m19[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'createdAt' does not exist in type 'CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[] | { id?: Exact<SortOrder | undefined, SortOrder | undefined>; slug?: Exact<...>; name?: Exact<...>; products?: Exact<...>; } | { ...; }[]'.
+
+[7m19[0m         createdAt: "desc",
+[7m  [0m [91m        ~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/categoryService.ts[0m:[93m19[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'createdAt' does not exist in type 'CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[] | { id?: Exact<SortOrder | undefined, SortOrder | undefined>; slug?: Exact<...>; name?: Exact<...>; products?: Exact<...>; } | { ...; }[]'.
+
+[7m19[0m         createdAt: "desc",
+[7m  [0m [91m        ~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:26:47.633Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:26:51.399Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:26:54.462Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:27:02.092Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:27:15.451Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:28:27.071Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/src/utils/ApiFeatures.ts' is not a module.
+
+[7m3[0m import ApiFeatures from "../utils/ApiFeatures";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:28:40.169Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m9[0m:[93m48[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m9[0m     const apiFeatures = new ApiFeatures(query, queryString)
+[7m [0m [91m                                               ~~~~~~~~~~~[0m
+[96msrc/services/productService.ts[0m:[93m15[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'query' does not exist on type 'ApiFeatures'.
+
+[7m15[0m     return await prisma.product.findMany(apiFeatures.query);
+[7m  [0m [91m                                                     ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m9[0m:[93m48[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m9[0m     const apiFeatures = new ApiFeatures(query, queryString)
+[7m [0m [91m                                               ~~~~~~~~~~~[0m
+[96msrc/services/productService.ts[0m:[93m15[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'query' does not exist on type 'ApiFeatures'.
+
+[7m15[0m     return await prisma.product.findMany(apiFeatures.query);
+[7m  [0m [91m                                                     ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:29:00.064Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m9[0m:[93m48[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m9[0m     const apiFeatures = new ApiFeatures(query, queryString)
+[7m [0m [91m                                               ~~~~~~~~~~~[0m
+[96msrc/services/productService.ts[0m:[93m15[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'query' does not exist on type 'ApiFeatures'.
+
+[7m15[0m     return await prisma.product.findMany(apiFeatures.query);
+[7m  [0m [91m                                                     ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m9[0m:[93m48[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m9[0m     const apiFeatures = new ApiFeatures(query, queryString)
+[7m [0m [91m                                               ~~~~~~~~~~~[0m
+[96msrc/services/productService.ts[0m:[93m15[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'query' does not exist on type 'ApiFeatures'.
+
+[7m15[0m     return await prisma.product.findMany(apiFeatures.query);
+[7m  [0m [91m                                                     ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:29:03.580Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m9[0m:[93m48[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m9[0m     const apiFeatures = new ApiFeatures(query, queryString)
+[7m [0m [91m                                               ~~~~~~~~~~~[0m
+[96msrc/services/productService.ts[0m:[93m15[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'query' does not exist on type 'ApiFeatures'.
+
+[7m15[0m     return await prisma.product.findMany(apiFeatures.query);
+[7m  [0m [91m                                                     ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m9[0m:[93m48[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m9[0m     const apiFeatures = new ApiFeatures(query, queryString)
+[7m [0m [91m                                               ~~~~~~~~~~~[0m
+[96msrc/services/productService.ts[0m:[93m15[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'query' does not exist on type 'ApiFeatures'.
+
+[7m15[0m     return await prisma.product.findMany(apiFeatures.query);
+[7m  [0m [91m                                                     ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:29:29.568Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m15[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'query' does not exist on type 'ApiFeatures'.
+
+[7m15[0m     return await prisma.product.findMany(apiFeatures.query);
+[7m  [0m [91m                                                     ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m15[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'query' does not exist on type 'ApiFeatures'.
+
+[7m15[0m     return await prisma.product.findMany(apiFeatures.query);
+[7m  [0m [91m                                                     ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-26T00:29:33.443Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m14[0m:[93m8[0m - [91merror[0m[90m TS2304: [0mCannot find name 'build'.
+
+[7m14[0m       .build()
+[7m  [0m [91m       ~~~~~[0m
+[96msrc/services/productService.ts[0m:[93m16[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'query' does not exist on type 'ApiFeatures'.
+
+[7m16[0m     return await prisma.product.findMany(apiFeatures.query);
+[7m  [0m [91m                                                     ~~~~~[0m
+[96msrc/services/productService.ts[0m:[93m14[0m:[93m7[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m14[0m       .build()
+[7m  [0m [91m      ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m14[0m:[93m8[0m - [91merror[0m[90m TS2304: [0mCannot find name 'build'.
+
+[7m14[0m       .build()
+[7m  [0m [91m       ~~~~~[0m
+[96msrc/services/productService.ts[0m:[93m16[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty 'query' does not exist on type 'ApiFeatures'.
+
+[7m16[0m     return await prisma.product.findMany(apiFeatures.query);
+[7m  [0m [91m                                                     ~~~~~[0m
+[96msrc/services/productService.ts[0m:[93m14[0m:[93m7[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m14[0m       .build()
+[7m  [0m [91m      ~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

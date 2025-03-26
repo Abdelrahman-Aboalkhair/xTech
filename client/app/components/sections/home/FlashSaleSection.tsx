@@ -3,34 +3,15 @@ import React, { useState } from "react";
 import { Heart, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGetAllProductsQuery } from "@/app/store/apis/ProductApi";
-
-// Define the product type
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  discountedPrice: number;
-  discountPercentage: number;
-  ratings: number;
-  averageRating: number;
-}
+import { Product } from "@/app/types/productTypes";
+import Link from "next/link";
+import Rating from "../../feedback/Rating";
 
 const FlashSaleSection: React.FC = () => {
-  const { data, error } = useGetAllProductsQuery({});
-  const [hoveredProductId, setHoveredProductId] = useState<number | null>(null);
+  const { data } = useGetAllProductsQuery({});
+  const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
 
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <span
-        key={index}
-        className={`text-yellow-500 ${
-          index < rating ? "text-opacity-100" : "text-opacity-30"
-        }`}
-      >
-        ★
-      </span>
-    ));
-  };
+  const handleAddToCart = () => {};
 
   return (
     <>
@@ -57,42 +38,36 @@ const FlashSaleSection: React.FC = () => {
                 transition: { duration: 0.3 },
               }}
             >
-              {/* Discount Badge */}
               <div className="absolute top-4 left-4 bg-red-500 text-white px-2 py-1 rounded-md text-sm z-10">
-                -{product.discountPercentage}%
+                {product.discount}%
               </div>
 
-              {/* Wishlist and Quick View Icons */}
               <div className="absolute top-4 right-4 flex space-x-2 z-10">
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                <Link
+                  href={"#"}
                   className="bg-white/70 rounded-full p-2 hover:bg-white/90 transition"
                 >
                   <Heart size={20} className="text-gray-600" />
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                </Link>
+                <Link
+                  href={`/shop/${product.id}`}
                   className="bg-white/70 rounded-full p-2 hover:bg-white/90 transition"
                 >
                   <Eye size={20} className="text-gray-600" />
-                </motion.button>
+                </Link>
               </div>
 
-              {/* Placeholder Image */}
               <div className="bg-gray-200 h-48 w-full flex items-center justify-center">
                 Placeholder Image
               </div>
 
-              {/* Product Details */}
               <div className="p-4 relative">
                 <h3 className="font-medium text-lg mb-2">{product.name}</h3>
 
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-red-500 font-semibold mr-2">
-                      ${product.discountedPrice}
+                      ${product.discount}
                     </span>
                     <span className="text-gray-400 line-through">
                       ${product.price}
@@ -100,9 +75,9 @@ const FlashSaleSection: React.FC = () => {
                   </div>
 
                   <div className="flex items-center">
-                    {renderStars(product.rating)}
+                    <Rating rating={product.averageRating} />
                     <span className="text-gray-500 ml-2 text-sm">
-                      ({product.reviewCount})
+                      ({product.ratings})
                     </span>
                   </div>
                 </div>
@@ -110,6 +85,7 @@ const FlashSaleSection: React.FC = () => {
                 <AnimatePresence>
                   {hoveredProductId === product.id && (
                     <motion.button
+                      onClick={handleAddToCart}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 20 }}
