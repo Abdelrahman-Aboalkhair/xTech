@@ -23,7 +23,7 @@ const Table: React.FC<TableProps> = ({
   return (
     <div className="w-full overflow-x-auto">
       <table className="w-full border-none">
-        <thead className="bg-green-300/20">
+        <thead className="bg-gray-100/80">
           <tr className="border-b border-gray-200">
             {columns.map((column) => (
               <th

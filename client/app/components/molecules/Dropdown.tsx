@@ -1,6 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+"use client";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, X } from "lucide-react";
+import useClickOutside from "@/app/hooks/dom/useClickOutside";
 
 interface DropdownProps {
   label?: string;
@@ -18,41 +20,33 @@ const Dropdown: React.FC<DropdownProps> = ({
   className,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [dropdownWidth, setDropdownWidth] = useState<number | null>(null);
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLDivElement | null>(null);
 
-  const filteredOptions = options?.filter((option) =>
-    option.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    if (buttonRef.current) {
+      setDropdownWidth(buttonRef.current.offsetWidth);
+    }
+  }, [isOpen]);
+
+  useClickOutside(dropdownRef, () => setIsOpen(false));
 
   const handleSelect = (selectedValue: string) => {
     onChange(selectedValue);
     setIsOpen(false);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   return (
     <div className="relative w-full" ref={dropdownRef}>
       <div
-        className={`flex items-center justify-between w-full p-[14px] border border-gray-300
+        ref={buttonRef}
+        className={`flex items-center justify-between border border-gray-300 w-full p-[12px]
            rounded-md cursor-pointer hover:border-primary ${className}`}
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <span className="text-base">{value || label}</span>
+        <span className="text-sm">{value || label}</span>
 
         <div className="flex items-center">
           {value ? (
@@ -68,14 +62,17 @@ const Dropdown: React.FC<DropdownProps> = ({
               animate={{ rotate: isOpen ? 180 : 0 }}
               transition={{ duration: 0.15 }}
             >
-              <ChevronDown className="text-gray-600 ml-2" />
+              <ChevronDown size={20} className="text-gray-600 ml-2" />
             </motion.div>
           )}
         </div>
       </div>
 
       {isOpen && (
-        <div className="absolute w-full mt-2 bg-white border rounded-md shadow-lg z-10">
+        <div
+          className="absolute mt-2 bg-white border-gray-200 border rounded-md shadow-lg z-10"
+          style={{ width: dropdownWidth || "auto" }}
+        >
           <motion.ul
             className="max-h-56 overflow-auto"
             initial={{ opacity: 0, y: 10 }}
@@ -83,19 +80,15 @@ const Dropdown: React.FC<DropdownProps> = ({
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
           >
-            {filteredOptions.length === 0 ? (
-              <li className="p-2 text-gray-500">No options found</li>
-            ) : (
-              filteredOptions.map((option) => (
-                <li
-                  key={option}
-                  className="p-2 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => handleSelect(option)}
-                >
-                  {option}
-                </li>
-              ))
-            )}
+            {options.map((option) => (
+              <li
+                key={option}
+                className="p-2 hover:bg-gray-100 cursor-pointer"
+                onClick={() => handleSelect(option)}
+              >
+                {option}
+              </li>
+            ))}
           </motion.ul>
         </div>
       )}
