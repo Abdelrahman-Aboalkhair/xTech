@@ -4,7 +4,12 @@ export interface CartItem {
 }
 
 export interface Cart {
-  cart_id: string;
+  id: string;
   userId: string;
   products: CartItem[];
+}
+
+export interface CartLookupParams {
+  userId?: string;
+  cartId?: string; // guest cart identifier
 }

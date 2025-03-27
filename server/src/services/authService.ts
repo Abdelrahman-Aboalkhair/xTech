@@ -17,7 +17,6 @@ import {
   SignInParams,
 } from "../types/authTypes";
 import { ROLE, User } from "@prisma/client";
-import slugify from "../utils/slugify";
 
 class AuthService {
   static async registerUser({

@@ -40,6 +40,11 @@ export const blacklistToken = async (
 };
 
 export const isTokenBlacklisted = async (token: string): Promise<boolean> => {
-  const result = await redisClient.get(`blacklist:${token}`);
-  return result !== null;
+  try {
+    const result = await redisClient.get(`blacklist:${token}`);
+    return result !== null;
+  } catch (error) {
+    console.error("Redis error:", error);
+    return false;
+  }
 };

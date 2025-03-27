@@ -6,45 +6,48 @@ import { CartItem } from "@prisma/client";
 
 interface AuthI extends Request {
   user?: { id: string };
-  session?: { cart?: CartItem[] };
+  session?: { cart?: { [productId: string]: CartItem } };
 }
 
-// Get all carts (Admin & SuperAdmin only)
-const getAllCarts = asyncHandler(async (req: Request, res: Response) => {
-  const carts = await CartService.getAllCarts();
-  sendResponse(res, 200, { carts }, "All carts retrieved successfully");
-});
-
-// Get user-specific cart (Authenticated or Guest)
 const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
   if (req.user?.id) {
-    const cart = await CartService.getCart(req.user.id);
+    const cart = await CartService.getCart({ userId: req.user.id });
     sendResponse(res, 200, { cart }, "Cart fetched successfully");
   } else {
-    sendResponse(
-      res,
-      200,
-      { cart: req.session?.cart || [] },
-      "Guest cart fetched successfully"
-    );
+    if (!req.session?.cartId) {
+      req.session.cartId = crypto.randomUUID();
+    }
+
+    const cart = await CartService.getCart({ cartId: req.session.cartId });
+    sendResponse(res, 200, { cart }, "Guest cart fetched successfully");
   }
 });
 
-// Add product to cart
 const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
   const { productId, quantity }: CartItem = req.body;
 
   if (req.user?.id) {
-    const cart = await CartService.addToCart(req.user.id, productId, quantity);
+    const cart = await CartService.addToCart(
+      {
+        userId: req.user.id,
+      },
+      { productId, quantity }
+    );
     sendResponse(res, 201, { cart }, "Product added to cart successfully");
   } else {
     if (!req.session) req.session = {};
-    if (!req.session.cart) req.session.cart = [];
-    const existingItem = req.session.cart.find(
-      (item) => item.productId === productId
-    );
+    if (!req.session.cart) req.session.cart = {};
+    const existingItem = req.session.cart[productId];
     if (existingItem) existingItem.quantity += quantity;
-    else req.session.cart.push({ productId, quantity });
+    else
+      req.session.cart[productId] = {
+        id: new Date().toISOString(),
+        cartId: "guest",
+        productId,
+        quantity,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
     sendResponse(
       res,
       201,
@@ -54,21 +57,24 @@ const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
   }
 });
 
-// Update cart item quantity
 const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
   const { productId, quantity }: CartItem = req.body;
 
   if (req.user?.id) {
     const cart = await CartService.updateCartItem(
-      req.user.id,
-      productId,
-      quantity
+      {
+        userId: req.user.id,
+      },
+      {
+        productId,
+        quantity,
+      }
     );
     sendResponse(res, 200, { cart }, "Cart updated successfully");
   } else {
     if (!req.session?.cart)
       return sendResponse(res, 400, {}, "Guest cart is empty");
-    const item = req.session.cart.find((item) => item.productId === productId);
+    const item = req.session.cart[productId];
     if (!item) return sendResponse(res, 404, {}, "Product not found in cart");
     item.quantity = quantity;
     sendResponse(
@@ -80,19 +86,21 @@ const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
   }
 });
 
-// Remove product from cart
 const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
   const { productId }: { productId: string } = req.body;
 
   if (req.user?.id) {
-    const cart = await CartService.removeFromCart(req.user.id, productId);
+    const cart = await CartService.removeFromCart(
+      {
+        userId: req.user.id,
+      },
+      productId
+    );
     sendResponse(res, 200, { cart }, "Product removed from cart successfully");
   } else {
     if (!req.session?.cart)
       return sendResponse(res, 400, {}, "Guest cart is empty");
-    req.session.cart = req.session.cart.filter(
-      (item) => item.productId !== productId
-    );
+    delete req.session.cart[productId];
     sendResponse(
       res,
       200,
@@ -102,22 +110,25 @@ const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
   }
 });
 
-// Clear entire cart
 const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
-  if (req.user?.id) await CartService.clearCart(req.user.id);
-  else req.session.cart = [];
+  if (req.user?.id)
+    await CartService.clearCart({
+      userId: req.user.id,
+    });
+  else {
+    if (!req.session) req.session = {};
+    req.session.cart = {};
+  }
   sendResponse(res, 204, {}, "Cart cleared successfully");
 });
 
-// Merge guest cart with authenticated user cart after login
 const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
   if (!req.user?.id || !req.session?.cart) return;
-  await CartService.mergeGuestCart(req.user.id, req.session.cart);
-  req.session.cart = [];
+  // await CartService.mergeGuestCartIntoUserCart(req.session.cart, req.user.id);
+  req.session.cart = {};
 });
 
 export default {
-  getAllCarts,
   getUserCart,
   addToCart,
   updateCartItem,

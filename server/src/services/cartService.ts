@@ -1,15 +1,7 @@
+import { CartItem } from "@prisma/client";
 import prisma from "../config/database";
+import { CartLookupParams } from "../types/cartTypes";
 import AppError from "../utils/AppError";
-
-interface CartLookupParams {
-  userId?: string;
-  cartId?: string; // guest cart identifier
-}
-
-interface CartItemInput {
-  productId: string;
-  quantity: number;
-}
 
 /**
  * *NOTE: For guest carts, your Cart model’s userId should be nullable.
@@ -68,7 +60,7 @@ class CartService {
    */
   static async addToCart(
     { userId, cartId }: CartLookupParams,
-    { productId, quantity }: CartItemInput
+    { productId, quantity }: CartItem
   ) {
     const cart = await this.getCart({ userId, cartId });
 
@@ -97,7 +89,7 @@ class CartService {
    */
   static async updateCartItem(
     { userId, cartId }: CartLookupParams,
-    { productId, quantity }: CartItemInput
+    { productId, quantity }: CartItem
   ) {
     const cart = await this.getCart({ userId, cartId });
 

@@ -12,6 +12,7 @@ import {
   isTokenBlacklisted,
 } from "../utils/auth";
 import AppError from "../utils/AppError";
+import logger from "../config/logger";
 
 export const register = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
@@ -197,7 +198,6 @@ export const refreshToken = asyncHandler(
       throw new AppError(401, "Refresh token not found");
     }
 
-    // This checks if this token is cached under this key "backlist:token"
     if (await isTokenBlacklisted(oldRefreshToken)) {
       throw new AppError(401, "Refresh token is invalidated");
     }
@@ -240,7 +240,13 @@ export const refreshToken = asyncHandler(
         );
 
         const oldTokenTTL = absoluteExpiration - now; // * old token remaining time to live
-        await blacklistToken(oldRefreshToken, oldTokenTTL);
+        if (oldTokenTTL > 0) {
+          await blacklistToken(oldRefreshToken, oldTokenTTL);
+        } else {
+          logger.warn(
+            "Refresh token is already expired. No need to blacklist."
+          );
+        }
 
         res.cookie("refreshToken", newRefreshToken, cookieOptions);
 
