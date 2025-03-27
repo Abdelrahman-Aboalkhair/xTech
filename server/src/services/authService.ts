@@ -9,7 +9,7 @@ import {
   generateAccessToken,
   generateRefreshToken,
   comparePassword,
-} from "../utils/auth";
+} from "../utils/authUtils";
 import {
   AuthResponse,
   RegisterUserParams,

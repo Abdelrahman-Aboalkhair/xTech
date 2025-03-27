@@ -1,6 +1,6 @@
 import { Schema } from "joi";
 import { Request, Response, NextFunction } from "express";
-import AppError from "../utils/AppError";
+import AppError from "../AppError";
 import sanitizeInput from "./sanitizeInput";
 
 const validateRequest =

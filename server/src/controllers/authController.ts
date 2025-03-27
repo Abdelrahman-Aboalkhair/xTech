@@ -10,7 +10,7 @@ import {
   generateAccessToken,
   generateRefreshToken,
   isTokenBlacklisted,
-} from "../utils/auth";
+} from "../utils/authUtils";
 import AppError from "../utils/AppError";
 import logger from "../config/logger";
 

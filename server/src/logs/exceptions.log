@@ -13544,3 +13544,1989 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:26:34.283Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:26:48.336Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:26:53.455Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:28:37.939Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:29:30.157Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:29:37.763Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m7[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m7[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m14[0m:[93m34[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m14[0m const getUserCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m22[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m22[0m const addToCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m69[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m69[0m const updateCartItem = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m97[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m97[0m const removeFromCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m  [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m125[0m:[93m32[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m125[0m const clearCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m135[0m:[93m37[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthI, res: Response) => Promise<void>' is not assignable to parameter of type 'AsyncFunction'.
+  Types of parameters 'req' and 'req' are incompatible.
+    Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is not assignable to type 'AuthI'.
+      Types of property 'session' are incompatible.
+        Type 'Session & Partial<SessionData>' is not assignable to type '{ cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; } | undefined'.
+
+[7m135[0m const mergeGuestCart = asyncHandler(async (req: AuthI, res: Response) => {
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:30:07.294Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m9[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '(Session & { cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; }) | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m9[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m23[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Session & { cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; }'.
+  Type '{}' is missing the following properties from type 'Session': id, cookie, regenerate, destroy, and 4 more.
+
+[7m38[0m     if (!req.session) req.session = {};
+[7m  [0m [91m                      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m39[0m:[93m10[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m39[0m     if (!req.session.cart) {
+[7m  [0m [91m         ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m40[0m:[93m7[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m40[0m       req.session.cart = { items: {} };
+[7m  [0m [91m      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m42[0m:[93m7[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m42[0m       req.session.cart.id = newCart.id;
+[7m  [0m [91m      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m44[0m:[93m23[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m44[0m     const guestCart = req.session.cart.items;
+[7m  [0m [91m                      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m51[0m:[93m17[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m51[0m         cartId: req.session.cart.id || "guest",
+[7m  [0m [91m                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m59[0m:[93m17[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m59[0m       { cartId: req.session.cart.id },
+[7m  [0m [91m                ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m9[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '(Session & { cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; }) | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m9[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m23[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Session & { cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; }'.
+  Type '{}' is missing the following properties from type 'Session': id, cookie, regenerate, destroy, and 4 more.
+
+[7m38[0m     if (!req.session) req.session = {};
+[7m  [0m [91m                      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m39[0m:[93m10[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m39[0m     if (!req.session.cart) {
+[7m  [0m [91m         ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m40[0m:[93m7[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m40[0m       req.session.cart = { items: {} };
+[7m  [0m [91m      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m42[0m:[93m7[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m42[0m       req.session.cart.id = newCart.id;
+[7m  [0m [91m      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m44[0m:[93m23[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m44[0m     const guestCart = req.session.cart.items;
+[7m  [0m [91m                      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m51[0m:[93m17[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m51[0m         cartId: req.session.cart.id || "guest",
+[7m  [0m [91m                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m59[0m:[93m17[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m59[0m       { cartId: req.session.cart.id },
+[7m  [0m [91m                ~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:30:13.335Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m8[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '(Session & { cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; }) | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m8[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m37[0m:[93m23[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Session & { cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; }'.
+  Type '{}' is missing the following properties from type 'Session': id, cookie, regenerate, destroy, and 4 more.
+
+[7m37[0m     if (!req.session) req.session = {};
+[7m  [0m [91m                      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m10[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m38[0m     if (!req.session.cart) {
+[7m  [0m [91m         ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m39[0m:[93m7[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m39[0m       req.session.cart = { items: {} };
+[7m  [0m [91m      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m41[0m:[93m7[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m41[0m       req.session.cart.id = newCart.id;
+[7m  [0m [91m      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m43[0m:[93m23[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m43[0m     const guestCart = req.session.cart.items;
+[7m  [0m [91m                      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m50[0m:[93m17[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m50[0m         cartId: req.session.cart.id || "guest",
+[7m  [0m [91m                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m58[0m:[93m17[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m58[0m       { cartId: req.session.cart.id },
+[7m  [0m [91m                ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m8[0m:[93m11[0m - [91merror[0m[90m TS2430: [0mInterface 'AuthI' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'session' are incompatible.
+    Type '(Session & { cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; }) | undefined' is not assignable to type 'Session & Partial<SessionData>'.
+      Type 'undefined' is not assignable to type 'Session & Partial<SessionData>'.
+        Type 'undefined' is not assignable to type 'Session'.
+
+[7m8[0m interface AuthI extends Request {
+[7m [0m [91m          ~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m37[0m:[93m23[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Session & { cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; }'.
+  Type '{}' is missing the following properties from type 'Session': id, cookie, regenerate, destroy, and 4 more.
+
+[7m37[0m     if (!req.session) req.session = {};
+[7m  [0m [91m                      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m38[0m:[93m10[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m38[0m     if (!req.session.cart) {
+[7m  [0m [91m         ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m39[0m:[93m7[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m39[0m       req.session.cart = { items: {} };
+[7m  [0m [91m      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m41[0m:[93m7[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m41[0m       req.session.cart.id = newCart.id;
+[7m  [0m [91m      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m43[0m:[93m23[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m43[0m     const guestCart = req.session.cart.items;
+[7m  [0m [91m                      ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m50[0m:[93m17[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m50[0m         cartId: req.session.cart.id || "guest",
+[7m  [0m [91m                ~~~~~~~~~~~[0m
+[96msrc/controllers/cartController.ts[0m:[93m58[0m:[93m17[0m - [91merror[0m[90m TS18048: [0m'req.session' is possibly 'undefined'.
+
+[7m58[0m       { cartId: req.session.cart.id },
+[7m  [0m [91m                ~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:30:23.391Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m37[0m:[93m23[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Session & { cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; }'.
+  Type '{}' is missing the following properties from type 'Session': id, cookie, regenerate, destroy, and 4 more.
+
+[7m37[0m     if (!req.session) req.session = {};
+[7m  [0m [91m                      ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m37[0m:[93m23[0m - [91merror[0m[90m TS2322: [0mType '{}' is not assignable to type 'Session & { cart?: { id?: string | undefined; items: { [productId: string]: { id: string; createdAt: Date; updatedAt: Date; cartId: string; productId: string; quantity: number; }; }; } | undefined; }'.
+  Type '{}' is missing the following properties from type 'Session': id, cookie, regenerate, destroy, and 4 more.
+
+[7m37[0m     if (!req.session) req.session = {};
+[7m  [0m [91m                      ~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:39:40.938Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m49[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'id' does not exist in type 'CartItem'.
+
+[7m49[0m         id: crypto.randomUUID(), // Temporary ID
+[7m  [0m [91m        ~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m49[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'id' does not exist in type 'CartItem'.
+
+[7m49[0m         id: crypto.randomUUID(), // Temporary ID
+[7m  [0m [91m        ~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:40:30.973Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m34[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m34[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m59[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m59[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m80[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m80[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m92[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m92[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m34[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m34[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m59[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m59[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m80[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m80[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m92[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m92[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:40:35.439Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m34[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m34[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m56[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m56[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m77[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m77[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m89[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m89[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m34[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m34[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m56[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m56[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m77[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m77[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m89[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m89[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T03:41:09.425Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m34[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m34[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m56[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m56[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m77[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m77[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m89[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m89[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m34[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m34[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m56[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m56[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m77[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m77[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+[96msrc/controllers/cartController.ts[0m:[93m89[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ productId: string; quantity: number; }' is not assignable to parameter of type 'CartItem'.
+  Property 'id' is missing in type '{ productId: string; quantity: number; }' but required in type 'CartItem'.
+
+[7m89[0m       { productId, quantity }
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/types/cartTypes.ts[0m:[93m2[0m:[93m3[0m
+    [7m2[0m   id: string;
+    [7m [0m [96m  ~~[0m
+    'id' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:01:51.680Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module './sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "./sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module './sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "./sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:02:56.067Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:03:14.386Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:03:23.510Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:03:35.283Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:03:40.492Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:03:54.162Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:03:58.089Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:04:12.569Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:04:23.374Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:04:30.668Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:04:37.982Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:04:58.175Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:05:11.846Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:05:16.344Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:05:17.610Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:05:53.988Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:07:51.802Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:09:02.582Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:09:40.680Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:10:09.930Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:10:18.838Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:10:24.656Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:10:29.619Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:11:04.124Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:11:14.809Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:11:34.837Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:12:02.588Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:12:08.063Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:12:26.286Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/authUtils' or its corresponding type declarations.
+
+[7m13[0m } from "../utils/authUtils";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:12:31.117Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module './sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "./sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module './sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "./sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:12:40.001Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module './sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "./sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module './sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "./sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-03-27T04:13:09.515Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../helpers/sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../../helpers/sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/validation/validateRequest.ts[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../helpers/sanitizeInput' or its corresponding type declarations.
+
+[7m4[0m import sanitizeInput from "../../helpers/sanitizeInput";
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/kg_kraft/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

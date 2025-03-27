@@ -1,4 +1,5 @@
 export interface CartItem {
+  id?: string;
   productId: string;
   quantity: number;
 }
@@ -11,5 +12,5 @@ export interface Cart {
 
 export interface CartLookupParams {
   userId?: string;
-  cartId?: string; // guest cart identifier
+  cartId?: string;
 }

@@ -1,28 +1,9 @@
-import { CartItem } from "@prisma/client";
 import prisma from "../config/database";
-import { CartLookupParams } from "../types/cartTypes";
+import { CartItem, CartLookupParams } from "../types/cartTypes";
 import AppError from "../utils/AppError";
 
-/**
- * *NOTE: For guest carts, your Cart model’s userId should be nullable.
- * For example:
- *
- * model Cart {
- *   id        String     @id @default(uuid())
- *   user      User?      @relation(fields: [userId], references: [id])
- *   userId    String?
- *   cartItems CartItem[]
- *   createdAt DateTime   @default(now())
- *   updatedAt DateTime   @updatedAt
- * }
- */
-
 class CartService {
-  /**
-   * Get a cart based on either userId (logged in) or cartId (guest).
-   * If no cart exists, a new one is created.
-   */
-  static async getCart({ userId, cartId }: CartLookupParams) {
+  static async getCart({ userId, cartId }: CartLookupParams = {}) {
     let cart;
     if (userId) {
       cart = await prisma.cart.findUnique({
@@ -41,30 +22,26 @@ class CartService {
         include: { cartItems: { include: { product: true } } },
       });
       if (!cart) {
-        // Create a new guest cart using the provided cartId if needed.
-        // (Alternatively, you can let the client generate a cart id.)
         cart = await prisma.cart.create({
           data: { id: cartId },
           include: { cartItems: { include: { product: true } } },
         });
       }
     } else {
-      throw new AppError(400, "No identifier provided for cart lookup");
+      cart = await prisma.cart.create({
+        data: {},
+        include: { cartItems: { include: { product: true } } },
+      });
     }
     return cart;
   }
 
-  /**
-   * Add a product to the cart.
-   * If the item exists, increment its quantity.
-   */
   static async addToCart(
     { userId, cartId }: CartLookupParams,
     { productId, quantity }: CartItem
   ) {
     const cart = await this.getCart({ userId, cartId });
 
-    // Try to find an existing cart item for the product.
     const existingItem = await prisma.cartItem.findFirst({
       where: { cartId: cart.id, productId },
     });
@@ -80,13 +57,9 @@ class CartService {
       });
     }
 
-    return await this.getCart({ userId, cartId });
+    return this.getCart({ userId, cartId });
   }
 
-  /**
-   * Update the quantity of a product in the cart.
-   * If quantity is set to 0 or less, the item is removed.
-   */
   static async updateCartItem(
     { userId, cartId }: CartLookupParams,
     { productId, quantity }: CartItem
@@ -110,12 +83,9 @@ class CartService {
       });
     }
 
-    return await this.getCart({ userId, cartId });
+    return this.getCart({ userId, cartId });
   }
 
-  /**
-   * Remove a product from the cart.
-   */
   static async removeFromCart(
     { userId, cartId }: CartLookupParams,
     productId: string
@@ -131,34 +101,24 @@ class CartService {
     }
 
     await prisma.cartItem.delete({ where: { id: cartItem.id } });
-    return await this.getCart({ userId, cartId });
+    return this.getCart({ userId, cartId });
   }
 
-  /**
-   * Clear all items from the cart.
-   */
   static async clearCart({ userId, cartId }: CartLookupParams) {
     const cart = await this.getCart({ userId, cartId });
     await prisma.cartItem.deleteMany({ where: { cartId: cart.id } });
-    return await this.getCart({ userId, cartId });
+    return this.getCart({ userId, cartId });
   }
 
-  /**
-   * Merge a guest cart into a logged-in user's cart.
-   * This method should be called when a guest user logs in.
-   */
   static async mergeGuestCartIntoUserCart(guestCartId: string, userId: string) {
-    // Fetch guest cart (if exists)
     const guestCart = await prisma.cart.findUnique({
       where: { id: guestCartId },
       include: { cartItems: true },
     });
-    if (!guestCart) return;
+    if (!guestCart || !guestCart.cartItems.length) return;
 
-    // Get the user's cart (or create one if it doesn't exist)
     const userCart = await this.getCart({ userId });
 
-    // For each item in the guest cart, add or update in the user's cart.
     for (const item of guestCart.cartItems) {
       const existingItem = await prisma.cartItem.findFirst({
         where: { cartId: userCart.id, productId: item.productId },
@@ -179,10 +139,8 @@ class CartService {
       }
     }
 
-    // Delete the guest cart after merging.
     await prisma.cart.delete({ where: { id: guestCartId } });
-
-    return userCart;
+    return this.getCart({ userId });
   }
 }
 

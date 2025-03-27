@@ -1,7 +1,6 @@
 import express from "express";
 import CartController from "../controllers/cartController";
 import protect from "../middlewares/protect";
-import authorizeRole from "../middlewares/authorizeRole";
 import {
   validateAddProductToCart,
   validateRemoveProductFromCart,
@@ -12,7 +11,7 @@ const router = express.Router();
 
 router.get("/", CartController.getUserCart);
 
-router.post("/", validateAddProductToCart, CartController.addToCart);
+router.post("/", CartController.addToCart);
 
 router.put("/", validateUpdateCartItem, CartController.updateCartItem);
 

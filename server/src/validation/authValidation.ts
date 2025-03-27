@@ -1,5 +1,5 @@
 import Joi, { Schema } from "joi";
-import validateRequest from "../helpers/validateRequest";
+import validateRequest from "../utils/validation/validateRequest";
 
 const signupSchema: Schema = Joi.object({
   name: Joi.string().lowercase().trim().min(3).max(50).required().messages({

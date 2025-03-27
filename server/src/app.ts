@@ -7,11 +7,11 @@ import { cookieParserOptions } from "./constants";
 import helmet from "helmet";
 import AppError from "./utils/AppError";
 import ExpressMongoSanitize from "express-mongo-sanitize";
-// import xss from "xss-clean";
 import hpp from "hpp";
 import morgan from "morgan";
 import logger from "./config/logger";
 import compression from "compression";
+import session from "express-session"; // Add this import
 import authRoutes from "./routes/authRoutes";
 import productRoutes from "./routes/productRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
@@ -24,6 +24,19 @@ const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET, cookieParserOptions));
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET!,
+    resave: false, // Don't save session if unmodified
+    saveUninitialized: false, // Don't create session until something is stored
+    cookie: {
+      secure: process.env.NODE_ENV === "production", // Use secure cookies in production (requires HTTPS)
+      httpOnly: true, // Prevent client-side access to cookies
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours session lifetime
+    },
+  })
+);
 
 app.use(helmet());
 app.use(
@@ -68,9 +81,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use(rateLimit(limiter));
 app.use(ExpressMongoSanitize());
-// app.use(xss());
 app.use(
   hpp({
     whitelist: ["sort", "filter", "fields", "page", "limit"],
@@ -87,10 +98,12 @@ app.use(
 );
 
 app.use(compression());
+
+// Routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/categories", categoryRoutes);
-// app.use("/api/v1/cart", cartRoutes);
+app.use("/api/v1/cart", cartRoutes);
 
 app.all("*", (req, res, next) => {
   next(new AppError(404, `Can't find ${req.originalUrl} on this server!`));

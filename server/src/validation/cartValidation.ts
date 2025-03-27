@@ -1,5 +1,5 @@
 import Joi from "joi";
-import validateRequest from "../helpers/validateRequest";
+import validateRequest from "../utils/validation/validateRequest";
 
 // Schema for adding a product to the cart
 const addProductToCartSchema = Joi.object({
