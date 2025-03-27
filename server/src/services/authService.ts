@@ -6,9 +6,9 @@ import emailQueue from "../queues/emailQueue";
 import sendEmail from "../utils/sendEmail";
 import passwordResetTemplate from "../templates/passwordReset";
 import {
+  comparePassword,
   generateAccessToken,
   generateRefreshToken,
-  comparePassword,
 } from "../utils/authUtils";
 import {
   AuthResponse,
@@ -181,6 +181,9 @@ class AuthService {
       );
     }
 
+    if (!user.password) {
+      throw new AppError(400, "Invalid credentials");
+    }
     const isPasswordValid = await comparePassword(password, user.password);
     if (!isPasswordValid) throw new AppError(400, "Invalid credentials");
 

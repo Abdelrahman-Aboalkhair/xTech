@@ -9,7 +9,7 @@ interface UserPayload {
   [key: string]: any;
 }
 
-interface AuthRequest extends Request {
+export interface AuthRequest extends Request {
   user?: UserPayload;
 }
 

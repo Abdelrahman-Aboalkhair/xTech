@@ -16,6 +16,9 @@ import authRoutes from "./routes/authRoutes";
 import productRoutes from "./routes/productRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
 import cartRoutes from "./routes/cartRoutes";
+import passport from "passport";
+import sessionConfig from "./config/session";
+import configurePassport from "./config/passport";
 
 dotenv.config();
 
@@ -25,18 +28,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET, cookieParserOptions));
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET!,
-    resave: false, // Don't save session if unmodified
-    saveUninitialized: false, // Don't create session until something is stored
-    cookie: {
-      secure: process.env.NODE_ENV === "production", // Use secure cookies in production (requires HTTPS)
-      httpOnly: true, // Prevent client-side access to cookies
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours session lifetime
-    },
-  })
-);
+app.use(sessionConfig);
+app.use(passport.initialize());
+app.use(passport.session());
+
+configurePassport();
 
 app.use(helmet());
 app.use(

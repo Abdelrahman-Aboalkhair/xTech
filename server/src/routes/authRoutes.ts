@@ -9,11 +9,41 @@ import {
   validateSignin,
   validateVerifyEmail,
 } from "../validation/authValidation";
+import passport from "passport";
 
 const router = express.Router();
 
-router.post("/google-signup", validateGoogleAuth, authController.googleSignup);
-router.post("/google-signin", validateGoogleAuth, authController.googleSignin);
+router.get(
+  "google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "http://localhost:3000/sign-in",
+  }),
+  (req, res) => {
+    res.redirect("http://localhost:3000/");
+  }
+);
+
+router.get(
+  "/facebook",
+  passport.authenticate("facebook", { scope: ["email"] })
+);
+
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", {
+    failureRedirect: "http://localhost:3000/login",
+  }),
+  (req, res) => {
+    res.redirect("http://localhost:3000/");
+  }
+);
+// router.post("/google-signup", validateGoogleAuth, authController.googleSignup);
+// router.post("/google-signin", validateGoogleAuth, authController.googleSignin);
 router.post("/register", validateRegister, authController.register);
 router.post("/verify-email", validateVerifyEmail, authController.verifyEmail);
 router.get("/verification-email/:email", authController.getVerificationEmail);

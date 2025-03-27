@@ -16,8 +16,9 @@ enum ROLE {
 model User {
   id        String    @id @default(uuid()) 
   googleId  String?
+  facebookId String?
   email     String    @unique
-  password  String
+  password  String?
   name      String
   avatar    String?
   

@@ -1,11 +1,11 @@
 import express from "express";
 import * as productController from "../controllers/productController";
-import protect from "../middlewares/protect";
 import authorizeRole from "../middlewares/authorizeRole";
 import {
   validateCreateProduct,
   validateUpdateProduct,
 } from "../validation/productValidation";
+import protect from "../middlewares/protect";
 
 const router = express.Router();
 
