@@ -3,24 +3,35 @@ import asyncHandler from "../utils/asyncHandler";
 import sendResponse from "../utils/sendResponse";
 import CategoryService from "../services/categoryService";
 
-const getAllCategories = asyncHandler(async (req: Request, res: Response) => {
-  const categories = await CategoryService.getAllCategories(req.query);
-  sendResponse(res, 200, { categories }, "Categories fetched successfully");
-});
+class CategoryController {
+  private categoryService: CategoryService;
 
-const createCategory = asyncHandler(async (req: Request, res: Response) => {
-  const { name } = req.body;
-  console.log("req.body => ", req.body);
+  constructor(categoryService: CategoryService) {
+    this.categoryService = categoryService;
+  }
 
-  const { category } = await CategoryService.createCategory(name);
+  getAllCategories = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const categories = await this.categoryService.getAllCategories(req.query);
+      sendResponse(res, 200, { categories }, "Categories fetched successfully");
+    }
+  );
 
-  sendResponse(res, 201, { category }, "Category created successfully");
-});
+  createCategory = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { name } = req.body;
+      const { category } = await this.categoryService.createCategory(name);
+      sendResponse(res, 201, { category }, "Category created successfully");
+    }
+  );
 
-const deleteCategory = asyncHandler(async (req: Request, res: Response) => {
-  const { id: categoryId } = req.params;
-  await CategoryService.deleteCategory(categoryId);
-  sendResponse(res, 204, {}, "Category deleted successfully");
-});
+  deleteCategory = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id: categoryId } = req.params;
+      await this.categoryService.deleteCategory(categoryId);
+      sendResponse(res, 204, {}, "Category deleted successfully");
+    }
+  );
+}
 
-export { getAllCategories, createCategory, deleteCategory };
+export default new CategoryController(new CategoryService());

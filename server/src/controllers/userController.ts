@@ -1,47 +1,60 @@
 import { Request, Response } from "express";
-import * as userService from "../services/userService";
 import asyncHandler from "../utils/asyncHandler";
+import sendResponse from "../utils/sendResponse";
+import UserService from "../services/userService";
 
-export const getAllUsers = asyncHandler(async (req: Request, res: Response) => {
-  const users = await userService.getAllUsers();
-  res.json(users);
+class UserController {
+  private userService: UserService;
 
-  res.status(500).json({ message: "Error fetching users" });
-});
-
-export const getUserById = asyncHandler(async (req: Request, res: Response) => {
-  const user = await userService.getUserById(parseInt(req.params.id));
-  res.json(user);
-
-  res.status(500).json({ message: "Error fetching user" });
-});
-
-export const getUserByEmail = asyncHandler(
-  async (req: Request, res: Response) => {
-    const user = await userService.getUserByEmail(req.params.email);
-    res.json(user);
-
-    res.status(500).json({ message: "Error fetching user" });
+  constructor(userService: UserService) {
+    this.userService = userService;
   }
-);
 
-export const getMe = asyncHandler(async (req: Request, res: Response) => {
-  const user = await userService.getUserById(parseInt(req.params.id));
-  res.json(user);
+  getAllUsers = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const users = await this.userService.getAllUsers();
+      sendResponse(res, 200, { users }, "Users fetched successfully");
+    }
+  );
 
-  res.status(400).json({ message: "Error fetching user" });
-});
+  getUserById = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id } = req.params;
+      const user = await this.userService.getUserById(id);
+      sendResponse(res, 200, { user }, "User fetched successfully");
+    }
+  );
 
-export const updateMe = asyncHandler(async (req: Request, res: Response) => {
-  const user = await userService.updateMe(parseInt(req.params.id), req.body);
-  res.json(user);
+  getUserByEmail = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { email } = req.params;
+      const user = await this.userService.getUserByEmail(email);
+      sendResponse(res, 200, { user }, "User fetched successfully");
+    }
+  );
 
-  res.status(400).json({ message: "Error updating user" });
-});
+  getMe = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const { id } = req.params;
+    const user = await this.userService.getMe(id);
+    sendResponse(res, 200, { user }, "User profile fetched successfully");
+  });
 
-export const deleteUser = asyncHandler(async (req: Request, res: Response) => {
-  await userService.deleteUser(parseInt(req.params.id));
-  res.sendStatus(204);
+  updateMe = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id } = req.params;
+      const updatedData = req.body;
+      const user = await this.userService.updateMe(id, updatedData);
+      sendResponse(res, 200, { user }, "User updated successfully");
+    }
+  );
 
-  res.status(400).json({ message: "Error deleting user" });
-});
+  deleteUser = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id } = req.params;
+      await this.userService.deleteUser(id);
+      sendResponse(res, 204, {}, "User deleted successfully");
+    }
+  );
+}
+
+export default new UserController(new UserService());

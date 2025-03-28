@@ -1,34 +1,63 @@
-import prisma from "../config/database";
+import AppError from "../utils/AppError";
+import UserRepository from "../repositories/UserRepository";
 
-const getAllUsers = async () => {
-  return await prisma.user.findMany();
-};
+class UserService {
+  private userRepository: UserRepository;
 
-const getUserById = async (id: number) => {
-  return await prisma.user.findUnique({ where: { id } });
-};
+  constructor() {
+    this.userRepository = new UserRepository();
+  }
 
-const getUserByEmail = async (email: string) => {
-  return await prisma.user.findUnique({ where: { email } });
-};
+  async getAllUsers() {
+    return await this.userRepository.findAllUsers();
+  }
 
-const getMe = async (id: number) => {
-  return await prisma.user.findUnique({ where: { id } });
-};
+  async getUserById(id: string) {
+    const user = await this.userRepository.findUserById(id);
+    if (!user) {
+      throw new AppError(404, "User not found");
+    }
+    return user;
+  }
 
-const updateMe = async (id: number, data: any) => {
-  return await prisma.user.update({ where: { id }, data });
-};
+  async getUserByEmail(email: string) {
+    const user = await this.userRepository.findUserByEmail(email);
+    if (!user) {
+      throw new AppError(404, "User not found");
+    }
+    return user;
+  }
 
-const deleteUser = async (id: number) => {
-  return await prisma.user.delete({ where: { id } });
-};
+  async getMe(id: string) {
+    const user = await this.userRepository.findUserById(id);
+    if (!user) {
+      throw new AppError(404, "User not found");
+    }
+    return user;
+  }
 
-export {
-  getAllUsers,
-  getUserById,
-  getUserByEmail,
-  getMe,
-  updateMe,
-  deleteUser,
-};
+  async updateMe(
+    id: string,
+    data: Partial<{
+      name?: string;
+      email?: string;
+      avatar?: string;
+    }>
+  ) {
+    const user = await this.userRepository.findUserById(id);
+    if (!user) {
+      throw new AppError(404, "User not found");
+    }
+    return await this.userRepository.updateUser(id, data);
+  }
+
+  async deleteUser(id: string) {
+    const user = await this.userRepository.findUserById(id);
+    if (!user) {
+      throw new AppError(404, "User not found");
+    }
+    await this.userRepository.deleteUser(id);
+  }
+}
+
+export default UserService;

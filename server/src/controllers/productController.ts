@@ -4,61 +4,77 @@ import sendResponse from "../utils/sendResponse";
 import ProductService from "../services/productService";
 import slugify from "../utils/slugify";
 
-const getAllProducts = asyncHandler(async (req: Request, res: Response) => {
-  const products = await ProductService.getAllProducts(req.query);
-  sendResponse(res, 200, { products }, "Products fetched successfully");
-});
+class ProductController {
+  private productService: ProductService;
 
-const getProductById = asyncHandler(async (req: Request, res: Response) => {
-  const { id: productId } = req.params;
-  const product = await ProductService.getProductById(productId);
-  sendResponse(res, 200, { product }, "Product fetched successfully");
-});
+  constructor(productService: ProductService) {
+    this.productService = productService;
+  }
 
-const getProductBySlug = asyncHandler(async (req: Request, res: Response) => {
-  const { slug: productSlug } = req.params;
-  const product = await ProductService.getProductBySlug(productSlug);
-  sendResponse(res, 200, { product }, "Product fetched successfully");
-});
+  getAllProducts = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const products = await this.productService.getAllProducts(req.query);
+      sendResponse(res, 200, { products }, "Products fetched successfully");
+    }
+  );
 
-const createProduct = asyncHandler(async (req: Request, res: Response) => {
-  const { name, description, price, discount, images, stock, categoryId } =
-    req.body;
-  const slugifiedName = slugify(name);
+  getProductById = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id: productId } = req.params;
+      const product = await this.productService.getProductById(productId);
+      sendResponse(res, 200, { product }, "Product fetched successfully");
+    }
+  );
 
-  const { product } = await ProductService.createProduct({
-    name,
-    slug: slugifiedName,
-    description,
-    price,
-    discount,
-    images,
-    stock,
-    categoryId,
-  });
+  getProductBySlug = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { slug: productSlug } = req.params;
+      const product = await this.productService.getProductBySlug(productSlug);
+      sendResponse(res, 200, { product }, "Product fetched successfully");
+    }
+  );
 
-  sendResponse(res, 201, { product }, "Product created successfully");
-});
+  createProduct = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { name, description, price, discount, images, stock, categoryId } =
+        req.body;
+      const slugifiedName = slugify(name);
 
-const updateProduct = asyncHandler(async (req: Request, res: Response) => {
-  const { id: productId } = req.params;
-  const updatedData = req.body;
+      const { product } = await this.productService.createProduct({
+        name,
+        slug: slugifiedName,
+        description,
+        price,
+        discount,
+        images,
+        stock,
+        categoryId,
+      });
 
-  const product = await ProductService.updateProduct(productId, updatedData);
-  sendResponse(res, 200, { product }, "Product updated successfully");
-});
+      sendResponse(res, 201, { product }, "Product created successfully");
+    }
+  );
 
-const deleteProduct = asyncHandler(async (req: Request, res: Response) => {
-  const { id: productId } = req.params;
-  await ProductService.deleteProduct(productId);
-  sendResponse(res, 200, {}, "Product deleted successfully");
-});
+  updateProduct = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id: productId } = req.params;
+      const updatedData = req.body;
 
-export {
-  getAllProducts,
-  getProductById,
-  getProductBySlug,
-  createProduct,
-  updateProduct,
-  deleteProduct,
-};
+      const product = await this.productService.updateProduct(
+        productId,
+        updatedData
+      );
+      sendResponse(res, 200, { product }, "Product updated successfully");
+    }
+  );
+
+  deleteProduct = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id: productId } = req.params;
+      await this.productService.deleteProduct(productId);
+      sendResponse(res, 200, {}, "Product deleted successfully");
+    }
+  );
+}
+
+export default new ProductController(new ProductService());
