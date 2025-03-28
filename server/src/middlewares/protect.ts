@@ -2,19 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import AppError from "../utils/AppError";
 import prisma from "../config/database";
-
-interface UserPayload {
-  id: string;
-  role: string;
-  [key: string]: any;
-}
+import { UserPayload } from "./authorizeRole";
 
 export interface AuthRequest extends Request {
   user?: UserPayload;
 }
 
 const protect = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
@@ -26,11 +21,11 @@ const protect = async (
 
     const decoded = jwt.verify(
       accessToken,
-      process.env.ACCESS_TOKEN_SECRET as string
+      process.env.ACCESS_TOKEN_SECRET!
     ) as UserPayload;
 
     const user = await prisma.user.findUnique({
-      where: { id: decoded.id },
+      where: { id: String(decoded.id) },
       select: { id: true, emailVerified: true, role: true },
     });
 

@@ -1,33 +1,40 @@
-import axios from "axios";
+// authService.ts
 import crypto from "crypto";
 import AppError from "../utils/AppError";
-import prisma from "../config/database";
 import emailQueue from "../queues/emailQueue";
 import sendEmail from "../utils/sendEmail";
 import passwordResetTemplate from "../templates/passwordReset";
 import {
+  blacklistToken,
   comparePassword,
   generateAccessToken,
   generateRefreshToken,
+  isTokenBlacklisted,
 } from "../utils/authUtils";
 import {
   AuthResponse,
   RegisterUserParams,
-  GoogleUserData,
   SignInParams,
 } from "../types/authTypes";
-import { ROLE, User } from "@prisma/client";
+import { ROLE } from "@prisma/client";
+import logger from "../config/logger";
+import jwt from "jsonwebtoken";
+import AuthRepository from "../repositories/authRepository";
 
 class AuthService {
-  static async registerUser({
+  private authRepository: AuthRepository;
+
+  constructor() {
+    this.authRepository = new AuthRepository();
+  }
+
+  async registerUser({
     name,
     email,
     password,
     role,
   }: RegisterUserParams): Promise<AuthResponse> {
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
+    const existingUser = await this.authRepository.findUserByEmail(email);
 
     if (existingUser) {
       throw new AppError(
@@ -36,29 +43,22 @@ class AuthService {
       );
     }
 
-    const emailVerificationToken = Math.random().toString(36).slice(-6);
+    const emailVerificationToken = Math.random()
+      .toString(36)
+      .slice(-6)
+      .toUpperCase();
     const emailVerificationTokenExpiresAt = new Date(
       Date.now() + 10 * 60 * 1000
     );
 
-    const newUser = await prisma.user.create({
-      data: {
-        email,
-        name,
-        password,
-        emailVerificationToken,
-        emailVerificationTokenExpiresAt,
-        role: role || ROLE.USER,
-        emailVerified: false,
-      },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        emailVerified: true,
-        avatar: true,
-      },
+    const newUser = await this.authRepository.createUser({
+      email,
+      name,
+      password,
+      emailVerificationToken,
+      emailVerificationTokenExpiresAt,
+      role: role || ROLE.USER,
+      emailVerified: false,
     });
 
     await emailQueue
@@ -89,24 +89,21 @@ class AuthService {
     };
   }
 
-  static async sendVerificationEmail(
-    email: string
-  ): Promise<{ message: string }> {
-    const user = await prisma.user.findUnique({
-      where: { email },
-    });
+  async sendVerificationEmail(email: string): Promise<{ message: string }> {
+    const user = await this.authRepository.findUserByEmail(email);
+
+    if (!user) {
+      throw new AppError(404, "User not found");
+    }
 
     const emailVerificationToken = Math.random().toString(36).slice(-6);
     const emailVerificationTokenExpiresAt = new Date(
       Date.now() + 10 * 60 * 1000
     );
 
-    await prisma.user.update({
-      where: { id: user?.id },
-      data: {
-        emailVerificationToken,
-        emailVerificationTokenExpiresAt,
-      },
+    await this.authRepository.updateUserEmailVerification(user.id, {
+      emailVerificationToken,
+      emailVerificationTokenExpiresAt,
     });
 
     await emailQueue
@@ -123,33 +120,27 @@ class AuthService {
     return { message: "A new verification code has been sent to your email" };
   }
 
-  static async verifyEmail(
+  async verifyEmail(
     emailVerificationToken: string
   ): Promise<{ message: string }> {
-    const user = await prisma.user.findFirst({
-      where: {
-        emailVerificationToken,
-        emailVerificationTokenExpiresAt: { gt: new Date() },
-      },
-    });
+    const user = await this.authRepository.findUserByVerificationToken(
+      emailVerificationToken
+    );
 
     if (!user) {
       throw new AppError(400, "Invalid or expired verification code.");
     }
 
-    await prisma.user.update({
-      where: { id: user.id },
-      data: {
-        emailVerificationToken: null,
-        emailVerificationTokenExpiresAt: null,
-        emailVerified: true,
-      },
+    await this.authRepository.updateUserEmailVerification(user.id, {
+      emailVerificationToken: null,
+      emailVerificationTokenExpiresAt: null,
+      emailVerified: true,
     });
 
     return { message: "Email verified successfully." };
   }
 
-  static async signin({ email, password }: SignInParams): Promise<{
+  async signin({ email, password }: SignInParams): Promise<{
     user: {
       id: string;
       role: ROLE;
@@ -161,18 +152,7 @@ class AuthService {
     accessToken: string;
     refreshToken: string;
   }> {
-    const user = await prisma.user.findUnique({
-      where: { email },
-      select: {
-        id: true,
-        password: true,
-        role: true,
-        name: true,
-        email: true,
-        emailVerified: true,
-        avatar: true,
-      },
-    });
+    const user = await this.authRepository.findUserByEmailWithPassword(email);
 
     if (!user) {
       throw new AppError(
@@ -193,81 +173,12 @@ class AuthService {
     return { accessToken, refreshToken, user };
   }
 
-  static async signout(): Promise<{ message: string }> {
+  async signout(): Promise<{ message: string }> {
     return { message: "User logged out successfully" };
   }
 
-  static async googleSignup(access_token: string): Promise<AuthResponse> {
-    const googleResponse = await axios.get<GoogleUserData>(
-      `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`
-    );
-    const { email, name, picture, googleId } = googleResponse.data;
-    console.log("picture: ", picture);
-
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
-
-    if (existingUser) {
-      throw new AppError(
-        400,
-        "This email is already registered, please sign in"
-      );
-    }
-
-    const newUser = await prisma.user.create({
-      data: {
-        googleId,
-        name,
-        email,
-        password: "",
-        avatar: picture,
-        emailVerified: true,
-        role: ROLE.USER,
-      },
-    });
-
-    const accessToken = await generateAccessToken(newUser.id, newUser.role);
-    const refreshToken = await generateRefreshToken(newUser.id, newUser.role);
-
-    return {
-      user: {
-        id: newUser.id,
-        name: newUser.name,
-        email: newUser.email,
-        avatar: newUser.avatar,
-        role: newUser.role,
-        emailVerified: newUser.emailVerified,
-      },
-      accessToken,
-      refreshToken,
-    };
-  }
-
-  static async googleSignin(
-    access_token: string
-  ): Promise<{ accessToken: string; refreshToken: string; user: User }> {
-    const googleResponse = await axios.get<GoogleUserData>(
-      `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`
-    );
-    const { email } = googleResponse.data;
-
-    const user = await prisma.user.findUnique({
-      where: { email },
-    });
-
-    if (!user) {
-      throw new AppError(404, "This email is not registered, please sign up");
-    }
-
-    const accessToken = await generateAccessToken(user.id, user.role);
-    const refreshToken = await generateRefreshToken(user.id, user.role);
-
-    return { user, accessToken, refreshToken };
-  }
-
-  static async forgotPassword(email: string): Promise<{ message: string }> {
-    const user = await prisma.user.findUnique({ where: { email } });
+  async forgotPassword(email: string): Promise<{ message: string }> {
+    const user = await this.authRepository.findUserByEmail(email);
 
     if (!user) {
       throw new AppError(404, "This email is not registered, please sign up");
@@ -279,12 +190,9 @@ class AuthService {
       .update(resetToken)
       .digest("hex");
 
-    await prisma.user.update({
-      where: { email },
-      data: {
-        resetPasswordToken: hashedToken,
-        resetPasswordTokenExpiresAt: new Date(Date.now() + 10 * 60 * 1000),
-      },
+    await this.authRepository.updateUserPasswordReset(email, {
+      resetPasswordToken: hashedToken,
+      resetPasswordTokenExpiresAt: new Date(Date.now() + 10 * 60 * 1000),
     });
 
     const resetUrl = `${process.env.CLIENT_URL}/password-reset/${resetToken}`;
@@ -300,33 +208,71 @@ class AuthService {
     return { message: "Password reset email sent successfully" };
   }
 
-  static async resetPassword(
+  async resetPassword(
     token: string,
     newPassword: string
   ): Promise<{ message: string }> {
     const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
 
-    const user = await prisma.user.findFirst({
-      where: {
-        resetPasswordToken: hashedToken,
-        resetPasswordTokenExpiresAt: { gt: new Date() },
-      },
-    });
+    const user = await this.authRepository.findUserByResetToken(hashedToken);
 
     if (!user) {
       throw new AppError(400, "Invalid or expired reset token");
     }
 
-    await prisma.user.update({
-      where: { id: user.id },
-      data: {
-        password: newPassword,
-        resetPasswordToken: null,
-        resetPasswordTokenExpiresAt: null,
-      },
-    });
+    await this.authRepository.updateUserPassword(user.id, newPassword);
 
     return { message: "Password reset successful. You can now log in." };
+  }
+
+  async refreshToken(oldRefreshToken: string): Promise<{
+    user: {
+      id: string;
+      name: string;
+      email: string;
+      role: string;
+      emailVerified: boolean;
+      avatar: string | null;
+    };
+    newAccessToken: string;
+    newRefreshToken: string;
+  }> {
+    if (await isTokenBlacklisted(oldRefreshToken)) {
+      throw new AppError(401, "Refresh token is invalidated");
+    }
+
+    const decoded = jwt.verify(
+      oldRefreshToken,
+      process.env.REFRESH_TOKEN_SECRET as string
+    ) as { id: string; absExp: number };
+
+    const absoluteExpiration = decoded.absExp;
+    const now = Math.floor(Date.now() / 1000);
+    if (now > absoluteExpiration) {
+      throw new AppError(401, "Session expired. Please log in again.");
+    }
+
+    const user = await this.authRepository.findUserById(decoded.id);
+
+    if (!user) {
+      throw new AppError(401, "User not found");
+    }
+
+    const newAccessToken = generateAccessToken(user.id, user.role);
+    const newRefreshToken = generateRefreshToken(
+      user.id,
+      user.role,
+      absoluteExpiration
+    );
+
+    const oldTokenTTL = absoluteExpiration - now;
+    if (oldTokenTTL > 0) {
+      await blacklistToken(oldRefreshToken, oldTokenTTL);
+    } else {
+      logger.warn("Refresh token is already expired. No need to blacklist.");
+    }
+
+    return { user, newAccessToken, newRefreshToken };
   }
 }
 

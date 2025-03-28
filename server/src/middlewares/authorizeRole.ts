@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import AppError from "../utils/AppError";
-
-interface UserPayload {
+export interface UserPayload {
   id: number;
   role: string;
   [key: string]: any;

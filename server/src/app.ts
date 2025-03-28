@@ -99,7 +99,7 @@ app.use(compression());
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/categories", categoryRoutes);
-app.use("/api/v1/cart", cartRoutes);
+// app.use("/api/v1/cart", cartRoutes);
 
 app.all("*", (req, res, next) => {
   next(new AppError(404, `Can't find ${req.originalUrl} on this server!`));
