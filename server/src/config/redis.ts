@@ -34,7 +34,7 @@ const redisClient: RedisConfig = {
     },
   },
   client: new Redis({
-    host: process.env.REDIS_HOST || "redis",
+    host: process.env.REDIS_HOST || "localhost",
     port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT) : 6379,
     retryStrategy: (times) => {
       return Math.min(times * 50, 2000);

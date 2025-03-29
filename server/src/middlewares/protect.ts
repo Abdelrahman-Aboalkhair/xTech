@@ -2,11 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import AppError from "../utils/AppError";
 import prisma from "../config/database";
-import { UserPayload } from "./authorizeRole";
-
-export interface AuthRequest extends Request {
-  user?: UserPayload;
-}
+import { User } from "../types/userTypes";
 
 const protect = async (
   req: Request,
@@ -22,7 +18,7 @@ const protect = async (
     const decoded = jwt.verify(
       accessToken,
       process.env.ACCESS_TOKEN_SECRET!
-    ) as UserPayload;
+    ) as User;
 
     const user = await prisma.user.findUnique({
       where: { id: String(decoded.id) },

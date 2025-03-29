@@ -24,10 +24,3 @@ export interface AuthResponse {
   accessToken: string;
   refreshToken: string;
 }
-
-export interface GoogleUserData {
-  googleId: string;
-  email: string;
-  name: string;
-  picture: string;
-}

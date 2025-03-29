@@ -1,8 +1,7 @@
 import express from "express";
-import * as authController from "../controllers/authController";
+import authController from "../controllers/authController";
 import {
   validateForgotPassword,
-  validateGoogleAuth,
   validateRefreshToken,
   validateRegister,
   validateResetPassword,
@@ -42,8 +41,7 @@ router.get(
     res.redirect("http://localhost:3000/");
   }
 );
-// router.post("/google-signup", validateGoogleAuth, authController.googleSignup);
-// router.post("/google-signin", validateGoogleAuth, authController.googleSignin);
+
 router.post("/register", validateRegister, authController.register);
 router.post("/verify-email", validateVerifyEmail, authController.verifyEmail);
 router.get("/verification-email/:email", authController.getVerificationEmail);

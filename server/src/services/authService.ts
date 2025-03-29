@@ -1,4 +1,3 @@
-// authService.ts
 import crypto from "crypto";
 import AppError from "../utils/AppError";
 import emailQueue from "../queues/emailQueue";

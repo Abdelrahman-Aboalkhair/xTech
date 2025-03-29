@@ -1,5 +1,5 @@
 import express from "express";
-import * as productController from "../controllers/productController";
+import productController from "../controllers/productController";
 import authorizeRole from "../middlewares/authorizeRole";
 import {
   validateCreateProduct,

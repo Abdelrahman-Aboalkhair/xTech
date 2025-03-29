@@ -1,5 +1,5 @@
 import express from "express";
-import * as categoryController from "../controllers/categoryController";
+import categoryController from "../controllers/categoryController";
 import protect from "../middlewares/protect";
 import authorizeRole from "../middlewares/authorizeRole";
 import { validateCreateCategory } from "../validation/categoryValidation";

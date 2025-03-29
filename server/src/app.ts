@@ -11,7 +11,6 @@ import hpp from "hpp";
 import morgan from "morgan";
 import logger from "./config/logger";
 import compression from "compression";
-import session from "express-session"; // Add this import
 import authRoutes from "./routes/authRoutes";
 import productRoutes from "./routes/productRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
