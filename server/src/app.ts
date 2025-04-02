@@ -1,4 +1,4 @@
-import express, { Application } from "express";
+import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import globalError from "./middlewares/globalError";
@@ -21,7 +21,7 @@ import configurePassport from "./config/passport";
 
 dotenv.config();
 
-const app: Application = express();
+const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -98,7 +98,7 @@ app.use(compression());
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/categories", categoryRoutes);
-// app.use("/api/v1/cart", cartRoutes);
+app.use("/api/v1/cart", cartRoutes);
 
 app.all("*", (req, res, next) => {
   next(new AppError(404, `Can't find ${req.originalUrl} on this server!`));

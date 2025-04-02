@@ -17,7 +17,7 @@ class CartRepository {
 
   async createCart(data: { userId?: string; id?: string }) {
     return prisma.cart.create({
-      data,
+      data: { userId: data.userId, id: data.id as string },
       include: { cartItems: { include: { product: true } } },
     });
   }

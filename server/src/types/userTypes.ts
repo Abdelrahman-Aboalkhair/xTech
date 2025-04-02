@@ -1,8 +1,12 @@
-type ROLE = "USER" | "ADMIN" | "SUPERADMIN";
+export enum Role {
+  ADMIN = "ADMIN",
+  USER = "USER",
+  SUPERADMIN = "SUPERADMIN",
+}
 
 export interface User {
   id: string;
-  role: ROLE;
+  role: Role;
   name?: string;
   email?: string;
   emailVerified?: boolean;
