@@ -69,6 +69,22 @@ class CartRepository {
       include: { cartItems: true },
     });
   }
+  async createOrder(data: {
+    userId: string;
+    amount: number;
+    orderItems: { productId: string; quantity: number }[];
+  }) {
+    return prisma.order.create({
+      data: {
+        userId: data.userId,
+        amount: data.amount,
+        orderItems: {
+          create: data.orderItems,
+        },
+      },
+      include: { orderItems: true },
+    });
+  }
 }
 
 export default CartRepository;

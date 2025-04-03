@@ -505,3 +505,104 @@ Argument `id` is missing.
 [2025-04-03T05:54:02.922Z] [32MINFO[39M: ::1 - - [03/Apr/2025:05:54:02 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
 [2025-04-03T05:54:34.040Z] [32MINFO[39M: ::1 - - [03/Apr/2025:05:54:34 +0000] "PUT /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
 [2025-04-03T05:54:43.967Z] [32MINFO[39M: ::1 - - [03/Apr/2025:05:54:43 +0000] "PUT /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T07:13:24.411Z] [32MINFO[39M: ::1 - - [03/Apr/2025:07:13:24 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T07:13:33.274Z] [32MINFO[39M: ::1 - - [03/Apr/2025:07:13:33 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T07:18:13.689Z] [31MERROR[39M: Can't find /api/v1/checkout on this server!
+[2025-04-03T07:18:13.697Z] [32MINFO[39M: ::1 - - [03/Apr/2025:07:18:13 +0000] "POST /api/v1/checkout HTTP/1.1" 404 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T07:19:29.545Z] [31MERROR[39M: Can't find /api/v1//checkout on this server!
+[2025-04-03T07:19:29.551Z] [32MINFO[39M: ::1 - - [03/Apr/2025:07:19:29 +0000] "POST /api/v1//checkout HTTP/1.1" 404 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T07:19:41.331Z] [32MINFO[39M: ::1 - - [03/Apr/2025:07:19:41 +0000] "POST /api/v1/checkout HTTP/1.1" 200 134 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T07:34:41.416Z] [31MERROR[39M: Can't find /api/v1/webhook on this server!
+[2025-04-03T07:34:41.423Z] [32MINFO[39M: ::1 - - [03/Apr/2025:07:34:41 +0000] "POST /api/v1/webhook HTTP/1.1" 404 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T07:34:59.332Z] [31MERROR[39M: No Stripe signature
+[2025-04-03T07:34:59.338Z] [32MINFO[39M: ::1 - - [03/Apr/2025:07:34:59 +0000] "POST /api/v1/webhook HTTP/1.1" 400 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T07:37:31.857Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:37:31.862Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:37:31 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:37:32.367Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:37:32.368Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:37:32 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:37:36.241Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:37:36.243Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:37:36 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:37:36.328Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:37:36.329Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:37:36 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:37:36.333Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:37:36.335Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:37:36 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:37:36.530Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:37:36.531Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:37:36 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:37:38.707Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:37:38.709Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:37:38 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:41:43.114Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:41:43.119Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:41:43 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:41:43.631Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:41:43.633Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:41:43 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:41:46.983Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:41:46.984Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:41:46 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:41:47.010Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:41:47.011Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:41:47 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:41:47.203Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:41:47.205Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:41:47 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:41:47.230Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:41:47.231Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:41:47 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:41:49.276Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-03T07:41:49.279Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [03/Apr/2025:07:41:49 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-03T07:45:50.127Z] [31MERROR[39M: No userId in session metadata
+[2025-04-03T07:52:05.077Z] [31MERROR[39M: No userId in session metadata
+[2025-04-03T07:53:21.443Z] [32MINFO[39M: ::1 - - [03/Apr/2025:07:53:21 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T07:53:29.364Z] [32MINFO[39M: ::1 - - [03/Apr/2025:07:53:29 +0000] "POST /api/v1/checkout HTTP/1.1" 200 134 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T07:54:18.572Z] [31MERROR[39M: No userId in session metadata
+[2025-04-03T08:00:19.481Z] [31MERROR[39M: No userId in session metadata

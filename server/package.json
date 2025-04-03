@@ -46,6 +46,7 @@
     "passport-facebook": "^3.0.0",
     "passport-google-oauth20": "^2.0.0",
     "sanitize-html": "^2.15.0",
+    "stripe": "^18.0.0",
     "winston": "^3.17.0",
     "xss-clean": "^0.1.4"
   },

@@ -13,6 +13,12 @@ enum ROLE {
   SUPERADMIN
 }
 
+enum ORDER_STATUS {
+  PENDING
+  PROCESSING
+  DELIVERED
+}
+
 model User {
   id        String    @id @default(uuid()) 
   googleId  String?
@@ -76,6 +82,7 @@ model Order {
 
   orderItems  OrderItem[]
   tracking    TrackingDetail?
+  status      ORDER_STATUS @default(PENDING)
 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -124,6 +131,13 @@ model TrackingDetail {
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+}
+
+model WebhookLog {
+  id       String   @id @default(cuid())
+  eventType String
+  payload   Json
+  createdAt DateTime @default(now())
 }
 
 model Cart {

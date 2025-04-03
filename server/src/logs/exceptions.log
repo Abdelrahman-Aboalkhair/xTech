@@ -39215,3 +39215,293 @@ Require stack:
     at Module.require (node:internal/modules/cjs/loader:1480:12)
     at require (node:internal/modules/helpers:135:16)
     at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/cartRoutes.ts:9:1)
+[2025-04-03T06:34:52.299Z] [31MERROR[39M: uncaughtException: Cannot find module 'middlewares/protect'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/orderRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'middlewares/protect'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/orderRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/orderRoutes.ts:5:1)
+[2025-04-03T06:35:10.946Z] [31MERROR[39M: uncaughtException: Cannot find module 'utils/AppError'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/checkoutController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/checkoutRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'utils/AppError'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/checkoutController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/checkoutRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/checkoutController.ts:5:1)
+[2025-04-03T06:35:23.964Z] [31MERROR[39M: uncaughtException: Cannot find module 'utils/AppError'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/checkoutController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/checkoutRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'utils/AppError'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/checkoutController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/checkoutRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/checkoutController.ts:5:1)
+[2025-04-03T07:23:53.483Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'stripe'.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m8[0m - [91merror[0m[90m TS2304: [0mCannot find name 'trigger'.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m       ~~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'checkout'.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m               ~~~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m45[0m - [91merror[0m[90m TS2304: [0mCannot find name 'override'.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m                                            ~~~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m8[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m       ~~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m45[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m                                            ~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'stripe'.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m8[0m - [91merror[0m[90m TS2304: [0mCannot find name 'trigger'.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m       ~~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'checkout'.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m               ~~~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m45[0m - [91merror[0m[90m TS2304: [0mCannot find name 'override'.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m                                            ~~~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m8[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m       ~~~~~~~[0m
+[96msrc/routes/checkoutRoutes.ts[0m:[93m16[0m:[93m45[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m16[0m stripe trigger checkout.session.completed --override "session.id=cs_test_a1GHFpW3Zbt2Ifm9nBA69NgNFf8jea6xR3vE7OfzFJiQqRKRNQG8O3vSIc"
+[7m  [0m [91m                                            ~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T07:40:08.338Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/webhookController.ts[0m:[93m16[0m:[93m9[0m - [91merror[0m[90m TS2451: [0mCannot redeclare block-scoped variable 'event'.
+
+[7m16[0m     let event;
+[7m  [0m [91m        ~~~~~[0m
+[96msrc/controllers/webhookController.ts[0m:[93m18[0m:[93m11[0m - [91merror[0m[90m TS2451: [0mCannot redeclare block-scoped variable 'event'.
+
+[7m18[0m     const event = stripe.webhooks.constructEvent(
+[7m  [0m [91m          ~~~~~[0m
+[96msrc/controllers/webhookController.ts[0m:[93m24[0m:[93m9[0m - [91merror[0m[90m TS18048: [0m'event' is possibly 'undefined'.
+
+[7m24[0m     if (event.type === "checkout.session.completed") {
+[7m  [0m [91m        ~~~~~[0m
+[96msrc/controllers/webhookController.ts[0m:[93m25[0m:[93m23[0m - [91merror[0m[90m TS18048: [0m'event' is possibly 'undefined'.
+
+[7m25[0m       const session = event.data.object;
+[7m  [0m [91m                      ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/webhookController.ts[0m:[93m16[0m:[93m9[0m - [91merror[0m[90m TS2451: [0mCannot redeclare block-scoped variable 'event'.
+
+[7m16[0m     let event;
+[7m  [0m [91m        ~~~~~[0m
+[96msrc/controllers/webhookController.ts[0m:[93m18[0m:[93m11[0m - [91merror[0m[90m TS2451: [0mCannot redeclare block-scoped variable 'event'.
+
+[7m18[0m     const event = stripe.webhooks.constructEvent(
+[7m  [0m [91m          ~~~~~[0m
+[96msrc/controllers/webhookController.ts[0m:[93m24[0m:[93m9[0m - [91merror[0m[90m TS18048: [0m'event' is possibly 'undefined'.
+
+[7m24[0m     if (event.type === "checkout.session.completed") {
+[7m  [0m [91m        ~~~~~[0m
+[96msrc/controllers/webhookController.ts[0m:[93m25[0m:[93m23[0m - [91merror[0m[90m TS18048: [0m'event' is possibly 'undefined'.
+
+[7m25[0m       const session = event.data.object;
+[7m  [0m [91m                      ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T07:58:54.264Z] [31MERROR[39M: uncaughtException: Cannot find module 'config/stripe'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'config/stripe'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts:4:1)
+[2025-04-03T07:59:08.434Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m14[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'userId' does not exist on type 'Metadata | null'.
+
+[7m14[0m     const { userId } = fullSession.metadata;
+[7m  [0m [91m            ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m14[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'userId' does not exist on type 'Metadata | null'.
+
+[7m14[0m     const { userId } = fullSession.metadata;
+[7m  [0m [91m            ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T07:59:20.841Z] [31MERROR[39M: uncaughtException: Cannot find module 'config/stripe'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'config/stripe'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts:4:1)
+[2025-04-03T07:59:27.438Z] [31MERROR[39M: uncaughtException: Cannot find module 'config/stripe'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'config/stripe'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts:4:1)
+[2025-04-03T07:59:33.779Z] [31MERROR[39M: uncaughtException: Cannot find module 'config/stripe'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'config/stripe'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts:4:1)
