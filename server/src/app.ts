@@ -16,8 +16,10 @@ import productRoutes from "./routes/productRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
 import cartRoutes from "./routes/cartRoutes";
 import passport from "passport";
-import sessionConfig from "./config/session";
 import configurePassport from "./config/passport";
+import session from "express-session";
+import redisClient from "./config/redis";
+import { RedisStore } from "connect-redis";
 
 dotenv.config();
 
@@ -27,7 +29,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET, cookieParserOptions));
 
-app.use(sessionConfig);
+app.use(
+  session({
+    store: new RedisStore({ client: redisClient }),
+    secret: process.env.SESSION_SECRET!,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 

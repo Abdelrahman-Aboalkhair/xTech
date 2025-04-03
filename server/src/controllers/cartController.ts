@@ -13,14 +13,24 @@ class CartController {
   }
 
   getUserCart = asyncHandler(async (req: Request, res: Response) => {
-    const cart = await this.cartService.getCart({
-      userId: req.user?.id,
-      cartId: req.session.cart?.id,
-    });
+    let cart;
+    if (req.user?.id) {
+      console.log("User ID:", req.user.id);
+      cart = await this.cartService.getCart({ userId: req.user.id });
+      console.log("Found cart for logged in user: ", cart);
+    } else if (req.session.cart?.id) {
+      cart = await this.cartService.getCart({ cartId: req.session.cart.id });
+    } else {
+      cart = await this.cartService.getCart({}); // Create a new cart for guests if none exists
+      req.session.cart = { id: cart.id, items: [] };
+    }
     sendResponse(res, 200, { cart }, "Cart fetched successfully");
   });
 
   addToCart = asyncHandler(async (req: Request, res: Response) => {
+    console.log("Session ID:", req.sessionID);
+    console.log("Cart ID before:", req.session.cart?.id);
+
     const { productId, quantity } = req.body as CartItem;
     if (!productId || quantity <= 0) {
       throw new AppError(400, "Invalid productId or quantity");
@@ -34,25 +44,31 @@ class CartController {
       );
       sendResponse(res, 201, { cart }, "Product added to cart successfully");
     } else {
-      if (!req.session.cart) {
-        req.session.cart = { id: "", items: [] };
+      if (!req.session.cart || !req.session.cart.id) {
+        // Create a new cart if none exists in the session
+        // No userId or cartId, creates a fresh cart
+        const newCart = await this.cartService.getCart({});
+        req.session.cart = { id: newCart.id, items: [] };
       }
 
-      const newCart = await this.cartService.getCart({
-        cartId: req.session.cart?.id,
-      });
-      req.session.cart.id = newCart.id;
-
+      // Add the item to the cart using the session's cart ID
       cart = await this.cartService.addToCart(
-        { cartId: req.session.cart?.id! },
+        { cartId: req.session.cart.id },
         { productId, quantity }
       );
 
-      // Update session cart items as array
-      req.session.cart.items = req.session.cart.items.filter(
-        (item) => item.product !== productId
+      console.log("Cart ID after:", req.session.cart.id);
+
+      // Update session items to reflect the cart state
+      const existingItemIndex = req.session.cart.items.findIndex(
+        (item) => item.product === productId
       );
-      req.session.cart.items.push({ product: productId, quantity });
+      if (existingItemIndex >= 0) {
+        req.session.cart.items[existingItemIndex].quantity += quantity;
+      } else {
+        req.session.cart.items.push({ product: productId, quantity });
+        console.log("req.session.items after push =>", req.session.cart.items);
+      }
 
       sendResponse(
         res,
@@ -162,21 +178,6 @@ class CartController {
         throw new AppError(400, "No cart to clear");
       }
       sendResponse(res, 204, {}, "Cart cleared successfully");
-    }
-  );
-
-  mergeGuestCart = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
-      if (!req.user?.id || !req.session.cart?.id) {
-        sendResponse(res, 200, {}, "No guest cart to merge");
-        return;
-      }
-      const cart = await this.cartService.mergeGuestCartIntoUserCart(
-        req.session.cart.id,
-        req.user.id
-      );
-      req.session.cart = { id: "", items: [] };
-      sendResponse(res, 200, { cart }, "Guest cart merged successfully");
     }
   );
 }

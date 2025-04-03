@@ -6,12 +6,14 @@ import sendResponse from "../utils/sendResponse";
 import AuthService from "../services/authService";
 import { blacklistToken } from "../utils/authUtils";
 import AppError from "../utils/AppError";
+import CartService from "../services/cartService";
 
 class AuthController {
   private authService: AuthService;
 
-  constructor(authService: AuthService) {
+  constructor(authService: AuthService, private cartService?: CartService) {
     this.authService = authService;
+    this.cartService = cartService;
   }
 
   register = asyncHandler(
@@ -26,6 +28,14 @@ class AuthController {
         });
 
       res.cookie("refreshToken", refreshToken, cookieOptions);
+
+      if (req.session.cart?.id) {
+        await this.cartService?.mergeGuestCartIntoUserCart(
+          req.session.cart.id,
+          user.id
+        );
+        req.session.cart = { id: "", items: [] };
+      }
 
       sendResponse(
         res,
@@ -73,6 +83,16 @@ class AuthController {
 
     res.cookie("refreshToken", refreshToken, cookieOptions);
 
+    if (req.session.cart?.id) {
+      console.log("FOUND GUEST CART, WE MERGE: ", req.session.cart.id);
+      console.log("USER ID: ", user.id);
+      await this.cartService?.mergeGuestCartIntoUserCart(
+        req.session.cart.id,
+        user.id
+      );
+      req.session.cart = { id: "", items: [] };
+    }
+
     sendResponse(
       res,
       200,
@@ -93,7 +113,7 @@ class AuthController {
 
   signout = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const refreshToken = req?.cookies?.refreshToken;
-
+    const accessToken = req?.headers?.authorization?.split(" ")[1];
     if (refreshToken) {
       const decoded: any = jwt.decode(refreshToken);
       if (decoded && decoded.absExp) {
@@ -105,8 +125,22 @@ class AuthController {
       }
     }
 
-    res.clearCookie("refreshToken", cookieOptions);
+    if (accessToken) {
+      const decoded: any = jwt.decode(accessToken);
+      if (decoded && decoded.exp) {
+        const now = Math.floor(Date.now() / 1000);
+        const ttl = decoded.exp - now;
+        if (ttl > 0) {
+          await blacklistToken(accessToken, ttl);
+        }
+      }
+    }
 
+    res.clearCookie("refreshToken", cookieOptions);
+    req.session.destroy((err) => {
+      if (err) console.error("Session destroy error:", err);
+    });
+    req.user = undefined;
     sendResponse(res, 200, {}, "Logged out successfully");
   });
 
@@ -161,4 +195,4 @@ class AuthController {
   );
 }
 
-export default new AuthController(new AuthService());
+export default new AuthController(new AuthService(), new CartService());

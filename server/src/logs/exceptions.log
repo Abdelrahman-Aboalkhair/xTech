@@ -38034,3 +38034,1118 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-02T11:40:43.412Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m27[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m27[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-02T11:43:21.735Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m27[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m27[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-02T11:43:47.529Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m19[0m:[93m11[0m - [91merror[0m[90m TS2741: [0mProperty 'cartItems' is missing in type '{ userId: string | undefined; }' but required in type '{ userId?: string | undefined; id?: string | undefined; cartItems: []; }'.
+
+[7m19[0m     const createData: { userId?: string; id?: string; cartItems: [] } = {
+[7m  [0m [91m          ~~~~~~~~~~[0m
+
+  [96msrc/repositories/cartRepository.ts[0m:[93m19[0m:[93m55[0m
+    [7m19[0m     const createData: { userId?: string; id?: string; cartItems: [] } = {
+    [7m  [0m [96m                                                      ~~~~~~~~~[0m
+    'cartItems' is declared here.
+[96msrc/repositories/cartRepository.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; cartItems: []; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; cartItems: []; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m27[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m19[0m:[93m11[0m - [91merror[0m[90m TS2741: [0mProperty 'cartItems' is missing in type '{ userId: string | undefined; }' but required in type '{ userId?: string | undefined; id?: string | undefined; cartItems: []; }'.
+
+[7m19[0m     const createData: { userId?: string; id?: string; cartItems: [] } = {
+[7m  [0m [91m          ~~~~~~~~~~[0m
+
+  [96msrc/repositories/cartRepository.ts[0m:[93m19[0m:[93m55[0m
+    [7m19[0m     const createData: { userId?: string; id?: string; cartItems: [] } = {
+    [7m  [0m [96m                                                      ~~~~~~~~~[0m
+    'cartItems' is declared here.
+[96msrc/repositories/cartRepository.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; cartItems: []; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; cartItems: []; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m27[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-02T11:43:50.967Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m27[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m27[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-02T11:43:55.286Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m28[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m28[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m28[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m28[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-02T11:43:58.110Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m28[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m28[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m28[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m28[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+        { cartId: req.session.cart.id },
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-02T11:44:03.650Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m21[0m:[93m11[0m - [91merror[0m[90m TS2869: [0mRight operand of ?? is unreachable because the left operand is never nullish.
+
+[7m21[0m       id: "" ?? null,
+[7m  [0m [91m          ~~[0m
+[96msrc/repositories/cartRepository.ts[0m:[93m25[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m25[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m21[0m:[93m11[0m - [91merror[0m[90m TS2869: [0mRight operand of ?? is unreachable because the left operand is never nullish.
+
+[7m21[0m       id: "" ?? null,
+[7m  [0m [91m          ~~[0m
+[96msrc/repositories/cartRepository.ts[0m:[93m25[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m25[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-02T11:44:07.225Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m27[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; id?: string | undefined; }' is not assignable to type '{ userId?: undefined; id: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<string | Date | undefined, string | Date | undefined>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
+
+[7m27[0m       data: createData,
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10896[0m:[93m5[0m
+    [7m10896[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T00:25:36.511Z] [31MERROR[39M: uncaughtException: Cannot find module 'config/logger'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/cartController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/cartRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'config/logger'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/cartController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/cartRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/cartController.ts:7:1)
+[2025-04-03T00:27:18.696Z] [31MERROR[39M: uncaughtException: Cannot find module 'config/logger'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/cartController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/cartRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'config/logger'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/cartController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/cartRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/cartController.ts:7:1)
+[2025-04-03T00:54:45.104Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m30[0m:[93m32[0m - [91merror[0m[90m TS18048: [0m'req.session.cart' is possibly 'undefined'.
+
+[7m30[0m     console.log("Cart ID => ", req.session.cart.id);
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/cartController.ts[0m:[93m30[0m:[93m32[0m - [91merror[0m[90m TS18048: [0m'req.session.cart' is possibly 'undefined'.
+
+[7m30[0m     console.log("Cart ID => ", req.session.cart.id);
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T01:13:46.699Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m78[0m:[93m13[0m - [91merror[0m[90m TS2663: [0mCannot find name 'cartService'. Did you mean the instance member 'this.cartService'?
+
+[7m78[0m       await cartService.mergeGuestCartIntoUserCart(
+[7m  [0m [91m            ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m78[0m:[93m13[0m - [91merror[0m[90m TS2663: [0mCannot find name 'cartService'. Did you mean the instance member 'this.cartService'?
+
+[7m78[0m       await cartService.mergeGuestCartIntoUserCart(
+[7m  [0m [91m            ~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T01:13:52.061Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m79[0m:[93m13[0m - [91merror[0m[90m TS2663: [0mCannot find name 'cartService'. Did you mean the instance member 'this.cartService'?
+
+[7m79[0m       await cartService.mergeGuestCartIntoUserCart(
+[7m  [0m [91m            ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m79[0m:[93m13[0m - [91merror[0m[90m TS2663: [0mCannot find name 'cartService'. Did you mean the instance member 'this.cartService'?
+
+[7m79[0m       await cartService.mergeGuestCartIntoUserCart(
+[7m  [0m [91m            ~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T01:13:58.097Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m79[0m:[93m13[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m79[0m       await this.cartService.mergeGuestCartIntoUserCart(
+[7m  [0m [91m            ~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m79[0m:[93m13[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m79[0m       await this.cartService.mergeGuestCartIntoUserCart(
+[7m  [0m [91m            ~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T01:14:59.006Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/cartRoutes.ts[0m:[93m26[0m:[93m47[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'CartController'.
+
+[7m26[0m router.post("/merge", protect, CartController.mergeGuestCart);
+[7m  [0m [91m                                              ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/cartRoutes.ts[0m:[93m26[0m:[93m47[0m - [91merror[0m[90m TS2339: [0mProperty 'mergeGuestCart' does not exist on type 'CartController'.
+
+[7m26[0m router.post("/merge", protect, CartController.mergeGuestCart);
+[7m  [0m [91m                                              ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T01:27:21.070Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/cartService.ts[0m:[93m133[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'updateCart' does not exist on type 'CartRepository'.
+
+[7m133[0m       await this.cartRepository.updateCart(guestCartId, { userId });
+[7m   [0m [91m                                ~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/cartService.ts[0m:[93m133[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'updateCart' does not exist on type 'CartRepository'.
+
+[7m133[0m       await this.cartRepository.updateCart(guestCartId, { userId });
+[7m   [0m [91m                                ~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T01:28:31.876Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/cartService.ts[0m:[93m133[0m:[93m57[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m133[0m       await this.cartRepository.updateCart(guestCartId, { userId });
+[7m   [0m [91m                                                        ~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/cartService.ts[0m:[93m133[0m:[93m57[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m133[0m       await this.cartRepository.updateCart(guestCartId, { userId });
+[7m   [0m [91m                                                        ~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T01:29:11.694Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m25[0m:[93m20[0m - [91merror[0m[90m TS7006: [0mParameter 'cartId' implicitly has an 'any' type.
+
+[7m25[0m   async updateCart(cartId, data) {
+[7m  [0m [91m                   ~~~~~~[0m
+[96msrc/repositories/cartRepository.ts[0m:[93m25[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+[7m25[0m   async updateCart(cartId, data) {
+[7m  [0m [91m                           ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/cartRepository.ts[0m:[93m25[0m:[93m20[0m - [91merror[0m[90m TS7006: [0mParameter 'cartId' implicitly has an 'any' type.
+
+[7m25[0m   async updateCart(cartId, data) {
+[7m  [0m [91m                   ~~~~~~[0m
+[96msrc/repositories/cartRepository.ts[0m:[93m25[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+[7m25[0m   async updateCart(cartId, data) {
+[7m  [0m [91m                           ~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T01:43:30.666Z] [31MERROR[39M: uncaughtException: Cannot find module 'services/cartService'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/authRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'services/cartService'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/authRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts:9:1)
+[2025-04-03T01:43:49.573Z] [31MERROR[39M: uncaughtException: Cannot find module 'services/cartService'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/authRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'services/cartService'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/authRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts:9:1)
+[2025-04-03T02:06:08.588Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/protect.ts[0m:[93m53[0m:[93m41[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type 'string | undefined' is not assignable to parameter of type 'Buffer<ArrayBufferLike> | Secret | PublicKeyInput | JsonWebKeyInput | GetPublicKeyOrSecret'.
+      Type 'undefined' is not assignable to type 'Buffer<ArrayBufferLike> | Secret | PublicKeyInput | JsonWebKeyInput | GetPublicKeyOrSecret'.
+
+[7m53[0m       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+[7m  [0m [91m                                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/jsonwebtoken/index.d.ts[0m:[93m256[0m:[93m17[0m
+    [7m256[0m export function verify(
+    [7m   [0m [96m                ~~~~~~[0m
+    The last overload is declared here.
+[96msrc/middlewares/protect.ts[0m:[93m54[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'Jwt & JwtPayload & void' is not assignable to type '{ id: string; emailVerified: boolean; role: string; } | undefined'.
+  Type 'Jwt & JwtPayload & void' is missing the following properties from type '{ id: string; emailVerified: boolean; role: string; }': id, emailVerified, role
+
+[7m54[0m       req.user = decoded; // Set req.user if token is valid
+[7m  [0m [91m      ~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/protect.ts[0m:[93m53[0m:[93m41[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type 'string | undefined' is not assignable to parameter of type 'Buffer<ArrayBufferLike> | Secret | PublicKeyInput | JsonWebKeyInput | GetPublicKeyOrSecret'.
+      Type 'undefined' is not assignable to type 'Buffer<ArrayBufferLike> | Secret | PublicKeyInput | JsonWebKeyInput | GetPublicKeyOrSecret'.
+
+[7m53[0m       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+[7m  [0m [91m                                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/jsonwebtoken/index.d.ts[0m:[93m256[0m:[93m17[0m
+    [7m256[0m export function verify(
+    [7m   [0m [96m                ~~~~~~[0m
+    The last overload is declared here.
+[96msrc/middlewares/protect.ts[0m:[93m54[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'Jwt & JwtPayload & void' is not assignable to type '{ id: string; emailVerified: boolean; role: string; } | undefined'.
+  Type 'Jwt & JwtPayload & void' is missing the following properties from type '{ id: string; emailVerified: boolean; role: string; }': id, emailVerified, role
+
+[7m54[0m       req.user = decoded; // Set req.user if token is valid
+[7m  [0m [91m      ~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:06:48.518Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:07:11.461Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:07:20.344Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:07:25.506Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:07:29.619Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:07:36.657Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:07:40.656Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:07:45.458Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:10:16.112Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:10:20.642Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:10:31.060Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:10:34.335Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:11:28.882Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'destroy' does not exist on type '{ cart?: { id: string; items: { product: any; quantity: number; }[]; } | undefined; }'.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                ~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m26[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m127[0m     req.session.destroy((err) => {
+[7m   [0m [91m                         ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-03T02:11:34.312Z] [31MERROR[39M: uncaughtException: Cannot find module 'middlewares/optionalAuth'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/cartRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'middlewares/optionalAuth'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/cartRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/cartRoutes.ts:8:1)
+[2025-04-03T02:15:43.726Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m9[0m - [91merror[0m[90m TS2304: [0mCannot find name 'accessToken'.
+
+[7m127[0m     if (accessToken) {
+[7m   [0m [91m        ~~~~~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m128[0m:[93m39[0m - [91merror[0m[90m TS2304: [0mCannot find name 'accessToken'.
+
+[7m128[0m       const decoded: any = jwt.decode(accessToken);
+[7m   [0m [91m                                      ~~~~~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m133[0m:[93m32[0m - [91merror[0m[90m TS2304: [0mCannot find name 'accessToken'.
+
+[7m133[0m           await blacklistToken(accessToken, ttl);
+[7m   [0m [91m                               ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/authController.ts[0m:[93m127[0m:[93m9[0m - [91merror[0m[90m TS2304: [0mCannot find name 'accessToken'.
+
+[7m127[0m     if (accessToken) {
+[7m   [0m [91m        ~~~~~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m128[0m:[93m39[0m - [91merror[0m[90m TS2304: [0mCannot find name 'accessToken'.
+
+[7m128[0m       const decoded: any = jwt.decode(accessToken);
+[7m   [0m [91m                                      ~~~~~~~~~~~[0m
+[96msrc/controllers/authController.ts[0m:[93m133[0m:[93m32[0m - [91merror[0m[90m TS2304: [0mCannot find name 'accessToken'.
+
+[7m133[0m           await blacklistToken(accessToken, ttl);
+[7m   [0m [91m                               ~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

@@ -361,3 +361,94 @@
 [2025-03-27T02:32:51.403Z] [32MINFO[39M: ::1 - - [27/Mar/2025:02:32:51 +0000] "GET /api/v1/auth/refresh-token HTTP/1.1" 200 426 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-03-27T02:32:51.712Z] [32MINFO[39M: ::1 - - [27/Mar/2025:02:32:51 +0000] "GET /api/v1/products HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-03-27T03:50:41.993Z] [32MINFO[39M: ::1 - - [27/Mar/2025:03:50:41 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-02T11:35:05.764Z] [32MINFO[39M: ::1 - - [02/Apr/2025:11:35:05 +0000] "GET /api/v1/products HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-02T11:35:31.496Z] [31MERROR[39M: 
+Invalid `prisma.cart.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/cartRepository.ts:19:24
+
+  16 }
+  17 
+  18 async createCart(data: { userId?: string; id?: string }) {
+→ 19   return prisma.cart.create({
+         data: {
+           userId: undefined,
+       +   id: String
+         },
+         include: {
+           cartItems: {
+             include: {
+               product: true
+             }
+           }
+         }
+       })
+
+Argument `id` is missing.
+[2025-04-02T11:35:31.498Z] [32MINFO[39M: ::1 - - [02/Apr/2025:11:35:31 +0000] "POST /api/v1/cart HTTP/1.1" 500 - "-" "PostmanRuntime/7.43.2"
+[2025-04-02T11:46:56.706Z] [32MINFO[39M: ::1 - - [02/Apr/2025:11:46:56 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-02T11:49:35.192Z] [32MINFO[39M: ::1 - - [02/Apr/2025:11:49:35 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-02T12:01:07.579Z] [32MINFO[39M: ::1 - - [02/Apr/2025:12:01:07 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-02T12:01:17.960Z] [32MINFO[39M: ::1 - - [02/Apr/2025:12:01:17 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-02T12:01:54.240Z] [32MINFO[39M: ::1 - - [02/Apr/2025:12:01:54 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-02T12:02:25.531Z] [32MINFO[39M: ::1 - - [02/Apr/2025:12:02:25 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-02T12:04:51.181Z] [32MINFO[39M: ::1 - - [02/Apr/2025:12:04:51 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-02T12:05:40.933Z] [32MINFO[39M: ::1 - - [02/Apr/2025:12:05:40 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T00:29:21.366Z] [32MINFO[39M: newCart =>
+[2025-04-03T00:29:21.367Z] [32MINFO[39M: req.session.cart =>
+[2025-04-03T00:29:21.384Z] [32MINFO[39M: ::1 - - [03/Apr/2025:00:29:21 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T00:32:02.171Z] [32MINFO[39M: ::1 - - [03/Apr/2025:00:32:02 +0000] "GET /api/v1/products HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T00:32:46.515Z] [32MINFO[39M: ::1 - - [03/Apr/2025:00:32:46 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:00:21.314Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:00:21 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:00:44.076Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:00:44 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:02:53.577Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:02:53 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:16:27.319Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:16:27 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:16:52.736Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:16:52 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:17:48.676Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:17:48 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:32:31.078Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:32:31 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:33:40.694Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:33:40 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:34:06.649Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:34:06 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:40:12.667Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:40:12 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:40:31.874Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:40:31 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:45:26.276Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:45:26 +0000] "GET /api/v1/auth/signout HTTP/1.1" 200 52 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:45:31.632Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:45:31 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:45:47.961Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:45:47 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:46:13.408Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:46:13 +0000] "GET /api/v1/auth/signout HTTP/1.1" 200 52 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:46:49.514Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:46:49 +0000] "POST /api/v1/cart HTTP/1.1" 201 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:46:57.639Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:46:57 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:47:16.365Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:47:16 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:48:55.688Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:48:55 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:51:16.053Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:51:16 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:51:19.849Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:51:19 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:51:42.882Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-03T01:51:42.888Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:51:42 +0000] "GET /api/v1/cart HTTP/1.1" 401 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:51:43.536Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-03T01:51:43.538Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:51:43 +0000] "GET /api/v1/cart HTTP/1.1" 401 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:52:05.421Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:52:05 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:54:23.508Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:54:23 +0000] "GET /api/v1/auth/signout HTTP/1.1" 200 52 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:54:25.596Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:54:25 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:54:53.152Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:54:53 +0000] "GET /api/v1/auth/signout HTTP/1.1" 200 52 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:54:56.073Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:54:56 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:56:38.198Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:56:38 +0000] "GET /api/v1/auth/signout HTTP/1.1" 200 52 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:56:40.820Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:56:40 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:56:45.199Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:56:45 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:56:48.625Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:56:48 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:56:53.791Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:56:53 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:58:14.735Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:58:14 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:58:20.140Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:58:20 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:58:30.822Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:58:30 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T01:58:37.596Z] [32MINFO[39M: ::1 - - [03/Apr/2025:01:58:37 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:04:05.079Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:04:05 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:04:08.368Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:04:08 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:04:12.963Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:04:12 +0000] "GET /api/v1/auth/signout HTTP/1.1" 200 52 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:04:21.700Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-03T02:04:21.702Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:04:21 +0000] "GET /api/v1/cart HTTP/1.1" 401 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:12:01.249Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:12:01 +0000] "GET /api/v1/auth/signout HTTP/1.1" 200 52 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:12:07.396Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:12:07 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:12:18.144Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:12:18 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 420 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:12:21.105Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:12:21 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:12:33.237Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:12:33 +0000] "GET /api/v1/auth/signout HTTP/1.1" 200 52 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:12:51.837Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:12:51 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:14:36.073Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:14:36 +0000] "GET /api/v1/auth/signout HTTP/1.1" 200 52 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:14:41.926Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:14:41 +0000] "GET /api/v1/cart HTTP/1.1" 200 214 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:16:06.742Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:16:06 +0000] "GET /api/v1/auth/signout HTTP/1.1" 200 52 "-" "PostmanRuntime/7.43.2"
+[2025-04-03T02:16:11.566Z] [32MINFO[39M: ::1 - - [03/Apr/2025:02:16:11 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.2"

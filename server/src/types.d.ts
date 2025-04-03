@@ -6,6 +6,7 @@ declare namespace Express {
       role: string;
     };
     session: {
+      destroy(arg0: (err: any) => void): unknown;
       cart?: {
         id: string;
         items: {
