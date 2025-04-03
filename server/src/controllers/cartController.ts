@@ -177,7 +177,7 @@ class CartController {
       } else {
         throw new AppError(400, "No cart to clear");
       }
-      sendResponse(res, 204, {}, "Cart cleared successfully");
+      sendResponse(res, 200, {}, "Cart cleared successfully");
     }
   );
 }

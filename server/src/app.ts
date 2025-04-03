@@ -29,6 +29,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET, cookieParserOptions));
 
+app.use(cookieParser());
+
 app.use(
   session({
     store: new RedisStore({ client: redisClient }),

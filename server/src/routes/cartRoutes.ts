@@ -15,12 +15,8 @@ router.post("/", CartController.addToCart);
 
 router.put("/", validateUpdateCartItem, CartController.updateCartItem);
 
-router.delete(
-  "/",
-  validateRemoveProductFromCart,
-  CartController.removeFromCart
-);
+router.delete("/", optionalAuth, CartController.removeFromCart);
 
-router.delete("/clear", CartController.clearCart);
+router.delete("/clear", optionalAuth, CartController.clearCart);
 
 export default router;

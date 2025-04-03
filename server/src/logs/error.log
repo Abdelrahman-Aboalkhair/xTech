@@ -23,3 +23,13 @@ Argument `id` is missing.
 [2025-04-03T01:51:42.882Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-03T01:51:43.536Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-03T02:04:21.700Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-03T02:34:48.079Z] [31MERROR[39M: Product ID is required.
+[2025-04-03T02:35:02.811Z] [31MERROR[39M: Product ID is required.
+[2025-04-03T02:35:22.490Z] [31MERROR[39M: Product not in cart
+[2025-04-03T02:35:56.942Z] [31MERROR[39M: Product not in cart
+[2025-04-03T02:37:04.866Z] [31MERROR[39M: Can't find /api/v1/cart on this server!
+[2025-04-03T02:37:14.242Z] [31MERROR[39M: Product not in cart
+[2025-04-03T05:10:43.091Z] [31MERROR[39M: Invalid itemId
+[2025-04-03T05:11:33.935Z] [31MERROR[39M: Guest cart not initialized
+[2025-04-03T05:12:53.854Z] [31MERROR[39M: Product not in cart
+[2025-04-03T05:13:53.166Z] [31MERROR[39M: No cart to clear
