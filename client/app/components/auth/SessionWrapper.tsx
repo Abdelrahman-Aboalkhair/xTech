@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
@@ -16,16 +16,21 @@ export default function SessionWrapper({
 }) {
   const dispatch = useAppDispatch();
   const pathname = usePathname();
-  const { isLoggedIn, isLoading } = useAppSelector((state) => state.auth);
-  const skipRoutes = [
-    "/sign-in",
-    "/sign-up",
-    "/password-reset",
-    "/verify-email",
-  ];
+  const { isLoggedIn, isLoading, googleLoginInProgress } = useAppSelector(
+    (state) => state.auth
+  );
+  const skipRoutes = useMemo(
+    () => ["/sign-in", "/sign-up", "/password-reset", "/verify-email"],
+    []
+  );
 
   const { isFetching, error } = useRestoreSessionQuery(undefined, {
-    skip: typeof window === "undefined" || skipRoutes.includes(pathname),
+    skip:
+      googleLoginInProgress ||
+      isLoading ||
+      isLoggedIn ||
+      typeof window === "undefined" ||
+      skipRoutes.includes(pathname),
   });
 
   useEffect(() => {
@@ -39,7 +44,15 @@ export default function SessionWrapper({
     if (isLoggedIn && skipRoutes.includes(pathname)) {
       window.location.href = "/";
     }
-  }, [isFetching, error, isLoggedIn, isLoading, dispatch, pathname]);
+  }, [
+    isFetching,
+    error,
+    isLoggedIn,
+    isLoading,
+    dispatch,
+    pathname,
+    skipRoutes,
+  ]);
 
   if (isLoading) {
     return (

@@ -6,6 +6,7 @@ const initialState: AuthState = {
   isLoading: true,
   user: null,
   isLoggedIn: false,
+  googleLoginInProgress: false,
 };
 
 const authSlice = createSlice({
@@ -17,21 +18,30 @@ const authSlice = createSlice({
       state.user = action.payload.user || null;
       state.isLoggedIn = true;
       state.isLoading = false;
+      state.googleLoginInProgress = false;
     },
     clearAuthState: (state) => {
       state.accessToken = null;
       state.user = null;
       state.isLoggedIn = false;
       state.isLoading = false;
+      state.googleLoginInProgress = false;
       sessionStorage.clear();
       localStorage.clear();
     },
     setAuthLoading: (state, action) => {
       state.isLoading = action.payload;
     },
+    setGoogleLoginInProgress: (state, action) => {
+      state.googleLoginInProgress = action.payload;
+    },
   },
 });
 
-export const { setCredentials, clearAuthState, setAuthLoading } =
-  authSlice.actions;
+export const {
+  setCredentials,
+  clearAuthState,
+  setAuthLoading,
+  setGoogleLoginInProgress,
+} = authSlice.actions;
 export default authSlice.reducer;

@@ -3,9 +3,7 @@ import { useForm } from "react-hook-form";
 import Input from "@/app/components/atoms/Input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Loader2 } from "lucide-react";
-import GoogleSignup from "../(oAuth)/google/GoogleSignup";
 import useToast from "@/app/hooks/ui/useToast";
 import { useState } from "react";
 import PasswordField from "@/app/components/molecules/PasswordField";
@@ -14,6 +12,7 @@ import { useSignupMutation } from "@/app/store/apis/AuthApi";
 import MainLayout from "@/app/components/templates/MainLayout";
 import GirlShoppingImage from "@/app/assets/images/girl_shopping.png";
 import Image from "next/image";
+import LoginButtons from "../(oAuth)/LoginButtons";
 
 interface InputForm {
   name: string;
@@ -141,9 +140,7 @@ const Signup = () => {
           >
             or
           </p>
-          <GoogleOAuthProvider clientId="948178712281-5755ujm8o5sv36nvsqnj2uce7lc933cb.apps.googleusercontent.com">
-            <GoogleSignup onError={setGoogleError} />
-          </GoogleOAuthProvider>
+          <LoginButtons />
         </main>
         <Image
           src={GirlShoppingImage}

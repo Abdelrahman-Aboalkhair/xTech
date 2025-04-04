@@ -2,11 +2,11 @@
 
 export default function LoginButtons() {
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5000/auth/google";
+    window.location.href = "http://localhost:5000/api/v1/auth/google";
   };
 
   const handleFacebookLogin = () => {
-    window.location.href = "http://localhost:5000/auth/facebook";
+    window.location.href = "http://localhost:5000/api/v1/auth/facebook";
   };
 
   return (

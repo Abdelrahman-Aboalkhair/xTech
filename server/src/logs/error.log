@@ -111,3 +111,37 @@ Learn more about webhook signing and explore webhook integration examples for va
 [2025-04-03T07:52:05.077Z] [31MERROR[39M: No userId in session metadata
 [2025-04-03T07:54:18.572Z] [31MERROR[39M: No userId in session metadata
 [2025-04-03T08:00:19.481Z] [31MERROR[39M: No userId in session metadata
+[2025-04-03T08:43:37.822Z] [31MERROR[39M: Refresh token not found
+[2025-04-03T08:43:37.870Z] [31MERROR[39M: Refresh token not found
+[2025-04-03T08:47:42.341Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-03T08:47:42.505Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-03T08:54:18.446Z] [31MERROR[39M: Can't find /api/v1/auth/sign-out on this server!
+[2025-04-03T08:55:50.663Z] [31MERROR[39M: Can't find /api/v1/auth/sign-out on this server!
+[2025-04-03T08:58:14.091Z] [31MERROR[39M: Can't find /api/v1/auth/sign-out on this server!
+[2025-04-04T01:43:26.809Z] [31MERROR[39M: Can't find /api/v1/auth/sign-out on this server!
+[2025-04-04T01:43:31.225Z] [31MERROR[39M: Can't find /auth/google on this server!
+[2025-04-04T01:43:31.365Z] [31MERROR[39M: Can't find /favicon.ico on this server!
+[2025-04-04T01:53:47.800Z] [31MERROR[39M: Can't find /api/v1/auth/sign-out on this server!
+[2025-04-04T02:09:35.429Z] [31MERROR[39M: 
+Invalid `prisma.user.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/utils/authUtils.ts:91:30
+
+  88 });
+  89 
+  90 if (!user) {
+→ 91   user = await prisma.user.create(
+Unique constraint failed on the fields: (`email`)
+[2025-04-04T02:15:56.765Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
+[2025-04-04T02:17:02.058Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
+[2025-04-04T02:23:38.944Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
+[2025-04-04T02:28:12.623Z] [31MERROR[39M: Unknown authentication strategy "google"
+[2025-04-04T02:33:02.242Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
+[2025-04-04T02:47:13.067Z] [31MERROR[39M: Cannot set headers after they are sent to the client
+[2025-04-04T02:55:51.914Z] [31MERROR[39M: Can't find /auth/google on this server!
+[2025-04-04T02:59:22.608Z] [31MERROR[39M: Can't find /api/v1/auth/sign-out on this server!
+[2025-04-04T03:00:27.851Z] [31MERROR[39M: Can't find /api/v1/auth/sign-out on this server!
+[2025-04-04T03:00:54.406Z] [31MERROR[39M: Can't find /api/v1/auth/sign-out on this server!
+[2025-04-04T03:02:21.145Z] [31MERROR[39M: Can't find /api/v1/auth/sign-out on this server!
+[2025-04-04T03:07:21.847Z] [31MERROR[39M: Can't find /api/v1/auth/sign-out on this server!
+[2025-04-04T03:09:19.136Z] [31MERROR[39M: Refresh token not found
+[2025-04-04T03:09:19.190Z] [31MERROR[39M: Refresh token not found

@@ -4,13 +4,12 @@ import Input from "@/app/components/atoms/Input";
 import { useSignInMutation } from "../../store/apis/AuthApi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import GoogleSignin from "../(oAuth)/google/GoogleSignin";
 import { useState } from "react";
 import MainLayout from "@/app/components/templates/MainLayout";
 import Image from "next/image";
 import GirlShoppingImage from "@/app/assets/images/girl_shopping.png";
 import { Loader2 } from "lucide-react";
+import LoginButtons from "../(oAuth)/LoginButtons";
 
 interface InputForm {
   name: string;
@@ -127,9 +126,7 @@ const SignIn = () => {
             or
           </p>
 
-          <GoogleOAuthProvider clientId="948178712281-5755ujm8o5sv36nvsqnj2uce7lc933cb.apps.googleusercontent.com">
-            <GoogleSignin onError={setGoogleError} />
-          </GoogleOAuthProvider>
+          <LoginButtons />
         </main>
         <Image
           src={GirlShoppingImage}

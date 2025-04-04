@@ -39505,3 +39505,1571 @@ Require stack:
     at Module.require (node:internal/modules/cjs/loader:1480:12)
     at require (node:internal/modules/helpers:135:16)
     at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/webhookService.ts:4:1)
+[2025-04-03T09:01:42.339Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
+Error: EIO: i/o error, write
+    at writeSync (node:fs:925:3)
+    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
+    at writeOrBuffer (node:internal/streams/writable:570:12)
+    at _write (node:internal/streams/writable:499:10)
+    at SyncWriteStream.Writable.write (node:internal/streams/writable:508:10)
+    at console.value (node:internal/console/constructor:298:16)
+    at console.log (node:internal/console/constructor:384:26)
+    at EventEmitter.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/config/redis.ts:50:32)
+    at EventEmitter.emit (node:events:507:28)
+    at EventEmitter.emit (node:domain:489:12)
+[2025-04-04T01:25:49.132Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m31[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m31[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:27:12.606Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m31[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m31[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:27:18.859Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m12[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"constants"' has no exported member 'cookieOptions'.
+
+[7m12[0m import { cookieOptions } from "constants";
+[7m  [0m [91m         ~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m12[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"constants"' has no exported member 'cookieOptions'.
+
+[7m12[0m import { cookieOptions } from "constants";
+[7m  [0m [91m         ~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:27:27.223Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m31[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m31[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:28:29.957Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m31[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m31[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:29:00.912Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m52[0m:[93m48[0m - [91merror[0m[90m TS2304: [0mCannot find name 'UserWithTokens'.
+
+[7m52[0m export const attachTokensToUser = (user: any): UserWithTokens => {
+[7m  [0m [91m                                               ~~~~~~~~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m53[0m:[93m65[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DEFAULT_ROLE'.
+
+[7m53[0m   const accessToken = generateAccessToken(user.id, user.role || DEFAULT_ROLE);
+[7m  [0m [91m                                                                ~~~~~~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m54[0m:[93m67[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DEFAULT_ROLE'.
+
+[7m54[0m   const refreshToken = generateRefreshToken(user.id, user.role || DEFAULT_ROLE);
+[7m  [0m [91m                                                                  ~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m52[0m:[93m48[0m - [91merror[0m[90m TS2304: [0mCannot find name 'UserWithTokens'.
+
+[7m52[0m export const attachTokensToUser = (user: any): UserWithTokens => {
+[7m  [0m [91m                                               ~~~~~~~~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m53[0m:[93m65[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DEFAULT_ROLE'.
+
+[7m53[0m   const accessToken = generateAccessToken(user.id, user.role || DEFAULT_ROLE);
+[7m  [0m [91m                                                                ~~~~~~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m54[0m:[93m67[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DEFAULT_ROLE'.
+
+[7m54[0m   const refreshToken = generateRefreshToken(user.id, user.role || DEFAULT_ROLE);
+[7m  [0m [91m                                                                  ~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:29:08.821Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m52[0m:[93m48[0m - [91merror[0m[90m TS2304: [0mCannot find name 'UserWithTokens'.
+
+[7m52[0m export const attachTokensToUser = (user: any): UserWithTokens => {
+[7m  [0m [91m                                               ~~~~~~~~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m53[0m:[93m65[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DEFAULT_ROLE'.
+
+[7m53[0m   const accessToken = generateAccessToken(user.id, user.role || DEFAULT_ROLE);
+[7m  [0m [91m                                                                ~~~~~~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m54[0m:[93m67[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DEFAULT_ROLE'.
+
+[7m54[0m   const refreshToken = generateRefreshToken(user.id, user.role || DEFAULT_ROLE);
+[7m  [0m [91m                                                                  ~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m52[0m:[93m48[0m - [91merror[0m[90m TS2304: [0mCannot find name 'UserWithTokens'.
+
+[7m52[0m export const attachTokensToUser = (user: any): UserWithTokens => {
+[7m  [0m [91m                                               ~~~~~~~~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m53[0m:[93m65[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DEFAULT_ROLE'.
+
+[7m53[0m   const accessToken = generateAccessToken(user.id, user.role || DEFAULT_ROLE);
+[7m  [0m [91m                                                                ~~~~~~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m54[0m:[93m67[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DEFAULT_ROLE'.
+
+[7m54[0m   const refreshToken = generateRefreshToken(user.id, user.role || DEFAULT_ROLE);
+[7m  [0m [91m                                                                  ~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:29:22.565Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m31[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m31[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:29:30.242Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m19[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m19[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m19[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m19[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:30:11.415Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m24[0m - [91merror[0m[90m TS2304: [0mCannot find name 'findOrCreateUser'.
+
+[7m87[0m     const user = await findOrCreateUser(
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m24[0m - [91merror[0m[90m TS2304: [0mCannot find name 'findOrCreateUser'.
+
+[7m87[0m     const user = await findOrCreateUser(
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:30:20.530Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m24[0m - [91merror[0m[90m TS2304: [0mCannot find name 'findOrCreateUser'.
+
+[7m87[0m     const user = await findOrCreateUser(
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m24[0m - [91merror[0m[90m TS2304: [0mCannot find name 'findOrCreateUser'.
+
+[7m87[0m     const user = await findOrCreateUser(
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:31:06.991Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:31:13.602Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:31:18.769Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:31:23.179Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:32:51.839Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/utils/authUtils.ts[0m:[93m126[0m:[93m35[0m - [91merror[0m[90m TS2833: [0mCannot find namespace 'express'. Did you mean 'Express'?
+
+[7m126[0m const handleOAuthCallback = (req: express.Request, res: express.Response) => {
+[7m   [0m [91m                                  ~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m126[0m:[93m57[0m - [91merror[0m[90m TS2833: [0mCannot find namespace 'express'. Did you mean 'Express'?
+
+[7m126[0m const handleOAuthCallback = (req: express.Request, res: express.Response) => {
+[7m   [0m [91m                                                        ~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m130[0m:[93m44[0m - [91merror[0m[90m TS2304: [0mCannot find name 'cookieOptions'.
+
+[7m130[0m   res.cookie("refreshToken", refreshToken, cookieOptions);
+[7m   [0m [91m                                           ~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/utils/authUtils.ts[0m:[93m126[0m:[93m35[0m - [91merror[0m[90m TS2833: [0mCannot find namespace 'express'. Did you mean 'Express'?
+
+[7m126[0m const handleOAuthCallback = (req: express.Request, res: express.Response) => {
+[7m   [0m [91m                                  ~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m126[0m:[93m57[0m - [91merror[0m[90m TS2833: [0mCannot find namespace 'express'. Did you mean 'Express'?
+
+[7m126[0m const handleOAuthCallback = (req: express.Request, res: express.Response) => {
+[7m   [0m [91m                                                        ~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m130[0m:[93m44[0m - [91merror[0m[90m TS2304: [0mCannot find name 'cookieOptions'.
+
+[7m130[0m   res.cookie("refreshToken", refreshToken, cookieOptions);
+[7m   [0m [91m                                           ~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:34:21.120Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/utils/authUtils.ts[0m:[93m126[0m:[93m35[0m - [91merror[0m[90m TS2833: [0mCannot find namespace 'express'. Did you mean 'Express'?
+
+[7m126[0m const handleOAuthCallback = (req: express.Request, res: express.Response) => {
+[7m   [0m [91m                                  ~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m126[0m:[93m57[0m - [91merror[0m[90m TS2833: [0mCannot find namespace 'express'. Did you mean 'Express'?
+
+[7m126[0m const handleOAuthCallback = (req: express.Request, res: express.Response) => {
+[7m   [0m [91m                                                        ~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m130[0m:[93m44[0m - [91merror[0m[90m TS2304: [0mCannot find name 'cookieOptions'.
+
+[7m130[0m   res.cookie("refreshToken", refreshToken, cookieOptions);
+[7m   [0m [91m                                           ~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/utils/authUtils.ts[0m:[93m126[0m:[93m35[0m - [91merror[0m[90m TS2833: [0mCannot find namespace 'express'. Did you mean 'Express'?
+
+[7m126[0m const handleOAuthCallback = (req: express.Request, res: express.Response) => {
+[7m   [0m [91m                                  ~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m126[0m:[93m57[0m - [91merror[0m[90m TS2833: [0mCannot find namespace 'express'. Did you mean 'Express'?
+
+[7m126[0m const handleOAuthCallback = (req: express.Request, res: express.Response) => {
+[7m   [0m [91m                                                        ~~~~~~~[0m
+[96msrc/utils/authUtils.ts[0m:[93m130[0m:[93m44[0m - [91merror[0m[90m TS2304: [0mCannot find name 'cookieOptions'.
+
+[7m130[0m   res.cookie("refreshToken", refreshToken, cookieOptions);
+[7m   [0m [91m                                           ~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:34:28.555Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m13[0m:[93m10[0m - [91merror[0m[90m TS2724: [0m'"utils/authUtils"' has no exported member named 'handleOAuthCallback'. Did you mean 'oauthCallback'?
+
+[7m13[0m import { handleOAuthCallback } from "utils/authUtils";
+[7m  [0m [91m         ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/utils/authUtils.ts[0m:[93m104[0m:[93m14[0m
+    [7m104[0m export const oauthCallback = async (
+    [7m   [0m [96m             ~~~~~~~~~~~~~[0m
+    'oauthCallback' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m13[0m:[93m10[0m - [91merror[0m[90m TS2724: [0m'"utils/authUtils"' has no exported member named 'handleOAuthCallback'. Did you mean 'oauthCallback'?
+
+[7m13[0m import { handleOAuthCallback } from "utils/authUtils";
+[7m  [0m [91m         ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/utils/authUtils.ts[0m:[93m104[0m:[93m14[0m
+    [7m104[0m export const oauthCallback = async (
+    [7m   [0m [96m             ~~~~~~~~~~~~~[0m
+    'oauthCallback' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:34:32.230Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m13[0m:[93m10[0m - [91merror[0m[90m TS2724: [0m'"../utils/authUtils"' has no exported member named 'handleOAuthCallback'. Did you mean 'oauthCallback'?
+
+[7m13[0m import { handleOAuthCallback } from "../utils/authUtils";
+[7m  [0m [91m         ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/utils/authUtils.ts[0m:[93m104[0m:[93m14[0m
+    [7m104[0m export const oauthCallback = async (
+    [7m   [0m [96m             ~~~~~~~~~~~~~[0m
+    'oauthCallback' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m13[0m:[93m10[0m - [91merror[0m[90m TS2724: [0m'"../utils/authUtils"' has no exported member named 'handleOAuthCallback'. Did you mean 'oauthCallback'?
+
+[7m13[0m import { handleOAuthCallback } from "../utils/authUtils";
+[7m  [0m [91m         ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/utils/authUtils.ts[0m:[93m104[0m:[93m14[0m
+    [7m104[0m export const oauthCallback = async (
+    [7m   [0m [96m             ~~~~~~~~~~~~~[0m
+    'oauthCallback' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:34:41.093Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m12[0m:[93m10[0m - [91merror[0m[90m TS2724: [0m'"../utils/authUtils"' has no exported member named 'handleOAuthCallback'. Did you mean 'oauthCallback'?
+
+[7m12[0m import { handleOAuthCallback } from "../utils/authUtils";
+[7m  [0m [91m         ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/utils/authUtils.ts[0m:[93m104[0m:[93m14[0m
+    [7m104[0m export const oauthCallback = async (
+    [7m   [0m [96m             ~~~~~~~~~~~~~[0m
+    'oauthCallback' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m12[0m:[93m10[0m - [91merror[0m[90m TS2724: [0m'"../utils/authUtils"' has no exported member named 'handleOAuthCallback'. Did you mean 'oauthCallback'?
+
+[7m12[0m import { handleOAuthCallback } from "../utils/authUtils";
+[7m  [0m [91m         ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/utils/authUtils.ts[0m:[93m104[0m:[93m14[0m
+    [7m104[0m export const oauthCallback = async (
+    [7m   [0m [96m             ~~~~~~~~~~~~~[0m
+    'oauthCallback' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:34:52.743Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m12[0m:[93m10[0m - [91merror[0m[90m TS2724: [0m'"../utils/authUtils"' has no exported member named 'handleOAuthCallback'. Did you mean 'oauthCallback'?
+
+[7m12[0m import { handleOAuthCallback } from "../utils/authUtils";
+[7m  [0m [91m         ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/utils/authUtils.ts[0m:[93m104[0m:[93m14[0m
+    [7m104[0m export const oauthCallback = async (
+    [7m   [0m [96m             ~~~~~~~~~~~~~[0m
+    'oauthCallback' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m12[0m:[93m10[0m - [91merror[0m[90m TS2724: [0m'"../utils/authUtils"' has no exported member named 'handleOAuthCallback'. Did you mean 'oauthCallback'?
+
+[7m12[0m import { handleOAuthCallback } from "../utils/authUtils";
+[7m  [0m [91m         ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/utils/authUtils.ts[0m:[93m104[0m:[93m14[0m
+    [7m104[0m export const oauthCallback = async (
+    [7m   [0m [96m             ~~~~~~~~~~~~~[0m
+    'oauthCallback' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:35:30.343Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m28[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+[96msrc/routes/authRoutes.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m43[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m28[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+[96msrc/routes/authRoutes.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m43[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:36:33.882Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m28[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+[96msrc/routes/authRoutes.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m43[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m28[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+[96msrc/routes/authRoutes.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m43[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:37:02.720Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m28[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+[96msrc/routes/authRoutes.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m43[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m28[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+[96msrc/routes/authRoutes.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m43[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:37:19.903Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m28[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+[96msrc/routes/authRoutes.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m43[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m28[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+[96msrc/routes/authRoutes.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m43[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:37:28.504Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m28[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+[96msrc/routes/authRoutes.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m43[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m28[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+[96msrc/routes/authRoutes.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request, res: Response) => void' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: Request, res: Response) => void' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+[7m43[0m   handleOAuthCallback
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m157[0m:[93m5[0m
+    [7m157[0m     <
+    [7m   [0m [96m    ~[0m
+    [7m158[0m         P = ParamsDictionary,
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m...[0m 
+    [7m166[0m         ...handlers: Array<RequestHandlerParams<P, ResBody, ReqBody, ReqQuery, LocalsObj>>
+    [7m   [0m [96m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [7m167[0m     ): T;
+    [7m   [0m [96m~~~~~~~~~[0m
+    The last overload is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:37:44.774Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m12[0m:[93m10[0m - [91merror[0m[90m TS2724: [0m'"../utils/authUtils"' has no exported member named 'handleOAuthCallback'. Did you mean 'oauthCallback'?
+
+[7m12[0m import { handleOAuthCallback } from "../utils/authUtils";
+[7m  [0m [91m         ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/utils/authUtils.ts[0m:[93m104[0m:[93m14[0m
+    [7m104[0m export const oauthCallback = async (
+    [7m   [0m [96m             ~~~~~~~~~~~~~[0m
+    'oauthCallback' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m12[0m:[93m10[0m - [91merror[0m[90m TS2724: [0m'"../utils/authUtils"' has no exported member named 'handleOAuthCallback'. Did you mean 'oauthCallback'?
+
+[7m12[0m import { handleOAuthCallback } from "../utils/authUtils";
+[7m  [0m [91m         ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/utils/authUtils.ts[0m:[93m104[0m:[93m14[0m
+    [7m104[0m export const oauthCallback = async (
+    [7m   [0m [96m             ~~~~~~~~~~~~~[0m
+    'oauthCallback' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:37:50.702Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:37:53.899Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:38:06.033Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m87[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ [x: string]: string; }' is not assignable to type 'Exact<UserWhereUniqueInput, UserWhereUniqueInput>'.
+  Type '{ [x: string]: string; }' is missing the following properties from type '{ id: string; email: string; AND?: Exact<UserWhereInput | UserWhereInput[] | undefined, UserWhereInput | UserWhereInput[] | undefined>; ... 18 more ...; cart?: Exact<...>; }': id, email
+
+[7m87[0m     where: { [providerIdField]: providerId },
+[7m  [0m [91m    ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m2799[0m:[93m5[0m
+    [7m2799[0m     where: UserWhereUniqueInput
+    [7m    [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T01:39:10.974Z] [31MERROR[39M: uncaughtException: Cannot find module 'config/database'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/utils/authUtils.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/authService.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/authRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'config/database'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/utils/authUtils.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/services/authService.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/authRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/utils/authUtils.ts:4:1)
+[2025-04-04T01:39:33.340Z] [31MERROR[39M: uncaughtException: Cannot find module 'utils/authUtils'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/config/passport.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'utils/authUtils'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/config/passport.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/config/passport.ts:4:1)
+[2025-04-04T01:50:42.019Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m28[0m:[93m9[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(options: StrategyOptions, verify: VerifyFunction): Strategy', gave the following error.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+  Overload 2 of 2, '(options: StrategyOptionsWithRequest, verify: VerifyFunctionWithRequest): Strategy', gave the following error.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+
+[7m28[0m         callbackURL:
+[7m  [0m [91m        ~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/passport-facebook/index.d.ts[0m:[93m32[0m:[93m5[0m
+    [7m32[0m     callbackURL: string;
+    [7m  [0m [96m    ~~~~~~~~~~~[0m
+    The expected type comes from property 'callbackURL' which is declared here on type 'StrategyOptions'
+  [96mnode_modules/@types/passport-facebook/index.d.ts[0m:[93m32[0m:[93m5[0m
+    [7m32[0m     callbackURL: string;
+    [7m  [0m [96m    ~~~~~~~~~~~[0m
+    The expected type comes from property 'callbackURL' which is declared here on type 'StrategyOptionsWithRequest'
+[96msrc/config/passport.ts[0m:[93m34[0m:[93m8[0m - [91merror[0m[90m TS7006: [0mParameter 'accessToken' implicitly has an 'any' type.
+
+[7m34[0m       (accessToken, refreshToken, profile, done) =>
+[7m  [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/config/passport.ts[0m:[93m34[0m:[93m21[0m - [91merror[0m[90m TS7006: [0mParameter 'refreshToken' implicitly has an 'any' type.
+
+[7m34[0m       (accessToken, refreshToken, profile, done) =>
+[7m  [0m [91m                    ~~~~~~~~~~~~[0m
+[96msrc/config/passport.ts[0m:[93m34[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'profile' implicitly has an 'any' type.
+
+[7m34[0m       (accessToken, refreshToken, profile, done) =>
+[7m  [0m [91m                                  ~~~~~~~[0m
+[96msrc/config/passport.ts[0m:[93m34[0m:[93m44[0m - [91merror[0m[90m TS7006: [0mParameter 'done' implicitly has an 'any' type.
+
+[7m34[0m       (accessToken, refreshToken, profile, done) =>
+[7m  [0m [91m                                           ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/config/passport.ts[0m:[93m28[0m:[93m9[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(options: StrategyOptions, verify: VerifyFunction): Strategy', gave the following error.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+  Overload 2 of 2, '(options: StrategyOptionsWithRequest, verify: VerifyFunctionWithRequest): Strategy', gave the following error.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+
+[7m28[0m         callbackURL:
+[7m  [0m [91m        ~~~~~~~~~~~[0m
+
+  [96mnode_modules/@types/passport-facebook/index.d.ts[0m:[93m32[0m:[93m5[0m
+    [7m32[0m     callbackURL: string;
+    [7m  [0m [96m    ~~~~~~~~~~~[0m
+    The expected type comes from property 'callbackURL' which is declared here on type 'StrategyOptions'
+  [96mnode_modules/@types/passport-facebook/index.d.ts[0m:[93m32[0m:[93m5[0m
+    [7m32[0m     callbackURL: string;
+    [7m  [0m [96m    ~~~~~~~~~~~[0m
+    The expected type comes from property 'callbackURL' which is declared here on type 'StrategyOptionsWithRequest'
+[96msrc/config/passport.ts[0m:[93m34[0m:[93m8[0m - [91merror[0m[90m TS7006: [0mParameter 'accessToken' implicitly has an 'any' type.
+
+[7m34[0m       (accessToken, refreshToken, profile, done) =>
+[7m  [0m [91m       ~~~~~~~~~~~[0m
+[96msrc/config/passport.ts[0m:[93m34[0m:[93m21[0m - [91merror[0m[90m TS7006: [0mParameter 'refreshToken' implicitly has an 'any' type.
+
+[7m34[0m       (accessToken, refreshToken, profile, done) =>
+[7m  [0m [91m                    ~~~~~~~~~~~~[0m
+[96msrc/config/passport.ts[0m:[93m34[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'profile' implicitly has an 'any' type.
+
+[7m34[0m       (accessToken, refreshToken, profile, done) =>
+[7m  [0m [91m                                  ~~~~~~~[0m
+[96msrc/config/passport.ts[0m:[93m34[0m:[93m44[0m - [91merror[0m[90m TS7006: [0mParameter 'done' implicitly has an 'any' type.
+
+[7m34[0m       (accessToken, refreshToken, profile, done) =>
+[7m  [0m [91m                                           ~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T02:17:59.446Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m129[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 4 arguments, but got 5.
+
+[7m129[0m       profile.photos[0].value
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m129[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 4 arguments, but got 5.
+
+[7m129[0m       profile.photos[0].value
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T02:25:59.578Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m137[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'req'.
+
+[7m137[0m     req.user = userWithTokens;
+[7m   [0m [91m    ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/authUtils.ts[0m:[93m137[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'req'.
+
+[7m137[0m     req.user = userWithTokens;
+[7m   [0m [91m    ~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-04T03:04:00.615Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m17[0m:[93m29[0m - [91merror[0m[90m TS2448: [0mBlock-scoped variable 'user' used before its declaration.
+
+[7m17[0m   console.log("req.user: ", user);
+[7m  [0m [91m                            ~~~~[0m
+
+  [96msrc/routes/authRoutes.ts[0m:[93m18[0m:[93m9[0m
+    [7m18[0m   const user = req.user as any;
+    [7m  [0m [96m        ~~~~[0m
+    'user' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/authRoutes.ts[0m:[93m17[0m:[93m29[0m - [91merror[0m[90m TS2448: [0mBlock-scoped variable 'user' used before its declaration.
+
+[7m17[0m   console.log("req.user: ", user);
+[7m  [0m [91m                            ~~~~[0m
+
+  [96msrc/routes/authRoutes.ts[0m:[93m18[0m:[93m9[0m
+    [7m18[0m   const user = req.user as any;
+    [7m  [0m [96m        ~~~~[0m
+    'user' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

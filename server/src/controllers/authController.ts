@@ -173,6 +173,8 @@ class AuthController {
       const { user, newAccessToken, newRefreshToken } =
         await this.authService.refreshToken(oldRefreshToken);
 
+      console.log("user after refresh: ", user);
+
       res.cookie("refreshToken", newRefreshToken, cookieOptions);
 
       sendResponse(
@@ -185,7 +187,7 @@ class AuthController {
             email: user.email,
             role: user.role,
             emailVerified: user.emailVerified,
-            avatar: user.avatar || null,
+            avatar: user.avatar,
           },
           accessToken: newAccessToken,
         },

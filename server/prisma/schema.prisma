@@ -21,8 +21,9 @@ enum ORDER_STATUS {
 
 model User {
   id        String    @id @default(uuid()) 
-  googleId  String?
-  facebookId String?
+  googleId  String? @unique
+  appleId   String? @unique
+  facebookId String? @unique
   email     String    @unique
   password  String?
   name      String

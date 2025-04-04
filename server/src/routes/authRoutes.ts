@@ -1,4 +1,5 @@
 import express from "express";
+import passport from "passport";
 import authController from "../controllers/authController";
 import {
   validateForgotPassword,
@@ -8,23 +9,36 @@ import {
   validateSignin,
   validateVerifyEmail,
 } from "../validation/authValidation";
-import passport from "passport";
+import { cookieOptions } from "../constants";
 
 const router = express.Router();
 
+function handleOAuthCallback(req: express.Request, res: express.Response) {
+  console.log("req.user: ", req.user);
+  const user = req.user as any;
+  const { accessToken, refreshToken } = user;
+
+  res.cookie("refreshToken", refreshToken, cookieOptions);
+
+  res.json({
+    user,
+    accessToken,
+  });
+}
+
 router.get(
-  "google",
+  "/google",
   passport.authenticate("google", { scope: ["email", "profile"] })
 );
 
 router.get(
   "/google/callback",
   passport.authenticate("google", {
+    successRedirect: "http://localhost:3000",
     failureRedirect: "http://localhost:3000/sign-in",
+    session: false,
   }),
-  (req, res) => {
-    res.redirect("http://localhost:3000/");
-  }
+  handleOAuthCallback
 );
 
 router.get(
@@ -35,11 +49,10 @@ router.get(
 router.get(
   "/facebook/callback",
   passport.authenticate("facebook", {
-    failureRedirect: "http://localhost:3000/login",
+    failureRedirect: "http://localhost:3000/sign-in",
+    session: false,
   }),
-  (req, res) => {
-    res.redirect("http://localhost:3000/");
-  }
+  handleOAuthCallback
 );
 
 router.post("/register", validateRegister, authController.register);
@@ -57,6 +70,6 @@ router.post(
   validateResetPassword,
   authController.resetPassword
 );
-router.get("/signout", authController.signout);
+router.get("/sign-out", authController.signout);
 
 export default router;

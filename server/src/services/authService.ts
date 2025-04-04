@@ -252,6 +252,7 @@ class AuthService {
     }
 
     const user = await this.authRepository.findUserById(decoded.id);
+    console.log("refreshed user: ", user);
 
     if (!user) {
       throw new AppError(401, "User not found");

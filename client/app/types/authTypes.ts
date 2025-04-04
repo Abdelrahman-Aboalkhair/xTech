@@ -13,4 +13,5 @@ export interface AuthState {
   isLoading: boolean;
   user: User | null;
   isLoggedIn: boolean;
+  googleLoginInProgress: boolean;
 }

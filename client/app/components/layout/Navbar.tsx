@@ -7,6 +7,7 @@ import UserMenu from "../molecules/UserMenu";
 import { User, Search, ShoppingCart } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
+import { useGetUserCartQuery } from "@/app/store/apis/CartApi";
 
 type SearchFormValues = {
   searchQuery: string;
@@ -14,10 +15,11 @@ type SearchFormValues = {
 
 const Navbar = () => {
   const { isLoggedIn, user } = useAppSelector((state) => state.auth);
-  console.log("isLoggedIn: ", isLoggedIn);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [cartItemCount, setCartItemCount] = useState(0);
+  const { data } = useGetUserCartQuery({});
+  const cartItemCount = data?.cart?.cartItems.length || 0;
+  console.log("cartItemCount: ", cartItemCount);
   const pathname = usePathname();
 
   // React Hook Form setup
@@ -27,11 +29,9 @@ const Navbar = () => {
     },
   });
 
-  // Handle search submission
   const onSearch = (data: SearchFormValues) => {
     console.log("Search query:", data.searchQuery);
-    // Here you would typically implement search functionality
-    // e.g., redirect to search results page or filter content
+
     reset();
   };
 
@@ -45,10 +45,6 @@ const Navbar = () => {
 
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    setCartItemCount(3);
   }, []);
 
   return (

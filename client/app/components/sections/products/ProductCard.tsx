@@ -6,6 +6,7 @@ import { Product } from "@/app/types/productTypes";
 import Image from "next/image";
 import Link from "next/link";
 import Rating from "../../feedback/Rating";
+import { useAddToCartMutation } from "@/app/store/apis/CartApi";
 
 interface ProductCardProps {
   product: Product;
@@ -18,7 +19,22 @@ const ProductCard: React.FC<ProductCardProps> = ({
   hoveredProductId,
   setHoveredProductId,
 }) => {
-  const handleAddToCart = () => {};
+  const [addToCart, { isLoading, error }] = useAddToCartMutation();
+
+  if (error) {
+    console.error("Error adding to cart:", error);
+  }
+
+  const handleAddToCart = async (product: Product) => {
+    try {
+      await addToCart({
+        productId: product.id,
+        quantity: 1,
+      }).unwrap();
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
+  };
 
   return (
     <motion.div
@@ -79,7 +95,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <AnimatePresence>
           {hoveredProductId === product.id && (
             <motion.button
-              onClick={handleAddToCart}
+              onClick={() => handleAddToCart(product)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
@@ -88,7 +104,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 bounce: 0.3,
                 ease: "easeInOut",
               }}
-              className="absolute bottom-0 left-0 right-0 bg-primary text-white py-2 transition z-20"
+              disabled={isLoading}
+              className={`absolute bottom-0 left-0 right-0 bg-primary text-white py-2 transition z-20 ${
+                isLoading ? "cursor-not-allowed bg-gray-700 " : ""
+              }`}
             >
               Add To Cart
             </motion.button>
