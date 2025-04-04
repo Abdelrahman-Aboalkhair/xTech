@@ -34,7 +34,7 @@ class UserController {
   );
 
   getMe = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
+    const id = req.user?.id;
     const user = await this.userService.getMe(id);
     sendResponse(res, 200, { user }, "User profile fetched successfully");
   });

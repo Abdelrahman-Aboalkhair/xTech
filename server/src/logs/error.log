@@ -145,3 +145,25 @@ Unique constraint failed on the fields: (`email`)
 [2025-04-04T03:07:21.847Z] [31MERROR[39M: Can't find /api/v1/auth/sign-out on this server!
 [2025-04-04T03:09:19.136Z] [31MERROR[39M: Refresh token not found
 [2025-04-04T03:09:19.190Z] [31MERROR[39M: Refresh token not found
+[2025-04-04T06:26:18.210Z] [31MERROR[39M: Can't find /api/v1/users/me on this server!
+[2025-04-04T06:26:23.399Z] [31MERROR[39M: Can't find /api/v1/users/me on this server!
+[2025-04-04T06:27:24.456Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:27:24.651Z] [31MERROR[39M: Can't find /api/v1/refresh-token on this server!
+[2025-04-04T06:27:52.712Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:27:52.933Z] [31MERROR[39M: Can't find /api/v1/auth/refresh-token on this server!
+[2025-04-04T06:28:05.078Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:29:04.449Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:30:32.875Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:33:27.982Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:34:26.173Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:36:46.367Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:36:57.783Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:37:50.978Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:40:33.747Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:40:43.684Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:40:50.797Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:41:03.341Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:41:05.240Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:41:20.079Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-04T06:50:25.379Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-04T06:51:07.133Z] [31MERROR[39M: You are not authorized to perform this action

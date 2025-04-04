@@ -33,14 +33,11 @@ class OrderController {
     const { orderId } = req.params;
     const { status } = req.body;
     if (!status) throw new AppError(400, "Tracking status is required");
-    const userRole = req.user?.role; // From protect middleware
-    if (!userRole) {
-      throw new AppError(400, "User not found");
-    }
+
     const tracking = await this.orderService.updateTrackingStatus(
       orderId,
       status,
-      userRole
+      "USER"
     );
     sendResponse(
       res,

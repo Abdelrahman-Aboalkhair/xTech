@@ -1,24 +1,22 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useForgotPasswordMutation } from "@/app/store/apis/AuthApi";
 import { useRouter } from "next/navigation";
 import Input from "@/app/components/atoms/Input";
 import Button from "@/app/components/atoms/Button";
 import Link from "next/link";
+import axiosInstance from "@/app/utils/axiosInstance";
 
 const PasswordReset = () => {
   const { control, handleSubmit, reset } = useForm({
     defaultValues: { email: "" },
   });
-  const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const router = useRouter();
 
   const onSubmit = async (data) => {
     try {
-      const res = await forgotPassword(data); // Await API call
+      const res = await axiosInstance.post("/auth/forgot-password", data);
       console.log("res: ", res);
 
       if (res.error) {

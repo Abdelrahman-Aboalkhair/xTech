@@ -2,8 +2,6 @@ declare namespace Express {
   export interface Request {
     user?: {
       id: string;
-      emailVerified: boolean;
-      role: string;
     };
     session: {
       destroy(arg0: (err: any) => void): unknown;

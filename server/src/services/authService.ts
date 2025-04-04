@@ -71,8 +71,8 @@ class AuthService {
         console.error("Failed to add email to queue:", error);
       });
 
-    const accessToken = generateAccessToken(newUser.id, newUser.role);
-    const refreshToken = generateRefreshToken(newUser.id, newUser.role);
+    const accessToken = generateAccessToken(newUser.id);
+    const refreshToken = generateRefreshToken(newUser.id);
 
     return {
       user: {
@@ -166,8 +166,8 @@ class AuthService {
     const isPasswordValid = await comparePassword(password, user.password);
     if (!isPasswordValid) throw new AppError(400, "Invalid credentials");
 
-    const accessToken = await generateAccessToken(user.id, user.role);
-    const refreshToken = await generateRefreshToken(user.id, user.role);
+    const accessToken = await generateAccessToken(user.id);
+    const refreshToken = await generateRefreshToken(user.id);
 
     return { accessToken, refreshToken, user };
   }
@@ -258,12 +258,8 @@ class AuthService {
       throw new AppError(401, "User not found");
     }
 
-    const newAccessToken = generateAccessToken(user.id, user.role);
-    const newRefreshToken = generateRefreshToken(
-      user.id,
-      user.role,
-      absoluteExpiration
-    );
+    const newAccessToken = generateAccessToken(user.id);
+    const newRefreshToken = generateRefreshToken(user.id, absoluteExpiration);
 
     const oldTokenTTL = absoluteExpiration - now;
     if (oldTokenTTL > 0) {

@@ -28,6 +28,7 @@ class AuthController {
         });
 
       res.cookie("refreshToken", refreshToken, cookieOptions);
+      res.cookie("accessToken", accessToken, cookieOptions);
 
       if (req.session.cart?.id) {
         await this.cartService?.mergeGuestCartIntoUserCart(
@@ -49,7 +50,6 @@ class AuthController {
             emailVerified: user.emailVerified,
             avatar: user.avatar || null,
           },
-          accessToken,
         },
         "Signed up successfully. Please verify your email."
       );
@@ -82,6 +82,7 @@ class AuthController {
     });
 
     res.cookie("refreshToken", refreshToken, cookieOptions);
+    res.cookie("accessToken", accessToken, cookieOptions);
 
     if (req.session.cart?.id) {
       console.log("FOUND GUEST CART, WE MERGE: ", req.session.cart.id);
@@ -105,7 +106,6 @@ class AuthController {
           emailVerified: user.emailVerified,
           avatar: user.avatar || null,
         },
-        accessToken,
       },
       "Signed in successfully"
     );
@@ -113,7 +113,8 @@ class AuthController {
 
   signout = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const refreshToken = req?.cookies?.refreshToken;
-    const accessToken = req?.headers?.authorization?.split(" ")[1];
+    const accessToken = req?.cookies?.accessToken;
+
     if (refreshToken) {
       const decoded: any = jwt.decode(refreshToken);
       if (decoded && decoded.absExp) {
@@ -137,6 +138,8 @@ class AuthController {
     }
 
     res.clearCookie("refreshToken", cookieOptions);
+    res.clearCookie("accessToken", cookieOptions);
+
     req.session.destroy((err) => {
       if (err) console.error("Session destroy error:", err);
     });
@@ -170,29 +173,13 @@ class AuthController {
         throw new AppError(401, "Refresh token not found");
       }
 
-      const { user, newAccessToken, newRefreshToken } =
+      const { newAccessToken, newRefreshToken } =
         await this.authService.refreshToken(oldRefreshToken);
 
-      console.log("user after refresh: ", user);
-
       res.cookie("refreshToken", newRefreshToken, cookieOptions);
+      res.cookie("accessToken", newAccessToken, cookieOptions);
 
-      sendResponse(
-        res,
-        200,
-        {
-          user: {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            role: user.role,
-            emailVerified: user.emailVerified,
-            avatar: user.avatar,
-          },
-          accessToken: newAccessToken,
-        },
-        "Token refreshed successfully"
-      );
+      sendResponse(res, 200, {}, "Token refreshed successfully");
     }
   );
 }

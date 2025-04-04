@@ -10,9 +10,9 @@ const protect = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const accessToken = req.headers.authorization?.split(" ")[1];
+    const accessToken = req.cookies.accessToken;
     if (!accessToken) {
-      return next(new AppError(401, "Invalid access token, please log in"));
+      return next(new AppError(401, "Unauthorized, please log in"));
     }
 
     const decoded = jwt.verify(
@@ -22,7 +22,7 @@ const protect = async (
 
     const user = await prisma.user.findUnique({
       where: { id: String(decoded.id) },
-      select: { id: true, emailVerified: true, role: true },
+      select: { id: true, emailVerified: true },
     });
 
     if (!user) {
@@ -33,7 +33,7 @@ const protect = async (
       return next(new AppError(403, "Please verify your email to continue."));
     }
 
-    req.user = { ...decoded, emailVerified: user.emailVerified };
+    req.user = { id: decoded.id };
     next();
   } catch (error) {
     return next(new AppError(401, "Invalid access token, please log in"));

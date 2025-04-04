@@ -6,7 +6,7 @@ class UserRepository {
     return await prisma.user.findMany();
   }
 
-  async findUserById(id: string) {
+  async findUserById(id: string | undefined) {
     return await prisma.user.findUnique({ where: { id } });
   }
 

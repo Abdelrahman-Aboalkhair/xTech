@@ -28,7 +28,7 @@ class UserService {
     return user;
   }
 
-  async getMe(id: string) {
+  async getMe(id: string | undefined) {
     const user = await this.userRepository.findUserById(id);
     if (!user) {
       throw new AppError(404, "User not found");

@@ -23,7 +23,7 @@ const optionalAuth = async (
       });
 
       if (user && user.emailVerified) {
-        req.user = { ...decoded, emailVerified: user.emailVerified };
+        req.user = { id: user.id };
       }
       // If user doesn’t exist or email isn’t verified, proceed as guest (no error)
     } catch (error) {

@@ -19,10 +19,10 @@ function handleOAuthCallback(req: express.Request, res: express.Response) {
   const { accessToken, refreshToken } = user;
 
   res.cookie("refreshToken", refreshToken, cookieOptions);
+  res.cookie("accessToken", accessToken, cookieOptions);
 
   res.json({
     user,
-    accessToken,
   });
 }
 

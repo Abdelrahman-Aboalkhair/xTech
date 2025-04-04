@@ -1,28 +1,27 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
-import { useAppSelector } from "@/app/store/hooks";
 import Image from "next/image";
 import UserMenu from "../molecules/UserMenu";
 import { User, Search, ShoppingCart } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
-import { useGetUserCartQuery } from "@/app/store/apis/CartApi";
+// import { useGetUserCartQuery } from "@/app/store/apis/CartApi";
+import { useAuth } from "@/app/context/AuthContext";
 
 type SearchFormValues = {
   searchQuery: string;
 };
 
 const Navbar = () => {
-  const { isLoggedIn, user } = useAppSelector((state) => state.auth);
+  const { user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { data } = useGetUserCartQuery({});
-  const cartItemCount = data?.cart?.cartItems.length || 0;
+  // const { data } = useGetUserCartQuery({});
+  const cartItemCount = 0;
   console.log("cartItemCount: ", cartItemCount);
   const pathname = usePathname();
 
-  // React Hook Form setup
   const { register, handleSubmit, reset } = useForm<SearchFormValues>({
     defaultValues: {
       searchQuery: "",
@@ -34,18 +33,6 @@ const Navbar = () => {
 
     reset();
   };
-
-  // For demonstration purposes - listening for clicks outside menu
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
 
   return (
     <nav className="flex justify-between items-center px-[10%] pt-6">
@@ -105,7 +92,7 @@ const Navbar = () => {
           )}
         </Link>
 
-        {isLoggedIn ? (
+        {user ? (
           <div className="relative flex items-center gap-8" ref={menuRef}>
             <button
               onClick={(e) => {

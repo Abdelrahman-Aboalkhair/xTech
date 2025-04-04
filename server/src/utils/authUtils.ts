@@ -10,22 +10,18 @@ export async function comparePassword(
   return await bcrypt.compare(plainPassword, hashedPassword);
 }
 
-export function generateAccessToken(id: string, role: string): string {
-  return jwt.sign({ id, role }, process.env.ACCESS_TOKEN_SECRET!, {
+export function generateAccessToken(id: string) {
+  return jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET!, {
     expiresIn: "15m",
   });
 }
 
-export function generateRefreshToken(
-  id: string,
-  role: string,
-  absExp?: number
-): string {
+export function generateRefreshToken(id: string, absExp?: number) {
   const absoluteExpiration = absExp || Math.floor(Date.now() / 1000) + 86400;
   const ttl = absoluteExpiration - Math.floor(Date.now() / 1000);
 
   return jwt.sign(
-    { id, role, absExp: absoluteExpiration },
+    { id, absExp: absoluteExpiration },
     process.env.REFRESH_TOKEN_SECRET!,
     {
       expiresIn: ttl,
@@ -50,8 +46,6 @@ export const isTokenBlacklisted = async (token: string): Promise<boolean> => {
   }
 };
 
-const DEFAULT_ROLE = "USER";
-
 interface UserWithTokens {
   id: string;
   email: string;
@@ -66,8 +60,8 @@ interface UserWithTokens {
 }
 
 export const attachTokensToUser = (user: any): UserWithTokens => {
-  const accessToken = generateAccessToken(user.id, user.role || DEFAULT_ROLE);
-  const refreshToken = generateRefreshToken(user.id, user.role || DEFAULT_ROLE);
+  const accessToken = generateAccessToken(user.id);
+  const refreshToken = generateRefreshToken(user.id);
 
   return {
     ...user,
@@ -88,7 +82,6 @@ async function findOrCreateUser(
   });
   console.log("found user: ", user);
   if (user) {
-    // If user exists but doesn't have provider ID yet, update it
     if (!user[providerIdField]) {
       user = await prisma.user.update({
         where: { email },

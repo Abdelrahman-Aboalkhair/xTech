@@ -11,6 +11,7 @@ import hpp from "hpp";
 import morgan from "morgan";
 import logger from "./config/logger";
 import compression from "compression";
+import usersRoutes from "./routes/userRoutes";
 import authRoutes from "./routes/authRoutes";
 import productRoutes from "./routes/productRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
@@ -114,6 +115,7 @@ app.use(
 app.use(compression());
 
 // Routes
+app.use("/api/v1/users", usersRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/categories", categoryRoutes);

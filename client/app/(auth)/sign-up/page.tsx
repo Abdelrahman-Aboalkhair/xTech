@@ -4,15 +4,15 @@ import Input from "@/app/components/atoms/Input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
-import useToast from "@/app/hooks/ui/useToast";
 import { useState } from "react";
 import PasswordField from "@/app/components/molecules/PasswordField";
 import { z } from "zod";
-import { useSignupMutation } from "@/app/store/apis/AuthApi";
 import MainLayout from "@/app/components/templates/MainLayout";
 import GirlShoppingImage from "@/app/assets/images/girl_shopping.png";
 import Image from "next/image";
 import LoginButtons from "../(oAuth)/LoginButtons";
+import axiosInstance from "@/app/utils/axiosInstance";
+import { useAuth } from "@/app/context/AuthContext";
 
 interface InputForm {
   name: string;
@@ -34,10 +34,9 @@ const emailSchema = (value: string) => {
 };
 
 const Signup = () => {
-  const { showToast } = useToast();
-  const [signup, { error, isLoading }] = useSignupMutation();
-  const [resultError, setResultError] = useState<string | null>(null);
-  const [googleError, setGoogleError] = useState<string | null>(null);
+  const { setUser } = useAuth();
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const {
@@ -54,17 +53,23 @@ const Signup = () => {
     },
   });
 
-  const onSubmit = async (data: InputForm) => {
-    setResultError(null);
+  const onSubmit = async (formData: InputForm) => {
+    setIsLoading(true);
+    setError(null);
     try {
-      const result = await signup(data).unwrap();
-      if (result.success) {
-        showToast(result.message, "success");
+      const result = await axiosInstance.post("/auth/sign-up", formData);
+      if (result.status === 200) {
+        setUser(result.data.user);
         router.push("/");
       }
     } catch (error) {
-      console.log("signup error:", error);
-      setResultError(error.data?.message || "An unexpected error occurred");
+      setIsLoading(false);
+      setError(
+        error?.response?.data?.message || "An unexpected error occurred"
+      );
+      console.error("Error signing in:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -75,14 +80,9 @@ const Signup = () => {
           <h2 className="text-3xl font-medium tracking-wide text-start text-gray-700 mb-4">
             Create an account
           </h2>
-          {(error || googleError || resultError) && (
+          {error && (
             <div className="bg-red-100 border border-red-400 text-center text-red-700 w-full px-4 py-[18px] rounded relative mb-4">
-              <span className="block sm:inline">
-                {resultError ||
-                  error?.data?.message ||
-                  googleError ||
-                  "An unexpected error occurred"}
-              </span>
+              <span className="block sm:inline">{error}</span>
             </div>
           )}
           <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">

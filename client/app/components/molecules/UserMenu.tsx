@@ -2,9 +2,6 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
-import { clearAuthState } from "../../store/slices/AuthSlice";
-import { useSignOutMutation } from "../../store/apis/AuthApi";
 import { useRouter } from "next/navigation";
 import {
   LayoutDashboard,
@@ -17,21 +14,15 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import Button from "../atoms/Button";
+import { useAuth } from "@/app/context/AuthContext";
 
 const UserMenu = ({ menuOpen, closeMenu }: any) => {
-  const { user } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
-  const [signOut] = useSignOutMutation();
+  const { user, clearAuth } = useAuth();
   const router = useRouter();
 
   const handleSignOut = async () => {
-    try {
-      await signOut();
-      dispatch(clearAuthState());
-      router.push("/sign-in");
-    } catch (error) {
-      console.error("Error occurred while signing out", error);
-    }
+    clearAuth();
+    router.push("/sign-in");
   };
 
   // Define routes based on role
