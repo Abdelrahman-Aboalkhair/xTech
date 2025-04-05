@@ -7,7 +7,10 @@ class UserRepository {
   }
 
   async findUserById(id: string | undefined) {
-    return await prisma.user.findUnique({ where: { id } });
+    return await prisma.user.findUnique({
+      where: { id },
+      select: { id: true, avatar: true, role: true },
+    });
   }
 
   async findUserByEmail(email: string) {

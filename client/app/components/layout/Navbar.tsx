@@ -1,12 +1,12 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import UserMenu from "../molecules/UserMenu";
 import { User, Search, ShoppingCart } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
-// import { useGetUserCartQuery } from "@/app/store/apis/CartApi";
+import { useGetUserCartQuery } from "@/app/store/apis/CartApi";
 import { useAuth } from "@/app/context/AuthContext";
 
 type SearchFormValues = {
@@ -17,8 +17,11 @@ const Navbar = () => {
   const { user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  // const { data } = useGetUserCartQuery({});
-  const cartItemCount = 0;
+  const { data } = useGetUserCartQuery({});
+  console.log("data: ", data);
+  const cartItemCount = useMemo(() => {
+    return data?.cart?.cartItems?.length || 0;
+  }, [data]);
   console.log("cartItemCount: ", cartItemCount);
   const pathname = usePathname();
 
@@ -130,9 +133,9 @@ const Navbar = () => {
             <Link
               className="bg-gray-800 text-white 
           px-[1.5rem] font-medium py-[9px] text-[16px] rounded hover:opacity-90"
-              href="/sign-up"
+              href="/sign-in"
             >
-              Sign up
+              Sign in
             </Link>
           )
         )}

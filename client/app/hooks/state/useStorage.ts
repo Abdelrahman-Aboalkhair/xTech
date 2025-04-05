@@ -7,9 +7,15 @@ function useStorage<T>(
   initialValue: T,
   storageType: StorageType = "local"
 ) {
-  const storage = storageType === "local" ? localStorage : sessionStorage;
+  const isClient = typeof window !== "undefined";
+  const storage = isClient
+    ? storageType === "local"
+      ? window.localStorage
+      : window.sessionStorage
+    : null;
 
   const getStoredValue = (): T => {
+    if (!isClient || !storage) return initialValue;
     try {
       const item = storage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
@@ -22,6 +28,7 @@ function useStorage<T>(
   const [storedValue, setStoredValue] = useState<T>(getStoredValue);
 
   useEffect(() => {
+    if (!isClient || !storage) return;
     try {
       storage.setItem(key, JSON.stringify(storedValue));
     } catch (error) {

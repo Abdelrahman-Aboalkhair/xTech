@@ -2,14 +2,14 @@
 import BreadCrumb from "@/app/components/feedback/BreadCrumb";
 import MainLayout from "@/app/components/templates/MainLayout";
 import { Trash2 } from "lucide-react";
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import Table from "@/app/components/organisms/Table";
 import Link from "next/link";
-import Dropdown from "@/app/components/molecules/Dropdown";
 import { Controller, useForm } from "react-hook-form";
 import CartSummary from "@/app/components/sections/cart/CartSummary";
 import { useGetUserCartQuery } from "@/app/store/apis/CartApi";
+import QuantitySelector from "@/app/components/atoms/QuantitySelector";
 
 const Cart = () => {
   const { control } = useForm();
@@ -17,14 +17,13 @@ const Cart = () => {
   console.log("data: ", data);
   const cartItems = data?.cart?.cartItems;
 
-  // const subtotal = useMemo(
-  //   () =>
-  //     cartItems.reduce(
-  //       (sum: number, item: any) => sum + item.price * item.quantity,
-  //       0
-  //     ),
-  //   [cartItems]
-  // );
+  const subtotal = useMemo(() => {
+    if (!cartItems || cartItems.length === 0) return 0;
+    return cartItems.reduce((sum: number, item: any) => {
+      return sum + item.product.price * item.quantity;
+    }, 0);
+  }, [cartItems]);
+  console.log("subtotal: ", subtotal);
 
   const columns = [
     {
@@ -37,7 +36,7 @@ const Cart = () => {
           </button>
           <Image
             src={row.product.images[0]}
-            alt={row.name}
+            alt={row.name + " image"}
             width={50}
             height={50}
           />
@@ -53,25 +52,26 @@ const Cart = () => {
     {
       key: "quantity",
       label: "Quantity",
-      render: () => (
+      render: (row: any) => (
         <Controller
-          name="quantity"
+          name={`quantity-${row.product._id}`}
+          defaultValue={row.quantity}
           control={control}
           render={({ field }) => (
-            <Dropdown
-              label="Quantity"
-              options={["1", "2", "3", "4", "5"]}
-              {...field}
-              className="max-w-[130px]"
+            <QuantitySelector
+              value={field.value}
+              onChange={field.onChange}
+              productId={row.product.id}
             />
           )}
         />
       ),
     },
+
     {
       key: "subtotal",
       label: "Subtotal",
-      render: (row: any) => `$${row.price}`,
+      render: (row: any) => `$${row.product.price * row.quantity}`,
     },
   ];
 
@@ -88,7 +88,7 @@ const Cart = () => {
           </Link>
           <button className="border px-6 py-2">Update Cart</button>
         </div>
-        <CartSummary subtotal={22} />
+        <CartSummary subtotal={subtotal} />
       </div>
     </MainLayout>
   );

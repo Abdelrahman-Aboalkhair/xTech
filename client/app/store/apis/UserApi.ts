@@ -5,6 +5,7 @@ export const userApi = apiSlice.injectEndpoints({
     getAllUsers: builder.query({
       query: () => ({
         url: "/users",
+        credentials: "include",
       }),
       providesTags: ["User"],
     }),
@@ -12,6 +13,7 @@ export const userApi = apiSlice.injectEndpoints({
       query: (id) => ({
         url: `/users/profile/${id}`,
         method: "GET",
+        credentials: "include",
       }),
       providesTags: ["User"],
     }),
@@ -19,6 +21,7 @@ export const userApi = apiSlice.injectEndpoints({
       query: () => ({
         url: "/users/me",
         method: "GET",
+        credentials: "include",
       }),
       providesTags: ["User"],
     }),
@@ -28,6 +31,7 @@ export const userApi = apiSlice.injectEndpoints({
         url: "/users",
         method: "POST",
         body: data,
+        credentials: "include",
       }),
       invalidatesTags: ["User"],
     }),
@@ -39,4 +43,5 @@ export const {
   useGetProfileQuery,
   useGetMeQuery,
   useGetAllUsersQuery,
+  useLazyGetMeQuery,
 } = userApi;

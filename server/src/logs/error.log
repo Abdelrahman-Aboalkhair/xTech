@@ -167,3 +167,36 @@ Unique constraint failed on the fields: (`email`)
 [2025-04-04T06:41:20.079Z] [31MERROR[39M: Unauthorized, please log in
 [2025-04-04T06:50:25.379Z] [31MERROR[39M: You are not authorized to perform this action
 [2025-04-04T06:51:07.133Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:23:13.699Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-05T02:23:23.963Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:23:36.094Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:23:57.428Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:24:48.198Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:25:10.728Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:27:09.962Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:27:27.686Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:28:12.180Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:29:06.553Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:29:50.225Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:30:44.363Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:30:46.957Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:30:49.104Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:30:51.458Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:31:03.784Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:33:15.202Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:33:23.959Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:35:09.800Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:35:24.703Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T02:39:28.374Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-05T02:39:38.615Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T09:11:42.702Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-05T09:12:44.155Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T09:15:37.495Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-05T09:22:49.654Z] [31MERROR[39M: Can't find /api/v1/sign-out on this server!
+[2025-04-05T09:42:31.713Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-05T09:59:54.265Z] [31MERROR[39M: No cart to clear
+[2025-04-05T10:59:35.728Z] [31MERROR[39M: No cart to clear
+[2025-04-05T11:01:06.047Z] [31MERROR[39M: Cannot set headers after they are sent to the client
+[2025-04-05T11:05:16.320Z] [31MERROR[39M: Cannot set headers after they are sent to the client
+[2025-04-05T11:07:35.737Z] [31MERROR[39M: Cannot set headers after they are sent to the client
+[2025-04-05T11:08:15.482Z] [31MERROR[39M: Cannot set headers after they are sent to the client

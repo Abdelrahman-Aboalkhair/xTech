@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import AppError from "../utils/AppError";
-import prisma from "../config/database"; // Assuming you're using Prisma ORM
+import prisma from "../config/database";
 
 const authorizeRole = (...allowedRoles: string[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -9,10 +9,9 @@ const authorizeRole = (...allowedRoles: string[]) => {
         return next(new AppError(401, "Unauthorized: No user found"));
       }
 
-      // Fetch the user from the database to get the role
       const user = await prisma.user.findUnique({
-        where: { id: req.user.id }, // Assuming user ID is stored in req.user.id
-        select: { role: true }, // Only fetch the role for authorization check
+        where: { id: req.user.id },
+        select: { role: true },
       });
 
       if (!user) {
@@ -25,7 +24,7 @@ const authorizeRole = (...allowedRoles: string[]) => {
         );
       }
 
-      next(); // User is authorized, proceed to the next middleware
+      next();
     } catch (error) {
       return next(new AppError(500, "Internal server error"));
     }

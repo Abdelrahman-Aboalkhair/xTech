@@ -8,6 +8,8 @@ import { blacklistToken } from "../utils/authUtils";
 import AppError from "../utils/AppError";
 import CartService from "../services/cartService";
 
+const { maxAge, ...clearCookieOptions } = cookieOptions;
+
 class AuthController {
   private authService: AuthService;
 
@@ -27,8 +29,8 @@ class AuthController {
           role,
         });
 
-      res.cookie("refreshToken", refreshToken, cookieOptions);
-      res.cookie("accessToken", accessToken, cookieOptions);
+      res.cookie("refreshToken", refreshToken, clearCookieOptions);
+      res.cookie("accessToken", accessToken, clearCookieOptions);
 
       if (req.session.cart?.id) {
         await this.cartService?.mergeGuestCartIntoUserCart(
@@ -81,8 +83,8 @@ class AuthController {
       password,
     });
 
-    res.cookie("refreshToken", refreshToken, cookieOptions);
-    res.cookie("accessToken", accessToken, cookieOptions);
+    res.cookie("refreshToken", refreshToken, clearCookieOptions);
+    res.cookie("accessToken", accessToken, clearCookieOptions);
 
     if (req.session.cart?.id) {
       console.log("FOUND GUEST CART, WE MERGE: ", req.session.cart.id);
@@ -100,11 +102,8 @@ class AuthController {
       {
         user: {
           id: user.id,
-          name: user.name,
-          email: user.email,
           role: user.role,
-          emailVerified: user.emailVerified,
-          avatar: user.avatar || null,
+          avatar: user.avatar,
         },
       },
       "Signed in successfully"
@@ -137,8 +136,8 @@ class AuthController {
       }
     }
 
-    res.clearCookie("refreshToken", cookieOptions);
-    res.clearCookie("accessToken", cookieOptions);
+    res.clearCookie("refreshToken", clearCookieOptions);
+    res.clearCookie("accessToken", clearCookieOptions);
 
     req.session.destroy((err) => {
       if (err) console.error("Session destroy error:", err);
@@ -176,8 +175,8 @@ class AuthController {
       const { newAccessToken, newRefreshToken } =
         await this.authService.refreshToken(oldRefreshToken);
 
-      res.cookie("refreshToken", newRefreshToken, cookieOptions);
-      res.cookie("accessToken", newAccessToken, cookieOptions);
+      res.cookie("refreshToken", newRefreshToken, clearCookieOptions);
+      res.cookie("accessToken", newAccessToken, clearCookieOptions);
 
       sendResponse(res, 200, {}, "Token refreshed successfully");
     }

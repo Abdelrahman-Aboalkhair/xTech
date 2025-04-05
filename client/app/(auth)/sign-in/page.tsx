@@ -3,14 +3,13 @@ import { useForm } from "react-hook-form";
 import Input from "@/app/components/atoms/Input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import MainLayout from "@/app/components/templates/MainLayout";
 import Image from "next/image";
 import GirlShoppingImage from "@/app/assets/images/girl_shopping.png";
 import { Loader2 } from "lucide-react";
 import LoginButtons from "../(oAuth)/LoginButtons";
+import { useSignInMutation } from "@/app/store/apis/AuthApi";
 import { useAuth } from "@/app/context/AuthContext";
-import axiosInstance from "@/app/utils/axiosInstance";
 
 interface InputForm {
   name: string;
@@ -20,9 +19,9 @@ interface InputForm {
 }
 
 const SignIn = () => {
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
   const { setUser } = useAuth();
+  const [signIn, { error, isLoading }] = useSignInMutation();
+  console.log("error: ", error);
   const router = useRouter();
 
   const {
@@ -37,23 +36,14 @@ const SignIn = () => {
   });
 
   const onSubmit = async (formData: InputForm) => {
-    setIsLoading(true);
-    setError(null);
     try {
-      const result = await axiosInstance.post("/auth/sign-in", formData);
-      console.log("result: ", result);
-      if (result.status === 200) {
-        setUser(result.data.user);
+      const result = await signIn(formData).unwrap();
+      if (result.success) {
+        setUser(result.user);
         router.push("/");
       }
     } catch (error) {
-      setIsLoading(false);
-      setError(
-        error?.response?.data?.message || "An unexpected error occurred"
-      );
-      console.error("Error signing in:", error);
-    } finally {
-      setIsLoading(false);
+      console.log("error: ", error);
     }
   };
 
@@ -68,7 +58,7 @@ const SignIn = () => {
           {error && (
             <div className="bg-red-100 border border-red-400 text-center text-red-700 w-full px-4 py-[18px] rounded relative mb-4">
               <span className="block sm:inline">
-                {error || "An unexpected error occurred"}
+                {error?.data?.message || "An unexpected error occurred"}
               </span>
             </div>
           )}

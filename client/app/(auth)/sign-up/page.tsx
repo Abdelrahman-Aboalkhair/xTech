@@ -59,7 +59,7 @@ const Signup = () => {
     try {
       const result = await axiosInstance.post("/auth/sign-up", formData);
       if (result.status === 200) {
-        setUser(result.data.user);
+        setUser(result.user);
         router.push("/");
       }
     } catch (error) {

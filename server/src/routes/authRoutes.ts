@@ -13,19 +13,6 @@ import { cookieOptions } from "../constants";
 
 const router = express.Router();
 
-function handleOAuthCallback(req: express.Request, res: express.Response) {
-  console.log("req.user: ", req.user);
-  const user = req.user as any;
-  const { accessToken, refreshToken } = user;
-
-  res.cookie("refreshToken", refreshToken, cookieOptions);
-  res.cookie("accessToken", accessToken, cookieOptions);
-
-  res.json({
-    user,
-  });
-}
-
 router.get(
   "/google",
   passport.authenticate("google", { scope: ["email", "profile"] })
@@ -34,11 +21,17 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: "http://localhost:3000",
-    failureRedirect: "http://localhost:3000/sign-in",
     session: false,
+    failureRedirect: "http://localhost:3000/sign-in",
   }),
-  handleOAuthCallback
+  (req, res) => {
+    const user = req.user as any;
+    const { accessToken, refreshToken } = user;
+    res.cookie("refreshToken", refreshToken, cookieOptions);
+    res.cookie("accessToken", accessToken, cookieOptions);
+
+    res.redirect("http://localhost:3000/oauth-success");
+  }
 );
 
 router.get(
@@ -52,7 +45,14 @@ router.get(
     failureRedirect: "http://localhost:3000/sign-in",
     session: false,
   }),
-  handleOAuthCallback
+  (req, res) => {
+    const user = req.user as any;
+    const { accessToken, refreshToken } = user;
+    res.cookie("refreshToken", refreshToken, cookieOptions);
+    res.cookie("accessToken", accessToken, cookieOptions);
+
+    res.redirect("http://localhost:3000/oauth-success");
+  }
 );
 
 router.post("/register", validateRegister, authController.register);

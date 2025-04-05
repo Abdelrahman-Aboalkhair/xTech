@@ -175,7 +175,7 @@ class CartController {
         await this.cartService.clearCart({ cartId: req.session.cart.id });
         req.session.cart = { id: "", items: [] };
       } else {
-        throw new AppError(400, "No cart to clear");
+        sendResponse(res, 200, {}, "No cart to clear");
       }
       sendResponse(res, 200, {}, "Cart cleared successfully");
     }
