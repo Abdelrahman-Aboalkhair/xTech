@@ -24,7 +24,7 @@ const Topbar = () => {
               <span>Gift Cards Available</span>
             </div>
             <Link
-              href="/collections/all"
+              href="/shop"
               className="text-sm font-medium underline hover:text-gray-300 transition-colors"
             >
               Shop Now

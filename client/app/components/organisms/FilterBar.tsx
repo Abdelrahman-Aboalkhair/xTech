@@ -23,49 +23,52 @@ const FilterBar: React.FC<FilterBarProps> = ({
   const { updateQuery } = useQueryParams();
 
   return (
-    <div className="flex items-center gap-4 py-[3%] pt-[6%]">
-      <Input
-        name="name"
-        type="text"
-        placeholder="Item Name"
-        control={control}
-        validation={{ required: true }}
-        error={errors.name?.message}
-        onChange={(e) => updateQuery({ name: e.target.value })}
-      />
-
-      <Controller
-        name={filterBy}
-        control={control}
-        render={({ field }) => (
-          <Dropdown
-            label={`Filter by ${field.value ? field.value : filterBy}`}
-            options={filterOptions}
-            {...field}
-            onChange={(value) => {
-              field.onChange(value);
-              updateQuery({ filterBy: value });
-            }}
+    <aside className="w-64 min-h-screen p-6 bg-gray-100 border-r border-gray-200">
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">
+            Filter By
+          </h3>
+          <Controller
+            name={filterBy}
+            control={control}
+            render={({ field }) => (
+              <Dropdown
+                label={field.value || "Select filter"}
+                options={filterOptions}
+                {...field}
+                onChange={(value) => {
+                  field.onChange(value);
+                  updateQuery({ filterBy: value });
+                }}
+                className="w-full"
+              />
+            )}
           />
-        )}
-      />
+        </div>
 
-      <Controller
-        name={sortBy}
-        control={control}
-        render={({ field }) => (
-          <Dropdown
-            label={`Sort by ${field.value ? field.value : sortBy}`}
-            options={sortOptions}
-            {...field}
-            onChange={(value) => {
-              field.onChange(value);
-              updateQuery({ sort: value });
-            }}
+        {/* Sort Section */}
+        <div>
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">Sort By</h3>
+          <Controller
+            name={sortBy}
+            control={control}
+            render={({ field }) => (
+              <Dropdown
+                label={field.value || "Select sorting"}
+                options={sortOptions}
+                {...field}
+                onChange={(value) => {
+                  field.onChange(value);
+                  updateQuery({ sort: value });
+                }}
+                className="w-full"
+              />
+            )}
           />
-        )}
-      />
-    </div>
+        </div>
+      </div>
+    </aside>
   );
 };
 

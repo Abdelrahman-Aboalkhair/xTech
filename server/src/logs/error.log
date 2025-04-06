@@ -242,3 +242,5 @@ Invalid `prisma.user.update()` invocation in
          })
 
 Unknown argument `twitterId`. Available options are marked with ?.
+[2025-04-06T08:33:41.298Z] [31MERROR[39M: Cannot set headers after they are sent to the client
+[2025-04-06T08:46:55.895Z] [31MERROR[39M: Cannot set headers after they are sent to the client

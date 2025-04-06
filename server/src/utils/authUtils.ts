@@ -84,14 +84,14 @@ async function findOrCreateUser(
   let user = await prisma.user.findUnique({
     where: { email },
   });
-  console.log("Found user: ", user);
+
   if (user) {
     if (!user[providerIdField as keyof typeof user]) {
       user = await prisma.user.update({
         where: { email },
         data: {
           [providerIdField as keyof typeof user]: providerId,
-          avatar: avatar,
+          avatar,
           emailVerified: true,
         },
       });

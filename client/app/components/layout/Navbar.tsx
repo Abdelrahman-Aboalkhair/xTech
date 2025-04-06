@@ -39,7 +39,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between items-center px-[10%] pt-6">
+    <nav className="flex justify-between items-center px-[10%] pt-6 pb-[2rem]">
       <Link className="font-semibold text-2xl" href="/">
         <Image
           className="rounded-full"

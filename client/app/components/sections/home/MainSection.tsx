@@ -2,6 +2,7 @@ import Image from "next/image";
 import Apple from "@/app/assets/icons/apple.png";
 import ImageSlider from "../../organisms/ImageSlider";
 import CategoriesBar from "../../molecules/CategoriesBar";
+import Link from "next/link";
 
 const images = [
   "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9",
@@ -25,9 +26,12 @@ const MainSection = () => {
           <h1 className="text-7xl leading-tight font-extrabold">
             Up to 10% off Voucher
           </h1>
-          <span className="text-lg font-semibold border-b-2 border-white w-max cursor-pointer hover:opacity-80">
+          <Link
+            href={"/shop"}
+            className="text-lg font-semibold border-b-2 border-white w-max cursor-pointer hover:opacity-80"
+          >
             Shop Now
-          </span>
+          </Link>
         </div>
         <div>
           <ImageSlider images={images} interval={4000} autoPlay={true} />
