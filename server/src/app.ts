@@ -24,6 +24,7 @@ import configurePassport from "./config/passport";
 import session from "express-session";
 import redisClient from "./config/redis";
 import { RedisStore } from "connect-redis";
+import bodyParser = require("body-parser");
 
 dotenv.config();
 
@@ -31,7 +32,7 @@ const app = express();
 app.use("/api/v1/webhook", webhookRoutes);
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET, cookieParserOptions));
 
 app.use(cookieParser());

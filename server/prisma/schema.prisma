@@ -23,6 +23,7 @@ model User {
   id        String    @id @default(uuid()) 
   googleId  String? @unique
   appleId   String? @unique
+  twitterId String? @unique
   facebookId String? @unique
   email     String    @unique
   password  String?

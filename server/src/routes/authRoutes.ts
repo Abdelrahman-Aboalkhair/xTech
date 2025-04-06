@@ -36,7 +36,7 @@ router.get(
 
 router.get(
   "/facebook",
-  passport.authenticate("facebook", { scope: ["email"] })
+  passport.authenticate("facebook", { scope: ["email", "public_profile"] })
 );
 
 router.get(
@@ -47,6 +47,7 @@ router.get(
   }),
   (req, res) => {
     const user = req.user as any;
+    console.log("user in facebook callback: ", user);
     const { accessToken, refreshToken } = user;
     res.cookie("refreshToken", refreshToken, cookieOptions);
     res.cookie("accessToken", accessToken, cookieOptions);

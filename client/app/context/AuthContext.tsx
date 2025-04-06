@@ -27,6 +27,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUserState] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [getMe, { data, error }] = useLazyGetMeQuery();
+  console.log("data: ", data);
+  if (error) {
+    console.log("error: ", error);
+  }
   const [isLoggedIn, setIsLoggedIn] = useStorage("isLoggedIn", false, "local");
   const pathname = usePathname();
 
@@ -51,7 +55,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const fetchUserData = async () => {
-    if (user || !isLoggedIn || loading) return;
+    if (user || loading) return;
 
     setLoading(true);
     try {
@@ -69,17 +73,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    if (
-      isLoggedIn &&
-      pathname !== "/oauth-success" &&
-      pathname !== "/sign-in" &&
-      !loading
-    ) {
+    if (isLoggedIn && !loading) {
       fetchUserData();
     } else {
       setLoading(false);
     }
-  }, [isLoggedIn, pathname]);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (data) console.log("data from useLazyGetMeQuery: ", data);

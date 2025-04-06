@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
 import { useGetUserCartQuery } from "@/app/store/apis/CartApi";
 import { useAuth } from "@/app/context/AuthContext";
+import AppLogo from "@/app/assets/images/kgKraftLogo.png";
 
 type SearchFormValues = {
   searchQuery: string;
@@ -40,7 +41,12 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center px-[10%] pt-6">
       <Link className="font-semibold text-2xl" href="/">
-        KgKraft
+        <Image
+          className="rounded-full"
+          src={AppLogo}
+          alt="App Logo"
+          width={70}
+        />
       </Link>
 
       <div className="flex items-center justify-center gap-12 text-[16px]">

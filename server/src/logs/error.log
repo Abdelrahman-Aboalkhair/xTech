@@ -200,3 +200,6 @@ Unique constraint failed on the fields: (`email`)
 [2025-04-05T11:05:16.320Z] [31MERROR[39M: Cannot set headers after they are sent to the client
 [2025-04-05T11:07:35.737Z] [31MERROR[39M: Cannot set headers after they are sent to the client
 [2025-04-05T11:08:15.482Z] [31MERROR[39M: Cannot set headers after they are sent to the client
+[2025-04-05T23:36:05.780Z] [31MERROR[39M: Cannot read properties of undefined (reading '0')
+[2025-04-05T23:36:05.936Z] [31MERROR[39M: Can't find /favicon.ico on this server!
+[2025-04-05T23:45:09.579Z] [31MERROR[39M: Cannot read properties of undefined (reading '0')

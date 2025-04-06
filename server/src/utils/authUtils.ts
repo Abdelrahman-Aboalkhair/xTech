@@ -3,6 +3,10 @@ import jwt from "jsonwebtoken";
 import redisClient from "../config/redis";
 import prisma from "../config/database";
 
+export type VerifyCallback = (error: any, user?: any, info?: any) => void;
+
+type OAuthProvider = "googleId" | "facebookId" | "appleId" | "twitterId";
+
 export async function comparePassword(
   plainPassword: string,
   hashedPassword: string
@@ -71,7 +75,7 @@ export const attachTokensToUser = (user: any): UserWithTokens => {
 };
 
 async function findOrCreateUser(
-  providerIdField: "googleId" | "facebookId",
+  providerIdField: OAuthProvider,
   providerId: string,
   email: string,
   name: string,
@@ -80,13 +84,12 @@ async function findOrCreateUser(
   let user = await prisma.user.findUnique({
     where: { email },
   });
-  console.log("found user: ", user);
   if (user) {
-    if (!user[providerIdField]) {
+    if (!user[providerIdField as keyof typeof user]) {
       user = await prisma.user.update({
         where: { email },
         data: {
-          [providerIdField]: providerId,
+          [providerIdField as keyof typeof user]: providerId,
           avatar: avatar,
         },
       });
@@ -109,26 +112,41 @@ async function findOrCreateUser(
 }
 
 export const oauthCallback = async (
-  providerIdField: "googleId" | "facebookId",
+  providerIdField: OAuthProvider,
   accessToken: string,
   refreshToken: string,
   profile: any,
-  done: (error: any, user?: any) => void
+  done: VerifyCallback
 ) => {
-  console.log("profile: ", profile);
   try {
-    const user = await findOrCreateUser(
-      providerIdField,
-      profile.id,
-      profile.emails[0].value,
-      profile.displayName,
-      profile.photos[0].value
-    );
-    console.log("user: ", user);
+    let user;
+
+    if (providerIdField === "googleId") {
+      // Google specific logic
+      user = await findOrCreateUser(
+        providerIdField,
+        profile.id,
+        profile.emails[0].value, // Google stores emails like this
+        profile.displayName,
+        profile.photos[0]?.value || "" // Google provides avatar like this
+      );
+    }
+
+    if (providerIdField === "facebookId") {
+      // Facebook specific logic
+      user = await findOrCreateUser(
+        providerIdField,
+        profile.id,
+        profile.emails[0]?.value || "", // Facebook stores emails in _json, make sure it's safe
+        `${profile.name?.givenName} ${profile.name?.familyName}`, // Combine first and last name
+        profile.photos?.[0]?.value || "" // Facebook provides avatar like this
+      );
+    }
+
+    // Attach tokens to the user
     const userWithTokens = attachTokensToUser(user);
-    console.log("userWithTokens: ", userWithTokens);
-    done(null, userWithTokens);
+    return done(null, userWithTokens);
   } catch (error) {
-    done(error);
+    return done(error);
   }
 };
