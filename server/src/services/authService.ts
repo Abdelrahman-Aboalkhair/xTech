@@ -127,7 +127,10 @@ class AuthService {
     );
 
     if (!user) {
-      throw new AppError(400, "Invalid or expired verification code.");
+      throw new AppError(
+        400,
+        "This verification code is invalid or has expired."
+      );
     }
 
     await this.authRepository.updateUserEmailVerification(user.id, {
@@ -156,18 +159,20 @@ class AuthService {
     if (!user) {
       throw new AppError(
         400,
-        "No user found with this email, please sign up first"
+        "This email is not registered, please sign up first."
       );
     }
 
     if (!user.password) {
-      throw new AppError(400, "Invalid credentials");
+      throw new AppError(400, "Email or password is incorrect.");
     }
     const isPasswordValid = await comparePassword(password, user.password);
-    if (!isPasswordValid) throw new AppError(400, "Invalid credentials");
+    if (!isPasswordValid) {
+      throw new AppError(400, "Email or password is incorrect.");
+    }
 
-    const accessToken = await generateAccessToken(user.id);
-    const refreshToken = await generateRefreshToken(user.id);
+    const accessToken = generateAccessToken(user.id);
+    const refreshToken = generateRefreshToken(user.id);
 
     return { accessToken, refreshToken, user };
   }

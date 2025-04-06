@@ -19,11 +19,9 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const { data } = useGetUserCartQuery({});
-  console.log("data: ", data);
   const cartItemCount = useMemo(() => {
     return data?.cart?.cartItems?.length || 0;
   }, [data]);
-  console.log("cartItemCount: ", cartItemCount);
   const pathname = usePathname();
 
   const { register, handleSubmit, reset } = useForm<SearchFormValues>({
@@ -33,13 +31,11 @@ const Navbar = () => {
   });
 
   const onSearch = (data: SearchFormValues) => {
-    console.log("Search query:", data.searchQuery);
-
     reset();
   };
 
   return (
-    <nav className="flex justify-between items-center px-[10%] pt-6 pb-[2rem]">
+    <nav className="flex justify-between items-center px-[10%] pt-6">
       <Link className="font-semibold text-2xl" href="/">
         <Image
           className="rounded-full"

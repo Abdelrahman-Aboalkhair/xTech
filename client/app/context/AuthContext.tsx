@@ -3,7 +3,6 @@ import { createContext, useContext, useState, useEffect } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import useStorage from "../hooks/state/useStorage";
 import { useLazyGetMeQuery } from "../store/apis/UserApi";
-import { usePathname } from "next/navigation";
 import CustomLoader from "../components/feedback/CustomLoader";
 
 interface User {
@@ -32,7 +31,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     console.log("error: ", error);
   }
   const [isLoggedIn, setIsLoggedIn] = useStorage("isLoggedIn", false, "local");
-  const pathname = usePathname();
 
   const setUser = (user: User | null) => {
     setUserState(user);
@@ -55,7 +53,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const fetchUserData = async () => {
-    if (user || loading) return;
+    if (user) return;
 
     setLoading(true);
     try {
@@ -73,7 +71,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    if (isLoggedIn && !loading) {
+    if (isLoggedIn) {
       fetchUserData();
     } else {
       setLoading(false);

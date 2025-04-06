@@ -1,21 +1,11 @@
 "use client";
 import { useState } from "react";
-import {
-  Phone,
-  Monitor,
-  Watch,
-  Camera,
-  Headphones,
-  Gamepad2,
-  MoveRight,
-  MoveLeft,
-} from "lucide-react";
+import { MoveRight, MoveLeft } from "lucide-react";
 import { useGetAllCategoriesQuery } from "@/app/store/apis/CategoryApi";
 import { Category } from "@/app/types/productTypes";
 
 const CategoryBrowser = () => {
   const { data } = useGetAllCategoriesQuery({});
-  console.log("categories => ", data);
   const [activeCategory, setActiveCategory] = useState("Camera");
 
   return (

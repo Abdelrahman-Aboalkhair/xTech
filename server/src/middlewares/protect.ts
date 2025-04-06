@@ -32,9 +32,9 @@ const protect = async (
       return next(new AppError(401, "User no longer exists."));
     }
 
-    if (!user.emailVerified) {
-      return next(new AppError(403, "Please verify your email to continue."));
-    }
+    // if (!user.emailVerified) {
+    //   return next(new AppError(403, "Please verify your email to continue."));
+    // }
 
     req.user = { id: decoded.id };
     next();

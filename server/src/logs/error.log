@@ -244,3 +244,10 @@ Invalid `prisma.user.update()` invocation in
 Unknown argument `twitterId`. Available options are marked with ?.
 [2025-04-06T08:33:41.298Z] [31MERROR[39M: Cannot set headers after they are sent to the client
 [2025-04-06T08:46:55.895Z] [31MERROR[39M: Cannot set headers after they are sent to the client
+[2025-04-06T11:53:29.054Z] [31MERROR[39M: Invalid credentials
+[2025-04-06T11:53:51.593Z] [31MERROR[39M: Invalid credentials
+[2025-04-06T11:54:07.509Z] [31MERROR[39M: Can't find /api/v1/auth/sign-up on this server!
+[2025-04-06T11:55:58.690Z] [31MERROR[39M: This email is already registered, please sign in
+[2025-04-06T11:57:47.163Z] [31MERROR[39M: This email is not registered, please sign up first
+[2025-04-06T12:01:40.490Z] [31MERROR[39M: This email is not registered, please sign up first.
+[2025-04-06T12:04:33.675Z] [31MERROR[39M: Please verify your email to continue.
