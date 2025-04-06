@@ -20,31 +20,32 @@ enum ORDER_STATUS {
 }
 
 model User {
-  id        String    @id @default(uuid()) 
-  googleId  String? @unique
-  appleId   String? @unique
-  twitterId String? @unique
-  facebookId String? @unique
-  email     String    @unique
-  password  String?
-  name      String
-  avatar    String?
-  
-  emailVerified Boolean
+  id                    String    @id @default(uuid())
+  googleId              String?   @unique
+  appleId               String?   @unique
+  twitterId             String?   @unique
+  facebookId            String?   @unique
+  email                 String    @unique
+  password              String?
+  name                  String
+  avatar                String?
+
+  emailVerified         Boolean
   emailVerificationToken String?
   emailVerificationTokenExpiresAt DateTime?
-  resetPasswordToken String?
+  resetPasswordToken    String?
   resetPasswordTokenExpiresAt DateTime?
 
-  role      ROLE      @default(USER)
-  orders    Order[]
-  payments  Payment[]
-  addresses Address[]
-  cart      Cart?    
+  role                  ROLE      @default(USER)
+  orders                Order[]
+  payments              Payment[]
+  addresses             Address[]
+  cart                  Cart?
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
 }
+
 
 model Product {
   id           String    @id @default(uuid()) 

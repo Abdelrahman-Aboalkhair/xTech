@@ -56,6 +56,28 @@ router.get(
   }
 );
 
+router.get(
+  "/twitter",
+  passport.authenticate("twitter", { scope: ["email", "profile"] })
+);
+
+router.get(
+  "/twitter/callback",
+  passport.authenticate("twitter", {
+    failureRedirect: "http://localhost:3000/sign-in",
+    session: false,
+  }),
+  (req, res) => {
+    const user = req.user as any;
+    console.log("user in twitter callback: ", user);
+    const { accessToken, refreshToken } = user;
+    res.cookie("refreshToken", refreshToken, cookieOptions);
+    res.cookie("accessToken", accessToken, cookieOptions);
+
+    res.redirect("http://localhost:3000/oauth-success");
+  }
+);
+
 router.post("/register", validateRegister, authController.register);
 router.post("/verify-email", validateVerifyEmail, authController.verifyEmail);
 router.get("/verification-email/:email", authController.getVerificationEmail);

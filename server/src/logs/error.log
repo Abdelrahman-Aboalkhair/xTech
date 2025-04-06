@@ -203,3 +203,42 @@ Unique constraint failed on the fields: (`email`)
 [2025-04-05T23:36:05.780Z] [31MERROR[39M: Cannot read properties of undefined (reading '0')
 [2025-04-05T23:36:05.936Z] [31MERROR[39M: Can't find /favicon.ico on this server!
 [2025-04-05T23:45:09.579Z] [31MERROR[39M: Cannot read properties of undefined (reading '0')
+[2025-04-06T08:13:57.651Z] [31MERROR[39M: Could not authenticate you.
+[2025-04-06T08:13:57.795Z] [31MERROR[39M: Can't find /favicon.ico on this server!
+[2025-04-06T08:22:02.863Z] [31MERROR[39M: 
+Invalid `prisma.user.update()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/utils/authUtils.ts:89:32
+
+  86 });
+  87 if (user) {
+  88   if (!user[providerIdField as keyof typeof user]) {
+→ 89     user = await prisma.user.update({
+           where: {
+             email: "aboalkhair.abdelrahman@gmail.com"
+           },
+           data: {
+             twitterId: "1801036664833208320",
+             ~~~~~~~~~
+             avatar: "https://pbs.twimg.com/profile_images/1801036719875076096/JmyOpIeC_normal.jpg",
+         ?   id?: String | StringFieldUpdateOperationsInput,
+         ?   googleId?: String | NullableStringFieldUpdateOperationsInput | Null,
+         ?   facebookId?: String | NullableStringFieldUpdateOperationsInput | Null,
+         ?   email?: String | StringFieldUpdateOperationsInput,
+         ?   password?: String | NullableStringFieldUpdateOperationsInput | Null,
+         ?   name?: String | StringFieldUpdateOperationsInput,
+         ?   emailVerified?: Boolean | BoolFieldUpdateOperationsInput,
+         ?   emailVerificationToken?: String | NullableStringFieldUpdateOperationsInput | Null,
+         ?   emailVerificationTokenExpiresAt?: DateTime | NullableDateTimeFieldUpdateOperationsInput | Null,
+         ?   resetPasswordToken?: String | NullableStringFieldUpdateOperationsInput | Null,
+         ?   resetPasswordTokenExpiresAt?: DateTime | NullableDateTimeFieldUpdateOperationsInput | Null,
+         ?   role?: ROLE | EnumROLEFieldUpdateOperationsInput,
+         ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+         ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+         ?   orders?: OrderUpdateManyWithoutUserNestedInput,
+         ?   payments?: PaymentUpdateManyWithoutUserNestedInput,
+         ?   addresses?: AddressUpdateManyWithoutUserNestedInput,
+         ?   cart?: CartUpdateOneWithoutUserNestedInput
+           }
+         })
+
+Unknown argument `twitterId`. Available options are marked with ?.

@@ -5,7 +5,7 @@ import prisma from "../config/database";
 
 export type VerifyCallback = (error: any, user?: any, info?: any) => void;
 
-type OAuthProvider = "googleId" | "facebookId" | "appleId" | "twitterId";
+type OAuthProvider = "googleId" | "facebookId" | "twitterId";
 
 export async function comparePassword(
   plainPassword: string,
@@ -84,6 +84,7 @@ async function findOrCreateUser(
   let user = await prisma.user.findUnique({
     where: { email },
   });
+  console.log("Found user: ", user);
   if (user) {
     if (!user[providerIdField as keyof typeof user]) {
       user = await prisma.user.update({
@@ -91,6 +92,7 @@ async function findOrCreateUser(
         data: {
           [providerIdField as keyof typeof user]: providerId,
           avatar: avatar,
+          emailVerified: true,
         },
       });
     }
@@ -126,9 +128,9 @@ export const oauthCallback = async (
       user = await findOrCreateUser(
         providerIdField,
         profile.id,
-        profile.emails[0].value, // Google stores emails like this
+        profile.emails[0].value,
         profile.displayName,
-        profile.photos[0]?.value || "" // Google provides avatar like this
+        profile.photos[0]?.value || ""
       );
     }
 
@@ -137,9 +139,20 @@ export const oauthCallback = async (
       user = await findOrCreateUser(
         providerIdField,
         profile.id,
-        profile.emails[0]?.value || "", // Facebook stores emails in _json, make sure it's safe
-        `${profile.name?.givenName} ${profile.name?.familyName}`, // Combine first and last name
-        profile.photos?.[0]?.value || "" // Facebook provides avatar like this
+        profile.emails[0]?.value || "",
+        `${profile.name?.givenName} ${profile.name?.familyName}`,
+        profile.photos?.[0]?.value || ""
+      );
+    }
+
+    if (providerIdField === "twitterId") {
+      // Twitter specific logic
+      user = await findOrCreateUser(
+        providerIdField,
+        profile.id,
+        profile.emails?.[0]?.value || "",
+        profile.displayName || profile.username || "",
+        profile.photos?.[0]?.value || ""
       );
     }
 

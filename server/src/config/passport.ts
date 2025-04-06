@@ -14,7 +14,10 @@ export default function configurePassport() {
       {
         clientID: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-        callbackURL: "http://localhost:5000/api/v1/auth/google/callback",
+        callbackURL:
+          process.env.NODE_ENV === "production"
+            ? process.env.GOOGLE_CALLBACK_URL_PROD!
+            : process.env.GOOGLE_CALLBACK_URL_DEV!,
       },
       (
         accessToken: string,
@@ -77,7 +80,7 @@ export default function configurePassport() {
   passport.use(
     new TwitterStrategy(
       {
-        consumerKey: process.env.TWITTER_CONSUMER_KEY! || "sdslfkjisej",
+        consumerKey: process.env.TWITTER_CONSUMER_KEY!,
         consumerSecret: process.env.TWITTER_CONSUMER_SECRET!,
         callbackURL:
           process.env.NODE_ENV === "production"
@@ -90,7 +93,10 @@ export default function configurePassport() {
         refreshToken: string,
         profile: Profile,
         done: VerifyCallback
-      ) => oauthCallback("twitterId", accessToken, refreshToken, profile, done)
+      ) => {
+        console.log("twitter profile: ", profile);
+        oauthCallback("twitterId", accessToken, refreshToken, profile, done);
+      }
     )
   );
 }

@@ -1762,3 +1762,64 @@ Unique constraint failed on the fields: (`email`)
 [2025-04-05T23:59:52.979Z] [32MINFO[39M: ::1 - - [05/Apr/2025:23:59:52 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-04-05T23:59:52.987Z] [32MINFO[39M: ::1 - - [05/Apr/2025:23:59:52 +0000] "GET /api/v1/products HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-04-05T23:59:52.992Z] [32MINFO[39M: ::1 - - [05/Apr/2025:23:59:52 +0000] "GET /api/v1/products HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:04:22.852Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:04:22 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:04:22.855Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:04:22 +0000] "GET /api/v1/products HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:04:22.855Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:04:22 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:04:22.868Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:04:22 +0000] "GET /api/v1/products HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:04:22.880Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:04:22 +0000] "GET /api/v1/products HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:06:22.266Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:06:22 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:11:30.006Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:11:30 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:13:53.609Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:13:53 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:13:57.651Z] [31MERROR[39M: Could not authenticate you.
+[2025-04-06T08:13:57.662Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:13:57 +0000] "GET /api/v1/auth/twitter HTTP/1.1" 500 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:13:57.795Z] [31MERROR[39M: Can't find /favicon.ico on this server!
+[2025-04-06T08:13:57.797Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:13:57 +0000] "GET /favicon.ico HTTP/1.1" 404 - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:21:43.178Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:21:43 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:21:52.707Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:21:52 +0000] "GET /api/v1/auth/twitter HTTP/1.1" 302 0 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:22:02.863Z] [31MERROR[39M: 
+Invalid `prisma.user.update()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/utils/authUtils.ts:89:32
+
+  86 });
+  87 if (user) {
+  88   if (!user[providerIdField as keyof typeof user]) {
+→ 89     user = await prisma.user.update({
+           where: {
+             email: "aboalkhair.abdelrahman@gmail.com"
+           },
+           data: {
+             twitterId: "1801036664833208320",
+             ~~~~~~~~~
+             avatar: "https://pbs.twimg.com/profile_images/1801036719875076096/JmyOpIeC_normal.jpg",
+         ?   id?: String | StringFieldUpdateOperationsInput,
+         ?   googleId?: String | NullableStringFieldUpdateOperationsInput | Null,
+         ?   facebookId?: String | NullableStringFieldUpdateOperationsInput | Null,
+         ?   email?: String | StringFieldUpdateOperationsInput,
+         ?   password?: String | NullableStringFieldUpdateOperationsInput | Null,
+         ?   name?: String | StringFieldUpdateOperationsInput,
+         ?   emailVerified?: Boolean | BoolFieldUpdateOperationsInput,
+         ?   emailVerificationToken?: String | NullableStringFieldUpdateOperationsInput | Null,
+         ?   emailVerificationTokenExpiresAt?: DateTime | NullableDateTimeFieldUpdateOperationsInput | Null,
+         ?   resetPasswordToken?: String | NullableStringFieldUpdateOperationsInput | Null,
+         ?   resetPasswordTokenExpiresAt?: DateTime | NullableDateTimeFieldUpdateOperationsInput | Null,
+         ?   role?: ROLE | EnumROLEFieldUpdateOperationsInput,
+         ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+         ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+         ?   orders?: OrderUpdateManyWithoutUserNestedInput,
+         ?   payments?: PaymentUpdateManyWithoutUserNestedInput,
+         ?   addresses?: AddressUpdateManyWithoutUserNestedInput,
+         ?   cart?: CartUpdateOneWithoutUserNestedInput
+           }
+         })
+
+Unknown argument `twitterId`. Available options are marked with ?.
+[2025-04-06T08:22:02.866Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:22:02 +0000] "GET /api/v1/auth/twitter/callback?oauth_token=M516KQAAAAAB0bZoAAABlgoxGys&oauth_verifier=Yp2cvh50LWRgzOAwH0lO4uZpZ91QvUsZ HTTP/1.1" 500 - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:31:23.692Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:31:23 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:31:26.588Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:31:26 +0000] "GET /api/v1/auth/twitter HTTP/1.1" 302 0 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:31:29.927Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:31:29 +0000] "GET /api/v1/auth/twitter/callback?oauth_token=F1BlSAAAAAAB0bZoAAABlgo53Fo&oauth_verifier=dDUiWxYhWnybWH2zcx0oqgDE7l1RJGEP HTTP/1.1" 302 64 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:31:30.708Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:31:30 +0000] "GET /api/v1/users/me HTTP/1.1" 200 217 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:31:31.048Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:31:31 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:31:31.053Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:31:31 +0000] "GET /api/v1/products HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:31:31.059Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:31:31 +0000] "GET /api/v1/products HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:31:31.067Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:31:31 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-06T08:31:31.067Z] [32MINFO[39M: ::1 - - [06/Apr/2025:08:31:31 +0000] "GET /api/v1/products HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
