@@ -66,6 +66,7 @@ const globalError = (
       statusCode: error.statusCode,
       path: req.originalUrl,
       method: req.method,
+      ...(error.details && { details: error.details }), // Log details if present
     });
   }
 
@@ -79,6 +80,7 @@ const globalError = (
     status:
       error.statusCode >= 400 && error.statusCode < 500 ? "fail" : "error",
     message: error.message,
+    ...(error.details && { errors: error.details }), // Include details in response
     ...(isDev && {
       stack: error.stack,
       error: error,

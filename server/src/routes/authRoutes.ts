@@ -1,15 +1,15 @@
 import express from "express";
 import passport from "passport";
 import authController from "../controllers/authController";
-import {
-  validateForgotPassword,
-  validateRefreshToken,
-  validateRegister,
-  validateResetPassword,
-  validateSignin,
-  validateVerifyEmail,
-} from "../validation/authValidation";
 import { cookieOptions } from "../constants";
+import { validateDto } from "../middlewares/validateDto";
+import {
+  ForgotPasswordDto,
+  RegisterDto,
+  ResetPasswordDto,
+  SigninDto,
+  VerifyEmailDto,
+} from "../dtos/authDto";
 
 const router = express.Router();
 
@@ -78,19 +78,23 @@ router.get(
   }
 );
 
-router.post("/register", validateRegister, authController.register);
-router.post("/verify-email", validateVerifyEmail, authController.verifyEmail);
+router.post("/register", validateDto(RegisterDto), authController.register);
+router.post(
+  "/verify-email",
+  validateDto(VerifyEmailDto),
+  authController.verifyEmail
+);
 router.get("/verification-email/:email", authController.getVerificationEmail);
-router.post("/sign-in", validateSignin, authController.signin);
-router.get("/refresh-token", validateRefreshToken, authController.refreshToken);
+router.post("/sign-in", validateDto(SigninDto), authController.signin);
+router.get("/refresh-token", authController.refreshToken);
 router.post(
   "/forgot-password",
-  validateForgotPassword,
+  validateDto(ForgotPasswordDto),
   authController.forgotPassword
 );
 router.post(
   "/reset-password",
-  validateResetPassword,
+  validateDto(ResetPasswordDto),
   authController.resetPassword
 );
 router.get("/sign-out", authController.signout);

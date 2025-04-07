@@ -1,35 +1,13 @@
-[2025-04-07T00:41:52.021Z] [31MERROR[39M: uncaughtException: Cannot find module 'utils/cartUtils'
+[2025-04-07T08:21:59.906Z] [31MERROR[39M: uncaughtException: Cannot find module 'config/logger'
 Require stack:
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/authRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/middlewares/validateDto.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/userRoutes.ts
 - /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
 - /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
-Error: Cannot find module 'utils/cartUtils'
+Error: Cannot find module 'config/logger'
 Require stack:
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/authRoutes.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
-    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
-    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
-    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
-    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
-    at Function._load (node:internal/modules/cjs/loader:1204:37)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts:10:1)
-[2025-04-07T00:42:00.640Z] [31MERROR[39M: uncaughtException: Cannot find module 'utils/cartUtils'
-Require stack:
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/authRoutes.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
-Error: Cannot find module 'utils/cartUtils'
-Require stack:
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/authRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/middlewares/validateDto.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/userRoutes.ts
 - /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
 - /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
     at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
@@ -41,248 +19,24 @@ Require stack:
     at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
     at Module.require (node:internal/modules/cjs/loader:1480:12)
     at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/controllers/authController.ts:10:1)
-[2025-04-07T00:47:05.412Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
-Error: EIO: i/o error, write
-    at writeSync (node:fs:925:3)
-    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
-    at writeOrBuffer (node:internal/streams/writable:570:12)
-    at _write (node:internal/streams/writable:499:10)
-    at SyncWriteStream.Writable.write (node:internal/streams/writable:508:10)
-    at console.value (node:internal/console/constructor:298:16)
-    at console.log (node:internal/console/constructor:384:26)
-    at EventEmitter.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/config/redis.ts:50:32)
-    at EventEmitter.emit (node:events:507:28)
-    at EventEmitter.emit (node:domain:489:12)
-[2025-04-07T00:47:05.704Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
-Error: EIO: i/o error, write
-    at writeSync (node:fs:925:3)
-    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
-    at writeOrBuffer (node:internal/streams/writable:570:12)
-    at _write (node:internal/streams/writable:499:10)
-    at SyncWriteStream.Writable.write (node:internal/streams/writable:508:10)
-    at console.value (node:internal/console/constructor:298:16)
-    at console.log (node:internal/console/constructor:384:26)
-    at EventEmitter.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/config/redis.ts:50:32)
-    at EventEmitter.emit (node:events:507:28)
-    at EventEmitter.emit (node:domain:489:12)
-[2025-04-07T00:54:08.280Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/controllers/authController.ts[0m:[93m36[0m:[93m62[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
-
-[7m36[0m       await handleCartMergeAfterLogin(req, this.cartService, user.id);
-[7m  [0m [91m                                                             ~~~~~~~[0m
-[96msrc/controllers/authController.ts[0m:[93m84[0m:[93m60[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
-
-[7m84[0m     await handleCartMergeAfterLogin(req, this.cartService, user.id);
-[7m  [0m [91m                                                           ~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/controllers/authController.ts[0m:[93m36[0m:[93m62[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
-
-[7m36[0m       await handleCartMergeAfterLogin(req, this.cartService, user.id);
-[7m  [0m [91m                                                             ~~~~~~~[0m
-[96msrc/controllers/authController.ts[0m:[93m84[0m:[93m60[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
-
-[7m84[0m     await handleCartMergeAfterLogin(req, this.cartService, user.id);
-[7m  [0m [91m                                                           ~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/middlewares/validateDto.ts:3:1)
+[2025-04-07T08:22:16.472Z] [31MERROR[39M: uncaughtException: Cannot find module 'dtos/userDto'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/userRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'dtos/userDto'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/userRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-07T04:22:06.190Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/controllers/productController.ts[0m:[93m16[0m:[93m50[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllProducts' does not exist on type 'ApiFeatures'.
-
-[7m16[0m       const products = await this.productService.getAllProducts(req.query);
-[7m  [0m [91m                                                 ~~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m24[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'getProductById' does not exist on type 'ApiFeatures'.
-
-[7m24[0m       const product = await this.productService.getProductById(productId);
-[7m  [0m [91m                                                ~~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m32[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'getProductBySlug' does not exist on type 'ApiFeatures'.
-
-[7m32[0m       const product = await this.productService.getProductBySlug(productSlug);
-[7m  [0m [91m                                                ~~~~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m43[0m:[93m53[0m - [91merror[0m[90m TS2339: [0mProperty 'createProduct' does not exist on type 'ApiFeatures'.
-
-[7m43[0m       const { product } = await this.productService.createProduct({
-[7m  [0m [91m                                                    ~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m63[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'updateProduct' does not exist on type 'ApiFeatures'.
-
-[7m63[0m       const product = await this.productService.updateProduct(
-[7m  [0m [91m                                                ~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m74[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'deleteProduct' does not exist on type 'ApiFeatures'.
-
-[7m74[0m       await this.productService.deleteProduct(productId);
-[7m  [0m [91m                                ~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m80[0m:[93m38[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
-
-[7m80[0m export default new ProductController(new ProductService());
-[7m  [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~[0m
-
-  [96msrc/services/productService.ts[0m:[93m16[0m:[93m17[0m
-    [7m16[0m     constructor(queryString: Record<string, any>) {
-    [7m  [0m [96m                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-    An argument for 'queryString' was not provided.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/controllers/productController.ts[0m:[93m16[0m:[93m50[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllProducts' does not exist on type 'ApiFeatures'.
-
-[7m16[0m       const products = await this.productService.getAllProducts(req.query);
-[7m  [0m [91m                                                 ~~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m24[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'getProductById' does not exist on type 'ApiFeatures'.
-
-[7m24[0m       const product = await this.productService.getProductById(productId);
-[7m  [0m [91m                                                ~~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m32[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'getProductBySlug' does not exist on type 'ApiFeatures'.
-
-[7m32[0m       const product = await this.productService.getProductBySlug(productSlug);
-[7m  [0m [91m                                                ~~~~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m43[0m:[93m53[0m - [91merror[0m[90m TS2339: [0mProperty 'createProduct' does not exist on type 'ApiFeatures'.
-
-[7m43[0m       const { product } = await this.productService.createProduct({
-[7m  [0m [91m                                                    ~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m63[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'updateProduct' does not exist on type 'ApiFeatures'.
-
-[7m63[0m       const product = await this.productService.updateProduct(
-[7m  [0m [91m                                                ~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m74[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'deleteProduct' does not exist on type 'ApiFeatures'.
-
-[7m74[0m       await this.productService.deleteProduct(productId);
-[7m  [0m [91m                                ~~~~~~~~~~~~~[0m
-[96msrc/controllers/productController.ts[0m:[93m80[0m:[93m38[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
-
-[7m80[0m export default new ProductController(new ProductService());
-[7m  [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~[0m
-
-  [96msrc/services/productService.ts[0m:[93m16[0m:[93m17[0m
-    [7m16[0m     constructor(queryString: Record<string, any>) {
-    [7m  [0m [96m                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-    An argument for 'queryString' was not provided.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-07T04:22:18.349Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
-
-[7m27[0m       select, // Add select here to ensure only the selected fields are returned
-[7m  [0m [91m      ~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
-
-[7m27[0m       select, // Add select here to ensure only the selected fields are returned
-[7m  [0m [91m      ~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-07T04:22:31.218Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
-
-[7m27[0m       select,
-[7m  [0m [91m      ~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
-
-[7m27[0m       select,
-[7m  [0m [91m      ~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-07T04:22:47.048Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
-
-[7m27[0m       select,
-[7m  [0m [91m      ~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
-
-[7m27[0m       select,
-[7m  [0m [91m      ~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-07T04:23:01.204Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
-
-[7m27[0m       select, // Add select here to ensure only the selected fields are returned
-[7m  [0m [91m      ~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
-
-[7m27[0m       select, // Add select here to ensure only the selected fields are returned
-[7m  [0m [91m      ~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-07T04:23:04.186Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
-
-[7m27[0m       select, // Add select here to ensure only the selected fields are returned
-[7m  [0m [91m      ~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
-
-[7m27[0m       select, // Add select here to ensure only the selected fields are returned
-[7m  [0m [91m      ~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/userRoutes.ts:6:1)

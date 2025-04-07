@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import asyncHandler from "../utils/asyncHandler";
 import sendResponse from "../utils/sendResponse";
 import CategoryService from "../services/categoryService";
+import { CreateCategoryDto } from "../dtos/categoryDto";
 
 class CategoryController {
   private categoryService: CategoryService;
@@ -18,7 +19,10 @@ class CategoryController {
   );
 
   createCategory = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
+    async (
+      req: Request<any, any, CreateCategoryDto>,
+      res: Response
+    ): Promise<void> => {
       const { name } = req.body;
       const { category } = await this.categoryService.createCategory(name);
       sendResponse(res, 201, { category }, "Category created successfully");

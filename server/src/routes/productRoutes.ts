@@ -1,10 +1,8 @@
 import express from "express";
 import productController from "../controllers/productController";
 import authorizeRole from "../middlewares/authorizeRole";
-import {
-  validateCreateProduct,
-  validateUpdateProduct,
-} from "../validation/productValidation";
+import { validateDto } from "../middlewares/validateDto";
+import { CreateProductDto, UpdateProductDto } from "../dtos/productDto";
 import protect from "../middlewares/protect";
 
 const router = express.Router();
@@ -17,7 +15,7 @@ router.post(
   "/",
   protect,
   authorizeRole("ADMIN", "SUPERADMIN"),
-  validateCreateProduct,
+  validateDto(CreateProductDto),
   productController.createProduct
 );
 
@@ -25,7 +23,7 @@ router.put(
   "/:id",
   protect,
   authorizeRole("ADMIN", "SUPERADMIN"),
-  validateUpdateProduct,
+  validateDto(UpdateProductDto),
   productController.updateProduct
 );
 

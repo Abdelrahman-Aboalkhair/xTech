@@ -1,21 +1,27 @@
 import express from "express";
 import CartController from "../controllers/cartController";
-import {
-  validateAddProductToCart,
-  validateRemoveProductFromCart,
-  validateUpdateCartItem,
-} from "../validation/cartValidation";
+import { validateDto } from "../middlewares/validateDto";
 import optionalAuth from "../middlewares/optionalAuth";
+import {
+  AddToCartDto,
+  UpdateCartItemDto,
+  RemoveFromCartDto,
+} from "../dtos/cartDto";
 
 const router = express.Router();
 
 router.get("/", optionalAuth, CartController.getUserCart);
 
-router.post("/", CartController.addToCart);
+router.post("/", validateDto(AddToCartDto), CartController.addToCart);
 
-router.put("/", validateUpdateCartItem, CartController.updateCartItem);
+router.put("/", validateDto(UpdateCartItemDto), CartController.updateCartItem);
 
-router.delete("/", optionalAuth, CartController.removeFromCart);
+router.delete(
+  "/",
+  optionalAuth,
+  validateDto(RemoveFromCartDto),
+  CartController.removeFromCart
+);
 
 router.delete("/clear", optionalAuth, CartController.clearCart);
 

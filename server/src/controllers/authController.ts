@@ -8,6 +8,7 @@ import { blacklistToken } from "../utils/authUtils";
 import AppError from "../utils/AppError";
 import CartService from "../services/cartService";
 import { handleCartMergeAfterLogin } from "../utils/cartUtils";
+import { SigninDto } from "dtos/authDto";
 
 const { maxAge, ...clearCookieOptions } = cookieOptions;
 

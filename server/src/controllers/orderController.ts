@@ -3,6 +3,7 @@ import asyncHandler from "../utils/asyncHandler";
 import sendResponse from "../utils/sendResponse";
 import AppError from "../utils/AppError";
 import OrderService from "../services/orderService";
+import { UpdateTrackingStatusDto } from "../dtos/orderDto";
 
 class OrderController {
   constructor(private orderService: OrderService) {}
@@ -29,23 +30,26 @@ class OrderController {
   });
 
   // Update tracking status (admin only)
-  updateTrackingStatus = asyncHandler(async (req: Request, res: Response) => {
-    const { orderId } = req.params;
-    const { status } = req.body;
-    if (!status) throw new AppError(400, "Tracking status is required");
+  updateTrackingStatus = asyncHandler(
+    async (req: Request<any, any, UpdateTrackingStatusDto>, res: Response) => {
+      const { orderId } = req.params;
+      const { status } = req.body;
 
-    const tracking = await this.orderService.updateTrackingStatus(
-      orderId,
-      status,
-      "USER"
-    );
-    sendResponse(
-      res,
-      200,
-      { tracking },
-      "Tracking status updated successfully"
-    );
-  });
+      if (!status) throw new AppError(400, "Tracking status is required"); // Redundant with DTO, but kept for clarity
+
+      const tracking = await this.orderService.updateTrackingStatus(
+        orderId,
+        status,
+        "USER"
+      );
+      sendResponse(
+        res,
+        200,
+        { tracking },
+        "Tracking status updated successfully"
+      );
+    }
+  );
 }
 
 export default OrderController;
