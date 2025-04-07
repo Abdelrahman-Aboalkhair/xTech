@@ -15,8 +15,15 @@ const FilterBar: React.FC = () => {
     { label: "Popularity", id: 3 },
   ];
 
+  // This function will update the query string based on checkbox selections
   const handleFilterChange = (name: string, value: boolean) => {
-    updateQuery({ [name]: value });
+    if (value) {
+      // If the checkbox is checked, include the category in the query string
+      updateQuery({ category: name });
+    } else {
+      // If the checkbox is unchecked, remove the category from the query string
+      updateQuery({ category: undefined });
+    }
   };
 
   return (

@@ -96,3 +96,193 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-07T04:22:06.190Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/productController.ts[0m:[93m16[0m:[93m50[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllProducts' does not exist on type 'ApiFeatures'.
+
+[7m16[0m       const products = await this.productService.getAllProducts(req.query);
+[7m  [0m [91m                                                 ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m24[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'getProductById' does not exist on type 'ApiFeatures'.
+
+[7m24[0m       const product = await this.productService.getProductById(productId);
+[7m  [0m [91m                                                ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m32[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'getProductBySlug' does not exist on type 'ApiFeatures'.
+
+[7m32[0m       const product = await this.productService.getProductBySlug(productSlug);
+[7m  [0m [91m                                                ~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m43[0m:[93m53[0m - [91merror[0m[90m TS2339: [0mProperty 'createProduct' does not exist on type 'ApiFeatures'.
+
+[7m43[0m       const { product } = await this.productService.createProduct({
+[7m  [0m [91m                                                    ~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m63[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'updateProduct' does not exist on type 'ApiFeatures'.
+
+[7m63[0m       const product = await this.productService.updateProduct(
+[7m  [0m [91m                                                ~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m74[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'deleteProduct' does not exist on type 'ApiFeatures'.
+
+[7m74[0m       await this.productService.deleteProduct(productId);
+[7m  [0m [91m                                ~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m80[0m:[93m38[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m80[0m export default new ProductController(new ProductService());
+[7m  [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/services/productService.ts[0m:[93m16[0m:[93m17[0m
+    [7m16[0m     constructor(queryString: Record<string, any>) {
+    [7m  [0m [96m                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'queryString' was not provided.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/productController.ts[0m:[93m16[0m:[93m50[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllProducts' does not exist on type 'ApiFeatures'.
+
+[7m16[0m       const products = await this.productService.getAllProducts(req.query);
+[7m  [0m [91m                                                 ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m24[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'getProductById' does not exist on type 'ApiFeatures'.
+
+[7m24[0m       const product = await this.productService.getProductById(productId);
+[7m  [0m [91m                                                ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m32[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'getProductBySlug' does not exist on type 'ApiFeatures'.
+
+[7m32[0m       const product = await this.productService.getProductBySlug(productSlug);
+[7m  [0m [91m                                                ~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m43[0m:[93m53[0m - [91merror[0m[90m TS2339: [0mProperty 'createProduct' does not exist on type 'ApiFeatures'.
+
+[7m43[0m       const { product } = await this.productService.createProduct({
+[7m  [0m [91m                                                    ~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m63[0m:[93m49[0m - [91merror[0m[90m TS2339: [0mProperty 'updateProduct' does not exist on type 'ApiFeatures'.
+
+[7m63[0m       const product = await this.productService.updateProduct(
+[7m  [0m [91m                                                ~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m74[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'deleteProduct' does not exist on type 'ApiFeatures'.
+
+[7m74[0m       await this.productService.deleteProduct(productId);
+[7m  [0m [91m                                ~~~~~~~~~~~~~[0m
+[96msrc/controllers/productController.ts[0m:[93m80[0m:[93m38[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m80[0m export default new ProductController(new ProductService());
+[7m  [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/services/productService.ts[0m:[93m16[0m:[93m17[0m
+    [7m16[0m     constructor(queryString: Record<string, any>) {
+    [7m  [0m [96m                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'queryString' was not provided.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-07T04:22:18.349Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
+
+[7m27[0m       select, // Add select here to ensure only the selected fields are returned
+[7m  [0m [91m      ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
+
+[7m27[0m       select, // Add select here to ensure only the selected fields are returned
+[7m  [0m [91m      ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-07T04:22:31.218Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
+
+[7m27[0m       select,
+[7m  [0m [91m      ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
+
+[7m27[0m       select,
+[7m  [0m [91m      ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-07T04:22:47.048Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
+
+[7m27[0m       select,
+[7m  [0m [91m      ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
+
+[7m27[0m       select,
+[7m  [0m [91m      ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-07T04:23:01.204Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
+
+[7m27[0m       select, // Add select here to ensure only the selected fields are returned
+[7m  [0m [91m      ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
+
+[7m27[0m       select, // Add select here to ensure only the selected fields are returned
+[7m  [0m [91m      ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-07T04:23:04.186Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
+
+[7m27[0m       select, // Add select here to ensure only the selected fields are returned
+[7m  [0m [91m      ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m27[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'select' does not exist in type '{ where?: Record<string, any> | undefined; orderBy?: Record<string, any> | Record<string, any>[] | undefined; skip?: number | undefined; take?: number | undefined; }'.
+
+[7m27[0m       select, // Add select here to ensure only the selected fields are returned
+[7m  [0m [91m      ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

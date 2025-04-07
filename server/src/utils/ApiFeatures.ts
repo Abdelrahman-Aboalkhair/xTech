@@ -9,10 +9,27 @@ class ApiFeatures {
 
   filter() {
     const queryObj = { ...this.queryString };
-    const excludedFields = ["page", "sort", "limit", "fields"];
+    const excludedFields = ["page", "sort", "limit", "fields", "searchQuery"];
     excludedFields.forEach((el) => delete queryObj[el]);
 
     const filters: any = {};
+
+    // If there's a search query, apply it to relevant fields (e.g., product name, description, etc.)
+    if (this.queryString.searchQuery) {
+      filters.name = {
+        contains: this.queryString.searchQuery,
+        mode: "insensitive",
+      }; // Adjust field name based on your model
+    }
+
+    // If category is provided, apply it to the query filters
+    if (this.queryString.category) {
+      filters.category = {
+        equals: this.queryString.category, // Match exact category name
+      };
+    }
+
+    // Loop through other query parameters and handle them
     for (const key in queryObj) {
       if (queryObj[key]) {
         if (Array.isArray(queryObj[key])) {
@@ -35,8 +52,9 @@ class ApiFeatures {
         .split(",")
         .map((sortField: string) => {
           const [field, order] = sortField.split(":");
-          return { [field]: order || "asc" };
+          return { [field]: order || "asc" }; // Default to "asc" if no order is provided
         });
+
       this.queryString.orderBy = sortBy;
     }
     return this;
@@ -47,9 +65,10 @@ class ApiFeatures {
       const fields = this.queryString.fields
         .split(",")
         .reduce((acc: any, field: string) => {
-          acc[field] = true;
+          acc[field] = true; // Only the specified fields will be included in the result
           return acc;
         }, {} as Record<string, boolean>);
+
       this.queryOptions.select = fields;
     }
     return this;

@@ -17,13 +17,16 @@ class ProductService {
       .paginate()
       .build();
 
-    const { where, orderBy, skip, take } = apiFeatures;
+    const { where, orderBy, skip, take, select } = apiFeatures;
+
+    const finalWhere = where && Object.keys(where).length > 0 ? where : {};
 
     return await this.productRepository.findManyProducts({
-      where,
+      where: finalWhere,
       orderBy: orderBy || { createdAt: "desc" },
       skip,
       take,
+      select, // Only return the selected fields if `select` is defined
     });
   }
 
