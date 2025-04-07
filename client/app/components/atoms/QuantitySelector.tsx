@@ -6,7 +6,7 @@ const QuantitySelector = () => {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="flex items-center border border-gray-300 rounded-md">
+    <div className="flex items-center border border-gray-300 rounded-md max-w-fit">
       <button
         className="p-2 font-bold"
         onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}

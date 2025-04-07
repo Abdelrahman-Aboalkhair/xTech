@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUserState] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [getMe, { data, error }] = useLazyGetMeQuery();
-  console.log("data: ", data);
   if (error) {
     console.log("error: ", error);
   }
@@ -58,7 +57,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true);
     try {
       const res = await getMe({}).unwrap();
-      console.log("user data fetched: ", res);
       setUser(res.user);
     } catch (error: any) {
       console.error("Failed to fetch user data:", error);
@@ -71,12 +69,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && !loading) {
       fetchUserData();
     } else {
       setLoading(false);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, loading]);
 
   useEffect(() => {
     if (data) console.log("data from useLazyGetMeQuery: ", data);

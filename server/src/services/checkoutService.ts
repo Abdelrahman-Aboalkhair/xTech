@@ -5,16 +5,16 @@ import CheckoutRepository from "../repositories/checkoutRepository";
 class CheckoutService {
   constructor(private checkoutRepository: CheckoutRepository) {}
 
-  // Fetch and validate user's cart
   async getCartForCheckout(userId: string) {
+    console.log("userId: ", userId);
     const cart = await this.checkoutRepository.findCartByUserId(userId);
+    console.log("Found cart: ", cart);
     if (!cart || !cart.cartItems.length) {
       throw new AppError(400, "Cart is empty or not found");
     }
     return cart;
   }
 
-  // Create Stripe Checkout Session
   async createStripeSession(cart: any, userId: string) {
     console.log("received userId to pass to the session: ", userId);
     const lineItems = cart.cartItems.map((item: any) => ({
@@ -26,7 +26,7 @@ class CheckoutService {
         },
         unit_amount: Math.round(
           item.product.price * (1 - item.product.discount / 100) * 100
-        ), // Convert to cents
+        ),
       },
       quantity: item.quantity,
     }));

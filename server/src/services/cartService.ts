@@ -97,18 +97,14 @@ class CartService {
   }
 
   async mergeGuestCartIntoUserCart(guestCartId: string, userId: string) {
-    console.log("guestCartId => ", guestCartId);
     const guestCart = await this.cartRepository.findCartWithItemsById(
       guestCartId
     );
-    console.log("Guest cart => ", guestCart);
     if (!guestCart || !guestCart.cartItems.length) return;
 
-    // Check if the user already has a cart
     const userCart = await this.cartRepository.findCartByUserId(userId);
 
     if (userCart) {
-      // User has an existing cart, merge items into it
       for (const item of guestCart.cartItems) {
         const existingItem = await this.cartRepository.findCartItem(
           userCart.id,
@@ -126,14 +122,11 @@ class CartService {
           });
         }
       }
-      // Delete the guest cart since items are merged
       await this.cartRepository.deleteCart(guestCartId);
       return userCart;
     } else {
-      // User has no cart, reassign the guest cart to them
-      console.log("updating guest cart with logged in user id => ", userId);
       await this.cartRepository.updateCart(guestCartId, { userId });
-      return guestCart; // Return the reassigned cart
+      return guestCart;
     }
   }
 }

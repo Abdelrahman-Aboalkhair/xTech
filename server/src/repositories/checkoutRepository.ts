@@ -1,7 +1,6 @@
 import prisma from "../config/database";
 
 class CheckoutRepository {
-  // Fetch user's cart with items and products
   async findCartByUserId(userId: string) {
     return prisma.cart.findUnique({
       where: { userId },
@@ -9,7 +8,6 @@ class CheckoutRepository {
     });
   }
 
-  // Create an order from cart data
   async createOrder(data: {
     userId: string;
     amount: number;
@@ -27,7 +25,6 @@ class CheckoutRepository {
     });
   }
 
-  // Clear cart items after order is placed
   async deleteCartItemsByCartId(cartId: string) {
     return prisma.cartItem.deleteMany({ where: { cartId } });
   }

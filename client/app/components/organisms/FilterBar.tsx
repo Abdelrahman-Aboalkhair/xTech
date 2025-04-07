@@ -1,71 +1,71 @@
-import Dropdown from "../molecules/Dropdown";
-import { Controller } from "react-hook-form";
-import Input from "../atoms/Input";
+"use client";
+import { useGetAllCategoriesQuery } from "@/app/store/apis/CategoryApi";
+import CheckBox from "../atoms/CheckBox";
+import { Filter, SortAsc } from "lucide-react";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
+import { useForm } from "react-hook-form";
 
-interface FilterBarProps {
-  sortOptions: string[];
-  filterOptions: string[];
-  control: any;
-  errors: any;
-  filterBy: string;
-  sortBy: string;
-}
-
-const FilterBar: React.FC<FilterBarProps> = ({
-  filterBy,
-  sortBy,
-  sortOptions,
-  filterOptions,
-  control,
-  errors,
-}) => {
+const FilterBar: React.FC = () => {
+  const { control } = useForm();
+  const { data } = useGetAllCategoriesQuery({});
   const { updateQuery } = useQueryParams();
+  const sortOptions = [
+    { label: "Price: High to Low", id: 1 },
+    { label: "Newest", id: 2 },
+    { label: "Popularity", id: 3 },
+  ];
+
+  const handleFilterChange = (name: string, value: boolean) => {
+    updateQuery({ [name]: value });
+  };
 
   return (
-    <aside className="w-64 min-h-screen p-6 bg-gray-100 border-r border-gray-200">
+    <aside className="w-[16%] min-h-screen p-6 border-r border-gray-200">
       <div className="space-y-6">
-        <div>
-          <h3 className="text-sm font-semibold text-gray-700 mb-2">
-            Filter By
+        <div className="border-gray-200">
+          <h3 className="text-md font-semibold text-gray-700 mb-6 flex justify-start items-center gap-1">
+            <Filter size={19} /> Filters
           </h3>
-          <Controller
-            name={filterBy}
+          <CheckBox
+            className="pb-[20px]"
             control={control}
-            render={({ field }) => (
-              <Dropdown
-                label={field.value || "Select filter"}
-                options={filterOptions}
-                {...field}
-                onChange={(value) => {
-                  field.onChange(value);
-                  updateQuery({ filterBy: value });
-                }}
-                className="w-full"
-              />
-            )}
+            name="BestSelling"
+            label="Best selling"
+            onChangeExtra={handleFilterChange}
           />
+          <CheckBox
+            className="pb-[20px]"
+            control={control}
+            name="featured"
+            label="Featured"
+            onChangeExtra={handleFilterChange}
+          />
+          {data?.categories.map((category) => (
+            <div key={category.id} className="pb-[20px]">
+              <CheckBox
+                control={control}
+                name={category.name}
+                label={category.name}
+                onChangeExtra={handleFilterChange}
+              />
+            </div>
+          ))}
         </div>
-
-        {/* Sort Section */}
+        <div className="border border-gray-200 w-[16.4rem]" />
         <div>
-          <h3 className="text-sm font-semibold text-gray-700 mb-2">Sort By</h3>
-          <Controller
-            name={sortBy}
-            control={control}
-            render={({ field }) => (
-              <Dropdown
-                label={field.value || "Select sorting"}
-                options={sortOptions}
-                {...field}
-                onChange={(value) => {
-                  field.onChange(value);
-                  updateQuery({ sort: value });
-                }}
-                className="w-full"
+          <h3 className="text-md font-semibold text-gray-700 mb-6 flex items-center justify-start gap-1">
+            <SortAsc size={22} /> Sorting
+          </h3>
+          {sortOptions.map((opt) => (
+            <div key={opt.id} className="pb-[20px]">
+              <CheckBox
+                control={control}
+                name={opt.label}
+                label={opt.label}
+                onChangeExtra={handleFilterChange}
               />
-            )}
-          />
+            </div>
+          ))}
         </div>
       </div>
     </aside>

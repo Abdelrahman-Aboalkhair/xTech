@@ -1,41 +1,43 @@
 "use client";
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import UserMenu from "../molecules/UserMenu";
-import { User, Search, ShoppingCart } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { usePathname } from "next/navigation";
+import { User, ShoppingCart } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import { useGetUserCartQuery } from "@/app/store/apis/CartApi";
 import { useAuth } from "@/app/context/AuthContext";
 import AppLogo from "@/app/assets/images/kgKraftLogo.png";
-
-type SearchFormValues = {
-  searchQuery: string;
-};
+import SearchBar from "../atoms/SearchBar";
+import useQueryParams from "@/app/hooks/network/useQueryParams";
 
 const Navbar = () => {
+  const { updateQuery } = useQueryParams();
   const { user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
   const { data } = useGetUserCartQuery({});
   const cartItemCount = useMemo(() => {
     return data?.cart?.cartItems?.length || 0;
   }, [data]);
-  const pathname = usePathname();
 
-  const { register, handleSubmit, reset } = useForm<SearchFormValues>({
-    defaultValues: {
-      searchQuery: "",
-    },
-  });
+  const onSearch = (data: { searchQuery: string }) => {
+    console.log("Search query:", data.searchQuery);
 
-  const onSearch = (data: SearchFormValues) => {
-    reset();
+    const query = new URLSearchParams();
+    query.set("searchQuery", data.searchQuery);
+
+    if (pathname !== "/shop") {
+      router.push(`/shop?${query.toString()}`);
+    } else {
+      updateQuery({ searchQuery: data.searchQuery });
+    }
   };
 
   return (
-    <nav className="flex justify-between items-center px-[10%] pt-6">
+    <nav className="flex justify-between items-center px-[3.5%] pt-6">
       <Link className="font-semibold text-2xl" href="/">
         <Image
           className="rounded-full"
@@ -73,21 +75,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-10">
-        <form onSubmit={handleSubmit(onSearch)} className="relative">
-          <input
-            type="text"
-            placeholder="What're you looking for?"
-            className="py-[15px] pl-6 pr-16 rounded-md bg-[#F5F5F5] focus:outline-none focus:border-transparent"
-            {...register("searchQuery")}
-          />
-          <button
-            type="submit"
-            className="absolute right-3 top-1/2 transform -translate-y-1/2"
-          >
-            <Search size={25} />
-          </button>
-        </form>
-
+        <SearchBar onSearch={onSearch} />{" "}
         <Link href="/cart" className="relative">
           <ShoppingCart size={32} />
           {cartItemCount > 0 && (
@@ -96,7 +84,6 @@ const Navbar = () => {
             </span>
           )}
         </Link>
-
         {user ? (
           <div className="relative flex items-center gap-8" ref={menuRef}>
             <button

@@ -251,3 +251,14 @@ Unknown argument `twitterId`. Available options are marked with ?.
 [2025-04-06T11:57:47.163Z] [31MERROR[39M: This email is not registered, please sign up first
 [2025-04-06T12:01:40.490Z] [31MERROR[39M: This email is not registered, please sign up first.
 [2025-04-06T12:04:33.675Z] [31MERROR[39M: Please verify your email to continue.
+[2025-04-06T12:33:37.374Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-06T12:53:57.669Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-06T13:10:06.751Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-06T13:23:59.024Z] [31MERROR[39M: Cannot set headers after they are sent to the client
+[2025-04-06T13:45:35.341Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-06T13:47:30.042Z] [31MERROR[39M: Cart is empty or not found
+[2025-04-06T13:49:11.806Z] [31MERROR[39M: Cart is empty or not found
+[2025-04-06T13:49:59.631Z] [31MERROR[39M: Cannot set headers after they are sent to the client
+[2025-04-07T00:48:34.547Z] [31MERROR[39M: Email or password is incorrect.
+[2025-04-07T03:31:54.976Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-07T03:51:13.519Z] [31MERROR[39M: Invalid access token, please log in

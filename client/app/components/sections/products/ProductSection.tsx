@@ -3,25 +3,26 @@ import React, { useState } from "react";
 import { useGetAllProductsQuery } from "@/app/store/apis/ProductApi";
 import ProductCard from "../products/ProductCard";
 import { Product } from "@/app/types/productTypes";
+import useQueryParams from "@/app/hooks/network/useQueryParams";
 
 interface ProductSectionProps {
   title: string;
   showTitle?: boolean;
-  queryParams?: object;
   viewAllButton?: boolean;
 }
 
 const ProductSection: React.FC<ProductSectionProps> = ({
   title,
   showTitle = false,
-  queryParams = {},
   viewAllButton = false,
 }) => {
+  const { query } = useQueryParams();
+  const queryParams = { ...query };
   const { data } = useGetAllProductsQuery(queryParams);
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
 
   return (
-    <div className="container mx-auto px-4 py-[3%]">
+    <div className="px-[3.5%] py-[3%] w-full">
       <div className="flex items-center justify-between mb-8">
         {showTitle && (
           <h2

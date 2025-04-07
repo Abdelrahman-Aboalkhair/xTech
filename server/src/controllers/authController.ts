@@ -7,6 +7,7 @@ import AuthService from "../services/authService";
 import { blacklistToken } from "../utils/authUtils";
 import AppError from "../utils/AppError";
 import CartService from "../services/cartService";
+import { handleCartMergeAfterLogin } from "../utils/cartUtils";
 
 const { maxAge, ...clearCookieOptions } = cookieOptions;
 
@@ -32,13 +33,7 @@ class AuthController {
       res.cookie("refreshToken", refreshToken, clearCookieOptions);
       res.cookie("accessToken", accessToken, clearCookieOptions);
 
-      if (req.session.cart?.id) {
-        await this.cartService?.mergeGuestCartIntoUserCart(
-          req.session.cart.id,
-          user.id
-        );
-        req.session.cart = { id: "", items: [] };
-      }
+      await handleCartMergeAfterLogin(req, this.cartService, user.id);
 
       sendResponse(
         res,
@@ -86,16 +81,7 @@ class AuthController {
     res.cookie("refreshToken", refreshToken, clearCookieOptions);
     res.cookie("accessToken", accessToken, clearCookieOptions);
 
-    if (req.session.cart?.id) {
-      console.log("FOUND GUEST CART, WE MERGE: ", req.session.cart.id);
-      console.log("USER ID: ", user.id);
-      await this.cartService?.mergeGuestCartIntoUserCart(
-        req.session.cart.id,
-        user.id
-      );
-      req.session.cart = { id: "", items: [] };
-    }
-
+    await handleCartMergeAfterLogin(req, this.cartService, user.id);
     sendResponse(
       res,
       200,
