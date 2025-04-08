@@ -37,7 +37,7 @@ const Sidebar = () => {
       { name: "Payments", href: "/payments", icon: CreditCard },
       { name: "Categories", href: "/categories", icon: Layers },
       { name: "Addresses", href: "/addresses", icon: MapPin },
-      { name: "Tracking", href: "/tracking", icon: LocateIcon },
+      { name: "Tracking Detail", href: "/tracking-detail", icon: LocateIcon },
       { name: "Users", href: "/users", icon: Users },
       { name: "Analytics", href: "/analytics", icon: BarChart3 },
       { name: "Webhook logs", href: "/webhook-logs", icon: ServerCog },

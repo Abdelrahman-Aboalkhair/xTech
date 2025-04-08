@@ -1136,3 +1136,7 @@ The column `Product.ratings` does not exist in the current database.
 [2025-04-08T17:51:06.833Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-08T18:14:05.673Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-08T18:35:36.973Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T18:59:58.724Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T19:13:22.278Z] [31MERROR[39M: Can't find /api/v1/tracking/all on this server!
+[2025-04-08T19:13:25.657Z] [31MERROR[39M: Can't find /api/v1/tracking/all on this server!
+[2025-04-08T19:13:52.254Z] [31MERROR[39M: Can't find /api/v1/tracking/all on this server!

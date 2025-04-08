@@ -1,150 +1,20 @@
-[2025-04-08T15:50:12.001Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/routes/dashboardRoutes.ts[0m:[93m9[0m:[93m29[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
-
-[7m9[0m const dashboardRepository = new DashboardRepository();
-[7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-  [96msrc/repositories/dashboardRepository.ts[0m:[93m4[0m:[93m15[0m
-    [7m4[0m   constructor(private prisma: PrismaClient) {}
-    [7m [0m [96m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-    An argument for 'prisma' was not provided.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/routes/dashboardRoutes.ts[0m:[93m9[0m:[93m29[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
-
-[7m9[0m const dashboardRepository = new DashboardRepository();
-[7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-  [96msrc/repositories/dashboardRepository.ts[0m:[93m4[0m:[93m15[0m
-    [7m4[0m   constructor(private prisma: PrismaClient) {}
-    [7m [0m [96m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-    An argument for 'prisma' was not provided.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
+[2025-04-08T19:10:11.798Z] [31MERROR[39M: uncaughtException: Cannot find module 'repositories/trackingDetailRepository'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/trackingDetailRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'repositories/trackingDetailRepository'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/trackingDetailRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T15:51:05.434Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/dashboardRepository.ts[0m:[93m11[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'prisma' does not exist on type 'DashboardRepository'.
-
-[7m11[0m     return this.prisma.order.findMany({
-[7m  [0m [91m                ~~~~~~[0m
-[96msrc/repositories/dashboardRepository.ts[0m:[93m26[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'prisma' does not exist on type 'DashboardRepository'.
-
-[7m26[0m     return this.prisma.orderItem.findMany({
-[7m  [0m [91m                ~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/dashboardRepository.ts[0m:[93m11[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'prisma' does not exist on type 'DashboardRepository'.
-
-[7m11[0m     return this.prisma.order.findMany({
-[7m  [0m [91m                ~~~~~~[0m
-[96msrc/repositories/dashboardRepository.ts[0m:[93m26[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'prisma' does not exist on type 'DashboardRepository'.
-
-[7m26[0m     return this.prisma.orderItem.findMany({
-[7m  [0m [91m                ~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T17:25:11.460Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
-
-[7m15[0m } from "lucide-react";
-[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
-
-[7m15[0m } from "lucide-react";
-[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T17:25:41.867Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
-
-[7m15[0m } from "lucide-react";
-[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
-
-[7m15[0m } from "lucide-react";
-[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T17:25:56.375Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
-
-[7m15[0m } from "lucide-react";
-[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
-
-[7m15[0m } from "lucide-react";
-[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T18:22:03.520Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/routes/orderRoutes.ts[0m:[93m3[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '../serviceservice' or its corresponding type declarations.
-
-[7m3[0m import OrderService from "../serviceservice";
-[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/routes/orderRoutes.ts[0m:[93m3[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '../serviceservice' or its corresponding type declarations.
-
-[7m3[0m import OrderService from "../serviceservice";
-[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/trackingDetailRoutes.ts:5:1)
