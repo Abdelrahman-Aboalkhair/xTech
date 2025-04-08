@@ -93,6 +93,10 @@ class CartRepository {
       include: { orderItems: true },
     });
   }
+
+  async clearCart(cartId: string) {
+    return prisma.cartItem.deleteMany({ where: { cartId } });
+  }
 }
 
 export default CartRepository;

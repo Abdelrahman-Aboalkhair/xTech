@@ -1067,3 +1067,20 @@ Invalid `prisma.cartItem.delete()` invocation in
   45 async removeCartItem(itemId: string) {
 → 46   return prisma.cartItem.delete(
 An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+[2025-04-08T10:30:32.677Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T10:53:06.226Z] [31MERROR[39M: No userId in session metadata
+[2025-04-08T11:04:35.201Z] [31MERROR[39M: Stripe: Argument "session" must be a string, but got: undefined (on API request to `GET /v1/checkout/sessions/{session}`)
+[2025-04-08T11:17:46.449Z] [31MERROR[39M: No userId in session metadata
+[2025-04-08T11:21:18.926Z] [31MERROR[39M: No userId in payment_intent metadata
+[2025-04-08T13:57:08.532Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-08T13:57:08.583Z] [31MERROR[39M: Refresh token not found
+[2025-04-08T13:57:18.159Z] [31MERROR[39M: 
+Invalid `prisma.cartItem.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/cartRepository.ts:35:28
+
+  32   productId: string;
+  33   quantity: number;
+  34 }) {
+→ 35   return prisma.cartItem.create(
+Unique constraint failed on the fields: (`cartId`,`productId`)
+[2025-04-08T14:00:06.111Z] [31MERROR[39M: No userId in payment_intent metadata

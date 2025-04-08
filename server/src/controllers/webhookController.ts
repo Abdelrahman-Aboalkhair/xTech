@@ -25,7 +25,6 @@ class WebhookController {
     if (event.type === "checkout.session.completed") {
       console.log("Checkout Session Completed Event:", event.data.object);
       const session = event.data.object;
-      console.log("session: ", session);
       const order = await this.webhookService.handleCheckoutCompletion(session);
       console.log("Order created:", order);
     }

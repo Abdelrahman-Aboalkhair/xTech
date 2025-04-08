@@ -1,14 +1,36 @@
-[2025-04-08T09:04:16.740Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/routes/authRoutes.ts[0m:[93m13[0m:[93m43[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/cartUtils' or its corresponding type declarations.
+[2025-04-08T10:51:42.465Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/webhookRoutes.ts[0m:[93m10[0m:[93m24[0m - [91merror[0m[90m TS2554: [0mExpected 3 arguments, but got 2.
 
-[7m13[0m import { handleCartMergeAfterLogin } from "../utils/cartUtils";
-[7m  [0m [91m                                          ~~~~~~~~~~~~~~~~~~~~[0m
+[7m10[0m const webhookService = new WebhookService(
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~[0m
+[7m11[0m   checkoutRepository,
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~[0m
+[7m12[0m   webhookRepository
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~[0m
+[7m13[0m );
+[7m  [0m [91m~[0m
+
+  [96msrc/services/webhookService.ts[0m:[93m11[0m:[93m5[0m
+    [7m11[0m     private cartRepository: CartRepository
+    [7m  [0m [96m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'cartRepository' was not provided.
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/routes/authRoutes.ts[0m:[93m13[0m:[93m43[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/cartUtils' or its corresponding type declarations.
+[96msrc/routes/webhookRoutes.ts[0m:[93m10[0m:[93m24[0m - [91merror[0m[90m TS2554: [0mExpected 3 arguments, but got 2.
 
-[7m13[0m import { handleCartMergeAfterLogin } from "../utils/cartUtils";
-[7m  [0m [91m                                          ~~~~~~~~~~~~~~~~~~~~[0m
+[7m10[0m const webhookService = new WebhookService(
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~[0m
+[7m11[0m   checkoutRepository,
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~[0m
+[7m12[0m   webhookRepository
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~[0m
+[7m13[0m );
+[7m  [0m [91m~[0m
+
+  [96msrc/services/webhookService.ts[0m:[93m11[0m:[93m5[0m
+    [7m11[0m     private cartRepository: CartRepository
+    [7m  [0m [96m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'cartRepository' was not provided.
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -20,17 +42,173 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T09:04:47.121Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/controllers/authController.ts[0m:[93m10[0m:[93m43[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/cartUtils' or its corresponding type declarations.
+[2025-04-08T10:52:34.881Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/webhookRoutes.ts[0m:[93m15[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'cartRe'.
 
-[7m10[0m import { handleCartMergeAfterLogin } from "../utils/cartUtils";
-[7m  [0m [91m                                          ~~~~~~~~~~~~~~~~~~~~[0m
+[7m15[0m   cartRe
+[7m  [0m [91m  ~~~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/controllers/authController.ts[0m:[93m10[0m:[93m43[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/cartUtils' or its corresponding type declarations.
+[96msrc/routes/webhookRoutes.ts[0m:[93m15[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'cartRe'.
 
-[7m10[0m import { handleCartMergeAfterLogin } from "../utils/cartUtils";
-[7m  [0m [91m                                          ~~~~~~~~~~~~~~~~~~~~[0m
+[7m15[0m   cartRe
+[7m  [0m [91m  ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-08T10:52:37.989Z] [31MERROR[39M: uncaughtException: Cannot find module 'repositories/cartRepository'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+Error: Cannot find module 'repositories/cartRepository'
+Require stack:
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
+- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
+    at Function._load (node:internal/modules/cjs/loader:1204:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts:6:1)
+[2025-04-08T11:14:07.112Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/checkoutService.ts[0m:[93m34[0m:[93m52[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(params?: SessionCreateParams | undefined, options?: RequestOptions | undefined): Promise<Response<Session>>', gave the following error.
+    Type '{ userId: string; }' is not assignable to type 'string | number | null'.
+  Overload 2 of 2, '(options?: RequestOptions | undefined): Promise<Response<Session>>', gave the following error.
+    Object literal may only specify known properties, and 'payment_method_types' does not exist in type 'RequestOptions'.
+
+[7m34[0m     const session = await stripe.checkout.sessions.create({
+[7m  [0m [91m                                                   ~~~~~~[0m
+
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/checkoutService.ts[0m:[93m34[0m:[93m52[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(params?: SessionCreateParams | undefined, options?: RequestOptions | undefined): Promise<Response<Session>>', gave the following error.
+    Type '{ userId: string; }' is not assignable to type 'string | number | null'.
+  Overload 2 of 2, '(options?: RequestOptions | undefined): Promise<Response<Session>>', gave the following error.
+    Object literal may only specify known properties, and 'payment_method_types' does not exist in type 'RequestOptions'.
+
+[7m34[0m     const session = await stripe.checkout.sessions.create({
+[7m  [0m [91m                                                   ~~~~~~[0m
+
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-08T12:17:37.373Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+[7m17[0m     const userId: string = fullSession?.metadata?.userId;
+[7m  [0m [91m          ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+[7m17[0m     const userId: string = fullSession?.metadata?.userId;
+[7m  [0m [91m          ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-08T12:17:46.308Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'Metadata | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+
+[7m17[0m     const userId: string = fullSession?.metadata;
+[7m  [0m [91m          ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'Metadata | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+
+[7m17[0m     const userId: string = fullSession?.metadata;
+[7m  [0m [91m          ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-08T12:18:02.772Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/webhookController.ts[0m:[93m31[0m:[93m47[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m31[0m       const order = await this.webhookService.handleCheckoutCompletion(session);
+[7m  [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/services/webhookService.ts[0m:[93m14[0m:[93m50[0m
+    [7m14[0m   async handleCheckoutCompletion(userId: string, session: any) {
+    [7m  [0m [96m                                                 ~~~~~~~~~~~~[0m
+    An argument for 'session' was not provided.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/webhookController.ts[0m:[93m31[0m:[93m47[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m31[0m       const order = await this.webhookService.handleCheckoutCompletion(session);
+[7m  [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/services/webhookService.ts[0m:[93m14[0m:[93m50[0m
+    [7m14[0m   async handleCheckoutCompletion(userId: string, session: any) {
+    [7m  [0m [96m                                                 ~~~~~~~~~~~~[0m
+    An argument for 'session' was not provided.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-08T14:04:38.504Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+[7m17[0m     const userId: string = fullSession?.metadata?.userId;
+[7m  [0m [91m          ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+[7m17[0m     const userId: string = fullSession?.metadata?.userId;
+[7m  [0m [91m          ~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)

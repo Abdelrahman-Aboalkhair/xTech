@@ -29,7 +29,12 @@ import bodyParser = require("body-parser");
 dotenv.config();
 
 const app = express();
-app.use("/api/v1/webhook", webhookRoutes);
+
+app.use(
+  "/api/v1/webhook",
+  bodyParser.raw({ type: "application/json" }),
+  webhookRoutes
+);
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -42,7 +47,7 @@ app.use(
     store: new RedisStore({ client: redisClient }),
     secret: process.env.SESSION_SECRET!,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
       secure: process.env.NODE_ENV === "production",
       maxAge: 1000 * 60 * 60 * 24 * 7,

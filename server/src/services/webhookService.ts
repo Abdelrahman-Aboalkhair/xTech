@@ -2,21 +2,26 @@ import AppError from "../utils/AppError";
 import CheckoutRepository from "../repositories/checkoutRepository";
 import WebhookRepository from "../repositories/webhookRepository";
 import stripe from "../config/stripe";
+import CartRepository from "../repositories/cartRepository";
 
 class WebhookService {
   constructor(
     private checkoutRepository: CheckoutRepository,
-    private webhookRepository: WebhookRepository
+    private webhookRepository: WebhookRepository,
+    private cartRepository: CartRepository
   ) {}
 
   async handleCheckoutCompletion(session: any) {
     const fullSession = await stripe.checkout.sessions.retrieve(session.id);
     console.log("full session: ", fullSession);
-    const { userId }: any = fullSession.metadata;
-    console.log("session metadata: ", session.metadata);
-    if (!userId) throw new AppError(400, "No userId in session metadata");
+    const userId = fullSession?.metadata?.userId;
 
-    const cart = await this.checkoutRepository.findCartByUserId(userId);
+    if (!userId) {
+      throw new AppError(400, "No userId in payment_intent metadata");
+    }
+    console.log("session metadata: ", session.metadata);
+
+    const cart = await this.cartRepository.getCartByUserId(userId);
     if (!cart || !cart.cartItems.length) {
       throw new AppError(400, "Cart is empty or not found");
     }
@@ -37,7 +42,7 @@ class WebhookService {
       })),
     });
 
-    await this.checkoutRepository.deleteCartItemsByCartId(cart.id);
+    await this.cartRepository.clearCart(userId);
     await this.webhookRepository.logWebhookEvent(
       "checkout.session.completed",
       session
