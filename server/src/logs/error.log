@@ -1084,3 +1084,40 @@ Invalid `prisma.cartItem.create()` invocation in
 → 35   return prisma.cartItem.create(
 Unique constraint failed on the fields: (`cartId`,`productId`)
 [2025-04-08T14:00:06.111Z] [31MERROR[39M: No userId in payment_intent metadata
+[2025-04-08T14:31:27.301Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T14:36:15.930Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:40:27
+
+  37     : {}),
+  38 };
+  39 
+→ 40 return prisma.product.findMany(
+The column `Product.ratings` does not exist in the current database.
+[2025-04-08T14:36:15.937Z] [31MERROR[39M: 
+Invalid `prisma.cart.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/cartRepository.ts:5:24
+
+  2 
+  3 class CartRepository {
+  4   async getCartByUserId(userId: string) {
+→ 5     return prisma.cart.findUnique(
+The column `Product.ratings` does not exist in the current database.
+[2025-04-08T14:36:23.483Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:40:27
+
+  37     : {}),
+  38 };
+  39 
+→ 40 return prisma.product.findMany(
+The column `Product.ratings` does not exist in the current database.
+[2025-04-08T14:36:23.486Z] [31MERROR[39M: 
+Invalid `prisma.cart.findUnique()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/cartRepository.ts:5:24
+
+  2 
+  3 class CartRepository {
+  4   async getCartByUserId(userId: string) {
+→ 5     return prisma.cart.findUnique(
+The column `Product.ratings` does not exist in the current database.

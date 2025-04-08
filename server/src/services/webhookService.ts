@@ -33,6 +33,25 @@ class WebhookService {
       0
     );
 
+    const payment = await this.checkoutRepository.createPayment({
+      userId,
+      method: fullSession.payment_method_types[0],
+      amount,
+    });
+
+    let address;
+    const customerAddress = fullSession.customer_details?.address;
+    if (customerAddress) {
+      address = await this.checkoutRepository.createAddress({
+        userId,
+        city: customerAddress.city || "N/A",
+        state: customerAddress.state || "N/A",
+        country: customerAddress.country || "N/A",
+        zip: customerAddress.postal_code || "N/A",
+        street: customerAddress.line1 || "N/A",
+      });
+    }
+
     const order = await this.checkoutRepository.createOrder({
       userId,
       amount,
@@ -42,13 +61,17 @@ class WebhookService {
       })),
     });
 
+    const tracking = await this.checkoutRepository.createTrackingDetail({
+      orderId: order.id,
+    });
+
     await this.cartRepository.clearCart(userId);
     await this.webhookRepository.logWebhookEvent(
       "checkout.session.completed",
       session
     );
 
-    return order;
+    return { order, payment, tracking, address: address || null };
   }
 }
 

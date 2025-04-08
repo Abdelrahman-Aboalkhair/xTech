@@ -20,70 +20,70 @@ enum ORDER_STATUS {
 }
 
 model User {
-  id                    String    @id @default(uuid())
-  googleId              String?   @unique
-  twitterId             String?   @unique
-  facebookId            String?   @unique
-  email                 String    @unique
-  password              String?
-  name                  String
-  avatar                String?
+  id                            String    @id @default(uuid())
+  googleId                      String?   // Removed @unique to avoid nullable unique constraint issues
+  twitterId                     String?   // Same as above
+  facebookId                    String?   // Same as above
+  email                         String    @unique
+  password                      String?
+  name                          String
+  avatar                        String?
 
-  emailVerified         Boolean
-  emailVerificationToken String?
+  emailVerified                 Boolean
+  emailVerificationToken        String?
   emailVerificationTokenExpiresAt DateTime?
-  resetPasswordToken    String?
-  resetPasswordTokenExpiresAt DateTime?
+  resetPasswordToken            String?
+  resetPasswordTokenExpiresAt   DateTime?
 
-  role                  ROLE      @default(USER)
-  orders                Order[]
-  payments              Payment[]
-  addresses             Address[]
-  cart                  Cart?
+  role                          ROLE      @default(USER)
+  orders                        Order[]
+  payments                      Payment[]
+  addresses                     Address[]
+  cart                          Cart?
 
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
+  createdAt                     DateTime  @default(now())
+  updatedAt                     DateTime  @updatedAt
 }
 
-
 model Product {
-  id           String    @id @default(uuid()) 
-  name         String
-  description  String?
-  price        Float
-  discount     Float
-  slug         String    @unique
-  images       String[]
-  stock        Int
-  salesCount   Int @default(0)
+  id            String    @id @default(uuid()) 
+  name          String
+  description   String?
+  price         Float
+  discount      Float
+  slug          String    @unique
+  images        String[]
+  stock         Int
+  salesCount    Int       @default(0)
 
-  bestSeller   Boolean @default(false)
-  featured     Boolean @default(false)
-  promotional  Boolean @default(false)  
-  newArrival   Boolean @default(false)  
-  ratings      Float  @default(0)
-  averageRating Float @default(0)
+  bestSeller    Boolean   @default(false)
+  featured      Boolean   @default(false)
+  promotional   Boolean   @default(false)  
+  newArrival    Boolean   @default(false)  
+  averageRating Float     @default(0) // Removed redundant `ratings` field
 
-  category     Category? @relation(fields: [categoryId], references: [id]) 
-  categoryId   String?
+  category      Category? @relation(fields: [categoryId], references: [id]) 
+  categoryId    String?
 
-  orderItems   OrderItem[]
-  cartItems    CartItem[]
+  orderItems    OrderItem[]
+  cartItems     CartItem[]
 
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 model Order {
   id          String    @id @default(uuid()) 
   amount      Float
   orderDate   DateTime  @default(now())
-  
+
   user        User      @relation(fields: [userId], references: [id]) 
   userId      String    
 
   orderItems  OrderItem[]
   tracking    TrackingDetail?
+  payment     Payment?  @relation("OrderPayment")
+  address     Address?  @relation("OrderAddress")
   status      ORDER_STATUS @default(PENDING)
 
   createdAt   DateTime  @default(now())
@@ -106,8 +106,12 @@ model Payment {
   id        String  @id @default(uuid()) 
   method    String
   amount    Float
+
   user      User    @relation(fields: [userId], references: [id]) 
   userId    String  
+
+  order     Order?  @relation("OrderPayment", fields: [orderId], references: [id]) 
+  orderId   String? @unique
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -118,8 +122,14 @@ model Address {
   city      String
   state     String
   country   String
+  zip       String
+  street    String
+
   user      User    @relation(fields: [userId], references: [id])
   userId    String  
+
+  order     Order?  @relation("OrderAddress", fields: [orderId], references: [id])
+  orderId   String? @unique
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -127,7 +137,8 @@ model Address {
 
 model TrackingDetail {
   id        String  @id @default(uuid()) 
-  status    String
+  status    String  @default("PENDING")  
+
   order     Order   @relation(fields: [orderId], references: [id])
   orderId   String  @unique 
 
@@ -136,7 +147,7 @@ model TrackingDetail {
 }
 
 model WebhookLog {
-  id       String   @id @default(cuid())
+  id        String   @id @default(cuid())
   eventType String
   payload   Json
   createdAt DateTime @default(now())
@@ -144,21 +155,26 @@ model WebhookLog {
 
 model Cart {
   id        String   @id  @default(uuid())
+
   user      User?     @relation(fields: [userId], references: [id]) 
   userId    String?   @unique
+
   sessionId String?   @unique
   cartItems CartItem[]
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  
 }
 
 model CartItem {
   id        String   @id @default(uuid()) 
+
   cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
   cartId    String   
+
   product   Product  @relation(fields: [productId], references: [id])
   productId String
+
   quantity  Int      @default(1)
 
   createdAt DateTime  @default(now())
@@ -168,10 +184,11 @@ model CartItem {
 }
 
 model Category {
-  id        String  @id @default(uuid()) 
-  slug      String  @unique
+  id        String   @id @default(uuid()) 
+  slug      String   @unique
   name      String
   products  Product[] 
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }

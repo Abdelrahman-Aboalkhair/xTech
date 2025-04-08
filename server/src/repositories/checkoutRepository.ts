@@ -25,6 +25,48 @@ class CheckoutRepository {
     });
   }
 
+  async createPayment(data: {
+    userId: string;
+    method: string;
+    amount: number;
+  }) {
+    return prisma.payment.create({
+      data: {
+        userId: data.userId,
+        method: data.method,
+        amount: data.amount,
+      },
+    });
+  }
+
+  async createAddress(data: {
+    userId: string;
+    street: string;
+    city: string;
+    state: string;
+    country: string;
+    zip: string;
+  }) {
+    return prisma.address.create({
+      data: {
+        userId: data.userId,
+        city: data.city,
+        state: data.state,
+        street: data.street,
+        country: data.country,
+        zip: data.zip,
+      },
+    });
+  }
+
+  async createTrackingDetail(data: { orderId: string }) {
+    return prisma.trackingDetail.create({
+      data: {
+        orderId: data.orderId,
+      },
+    });
+  }
+
   async deleteCartItemsByCartId(cartId: string) {
     return prisma.cartItem.deleteMany({ where: { cartId } });
   }
