@@ -10,14 +10,20 @@ const useQueryParams = () => {
   const updateQuery = useCallback(
     (newParams: Record<string, string | number | boolean | null>) => {
       const query = Object.fromEntries(searchParams.entries());
-      const updatedQuery = { ...query, ...newParams };
-      const params = new URLSearchParams();
+      const updatedQuery = { ...query };
 
-      Object.keys(updatedQuery).forEach((key) => {
-        const value = updatedQuery[key];
-        if (value !== false && value !== null && value !== "") {
-          params.set(key, String(value));
+      Object.keys(newParams).forEach((key) => {
+        const value = newParams[key];
+        if (value === null || value === false || value === "") {
+          delete updatedQuery[key];
+        } else {
+          updatedQuery[key] = String(value);
         }
+      });
+
+      const params = new URLSearchParams();
+      Object.keys(updatedQuery).forEach((key) => {
+        params.set(key, updatedQuery[key]);
       });
 
       const search = params.toString();

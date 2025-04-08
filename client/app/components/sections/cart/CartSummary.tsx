@@ -1,5 +1,7 @@
 import { useInitiateCheckoutMutation } from "@/app/store/apis/CheckoutApi";
 import React, { useMemo } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import useToast from "@/app/hooks/ui/useToast";
 
 interface CartSummaryProps {
   subtotal: number;
@@ -14,6 +16,11 @@ const CartSummary: React.FC<CartSummaryProps> = ({
   currency = "$",
   totalItems,
 }) => {
+  const { showToast } = useToast();
+  const stripePromise = loadStripe(
+    "pk_test_51R9gs72KGvEXtMtXXTm7UscmmHYsvk9j3ktaM8vxRb3evNJgG1dpD05YWACweIfcPtpCgOIs4HkpGrTCKE1dZD0p00sLC6iIBg"
+  );
+
   const [initiateCheckout, { isLoading, error }] =
     useInitiateCheckoutMutation();
   if (error) {
@@ -28,7 +35,18 @@ const CartSummary: React.FC<CartSummaryProps> = ({
 
   const handleInitiateCheckout = async () => {
     try {
-      await initiateCheckout({}).unwrap();
+      const res = await initiateCheckout({}).unwrap();
+      console.log("res => ", res);
+
+      const stripe = await stripePromise;
+      const result = await stripe?.redirectToCheckout({
+        sessionId: res.sessionId,
+      });
+
+      if (result?.error) {
+        showToast(result?.error?.message, "error");
+        console.error(result.error.message);
+      }
     } catch (error) {
       console.log("Error checking out: ", error);
     }

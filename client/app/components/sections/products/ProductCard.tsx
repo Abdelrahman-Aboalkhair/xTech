@@ -58,7 +58,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <Heart size={20} className="text-gray-600" />
         </motion.button>
         <Link
-          href={`/products/${product.slug}`}
+          href={`/product/${product.slug}`}
           className="bg-white/70 rounded-full p-2 hover:bg-white/90 transition"
         >
           <Eye size={20} className="text-gray-600" />
@@ -79,9 +79,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="flex items-center justify-between">
           <div>
             <span className="text-red-500 font-semibold mr-2">
-              ${product.discount}
+              ${product.price}
             </span>
-            <span className="text-gray-400 line-through">${product.price}</span>
+            <span className="text-gray-400 line-through">
+              ${product.discount + product.price}
+            </span>
           </div>
 
           <div className="flex items-center">

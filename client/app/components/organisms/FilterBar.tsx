@@ -1,34 +1,44 @@
 "use client";
 import { useGetAllCategoriesQuery } from "@/app/store/apis/CategoryApi";
 import CheckBox from "../atoms/CheckBox";
-import { Filter, SortAsc } from "lucide-react";
-import useQueryParams from "@/app/hooks/network/useQueryParams";
+import RadioButton from "../atoms/RadioButton";
+import { Filter, SortAsc, RefreshCcw } from "lucide-react"; // Added RefreshCcw for the clear buttons
 import { useForm } from "react-hook-form";
+import { useFilterHandlers } from "@/app/hooks/useFilterHandlers";
 
 const FilterBar: React.FC = () => {
   const { control } = useForm();
   const { data } = useGetAllCategoriesQuery({});
-  const { updateQuery } = useQueryParams();
+
   const sortOptions = [
-    { label: "Price: High to Low", id: 1 },
-    { label: "Newest", id: 2 },
-    { label: "Popularity", id: 3 },
+    { label: "Price: Low to High", value: "price:asc", id: 1, type: "price" },
+    { label: "Price: High to Low", value: "price:desc", id: 2, type: "price" },
+    { label: "Newest", value: "createdAt:desc", id: 3, type: "createdAt" },
+    { label: "Oldest", value: "createdAt:asc", id: 4, type: "createdAt" },
   ];
 
-  // This function will update the query string based on checkbox selections
-  const handleFilterChange = (name: string, value: boolean) => {
-    if (value) {
-      // If the checkbox is checked, include the category in the query string
-      updateQuery({ category: name });
-    } else {
-      // If the checkbox is unchecked, remove the category from the query string
-      updateQuery({ category: undefined });
-    }
+  const {
+    query,
+    handleFilterChange,
+    handleSortChange,
+    resetFilters,
+    resetSorting,
+  } = useFilterHandlers(data?.categories || [], sortOptions);
+
+  // Reset Filters
+  const handleClearFilters = () => {
+    resetFilters();
+  };
+
+  // Reset Sorting
+  const handleClearSorting = () => {
+    resetSorting();
   };
 
   return (
     <aside className="w-[16%] min-h-screen p-6 border-r border-gray-200">
       <div className="space-y-6">
+        {/* Filters */}
         <div className="border-gray-200">
           <h3 className="text-md font-semibold text-gray-700 mb-6 flex justify-start items-center gap-1">
             <Filter size={19} /> Filters
@@ -47,32 +57,68 @@ const FilterBar: React.FC = () => {
             label="Featured"
             onChangeExtra={handleFilterChange}
           />
-          {data?.categories.map((category) => (
-            <div key={category.id} className="pb-[20px]">
+          {data?.categories.map((category, index) => (
+            <div
+              key={category.id}
+              className={
+                index === data.categories.length - 1 ? "" : "pb-[20px]"
+              }
+            >
               <CheckBox
                 control={control}
-                name={category.name}
+                name={category.slug}
                 label={category.name}
                 onChangeExtra={handleFilterChange}
               />
             </div>
           ))}
         </div>
+
+        {/* Clear Filters Button */}
+        <div className="flex justify-between items-center mt-4">
+          <button
+            className="text-red-500 flex items-center gap-2"
+            onClick={handleClearFilters}
+          >
+            <RefreshCcw size={16} /> Clear Filters
+          </button>
+        </div>
+
+        {/* Divider */}
         <div className="border border-gray-200 w-[16.4rem]" />
+
+        {/* Sorting */}
         <div>
           <h3 className="text-md font-semibold text-gray-700 mb-6 flex items-center justify-start gap-1">
             <SortAsc size={22} /> Sorting
           </h3>
-          {sortOptions.map((opt) => (
-            <div key={opt.id} className="pb-[20px]">
-              <CheckBox
+          {sortOptions.map((opt, index) => (
+            <div
+              key={opt.id}
+              className={index === sortOptions.length - 1 ? "" : "pb-[20px]"}
+            >
+              <RadioButton
                 control={control}
-                name={opt.label}
+                name="sort"
+                value={opt.value}
+                currentValue={
+                  query[opt.type === "price" ? "priceSort" : "createdAtSort"]
+                }
                 label={opt.label}
-                onChangeExtra={handleFilterChange}
+                onChangeExtra={() => handleSortChange(opt.value, opt.type)}
               />
             </div>
           ))}
+        </div>
+
+        {/* Clear Sorting Button */}
+        <div className="flex justify-between items-center mt-4">
+          <button
+            className="text-red-500 flex items-center gap-2"
+            onClick={handleClearSorting}
+          >
+            <RefreshCcw size={16} /> Clear Sorting
+          </button>
         </div>
       </div>
     </aside>

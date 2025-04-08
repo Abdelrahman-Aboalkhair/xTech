@@ -1,53 +1,37 @@
 import { apiSlice } from "../slices/ApiSlice";
 
 export const productApi = apiSlice.injectEndpoints({
+  overrideExisting: true,
   endpoints: (builder) => ({
     getAllProducts: builder.query({
       query: (params) => {
-        let queryString = "";
+        console.log("incoming params: ", params);
+        const queryString = new URLSearchParams();
 
         if (params) {
           const {
             searchQuery,
             sort,
             limit,
-            categories,
+            category, // category is now a string, not an array
             page,
             featured,
-            bestSelling,
+            bestselling,
           } = params;
 
-          // Handle search query
-          if (searchQuery) queryString += `searchQuery=${searchQuery}&`;
-
-          // Handle sort option
-          if (sort) queryString += `sort=${sort}&`;
-
-          // Handle limit for pagination
-          if (limit) queryString += `limit=${limit}&`;
-
-          // Handle category filtering, create query string like ?category=electronics
-          if (categories && categories.length > 0) {
-            queryString += `category=${categories.join(",")}&`;
-          }
-
-          // Handle pagination
-          if (page) queryString += `page=${page}&`;
-
-          // Handle boolean flags (e.g., featured, bestSelling)
-          if (featured) queryString += `featured=true&`;
-          if (bestSelling) queryString += `bestSelling=true&`;
-
-          // Remove the trailing "&" from the query string
-          if (queryString.endsWith("&")) {
-            queryString = queryString.slice(0, -1);
-          }
+          if (searchQuery) queryString.set("searchQuery", searchQuery);
+          if (sort) queryString.set("sort", sort);
+          if (limit) queryString.set("limit", limit);
+          if (category) queryString.set("category", category); // now handled as a string
+          if (page) queryString.set("page", page);
+          if (featured) queryString.set("featured", "true");
+          if (bestselling) queryString.set("bestselling", "true");
         }
 
-        console.log("queryString: ", queryString);
+        console.log("queryString: ", queryString.toString());
 
         return {
-          url: `/products?${queryString}`,
+          url: `/products?${queryString.toString()}`,
           method: "GET",
         };
       },

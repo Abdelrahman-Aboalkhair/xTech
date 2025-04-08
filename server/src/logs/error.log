@@ -263,3 +263,758 @@ Unknown argument `twitterId`. Available options are marked with ?.
 [2025-04-07T03:31:54.976Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-07T03:51:13.519Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-07T04:27:10.038Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-07T08:31:42.670Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-07T08:31:42.867Z] [31MERROR[39M: Refresh token not found
+[2025-04-07T08:31:43.096Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-07T08:31:43.326Z] [31MERROR[39M: Refresh token not found
+[2025-04-07T08:31:43.404Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-07T08:31:43.614Z] [31MERROR[39M: Refresh token not found
+[2025-04-07T08:31:43.752Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-07T08:31:43.938Z] [31MERROR[39M: Refresh token not found
+[2025-04-07T08:31:44.074Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-07T08:31:44.334Z] [31MERROR[39M: Refresh token not found
+[2025-04-07T08:31:44.447Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-07T08:31:44.687Z] [31MERROR[39M: Refresh token not found
+[2025-04-07T08:31:44.803Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-07T08:31:45.024Z] [31MERROR[39M: Refresh token not found
+[2025-04-07T10:25:58.883Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-07T10:25:59.112Z] [31MERROR[39M: Refresh token not found
+[2025-04-07T10:25:59.290Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-07T10:25:59.570Z] [31MERROR[39M: Refresh token not found
+[2025-04-07T10:29:07.095Z] [31MERROR[39M: Cannot convert undefined or null to object
+[2025-04-07T10:34:00.390Z] [31MERROR[39M: Cannot read properties of undefined (reading 'cart')
+[2025-04-07T10:35:18.321Z] [31MERROR[39M: Cart is empty or not found
+[2025-04-07T10:35:18.891Z] [31MERROR[39M: Cart is empty or not found
+[2025-04-07T10:46:53.506Z] [31MERROR[39M: Cart is empty or not found
+[2025-04-07T10:47:03.820Z] [31MERROR[39M: Cart is empty or not found
+[2025-04-07T10:47:10.382Z] [31MERROR[39M: Cart is empty or not found
+[2025-04-07T10:47:22.810Z] [31MERROR[39M: Cart is empty or not found
+[2025-04-07T10:47:41.485Z] [31MERROR[39M: Cart is empty or not found
+[2025-04-07T10:47:55.106Z] [31MERROR[39M: Cart is empty or not found
+[2025-04-07T12:13:21.266Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-07T12:13:21.413Z] [31MERROR[39M: Refresh token not found
+[2025-04-08T01:17:54.196Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-08T01:17:54.456Z] [31MERROR[39M: Refresh token not found
+[2025-04-08T01:17:54.669Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-08T01:17:54.940Z] [31MERROR[39M: Refresh token not found
+[2025-04-08T01:17:55.047Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-08T01:17:55.802Z] [31MERROR[39M: Refresh token not found
+[2025-04-08T01:30:59.782Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         featured: {
+           in: [
+           ~~
+             "true"
+           ],
+     ?     equals?: Boolean | BooleanFieldRefInput,
+     ?     not?: Boolean | NestedBoolFilter
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `not`? Available options are marked with ?.
+[2025-04-08T01:31:06.086Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         featured: {
+           in: [
+           ~~
+             "true"
+           ],
+     ?     equals?: Boolean | BooleanFieldRefInput,
+     ?     not?: Boolean | NestedBoolFilter
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `not`? Available options are marked with ?.
+[2025-04-08T01:31:27.917Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         featured: {
+           in: [
+           ~~
+             "true"
+           ],
+     ?     equals?: Boolean | BooleanFieldRefInput,
+     ?     not?: Boolean | NestedBoolFilter
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `not`? Available options are marked with ?.
+[2025-04-08T01:37:58.426Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         featured: {
+           in: [
+           ~~
+             "true"
+           ],
+     ?     equals?: Boolean | BooleanFieldRefInput,
+     ?     not?: Boolean | NestedBoolFilter
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `not`? Available options are marked with ?.
+[2025-04-08T01:38:35.813Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         category: {
+           in: [
+           ~~
+             "electronics"
+           ],
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         },
+         featured: {
+           in: [
+             "true"
+           ]
+         },
+         bestselling: {
+           in: [
+             "true"
+           ]
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `is`? Available options are marked with ?.
+[2025-04-08T01:38:35.820Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T01:38:36.007Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         category: {
+           in: [
+           ~~
+             "electronics"
+           ],
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         },
+         featured: {
+           in: [
+             "true"
+           ]
+         },
+         bestselling: {
+           in: [
+             "true"
+           ]
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `is`? Available options are marked with ?.
+[2025-04-08T01:38:36.142Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         category: {
+           in: [
+           ~~
+             "electronics"
+           ],
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         },
+         featured: {
+           in: [
+             "true"
+           ]
+         },
+         bestselling: {
+           in: [
+             "true"
+           ]
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `is`? Available options are marked with ?.
+[2025-04-08T01:38:36.351Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         category: {
+           in: [
+           ~~
+             "electronics"
+           ],
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         },
+         featured: {
+           in: [
+             "true"
+           ]
+         },
+         bestselling: {
+           in: [
+             "true"
+           ]
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `is`? Available options are marked with ?.
+[2025-04-08T01:38:36.675Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         category: {
+           in: [
+           ~~
+             "electronics"
+           ],
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         },
+         bestselling: {
+           in: [
+             "true"
+           ]
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `is`? Available options are marked with ?.
+[2025-04-08T01:38:41.675Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         category: {
+           in: [
+           ~~
+             "electronics"
+           ],
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `is`? Available options are marked with ?.
+[2025-04-08T01:38:44.899Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         category: {
+           in: [
+           ~~
+             "electronics"
+           ],
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         },
+         bestselling: {
+           in: [
+             "true"
+           ]
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `is`? Available options are marked with ?.
+[2025-04-08T01:41:10.951Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         category: {
+           in: [
+           ~~
+             "electronics"
+           ],
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `is`? Available options are marked with ?.
+[2025-04-08T01:45:05.618Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         category: {
+           in: [
+           ~~
+             "electronics"
+           ],
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `in`. Did you mean `is`? Available options are marked with ?.
+[2025-04-08T01:45:44.825Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:24:27
+
+  21 const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
+  22 
+  23 // Pass the final parameters to Prisma's `findMany`
+→ 24 return prisma.product.findMany({
+       where: {
+         category: {
+           contains: "electronics",
+           ~~~~~~~~
+           mode: "insensitive",
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `contains`. Available options are marked with ?.
+[2025-04-08T01:50:31.992Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:40:27
+
+  37     : {}),
+  38 };
+  39 
+→ 40 return prisma.product.findMany({
+       where: {
+         category: {
+           contains: "electronics",
+           ~~~~~~~~
+           mode: "insensitive",
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `contains`. Available options are marked with ?.
+[2025-04-08T01:50:54.175Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:40:27
+
+  37     : {}),
+  38 };
+  39 
+→ 40 return prisma.product.findMany({
+       where: {
+         category: {
+           contains: "electronics",
+           ~~~~~~~~
+           mode: "insensitive",
+     ?     is?: CategoryWhereInput | Null,
+     ?     isNot?: CategoryWhereInput | Null
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `contains`. Available options are marked with ?.
+[2025-04-08T02:00:27.924Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:41:27
+
+  38     : {}),
+  39 };
+  40 
+→ 41 return prisma.product.findMany({
+       where: {
+         bestselling: {
+         ~~~~~~~~~~~
+           contains: "true",
+           mode: "insensitive"
+         },
+     ?   AND?: ProductWhereInput | ProductWhereInput[],
+     ?   OR?: ProductWhereInput[],
+     ?   NOT?: ProductWhereInput | ProductWhereInput[],
+     ?   id?: StringFilter | String,
+     ?   name?: StringFilter | String,
+     ?   description?: StringNullableFilter | String | Null,
+     ?   price?: FloatFilter | Float,
+     ?   discount?: FloatFilter | Float,
+     ?   slug?: StringFilter | String,
+     ?   images?: StringNullableListFilter,
+     ?   stock?: IntFilter | Int,
+     ?   salesCount?: IntFilter | Int,
+     ?   bestSeller?: BoolFilter | Boolean,
+     ?   featured?: BoolFilter | Boolean,
+     ?   promotional?: BoolFilter | Boolean,
+     ?   newArrival?: BoolFilter | Boolean,
+     ?   ratings?: FloatFilter | Float,
+     ?   averageRating?: FloatFilter | Float,
+     ?   categoryId?: StringNullableFilter | String | Null,
+     ?   createdAt?: DateTimeFilter | DateTime,
+     ?   updatedAt?: DateTimeFilter | DateTime,
+     ?   category?: CategoryNullableScalarRelationFilter | CategoryWhereInput | Null,
+     ?   orderItems?: OrderItemListRelationFilter,
+     ?   cartItems?: CartItemListRelationFilter
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `bestselling`. Available options are marked with ?.
+[2025-04-08T02:00:40.647Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:41:27
+
+  38     : {}),
+  39 };
+  40 
+→ 41 return prisma.product.findMany({
+       where: {
+         bestselling: {
+         ~~~~~~~~~~~
+           contains: "true",
+           mode: "insensitive"
+         },
+     ?   AND?: ProductWhereInput | ProductWhereInput[],
+     ?   OR?: ProductWhereInput[],
+     ?   NOT?: ProductWhereInput | ProductWhereInput[],
+     ?   id?: StringFilter | String,
+     ?   name?: StringFilter | String,
+     ?   description?: StringNullableFilter | String | Null,
+     ?   price?: FloatFilter | Float,
+     ?   discount?: FloatFilter | Float,
+     ?   slug?: StringFilter | String,
+     ?   images?: StringNullableListFilter,
+     ?   stock?: IntFilter | Int,
+     ?   salesCount?: IntFilter | Int,
+     ?   bestSeller?: BoolFilter | Boolean,
+     ?   featured?: BoolFilter | Boolean,
+     ?   promotional?: BoolFilter | Boolean,
+     ?   newArrival?: BoolFilter | Boolean,
+     ?   ratings?: FloatFilter | Float,
+     ?   averageRating?: FloatFilter | Float,
+     ?   categoryId?: StringNullableFilter | String | Null,
+     ?   createdAt?: DateTimeFilter | DateTime,
+     ?   updatedAt?: DateTimeFilter | DateTime,
+     ?   category?: CategoryNullableScalarRelationFilter | CategoryWhereInput | Null,
+     ?   orderItems?: OrderItemListRelationFilter,
+     ?   cartItems?: CartItemListRelationFilter
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `bestselling`. Available options are marked with ?.
+[2025-04-08T02:00:50.578Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T02:04:02.232Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:41:27
+
+  38     : {}),
+  39 };
+  40 
+→ 41 return prisma.product.findMany({
+       where: {
+         featured: {
+           contains: "true",
+           ~~~~~~~~
+           mode: "insensitive",
+     ?     equals?: Boolean | BooleanFieldRefInput,
+     ?     not?: Boolean | NestedBoolFilter
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `contains`. Available options are marked with ?.
+[2025-04-08T02:07:51.030Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:41:27
+
+  38     : {}),
+  39 };
+  40 
+→ 41 return prisma.product.findMany({
+       where: {
+         bestseller: {
+         ~~~~~~~~~~
+           contains: "true",
+           mode: "insensitive"
+         },
+     ?   AND?: ProductWhereInput | ProductWhereInput[],
+     ?   OR?: ProductWhereInput[],
+     ?   NOT?: ProductWhereInput | ProductWhereInput[],
+     ?   id?: StringFilter | String,
+     ?   name?: StringFilter | String,
+     ?   description?: StringNullableFilter | String | Null,
+     ?   price?: FloatFilter | Float,
+     ?   discount?: FloatFilter | Float,
+     ?   slug?: StringFilter | String,
+     ?   images?: StringNullableListFilter,
+     ?   stock?: IntFilter | Int,
+     ?   salesCount?: IntFilter | Int,
+     ?   bestSeller?: BoolFilter | Boolean,
+     ?   featured?: BoolFilter | Boolean,
+     ?   promotional?: BoolFilter | Boolean,
+     ?   newArrival?: BoolFilter | Boolean,
+     ?   ratings?: FloatFilter | Float,
+     ?   averageRating?: FloatFilter | Float,
+     ?   categoryId?: StringNullableFilter | String | Null,
+     ?   createdAt?: DateTimeFilter | DateTime,
+     ?   updatedAt?: DateTimeFilter | DateTime,
+     ?   category?: CategoryNullableScalarRelationFilter | CategoryWhereInput | Null,
+     ?   orderItems?: OrderItemListRelationFilter,
+     ?   cartItems?: CartItemListRelationFilter
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `bestseller`. Did you mean `bestSeller`? Available options are marked with ?.
+[2025-04-08T02:12:01.637Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:41:27
+
+  38     : {}),
+  39 };
+  40 
+→ 41 return prisma.product.findMany({
+       where: {
+         featured: {
+           contains: "true",
+           ~~~~~~~~
+           mode: "insensitive",
+     ?     equals?: Boolean | BooleanFieldRefInput,
+     ?     not?: Boolean | NestedBoolFilter
+         }
+       },
+       orderBy: {
+         createdAt: "desc"
+       },
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `contains`. Available options are marked with ?.
+[2025-04-08T02:15:25.457Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:41:27
+
+  38     : {}),
+  39 };
+  40 
+→ 41 return prisma.product.findMany({
+       where: {},
+       orderBy: [
+         {
+           desc: "asc"
+         }
+       ],
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `desc`. Available options are marked with ?.
+[2025-04-08T02:15:29.910Z] [31MERROR[39M: 
+Invalid `prisma.product.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:41:27
+
+  38     : {}),
+  39 };
+  40 
+→ 41 return prisma.product.findMany({
+       where: {},
+       orderBy: [
+         {
+           asc: "asc"
+         }
+       ],
+       skip: 0,
+       take: 10,
+       select: undefined
+     })
+
+Unknown argument `asc`. Did you mean `id`? Available options are marked with ?.
+[2025-04-08T02:25:42.217Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T02:49:56.794Z] [31MERROR[39M: Invalid access token, please log in

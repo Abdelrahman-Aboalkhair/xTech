@@ -1,32 +1,56 @@
+import { Prisma } from "@prisma/client";
 import prisma from "../config/database";
 
 class ProductRepository {
   async findManyProducts(params: {
-    where?: Record<string, any>;
-    orderBy?: Record<string, any> | Record<string, any>[];
+    where?: Prisma.ProductWhereInput & { categorySlug?: string };
+    orderBy?:
+      | Prisma.ProductOrderByWithRelationInput
+      | Prisma.ProductOrderByWithRelationInput[];
     skip?: number;
     take?: number;
-    select?: Record<string, any>;
+    select?: Prisma.ProductSelect;
   }) {
-    const { where, orderBy, skip, take, select } = params;
+    const {
+      where = {},
+      orderBy = { createdAt: "desc" },
+      skip = 0,
+      take = 10,
+      select,
+    } = params;
 
-    // Ensure where is not undefined or null
-    const finalWhere = where || {}; // Default to an empty object if where is not provided
+    const { categorySlug, ...restWhere } = where;
 
-    // Ensure orderBy defaults to sorting by createdAt if not provided
-    const finalOrderBy = orderBy || { createdAt: "desc" }; // Default order by createdAt in descending order
+    const finalWhere: Prisma.ProductWhereInput = {
+      ...restWhere,
+      ...(categorySlug
+        ? {
+            category: {
+              is: {
+                slug: {
+                  equals: categorySlug,
+                  mode: "insensitive",
+                },
+              },
+            },
+          }
+        : {}),
+    };
 
-    // Ensure skip and take are set properly, default to pagination limits if not provided
-    const finalSkip = skip || 0; // Default to skip = 0 (no offset)
-    const finalTake = take || 10; // Default to take = 10 (limit to 10 products)
-
-    // Pass the final parameters to Prisma's `findMany`
     return prisma.product.findMany({
       where: finalWhere,
-      orderBy: finalOrderBy,
-      skip: finalSkip,
-      take: finalTake,
-      select, // If select is provided, it will be used to limit the returned fields
+      orderBy,
+      skip,
+      take,
+      select,
+    });
+  }
+
+  async countProducts(params: { where?: Prisma.ProductWhereInput }) {
+    const { where = {} } = params;
+
+    return prisma.product.count({
+      where,
     });
   }
 

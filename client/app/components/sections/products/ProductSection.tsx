@@ -4,6 +4,7 @@ import { useGetAllProductsQuery } from "@/app/store/apis/ProductApi";
 import ProductCard from "../products/ProductCard";
 import { Product } from "@/app/types/productTypes";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
+import PaginationComponent from "../../organisms/Pagination";
 
 interface ProductSectionProps {
   title: string;
@@ -20,7 +21,6 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   const { data, isLoading, isError } = useGetAllProductsQuery(query);
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
 
-  // Handle the case where no products are found
   const noProductsFound = data?.products.length === 0;
 
   return (
@@ -41,37 +41,39 @@ const ProductSection: React.FC<ProductSectionProps> = ({
         )}
       </div>
 
-      {/* Loading state */}
       {isLoading && (
         <div className="text-center text-gray-500">Loading products...</div>
       )}
 
-      {/* Error state */}
       {isError && (
         <div className="text-center text-red-500">
           An error occurred while loading products.
         </div>
       )}
 
-      {/* No products found */}
       {noProductsFound && (
         <div className="text-center text-gray-500">
           No products found. Please try adjusting your filters.
         </div>
       )}
 
-      {/* Display products if available */}
       {!isLoading && !isError && !noProductsFound && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {data?.products.map((product: Product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              hoveredProductId={hoveredProductId}
-              setHoveredProductId={setHoveredProductId}
-            />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {data?.products.map((product: Product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                hoveredProductId={hoveredProductId}
+                setHoveredProductId={setHoveredProductId}
+              />
+            ))}
+          </div>
+
+          {data?.totalPages && data?.totalPages > 1 && (
+            <PaginationComponent totalPages={data?.totalPages} />
+          )}
+        </>
       )}
     </div>
   );

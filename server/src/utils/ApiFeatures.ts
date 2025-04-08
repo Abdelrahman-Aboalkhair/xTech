@@ -8,36 +8,76 @@ class ApiFeatures {
   }
 
   filter() {
+    // Create a mutable copy of the query string and remove keys reserved for pagination, sorting, etc.
     const queryObj = { ...this.queryString };
     const excludedFields = ["page", "sort", "limit", "fields", "searchQuery"];
     excludedFields.forEach((el) => delete queryObj[el]);
 
-    const filters: any = {};
+    // Initialize the filters object that will become the Prisma "where" clause.
+    const filters: Record<string, any> = {};
 
-    // If there's a search query, apply it to relevant fields (e.g., product name, description, etc.)
+    // If there's a search query, filter the product name via a case-insensitive "contains" search.
     if (this.queryString.searchQuery) {
       filters.name = {
         contains: this.queryString.searchQuery,
         mode: "insensitive",
-      }; // Adjust field name based on your model
-    }
-
-    // If category is provided, apply it to the query filters
-    if (this.queryString.category) {
-      filters.category = {
-        equals: this.queryString.category, // Match exact category name
       };
     }
 
-    // Loop through other query parameters and handle them
+    // Explicitly handle category filtering by matching the category's slug.
+    if (this.queryString.category) {
+      filters.category = {
+        is: {
+          slug: {
+            equals: this.queryString.category,
+            mode: "insensitive",
+          },
+        },
+      };
+      delete queryObj["category"];
+    }
+
+    // Explicitly handle boolean flag filters so that we use equality instead of "contains".
+    if (this.queryString.bestselling) {
+      // "bestselling" query parameter is mapped to the "bestSeller" boolean field in Product.
+      filters.bestSeller =
+        this.queryString.bestselling.toLowerCase() === "true";
+      delete queryObj["bestselling"];
+    }
+    if (this.queryString.featured) {
+      filters.featured = this.queryString.featured.toLowerCase() === "true";
+      delete queryObj["featured"];
+    }
+    if (this.queryString.promotional) {
+      filters.promotional =
+        this.queryString.promotional.toLowerCase() === "true";
+      delete queryObj["promotional"];
+    }
+    if (this.queryString.newarrival) {
+      // Use "newarrival" in the query URL to map to the "newArrival" field.
+      filters.newArrival = this.queryString.newarrival.toLowerCase() === "true";
+      delete queryObj["newarrival"];
+    }
+
+    // For all other keys remaining in queryObj, create filters by checking if the field's value
+    // contains the query string value (or is included in a list if comma-delimited).
     for (const key in queryObj) {
       if (queryObj[key]) {
-        if (Array.isArray(queryObj[key])) {
-          filters[key] = { in: queryObj[key] };
-        } else if (typeof queryObj[key] === "string") {
-          filters[key] = { in: queryObj[key].split(",") };
-        } else {
-          filters[key] = { contains: queryObj[key], mode: "insensitive" };
+        const value = queryObj[key];
+        // When value is an array, use the "in" operator.
+        if (Array.isArray(value)) {
+          filters[key] = { in: value };
+        }
+        // When the value is a comma-separated string, split it and apply the "in" operator.
+        else if (typeof value === "string" && value.includes(",")) {
+          filters[key] = { in: value.split(",") };
+        }
+        // Otherwise, apply a case-insensitive "contains" filter.
+        else {
+          filters[key] = {
+            contains: value,
+            mode: "insensitive",
+          };
         }
       }
     }
@@ -48,14 +88,11 @@ class ApiFeatures {
 
   sort() {
     if (this.queryString.sort) {
-      const sortBy = this.queryString.sort
-        .split(",")
-        .map((sortField: string) => {
-          const [field, order] = sortField.split(":");
-          return { [field]: order || "asc" }; // Default to "asc" if no order is provided
-        });
-
-      this.queryString.orderBy = sortBy;
+      const sortBy = this.queryString.sort.split(",").map((field: string) => {
+        const [key, order] = field.split(":");
+        return { [key]: order || "asc" };
+      });
+      this.queryOptions.orderBy = sortBy;
     }
     return this;
   }
@@ -65,10 +102,9 @@ class ApiFeatures {
       const fields = this.queryString.fields
         .split(",")
         .reduce((acc: any, field: string) => {
-          acc[field] = true; // Only the specified fields will be included in the result
+          acc[field] = true;
           return acc;
-        }, {} as Record<string, boolean>);
-
+        }, {});
       this.queryOptions.select = fields;
     }
     return this;

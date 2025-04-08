@@ -8,7 +8,6 @@ class ProductService {
   constructor() {
     this.productRepository = new ProductRepository();
   }
-
   async getAllProducts(queryString: Record<string, any>) {
     const apiFeatures = new ApiFeatures(queryString)
       .filter()
@@ -21,13 +20,22 @@ class ProductService {
 
     const finalWhere = where && Object.keys(where).length > 0 ? where : {};
 
-    return await this.productRepository.findManyProducts({
+    const totalResults = await this.productRepository.countProducts({
+      where: finalWhere,
+    });
+
+    const totalPages = Math.ceil(totalResults / take);
+    const currentPage = Math.floor(skip / take) + 1;
+
+    const products = await this.productRepository.findManyProducts({
       where: finalWhere,
       orderBy: orderBy || { createdAt: "desc" },
       skip,
       take,
-      select, // Only return the selected fields if `select` is defined
+      select,
     });
+
+    return { products, totalResults, totalPages, currentPage };
   }
 
   async getProductById(productId: string) {
