@@ -1,36 +1,24 @@
-[2025-04-08T10:51:42.465Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/routes/webhookRoutes.ts[0m:[93m10[0m:[93m24[0m - [91merror[0m[90m TS2554: [0mExpected 3 arguments, but got 2.
+[2025-04-08T15:50:12.001Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/dashboardRoutes.ts[0m:[93m9[0m:[93m29[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
 
-[7m10[0m const webhookService = new WebhookService(
-[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~[0m
-[7m11[0m   checkoutRepository,
-[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~[0m
-[7m12[0m   webhookRepository
-[7m  [0m [91m~~~~~~~~~~~~~~~~~~~[0m
-[7m13[0m );
-[7m  [0m [91m~[0m
+[7m9[0m const dashboardRepository = new DashboardRepository();
+[7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
-  [96msrc/services/webhookService.ts[0m:[93m11[0m:[93m5[0m
-    [7m11[0m     private cartRepository: CartRepository
-    [7m  [0m [96m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-    An argument for 'cartRepository' was not provided.
+  [96msrc/repositories/dashboardRepository.ts[0m:[93m4[0m:[93m15[0m
+    [7m4[0m   constructor(private prisma: PrismaClient) {}
+    [7m [0m [96m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'prisma' was not provided.
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/routes/webhookRoutes.ts[0m:[93m10[0m:[93m24[0m - [91merror[0m[90m TS2554: [0mExpected 3 arguments, but got 2.
+[96msrc/routes/dashboardRoutes.ts[0m:[93m9[0m:[93m29[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
 
-[7m10[0m const webhookService = new WebhookService(
-[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~[0m
-[7m11[0m   checkoutRepository,
-[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~[0m
-[7m12[0m   webhookRepository
-[7m  [0m [91m~~~~~~~~~~~~~~~~~~~[0m
-[7m13[0m );
-[7m  [0m [91m~[0m
+[7m9[0m const dashboardRepository = new DashboardRepository();
+[7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
-  [96msrc/services/webhookService.ts[0m:[93m11[0m:[93m5[0m
-    [7m11[0m     private cartRepository: CartRepository
-    [7m  [0m [96m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-    An argument for 'cartRepository' was not provided.
+  [96msrc/repositories/dashboardRepository.ts[0m:[93m4[0m:[93m15[0m
+    [7m4[0m   constructor(private prisma: PrismaClient) {}
+    [7m [0m [96m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'prisma' was not provided.
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -42,17 +30,25 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T10:52:34.881Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/routes/webhookRoutes.ts[0m:[93m15[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'cartRe'.
+[2025-04-08T15:51:05.434Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/dashboardRepository.ts[0m:[93m11[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'prisma' does not exist on type 'DashboardRepository'.
 
-[7m15[0m   cartRe
-[7m  [0m [91m  ~~~~~~[0m
+[7m11[0m     return this.prisma.order.findMany({
+[7m  [0m [91m                ~~~~~~[0m
+[96msrc/repositories/dashboardRepository.ts[0m:[93m26[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'prisma' does not exist on type 'DashboardRepository'.
+
+[7m26[0m     return this.prisma.orderItem.findMany({
+[7m  [0m [91m                ~~~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/routes/webhookRoutes.ts[0m:[93m15[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'cartRe'.
+[96msrc/repositories/dashboardRepository.ts[0m:[93m11[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'prisma' does not exist on type 'DashboardRepository'.
 
-[7m15[0m   cartRe
-[7m  [0m [91m  ~~~~~~[0m
+[7m11[0m     return this.prisma.order.findMany({
+[7m  [0m [91m                ~~~~~~[0m
+[96msrc/repositories/dashboardRepository.ts[0m:[93m26[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'prisma' does not exist on type 'DashboardRepository'.
+
+[7m26[0m     return this.prisma.orderItem.findMany({
+[7m  [0m [91m                ~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -64,47 +60,17 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T10:52:37.989Z] [31MERROR[39M: uncaughtException: Cannot find module 'repositories/cartRepository'
-Require stack:
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
-Error: Cannot find module 'repositories/cartRepository'
-Require stack:
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/app.ts
-- /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/server.ts
-    at Function.<anonymous> (node:internal/modules/cjs/loader:1394:15)
-    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue [as _resolveFilename] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
-    at defaultResolveImpl (node:internal/modules/cjs/loader:1050:19)
-    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1055:22)
-    at Function._load (node:internal/modules/cjs/loader:1204:37)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/webhookRoutes.ts:6:1)
-[2025-04-08T11:14:07.112Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/checkoutService.ts[0m:[93m34[0m:[93m52[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
-  Overload 1 of 2, '(params?: SessionCreateParams | undefined, options?: RequestOptions | undefined): Promise<Response<Session>>', gave the following error.
-    Type '{ userId: string; }' is not assignable to type 'string | number | null'.
-  Overload 2 of 2, '(options?: RequestOptions | undefined): Promise<Response<Session>>', gave the following error.
-    Object literal may only specify known properties, and 'payment_method_types' does not exist in type 'RequestOptions'.
+[2025-04-08T17:25:11.460Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
 
-[7m34[0m     const session = await stripe.checkout.sessions.create({
-[7m  [0m [91m                                                   ~~~~~~[0m
-
+[7m15[0m } from "lucide-react";
+[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/checkoutService.ts[0m:[93m34[0m:[93m52[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
-  Overload 1 of 2, '(params?: SessionCreateParams | undefined, options?: RequestOptions | undefined): Promise<Response<Session>>', gave the following error.
-    Type '{ userId: string; }' is not assignable to type 'string | number | null'.
-  Overload 2 of 2, '(options?: RequestOptions | undefined): Promise<Response<Session>>', gave the following error.
-    Object literal may only specify known properties, and 'payment_method_types' does not exist in type 'RequestOptions'.
+[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
 
-[7m34[0m     const session = await stripe.checkout.sessions.create({
-[7m  [0m [91m                                                   ~~~~~~[0m
-
+[7m15[0m } from "lucide-react";
+[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -116,19 +82,17 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T12:17:37.373Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'string | undefined' is not assignable to type 'string'.
-  Type 'undefined' is not assignable to type 'string'.
+[2025-04-08T17:25:41.867Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
 
-[7m17[0m     const userId: string = fullSession?.metadata?.userId;
-[7m  [0m [91m          ~~~~~~[0m
+[7m15[0m } from "lucide-react";
+[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'string | undefined' is not assignable to type 'string'.
-  Type 'undefined' is not assignable to type 'string'.
+[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
 
-[7m17[0m     const userId: string = fullSession?.metadata?.userId;
-[7m  [0m [91m          ~~~~~~[0m
+[7m15[0m } from "lucide-react";
+[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -140,341 +104,17 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T12:17:46.308Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'Metadata | null' is not assignable to type 'string'.
-  Type 'null' is not assignable to type 'string'.
+[2025-04-08T17:25:56.375Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
 
-[7m17[0m     const userId: string = fullSession?.metadata;
-[7m  [0m [91m          ~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'Metadata | null' is not assignable to type 'string'.
-  Type 'null' is not assignable to type 'string'.
-
-[7m17[0m     const userId: string = fullSession?.metadata;
-[7m  [0m [91m          ~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T12:18:02.772Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/controllers/webhookController.ts[0m:[93m31[0m:[93m47[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
-
-[7m31[0m       const order = await this.webhookService.handleCheckoutCompletion(session);
-[7m  [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-  [96msrc/services/webhookService.ts[0m:[93m14[0m:[93m50[0m
-    [7m14[0m   async handleCheckoutCompletion(userId: string, session: any) {
-    [7m  [0m [96m                                                 ~~~~~~~~~~~~[0m
-    An argument for 'session' was not provided.
+[7m15[0m } from "lucide-react";
+[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/controllers/webhookController.ts[0m:[93m31[0m:[93m47[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+[96msrc/constants/index.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module 'lucide-react' or its corresponding type declarations.
 
-[7m31[0m       const order = await this.webhookService.handleCheckoutCompletion(session);
-[7m  [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-  [96msrc/services/webhookService.ts[0m:[93m14[0m:[93m50[0m
-    [7m14[0m   async handleCheckoutCompletion(userId: string, session: any) {
-    [7m  [0m [96m                                                 ~~~~~~~~~~~~[0m
-    An argument for 'session' was not provided.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T14:04:38.504Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'string | undefined' is not assignable to type 'string'.
-  Type 'undefined' is not assignable to type 'string'.
-
-[7m17[0m     const userId: string = fullSession?.metadata?.userId;
-[7m  [0m [91m          ~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'string | undefined' is not assignable to type 'string'.
-  Type 'undefined' is not assignable to type 'string'.
-
-[7m17[0m     const userId: string = fullSession?.metadata?.userId;
-[7m  [0m [91m          ~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T14:16:30.506Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m53[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'address' does not exist in type 'Without<AddressCreateInput, AddressUncheckedCreateInput> & AddressUncheckedCreateInput'.
-
-[7m53[0m         address: data.address,
-[7m  [0m [91m        ~~~~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m8917[0m:[93m5[0m
-    [7m8917[0m     data: XOR<AddressCreateInput, AddressUncheckedCreateInput>
-    [7m    [0m [96m    ~~~~[0m
-    The expected type comes from property 'data' which is declared here on type 'AddressCreateArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m53[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'address' does not exist in type 'Without<AddressCreateInput, AddressUncheckedCreateInput> & AddressUncheckedCreateInput'.
-
-[7m53[0m         address: data.address,
-[7m  [0m [91m        ~~~~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m8917[0m:[93m5[0m
-    [7m8917[0m     data: XOR<AddressCreateInput, AddressUncheckedCreateInput>
-    [7m    [0m [96m    ~~~~[0m
-    The expected type comes from property 'data' which is declared here on type 'AddressCreateArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T14:16:50.439Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m56[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'zip' does not exist in type 'Without<AddressCreateInput, AddressUncheckedCreateInput> & AddressUncheckedCreateInput'.
-
-[7m56[0m         zip: data.zip,
-[7m  [0m [91m        ~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m8917[0m:[93m5[0m
-    [7m8917[0m     data: XOR<AddressCreateInput, AddressUncheckedCreateInput>
-    [7m    [0m [96m    ~~~~[0m
-    The expected type comes from property 'data' which is declared here on type 'AddressCreateArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m56[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'zip' does not exist in type 'Without<AddressCreateInput, AddressUncheckedCreateInput> & AddressUncheckedCreateInput'.
-
-[7m56[0m         zip: data.zip,
-[7m  [0m [91m        ~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m8917[0m:[93m5[0m
-    [7m8917[0m     data: XOR<AddressCreateInput, AddressUncheckedCreateInput>
-    [7m    [0m [96m    ~~~~[0m
-    The expected type comes from property 'data' which is declared here on type 'AddressCreateArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T14:18:00.168Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m45[0m:[93m61[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ userId: string; city: string; state: string; country: string; zip: string; }' is not assignable to parameter of type '{ userId: string; address: string; city: string; state: string; country: string; zip: string; }'.
-  Property 'address' is missing in type '{ userId: string; city: string; state: string; country: string; zip: string; }' but required in type '{ userId: string; address: string; city: string; state: string; country: string; zip: string; }'.
-
-[7m 45[0m       address = await this.checkoutRepository.createAddress({
-[7m   [0m [91m                                                            ~[0m
-[7m 46[0m         userId,
-[7m   [0m [91m~~~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 50[0m         zip: customerAddress.postal_code || "N/A",
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 51[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/repositories/checkoutRepository.ts[0m:[93m44[0m:[93m5[0m
-    [7m44[0m     address: string;
-    [7m  [0m [96m    ~~~~~~~[0m
-    'address' is declared here.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m45[0m:[93m61[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ userId: string; city: string; state: string; country: string; zip: string; }' is not assignable to parameter of type '{ userId: string; address: string; city: string; state: string; country: string; zip: string; }'.
-  Property 'address' is missing in type '{ userId: string; city: string; state: string; country: string; zip: string; }' but required in type '{ userId: string; address: string; city: string; state: string; country: string; zip: string; }'.
-
-[7m 45[0m       address = await this.checkoutRepository.createAddress({
-[7m   [0m [91m                                                            ~[0m
-[7m 46[0m         userId,
-[7m   [0m [91m~~~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 50[0m         zip: customerAddress.postal_code || "N/A",
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 51[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/repositories/checkoutRepository.ts[0m:[93m44[0m:[93m5[0m
-    [7m44[0m     address: string;
-    [7m  [0m [96m    ~~~~~~~[0m
-    'address' is declared here.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T14:18:10.701Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m55[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'address' does not exist on type '{ userId: string; street: string; city: string; state: string; country: string; zip: string; }'.
-
-[7m55[0m         street: data.address,
-[7m  [0m [91m                     ~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m55[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'address' does not exist on type '{ userId: string; street: string; city: string; state: string; country: string; zip: string; }'.
-
-[7m55[0m         street: data.address,
-[7m  [0m [91m                     ~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T14:18:21.429Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m55[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'address' does not exist on type '{ userId: string; street: string; city: string; state: string; country: string; zip: string; }'.
-
-[7m55[0m         street: data.address,
-[7m  [0m [91m                     ~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m55[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'address' does not exist on type '{ userId: string; street: string; city: string; state: string; country: string; zip: string; }'.
-
-[7m55[0m         street: data.address,
-[7m  [0m [91m                     ~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T14:19:40.483Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m55[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'address' does not exist on type '{ userId: string; street: string; city: string; state: string; country: string; zip: string; }'.
-
-[7m55[0m         street: data.address,
-[7m  [0m [91m                     ~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m55[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'address' does not exist on type '{ userId: string; street: string; city: string; state: string; country: string; zip: string; }'.
-
-[7m55[0m         street: data.address,
-[7m  [0m [91m                     ~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T14:20:04.909Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m68[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ orderId: string; }' is not assignable to type 'Exact<(Without<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput> & TrackingDetailUncheckedCreateInput) | (Without<...> & TrackingDetailCreateInput), (Without<...> & TrackingDetailUncheckedCreateInput) | (Without<...> & TrackingDetailCreateInput)>'.
-  Type '{ orderId: string; }' is not assignable to type '(Without<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput> & TrackingDetailUncheckedCreateInput) | { ...; }'.
-    Property 'status' is missing in type '{ orderId: string; }' but required in type '{ order?: undefined; id?: Exact<string | undefined, string | undefined>; status: string; orderId: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<...>; }'.
-
-[7m68[0m       data: {
-[7m  [0m [91m      ~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m16184[0m:[93m5[0m
-    [7m16184[0m     status: string
-    [7m     [0m [96m    ~~~~~~[0m
-    'status' is declared here.
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10001[0m:[93m5[0m
-    [7m10001[0m     data: XOR<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput>
-    [7m     [0m [96m    ~~~~[0m
-    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<TrackingDetailSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, TrackingDetailSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m68[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ orderId: string; }' is not assignable to type 'Exact<(Without<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput> & TrackingDetailUncheckedCreateInput) | (Without<...> & TrackingDetailCreateInput), (Without<...> & TrackingDetailUncheckedCreateInput) | (Without<...> & TrackingDetailCreateInput)>'.
-  Type '{ orderId: string; }' is not assignable to type '(Without<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput> & TrackingDetailUncheckedCreateInput) | { ...; }'.
-    Property 'status' is missing in type '{ orderId: string; }' but required in type '{ order?: undefined; id?: Exact<string | undefined, string | undefined>; status: string; orderId: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<...>; }'.
-
-[7m68[0m       data: {
-[7m  [0m [91m      ~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m16184[0m:[93m5[0m
-    [7m16184[0m     status: string
-    [7m     [0m [96m    ~~~~~~[0m
-    'status' is declared here.
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10001[0m:[93m5[0m
-    [7m10001[0m     data: XOR<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput>
-    [7m     [0m [96m    ~~~~[0m
-    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<TrackingDetailSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, TrackingDetailSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-08T14:20:11.145Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m64[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ orderId: string; }' is not assignable to type 'Exact<(Without<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput> & TrackingDetailUncheckedCreateInput) | (Without<...> & TrackingDetailCreateInput), (Without<...> & TrackingDetailUncheckedCreateInput) | (Without<...> & TrackingDetailCreateInput)>'.
-  Type '{ orderId: string; }' is not assignable to type '(Without<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput> & TrackingDetailUncheckedCreateInput) | { ...; }'.
-    Property 'status' is missing in type '{ orderId: string; }' but required in type '{ order?: undefined; id?: Exact<string | undefined, string | undefined>; status: string; orderId: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<...>; }'.
-
-[7m64[0m       data: {
-[7m  [0m [91m      ~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m16184[0m:[93m5[0m
-    [7m16184[0m     status: string
-    [7m     [0m [96m    ~~~~~~[0m
-    'status' is declared here.
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10001[0m:[93m5[0m
-    [7m10001[0m     data: XOR<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput>
-    [7m     [0m [96m    ~~~~[0m
-    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<TrackingDetailSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, TrackingDetailSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/checkoutRepository.ts[0m:[93m64[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ orderId: string; }' is not assignable to type 'Exact<(Without<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput> & TrackingDetailUncheckedCreateInput) | (Without<...> & TrackingDetailCreateInput), (Without<...> & TrackingDetailUncheckedCreateInput) | (Without<...> & TrackingDetailCreateInput)>'.
-  Type '{ orderId: string; }' is not assignable to type '(Without<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput> & TrackingDetailUncheckedCreateInput) | { ...; }'.
-    Property 'status' is missing in type '{ orderId: string; }' but required in type '{ order?: undefined; id?: Exact<string | undefined, string | undefined>; status: string; orderId: string; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<...>; }'.
-
-[7m64[0m       data: {
-[7m  [0m [91m      ~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m16184[0m:[93m5[0m
-    [7m16184[0m     status: string
-    [7m     [0m [96m    ~~~~~~[0m
-    'status' is declared here.
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m10001[0m:[93m5[0m
-    [7m10001[0m     data: XOR<TrackingDetailCreateInput, TrackingDetailUncheckedCreateInput>
-    [7m     [0m [96m    ~~~~[0m
-    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<TrackingDetailSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, TrackingDetailSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[7m15[0m } from "lucide-react";
+[7m  [0m [91m       ~~~~~~~~~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)

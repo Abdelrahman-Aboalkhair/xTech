@@ -1122,3 +1122,14 @@ Invalid `prisma.cart.findUnique()` invocation in
 → 5     return prisma.cart.findUnique(
 The column `Product.ratings` does not exist in the current database.
 [2025-04-08T14:47:18.241Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T15:26:52.369Z] [31MERROR[39M: Invalid or missing timePeriod. Use: last7days, lastMonth, lastYear, or allTime
+[2025-04-08T15:56:36.088Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-08T15:56:36.122Z] [31MERROR[39M: Refresh token not found
+[2025-04-08T16:05:13.993Z] [31MERROR[39M: Can't find /api/v1/dashboard/stats/last7days on this server!
+[2025-04-08T16:05:48.438Z] [31MERROR[39M: Can't find /api/v1/dashboard/stats/[object%20Object] on this server!
+[2025-04-08T16:05:54.348Z] [31MERROR[39M: Can't find /api/v1/dashboard/stats/last7days on this server!
+[2025-04-08T16:06:04.804Z] [31MERROR[39M: Can't find /api/v1/dashboard/stats/last7days on this server!
+[2025-04-08T16:20:07.865Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T16:56:32.400Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T17:14:06.365Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T17:33:30.312Z] [31MERROR[39M: Invalid access token, please log in

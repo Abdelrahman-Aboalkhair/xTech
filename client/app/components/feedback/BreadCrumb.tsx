@@ -8,29 +8,39 @@ const BreadCrumb: React.FC = () => {
   const pathSegments = pathname.split("/").filter(Boolean);
 
   return (
-    <nav aria-label="breadcrumb">
-      <ul className="flex items-center text-sm text-gray-600">
+    <nav aria-label="Breadcrumb" className="mb-4">
+      <ol className="flex flex-wrap items-center text-sm text-gray-500 space-x-1 sm:space-x-2">
         <li>
-          <Link href="/" className="hover:text-red-700">
+          <Link href="/" className="hover:text-red-600 font-medium transition">
             Home
           </Link>
         </li>
 
         {pathSegments.map((segment, index) => {
           const href = "/" + pathSegments.slice(0, index + 1).join("/");
+          const isLast = index === pathSegments.length - 1;
 
           return (
             <React.Fragment key={href}>
-              <span className="mx-2 text-gray-400">/</span>
+              <span className="text-gray-400">/</span>
               <li>
-                <Link href={href} className="capitalize hover:text-red-700">
-                  {decodeURIComponent(segment)}
-                </Link>
+                {isLast ? (
+                  <span className="capitalize text-gray-700 font-semibold">
+                    {decodeURIComponent(segment)}
+                  </span>
+                ) : (
+                  <Link
+                    href={href}
+                    className="capitalize hover:text-red-600 font-medium transition"
+                  >
+                    {decodeURIComponent(segment)}
+                  </Link>
+                )}
               </li>
             </React.Fragment>
           );
         })}
-      </ul>
+      </ol>
     </nav>
   );
 };

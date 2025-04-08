@@ -19,6 +19,7 @@ import orderRoutes from "./routes/orderRoutes";
 import checkoutRoutes from "./routes/checkoutRoutes";
 import webhookRoutes from "./routes/webhookRoutes";
 import cartRoutes from "./routes/cartRoutes";
+import dashboardRoutes from "./routes/dashboardRoutes";
 import passport from "passport";
 import configurePassport from "./config/passport";
 import session from "express-session";
@@ -128,6 +129,7 @@ app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/checkout", checkoutRoutes);
 app.use("/api/v1/orders", orderRoutes);
+app.use("/api/v1/dashboard", dashboardRoutes);
 
 app.all("*", (req, res, next) => {
   next(new AppError(404, `Can't find ${req.originalUrl} on this server!`));

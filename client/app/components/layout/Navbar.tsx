@@ -5,7 +5,6 @@ import Image from "next/image";
 import UserMenu from "../molecules/UserMenu";
 import { User, ShoppingCart } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import AppLogo from "@/app/assets/images/kgKraftLogo.png";
 import SearchBar from "../atoms/SearchBar";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
 import { useGetCartQuery } from "@/app/store/apis/CartApi";

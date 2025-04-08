@@ -69,7 +69,7 @@ const UserMenu = ({ menuOpen, closeMenu }: any) => {
       case "ADMIN":
         return [
           {
-            href: "/admin-dashboard",
+            href: "/dashboard",
             label: "Dashboard",
             icon: <LayoutDashboard size={18} />,
           },
