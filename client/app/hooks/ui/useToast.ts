@@ -4,7 +4,7 @@ import { addToast, removeToast, Toast } from "@/app/store/slices/ToastSlice";
 const useToast = () => {
   const dispatch = useDispatch();
 
-  const showToast = (message: string, type: Toast["type"]) => {
+  const showToast = (message: string | undefined, type: Toast["type"]) => {
     dispatch(addToast({ message, type }));
   };
 

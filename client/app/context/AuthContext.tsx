@@ -1,9 +1,16 @@
 "use client";
-import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import axiosInstance from "../utils/axiosInstance";
 import useStorage from "../hooks/state/useStorage";
 import { useLazyGetMeQuery } from "../store/apis/UserApi";
-import CustomLoader from "../components/feedback/CustomLoader";
+// import CustomLoader from "../components/feedback/CustomLoader";
+import { usePathname } from "next/navigation";
 
 interface User {
   id: number;
@@ -25,23 +32,27 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUserState] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const pathname = usePathname();
   const [getMe, { data, error }] = useLazyGetMeQuery();
   if (error) {
     console.log("error: ", error);
   }
   const [isLoggedIn, setIsLoggedIn] = useStorage("isLoggedIn", false, "local");
 
-  const setUser = (user: User | null) => {
-    setUserState(user);
-    if (user) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-      localStorage.removeItem("isLoggedIn");
-    }
-  };
+  const setUser = useCallback(
+    (user: User | null) => {
+      setUserState(user);
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+        localStorage.removeItem("isLoggedIn");
+      }
+    },
+    [setIsLoggedIn]
+  );
 
-  const clearAuth = async () => {
+  const clearAuth = useCallback(async () => {
     setUser(null);
     try {
       await axiosInstance.get("/auth/sign-out");
@@ -49,7 +60,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     } catch (error) {
       console.error("Failed to logout", error);
     }
-  };
+  }, [setUser]);
 
   const fetchUserData = async () => {
     if (user) return;
@@ -68,13 +79,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const fetchUserDataCallback = useCallback(fetchUserData, [
+    clearAuth,
+    getMe,
+    setUser,
+    user,
+  ]);
+
   useEffect(() => {
-    if (isLoggedIn && !loading) {
-      fetchUserData();
+    if (isLoggedIn && !loading && pathname !== "/sign-in") {
+      fetchUserDataCallback();
     } else {
       setLoading(false);
     }
-  }, [isLoggedIn, loading]);
+  }, [isLoggedIn, loading, pathname, fetchUserDataCallback]);
 
   useEffect(() => {
     if (data) console.log("data from useLazyGetMeQuery: ", data);
@@ -85,7 +103,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     <AuthContext.Provider
       value={{ user, loading, setUser, clearAuth, fetchUserData }}
     >
-      {loading ? <CustomLoader /> : children}
+      {children}
     </AuthContext.Provider>
   );
 };

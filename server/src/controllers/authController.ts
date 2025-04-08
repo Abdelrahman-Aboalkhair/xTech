@@ -7,8 +7,6 @@ import AuthService from "../services/authService";
 import { blacklistToken } from "../utils/authUtils";
 import AppError from "../utils/AppError";
 import CartService from "../services/cartService";
-import { handleCartMergeAfterLogin } from "../utils/cartUtils";
-import { SigninDto } from "dtos/authDto";
 
 const { maxAge, ...clearCookieOptions } = cookieOptions;
 
@@ -34,7 +32,10 @@ class AuthController {
       res.cookie("refreshToken", refreshToken, clearCookieOptions);
       res.cookie("accessToken", accessToken, clearCookieOptions);
 
-      await handleCartMergeAfterLogin(req, this.cartService, user.id);
+      const userId = user.id;
+      const sessionId = req.session.id;
+
+      await this.cartService?.mergeCartsOnLogin(sessionId, userId);
 
       sendResponse(
         res,
@@ -82,7 +83,10 @@ class AuthController {
     res.cookie("refreshToken", refreshToken, clearCookieOptions);
     res.cookie("accessToken", accessToken, clearCookieOptions);
 
-    await handleCartMergeAfterLogin(req, this.cartService, user.id);
+    const userId = user.id;
+    const sessionId = req.session.id;
+    await this.cartService?.mergeCartsOnLogin(sessionId, userId);
+
     sendResponse(
       res,
       200,
@@ -126,10 +130,6 @@ class AuthController {
     res.clearCookie("refreshToken", clearCookieOptions);
     res.clearCookie("accessToken", clearCookieOptions);
 
-    req.session.destroy((err) => {
-      if (err) console.error("Session destroy error:", err);
-    });
-    req.user = undefined;
     sendResponse(res, 200, {}, "Logged out successfully");
   });
 

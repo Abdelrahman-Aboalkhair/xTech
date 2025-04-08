@@ -1,4 +1,3 @@
-import { CartLookupParams, CartItem } from "../types/cartTypes";
 import AppError from "../utils/AppError";
 import CartRepository from "../repositories/cartRepository";
 
@@ -9,130 +8,54 @@ class CartService {
     this.cartRepository = new CartRepository();
   }
 
-  async getCart({ userId, cartId }: CartLookupParams = {}) {
+  async getOrCreateCart(userId?: string, sessionId?: string) {
     let cart;
+
     if (userId) {
-      cart = await this.cartRepository.findCartByUserId(userId);
+      cart = await this.cartRepository.getCartByUserId(userId);
       if (!cart) {
         cart = await this.cartRepository.createCart({ userId });
       }
-    } else if (cartId) {
-      cart = await this.cartRepository.findCartById(cartId);
+    } else if (sessionId) {
+      cart = await this.cartRepository.getCartBySessionId(sessionId);
       if (!cart) {
-        cart = await this.cartRepository.createCart({ id: cartId });
+        cart = await this.cartRepository.createCart({ sessionId });
       }
     } else {
-      cart = await this.cartRepository.createCart({});
+      throw new AppError(400, "User ID or Session ID is required");
     }
+
     return cart;
   }
 
   async addToCart(
-    { userId, cartId }: CartLookupParams,
-    { productId, quantity }: CartItem
+    productId: string,
+    quantity: number,
+    userId?: string,
+    sessionId?: string
   ) {
-    const cart = await this.getCart({ userId, cartId });
-
-    const existingItem = await this.cartRepository.findCartItem(
-      cart.id,
-      productId
-    );
-
-    if (existingItem) {
-      await this.cartRepository.updateCartItem(existingItem.id, {
-        quantity: existingItem.quantity + quantity,
-      });
-    } else {
-      await this.cartRepository.createCartItem({
-        cartId: cart.id,
-        productId,
-        quantity,
-      });
-    }
-
-    return this.getCart({ userId, cartId });
+    const cart = await this.getOrCreateCart(userId, sessionId);
+    return this.cartRepository.addItemToCart({
+      cartId: cart.id,
+      productId,
+      quantity,
+    });
   }
 
-  async updateCartItem(
-    { userId, cartId }: CartLookupParams,
-    { productId, quantity }: CartItem
-  ) {
-    const cart = await this.getCart({ userId, cartId });
-
-    const cartItem = await this.cartRepository.findCartItem(cart.id, productId);
-
-    if (!cartItem) {
-      throw new AppError(404, "Product not in cart");
-    }
-
-    if (quantity <= 0) {
-      await this.cartRepository.deleteCartItem(cartItem.id);
-    } else {
-      await this.cartRepository.updateCartItem(cartItem.id, { quantity });
-    }
-
-    return this.getCart({ userId, cartId });
+  async updateCartItemQuantity(itemId: string, quantity: number) {
+    return this.cartRepository.updateCartItemQuantity(itemId, quantity);
   }
 
-  async removeFromCart(
-    { userId, cartId }: CartLookupParams,
-    productId: string
-  ) {
-    const cart = await this.getCart({ userId, cartId });
-
-    const cartItem = await this.cartRepository.findCartItem(cart.id, productId);
-
-    if (!cartItem) {
-      throw new AppError(404, "Product not in cart");
-    }
-
-    await this.cartRepository.deleteCartItem(cartItem.id);
-    return this.getCart({ userId, cartId });
+  async removeFromCart(itemId: string) {
+    return this.cartRepository.removeCartItem(itemId);
   }
 
-  async clearCart({ userId, cartId }: CartLookupParams) {
-    const cart = await this.getCart({ userId, cartId });
-    await this.cartRepository.deleteCartItemsByCartId(cart.id);
-    return this.getCart({ userId, cartId });
-  }
+  async mergeCartsOnLogin(sessionId: string, userId: string | undefined) {
+    const sessionCart = await this.cartRepository.getCartBySessionId(sessionId);
+    if (!sessionCart) return;
 
-  async mergeGuestCartIntoUserCart(guestCartId: string, userId: string) {
-    const guestCart = await this.cartRepository.findCartWithItemsById(
-      guestCartId
-    );
-    if (!guestCart || !guestCart.cartItems.length) return;
-
-    const userCart = await this.cartRepository.findCartByUserId(userId);
-
-    if (userCart) {
-      // Merge items from guestCart into userCart.
-      for (const item of guestCart.cartItems) {
-        const existingItem = await this.cartRepository.findCartItem(
-          userCart.id,
-          item.productId
-        );
-        if (existingItem) {
-          await this.cartRepository.updateCartItem(existingItem.id, {
-            quantity: existingItem.quantity + item.quantity,
-          });
-        } else {
-          await this.cartRepository.createCartItem({
-            cartId: userCart.id,
-            productId: item.productId,
-            quantity: item.quantity,
-          });
-        }
-      }
-      // Delete the now-merged guest cart.
-      await this.cartRepository.deleteCart(guestCartId);
-      return userCart;
-    } else {
-      // No user cart exists; update the guest cart by adding the userId.
-      const updatedCart = await this.cartRepository.updateCart(guestCartId, {
-        userId,
-      });
-      return updatedCart;
-    }
+    const userCart = await this.getOrCreateCart(userId);
+    await this.cartRepository.mergeCarts(sessionCart.id, userCart.id);
   }
 }
 

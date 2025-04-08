@@ -98,7 +98,11 @@ const Cart = () => {
           </Link>
           <button className="border px-6 py-2">Update Cart</button>
         </div>
-        <CartSummary subtotal={subtotal} totalItems={cartItems?.length} />
+        <CartSummary
+          subtotal={subtotal}
+          totalItems={cartItems?.length}
+          cartId={data?.cart?.id}
+        />
       </div>
     </MainLayout>
   );

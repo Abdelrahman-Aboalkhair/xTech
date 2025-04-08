@@ -10,8 +10,11 @@ import {
   SigninDto,
   VerifyEmailDto,
 } from "../dtos/authDto";
+import CartService from "../services/cartService";
 
 const router = express.Router();
+
+const cartService = new CartService();
 
 router.get(
   "/google",
@@ -24,11 +27,15 @@ router.get(
     session: false,
     failureRedirect: "http://localhost:3000/sign-in",
   }),
-  (req, res) => {
+  async (req, res) => {
     const user = req.user as any;
     const { accessToken, refreshToken } = user;
     res.cookie("refreshToken", refreshToken, cookieOptions);
     res.cookie("accessToken", accessToken, cookieOptions);
+
+    const userId = user.id;
+    const sessionId = req.session.id;
+    await cartService?.mergeCartsOnLogin(sessionId, userId);
 
     res.redirect("http://localhost:3000/oauth-success");
   }
@@ -45,12 +52,16 @@ router.get(
     failureRedirect: "http://localhost:3000/sign-in",
     session: false,
   }),
-  (req, res) => {
+  async (req, res) => {
     const user = req.user as any;
     console.log("user in facebook callback: ", user);
     const { accessToken, refreshToken } = user;
     res.cookie("refreshToken", refreshToken, cookieOptions);
     res.cookie("accessToken", accessToken, cookieOptions);
+
+    const userId = user.id;
+    const sessionId = req.session.id;
+    await cartService?.mergeCartsOnLogin(sessionId, userId);
 
     res.redirect("http://localhost:3000/oauth-success");
   }
@@ -67,12 +78,15 @@ router.get(
     failureRedirect: "http://localhost:3000/sign-in",
     session: false,
   }),
-  (req, res) => {
+  async (req, res) => {
     const user = req.user as any;
     console.log("user in twitter callback: ", user);
     const { accessToken, refreshToken } = user;
     res.cookie("refreshToken", refreshToken, cookieOptions);
     res.cookie("accessToken", accessToken, cookieOptions);
+    const userId = user.id;
+    const sessionId = req.session.id;
+    await cartService?.mergeCartsOnLogin(sessionId, userId);
 
     res.redirect("http://localhost:3000/oauth-success");
   }

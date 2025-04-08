@@ -1,32 +1,12 @@
 import express from "express";
-import CartController from "../controllers/cartController";
-import { validateDto } from "../middlewares/validateDto";
-import optionalAuth from "../middlewares/optionalAuth";
-import {
-  AddToCartDto,
-  UpdateCartItemDto,
-  RemoveFromCartDto,
-} from "../dtos/cartDto";
+import cartController from "../controllers/cartController";
 
 const router = express.Router();
 
-router.get("/", optionalAuth, CartController.getUserCart);
-
-router.post(
-  "/",
-  optionalAuth,
-  validateDto(AddToCartDto),
-  CartController.addToCart
-);
-
-router.put("/", validateDto(UpdateCartItemDto), CartController.updateCartItem);
-
-router.delete(
-  "/",
-  validateDto(RemoveFromCartDto),
-  CartController.removeFromCart
-);
-
-router.delete("/clear", CartController.clearCart);
+router.get("/", cartController.getCart);
+router.post("/", cartController.addToCart);
+router.put("/item/:itemId", cartController.updateCartItem);
+router.delete("/item/:itemId", cartController.removeFromCart);
+router.post("/merge", cartController.mergeCarts);
 
 export default router;
