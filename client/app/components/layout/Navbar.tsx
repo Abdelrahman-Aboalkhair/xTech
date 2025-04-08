@@ -37,12 +37,7 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center px-[3.5%] pt-6">
       <Link className="font-semibold text-2xl" href="/">
-        <Image
-          className="rounded-full"
-          src={AppLogo}
-          alt="App Logo"
-          width={70}
-        />
+        Kgkraft
       </Link>
 
       <div className="flex items-center justify-center gap-12 text-[16px]">

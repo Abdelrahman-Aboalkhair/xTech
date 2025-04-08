@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Rating from "../../feedback/Rating";
 import { useAddToCartMutation } from "@/app/store/apis/CartApi";
+import CustomLoader from "../../feedback/CustomLoader";
 
 interface ProductCardProps {
   product: Product;
@@ -111,7 +112,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 isLoading ? "cursor-not-allowed bg-gray-700 " : ""
               }`}
             >
-              Add To Cart
+              {isLoading ? <CustomLoader /> : "Add to Cart"}
             </motion.button>
           )}
         </AnimatePresence>

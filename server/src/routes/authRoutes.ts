@@ -37,7 +37,7 @@ router.get(
     const sessionId = req.session.id;
     await cartService?.mergeCartsOnLogin(sessionId, userId);
 
-    res.redirect("http://localhost:3000/oauth-success");
+    res.redirect("http://localhost:3000");
   }
 );
 
@@ -63,7 +63,7 @@ router.get(
     const sessionId = req.session.id;
     await cartService?.mergeCartsOnLogin(sessionId, userId);
 
-    res.redirect("http://localhost:3000/oauth-success");
+    res.redirect("http://localhost:3000");
   }
 );
 
@@ -88,7 +88,7 @@ router.get(
     const sessionId = req.session.id;
     await cartService?.mergeCartsOnLogin(sessionId, userId);
 
-    res.redirect("http://localhost:3000/oauth-success");
+    res.redirect("http://localhost:3000");
   }
 );
 

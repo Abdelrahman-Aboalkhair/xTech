@@ -12,13 +12,14 @@ import {
   useGetCartQuery,
   useRemoveFromCartMutation,
 } from "@/app/store/apis/CartApi";
-import QuantitySelector from "@/app/components/atoms/QuantitySelector";
+import QuantitySelector from "@/app/components/molecules/QuantitySelector";
 
 const Cart = () => {
   const { control } = useForm();
   const { data, isLoading } = useGetCartQuery({});
   const [remmoveFromCart] = useRemoveFromCartMutation();
   const cartItems = data?.cart?.cartItems;
+  console.log("cartItems: ", cartItems);
 
   const subtotal = useMemo(() => {
     if (!cartItems || cartItems.length === 0) return 0;
@@ -28,8 +29,9 @@ const Cart = () => {
   }, [cartItems]);
   console.log("subtotal: ", subtotal);
 
-  const handleRemoveFromCart = async (productId: string) => {
-    await remmoveFromCart(productId).unwrap();
+  const handleRemoveFromCart = async (id: string) => {
+    const result = await remmoveFromCart(id).unwrap();
+    console.log("result: ", result);
   };
 
   const columns = [
@@ -39,7 +41,7 @@ const Cart = () => {
       render: (row: any) => (
         <div className="flex items-center space-x-4">
           <button
-            onClick={() => handleRemoveFromCart(row.product.id)}
+            onClick={() => handleRemoveFromCart(row.id)}
             className="text-red-500 text-lg"
           >
             <Trash2 size={18} />
@@ -64,10 +66,16 @@ const Cart = () => {
       label: "Quantity",
       render: (row: any) => (
         <Controller
-          name={`quantity-${row.product._id}`}
+          name={`quantity-${row.product.id}`}
           defaultValue={row.quantity}
           control={control}
-          render={() => <QuantitySelector />}
+          render={({ field }) => (
+            <QuantitySelector
+              itemId={row.id}
+              value={field.value}
+              onChange={field.onChange}
+            />
+          )}
         />
       ),
     },
@@ -75,7 +83,7 @@ const Cart = () => {
     {
       key: "subtotal",
       label: "Subtotal",
-      render: (row: any) => `$${row.product.price * row.quantity}`,
+      render: (row: any) => `$${row.product.price}`,
     },
   ];
 

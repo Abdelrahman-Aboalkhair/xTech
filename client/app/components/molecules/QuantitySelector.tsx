@@ -1,64 +1,54 @@
 "use client";
 import { Minus, Plus } from "lucide-react";
-import { useEffect, useState } from "react";
 import { useUpdateCartItemMutation } from "@/app/store/apis/CartApi";
 import Button from "../atoms/Button";
 
 type QuantitySelectorProps = {
   value: number;
   onChange: (value: number) => void;
-  productId: string;
+  itemId: string;
 };
 
 const QuantitySelector = ({
   value,
   onChange,
-  productId,
+  itemId,
 }: QuantitySelectorProps) => {
-  const [updateCartItem, { data, error, isLoading }] =
-    useUpdateCartItemMutation();
-  console.log("updateCartItem: ", data);
-  if (error) {
-    console.log("error: ", error);
-  }
-  const [localQty, setLocalQty] = useState(value);
+  const [updateCartItem, { isLoading }] = useUpdateCartItemMutation();
 
   const handleUpdate = async (newQty: number) => {
-    if (newQty < 1) return;
+    if (newQty < 1 || newQty === value) return;
+
+    onChange(newQty); // update form state
     try {
-      setLocalQty(newQty);
-      onChange(newQty);
-      const res = await updateCartItem({
-        productId,
-        quantity: newQty,
-      }).unwrap();
-      console.log("res: ", res);
-    } catch (error) {
-      console.error("Failed to update quantity:", error);
-      setLocalQty(value);
+      await updateCartItem({ id: itemId, quantity: newQty }).unwrap();
+    } catch (err) {
+      console.error("Failed to update quantity:", err);
+      // Optional: Rollback on error
+      onChange(value);
     }
   };
 
-  useEffect(() => {
-    setLocalQty(value);
-  }, [value]);
-
   return (
-    <div className="flex items-center border rounded-md w-fit px-2">
+    <div className="flex items-center gap-2 rounded-full max-w-fit border border-gray-300 bg-white px-2 py-1 shadow-sm transition-all hover:shadow-md">
       <Button
         type="button"
-        onClick={() => handleUpdate(localQty - 1)}
-        disabled={isLoading || localQty <= 1}
-        className=""
+        onClick={() => handleUpdate(value - 1)}
+        disabled={isLoading || value <= 1}
+        className="rounded-full p-2 transition hover:bg-gray-100 disabled:opacity-50"
       >
         <Minus size={16} />
       </Button>
-      <span className="px-4">{localQty}</span>
+
+      <span className="min-w-[32px] text-center font-semibold text-gray-800">
+        {value}
+      </span>
+
       <Button
         type="button"
-        onClick={() => handleUpdate(localQty + 1)}
+        onClick={() => handleUpdate(value + 1)}
         disabled={isLoading}
-        className=""
+        className="rounded-full p-2 transition hover:bg-gray-100 disabled:opacity-50"
       >
         <Plus size={16} />
       </Button>
