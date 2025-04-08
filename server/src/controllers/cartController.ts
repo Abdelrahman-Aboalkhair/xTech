@@ -12,7 +12,9 @@ class CartController {
 
   getCart = asyncHandler(async (req: Request, res: Response) => {
     const userId = req.user?.id;
+    console.log("userId ==> ", userId);
     const sessionId = req.session.id;
+    console.log("sessionId ==> ", sessionId);
 
     const cart = await this.cartService.getOrCreateCart(userId, sessionId);
 
@@ -23,6 +25,7 @@ class CartController {
     const userId = req.user?.id;
     const sessionId = req.session.id;
     const { productId, quantity } = req.body;
+
     const item = await this.cartService.addToCart(
       productId,
       quantity,
