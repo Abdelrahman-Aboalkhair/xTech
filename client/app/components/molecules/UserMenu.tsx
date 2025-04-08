@@ -14,15 +14,25 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import Button from "../atoms/Button";
-import { useAuth } from "@/app/context/AuthContext";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import { clearUser } from "@/app/store/slices/AuthSlice";
+import { useSignOutMutation } from "@/app/store/apis/AuthApi";
 
 const UserMenu = ({ menuOpen, closeMenu }: any) => {
-  const { user, clearAuth } = useAuth();
+  const [signout] = useSignOutMutation();
+  const { user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   const router = useRouter();
 
   const handleSignOut = async () => {
-    clearAuth();
-    router.push("/sign-in");
+    try {
+      const res = await signout().unwrap();
+      console.log("res: ", res);
+      dispatch(clearUser());
+      router.push("/sign-in");
+    } catch (error) {
+      console.log("error signing out: ", error);
+    }
   };
 
   // Define routes based on role

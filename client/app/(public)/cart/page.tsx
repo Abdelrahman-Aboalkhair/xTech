@@ -9,14 +9,14 @@ import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 import CartSummary from "@/app/components/sections/cart/CartSummary";
 import {
-  useGetUserCartQuery,
+  useGetCartQuery,
   useRemoveFromCartMutation,
 } from "@/app/store/apis/CartApi";
 import QuantitySelector from "@/app/components/atoms/QuantitySelector";
 
 const Cart = () => {
   const { control } = useForm();
-  const { data, isLoading } = useGetUserCartQuery({});
+  const { data, isLoading } = useGetCartQuery({});
   const [remmoveFromCart] = useRemoveFromCartMutation();
   const cartItems = data?.cart?.cartItems;
 
@@ -67,13 +67,7 @@ const Cart = () => {
           name={`quantity-${row.product._id}`}
           defaultValue={row.quantity}
           control={control}
-          render={({ field }) => (
-            <QuantitySelector
-              value={field.value}
-              onChange={field.onChange}
-              productId={row.product.id}
-            />
-          )}
+          render={() => <QuantitySelector />}
         />
       ),
     },

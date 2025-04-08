@@ -5,27 +5,25 @@ import Image from "next/image";
 import UserMenu from "../molecules/UserMenu";
 import { User, ShoppingCart } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { useGetUserCartQuery } from "@/app/store/apis/CartApi";
-import { useAuth } from "@/app/context/AuthContext";
 import AppLogo from "@/app/assets/images/kgKraftLogo.png";
 import SearchBar from "../atoms/SearchBar";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
+import { useGetCartQuery } from "@/app/store/apis/CartApi";
+import { useAppSelector } from "@/app/store/hooks";
 
 const Navbar = () => {
   const { updateQuery } = useQueryParams();
-  const { user } = useAuth();
+  const { user } = useAppSelector((state) => state.auth);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
-  const { data } = useGetUserCartQuery({});
+  const { data } = useGetCartQuery({});
   const cartItemCount = useMemo(() => {
     return data?.cart?.cartItems?.length || 0;
   }, [data]);
 
   const onSearch = (data: { searchQuery: string }) => {
-    console.log("Search query:", data.searchQuery);
-
     const query = new URLSearchParams();
     query.set("searchQuery", data.searchQuery);
 

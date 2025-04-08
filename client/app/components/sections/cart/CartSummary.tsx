@@ -2,7 +2,6 @@ import { useInitiateCheckoutMutation } from "@/app/store/apis/CheckoutApi";
 import React, { useMemo } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import useToast from "@/app/hooks/ui/useToast";
-import { useClearCartMutation } from "@/app/store/apis/CartApi";
 
 interface CartSummaryProps {
   subtotal: number;
@@ -17,7 +16,6 @@ const CartSummary: React.FC<CartSummaryProps> = ({
   shippingRate = 0.01,
   currency = "$",
   totalItems,
-  cartId,
 }) => {
   const { showToast } = useToast();
   const stripePromise = loadStripe(
@@ -26,7 +24,6 @@ const CartSummary: React.FC<CartSummaryProps> = ({
 
   const [initiateCheckout, { isLoading, error }] =
     useInitiateCheckoutMutation();
-  const [clearCart] = useClearCartMutation();
   if (error) {
     console.log("error: ", error);
   }
@@ -51,8 +48,6 @@ const CartSummary: React.FC<CartSummaryProps> = ({
         showToast(result.error?.message, "error");
         console.error(result.error.message);
       }
-
-      await clearCart(cartId).unwrap();
     } catch (error) {
       console.log("Error checking out: ", error);
     }

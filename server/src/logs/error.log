@@ -1024,3 +1024,18 @@ Unknown argument `asc`. Did you mean `id`? Available options are marked with ?.
 [2025-04-08T04:32:04.333Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-08T04:43:35.197Z] [31MERROR[39M: Cannot set properties of undefined (setting 'cart')
 [2025-04-08T09:16:14.251Z] [31MERROR[39M: Email or password is incorrect.
+[2025-04-08T09:43:36.482Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T09:43:36.572Z] [31MERROR[39M: User not found
+[2025-04-08T09:46:48.688Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T09:46:48.708Z] [31MERROR[39M: User not found
+[2025-04-08T09:47:15.533Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T09:47:15.589Z] [31MERROR[39M: User not found
+[2025-04-08T09:48:00.807Z] [31MERROR[39M: 
+Invalid `prisma.cartItem.delete()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/cartRepository.ts:46:34
+
+  43 }
+  44 
+  45 async removeCartItem(itemId: string) {
+→ 46   return prisma.cartItem.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.

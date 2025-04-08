@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";
-import { AuthProvider } from "./context/AuthContext";
+import SessionWrapper from "./SessionWrapper";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
         <StoreProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <SessionWrapper>{children}</SessionWrapper>
         </StoreProvider>
       </body>
     </html>

@@ -1,9 +1,9 @@
 "use client";
 import { Minus, Plus } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 
-const QuantitySelector = () => {
-  const [quantity, setQuantity] = useState(1);
+const QuantitySelector: FC = () => {
+  const [quantity, setQuantity] = useState<number>(1);
 
   return (
     <div className="flex items-center border border-gray-300 rounded-md max-w-fit">
