@@ -1018,3 +1018,5 @@ Invalid `prisma.product.findMany()` invocation in
 Unknown argument `asc`. Did you mean `id`? Available options are marked with ?.
 [2025-04-08T02:25:42.217Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-08T02:49:56.794Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T03:14:16.700Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-08T04:03:23.529Z] [31MERROR[39M: Unauthorized, please log in

@@ -13,8 +13,18 @@ const FilterBar: React.FC = () => {
   const sortOptions = [
     { label: "Price: Low to High", value: "price:asc", id: 1, type: "price" },
     { label: "Price: High to Low", value: "price:desc", id: 2, type: "price" },
-    { label: "Newest", value: "createdAt:desc", id: 3, type: "createdAt" },
-    { label: "Oldest", value: "createdAt:asc", id: 4, type: "createdAt" },
+    {
+      label: "Newest Arrivals",
+      value: "createdAt:desc",
+      id: 3,
+      type: "createdAt",
+    },
+    {
+      label: "Oldest Products",
+      value: "createdAt:asc",
+      id: 4,
+      type: "createdAt",
+    },
   ];
 
   const {
@@ -111,7 +121,6 @@ const FilterBar: React.FC = () => {
           ))}
         </div>
 
-        {/* Clear Sorting Button */}
         <div className="flex justify-between items-center mt-4">
           <button
             className="text-red-500 flex items-center gap-2"

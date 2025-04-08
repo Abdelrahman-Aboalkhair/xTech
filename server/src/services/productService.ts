@@ -35,7 +35,13 @@ class ProductService {
       select,
     });
 
-    return { products, totalResults, totalPages, currentPage };
+    return {
+      products,
+      totalResults,
+      totalPages,
+      currentPage,
+      resultsPerPage: take,
+    };
   }
 
   async getProductById(productId: string) {

@@ -6,15 +6,18 @@ export const getEffectiveCart = async (
   cartService: CartService
 ) => {
   if (req.user) {
+    console.log("found user to get the cart => ", req.user);
     const userId = req.user.id;
     return await cartService.getCart({ userId });
   }
 
   if (req.session.cart?.id) {
+    console.log("Found session cart => ", req.session.cart);
     return await cartService.getCart({ cartId: req.session.cart.id });
   }
 
   const newCart = await cartService.getCart();
+  console.log("Created new cart => ", newCart);
   req.session.cart = { id: newCart.id, items: [] };
   return newCart;
 };

@@ -8,7 +8,8 @@ const optionalAuth = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  const accessToken = req.headers.authorization?.split(" ")[1];
+  const accessToken = req.cookies.accessToken;
+  console.log("accessToken: ", accessToken);
 
   if (accessToken) {
     try {
@@ -16,21 +17,20 @@ const optionalAuth = async (
         accessToken,
         process.env.ACCESS_TOKEN_SECRET!
       ) as User;
+      console.log("decoded => ", decoded);
 
       const user = await prisma.user.findUnique({
         where: { id: String(decoded.id) },
         select: { id: true, emailVerified: true, role: true },
       });
 
-      if (user && user.emailVerified) {
-        req.user = { id: user.id };
+      console.log("user => ", user);
+
+      if (user) {
+        req.user = user;
       }
-      // If user doesn’t exist or email isn’t verified, proceed as guest (no error)
-    } catch (error) {
-      // Invalid token, proceed as guest (no error)
-    }
+    } catch (error) {}
   }
-  // No token or failed verification, proceed as guest
   next();
 };
 

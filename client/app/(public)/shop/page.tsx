@@ -9,7 +9,7 @@ const ShopPage = () => {
       <Header />
       <div className="flex px-[3%]">
         <FilterBar />
-        <ProductSection title="Shop now" />
+        <ProductSection title="Shop now" showPagination />
       </div>
     </>
   );

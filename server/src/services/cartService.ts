@@ -105,6 +105,7 @@ class CartService {
     const userCart = await this.cartRepository.findCartByUserId(userId);
 
     if (userCart) {
+      // Merge items from guestCart into userCart.
       for (const item of guestCart.cartItems) {
         const existingItem = await this.cartRepository.findCartItem(
           userCart.id,
@@ -122,11 +123,15 @@ class CartService {
           });
         }
       }
+      // Delete the now-merged guest cart.
       await this.cartRepository.deleteCart(guestCartId);
       return userCart;
     } else {
-      await this.cartRepository.updateCart(guestCartId, { userId });
-      return guestCart;
+      // No user cart exists; update the guest cart by adding the userId.
+      const updatedCart = await this.cartRepository.updateCart(guestCartId, {
+        userId,
+      });
+      return updatedCart;
     }
   }
 }

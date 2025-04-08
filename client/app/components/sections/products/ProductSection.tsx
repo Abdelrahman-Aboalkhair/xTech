@@ -10,21 +10,34 @@ interface ProductSectionProps {
   title: string;
   showTitle?: boolean;
   viewAllButton?: boolean;
+  showPagination?: boolean;
 }
 
 const ProductSection: React.FC<ProductSectionProps> = ({
   title,
   showTitle = false,
   viewAllButton = false,
+  showPagination = false,
 }) => {
   const { query } = useQueryParams();
   const { data, isLoading, isError } = useGetAllProductsQuery(query);
+  console.log("data => ", data);
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
 
   const noProductsFound = data?.products.length === 0;
 
   return (
-    <div className="px-[3.5%] py-[3%] w-full">
+    <div className="px-4 w-full">
+      {showPagination && (
+        <p className="text-[15px] text-gray-700 pt-[15px] pb-[6px] ">
+          Showing {data?.totalResults} results
+          {data?.currentPage ? ` (Page ${data?.currentPage})` : ""}
+          {data?.totalResults > 0 && data?.resultsPerPage
+            ? `, showing ${data?.resultsPerPage} items per page`
+            : ""}
+        </p>
+      )}
+
       <div className="flex items-center justify-between mb-8">
         {showTitle && (
           <h2
@@ -70,7 +83,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
             ))}
           </div>
 
-          {data?.totalPages && data?.totalPages > 1 && (
+          {showPagination && data?.totalPages && data?.totalPages > 1 && (
             <PaginationComponent totalPages={data?.totalPages} />
           )}
         </>

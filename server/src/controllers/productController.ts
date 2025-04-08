@@ -13,8 +13,13 @@ class ProductController {
 
   getAllProducts = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
-      const { products, totalResults, totalPages, currentPage } =
-        await this.productService.getAllProducts(req.query);
+      const {
+        products,
+        totalResults,
+        totalPages,
+        currentPage,
+        resultsPerPage,
+      } = await this.productService.getAllProducts(req.query);
       sendResponse(
         res,
         200,
@@ -23,6 +28,7 @@ class ProductController {
           totalResults,
           totalPages,
           currentPage,
+          resultsPerPage,
         },
         "Products fetched successfully"
       );

@@ -22,28 +22,15 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
       <button
         onClick={() => changePage(currentPage - 1)}
         disabled={currentPage <= 1}
-        className="px-3 py-1 bg-gray-300 disabled:opacity-50"
+        className="px-8 py-2 bg-gray-200 rounded disabled:opacity-50"
       >
         Prev
       </button>
-      {Array.from({ length: totalPages }).map((_, i) => {
-        const pageNum = i + 1;
-        return (
-          <button
-            key={pageNum}
-            onClick={() => changePage(pageNum)}
-            className={`px-3 py-1 rounded ${
-              currentPage === pageNum ? "bg-blue-500 text-white" : "bg-gray-200"
-            }`}
-          >
-            {pageNum}
-          </button>
-        );
-      })}
+
       <button
         onClick={() => changePage(currentPage + 1)}
         disabled={currentPage >= totalPages}
-        className="px-3 py-1 bg-gray-300 disabled:opacity-50"
+        className="px-8 p-2 bg-primary text-white rounded disabled:opacity-50"
       >
         Next
       </button>

@@ -12,17 +12,21 @@ const router = express.Router();
 
 router.get("/", optionalAuth, CartController.getUserCart);
 
-router.post("/", validateDto(AddToCartDto), CartController.addToCart);
+router.post(
+  "/",
+  optionalAuth,
+  validateDto(AddToCartDto),
+  CartController.addToCart
+);
 
 router.put("/", validateDto(UpdateCartItemDto), CartController.updateCartItem);
 
 router.delete(
   "/",
-  optionalAuth,
   validateDto(RemoveFromCartDto),
   CartController.removeFromCart
 );
 
-router.delete("/clear", optionalAuth, CartController.clearCart);
+router.delete("/clear", CartController.clearCart);
 
 export default router;
