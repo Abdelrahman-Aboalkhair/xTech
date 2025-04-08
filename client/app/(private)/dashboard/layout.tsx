@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { useAppSelector } from "@/app/store/hooks";
 import BreadCrumb from "@/app/components/feedback/BreadCrumb";
 import Image from "next/image";
-import Sidebar from "./Sidebar";
+import Sidebar from "../../components/layout/Sidebar";
 
 export default function DashboardLayout({
   children,

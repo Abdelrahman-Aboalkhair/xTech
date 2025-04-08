@@ -6,6 +6,9 @@ import { motion } from "framer-motion";
 import { useGetStatsQuery } from "@/app/store/apis/DashboardApi";
 import StatsCard from "@/app/components/organisms/StatsCard";
 import { Package, ShoppingCart } from "lucide-react";
+import DonutChart from "@/app/components/charts/DonutChart";
+import BarChart from "@/app/components/charts/BarChart";
+import ListCard from "@/app/components/organisms/ListCard";
 
 const Dashboard = () => {
   const timePeriod = "last7days";
@@ -15,7 +18,7 @@ const Dashboard = () => {
   return (
     <ProtectedRoute requiredRoles={["ADMIN", "SUPERADMIN"]}>
       <motion.div
-        className="p-6 min-h-screen"
+        className="p-6 min-h-screen space-y-4"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -80,6 +83,27 @@ const Dashboard = () => {
             color="#22c55e"
             percentageChange={data?.changes?.revenue}
           />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <DonutChart
+            title="Most Sold Products"
+            data={[50, 30, 20, 10]}
+            labels={["Product A", "Product B", "Product C", "Product D"]}
+          />
+
+          <BarChart
+            title="Sales by Product"
+            data={[10, 20, 30, 40, 50]}
+            categories={[
+              "Product A",
+              "Product B",
+              "Product C",
+              "Product D",
+              "Product E",
+            ]}
+            color="#4CAF50"
+          />
+          <ListCard />
         </div>
       </motion.div>
     </ProtectedRoute>

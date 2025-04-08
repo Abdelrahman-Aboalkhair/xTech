@@ -11,10 +11,10 @@ const orderRepository = new OrderRepository();
 const orderService = new OrderService(orderRepository);
 const orderController = new OrderController(orderService);
 
-router.get("/orders", protect, orderController.getUserOrders);
-router.get("/orders/:orderId", protect, orderController.getOrderDetails);
+router.get("/", protect, orderController.getUserOrders);
+router.get("/:orderId", protect, orderController.getOrderDetails);
 router.patch(
-  "/orders/:orderId/tracking",
+  "/:orderId/tracking",
   protect,
   validateDto(UpdateTrackingStatusDto),
   orderController.updateTrackingStatus
