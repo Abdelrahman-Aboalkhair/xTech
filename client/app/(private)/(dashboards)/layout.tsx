@@ -11,10 +11,16 @@ import { usePathname } from "next/navigation";
 import useStorage from "../../hooks/state/useStorage";
 
 const sidebarLinks = [
-  { name: "Dashboard", href: "/user-dashboard", icon: LayoutDashboard },
-  { name: "Manage Products", href: "/products", icon: Briefcase },
-  { name: "Manage Categories", href: "/categories", icon: Briefcase },
-  { name: "Manage Users", href: "/manage-users", icon: Users },
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Products", href: "/products", icon: Briefcase },
+  { name: "Orders", href: "/orders", icon: Briefcase },
+  { name: "Payments", href: "/payments", icon: Briefcase },
+  { name: "Categories", href: "/categories", icon: Briefcase },
+  { name: "Addresses", href: "/addresses", icon: Briefcase },
+  { name: "Tracking", href: "/tracking", icon: Briefcase },
+  { name: "Users", href: "/users", icon: Users },
+  { name: "Analytics", ref: "/analytics", icon: Users },
+  { name: "Webhook logs", href: "/webhook-logs", icon: Users },
 ];
 
 export default function DashboardLayout({
