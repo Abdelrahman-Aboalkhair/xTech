@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 interface Item {
   id: number | string;
@@ -6,6 +7,7 @@ interface Item {
   subtitle: string;
   primaryInfo: string;
   secondaryInfo: string;
+  image: string;
 }
 
 interface ListCardProps {
@@ -37,18 +39,17 @@ const ListCardHeader: React.FC<{ title: string; viewAllLink: string }> = ({
 );
 
 // ListItem subcomponent
-const ListItem: React.FC<ListItemProps> = ({ item, itemType }) => {
-  const getImageClass = () => {
-    if (itemType === "user") return "rounded-full";
-    return "rounded-md";
-  };
-
+const ListItem: React.FC<ListItemProps> = ({ item }) => {
   return (
     <div className="flex items-center justify-between py-3 px-2 rounded-lg transition-all duration-200 hover:bg-gray-50 hover:shadow-md cursor-pointer group">
       {/* Left: Item info with image placeholder */}
       <div className="flex items-center space-x-3">
-        <div
-          className={`w-10 h-10 bg-gray-200 ${getImageClass()} group-hover:scale-105 transition-transform duration-200`}
+        <Image
+          src={item.image}
+          alt={item.name}
+          width={40}
+          height={40}
+          className="rounded-full"
         />
         <div>
           <h3 className="font-medium text-sm text-gray-700 group-hover:text-blue-600 transition-colors duration-200">

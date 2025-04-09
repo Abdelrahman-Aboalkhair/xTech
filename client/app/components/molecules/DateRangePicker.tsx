@@ -8,27 +8,36 @@ import {
   getDay,
   isSameDay,
   isToday,
+  isWithinInterval,
+  isBefore,
 } from "date-fns";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 import { Controller, useController } from "react-hook-form";
 import Dropdown from "./Dropdown";
 
-const DatePicker = ({
-  label,
-  control,
-  name,
-}: {
+interface DateRangePickerProps {
   label?: string;
   control: any;
-  name: string;
+  startName: string;
+  endName: string;
+}
+
+const DateRangePicker: React.FC<DateRangePickerProps> = ({
+  label,
+  control,
+  startName,
+  endName,
 }) => {
-  const { field } = useController({ name, control });
+  const { field: startField } = useController({ name: startName, control });
+  const { field: endField } = useController({ name: endName, control });
+
   const [currentMonth, setCurrentMonth] = useState<Date>(
-    field.value || new Date()
+    startField.value || new Date()
   );
   const [isOpen, setIsOpen] = useState(false);
   const [direction, setDirection] = useState(1);
+  const [selecting, setSelecting] = useState<"start" | "end">("start"); // Track which date is being selected
   const pickerRef = useRef<HTMLDivElement>(null);
 
   const daysOfWeek = [
@@ -67,9 +76,25 @@ const DatePicker = ({
   };
 
   const handleDateSelect = (date: Date | null) => {
-    if (date) {
-      field.onChange(date);
-      setIsOpen(false);
+    if (!date) return;
+
+    if (selecting === "start") {
+      startField.onChange(date);
+      // If the end date is before the new start date, clear it
+      if (endField.value && isBefore(endField.value, date)) {
+        endField.onChange(null);
+      }
+      setSelecting("end");
+    } else {
+      // Ensure end date is not before start date
+      if (startField.value && isBefore(date, startField.value)) {
+        endField.onChange(startField.value);
+        startField.onChange(date);
+      } else {
+        endField.onChange(date);
+      }
+      setSelecting("start");
+      setIsOpen(false); // Close the picker after selecting the end date
     }
   };
 
@@ -88,12 +113,9 @@ const DatePicker = ({
     }
   };
 
-  const handleMonthSelect = (selectedMonth: {
-    label: string;
-    value: string;
-  }) => {
+  const handleMonthSelect = (selectedMonth: string | null) => {
     if (selectedMonth !== null) {
-      const monthIndex = months.indexOf(selectedMonth);
+      const monthIndex = months.findIndex((m) => m.value === selectedMonth);
       setCurrentMonth(new Date(currentMonth.getFullYear(), monthIndex, 1));
     }
   };
@@ -113,17 +135,27 @@ const DatePicker = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Format the display value for the input
+  const displayValue = () => {
+    if (!startField.value && !endField.value) {
+      return label || "Select date range";
+    }
+    const start = startField.value
+      ? format(startField.value, "MMM dd, yyyy")
+      : "Start";
+    const end = endField.value ? format(endField.value, "MMM dd, yyyy") : "End";
+    return `${start} - ${end}`;
+  };
+
   return (
-    <div className="relative w-full" ref={pickerRef}>
+    <div className="relative min-w-[330px]" ref={pickerRef}>
       <div
         className="flex justify-between items-center px-3 py-2 rounded-lg border border-gray-200 
                   bg-white shadow-sm cursor-pointer hover:border-gray-300 transition-all duration-200"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="text-sm font-medium text-gray-700">
-          {field.value
-            ? format(field.value, "MMM dd, yyyy")
-            : label || "Select date"}
+          {displayValue()}
         </span>
         <Calendar size={18} className="text-gray-400" />
       </div>
@@ -154,9 +186,15 @@ const DatePicker = ({
                     render={({ field }) => (
                       <Dropdown
                         options={months}
-                        value={field.value}
+                        value={
+                          field.value ||
+                          currentMonth.toLocaleString("default", {
+                            month: "long",
+                          })
+                        }
                         onChange={handleMonthSelect}
-                        className="text-xs font-medium"
+                        className="text-xs font-medium px-6
+                        "
                       />
                     )}
                   />
@@ -169,7 +207,8 @@ const DatePicker = ({
                         options={years}
                         value={currentMonth.getFullYear().toString()}
                         onChange={handleYearChange}
-                        className="text-xs font-medium"
+                        className="text-xs font-medium px-6
+                        "
                       />
                     )}
                   />
@@ -198,45 +237,67 @@ const DatePicker = ({
                         key={day.value}
                         className="text-xs font-medium text-gray-400 py-1"
                       >
-                        {day.label}
+                        {day.value}
                       </div>
                     ))}
                   </div>
 
                   <div className="grid grid-cols-7 gap-1 text-center">
-                    {calendarDays.map((date, index) => (
-                      <div
-                        key={index}
-                        className={`
-                          aspect-square flex items-center justify-center rounded-full text-sm
-                          ${date ? "cursor-pointer" : ""}
-                          ${
-                            date &&
-                            isToday(date) &&
-                            !isSameDay(date, field.value)
-                              ? "border border-blue-400 text-blue-600"
-                              : ""
-                          }
-                          ${
-                            date && isSameDay(date, field.value)
-                              ? "bg-blue-500 text-white hover:bg-blue-600"
-                              : date
-                              ? "hover:bg-gray-100 text-gray-800"
-                              : ""
-                          }
-                          transition-colors duration-200
-                        `}
-                        onClick={() => date && handleDateSelect(date)}
-                      >
-                        {date ? (
-                          <span className="text-xs font-medium">
-                            {date.getDate()}
-                          </span>
-                        ) : (
-                          ""
-                        )}
-                      </div>
-                    ))}
+                    {calendarDays.map((date, index) => {
+                      const isInRange =
+                        date &&
+                        startField.value &&
+                        endField.value &&
+                        isWithinInterval(date, {
+                          start: startField.value,
+                          end: endField.value,
+                        });
+                      const isStart =
+                        date &&
+                        startField.value &&
+                        isSameDay(date, startField.value);
+                      const isEnd =
+                        date &&
+                        endField.value &&
+                        isSameDay(date, endField.value);
+
+                      return (
+                        <div
+                          key={index}
+                          className={`
+                            aspect-square flex items-center justify-center rounded-full text-sm
+                            ${date ? "cursor-pointer" : ""}
+                            ${
+                              date && isToday(date) && !isStart && !isEnd
+                                ? "border border-blue-400 text-blue-600"
+                                : ""
+                            }
+                            ${
+                              isInRange && !isStart && !isEnd
+                                ? "bg-blue-100 text-gray-800"
+                                : ""
+                            }
+                            ${
+                              isStart || isEnd
+                                ? "bg-blue-500 text-white hover:bg-blue-600"
+                                : date
+                                ? "hover:bg-gray-100 text-gray-800"
+                                : ""
+                            }
+                            transition-colors duration-200
+                          `}
+                          onClick={() => date && handleDateSelect(date)}
+                        >
+                          {date ? (
+                            <span className="text-xs font-medium">
+                              {date.getDate()}
+                            </span>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -244,15 +305,25 @@ const DatePicker = ({
               <div className="mt-3 pt-2 border-t border-gray-100 flex justify-between">
                 <button
                   className="text-xs font-medium text-blue-500 hover:text-blue-600 px-2 py-1 rounded transition-colors"
-                  onClick={() => handleDateSelect(new Date())}
+                  onClick={() => {
+                    const today = new Date();
+                    startField.onChange(today);
+                    endField.onChange(today);
+                    setSelecting("start");
+                  }}
                 >
                   Today
                 </button>
                 <button
                   className="text-xs font-medium text-gray-500 hover:text-gray-600 px-2 py-1 rounded transition-colors"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    startField.onChange(null);
+                    endField.onChange(null);
+                    setSelecting("start");
+                    setIsOpen(false);
+                  }}
                 >
-                  Cancel
+                  Clear
                 </button>
               </div>
             </div>
@@ -263,4 +334,4 @@ const DatePicker = ({
   );
 };
 
-export default DatePicker;
+export default DateRangePicker;

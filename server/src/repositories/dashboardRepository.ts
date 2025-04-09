@@ -66,6 +66,29 @@ class DashboardRepository {
 
     return { minYear, maxYear };
   }
+  async getUsersByTimePeriod(
+    startDate?: Date,
+    endDate?: Date,
+    yearStart?: Date,
+    yearEnd?: Date
+  ) {
+    return prisma.user.findMany({
+      where: {
+        createdAt: {
+          gte: startDate ?? yearStart,
+          lte: endDate ?? yearEnd,
+        },
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        createdAt: true,
+        orders: true,
+        avatar: true,
+      },
+    });
+  }
 }
 
 export default DashboardRepository;

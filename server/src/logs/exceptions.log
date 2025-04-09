@@ -20,3 +20,285 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T05:32:16.066Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/dashboardRepository.ts[0m:[93m40[0m:[93m39[0m - [91merror[0m[90m TS2551: [0mProperty 'aggregateRaw' does not exist on type 'DynamicModelExtensionThis<TypeMap<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }, {}>, "Order", { result: {}; model: {}; query: {}; client: {}; }>'. Did you mean 'aggregate'?
+
+[7m40[0m     const orders = await prisma.order.aggregateRaw({
+[7m  [0m [91m                                      ~~~~~~~~~~~~[0m
+[96msrc/repositories/dashboardRepository.ts[0m:[93m78[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'firstName' does not exist in type 'UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'.
+
+[7m78[0m         firstName: true,
+[7m  [0m [91m        ~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/dashboardRepository.ts[0m:[93m40[0m:[93m39[0m - [91merror[0m[90m TS2551: [0mProperty 'aggregateRaw' does not exist on type 'DynamicModelExtensionThis<TypeMap<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }, {}>, "Order", { result: {}; model: {}; query: {}; client: {}; }>'. Did you mean 'aggregate'?
+
+[7m40[0m     const orders = await prisma.order.aggregateRaw({
+[7m  [0m [91m                                      ~~~~~~~~~~~~[0m
+[96msrc/repositories/dashboardRepository.ts[0m:[93m78[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'firstName' does not exist in type 'UserSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'.
+
+[7m78[0m         firstName: true,
+[7m  [0m [91m        ~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T05:34:08.131Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m236[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m236[0m       const month = item.order.createdAt.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m322[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'firstName' does not exist on type '{ name: string; orders: { id: string; createdAt: Date; updatedAt: Date; userId: string; amount: number; orderDate: Date; status: ORDER_STATUS; }[]; id: string; email: string; createdAt: Date; }'.
+
+[7m322[0m         `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+[7m   [0m [91m                ~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m322[0m:[93m41[0m - [91merror[0m[90m TS2339: [0mProperty 'lastName' does not exist on type '{ name: string; orders: { id: string; createdAt: Date; updatedAt: Date; userId: string; amount: number; orderDate: Date; status: ORDER_STATUS; }[]; id: string; email: string; createdAt: Date; }'.
+
+[7m322[0m         `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+[7m   [0m [91m                                        ~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m236[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m236[0m       const month = item.order.createdAt.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m322[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'firstName' does not exist on type '{ name: string; orders: { id: string; createdAt: Date; updatedAt: Date; userId: string; amount: number; orderDate: Date; status: ORDER_STATUS; }[]; id: string; email: string; createdAt: Date; }'.
+
+[7m322[0m         `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+[7m   [0m [91m                ~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m322[0m:[93m41[0m - [91merror[0m[90m TS2339: [0mProperty 'lastName' does not exist on type '{ name: string; orders: { id: string; createdAt: Date; updatedAt: Date; userId: string; amount: number; orderDate: Date; status: ORDER_STATUS; }[]; id: string; email: string; createdAt: Date; }'.
+
+[7m322[0m         `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+[7m   [0m [91m                                        ~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T05:34:19.388Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m236[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m236[0m       const month = item.order.createdAt.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m236[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m236[0m       const month = item.order.createdAt.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T05:34:25.742Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m236[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m236[0m       const month = item.order.createdAt.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m236[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m236[0m       const month = item.order.createdAt.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T05:40:52.138Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m331[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+
+[7m331[0m         avatar: user.avatar,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96msrc/services/dashboardService.ts[0m:[93m321[0m:[93m9[0m
+    [7m321[0m         avatar: string;
+    [7m   [0m [96m        ~~~~~~[0m
+    The expected type comes from property 'avatar' which is declared here on type '{ name: string; email: string; orderCount: number; avatar: string; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m331[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+
+[7m331[0m         avatar: user.avatar,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96msrc/services/dashboardService.ts[0m:[93m321[0m:[93m9[0m
+    [7m321[0m         avatar: string;
+    [7m   [0m [96m        ~~~~~~[0m
+    The expected type comes from property 'avatar' which is declared here on type '{ name: string; email: string; orderCount: number; avatar: string; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T05:41:27.065Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m331[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'string | null' is not assignable to type 'string | undefined'.
+  Type 'null' is not assignable to type 'string | undefined'.
+
+[7m331[0m         avatar: user.avatar,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96msrc/services/dashboardService.ts[0m:[93m321[0m:[93m9[0m
+    [7m321[0m         avatar?: string;
+    [7m   [0m [96m        ~~~~~~[0m
+    The expected type comes from property 'avatar' which is declared here on type '{ name: string; email: string; orderCount: number; avatar?: string | undefined; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m331[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'string | null' is not assignable to type 'string | undefined'.
+  Type 'null' is not assignable to type 'string | undefined'.
+
+[7m331[0m         avatar: user.avatar,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96msrc/services/dashboardService.ts[0m:[93m321[0m:[93m9[0m
+    [7m321[0m         avatar?: string;
+    [7m   [0m [96m        ~~~~~~[0m
+    The expected type comes from property 'avatar' which is declared here on type '{ name: string; email: string; orderCount: number; avatar?: string | undefined; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T05:41:45.658Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m331[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'string | null' is not assignable to type 'string | undefined'.
+  Type 'null' is not assignable to type 'string | undefined'.
+
+[7m331[0m         avatar: user.avatar,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96msrc/services/dashboardService.ts[0m:[93m321[0m:[93m9[0m
+    [7m321[0m         avatar: string | undefined;
+    [7m   [0m [96m        ~~~~~~[0m
+    The expected type comes from property 'avatar' which is declared here on type '{ name: string; email: string; orderCount: number; avatar: string | undefined; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m331[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'string | null' is not assignable to type 'string | undefined'.
+  Type 'null' is not assignable to type 'string | undefined'.
+
+[7m331[0m         avatar: user.avatar,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96msrc/services/dashboardService.ts[0m:[93m321[0m:[93m9[0m
+    [7m321[0m         avatar: string | undefined;
+    [7m   [0m [96m        ~~~~~~[0m
+    The expected type comes from property 'avatar' which is declared here on type '{ name: string; email: string; orderCount: number; avatar: string | undefined; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T05:41:52.831Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m331[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+
+[7m331[0m         avatar: user.avatar,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96msrc/services/dashboardService.ts[0m:[93m321[0m:[93m9[0m
+    [7m321[0m         avatar: string;
+    [7m   [0m [96m        ~~~~~~[0m
+    The expected type comes from property 'avatar' which is declared here on type '{ name: string; email: string; orderCount: number; avatar: string; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m331[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+
+[7m331[0m         avatar: user.avatar,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96msrc/services/dashboardService.ts[0m:[93m321[0m:[93m9[0m
+    [7m321[0m         avatar: string;
+    [7m   [0m [96m        ~~~~~~[0m
+    The expected type comes from property 'avatar' which is declared here on type '{ name: string; email: string; orderCount: number; avatar: string; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T05:42:10.654Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m331[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+
+[7m331[0m         avatar: user.avatar,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96msrc/services/dashboardService.ts[0m:[93m321[0m:[93m9[0m
+    [7m321[0m         avatar: string;
+    [7m   [0m [96m        ~~~~~~[0m
+    The expected type comes from property 'avatar' which is declared here on type '{ name: string; email: string; orderCount: number; avatar: string; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m331[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+
+[7m331[0m         avatar: user.avatar,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96msrc/services/dashboardService.ts[0m:[93m321[0m:[93m9[0m
+    [7m321[0m         avatar: string;
+    [7m   [0m [96m        ~~~~~~[0m
+    The expected type comes from property 'avatar' which is declared here on type '{ name: string; email: string; orderCount: number; avatar: string; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

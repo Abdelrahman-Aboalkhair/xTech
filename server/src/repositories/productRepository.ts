@@ -66,6 +66,7 @@ class ProductRepository {
       select: {
         sku: true,
         price: true,
+        images: true,
       },
     });
   }

@@ -1,4 +1,3 @@
-// dashboardService.ts
 import DashboardRepository from "../repositories/dashboardRepository";
 import { subDays, subMonths, subYears, startOfYear, endOfYear } from "date-fns";
 import calculatePercentageChange from "../utils/calculatePercentChange";
@@ -114,6 +113,29 @@ class DashboardService {
           )
         : [];
 
+    // Fetch user data
+    const currentUsers = await this.dashboardRepository.getUsersByTimePeriod(
+      currentStartDate,
+      endDate,
+      yearStart,
+      yearEnd
+    );
+    const previousUsers =
+      timePeriod !== "allTime" && timePeriod !== "custom"
+        ? await this.dashboardRepository.getUsersByTimePeriod(
+            previousStartDate,
+            previousEndDate,
+            yearStart,
+            yearEnd
+          )
+        : [];
+    const allUsers = await this.dashboardRepository.getUsersByTimePeriod(
+      undefined,
+      undefined,
+      yearStart,
+      yearEnd
+    );
+
     const totalRevenue = currentOrders.reduce(
       (sum, order) => sum + order.amount,
       0
@@ -123,6 +145,7 @@ class DashboardService {
       (sum, item) => sum + item.quantity,
       0
     );
+    const totalUsers = currentUsers.length;
     const averageOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
 
     const previousTotalRevenue = previousOrders.reduce(
@@ -134,6 +157,7 @@ class DashboardService {
       (sum, item) => sum + item.quantity,
       0
     );
+    const previousTotalUsers = previousUsers.length;
     const previousAverageOrderValue =
       previousTotalOrders > 0 ? previousTotalRevenue / previousTotalOrders : 0;
 
@@ -148,6 +172,10 @@ class DashboardService {
     const salesChange =
       timePeriod !== "allTime" && timePeriod !== "custom"
         ? calculatePercentageChange(totalSales, previousTotalSales)
+        : null;
+    const usersChange =
+      timePeriod !== "allTime" && timePeriod !== "custom"
+        ? calculatePercentageChange(totalUsers, previousTotalUsers)
         : null;
     const aovChange =
       timePeriod !== "allTime" && timePeriod !== "custom"
@@ -172,7 +200,12 @@ class DashboardService {
       );
 
     const monthlyData: {
-      [key: string]: { revenue: number; orders: number; sales: number };
+      [key: string]: {
+        revenue: number;
+        orders: number;
+        sales: number;
+        users: number;
+      };
     } = {};
     const months = [
       "Jan",
@@ -190,7 +223,7 @@ class DashboardService {
     ];
 
     months.forEach((_, index) => {
-      monthlyData[index + 1] = { revenue: 0, orders: 0, sales: 0 };
+      monthlyData[index + 1] = { revenue: 0, orders: 0, sales: 0, users: 0 };
     });
 
     allOrders.forEach((order) => {
@@ -204,6 +237,11 @@ class DashboardService {
       monthlyData[month].sales += item.quantity;
     });
 
+    allUsers.forEach((user) => {
+      const month = user.createdAt.getMonth() + 1;
+      monthlyData[month].users += 1;
+    });
+
     const monthlyRevenue = months.map((_, index) =>
       Number(monthlyData[index + 1].revenue.toFixed(2))
     );
@@ -211,6 +249,7 @@ class DashboardService {
       (_, index) => monthlyData[index + 1].orders
     );
     const monthlySales = months.map((_, index) => monthlyData[index + 1].sales);
+    const monthlyUsers = months.map((_, index) => monthlyData[index + 1].users);
 
     // Calculate most sold products for DonutChart, BarChart, and ListCard
     const productSales: { [key: string]: { name: string; quantity: number } } =
@@ -252,7 +291,7 @@ class DashboardService {
       (product) => product.name
     );
 
-    // ListCard: Top 4 products with additional details (id, name, sku, price, quantity sold)
+    // ListCard: Top 4 products with additional details
     const topItems = await Promise.all(
       sortedProductSales.slice(0, 4).map(async (product, index) => {
         const productDetails = await this.productRepository.findProductByName(
@@ -268,20 +307,56 @@ class DashboardService {
             ? `$${productDetails.price}/item`
             : "$0/item",
           secondaryInfo: `${product.quantity} sold`,
+          image: productDetails?.images?.[0] ?? "",
         };
       })
     );
+
+    // ListCard: Top 4 users with the most orders
+    const userOrderCounts: {
+      [key: string]: {
+        name: string;
+        email: string;
+        orderCount: number;
+        avatar: string | null;
+      };
+    } = {};
+    currentUsers.forEach((user) => {
+      const orderCount = user.orders.length;
+      const name = user.name || "Unknown User";
+      userOrderCounts[user.id] = {
+        name,
+        email: user.email,
+        orderCount,
+        avatar: user.avatar,
+      };
+    });
+
+    const sortedUserOrders = Object.entries(userOrderCounts)
+      .map(([_, value]) => value)
+      .sort((a, b) => b.orderCount - a.orderCount); // Sort by order count, descending
+
+    const topUsers = sortedUserOrders.slice(0, 4).map((user, index) => ({
+      id: index + 1,
+      name: user.name,
+      subtitle: user.email,
+      primaryInfo: `${user.orderCount} orders`,
+      secondaryInfo: user.orderCount > 0 ? "Active" : "Inactive",
+      image: user.avatar,
+    }));
 
     const result = {
       totalRevenue: Number(totalRevenue.toFixed(2)),
       totalOrders,
       totalSales,
+      totalUsers, // Add total users
       averageOrderValue: Number(averageOrderValue.toFixed(2)),
       timePeriod,
       changes: {
         revenue: revenueChange,
         orders: ordersChange,
         sales: salesChange,
+        users: usersChange, // Add user growth percentage
         averageOrderValue: aovChange,
       },
       monthly: {
@@ -289,6 +364,7 @@ class DashboardService {
         revenue: monthlyRevenue,
         orders: monthlyOrders,
         sales: monthlySales,
+        users: monthlyUsers, // Add monthly user registrations
       },
       mostSoldProducts: {
         data: donutChartData,
@@ -299,6 +375,7 @@ class DashboardService {
         categories: barChartCategories,
       },
       topItems,
+      topUsers, // Add top users for ListCard
     };
 
     await redisClient.setex(cacheKey, 300, JSON.stringify(result));

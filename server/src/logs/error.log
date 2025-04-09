@@ -1160,3 +1160,5 @@ The column `Product.ratings` does not exist in the current database.
 [2025-04-09T04:33:47.109Z] [31MERROR[39M: Invalid or missing timePeriod. Use: last7days, lastMonth, lastYear, or allTime
 [2025-04-09T04:33:59.949Z] [31MERROR[39M: Invalid or missing timePeriod. Use: last7days, lastMonth, lastYear, or allTime
 [2025-04-09T04:47:21.085Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-09T05:20:10.883Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-09T05:37:31.310Z] [31MERROR[39M: Invalid access token, please log in

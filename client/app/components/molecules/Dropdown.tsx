@@ -67,7 +67,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           {value ? (
             <X
               size={16}
-              className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
+              className="text-gray-400 hover:text-gray-600 transition-colors duration-200 ml-2"
               onClick={(e) => {
                 e.stopPropagation();
                 onChange(null);

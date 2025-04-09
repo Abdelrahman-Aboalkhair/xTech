@@ -14,6 +14,7 @@ import BarChart from "@/app/components/charts/BarChart";
 import ListCard from "@/app/components/organisms/ListCard";
 import { Controller, useForm } from "react-hook-form";
 import Dropdown from "@/app/components/molecules/Dropdown";
+import DateRangePicker from "@/app/components/molecules/DateRangePicker";
 
 const Dashboard = () => {
   const { control, watch } = useForm();
@@ -54,81 +55,61 @@ const Dashboard = () => {
       >
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">Dashboad overview</h1>
-          <Controller
-            name="timePeriod"
-            control={control}
-            defaultValue={timePeriod}
-            render={({ field }) => (
-              <Dropdown
-                onChange={field.onChange}
-                options={timePeriodOptions}
-                value={field.value}
-                label="Time Period"
-                className="min-w-[150px] w-full max-w-[200px]"
-              />
-            )}
-          />
-
-          <Controller
-            name="year"
-            control={control}
-            render={({ field }) => (
-              <Dropdown
-                onChange={field.onChange}
-                options={yearOptions}
-                value={field.value}
-                label="Year"
-                className="min-w-[150px] w-full max-w-[200px]"
-                disabled={useCustomRange}
-              />
-            )}
-          />
-
-          <Controller
-            name="useCustomRange"
-            control={control}
-            render={({ field }) => (
-              <label className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={field.value}
-                  onChange={(e) => field.onChange(e.target.checked)}
+          <div className="flex items-center justify-center gap-6">
+            <Controller
+              name="timePeriod"
+              control={control}
+              defaultValue={timePeriod}
+              render={({ field }) => (
+                <Dropdown
+                  onChange={field.onChange}
+                  options={timePeriodOptions}
+                  value={field.value}
+                  label="Time Period"
+                  className="min-w-[150px] w-full max-w-[200px]"
                 />
-                Use Custom Date Range
-              </label>
-            )}
-          />
+              )}
+            />
 
-          {useCustomRange && (
-            <>
-              <Controller
-                name="startDate"
-                control={control}
-                render={({ field }) => (
+            <Controller
+              name="year"
+              control={control}
+              render={({ field }) => (
+                <Dropdown
+                  onChange={field.onChange}
+                  options={yearOptions}
+                  value={field.value}
+                  label="Year"
+                  className="min-w-[150px] w-full max-w-[200px]"
+                  disabled={useCustomRange}
+                />
+              )}
+            />
+
+            <Controller
+              name="useCustomRange"
+              control={control}
+              render={({ field }) => (
+                <label className="flex items-center gap-2">
                   <input
-                    type="date"
-                    value={field.value}
-                    onChange={field.onChange}
-                    className="border rounded px-2 py-1"
-                    placeholder="Start Date (YYYY-MM-DD)"
+                    type="checkbox"
+                    checked={field.value}
+                    onChange={(e) => field.onChange(e.target.checked)}
                   />
-                )}
-              />
-              <Controller
-                name="endDate"
+                  Use Custom Date Range
+                </label>
+              )}
+            />
+
+            {useCustomRange && (
+              <DateRangePicker
+                label="Custom Date Range"
                 control={control}
-                render={({ field }) => (
-                  <input
-                    type="date"
-                    value={field.value}
-                    onChange={field.onChange}
-                    className="border rounded px-2 py-1"
-                    placeholder="End Date (YYYY-MM-DD)"
-                  />
-                )}
+                startName="startDate"
+                endName="endDate"
               />
-            </>
-          )}
+            )}
+          </div>
         </div>
         <div className="flex gap-4">
           <StatsCard
@@ -160,25 +141,17 @@ const Dashboard = () => {
             caption="since last month"
             icon={<Package className="w-5 h-5" />}
           />
-          {/* NOT YET SUPPORTED BY API */}
           <StatsCard
             title="Total Users"
-            value={data?.totalSales}
-            percentage={data?.changes?.sales}
+            value={data?.totalUsers}
+            percentage={data?.changes?.users}
             caption="since last month"
             icon={<Package className="w-5 h-5" />}
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AreaChart
-            title="Total Sales"
-            data={data?.monthly?.sales || []}
-            categories={data?.monthly?.labels || []}
-            color="#3b82f6"
-            percentageChange={data?.changes?.sales}
-          />
-          <AreaChart
-            title="Total Orders"
+            title="Order Analytics"
             data={data?.monthly?.orders || []}
             categories={data?.monthly?.labels || []}
             color="#ec4899"
@@ -191,14 +164,33 @@ const Dashboard = () => {
             color="#22c55e"
             percentageChange={data?.changes?.revenue}
           />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AreaChart
+            title="Sales Analytics"
+            data={data?.monthly?.sales || []}
+            categories={data?.monthly?.labels || []}
+            color="#3b82f6"
+            percentageChange={data?.changes?.sales}
+          />
+          <AreaChart
+            title="User Analytics"
+            data={data?.monthly?.users || []}
+            categories={data?.monthly?.labels || []}
+            color="#f59e0b"
+            percentageChange={data?.changes?.users}
+          />
           <DonutChart
             title="Most Sold Products"
             data={data?.mostSoldProducts?.data || []}
             labels={data?.mostSoldProducts?.labels || []}
           />
-
+          <ListCard
+            title="Top Customers"
+            viewAllLink="/users"
+            items={data?.topUsers || []}
+            itemType="user"
+          />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <BarChart
             title="Sales by Product"
             data={data?.salesByProduct?.data || []}
