@@ -1162,3 +1162,119 @@ The column `Product.ratings` does not exist in the current database.
 [2025-04-09T04:47:21.085Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-09T05:20:10.883Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-09T05:37:31.310Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-09T05:53:31.412Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-09T06:26:23.983Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-09T06:43:44.021Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-09T06:59:37.776Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-09T07:21:27.632Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-09T07:21:27.638Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-09T07:21:27.655Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-09T07:23:03.204Z] [31MERROR[39M: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:118:33
+
+  115 }
+  116 
+  117 async deleteProduct(id: string) {
+→ 118   return prisma.product.delete(
+Foreign key constraint violated: `OrderItem_productId_fkey (index)`
+[2025-04-09T07:24:09.022Z] [31MERROR[39M: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:118:33
+
+  115 }
+  116 
+  117 async deleteProduct(id: string) {
+→ 118   return prisma.product.delete(
+Foreign key constraint violated: `OrderItem_productId_fkey (index)`
+[2025-04-09T07:24:15.639Z] [31MERROR[39M: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:118:33
+
+  115 }
+  116 
+  117 async deleteProduct(id: string) {
+→ 118   return prisma.product.delete(
+Foreign key constraint violated: `OrderItem_productId_fkey (index)`
+[2025-04-09T07:25:30.193Z] [31MERROR[39M: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:118:33
+
+  115 }
+  116 
+  117 async deleteProduct(id: string) {
+→ 118   return prisma.product.delete(
+Foreign key constraint violated: `OrderItem_productId_fkey (index)`
+[2025-04-09T07:27:58.105Z] [31MERROR[39M: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:118:33
+
+  115 }
+  116 
+  117 async deleteProduct(id: string) {
+→ 118   return prisma.product.delete(
+Foreign key constraint violated: `OrderItem_productId_fkey (index)`
+[2025-04-09T07:29:36.455Z] [31MERROR[39M: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:118:33
+
+  115 }
+  116 
+  117 async deleteProduct(id: string) {
+→ 118   return prisma.product.delete(
+Foreign key constraint violated: `OrderItem_productId_fkey (index)`
+[2025-04-09T07:31:30.247Z] [31MERROR[39M: 
+Invalid `prisma.product.update()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:111:27
+
+  108     categoryId?: string;
+  109   }>
+  110 ) {
+→ 111   return prisma.product.update({
+          where: {
+            id: "294eb9e2-da1a-4847-826d-44ab6d101dd1"
+          },
+          data: {
+            name: "Gaming Laptop - RTX 4070 updated",
+            price: 1899.99,
+            discount: 10,
+            stock: 30,
+            category: "",
+                      ~~
+            description: "Powerful gaming laptop with an Intel Core i7 processor, 16GB RAM, and NVIDIA RTX 4070 GPU.",
+            images: [
+              "https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg",
+              "https://m.media-amazon.com/images/I/71Y3bN4rybL._AC_SL1500_.jpg"
+            ]
+          }
+        })
+
+Argument `category`: Invalid value provided. Expected CategoryUpdateOneWithoutProductsNestedInput, provided String.
+[2025-04-09T07:42:12.817Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-09T07:49:59.906Z] [31MERROR[39M: 
+Invalid `prisma.product.update()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:112:27
+
+  109     categoryId?: string;
+  110   }>
+  111 ) {
+→ 112   return prisma.product.update({
+          where: {
+            id: "294eb9e2-da1a-4847-826d-44ab6d101dd1"
+          },
+          data: {
+            name: "Gaming Laptop - RTX 4070",
+            price: 1899.99,
+            discount: 10,
+            stock: 30,
+            category: "educational-materials",
+                      ~~~~~~~~~~~~~~~~~~~~~~~
+            description: "Powerful gaming laptop with an Intel Core i7 processor, 16GB RAM, and NVIDIA RTX 4070 GPU.",
+            images: [
+              "https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg",
+              "https://m.media-amazon.com/images/I/71Y3bN4rybL._AC_SL1500_.jpg"
+            ]
+          }
+        })
+
+Argument `category`: Invalid value provided. Expected CategoryUpdateOneWithoutProductsNestedInput, provided String.

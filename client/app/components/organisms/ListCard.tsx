@@ -1,9 +1,10 @@
-import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
+import ListCardHeader from "../atoms/ListCardHeader";
+import ListItem from "../atoms/ListItem";
 
-interface Item {
+export interface Item {
   id: number | string;
   name: string;
+  slug: string;
   subtitle: string;
   primaryInfo: string;
   secondaryInfo: string;
@@ -17,74 +18,18 @@ interface ListCardProps {
   itemType?: "product" | "user";
 }
 
-interface ListItemProps {
-  item: Item;
-  itemType: "product" | "user";
-}
-
-// Header subcomponent
-const ListCardHeader: React.FC<{ title: string; viewAllLink: string }> = ({
-  title,
-  viewAllLink,
-}) => (
-  <div className="flex justify-between items-center mb-4">
-    <h2 className="font-semibold text-lg text-gray-800">{title}</h2>
-    <a
-      href={viewAllLink}
-      className="text-gray-500 text-sm hover:text-gray-700 flex items-center transition-colors duration-200"
-    >
-      View All
-    </a>
-  </div>
-);
-
-// ListItem subcomponent
-const ListItem: React.FC<ListItemProps> = ({ item }) => {
-  return (
-    <div className="flex items-center justify-between py-3 px-2 rounded-lg transition-all duration-200 hover:bg-gray-50 hover:shadow-md cursor-pointer group">
-      {/* Left: Item info with image placeholder */}
-      <div className="flex items-center space-x-3">
-        <Image
-          src={item.image}
-          alt={item.name}
-          width={40}
-          height={40}
-          className="rounded-full"
-        />
-        <div>
-          <h3 className="font-medium text-sm text-gray-700 group-hover:text-blue-600 transition-colors duration-200">
-            {item.name}
-          </h3>
-          <p className="text-xs text-gray-400">{item.subtitle}</p>
-        </div>
-      </div>
-
-      {/* Middle: Primary Info */}
-      <div className="text-sm font-medium text-gray-600">
-        {item.primaryInfo}
-      </div>
-
-      {/* Right: Secondary Info and arrow */}
-      <div className="flex items-center space-x-3">
-        <span className="text-sm text-gray-400">{item.secondaryInfo}</span>
-        <button className="p-1 text-gray-400 group-hover:text-blue-500 group-hover:bg-blue-50 rounded-full transition-all duration-200 transform group-hover:rotate-45">
-          <ArrowUpRight size={16} />
-        </button>
-      </div>
-    </div>
-  );
-};
-
-// Main ListCard component
 export default function ListCard({
   title = "Top Items",
-  viewAllLink = "#",
+  viewAllLink,
   items = [],
   itemType = "product",
 }: ListCardProps) {
+  const defaultViewAllLink = itemType === "product" ? "/shop" : "/users";
+  const finalViewAllLink = viewAllLink || defaultViewAllLink;
+
   return (
-    <div className="bg-white rounded-lg shadow-sm p-4 w-full">
-      <ListCardHeader title={title} viewAllLink={viewAllLink} />
+    <div className="bg-white rounded-lg shadow-sm p-4 w-full h-fit">
+      <ListCardHeader title={title} viewAllLink={finalViewAllLink} />
 
       {items.length === 0 ? (
         <div className="text-center py-4">

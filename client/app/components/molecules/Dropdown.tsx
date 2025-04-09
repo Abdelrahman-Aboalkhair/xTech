@@ -53,7 +53,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       <div
         ref={buttonRef}
         className={`flex items-center justify-between px-3 py-2 
-          rounded-lg bg-white border border-gray-200 shadow-sm 
+          rounded-lg bg-white border border-gray-200
           transition-all duration-200 cursor-pointer 
           hover:border-gray-300 focus:ring-2 focus:ring-blue-100 ${className}`}
         onClick={() => setIsOpen((prev) => !prev)}
@@ -90,7 +90,7 @@ const Dropdown: React.FC<DropdownProps> = ({
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -5 }}
-            transition={{ duration: 0.15 }}
+            transition={{ duration: 0.1 }}
             className="absolute mt-1 bg-white border border-gray-100 rounded-lg shadow-lg z-10 overflow-hidden"
             style={{ width: dropdownWidth || "auto" }}
           >

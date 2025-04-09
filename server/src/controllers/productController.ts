@@ -88,6 +88,7 @@ class ProductController {
   deleteProduct = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
       const { id: productId } = req.params;
+      console.log("productId: ", productId);
       await this.productService.deleteProduct(productId);
       sendResponse(res, 200, {}, "Product deleted successfully");
     }

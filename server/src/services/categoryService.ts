@@ -28,6 +28,14 @@ class CategoryService {
     });
   }
 
+  async getCategory(categoryId: string) {
+    const category = await this.categoryRepository.findCategoryById(categoryId);
+    if (!category) {
+      throw new AppError(404, "Category not found");
+    }
+    return { category };
+  }
+
   async createCategory(name: string) {
     const category = await this.categoryRepository.createCategory({
       name,

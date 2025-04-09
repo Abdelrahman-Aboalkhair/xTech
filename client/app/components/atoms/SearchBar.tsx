@@ -46,7 +46,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           <input
             type="text"
             placeholder="Search..."
-            className="w-full py-2 pl-10 pr-4 bg-gray-50 border border-gray-100 rounded-lg text-gray-800 focus:outline-none focus:ring-[2px] focus:ring-blue-500 text-sm"
+            className="w-full py-2 pl-10 pr-4 border border-gray-200 rounded-lg text-gray-800 focus:outline-none focus:ring-[2px] focus:ring-blue-500 text-sm"
             {...register("searchQuery")}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}

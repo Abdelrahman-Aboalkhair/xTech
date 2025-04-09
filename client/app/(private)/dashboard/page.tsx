@@ -8,7 +8,13 @@ import {
   useGetYearRangeQuery,
 } from "@/app/store/apis/DashboardApi";
 import StatsCard from "@/app/components/organisms/StatsCard";
-import { Package, ShoppingCart } from "lucide-react";
+import {
+  BarChart2,
+  CreditCard,
+  DollarSign,
+  ShoppingCart,
+  Users,
+} from "lucide-react";
 import DonutChart from "@/app/components/charts/DonutChart";
 import BarChart from "@/app/components/charts/BarChart";
 import ListCard from "@/app/components/organisms/ListCard";
@@ -55,7 +61,7 @@ const Dashboard = () => {
       >
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">Dashboad overview</h1>
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex items-center justify-center gap-2">
             <Controller
               name="timePeriod"
               control={control}
@@ -86,29 +92,12 @@ const Dashboard = () => {
               )}
             />
 
-            <Controller
-              name="useCustomRange"
+            <DateRangePicker
+              label="Custom Date Range"
               control={control}
-              render={({ field }) => (
-                <label className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={field.value}
-                    onChange={(e) => field.onChange(e.target.checked)}
-                  />
-                  Use Custom Date Range
-                </label>
-              )}
+              startName="startDate"
+              endName="endDate"
             />
-
-            {useCustomRange && (
-              <DateRangePicker
-                label="Custom Date Range"
-                control={control}
-                startName="startDate"
-                endName="endDate"
-              />
-            )}
           </div>
         </div>
         <div className="flex gap-4">
@@ -117,7 +106,7 @@ const Dashboard = () => {
             value={data?.totalRevenue}
             percentage={data?.changes?.revenue}
             caption="since last month"
-            icon={<ShoppingCart className="w-5 h-5" />}
+            icon={<DollarSign className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Orders"
@@ -131,7 +120,7 @@ const Dashboard = () => {
             value={data?.totalSales}
             percentage={data?.changes?.sales}
             caption="since last month"
-            icon={<Package className="w-5 h-5" />}
+            icon={<BarChart2 className="w-5 h-5" />}
           />
 
           <StatsCard
@@ -139,14 +128,14 @@ const Dashboard = () => {
             value={data?.averageOrderValue}
             percentage={data?.changes?.averageOrderValue}
             caption="since last month"
-            icon={<Package className="w-5 h-5" />}
+            icon={<CreditCard className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Users"
             value={data?.totalUsers}
             percentage={data?.changes?.users}
             caption="since last month"
-            icon={<Package className="w-5 h-5" />}
+            icon={<Users className="w-5 h-5" />}
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -185,7 +174,7 @@ const Dashboard = () => {
           />
           <ListCard
             title="Top Customers"
-            viewAllLink="/users"
+            viewAllLink="/dashboard/users"
             items={data?.topUsers || []}
             itemType="user"
           />
@@ -199,9 +188,7 @@ const Dashboard = () => {
           />
           <ListCard
             title="Top Items"
-            viewAllLink={`/products?timePeriod=${timePeriod}${
-              year ? `&year=${year}` : ""
-            }`}
+            viewAllLink={`/shop`}
             items={data?.topItems || []}
             itemType="product"
           />

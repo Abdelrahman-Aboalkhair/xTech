@@ -1,6 +1,5 @@
 import React from "react";
 import Rating from "@/app/components/feedback/Rating";
-import QuantitySelector from "@/app/components/atoms/QuantitySelector";
 import SizeSelector from "@/app/components/atoms/SizeSelector";
 
 interface ProductInfoProps {
@@ -49,7 +48,6 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
       <SizeSelector />
 
       <div className="mt-4 flex items-center gap-4">
-        <QuantitySelector />
         <button
           disabled={!stock}
           className={`${

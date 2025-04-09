@@ -13,7 +13,7 @@ export const productApi = apiSlice.injectEndpoints({
             searchQuery,
             sort,
             limit,
-            category, // category is now a string, not an array
+            category,
             page,
             featured,
             bestselling,
@@ -22,7 +22,7 @@ export const productApi = apiSlice.injectEndpoints({
           if (searchQuery) queryString.set("searchQuery", searchQuery);
           if (sort) queryString.set("sort", sort);
           if (limit) queryString.set("limit", limit);
-          if (category) queryString.set("category", category); // now handled as a string
+          if (category) queryString.set("category", category);
           if (page) queryString.set("page", page);
           if (featured) queryString.set("featured", "true");
           if (bestselling) queryString.set("bestselling", "true");

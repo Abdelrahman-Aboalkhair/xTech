@@ -1,12 +1,9 @@
-import {
-  Loader2,
-  ArrowUpDown,
-  Search,
-  Filter,
-  FileText,
-  RefreshCw,
-} from "lucide-react";
-import React, { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { debounce } from "lodash";
+import useQueryParams from "@/app/hooks/network/useQueryParams";
+import { Loader2, ArrowUpDown, FileText, RefreshCw } from "lucide-react";
+import SearchBar from "../atoms/SearchBar";
+import PaginationComponent from "../organisms/Pagination";
 
 interface Column {
   key: string;
@@ -25,6 +22,10 @@ interface TableProps {
   title?: string;
   subtitle?: string;
   onRefresh?: () => void;
+  totalPages: number;
+  totalResults: number;
+  resultsPerPage: number;
+  currentPage: number;
 }
 
 const Table: React.FC<TableProps> = ({
@@ -32,47 +33,78 @@ const Table: React.FC<TableProps> = ({
   columns,
   isLoading = false,
   emptyMessage = "No data available",
-  title = "Data Table",
-  subtitle = "Manage and view your data",
+  title,
+  subtitle,
   onRefresh,
+  totalPages,
+  totalResults,
+  resultsPerPage,
+  currentPage,
 }) => {
+  const { query, updateQuery } = useQueryParams();
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
-  const handleSort = (key: string) => {
-    if (sortKey === key) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+  // Parse the sort parameter from the query (e.g., "price:asc")
+  useEffect(() => {
+    if (query.sort) {
+      const [field, direction] = (query.sort as string).split(":"); // "price:asc"
+      setSortKey(field || null);
+      setSortDirection((direction as "asc" | "desc") || "asc");
     } else {
-      setSortKey(key);
+      setSortKey(null);
       setSortDirection("asc");
     }
+  }, [query.sort]);
+
+  // Handle sorting and update URL with combined sort parameter
+  const handleSort = (key: string) => {
+    const newSortDirection =
+      sortKey === key && sortDirection === "asc" ? "desc" : "asc";
+    setSortKey(key);
+    setSortDirection(newSortDirection);
+    const sortValue = `${key}:${newSortDirection}`;
+    updateQuery({
+      sort: sortValue,
+    });
+  };
+
+  const debouncedSearch = useCallback(
+    debounce((searchQuery: string) => {
+      updateQuery({
+        searchQuery: searchQuery || "",
+      });
+    }, 300),
+    [updateQuery]
+  );
+
+  const handleSearch = (data: { searchQuery: string }) => {
+    debouncedSearch(data.searchQuery);
   };
 
   return (
     <div className="w-full bg-white rounded-xl shadow-sm border border-blue-50 overflow-hidden">
       {/* Table Header */}
       <div className="p-4 sm:p-6 border-b border-blue-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h2 className="font-semibold text-lg text-blue-900">{title}</h2>
-          <p className="text-blue-500 text-sm">{subtitle}</p>
-        </div>
-
+        {(title || subtitle) && (
+          <div>
+            {title && (
+              <h2 className="font-semibold text-lg text-gray-800">{title}</h2>
+            )}
+            {subtitle && <p className="text-sm text-gray-500">{subtitle}</p>}
+          </div>
+        )}
+        <p className="text-[15px] text-gray-700 pt-[15px] pb-[6px]">
+          Showing {totalResults} results
+          {currentPage ? ` (Page ${currentPage})` : ""}
+          {totalResults > 0 && resultsPerPage
+            ? `, showing ${resultsPerPage} items per page`
+            : ""}
+        </p>
         <div className="flex items-center gap-2 self-end sm:self-auto">
           <div className="relative">
-            <Search
-              size={16}
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-400"
-            />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="pl-9 pr-4 py-2 rounded-lg border border-blue-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 bg-blue-50"
-            />
+            <SearchBar onSearch={handleSearch} />
           </div>
-
-          <button className="p-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors">
-            <Filter size={16} />
-          </button>
 
           {onRefresh && (
             <button
@@ -167,27 +199,7 @@ const Table: React.FC<TableProps> = ({
         </table>
       </div>
 
-      {/* Table Footer */}
-      <div className="px-6 py-4 bg-white border-t border-blue-50 flex justify-between items-center text-sm text-blue-600">
-        <div>
-          {data.length > 0 &&
-            `Showing ${data.length} ${data.length === 1 ? "item" : "items"}`}
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            disabled={data.length === 0}
-            className="px-3 py-1 rounded border border-blue-100 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Previous
-          </button>
-          <button
-            disabled={data.length === 0}
-            className="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Next
-          </button>
-        </div>
-      </div>
+      <PaginationComponent totalPages={totalPages} />
     </div>
   );
 };

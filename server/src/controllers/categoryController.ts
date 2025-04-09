@@ -18,6 +18,14 @@ class CategoryController {
     }
   );
 
+  getCategory = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id: categoryId } = req.params;
+      const category = await this.categoryService.getCategory(categoryId);
+      sendResponse(res, 200, { category }, "Category fetched successfully");
+    }
+  );
+
   createCategory = asyncHandler(
     async (
       req: Request<any, any, CreateCategoryDto>,

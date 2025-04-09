@@ -302,3 +302,167 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T06:16:21.858Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m406[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 0-4 arguments, but got 6.
+
+[7m406[0m       category,
+[7m   [0m [91m      ~~~~~~~~~[0m
+[7m407[0m       region
+[7m   [0m [91m~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m414[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 0-4 arguments, but got 6.
+
+[7m414[0m       category,
+[7m   [0m [91m      ~~~~~~~~~[0m
+[7m415[0m       region
+[7m   [0m [91m~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m422[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 0-4 arguments, but got 5.
+
+[7m422[0m       region
+[7m   [0m [91m      ~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m433[0m:[93m37[0m - [91merror[0m[90m TS2551: [0mProperty 'category' does not exist on type '{ name: string; id: string; createdAt: Date; updatedAt: Date; description: string | null; price: number; discount: number; slug: string; images: string[]; stock: number; salesCount: number; ... 6 more ...; categoryId: string | null; }'. Did you mean 'categoryId'?
+
+[7m433[0m       const categoryName = product?.category || "Uncategorized";
+[7m   [0m [91m                                    ~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m465[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; userId: string; amount: number; orderDate: Date; status: ORDER_STATUS; }'.
+
+[7m465[0m       user: order.user?.email || "Unknown",
+[7m   [0m [91m                  ~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m467[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'items' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; userId: string; amount: number; orderDate: Date; status: ORDER_STATUS; }'.
+
+[7m467[0m       items: order.items.length,
+[7m   [0m [91m                   ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m406[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 0-4 arguments, but got 6.
+
+[7m406[0m       category,
+[7m   [0m [91m      ~~~~~~~~~[0m
+[7m407[0m       region
+[7m   [0m [91m~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m414[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 0-4 arguments, but got 6.
+
+[7m414[0m       category,
+[7m   [0m [91m      ~~~~~~~~~[0m
+[7m415[0m       region
+[7m   [0m [91m~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m422[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 0-4 arguments, but got 5.
+
+[7m422[0m       region
+[7m   [0m [91m      ~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m433[0m:[93m37[0m - [91merror[0m[90m TS2551: [0mProperty 'category' does not exist on type '{ name: string; id: string; createdAt: Date; updatedAt: Date; description: string | null; price: number; discount: number; slug: string; images: string[]; stock: number; salesCount: number; ... 6 more ...; categoryId: string | null; }'. Did you mean 'categoryId'?
+
+[7m433[0m       const categoryName = product?.category || "Uncategorized";
+[7m   [0m [91m                                    ~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m465[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; userId: string; amount: number; orderDate: Date; status: ORDER_STATUS; }'.
+
+[7m465[0m       user: order.user?.email || "Unknown",
+[7m   [0m [91m                  ~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m467[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'items' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; userId: string; amount: number; orderDate: Date; status: ORDER_STATUS; }'.
+
+[7m467[0m       items: order.items.length,
+[7m   [0m [91m                   ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T07:37:19.592Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/productRepository.ts[0m:[93m114[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'Partial<{ name: string; description: string; price: number; discount: number; images: string[]; stock: number; category?: string | undefined; }>' is not assignable to type 'Exact<(Without<ProductUpdateInput, ProductUncheckedUpdateInput> & ProductUncheckedUpdateInput) | (Without<...> & ProductUpdateInput), (Without<...> & ProductUncheckedUpdateInput) | (Without<...> & ProductUpdateInput)>'.
+  Type 'Partial<{ name: string; description: string; price: number; discount: number; images: string[]; stock: number; category?: string | undefined; }>' is not assignable to type '{ categoryId?: undefined; id?: Exact<string | StringFieldUpdateOperationsInput | undefined, string | StringFieldUpdateOperationsInput | undefined>; ... 18 more ...; cartItems?: Exact<...>; }'.
+    Types of property 'category' are incompatible.
+      Type 'string | undefined' is not assignable to type 'Exact<CategoryUpdateOneWithoutProductsNestedInput | undefined, CategoryUpdateOneWithoutProductsNestedInput | undefined>'.
+        Type 'string' is not assignable to type 'Exact<CategoryUpdateOneWithoutProductsNestedInput | undefined, CategoryUpdateOneWithoutProductsNestedInput | undefined>'.
+
+[7m114[0m       data,
+[7m   [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m4429[0m:[93m5[0m
+    [7m4429[0m     data: XOR<ProductUpdateInput, ProductUncheckedUpdateInput>
+    [7m    [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<ProductSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, ProductSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; where: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/productRepository.ts[0m:[93m114[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'Partial<{ name: string; description: string; price: number; discount: number; images: string[]; stock: number; category?: string | undefined; }>' is not assignable to type 'Exact<(Without<ProductUpdateInput, ProductUncheckedUpdateInput> & ProductUncheckedUpdateInput) | (Without<...> & ProductUpdateInput), (Without<...> & ProductUncheckedUpdateInput) | (Without<...> & ProductUpdateInput)>'.
+  Type 'Partial<{ name: string; description: string; price: number; discount: number; images: string[]; stock: number; category?: string | undefined; }>' is not assignable to type '{ categoryId?: undefined; id?: Exact<string | StringFieldUpdateOperationsInput | undefined, string | StringFieldUpdateOperationsInput | undefined>; ... 18 more ...; cartItems?: Exact<...>; }'.
+    Types of property 'category' are incompatible.
+      Type 'string | undefined' is not assignable to type 'Exact<CategoryUpdateOneWithoutProductsNestedInput | undefined, CategoryUpdateOneWithoutProductsNestedInput | undefined>'.
+        Type 'string' is not assignable to type 'Exact<CategoryUpdateOneWithoutProductsNestedInput | undefined, CategoryUpdateOneWithoutProductsNestedInput | undefined>'.
+
+[7m114[0m       data,
+[7m   [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m4429[0m:[93m5[0m
+    [7m4429[0m     data: XOR<ProductUpdateInput, ProductUncheckedUpdateInput>
+    [7m    [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<ProductSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, ProductSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; where: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T07:37:46.067Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/productRepository.ts[0m:[93m117[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'name' does not exist in type 'CategoryUpdateOneWithoutProductsNestedInput | { create?: Exact<(Without<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput> & CategoryUncheckedCreateWithoutProductsInput) | (Without<...> & CategoryCreateWithoutProductsInput) | undefined, (Without<...> & CategoryUncheckedCreateWithoutProd...'.
+
+[7m117[0m           name: data.category,
+[7m   [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m15947[0m:[93m5[0m
+    [7m15947[0m     category?: CategoryUpdateOneWithoutProductsNestedInput
+    [7m     [0m [96m    ~~~~~~~~[0m
+    The expected type comes from property 'category' which is declared here on type 'Exact<(Without<ProductUpdateInput, ProductUncheckedUpdateInput> & ProductUncheckedUpdateInput) | (Without<...> & ProductUpdateInput), (Without<...> & ProductUncheckedUpdateInput) | (Without<...> & ProductUpdateInput)>'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/productRepository.ts[0m:[93m117[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'name' does not exist in type 'CategoryUpdateOneWithoutProductsNestedInput | { create?: Exact<(Without<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput> & CategoryUncheckedCreateWithoutProductsInput) | (Without<...> & CategoryCreateWithoutProductsInput) | undefined, (Without<...> & CategoryUncheckedCreateWithoutProd...'.
+
+[7m117[0m           name: data.category,
+[7m   [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m15947[0m:[93m5[0m
+    [7m15947[0m     category?: CategoryUpdateOneWithoutProductsNestedInput
+    [7m     [0m [96m    ~~~~~~~~[0m
+    The expected type comes from property 'category' which is declared here on type 'Exact<(Without<ProductUpdateInput, ProductUncheckedUpdateInput> & ProductUncheckedUpdateInput) | (Without<...> & ProductUpdateInput), (Without<...> & ProductUncheckedUpdateInput) | (Without<...> & ProductUpdateInput)>'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T07:47:46.348Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/categoryController.ts[0m:[93m24[0m:[93m51[0m - [91merror[0m[90m TS2339: [0mProperty 'getCategory' does not exist on type 'CategoryService'.
+
+[7m24[0m       const category = await this.categoryService.getCategory(categoryId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/categoryController.ts[0m:[93m24[0m:[93m51[0m - [91merror[0m[90m TS2339: [0mProperty 'getCategory' does not exist on type 'CategoryService'.
+
+[7m24[0m       const category = await this.categoryService.getCategory(categoryId);
+[7m  [0m [91m                                                  ~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

@@ -148,10 +148,10 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   };
 
   return (
-    <div className="relative min-w-[330px]" ref={pickerRef}>
+    <div className="relative min-w-[300px]" ref={pickerRef}>
       <div
         className="flex justify-between items-center px-3 py-2 rounded-lg border border-gray-200 
-                  bg-white shadow-sm cursor-pointer hover:border-gray-300 transition-all duration-200"
+                  bg-white cursor-pointer hover:border-gray-300 transition-all duration-200"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="text-sm font-medium text-gray-700">

@@ -8,6 +8,7 @@ import { CreateCategoryDto } from "../dtos/categoryDto";
 const router = express.Router();
 
 router.get("/", categoryController.getAllCategories);
+router.get("/:id", categoryController.getCategory);
 router.post(
   "/",
   protect,

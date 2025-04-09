@@ -300,6 +300,7 @@ class DashboardService {
         return {
           id: index + 1,
           name: product.name,
+          slug: productDetails?.slug ?? "",
           subtitle: productDetails?.sku
             ? `SKU: ${productDetails.sku}`
             : "SKU: N/A",
@@ -381,6 +382,106 @@ class DashboardService {
     await redisClient.setex(cacheKey, 300, JSON.stringify(result));
     return result;
   }
+  // async getAnalyticsData(
+  //   startDate: Date,
+  //   endDate: Date,
+  //   category?: string,
+  //   region?: string
+  // ) {
+  //   const cacheKey = `analytics:${startDate.toISOString()}:${endDate.toISOString()}:${
+  //     category || "all"
+  //   }:${region || "all"}`;
+  //   const cachedData = await redisClient.get(cacheKey);
+
+  //   if (cachedData) {
+  //     return JSON.parse(cachedData);
+  //   }
+
+  //   // Fetch orders, order items, and users with filters
+  //   const orders = await this.dashboardRepository.getOrdersByTimePeriod(
+  //     startDate,
+  //     endDate,
+  //     undefined,
+  //     undefined,
+  //     category,
+  //     region
+  //   );
+  //   const orderItems = await this.dashboardRepository.getOrderItemsByTimePeriod(
+  //     startDate,
+  //     endDate,
+  //     undefined,
+  //     undefined,
+  //     category,
+  //     region
+  //   );
+  //   const users = await this.dashboardRepository.getUsersByTimePeriod(
+  //     startDate,
+  //     endDate,
+  //     undefined,
+  //     undefined,
+  //     region
+  //   );
+
+  //   // Sales by Category
+  //   const salesByCategory: {
+  //     [key: string]: { name: string; revenue: number; quantity: number };
+  //   } = {};
+  //   for (const item of orderItems) {
+  //     const product = await this.productRepository.findProductById(
+  //       item.productId
+  //     );
+  //     const categoryName = product?.category || "Uncategorized";
+  //     if (!salesByCategory[categoryName]) {
+  //       salesByCategory[categoryName] = {
+  //         name: categoryName,
+  //         revenue: 0,
+  //         quantity: 0,
+  //       };
+  //     }
+  //     salesByCategory[categoryName].revenue +=
+  //       item.quantity * (product?.price || 0);
+  //     salesByCategory[categoryName].quantity += item.quantity;
+  //   }
+
+  //   const sortedSalesByCategory = Object.values(salesByCategory).sort(
+  //     (a, b) => b.revenue - a.revenue
+  //   );
+
+  //   // Customer Retention (simplified: % of users who placed multiple orders)
+  //   const userOrderCounts: { [key: string]: number } = {};
+  //   orders.forEach((order) => {
+  //     const userId = order.userId;
+  //     userOrderCounts[userId] = (userOrderCounts[userId] || 0) + 1;
+  //   });
+  //   const repeatCustomers = Object.values(userOrderCounts).filter(
+  //     (count) => count > 1
+  //   ).length;
+  //   const retentionRate =
+  //     users.length > 0 ? (repeatCustomers / users.length) * 100 : 0;
+
+  //   // Order Details (for table)
+  //   const orderDetails = orders.map((order) => ({
+  //     id: order.id,
+  //     user: order.user?.email || "Unknown",
+  //     amount: order.amount,
+  //     items: order.items.length,
+  //     date: order.orderDate,
+  //     status: order.status,
+  //   }));
+
+  //   const result = {
+  //     salesByCategory: {
+  //       labels: sortedSalesByCategory.map((cat) => cat.name),
+  //       revenue: sortedSalesByCategory.map((cat) => cat.revenue),
+  //       quantity: sortedSalesByCategory.map((cat) => cat.quantity),
+  //     },
+  //     retentionRate: Number(retentionRate.toFixed(2)),
+  //     orderDetails,
+  //   };
+
+  //   await redisClient.setex(cacheKey, 300, JSON.stringify(result));
+  //   return result;
+  // }
 }
 
 export default DashboardService;

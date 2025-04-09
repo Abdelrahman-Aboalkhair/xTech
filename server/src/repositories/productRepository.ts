@@ -57,6 +57,7 @@ class ProductRepository {
   async findProductById(id: string) {
     return prisma.product.findUnique({
       where: { id },
+      include: { category: true },
     });
   }
 
@@ -67,6 +68,7 @@ class ProductRepository {
         sku: true,
         price: true,
         images: true,
+        slug: true,
       },
     });
   }
