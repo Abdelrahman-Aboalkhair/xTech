@@ -101,7 +101,7 @@ const SignIn = () => {
 
             <button
               type="submit"
-              className={`flex items-center justify-center w-full mx-auto py-[16px] bg-primary text-white rounded font-medium hover:opacity-90 ${
+              className={`flex items-center justify-center w-full mx-auto py-[16px] bg-blue-500 text-white rounded font-medium hover:opacity-90 ${
                 isLoading ? "cursor-not-allowed bg-gray-400 text-gray-800" : ""
               }`}
             >

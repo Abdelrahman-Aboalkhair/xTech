@@ -18,3 +18,217 @@ Require stack:
     at Module.require (node:internal/modules/cjs/loader:1480:12)
     at require (node:internal/modules/helpers:135:16)
     at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/trackingDetailRoutes.ts:5:1)
+[2025-04-09T03:12:16.196Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/dashboardController.ts[0m:[93m40[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m40[0m       selectedYear
+[7m  [0m [91m      ~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/dashboardController.ts[0m:[93m40[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m40[0m       selectedYear
+[7m  [0m [91m      ~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T03:15:46.108Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m51[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m51[0m       yearStart,
+[7m  [0m [91m      ~~~~~~~~~~[0m
+[7m52[0m       yearEnd
+[7m  [0m [91m~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m58[0m:[93m9[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m58[0m         yearStart,
+[7m  [0m [91m        ~~~~~~~~~~[0m
+[7m59[0m         yearEnd
+[7m  [0m [91m~~~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m67[0m:[93m13[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m67[0m             yearStart,
+[7m  [0m [91m            ~~~~~~~~~~[0m
+[7m68[0m             yearEnd
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m76[0m:[93m13[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m76[0m             yearStart,
+[7m  [0m [91m            ~~~~~~~~~~[0m
+[7m77[0m             yearEnd
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m129[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m129[0m       yearStart,
+[7m   [0m [91m      ~~~~~~~~~~[0m
+[7m130[0m       yearEnd
+[7m   [0m [91m~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m136[0m:[93m9[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m136[0m         yearStart,
+[7m   [0m [91m        ~~~~~~~~~~[0m
+[7m137[0m         yearEnd
+[7m   [0m [91m~~~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m173[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m173[0m       const month = item.order.orderDate.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m51[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m51[0m       yearStart,
+[7m  [0m [91m      ~~~~~~~~~~[0m
+[7m52[0m       yearEnd
+[7m  [0m [91m~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m58[0m:[93m9[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m58[0m         yearStart,
+[7m  [0m [91m        ~~~~~~~~~~[0m
+[7m59[0m         yearEnd
+[7m  [0m [91m~~~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m67[0m:[93m13[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m67[0m             yearStart,
+[7m  [0m [91m            ~~~~~~~~~~[0m
+[7m68[0m             yearEnd
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m76[0m:[93m13[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m76[0m             yearStart,
+[7m  [0m [91m            ~~~~~~~~~~[0m
+[7m77[0m             yearEnd
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m129[0m:[93m7[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m129[0m       yearStart,
+[7m   [0m [91m      ~~~~~~~~~~[0m
+[7m130[0m       yearEnd
+[7m   [0m [91m~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m136[0m:[93m9[0m - [91merror[0m[90m TS2554: [0mExpected 0-2 arguments, but got 4.
+
+[7m136[0m         yearStart,
+[7m   [0m [91m        ~~~~~~~~~~[0m
+[7m137[0m         yearEnd
+[7m   [0m [91m~~~~~~~~~~~~~~~[0m
+[96msrc/services/dashboardService.ts[0m:[93m173[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m173[0m       const month = item.order.orderDate.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T03:16:14.684Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m173[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m173[0m       const month = item.order.orderDate.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m173[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m173[0m       const month = item.order.orderDate.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T03:38:45.665Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m190[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m190[0m       const month = item.order.orderDate.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m190[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m190[0m       const month = item.order.orderDate.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T03:41:09.188Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/dashboardRoutes.ts[0m:[93m24[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'getOrderYearRange' does not exist on type 'DashboardController'. Did you mean 'getYearRange'?
+
+[7m24[0m   dashboardController.getOrderYearRange
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/dashboardController.ts[0m:[93m76[0m:[93m3[0m
+    [7m76[0m   getYearRange = asyncHandler(async (req: Request, res: Response) => {
+    [7m  [0m [96m  ~~~~~~~~~~~~[0m
+    'getYearRange' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/dashboardRoutes.ts[0m:[93m24[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'getOrderYearRange' does not exist on type 'DashboardController'. Did you mean 'getYearRange'?
+
+[7m24[0m   dashboardController.getOrderYearRange
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/dashboardController.ts[0m:[93m76[0m:[93m3[0m
+    [7m76[0m   getYearRange = asyncHandler(async (req: Request, res: Response) => {
+    [7m  [0m [96m  ~~~~~~~~~~~~[0m
+    'getYearRange' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-09T03:45:34.221Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m205[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m205[0m       const month = item.order.orderDate.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/dashboardService.ts[0m:[93m205[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'order' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; orderId: string; productId: string; quantity: number; }'. Did you mean 'orderId'?
+
+[7m205[0m       const month = item.order.orderDate.getMonth() + 1;
+[7m   [0m [91m                         ~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

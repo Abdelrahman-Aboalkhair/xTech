@@ -3,6 +3,7 @@ import CheckoutRepository from "../repositories/checkoutRepository";
 import WebhookRepository from "../repositories/webhookRepository";
 import stripe from "../config/stripe";
 import CartRepository from "../repositories/cartRepository";
+import redisClient from "../config/redis";
 
 class WebhookService {
   constructor(
@@ -70,6 +71,12 @@ class WebhookService {
       "checkout.session.completed",
       session
     );
+
+    await redisClient.del("dashboard:year-range"); // Invalidate year range cache
+    const keys = await redisClient.keys("dashboard:stats:*"); // Invalidate all stats caches
+    if (keys.length > 0) {
+      await redisClient.del(keys);
+    }
 
     return { order, payment, tracking, address: address || null };
   }

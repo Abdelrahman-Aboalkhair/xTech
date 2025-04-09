@@ -17,4 +17,11 @@ router.get(
   dashboardController.getDashboardStats
 );
 
+router.get(
+  "/year-range",
+  protect,
+  authorizeRole("ADMIN", "SUPERADMIN"),
+  dashboardController.getYearRange
+);
+
 export default router;

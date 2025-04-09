@@ -6,33 +6,64 @@ class DashboardRepository {
 
   async getOrdersByTimePeriod(
     startDate?: Date,
-    endDate?: Date
+    endDate?: Date,
+    yearStart?: Date,
+    yearEnd?: Date
   ): Promise<Order[]> {
     return prisma.order.findMany({
       where: {
         orderDate: {
-          // *Get orders within the specified time period
-          gte: startDate,
+          gte: startDate || yearStart,
           ...(endDate && { lt: endDate }),
+          ...(yearEnd && { lte: yearEnd }),
         },
+      },
+      include: {
+        orderItems: true,
       },
     });
   }
 
   async getOrderItemsByTimePeriod(
     startDate?: Date,
-    endDate?: Date
+    endDate?: Date,
+    yearStart?: Date,
+    yearEnd?: Date
   ): Promise<OrderItem[]> {
     return prisma.orderItem.findMany({
       where: {
         order: {
           orderDate: {
-            gte: startDate,
+            gte: startDate || yearStart,
             ...(endDate && { lt: endDate }),
+            ...(yearEnd && { lte: yearEnd }),
           },
         },
       },
+      include: {
+        order: true,
+      },
     });
+  }
+
+  async getOrderYearRange(): Promise<{ minYear: number; maxYear: number }> {
+    const earliestOrder = await prisma.order.findFirst({
+      orderBy: { orderDate: "asc" },
+      select: { orderDate: true },
+    });
+    const latestOrder = await prisma.order.findFirst({
+      orderBy: { orderDate: "desc" },
+      select: { orderDate: true },
+    });
+
+    const minYear = earliestOrder
+      ? earliestOrder.orderDate.getFullYear()
+      : new Date().getFullYear();
+    const maxYear = latestOrder
+      ? latestOrder.orderDate.getFullYear()
+      : new Date().getFullYear();
+
+    return { minYear, maxYear };
   }
 }
 

@@ -9,11 +9,24 @@ import { Package, ShoppingCart } from "lucide-react";
 import DonutChart from "@/app/components/charts/DonutChart";
 import BarChart from "@/app/components/charts/BarChart";
 import ListCard from "@/app/components/organisms/ListCard";
+import { Controller, useForm } from "react-hook-form";
+import Dropdown from "@/app/components/molecules/Dropdown";
 
 const Dashboard = () => {
-  const timePeriod = "last7days";
+  const { control, watch } = useForm({
+    defaultValues: {
+      timePeriod: "last7days",
+    },
+  });
+  const timePeriodOptions = [
+    { label: "Last 7 Days", value: "last7days" },
+    { label: "Last Month", value: "lastMonth" },
+    { label: "Last Year", value: "lastYear" },
+    { label: "All Time", value: "allTime" },
+  ];
+
+  const timePeriod = watch("timePeriod");
   const { data } = useGetStatsQuery(timePeriod);
-  console.log("stats => ", data);
   const chartCategories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
   return (
     <ProtectedRoute requiredRoles={["ADMIN", "SUPERADMIN"]}>
@@ -23,6 +36,23 @@ const Dashboard = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
+        <div className="flex items-center justify-between">
+          <h1 className="text-xl font-semibold">Dashboad overview</h1>
+          <Controller
+            name="timePeriod"
+            control={control}
+            defaultValue={timePeriod}
+            render={({ field }) => (
+              <Dropdown
+                onChange={field.onChange}
+                options={timePeriodOptions}
+                value={field.value}
+                label="Time Period"
+                className="min-w-[150px] w-full max-w-[200px]"
+              />
+            )}
+          />
+        </div>
         <div className="flex gap-4">
           <StatsCard
             title="Total Revenue"

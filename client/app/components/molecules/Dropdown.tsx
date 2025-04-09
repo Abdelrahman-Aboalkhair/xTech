@@ -1,12 +1,17 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, X } from "lucide-react";
 import useClickOutside from "@/app/hooks/dom/useClickOutside";
 
+interface DropdownOption {
+  label: string;
+  value: string;
+}
+
 interface DropdownProps {
   label?: string;
-  options: string[];
+  options: DropdownOption[];
   value: string | null;
   onChange: (value: string | null) => void;
   className?: string;
@@ -38,20 +43,28 @@ const Dropdown: React.FC<DropdownProps> = ({
     setIsOpen(false);
   };
 
+  const selectedLabel =
+    options.find((opt) => opt.value === value)?.label || label || "Select...";
+
   return (
-    <div className="relative w-full" ref={dropdownRef}>
+    <div className="relative" ref={dropdownRef}>
       <div
         ref={buttonRef}
-        className={`flex items-center justify-between border border-gray-300 w-full p-[12px]
-           rounded-md cursor-pointer hover:border-primary ${className}`}
+        className={`flex items-center justify-between px-3 py-2 
+          rounded-lg bg-white border border-gray-200 shadow-sm 
+          transition-all duration-200 cursor-pointer 
+          hover:border-gray-300 focus:ring-2 focus:ring-blue-100 ${className}`}
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <span className="text-sm">{value || label}</span>
+        <span className="text-sm font-medium text-gray-700 truncate">
+          {selectedLabel}
+        </span>
 
         <div className="flex items-center">
           {value ? (
             <X
-              className="text-gray-600 cursor-pointer"
+              size={16}
+              className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
               onClick={(e) => {
                 e.stopPropagation();
                 onChange(null);
@@ -60,38 +73,44 @@ const Dropdown: React.FC<DropdownProps> = ({
           ) : (
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
-              transition={{ duration: 0.15 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
             >
-              <ChevronDown size={20} className="text-gray-600 ml-2" />
+              <ChevronDown size={16} className="text-gray-400 ml-2" />
             </motion.div>
           )}
         </div>
       </div>
 
-      {isOpen && (
-        <div
-          className="absolute mt-2 bg-white border-gray-200 border rounded-md shadow-lg z-10"
-          style={{ width: dropdownWidth || "auto" }}
-        >
-          <motion.ul
-            className="max-h-56 overflow-auto"
-            initial={{ opacity: 0, y: 10 }}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0, y: -5 }}
+            transition={{ duration: 0.15 }}
+            className="absolute mt-1 bg-white border border-gray-100 rounded-lg shadow-lg z-10 overflow-hidden"
+            style={{ width: dropdownWidth || "auto" }}
           >
-            {options.map((option) => (
-              <li
-                key={option}
-                className="p-2 hover:bg-gray-100 cursor-pointer"
-                onClick={() => handleSelect(option)}
-              >
-                {option}
-              </li>
-            ))}
-          </motion.ul>
-        </div>
-      )}
+            <ul className="max-h-60 overflow-auto py-1">
+              {options.map((option) => (
+                <li
+                  key={option.value}
+                  className={`px-3 py-2 text-sm transition-colors duration-150
+                    cursor-pointer hover:bg-gray-50 
+                    ${
+                      value === option.value
+                        ? "bg-blue-50 text-blue-600"
+                        : "text-gray-700"
+                    }`}
+                  onClick={() => handleSelect(option.value)}
+                >
+                  {option.label}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
