@@ -13,7 +13,7 @@ const DonutChart: React.FC<Props> = ({
   title,
   data,
   labels,
-  colorScheme = ["#3b82f6", "#10b981", "#ef4444", "#f59e0b"], // Default colors for sections
+  colorScheme = ["#3b82f6", "#10b981", "#ef4444", "#f59e0b"],
 }) => {
   const options = {
     chart: {
@@ -24,28 +24,28 @@ const DonutChart: React.FC<Props> = ({
     colors: colorScheme,
     dataLabels: { enabled: true },
     stroke: {
-      width: 0, // Remove the border between sections
+      width: 0,
     },
     plotOptions: {
       pie: {
         donut: {
-          size: "60%", // Adjust the donut's size
+          size: "60%",
         },
       },
     },
     legend: {
       position: "bottom",
       labels: {
-        colors: "#9ca3af", // Set legend text color
+        colors: "#9ca3af",
       },
     },
     tooltip: {
       theme: "dark",
     },
+    labels: labels,
   };
 
   const series = data;
-  const labelsForChart = labels;
 
   return (
     <div className="bg-gray-50 p-4 rounded-2xl shadow-sm w-full">

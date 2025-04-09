@@ -60,10 +60,25 @@ class ProductRepository {
     });
   }
 
+  async findProductByName(name: string) {
+    return prisma.product.findUnique({
+      where: { name },
+      select: {
+        sku: true,
+        price: true,
+      },
+    });
+  }
+
   async findProductBySlug(slug: string) {
     return prisma.product.findUnique({
       where: { slug },
     });
+  }
+
+  async findProductNameById(id: string): Promise<string | null> {
+    const product = await this.findProductById(id);
+    return product?.name || null;
   }
 
   async createProduct(data: {

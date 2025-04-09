@@ -10,7 +10,14 @@ class DashboardController {
 
   getDashboardStats = asyncHandler(async (req: Request, res: Response) => {
     const { timePeriod, year, startDate, endDate } = req.query;
-    const validPeriods = ["last7days", "lastMonth", "lastYear", "allTime"];
+    console.log("timePeriod: ", timePeriod);
+    const validPeriods = [
+      "last7days",
+      "lastMonth",
+      "lastYear",
+      "allTime",
+      "custom",
+    ];
 
     // Validate timePeriod
     if (!timePeriod || !validPeriods.includes(timePeriod as string)) {

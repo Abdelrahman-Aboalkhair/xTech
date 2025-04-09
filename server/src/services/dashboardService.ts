@@ -1,10 +1,15 @@
+// dashboardService.ts
 import DashboardRepository from "../repositories/dashboardRepository";
 import { subDays, subMonths, subYears, startOfYear, endOfYear } from "date-fns";
 import calculatePercentageChange from "../utils/calculatePercentChange";
 import redisClient from "../config/redis";
+import ProductRepository from "../repositories/productRepository";
 
 class DashboardService {
-  constructor(private dashboardRepository: DashboardRepository) {}
+  constructor(
+    private dashboardRepository: DashboardRepository,
+    private productRepository: ProductRepository
+  ) {}
 
   async getOrderYearRange() {
     const cacheKey = "dashboard:year-range";
@@ -15,7 +20,7 @@ class DashboardService {
     }
 
     const yearRange = await this.dashboardRepository.getOrderYearRange();
-    await redisClient.setex(cacheKey, 3600, JSON.stringify(yearRange)); // Cache for 1 hour
+    await redisClient.setex(cacheKey, 3600, JSON.stringify(yearRange));
     return yearRange;
   }
 
@@ -25,7 +30,6 @@ class DashboardService {
     startDate?: Date,
     endDate?: Date
   ) {
-    // Create a unique cache key based on query parameters
     const cacheKey = `dashboard:stats:${timePeriod}:${year || "all"}:${
       startDate ? startDate.toISOString() : "none"
     }:${endDate ? endDate.toISOString() : "none"}`;
@@ -40,7 +44,6 @@ class DashboardService {
     let previousStartDate: Date | undefined;
     let previousEndDate: Date | undefined;
 
-    // Apply year filter if provided
     let yearStart: Date | undefined;
     let yearEnd: Date | undefined;
     if (year) {
@@ -48,7 +51,6 @@ class DashboardService {
       yearEnd = endOfYear(new Date(year, 0, 1));
     }
 
-    // If custom startDate and endDate are provided, override timePeriod
     if (startDate && endDate) {
       currentStartDate = startDate;
       previousStartDate = undefined;
@@ -79,7 +81,6 @@ class DashboardService {
       }
     }
 
-    // Fetch current period data with year filter
     const currentOrders = await this.dashboardRepository.getOrdersByTimePeriod(
       currentStartDate,
       endDate,
@@ -113,7 +114,6 @@ class DashboardService {
           )
         : [];
 
-    // Calculate aggregate stats for current period
     const totalRevenue = currentOrders.reduce(
       (sum, order) => sum + order.amount,
       0
@@ -157,7 +157,6 @@ class DashboardService {
           )
         : null;
 
-    // Fetch all orders and order items for monthly breakdown (with year filter)
     const allOrders = await this.dashboardRepository.getOrdersByTimePeriod(
       undefined,
       undefined,
@@ -172,7 +171,6 @@ class DashboardService {
         yearEnd
       );
 
-    // Group by month for chart data
     const monthlyData: {
       [key: string]: { revenue: number; orders: number; sales: number };
     } = {};
@@ -202,7 +200,6 @@ class DashboardService {
     });
 
     allOrderItems.forEach((item) => {
-      // ! Be careful: I changed orderDate to createdAt
       const month = item.createdAt.getMonth() + 1;
       monthlyData[month].sales += item.quantity;
     });
@@ -214,6 +211,66 @@ class DashboardService {
       (_, index) => monthlyData[index + 1].orders
     );
     const monthlySales = months.map((_, index) => monthlyData[index + 1].sales);
+
+    // Calculate most sold products for DonutChart, BarChart, and ListCard
+    const productSales: { [key: string]: { name: string; quantity: number } } =
+      {};
+    for (const item of currentOrderItems) {
+      const productId = item.productId;
+      const productName =
+        (await this.productRepository.findProductNameById(productId)) ??
+        "Unknown Product";
+      console.log("returned productName => ", productName);
+
+      if (!productSales[productId]) {
+        productSales[productId] = { name: productName, quantity: 0 };
+      }
+      productSales[productId].quantity += item.quantity;
+    }
+
+    console.log("Product sales => ", productSales);
+
+    // Convert to array and sort by quantity
+    const sortedProductSales = Object.entries(productSales)
+      .map(([_, value]) => value)
+      .sort((a, b) => b.quantity - a.quantity); // Descending
+
+    console.log("Sorted Product Sales => ", sortedProductSales);
+
+    // DonutChart: Top 4 products
+    const mostSoldProducts = sortedProductSales.slice(0, 4);
+    console.log("Most Sold Products => ", mostSoldProducts);
+    const donutChartData = mostSoldProducts.map((product) => product.quantity);
+    const donutChartLabels = mostSoldProducts.map((product) => product.name);
+
+    // BarChart: Top 5 products
+    const topProductsForBarChart = sortedProductSales.slice(0, 5);
+    const barChartData = topProductsForBarChart.map(
+      (product) => product.quantity
+    );
+    const barChartCategories = topProductsForBarChart.map(
+      (product) => product.name
+    );
+
+    // ListCard: Top 4 products with additional details (id, name, sku, price, quantity sold)
+    const topItems = await Promise.all(
+      sortedProductSales.slice(0, 4).map(async (product, index) => {
+        const productDetails = await this.productRepository.findProductByName(
+          product.name
+        );
+        return {
+          id: index + 1,
+          name: product.name,
+          subtitle: productDetails?.sku
+            ? `SKU: ${productDetails.sku}`
+            : "SKU: N/A",
+          primaryInfo: productDetails?.price
+            ? `$${productDetails.price}/item`
+            : "$0/item",
+          secondaryInfo: `${product.quantity} sold`,
+        };
+      })
+    );
 
     const result = {
       totalRevenue: Number(totalRevenue.toFixed(2)),
@@ -233,9 +290,18 @@ class DashboardService {
         orders: monthlyOrders,
         sales: monthlySales,
       },
+      mostSoldProducts: {
+        data: donutChartData,
+        labels: donutChartLabels,
+      },
+      salesByProduct: {
+        data: barChartData,
+        categories: barChartCategories,
+      },
+      topItems,
     };
 
-    await redisClient.setex(cacheKey, 300, JSON.stringify(result)); // Cache for 5 minutes
+    await redisClient.setex(cacheKey, 300, JSON.stringify(result));
     return result;
   }
 }

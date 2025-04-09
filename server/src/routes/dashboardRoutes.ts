@@ -4,10 +4,15 @@ import DashboardService from "../services/dashboardService";
 import DashboardRepository from "../repositories/dashboardRepository";
 import protect from "../middlewares/protect";
 import authorizeRole from "../middlewares/authorizeRole";
+import ProductRepository from "../repositories/productRepository";
 
 const router = express.Router();
 const dashboardRepository = new DashboardRepository();
-const dashboardService = new DashboardService(dashboardRepository);
+const productRepository = new ProductRepository();
+const dashboardService = new DashboardService(
+  dashboardRepository,
+  productRepository
+);
 const dashboardController = new DashboardController(dashboardService);
 
 router.get(

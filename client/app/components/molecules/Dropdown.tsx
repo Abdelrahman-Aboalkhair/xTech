@@ -15,6 +15,7 @@ interface DropdownProps {
   value: string | null;
   onChange: (value: string | null) => void;
   className?: string;
+  disabled?: boolean;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -23,6 +24,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   value,
   onChange,
   className,
+  disabled,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownWidth, setDropdownWidth] = useState<number | null>(null);
@@ -55,6 +57,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           transition-all duration-200 cursor-pointer 
           hover:border-gray-300 focus:ring-2 focus:ring-blue-100 ${className}`}
         onClick={() => setIsOpen((prev) => !prev)}
+        aria-disabled={disabled}
       >
         <span className="text-sm font-medium text-gray-700 truncate">
           {selectedLabel}

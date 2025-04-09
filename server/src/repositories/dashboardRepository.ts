@@ -42,6 +42,7 @@ class DashboardRepository {
       },
       include: {
         order: true,
+        product: true,
       },
     });
   }
