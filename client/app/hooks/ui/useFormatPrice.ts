@@ -2,9 +2,9 @@
 
 const useFormatPrice = () => {
   const formatPrice = (amount: number) => {
-    return new Intl.NumberFormat("en-EG", {
+    return new Intl.NumberFormat("en-US", {
       style: "currency",
-      currency: "EGP",
+      currency: "USD",
       minimumFractionDigits: 2,
     }).format(amount);
   };

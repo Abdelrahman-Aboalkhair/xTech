@@ -48,7 +48,7 @@ const DonutChart: React.FC<Props> = ({
   const series = data;
 
   return (
-    <div className="bg-gray-50 p-4 rounded-2xl shadow-sm w-full">
+    <div className="p-4 rounded-2xl shadow-sm w-full">
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-black text-lg font-semibold">{title}</h2>
       </div>

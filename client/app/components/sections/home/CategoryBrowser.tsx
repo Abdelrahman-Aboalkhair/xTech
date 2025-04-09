@@ -9,7 +9,7 @@ const CategoryBrowser = () => {
   const [activeCategory, setActiveCategory] = useState("Camera");
 
   return (
-    <section className="relative w-full max-w-[97%] mx-auto flex flex-col items-start px-8 my-[5rem]">
+    <section className="relative w-full max-w-[83%] mx-auto flex flex-col items-start px-8 my-[5rem]">
       <div className="flex items-center justify-between w-full mb-8">
         <h2
           className="text-2xl font-semibold capitalize relative before:content-[''] 

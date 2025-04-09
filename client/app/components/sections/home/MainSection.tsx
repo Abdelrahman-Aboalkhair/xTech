@@ -13,7 +13,7 @@ const images = [
 
 const MainSection = () => {
   return (
-    <main className="flex items-center justify-between px-[3.5%] gap-10">
+    <main className="flex items-center justify-between px-[10%] gap-10">
       <div className="w-[20%]">
         <CategoriesBar />
       </div>

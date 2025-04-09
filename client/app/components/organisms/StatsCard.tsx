@@ -19,7 +19,7 @@ const StatsCard = ({
   const isPositive = percentage >= 0;
 
   return (
-    <div className="bg-gray-50 text-black p-6 rounded-xl shadow-sm w-full flex flex-col gap-2 mb-6">
+    <div className="text-black p-6 rounded-xl shadow-sm w-full flex flex-col gap-2 mb-6">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-medium text-gray-800">{title}</h3>
         {icon && <div className="text-blue-600">{icon}</div>}

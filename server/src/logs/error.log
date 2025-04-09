@@ -1278,3 +1278,5 @@ Invalid `prisma.product.update()` invocation in
         })
 
 Argument `category`: Invalid value provided. Expected CategoryUpdateOneWithoutProductsNestedInput, provided String.
+[2025-04-09T07:58:05.296Z] [31MERROR[39M: Can't find /api/v1/tracking/all on this server!
+[2025-04-09T08:01:37.910Z] [31MERROR[39M: Invalid access token, please log in

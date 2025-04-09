@@ -27,7 +27,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   const noProductsFound = data?.products.length === 0;
 
   return (
-    <div className="px-4 w-full">
+    <div className="px-[10%] w-full">
       {showPagination && (
         <p className="text-[15px] text-gray-700 pt-[15px] pb-[6px] ">
           Showing {data?.totalResults} results

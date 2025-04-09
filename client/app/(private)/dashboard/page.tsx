@@ -21,9 +21,11 @@ import ListCard from "@/app/components/organisms/ListCard";
 import { Controller, useForm } from "react-hook-form";
 import Dropdown from "@/app/components/molecules/Dropdown";
 import DateRangePicker from "@/app/components/molecules/DateRangePicker";
+import useFormatPrice from "@/app/hooks/ui/useFormatPrice";
 
 const Dashboard = () => {
   const { control, watch } = useForm();
+  const formatPrice = useFormatPrice();
   const timePeriodOptions = [
     { label: "Last 7 Days", value: "last7days" },
     { label: "Last Month", value: "lastMonth" },
@@ -103,7 +105,7 @@ const Dashboard = () => {
         <div className="flex gap-4">
           <StatsCard
             title="Total Revenue"
-            value={data?.totalRevenue}
+            value={formatPrice(data?.totalRevenue)}
             percentage={data?.changes?.revenue}
             caption="since last month"
             icon={<DollarSign className="w-5 h-5" />}
@@ -125,7 +127,7 @@ const Dashboard = () => {
 
           <StatsCard
             title="Average Order Value"
-            value={data?.averageOrderValue}
+            value={formatPrice(data?.averageOrderValue)}
             percentage={data?.changes?.averageOrderValue}
             caption="since last month"
             icon={<CreditCard className="w-5 h-5" />}
