@@ -3,7 +3,6 @@ import prisma from "../config/database";
 class ShipmentRepository {
   async createShipment(data: {
     orderId: string;
-    status: string;
     trackingNumber: string;
     shippedDate: Date;
     deliveryDate: Date;

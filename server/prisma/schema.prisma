@@ -78,18 +78,14 @@ model Order {
   id          String    @id @default(uuid()) 
   amount      Float
   orderDate   DateTime  @default(now())
-
   user        User      @relation(fields: [userId], references: [id]) 
   userId      String    
-
   orderItems  OrderItem[]
   tracking    TrackingDetail?
   payment     Payment?  @relation("OrderPayment")
   address     Address?  @relation("OrderAddress")
   shipment    Shipment? @relation("OrderShipment")
-
   status      ORDER_STATUS @default(PENDING)
-
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
@@ -141,28 +137,22 @@ model Address {
 
 model TrackingDetail {
   id        String  @id @default(uuid()) 
-  status    String  @default("PENDING")  
-
   order     Order   @relation(fields: [orderId], references: [id])
   orderId   String  @unique 
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Shipment {
-  id        String  @id @default(uuid()) 
-  carrier   String
+  id            String    @id @default(uuid()) 
+  carrier       String
   trackingNumber String
-  shippedDate DateTime
-  deliveryDate DateTime?
-  status    String
-
-  order     Order   @relation("OrderShipment", fields: [orderId], references: [id])
-  orderId   String  @unique
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  shippedDate   DateTime
+  deliveryDate  DateTime?
+  order         Order     @relation("OrderShipment", fields: [orderId], references: [id])
+  orderId       String    @unique
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 model WebhookLog {

@@ -1,10 +1,9 @@
 import prisma from "../config/database";
 
 class TrackingDetailRepository {
-  async createTrackingDetail(data: { orderId: string; status: string }) {
+  async createTrackingDetail(data: { orderId: string }) {
     return prisma.trackingDetail.create({
       data: {
-        status: data.status,
         orderId: data.orderId,
       },
     });

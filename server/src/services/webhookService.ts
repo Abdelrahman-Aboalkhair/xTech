@@ -10,6 +10,7 @@ import OrderRepository from "../repositories/orderRepository";
 import AddressRepository from "../repositories/addressRepository";
 import PaymentRepository from "../repositories/paymentRepository";
 import TrackingDetailRepository from "../repositories/trackingDetailRepository";
+import { ORDER_STATUS } from "@prisma/client";
 
 class WebhookService {
   constructor(
@@ -58,11 +59,9 @@ class WebhookService {
       trackingNumber: uuidv4(),
       shippedDate: new Date(),
       deliveryDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-      status: "PENDING",
       orderId,
     };
   }
-
   private async updateProductStock(cart: any) {
     for (let item of cart.cartItems) {
       const product = await this.productRepository.findProductById(
@@ -126,7 +125,6 @@ class WebhookService {
     const shipment = await this.shipmentRepository.createShipment(shipmentData);
 
     const tracking = await this.trackingDetailRepository.createTrackingDetail({
-      status: shipmentData.status,
       orderId: order.id,
     });
 
@@ -134,6 +132,7 @@ class WebhookService {
 
     return { order: updatedOrder, payment, shipment, tracking, address };
   }
+
   async handleCheckoutCompletion(session: any) {
     console.log("session: ", session);
     const fullSession = await stripe.checkout.sessions.retrieve(session.id);
