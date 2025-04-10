@@ -8,7 +8,6 @@ import ProductRepository from "../repositories/productRepository";
 import OrderRepository from "../repositories/orderRepository";
 import PaymentRepository from "../repositories/paymentRepository";
 import AddressRepository from "../repositories/addressRepository";
-import TrackingDetailRepository from "../repositories/trackingDetailRepository";
 import ShipmentRepository from "../repositories/shipmentRepository";
 
 const router = express.Router();
@@ -18,7 +17,6 @@ const productRepository = new ProductRepository();
 const orderRepository = new OrderRepository();
 const paymentRepository = new PaymentRepository();
 const addressRepository = new AddressRepository();
-const trackingDetailRepository = new TrackingDetailRepository();
 const shipmentRepository = new ShipmentRepository();
 const webhookService = new WebhookService(
   webhookRepository,
@@ -27,8 +25,7 @@ const webhookService = new WebhookService(
   orderRepository,
   cartRepository,
   addressRepository,
-  productRepository,
-  trackingDetailRepository
+  productRepository
 );
 const webhookController = new WebhookController(webhookService);
 

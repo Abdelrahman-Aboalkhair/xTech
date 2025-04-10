@@ -82,6 +82,8 @@ class CartRepository {
       where: { userId },
     });
 
+    console.log("found cart to be cleared => ", cart);
+
     if (!cart) {
       return;
     }

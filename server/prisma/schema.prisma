@@ -81,7 +81,6 @@ model Order {
   user        User      @relation(fields: [userId], references: [id]) 
   userId      String    
   orderItems  OrderItem[]
-  tracking    TrackingDetail?
   payment     Payment?  @relation("OrderPayment")
   address     Address?  @relation("OrderAddress")
   shipment    Shipment? @relation("OrderShipment")
@@ -135,13 +134,6 @@ model Address {
   updatedAt DateTime  @updatedAt
 }
 
-model TrackingDetail {
-  id        String  @id @default(uuid()) 
-  order     Order   @relation(fields: [orderId], references: [id])
-  orderId   String  @unique 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
 
 model Shipment {
   id            String    @id @default(uuid()) 

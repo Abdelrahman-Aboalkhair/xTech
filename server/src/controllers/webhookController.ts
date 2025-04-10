@@ -24,13 +24,12 @@ class WebhookController {
 
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
-      const { order, payment, shipment, tracking, address } =
+      const { order, payment, shipment, address } =
         await this.webhookService.handleCheckoutCompletion(session);
       console.log("order =>", order);
 
       console.log("payment =>", payment);
       console.log("shipment =>", shipment);
-      console.log("tracking =>", tracking);
       console.log("address =>", address);
     }
 

@@ -1,214 +1,24 @@
-[2025-04-10T06:16:39.713Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/trackingDetailService.ts[0m:[93m2[0m:[93m38[0m - [91merror[0m[90m TS2307: [0mCannot find module 'repositories/trackingDetailRepository' or its corresponding type declarations.
+[2025-04-10T06:51:58.119Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/repositories/orderRepository.ts[0m:[93m22[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'tracking' does not exist in type 'OrderInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'.
 
-[7m2[0m import TrackingDetailRepository from "repositories/trackingDetailRepository";
-[7m [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m22[0m         tracking: true,
+[7m  [0m [91m        ~~~~~~~~[0m
 
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/trackingDetailService.ts[0m:[93m2[0m:[93m38[0m - [91merror[0m[90m TS2307: [0mCannot find module 'repositories/trackingDetailRepository' or its corresponding type declarations.
-
-[7m2[0m import TrackingDetailRepository from "repositories/trackingDetailRepository";
-[7m [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-10T06:35:46.096Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m131[0m:[93m7[0m - [91merror[0m[90m TS1117: [0mAn object literal cannot have multiple properties with the same name.
-
-[7m131[0m       status: order.status,
-[7m   [0m [91m      ~~~~~~[0m
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m5378[0m:[93m5[0m
+    [7m5378[0m     include?: OrderInclude<ExtArgs> | null
+    [7m    [0m [96m    ~~~~~~~[0m
+    The expected type comes from property 'include' which is declared here on type 'OrderFindUniqueArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m131[0m:[93m7[0m - [91merror[0m[90m TS1117: [0mAn object literal cannot have multiple properties with the same name.
+[96msrc/repositories/orderRepository.ts[0m:[93m22[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'tracking' does not exist in type 'OrderInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'.
 
-[7m131[0m       status: order.status,
-[7m   [0m [91m      ~~~~~~[0m
+[7m22[0m         tracking: true,
+[7m  [0m [91m        ~~~~~~~~[0m
 
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-10T06:36:35.367Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m126[0m:[93m31[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
-
-[7m126[0m     const shipmentData = this.generateShipmentData(order.id);
-[7m   [0m [91m                              ~~~~~~~~~~~~~~~~~~~~[0m
-
-  [96msrc/services/webhookService.ts[0m:[93m56[0m:[93m49[0m
-    [7m56[0m   private generateShipmentData(orderId: string, status: ORDER_STATUS) {
-    [7m  [0m [96m                                                ~~~~~~~~~~~~~~~~~~~~[0m
-    An argument for 'status' was not provided.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m126[0m:[93m31[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
-
-[7m126[0m     const shipmentData = this.generateShipmentData(order.id);
-[7m   [0m [91m                              ~~~~~~~~~~~~~~~~~~~~[0m
-
-  [96msrc/services/webhookService.ts[0m:[93m56[0m:[93m49[0m
-    [7m56[0m   private generateShipmentData(orderId: string, status: ORDER_STATUS) {
-    [7m  [0m [96m                                                ~~~~~~~~~~~~~~~~~~~~[0m
-    An argument for 'status' was not provided.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-10T06:41:45.105Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m124[0m:[93m62[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
-
-[7m124[0m     const shipmentData = this.generateShipmentData(order.id, order.status);
-[7m   [0m [91m                                                             ~~~~~~~~~~~~[0m
-[96msrc/services/webhookService.ts[0m:[93m125[0m:[93m67[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' is not assignable to parameter of type '{ orderId: string; status: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; }'.
-  Property 'status' is missing in type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' but required in type '{ orderId: string; status: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; }'.
-
-[7m125[0m     const shipment = await this.shipmentRepository.createShipment(shipmentData);
-[7m   [0m [91m                                                                  ~~~~~~~~~~~~[0m
-
-  [96msrc/repositories/shipmentRepository.ts[0m:[93m6[0m:[93m5[0m
-    [7m6[0m     status: string;
-    [7m [0m [96m    ~~~~~~[0m
-    'status' is declared here.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m124[0m:[93m62[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
-
-[7m124[0m     const shipmentData = this.generateShipmentData(order.id, order.status);
-[7m   [0m [91m                                                             ~~~~~~~~~~~~[0m
-[96msrc/services/webhookService.ts[0m:[93m125[0m:[93m67[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' is not assignable to parameter of type '{ orderId: string; status: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; }'.
-  Property 'status' is missing in type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' but required in type '{ orderId: string; status: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; }'.
-
-[7m125[0m     const shipment = await this.shipmentRepository.createShipment(shipmentData);
-[7m   [0m [91m                                                                  ~~~~~~~~~~~~[0m
-
-  [96msrc/repositories/shipmentRepository.ts[0m:[93m6[0m:[93m5[0m
-    [7m6[0m     status: string;
-    [7m [0m [96m    ~~~~~~[0m
-    'status' is declared here.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-10T06:42:03.700Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m125[0m:[93m67[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' is not assignable to parameter of type '{ orderId: string; status: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; }'.
-  Property 'status' is missing in type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' but required in type '{ orderId: string; status: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; }'.
-
-[7m125[0m     const shipment = await this.shipmentRepository.createShipment(shipmentData);
-[7m   [0m [91m                                                                  ~~~~~~~~~~~~[0m
-
-  [96msrc/repositories/shipmentRepository.ts[0m:[93m6[0m:[93m5[0m
-    [7m6[0m     status: string;
-    [7m [0m [96m    ~~~~~~[0m
-    'status' is declared here.
-[96msrc/services/webhookService.ts[0m:[93m127[0m:[93m79[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ orderId: string; }' is not assignable to parameter of type '{ orderId: string; status: ORDER_STATUS; }'.
-  Property 'status' is missing in type '{ orderId: string; }' but required in type '{ orderId: string; status: ORDER_STATUS; }'.
-
-[7m127[0m     const tracking = await this.trackingDetailRepository.createTrackingDetail({
-[7m   [0m [91m                                                                              ~[0m
-[7m128[0m       orderId: order.id,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m129[0m     });
-[7m   [0m [91m~~~~~[0m
-
-  [96msrc/repositories/trackingDetailRepository.ts[0m:[93m5[0m:[93m55[0m
-    [7m5[0m   async createTrackingDetail(data: { orderId: string; status: ORDER_STATUS }) {
-    [7m [0m [96m                                                      ~~~~~~[0m
-    'status' is declared here.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m125[0m:[93m67[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' is not assignable to parameter of type '{ orderId: string; status: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; }'.
-  Property 'status' is missing in type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' but required in type '{ orderId: string; status: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; }'.
-
-[7m125[0m     const shipment = await this.shipmentRepository.createShipment(shipmentData);
-[7m   [0m [91m                                                                  ~~~~~~~~~~~~[0m
-
-  [96msrc/repositories/shipmentRepository.ts[0m:[93m6[0m:[93m5[0m
-    [7m6[0m     status: string;
-    [7m [0m [96m    ~~~~~~[0m
-    'status' is declared here.
-[96msrc/services/webhookService.ts[0m:[93m127[0m:[93m79[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ orderId: string; }' is not assignable to parameter of type '{ orderId: string; status: ORDER_STATUS; }'.
-  Property 'status' is missing in type '{ orderId: string; }' but required in type '{ orderId: string; status: ORDER_STATUS; }'.
-
-[7m127[0m     const tracking = await this.trackingDetailRepository.createTrackingDetail({
-[7m   [0m [91m                                                                              ~[0m
-[7m128[0m       orderId: order.id,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m129[0m     });
-[7m   [0m [91m~~~~~[0m
-
-  [96msrc/repositories/trackingDetailRepository.ts[0m:[93m5[0m:[93m55[0m
-    [7m5[0m   async createTrackingDetail(data: { orderId: string; status: ORDER_STATUS }) {
-    [7m [0m [96m                                                      ~~~~~~[0m
-    'status' is declared here.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-10T06:42:12.678Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m127[0m:[93m79[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ orderId: string; }' is not assignable to parameter of type '{ orderId: string; status: ORDER_STATUS; }'.
-  Property 'status' is missing in type '{ orderId: string; }' but required in type '{ orderId: string; status: ORDER_STATUS; }'.
-
-[7m127[0m     const tracking = await this.trackingDetailRepository.createTrackingDetail({
-[7m   [0m [91m                                                                              ~[0m
-[7m128[0m       orderId: order.id,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m129[0m     });
-[7m   [0m [91m~~~~~[0m
-
-  [96msrc/repositories/trackingDetailRepository.ts[0m:[93m5[0m:[93m55[0m
-    [7m5[0m   async createTrackingDetail(data: { orderId: string; status: ORDER_STATUS }) {
-    [7m [0m [96m                                                      ~~~~~~[0m
-    'status' is declared here.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/webhookService.ts[0m:[93m127[0m:[93m79[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ orderId: string; }' is not assignable to parameter of type '{ orderId: string; status: ORDER_STATUS; }'.
-  Property 'status' is missing in type '{ orderId: string; }' but required in type '{ orderId: string; status: ORDER_STATUS; }'.
-
-[7m127[0m     const tracking = await this.trackingDetailRepository.createTrackingDetail({
-[7m   [0m [91m                                                                              ~[0m
-[7m128[0m       orderId: order.id,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m129[0m     });
-[7m   [0m [91m~~~~~[0m
-
-  [96msrc/repositories/trackingDetailRepository.ts[0m:[93m5[0m:[93m55[0m
-    [7m5[0m   async createTrackingDetail(data: { orderId: string; status: ORDER_STATUS }) {
-    [7m [0m [96m                                                      ~~~~~~[0m
-    'status' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m5378[0m:[93m5[0m
+    [7m5378[0m     include?: OrderInclude<ExtArgs> | null
+    [7m    [0m [96m    ~~~~~~~[0m
+    The expected type comes from property 'include' which is declared here on type 'OrderFindUniqueArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)

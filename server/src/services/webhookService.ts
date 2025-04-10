@@ -9,8 +9,6 @@ import ShipmentRepository from "../repositories/shipmentRepository";
 import OrderRepository from "../repositories/orderRepository";
 import AddressRepository from "../repositories/addressRepository";
 import PaymentRepository from "../repositories/paymentRepository";
-import TrackingDetailRepository from "../repositories/trackingDetailRepository";
-import { ORDER_STATUS } from "@prisma/client";
 
 class WebhookService {
   constructor(
@@ -20,8 +18,7 @@ class WebhookService {
     private orderRepository: OrderRepository,
     private cartRepository: CartRepository,
     private addressRepository: AddressRepository,
-    private productRepository: ProductRepository,
-    private trackingDetailRepository: TrackingDetailRepository
+    private productRepository: ProductRepository
   ) {}
 
   private async calculateOrderAmount(cart: any) {
@@ -124,13 +121,9 @@ class WebhookService {
     const shipmentData = this.generateShipmentData(order.id);
     const shipment = await this.shipmentRepository.createShipment(shipmentData);
 
-    const tracking = await this.trackingDetailRepository.createTrackingDetail({
-      orderId: order.id,
-    });
-
     const updatedOrder = await this.orderRepository.findOrderById(order.id);
 
-    return { order: updatedOrder, payment, shipment, tracking, address };
+    return { order: updatedOrder, payment, shipment, address };
   }
 
   async handleCheckoutCompletion(session: any) {
@@ -149,7 +142,7 @@ class WebhookService {
 
     const amount = await this.calculateOrderAmount(cart);
 
-    const { order, payment, shipment, tracking, address } =
+    const { order, payment, shipment, address } =
       await this.createOrderAndDependencies(userId, fullSession, cart, amount);
 
     await this.updateProductStock(cart);
@@ -160,7 +153,7 @@ class WebhookService {
       session
     );
 
-    return { order, payment, shipment, tracking, address: address || null };
+    return { order, payment, shipment, address: address || null };
   }
 }
 

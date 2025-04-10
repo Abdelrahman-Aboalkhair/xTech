@@ -19,7 +19,6 @@ class OrderRepository {
       where: { id: orderId },
       include: {
         orderItems: { include: { product: true } },
-        tracking: true,
         payment: true,
         address: true,
         shipment: true,
