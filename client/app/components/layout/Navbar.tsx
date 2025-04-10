@@ -9,8 +9,10 @@ import SearchBar from "../atoms/SearchBar";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
 import { useGetCartQuery } from "@/app/store/apis/CartApi";
 import { useAppSelector } from "@/app/store/hooks";
+import { useGetAllPagesQuery } from "@/app/store/apis/PageApi";
 
 const Navbar = () => {
+  const { data: pagesData } = useGetAllPagesQuery({});
   const { updateQuery } = useQueryParams();
   const { user } = useAppSelector((state) => state.auth);
   const [menuOpen, setMenuOpen] = useState(false);

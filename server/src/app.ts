@@ -23,6 +23,13 @@ import dashboardRoutes from "./routes/dashboardRoutes";
 import paymentRoutes from "./routes/paymentRoutes";
 import addressRoutes from "./routes/addressRoutes";
 import shipmentRoutes from "./routes/shipmentRoutes";
+
+// Import the newly created routes
+import pageRoutes from "./routes/pageRoutes";
+import themeRoutes from "./routes/themeRoutes";
+import sectionRoutes from "./routes/sectionRoutes";
+import widgetRoutes from "./routes/widgetRoutes";
+
 import passport from "passport";
 import configurePassport from "./config/passport";
 import session from "express-session";
@@ -136,6 +143,12 @@ app.use("/api/v1/dashboard", dashboardRoutes);
 app.use("/api/v1/payments", paymentRoutes);
 app.use("/api/v1/addresses", addressRoutes);
 app.use("/api/v1/shipment", shipmentRoutes);
+
+// Add the new CMS-related routes
+app.use("/api/v1/pages", pageRoutes);
+app.use("/api/v1/themes", themeRoutes);
+app.use("/api/v1/sections", sectionRoutes);
+app.use("/api/v1/widgets", widgetRoutes);
 
 app.all("*", (req, res, next) => {
   next(new AppError(404, `Can't find ${req.originalUrl} on this server!`));

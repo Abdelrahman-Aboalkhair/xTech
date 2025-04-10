@@ -28,7 +28,11 @@ const Sidebar = () => {
   const sidebarLinks = useMemo(
     () => [
       { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-      { name: "Products", href: "/products", icon: Package },
+      { name: "Pages", href: "/pages", icon: LayoutDashboard },
+      { name: "Banners", href: "/banners", icon: LayoutDashboard },
+      { name: "sections", href: "/sections", icon: LayoutDashboard },
+      { name: "Widgets", href: "/widgets", icon: Package },
+      { name: "Themes", href: "/themes", icon: Package },
       { name: "Orders", href: "/orders", icon: ShoppingCart },
       { name: "Payments", href: "/payments", icon: CreditCard },
       { name: "Categories", href: "/categories", icon: Layers },
