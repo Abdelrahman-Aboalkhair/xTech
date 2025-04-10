@@ -7,6 +7,13 @@ class WidgetService {
   constructor() {
     this.widgetRepository = new WidgetRepository();
   }
+  async getHeroPromo() {
+    return this.widgetRepository.findByLocation("hero");
+  }
+
+  async getTopbar() {
+    return this.widgetRepository.findByLocation("topbar");
+  }
 
   async createWidget(data: any) {
     return this.widgetRepository.create(data);

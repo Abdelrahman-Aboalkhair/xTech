@@ -195,28 +195,27 @@ model Category {
 }
 
 
-// Page (e.g., Landing Page, About, etc.)
 model Page {
   id          Int       @id @default(autoincrement())
-  slug        String    @unique // e.g., "landing", "about"
+  slug        String    @unique 
   title       String
-  isVisible   Boolean   @default(true) // Controls visibility
+  isVisible   Boolean   @default(true) 
   showInNavbar Boolean   @default(true)
   isPublished Boolean   @default(false)
-  metaTitle   String?   // Meta title for SEO
+  metaTitle   String?   
   metaDescription String?
-  sections    Section[] // Sections specific to this page (e.g., landing page sections)
-  banners     Banner[]  @relation("PageBanners") // Banners assigned to this page
+  sections    Section[] 
+  banners     Banner[]  @relation("PageBanners") 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
 
-// Section (For landing page sections)
 model Section {
   id        Int      @id @default(autoincrement())
-  title     String   // e.g., "Hero", "Featured Products"
-  content   Json     // Flexible content (text, images, etc.)
-  order     Int      // Order within the page
+  title     String   
+  type      String?
+  content   Json     
+  order     Int      
   isVisible Boolean  @default(true)
   pageId    Int
   page      Page     @relation(fields: [pageId], references: [id])
@@ -224,38 +223,35 @@ model Section {
   updatedAt DateTime @updatedAt
 }
 
-// Banner (Reusable across pages, typically at the top)
 model Banner {
   id        Int      @id @default(autoincrement())
-  title     String   // e.g., "Spring Sale"
-  content   Json     // e.g., { imageUrl: "...", text: "...", link: "..." }
+  title     String   
+  content   Json     
   isVisible Boolean  @default(true)
-  pages     Page[]   @relation("PageBanners") // Many-to-many with pages
+  pages     Page[]   @relation("PageBanners") 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-// Widgets (For reusable custom components)
 model Widget {
   id          Int      @id @default(autoincrement())
-  name        String   @unique // e.g., "FeaturedProducts", "Banner"
-  type        String   // Maps to your custom components
-  config      Json     // Configuration data (e.g., product IDs, text)
-  isVisible   Boolean  @default(true) // Visibility control
-  location    String?  // e.g., "homepage", "sidebar"
-  order       Int?     // Optional order
+  name        String   @unique 
+  type        String?   
+  config      Json   
+  isVisible   Boolean  @default(true) 
+  location    String?  
+  order       Int?    
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
-// Theme (For site-wide styling)
 model Theme {
   id           Int      @id @default(autoincrement())
-  name         String   @unique // e.g., "Default", "DarkMode"
-  primaryColor String   // e.g., "#FF5733"
-  secondaryColor String? // e.g., "#C70039"
-  fontFamily   String?  // e.g., "Roboto"
-  isActive     Boolean  @default(false) // Only one active theme
+  name         String   @unique 
+  primaryColor String  
+  secondaryColor String?
+  fontFamily   String?  
+  isActive     Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }

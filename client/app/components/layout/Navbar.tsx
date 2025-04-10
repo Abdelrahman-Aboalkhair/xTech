@@ -1,5 +1,4 @@
-"use client";
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import UserMenu from "../molecules/UserMenu";
@@ -12,7 +11,7 @@ import { useAppSelector } from "@/app/store/hooks";
 import { useGetAllPagesQuery } from "@/app/store/apis/PageApi";
 
 const Navbar = () => {
-  const { data: pagesData } = useGetAllPagesQuery({});
+  const { data: pagesData, isLoading } = useGetAllPagesQuery({});
   const { updateQuery } = useQueryParams();
   const { user } = useAppSelector((state) => state.auth);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,20 +19,22 @@ const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { data } = useGetCartQuery({});
-  const cartItemCount = useMemo(() => {
-    return data?.cart?.cartItems?.length || 0;
-  }, [data]);
+  const cartItemCount = data?.cart?.cartItems?.length || 0;
 
   const onSearch = (data: { searchQuery: string }) => {
     const query = new URLSearchParams();
     query.set("searchQuery", data.searchQuery);
-
     if (pathname !== "/shop") {
       router.push(`/shop?${query.toString()}`);
     } else {
       updateQuery({ searchQuery: data.searchQuery });
     }
   };
+
+  const navbarPages =
+    pagesData?.pages?.filter(
+      (page: any) => page.showInNavbar && page.isPublished
+    ) || [];
 
   return (
     <nav className="flex justify-between items-center px-[3.5%] pt-6">
@@ -42,34 +43,30 @@ const Navbar = () => {
       </Link>
 
       <div className="flex items-center justify-center gap-12 text-[16px]">
-        <Link
-          className={
-            pathname === "/" ? "border-b-2 border-[var(--primary)]" : ""
-          }
-          href="/"
-        >
-          Home
-        </Link>
-        <Link
-          className={
-            pathname === "/about" ? "border-b-2 border-[var(--primary)]" : ""
-          }
-          href="/about"
-        >
-          About
-        </Link>
-        <Link
-          className={
-            pathname === "/contact" ? "border-b-2 border-[var(--primary)]" : ""
-          }
-          href="/contact"
-        >
-          Contact
-        </Link>
+        {isLoading ? (
+          <span>Loading pages...</span>
+        ) : navbarPages.length > 0 ? (
+          navbarPages.map((page: any) => (
+            <Link
+              key={page.id}
+              className={
+                pathname === `/${page.slug}`
+                  ? "border-b-2 border-[var(--primary)]"
+                  : ""
+              }
+              href={`/${page.slug}`}
+            >
+              {page.slug === "landing" ? "Home" : page.title}{" "}
+              {/* Replace landing with Home */}
+            </Link>
+          ))
+        ) : (
+          <span>No pages available</span>
+        )}
       </div>
 
       <div className="flex items-center gap-10">
-        <SearchBar onSearch={onSearch} />{" "}
+        <SearchBar onSearch={onSearch} />
         <Link href="/cart" className="relative">
           <ShoppingCart size={32} />
           {cartItemCount > 0 && (
@@ -102,7 +99,6 @@ const Navbar = () => {
                 />
               )}
             </button>
-
             {menuOpen && (
               <UserMenu
                 menuOpen={menuOpen}
@@ -114,8 +110,7 @@ const Navbar = () => {
           pathname !== "/sign-up" &&
           pathname !== "/sign-in" && (
             <Link
-              className="bg-gray-800 text-white 
-          px-[1.5rem] font-medium py-[9px] text-[16px] rounded hover:opacity-90"
+              className="bg-gray-800 text-white px-[1.5rem] font-medium py-[9px] text-[16px] rounded hover:opacity-90"
               href="/sign-in"
             >
               Sign in

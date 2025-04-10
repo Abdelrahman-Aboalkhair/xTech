@@ -5,7 +5,7 @@ import Table from "@/app/components/layout/Table";
 import MainLayout from "@/app/components/templates/MainLayout";
 import { motion } from "framer-motion";
 import { Package, Calendar, ExternalLink } from "lucide-react";
-import ToggleableId from "@/app/components/atoms/ToggleableId";
+import ToggleableId from "@/app/components/atoms/ToggleableText";
 import Link from "next/link";
 
 const UserOrders = () => {

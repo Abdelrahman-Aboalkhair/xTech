@@ -1375,3 +1375,49 @@ Argument `category`: Invalid value provided. Expected CategoryUpdateOneWithoutPr
 [2025-04-10T08:57:12.099Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-10T09:13:07.228Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-10T09:31:49.905Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T12:31:56.733Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-10T12:31:56.768Z] [31MERROR[39M: Refresh token not found
+[2025-04-10T12:31:56.897Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-10T12:31:56.939Z] [31MERROR[39M: Refresh token not found
+[2025-04-10T12:32:08.340Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-10T12:32:08.397Z] [31MERROR[39M: Refresh token not found
+[2025-04-10T12:32:08.460Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-10T12:32:08.487Z] [31MERROR[39M: Refresh token not found
+[2025-04-10T12:32:18.867Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-10T12:32:18.992Z] [31MERROR[39M: Refresh token not found
+[2025-04-10T12:32:22.585Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-10T12:32:22.651Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-10T12:34:37.401Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-10T12:43:15.949Z] [31MERROR[39M: You are not authorized to perform this action
+[2025-04-10T12:49:52.395Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-10T12:56:34.167Z] [31MERROR[39M: Cannot set headers after they are sent to the client
+[2025-04-10T12:58:32.372Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T13:14:30.900Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:14:43.888Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:28:12.186Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:28:20.921Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:28:58.437Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:29:28.750Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:30:22.319Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:31:42.734Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:32:04.004Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:32:37.481Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:33:05.377Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:33:23.064Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:38:22.508Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:39:04.483Z] [31MERROR[39M: Can't find /api/v1/sections on this server!
+[2025-04-10T13:39:26.306Z] [31MERROR[39M: Can't find /api/v1/sections on this server!
+[2025-04-10T13:40:28.864Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:40:51.986Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T13:42:51.726Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T13:58:03.727Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T14:14:19.537Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T14:45:37.404Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T15:57:44.518Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-10T15:57:44.571Z] [31MERROR[39M: Refresh token not found
+[2025-04-10T16:16:27.290Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T16:35:10.480Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T16:38:54.427Z] [31MERROR[39M: Can't find /api/v1/banners on this server!
+[2025-04-10T16:39:43.081Z] [31MERROR[39M: Can't find /api/v1/banners on this server!
+[2025-04-10T16:41:42.894Z] [31MERROR[39M: Can't find /api/v1/sections on this server!
+[2025-04-10T16:51:19.321Z] [31MERROR[39M: Invalid access token, please log in

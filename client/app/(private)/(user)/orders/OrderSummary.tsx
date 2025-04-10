@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import useFormatPrice from "@/app/hooks/ui/useFormatPrice";
-import ToggleableId from "@/app/components/atoms/ToggleableId";
 import formatDate from "@/app/utils/formatDate";
 import { Calendar, Package, ShoppingBag } from "lucide-react";
+import ToggleableText from "@/app/components/atoms/ToggleableText";
 
 const OrderSummary = ({ order }) => {
   const formatPrice = useFormatPrice();
@@ -29,12 +29,15 @@ const OrderSummary = ({ order }) => {
           <div className="flex items-center space-x-2">
             <Package size={16} />
             <span className="font-medium text-gray-800">Tracking Number:</span>
-            <ToggleableId id={order.shipment.trackingNumber} />
+            <ToggleableText
+              content={order?.shipment?.trackingNumber}
+              truncateLength={10}
+            />
           </div>
           <div className="flex items-center space-x-2">
             <ShoppingBag size={16} />
             <span className="font-medium text-gray-800">Order ID:</span>
-            <ToggleableId id={order.id} />
+            <ToggleableText content={order?.id} truncateLength={10} />
           </div>
           <div className="flex items-center space-x-2">
             <Calendar size={16} />

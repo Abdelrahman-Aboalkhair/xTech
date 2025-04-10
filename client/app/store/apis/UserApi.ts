@@ -35,11 +35,21 @@ export const userApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `/users/${id}`,
+        method: "DELETE",
+        credentials: "include",
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
 export const {
   useCreateAdminMutation,
+  useDeleteUserMutation,
   useGetProfileQuery,
   useGetMeQuery,
   useGetAllUsersQuery,

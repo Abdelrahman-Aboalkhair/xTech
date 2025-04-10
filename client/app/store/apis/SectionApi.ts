@@ -8,6 +8,13 @@ export const sectionApi = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+
+    getSectionByPageSlug: builder.query({
+      query: (pageSlug) => ({
+        url: `/sections/page/${pageSlug}`,
+        method: "GET",
+      }),
+    }),
     getSectionById: builder.query({
       query: (sectionId) => ({
         url: `/sections/${sectionId}`,
@@ -41,6 +48,7 @@ export const sectionApi = apiSlice.injectEndpoints({
 
 export const {
   useGetAllSectionsQuery,
+  useGetSectionByPageSlugQuery,
   useGetSectionByIdQuery,
   useCreateSectionMutation,
   useUpdateSectionMutation,

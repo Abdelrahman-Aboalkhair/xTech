@@ -1,24 +1,202 @@
-[2025-04-10T06:51:58.119Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/orderRepository.ts[0m:[93m22[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'tracking' does not exist in type 'OrderInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'.
+[2025-04-10T13:03:27.661Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/widgetRoutes.ts[0m:[93m6[0m:[93m27[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) => Promise<...>' is not assignable to parameter of type 'Application<Record<string, any>>'.
+      Type '(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) => Promise<...>' is missing the following properties from type 'Application<Record<string, any>>': init, defaultConfiguration, engine, set, and 63 more.
 
-[7m22[0m         tracking: true,
-[7m  [0m [91m        ~~~~~~~~[0m
+[7m6[0m router.get("/hero-promo", widgetController.getHeroPromo);
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m5378[0m:[93m5[0m
-    [7m5378[0m     include?: OrderInclude<ExtArgs> | null
-    [7m    [0m [96m    ~~~~~~~[0m
-    The expected type comes from property 'include' which is declared here on type 'OrderFindUniqueArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m168[0m:[93m5[0m
+    [7m168[0m     (path: PathParams, subApplication: Application): T;
+    [7m   [0m [96m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The last overload is declared here.
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/repositories/orderRepository.ts[0m:[93m22[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'tracking' does not exist in type 'OrderInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'.
+[96msrc/routes/widgetRoutes.ts[0m:[93m6[0m:[93m27[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) => Promise<...>' is not assignable to parameter of type 'Application<Record<string, any>>'.
+      Type '(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) => Promise<...>' is missing the following properties from type 'Application<Record<string, any>>': init, defaultConfiguration, engine, set, and 63 more.
 
-[7m22[0m         tracking: true,
-[7m  [0m [91m        ~~~~~~~~[0m
+[7m6[0m router.get("/hero-promo", widgetController.getHeroPromo);
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m5378[0m:[93m5[0m
-    [7m5378[0m     include?: OrderInclude<ExtArgs> | null
-    [7m    [0m [96m    ~~~~~~~[0m
-    The expected type comes from property 'include' which is declared here on type 'OrderFindUniqueArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'
+  [96mnode_modules/@types/express-serve-static-core/index.d.ts[0m:[93m168[0m:[93m5[0m
+    [7m168[0m     (path: PathParams, subApplication: Application): T;
+    [7m   [0m [96m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The last overload is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-10T13:12:13.845Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/sectionRoutes.ts[0m:[93m9[0m:[93m27[0m - [91merror[0m[90m TS2304: [0mCannot find name 'controller'.
+
+[7m9[0m router.get("/page/:slug", controller.getSectionsByPageSlug.bind(controller));
+[7m [0m [91m                          ~~~~~~~~~~[0m
+[96msrc/routes/sectionRoutes.ts[0m:[93m9[0m:[93m65[0m - [91merror[0m[90m TS2304: [0mCannot find name 'controller'.
+
+[7m9[0m router.get("/page/:slug", controller.getSectionsByPageSlug.bind(controller));
+[7m [0m [91m                                                                ~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/sectionRoutes.ts[0m:[93m9[0m:[93m27[0m - [91merror[0m[90m TS2304: [0mCannot find name 'controller'.
+
+[7m9[0m router.get("/page/:slug", controller.getSectionsByPageSlug.bind(controller));
+[7m [0m [91m                          ~~~~~~~~~~[0m
+[96msrc/routes/sectionRoutes.ts[0m:[93m9[0m:[93m65[0m - [91merror[0m[90m TS2304: [0mCannot find name 'controller'.
+
+[7m9[0m router.get("/page/:slug", controller.getSectionsByPageSlug.bind(controller));
+[7m [0m [91m                                                                ~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-10T14:12:52.373Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/widgetRoutes.ts[0m:[93m8[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'createWidget' does not exist on type 'WidgetController'.
+
+[7m8[0m router.post("/", widgetController.createWidget);
+[7m [0m [91m                                  ~~~~~~~~~~~~[0m
+[96msrc/routes/widgetRoutes.ts[0m:[93m10[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllWidgets' does not exist on type 'WidgetController'.
+
+[7m10[0m router.get("/", widgetController.getAllWidgets);
+[7m  [0m [91m                                 ~~~~~~~~~~~~~[0m
+[96msrc/routes/widgetRoutes.ts[0m:[93m12[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'getWidgetById' does not exist on type 'WidgetController'.
+
+[7m12[0m router.get("/:id", widgetController.getWidgetById);
+[7m  [0m [91m                                    ~~~~~~~~~~~~~[0m
+[96msrc/routes/widgetRoutes.ts[0m:[93m14[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'updateWidget' does not exist on type 'WidgetController'.
+
+[7m14[0m router.put("/:id", widgetController.updateWidget);
+[7m  [0m [91m                                    ~~~~~~~~~~~~[0m
+[96msrc/routes/widgetRoutes.ts[0m:[93m16[0m:[93m40[0m - [91merror[0m[90m TS2339: [0mProperty 'deleteWidget' does not exist on type 'WidgetController'.
+
+[7m16[0m router.delete("/:id", widgetController.deleteWidget);
+[7m  [0m [91m                                       ~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/widgetRoutes.ts[0m:[93m8[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'createWidget' does not exist on type 'WidgetController'.
+
+[7m8[0m router.post("/", widgetController.createWidget);
+[7m [0m [91m                                  ~~~~~~~~~~~~[0m
+[96msrc/routes/widgetRoutes.ts[0m:[93m10[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllWidgets' does not exist on type 'WidgetController'.
+
+[7m10[0m router.get("/", widgetController.getAllWidgets);
+[7m  [0m [91m                                 ~~~~~~~~~~~~~[0m
+[96msrc/routes/widgetRoutes.ts[0m:[93m12[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'getWidgetById' does not exist on type 'WidgetController'.
+
+[7m12[0m router.get("/:id", widgetController.getWidgetById);
+[7m  [0m [91m                                    ~~~~~~~~~~~~~[0m
+[96msrc/routes/widgetRoutes.ts[0m:[93m14[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'updateWidget' does not exist on type 'WidgetController'.
+
+[7m14[0m router.put("/:id", widgetController.updateWidget);
+[7m  [0m [91m                                    ~~~~~~~~~~~~[0m
+[96msrc/routes/widgetRoutes.ts[0m:[93m16[0m:[93m40[0m - [91merror[0m[90m TS2339: [0mProperty 'deleteWidget' does not exist on type 'WidgetController'.
+
+[7m16[0m router.delete("/:id", widgetController.deleteWidget);
+[7m  [0m [91m                                       ~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-10T14:12:58.243Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/widgetController.ts[0m:[93m18[0m:[93m46[0m - [91merror[0m[90m TS2339: [0mProperty 'getTopbar' does not exist on type 'WidgetService'.
+
+[7m18[0m     const widgets = await this.widgetService.getTopbar();
+[7m  [0m [91m                                             ~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/widgetController.ts[0m:[93m18[0m:[93m46[0m - [91merror[0m[90m TS2339: [0mProperty 'getTopbar' does not exist on type 'WidgetService'.
+
+[7m18[0m     const widgets = await this.widgetService.getTopbar();
+[7m  [0m [91m                                             ~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-10T16:42:40.543Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/sectionRoutes.ts[0m:[93m6[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllSections' does not exist on type 'SectionController'.
+
+[7m6[0m router.get("/", sectionController.getAllSections);
+[7m [0m [91m                                  ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/sectionRoutes.ts[0m:[93m6[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllSections' does not exist on type 'SectionController'.
+
+[7m6[0m router.get("/", sectionController.getAllSections);
+[7m [0m [91m                                  ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-10T16:42:51.584Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/sectionController.ts[0m:[93m10[0m:[93m48[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllSections' does not exist on type 'SectionService'.
+
+[7m10[0m     const sections = await this.sectionService.getAllSections();
+[7m  [0m [91m                                               ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/sectionController.ts[0m:[93m10[0m:[93m48[0m - [91merror[0m[90m TS2339: [0mProperty 'getAllSections' does not exist on type 'SectionService'.
+
+[7m10[0m     const sections = await this.sectionService.getAllSections();
+[7m  [0m [91m                                               ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-10T16:43:13.578Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/sectionService.ts[0m:[93m12[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'findAll' does not exist on type 'SectionRepository'.
+
+[7m12[0m     return this.sectionRepository.findAll();
+[7m  [0m [91m                                  ~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/sectionService.ts[0m:[93m12[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'findAll' does not exist on type 'SectionRepository'.
+
+[7m12[0m     return this.sectionRepository.findAll();
+[7m  [0m [91m                                  ~~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)

@@ -1,6 +1,10 @@
 import prisma from "../config/database";
 
 class SectionRepository {
+  async findAll() {
+    return prisma.section.findMany();
+  }
+
   async create(data: any) {
     return prisma.section.create({ data });
   }
@@ -8,6 +12,15 @@ class SectionRepository {
   async findAllByPageId(pageId: number) {
     return prisma.section.findMany({
       where: { pageId },
+    });
+  }
+  async findByPageSlug(slug: string) {
+    return prisma.section.findMany({
+      where: {
+        page: { slug },
+        isVisible: true,
+      },
+      orderBy: { order: "asc" },
     });
   }
 

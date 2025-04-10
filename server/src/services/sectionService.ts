@@ -8,12 +8,19 @@ class SectionService {
     this.sectionRepository = new SectionRepository();
   }
 
+  async getAllSections() {
+    return this.sectionRepository.findAll();
+  }
+
   async createSection(data: any) {
     return this.sectionRepository.create(data);
   }
 
   async getSectionsByPageId(pageId: number) {
     return this.sectionRepository.findAllByPageId(pageId);
+  }
+  async getSectionsByPageSlug(slug: string) {
+    return this.sectionRepository.findByPageSlug(slug);
   }
 
   async getSectionById(id: number) {

@@ -1,21 +1,19 @@
 import {
   BestSellingSection,
-  CategoryBrowser,
   ExploreProductsSection,
   NewArrivalSection,
   FlashSaleSection,
-  MainSection,
   PromotionalBanner,
   BenefitsSection,
 } from "./components/sections/home";
+import HeroSection from "./components/sections/home/HeroSection";
 import MainLayout from "./components/templates/MainLayout";
 
 const Home = () => {
   return (
     <MainLayout>
-      <MainSection />
+      <HeroSection />
       <FlashSaleSection />
-      <CategoryBrowser />
       <BestSellingSection />
       <PromotionalBanner />
       <ExploreProductsSection />

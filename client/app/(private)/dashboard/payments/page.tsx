@@ -4,7 +4,7 @@ import { useGetAllPaymentsQuery } from "@/app/store/apis/PaymentApi";
 import Table from "@/app/components/layout/Table";
 import { motion } from "framer-motion";
 import { CreditCard, DollarSign, Calendar, FileText } from "lucide-react";
-import ToggleableId from "@/app/components/atoms/ToggleableId";
+import ToggleableText from "@/app/components/atoms/ToggleableText";
 
 const PaymentsDashboard = () => {
   const { data, isLoading, error } = useGetAllPaymentsQuery({});
@@ -16,7 +16,9 @@ const PaymentsDashboard = () => {
       key: "id",
       label: "Payment ID",
       sortable: true,
-      render: (row) => <ToggleableId id={row?.id || "N/A"} />,
+      render: (row) => (
+        <ToggleableText content={row?.id || "N/A"} truncateLength={10} />
+      ),
     },
     {
       key: "amount",
@@ -78,7 +80,7 @@ const PaymentsDashboard = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto w-full px-4 py-8">
+    <div className="max-w-7xl min-w-full px-4 py-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

@@ -10,8 +10,8 @@ import {
   DollarSign,
   ExternalLink,
 } from "lucide-react";
-import ToggleableId from "@/app/components/atoms/ToggleableId";
 import Link from "next/link";
+import ToggleableText from "@/app/components/atoms/ToggleableText";
 
 const OrdersDashboard = () => {
   const { data, isLoading, error } = useGetAllOrdersQuery({});
@@ -21,7 +21,9 @@ const OrdersDashboard = () => {
       key: "id",
       label: "Order ID",
       sortable: true,
-      render: (row) => <ToggleableId id={row?.id || "N/A"} />,
+      render: (row) => (
+        <ToggleableText content={row?.id || "N/A"} truncateLength={10} />
+      ),
     },
     {
       key: "customer",
@@ -109,7 +111,7 @@ const OrdersDashboard = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl min-w-full px-4 py-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

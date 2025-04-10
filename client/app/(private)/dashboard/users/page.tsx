@@ -112,12 +112,12 @@ const UsersDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen  p-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="max-w-7xl mx-auto"
+        className="min-w-full"
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-8">

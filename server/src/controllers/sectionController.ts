@@ -6,6 +6,11 @@ import SectionService from "../services/sectionService";
 class SectionController {
   constructor(private sectionService: SectionService) {}
 
+  getAllSections = asyncHandler(async (_req: Request, res: Response) => {
+    const sections = await this.sectionService.getAllSections();
+    sendResponse(res, 200, { sections }, "Sections fetched successfully");
+  });
+
   createSection = asyncHandler(async (req: Request, res: Response) => {
     const section = await this.sectionService.createSection(req.body);
     sendResponse(res, 201, { section }, "Section created successfully");
@@ -14,6 +19,14 @@ class SectionController {
   getSectionsByPageId = asyncHandler(async (req: Request, res: Response) => {
     const sections = await this.sectionService.getSectionsByPageId(
       Number(req.params.pageId)
+    );
+    sendResponse(res, 200, { sections }, "Sections fetched successfully");
+  });
+
+  getSectionsByPageSlug = asyncHandler(async (req: Request, res: Response) => {
+    console.log("slug => ", req.params.slug);
+    const sections = await this.sectionService.getSectionsByPageSlug(
+      req.params.slug
     );
     sendResponse(res, 200, { sections }, "Sections fetched successfully");
   });

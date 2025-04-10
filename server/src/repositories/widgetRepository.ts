@@ -1,6 +1,12 @@
 import prisma from "../config/database";
 
 class WidgetRepository {
+  async findByLocation(location: string) {
+    return prisma.widget.findMany({
+      where: { location, isVisible: true },
+      orderBy: { order: "asc" },
+    });
+  }
   async create(data: any) {
     return prisma.widget.create({ data });
   }

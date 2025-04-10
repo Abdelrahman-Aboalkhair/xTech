@@ -6,6 +6,22 @@ import WidgetService from "../services/widgetService";
 class WidgetController {
   constructor(private widgetService: WidgetService) {}
 
+  getHeroPromo = asyncHandler(async (req: Request, res: Response) => {
+    const widgets = await this.widgetService.getHeroPromo();
+    if (!widgets.length) {
+      sendResponse(res, 404, {}, "Hero Promo not found");
+    }
+    sendResponse(res, 200, { widgets }, "Hero Promo fetched successfully");
+  });
+
+  getTopbar = asyncHandler(async (req: Request, res: Response) => {
+    const widgets = await this.widgetService.getTopbar();
+    if (!widgets.length) {
+      sendResponse(res, 404, {}, "Topbar not found");
+    }
+    sendResponse(res, 200, { widgets }, "Topbar fetched successfully");
+  });
+
   createWidget = asyncHandler(async (req: Request, res: Response) => {
     const widget = await this.widgetService.createWidget(req.body);
     sendResponse(res, 201, { widget }, "Widget created successfully");

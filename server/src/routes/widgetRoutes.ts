@@ -1,49 +1,19 @@
 import { Router } from "express";
 import widgetController from "../controllers/widgetController";
-import protect from "../middlewares/protect";
-import authorizeRole from "../middlewares/authorizeRole";
-// import { validateDto } from "../middlewares/validateDto";
-// import { CreateWidgetDto, UpdateWidgetDto, WidgetIdDto } from "../dtos/widgetDto";
 
 const router = Router();
 
-router.post(
-  "/",
-  protect,
-  authorizeRole("SUPERADMIN"),
-  //   validateDto(CreateWidgetDto),
-  widgetController.createWidget
-);
+router.get("/hero-promo", widgetController.getHeroPromo);
+router.get("/topbar", widgetController.getTopbar);
 
-router.get(
-  "/",
-  protect,
-  authorizeRole("SUPERADMIN"),
-  widgetController.getAllWidgets
-);
+router.post("/", widgetController.createWidget);
 
-router.get(
-  "/:id",
-  protect,
-  authorizeRole("SUPERADMIN"),
-  //   validateDto(WidgetIdDto),
-  widgetController.getWidgetById
-);
+router.get("/", widgetController.getAllWidgets);
 
-router.put(
-  "/:id",
-  protect,
-  authorizeRole("SUPERADMIN"),
-  //   validateDto(UpdateWidgetDto),
-  widgetController.updateWidget
-);
+router.get("/:id", widgetController.getWidgetById);
 
-router.delete(
-  "/:id",
-  protect,
-  authorizeRole("SUPERADMIN"),
-  //   validateDto(WidgetIdDto),
-  widgetController.deleteWidget
-);
+router.put("/:id", widgetController.updateWidget);
+
+router.delete("/:id", widgetController.deleteWidget);
 
 export default router;

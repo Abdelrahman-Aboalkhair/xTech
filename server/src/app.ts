@@ -29,6 +29,7 @@ import pageRoutes from "./routes/pageRoutes";
 import themeRoutes from "./routes/themeRoutes";
 import sectionRoutes from "./routes/sectionRoutes";
 import widgetRoutes from "./routes/widgetRoutes";
+import bannerRoutes from "./routes/bannerRoutes";
 
 import passport from "passport";
 import configurePassport from "./config/passport";
@@ -145,6 +146,7 @@ app.use("/api/v1/addresses", addressRoutes);
 app.use("/api/v1/shipment", shipmentRoutes);
 
 // Add the new CMS-related routes
+app.use("/api/v1/banners", bannerRoutes);
 app.use("/api/v1/pages", pageRoutes);
 app.use("/api/v1/themes", themeRoutes);
 app.use("/api/v1/sections", sectionRoutes);
