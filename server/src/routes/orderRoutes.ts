@@ -3,8 +3,6 @@ import OrderController from "../controllers/orderController";
 import OrderService from "../services/orderService";
 import OrderRepository from "../repositories/orderRepository";
 import protect from "../middlewares/protect";
-import { validateDto } from "../middlewares/validateDto";
-import { UpdateTrackingStatusDto } from "../dtos/orderDto";
 import authorizeRole from "../middlewares/authorizeRole";
 
 const router = express.Router();
@@ -20,11 +18,5 @@ router.get(
 );
 router.get("/user", protect, orderController.getUserOrders);
 router.get("/:orderId", protect, orderController.getOrderDetails);
-router.patch(
-  "/:orderId/tracking",
-  protect,
-  validateDto(UpdateTrackingStatusDto),
-  orderController.updateTrackingStatus
-);
 
 export default router;

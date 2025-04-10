@@ -23,6 +23,7 @@ import dashboardRoutes from "./routes/dashboardRoutes";
 import paymentRoutes from "./routes/paymentRoutes";
 import addressRoutes from "./routes/addressRoutes";
 import trackingDetailRoutes from "./routes/trackingDetailRoutes";
+import shipmentRoutes from "./routes/shipmentRoutes";
 import passport from "passport";
 import configurePassport from "./config/passport";
 import session from "express-session";
@@ -136,6 +137,7 @@ app.use("/api/v1/dashboard", dashboardRoutes);
 app.use("/api/v1/payments", paymentRoutes);
 app.use("/api/v1/addresses", addressRoutes);
 app.use("/api/v1/tracking-details", trackingDetailRoutes);
+app.use("/api/v1/shipment", shipmentRoutes);
 
 app.all("*", (req, res, next) => {
   next(new AppError(404, `Can't find ${req.originalUrl} on this server!`));

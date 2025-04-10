@@ -1,18 +1,26 @@
 import AppError from "../utils/AppError";
-import CheckoutRepository from "../repositories/checkoutRepository";
 import WebhookRepository from "../repositories/webhookRepository";
 import stripe from "../config/stripe";
 import CartRepository from "../repositories/cartRepository";
 import { v4 as uuidv4 } from "uuid";
 import redisClient from "../config/redis";
 import ProductRepository from "../repositories/productRepository";
+import ShipmentRepository from "../repositories/shipmentRepository";
+import OrderRepository from "../repositories/orderRepository";
+import AddressRepository from "../repositories/addressRepository";
+import PaymentRepository from "../repositories/paymentRepository";
+import TrackingDetailRepository from "../repositories/trackingDetailRepository";
 
 class WebhookService {
   constructor(
-    private checkoutRepository: CheckoutRepository,
     private webhookRepository: WebhookRepository,
+    private shipmentRepository: ShipmentRepository,
+    private paymentRepository: PaymentRepository,
+    private orderRepository: OrderRepository,
     private cartRepository: CartRepository,
-    private productRepository: ProductRepository
+    private addressRepository: AddressRepository,
+    private productRepository: ProductRepository,
+    private trackingDetailRepository: TrackingDetailRepository
   ) {}
 
   private async calculateOrderAmount(cart: any) {
@@ -24,10 +32,15 @@ class WebhookService {
     );
   }
 
-  private async createCustomerAddress(session: any, userId: string) {
+  private async createCustomerAddress(
+    orderId: string,
+    session: any,
+    userId: string
+  ) {
     const customerAddress = session.customer_details?.address;
     if (customerAddress) {
-      return this.checkoutRepository.createAddress({
+      return this.addressRepository.createAddress({
+        orderId: orderId,
         userId,
         city: customerAddress.city || "N/A",
         state: customerAddress.state || "N/A",
@@ -60,7 +73,7 @@ class WebhookService {
         if (newStock < 0) {
           throw new AppError(
             400,
-            `Not enough stock for product: ${product.name}`
+            `Not enough stock for product: ${product.name}-${product.id}`
           );
         }
         await this.productRepository.updateProductStock(
@@ -72,6 +85,7 @@ class WebhookService {
   }
 
   private async clearCartAndInvalidateCache(userId: string) {
+    console.log("userId being passed to clearCartAndInvalidateCache: ", userId);
     await this.cartRepository.clearCart(userId);
 
     await redisClient.del("dashboard:year-range");
@@ -83,36 +97,45 @@ class WebhookService {
 
   private async createOrderAndDependencies(
     userId: string,
+    session: any,
     cart: any,
     amount: number
   ) {
-    const payment = await this.checkoutRepository.createPayment({
-      userId,
-      method: cart.payment_method_types[0],
-      amount,
-    });
+    console.log("cart: ", cart);
 
-    const order = await this.checkoutRepository.createOrder({
+    const order = await this.orderRepository.createOrder({
       userId,
       amount,
       orderItems: cart.cartItems.map((item: any) => ({
         productId: item.productId,
         quantity: item.quantity,
       })),
+      status: "PAID",
+    });
+
+    const address = await this.createCustomerAddress(order.id, session, userId);
+
+    const payment = await this.paymentRepository.createPayment({
+      orderId: order.id,
+      userId,
+      method: session.payment_method_types?.[0] || "unknown",
+      amount,
     });
 
     const shipmentData = this.generateShipmentData(order.id);
-    const shipment = await this.checkoutRepository.createShipment(shipmentData);
+    const shipment = await this.shipmentRepository.createShipment(shipmentData);
 
-    const tracking = await this.checkoutRepository.createTrackingDetail({
+    const tracking = await this.trackingDetailRepository.createTrackingDetail({
       status: shipmentData.status,
       orderId: order.id,
     });
 
-    return { order, payment, shipment, tracking };
-  }
+    const updatedOrder = await this.orderRepository.findOrderById(order.id);
 
+    return { order: updatedOrder, payment, shipment, tracking, address };
+  }
   async handleCheckoutCompletion(session: any) {
+    console.log("session: ", session);
     const fullSession = await stripe.checkout.sessions.retrieve(session.id);
     const userId = fullSession?.metadata?.userId;
 
@@ -127,13 +150,10 @@ class WebhookService {
 
     const amount = await this.calculateOrderAmount(cart);
 
-    const address = await this.createCustomerAddress(fullSession, userId);
-
-    const { order, payment, shipment, tracking } =
-      await this.createOrderAndDependencies(userId, fullSession, amount);
+    const { order, payment, shipment, tracking, address } =
+      await this.createOrderAndDependencies(userId, fullSession, cart, amount);
 
     await this.updateProductStock(cart);
-
     await this.clearCartAndInvalidateCache(userId);
 
     await this.webhookRepository.logWebhookEvent(

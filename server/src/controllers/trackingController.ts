@@ -1,9 +1,8 @@
-// controllers/TrackingDetailController.ts
 import { Request, Response } from "express";
 import asyncHandler from "../utils/asyncHandler";
 import sendResponse from "../utils/sendResponse";
 import AppError from "../utils/AppError";
-import TrackingDetailService from "services/trackingDetailService";
+import TrackingDetailService from "../services/trackingDetailService";
 
 class TrackingDetailController {
   constructor(private trackingService: TrackingDetailService) {}

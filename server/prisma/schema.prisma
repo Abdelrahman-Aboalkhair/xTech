@@ -15,15 +15,16 @@ enum ROLE {
 
 enum ORDER_STATUS {
   PENDING
-  PROCESSING
+  PAID
+  SHIPPED
   DELIVERED
 }
 
 model User {
   id                            String    @id @default(uuid())
-  googleId                      String?   // Removed @unique to avoid nullable unique constraint issues
-  twitterId                     String?   // Same as above
-  facebookId                    String?   // Same as above
+  googleId                      String?   
+  twitterId                     String?   
+  facebookId                    String?   
   email                         String    @unique
   password                      String?
   name                          String

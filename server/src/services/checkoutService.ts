@@ -1,6 +1,4 @@
 import stripe from "../config/stripe";
-import AppError from "../utils/AppError";
-import CheckoutRepository from "../repositories/checkoutRepository";
 
 const PLACEHOLDER_IMAGE = "https://via.placeholder.com/150";
 
@@ -13,21 +11,9 @@ function validImage(url: string): string {
 }
 
 class CheckoutService {
-  constructor(private checkoutRepository: CheckoutRepository) {}
-
-  async getCartForCheckout(userId: string) {
-    console.log("userId: ", userId);
-    const cart = await this.checkoutRepository.findCartByUserId(userId);
-    console.log("Found cart: ", cart);
-    if (!cart || !cart.cartItems.length) {
-      throw new AppError(400, "Cart is empty or not found");
-    }
-    return cart;
-  }
+  constructor() {}
 
   async createStripeSession(cart: any, userId: string) {
-    console.log("received userId to pass to the session: ", userId);
-
     const lineItems = cart.cartItems.map((item: any) => {
       const imageUrl = validImage(safeImage(item.product.images));
 
@@ -50,13 +36,15 @@ class CheckoutService {
       payment_method_types: ["card"],
       line_items: lineItems,
       billing_address_collection: "required",
+      shipping_address_collection: {
+        allowed_countries: ["US", "CA", "MX", "EG"],
+      },
       mode: "payment",
       success_url: `${process.env.CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.CLIENT_URL}/cancel`,
       metadata: { userId },
     });
 
-    console.log("created session: ", session);
     return session;
   }
 }

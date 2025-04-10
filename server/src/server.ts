@@ -1,4 +1,3 @@
-import { CartItem } from "types/cartTypes";
 import app from "./app";
 import { connectDB } from "./config/database";
 

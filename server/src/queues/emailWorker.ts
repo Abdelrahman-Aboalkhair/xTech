@@ -36,7 +36,6 @@ const emailWorker = new Worker<EmailJobData>(
         });
 
         logger.info(`Email sent successfully to ${to}`);
-        return result;
       } catch (error) {
         logger.error(`Failed to send email: ${(error as Error).message}`);
         throw error;

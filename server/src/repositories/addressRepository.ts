@@ -1,6 +1,27 @@
 import prisma from "../config/database";
 
 class AddressRepository {
+  async createAddress(data: {
+    orderId: string;
+    userId: string;
+    street: string;
+    city: string;
+    state: string;
+    country: string;
+    zip: string;
+  }) {
+    return prisma.address.create({
+      data: {
+        orderId: data.orderId,
+        userId: data.userId,
+        city: data.city,
+        state: data.state,
+        street: data.street,
+        country: data.country,
+        zip: data.zip,
+      },
+    });
+  }
   async findAddressesByUserId(userId: string) {
     return prisma.address.findMany({
       where: { userId },

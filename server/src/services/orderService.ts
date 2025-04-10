@@ -30,21 +30,6 @@ class OrderService {
     }
     return order;
   }
-
-  async updateTrackingStatus(
-    orderId: string,
-    status: string,
-    userRole: string
-  ) {
-    if (userRole !== "ADMIN" && userRole !== "SUPERADMIN") {
-      throw new AppError(403, "Only admins can update tracking status");
-    }
-    const order = await this.orderRepository.findOrderById(orderId);
-    if (!order) {
-      throw new AppError(404, "Order not found");
-    }
-    return this.orderRepository.upsertTrackingDetail(orderId, status);
-  }
 }
 
 export default OrderService;

@@ -1,11 +1,9 @@
-// services/trackingService.ts
-import TrackingDetailRepository from "repositories/trackingDetailRepository";
+import TrackingDetailRepository from "../repositories/trackingDetailRepository";
 import AppError from "../utils/AppError";
 
 class TrackingDetailService {
   constructor(private trackingDetailRepository: TrackingDetailRepository) {}
 
-  // Get all tracking details for an authenticated user
   async getUserTracking(userId: string) {
     const tracking = await this.trackingDetailRepository.findTrackingByUserId(
       userId
@@ -16,7 +14,6 @@ class TrackingDetailService {
     return tracking;
   }
 
-  // Get all tracking details (admin only)
   async getAllTracking() {
     const tracking = await this.trackingDetailRepository.findAllTracking();
     if (!tracking || tracking.length === 0) {
@@ -25,7 +22,6 @@ class TrackingDetailService {
     return tracking;
   }
 
-  // Delete a tracking record (admin only)
   async deleteTracking(trackingId: string) {
     const deletedTracking =
       await this.trackingDetailRepository.deleteTrackingById(trackingId);

@@ -1,22 +1,34 @@
 import express from "express";
 import WebhookController from "../controllers/webhookController";
 import WebhookService from "../services/webhookService";
-import CheckoutRepository from "../repositories/checkoutRepository";
 import WebhookRepository from "../repositories/webhookRepository";
 import CartRepository from "../repositories/cartRepository";
 import bodyParser from "body-parser";
 import ProductRepository from "../repositories/productRepository";
+import OrderRepository from "../repositories/orderRepository";
+import PaymentRepository from "../repositories/paymentRepository";
+import AddressRepository from "../repositories/addressRepository";
+import TrackingDetailRepository from "../repositories/trackingDetailRepository";
+import ShipmentRepository from "../repositories/shipmentRepository";
 
 const router = express.Router();
-const checkoutRepository = new CheckoutRepository();
 const webhookRepository = new WebhookRepository();
 const cartRepository = new CartRepository();
 const productRepository = new ProductRepository();
+const orderRepository = new OrderRepository();
+const paymentRepository = new PaymentRepository();
+const addressRepository = new AddressRepository();
+const trackingDetailRepository = new TrackingDetailRepository();
+const shipmentRepository = new ShipmentRepository();
 const webhookService = new WebhookService(
-  checkoutRepository,
   webhookRepository,
+  shipmentRepository,
+  paymentRepository,
+  orderRepository,
   cartRepository,
-  productRepository
+  addressRepository,
+  productRepository,
+  trackingDetailRepository
 );
 const webhookController = new WebhookController(webhookService);
 

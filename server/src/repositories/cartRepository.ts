@@ -77,25 +77,18 @@ class CartRepository {
     return prisma.cart.delete({ where: { id } });
   }
 
-  async createOrder(data: {
-    userId: string;
-    amount: number;
-    orderItems: { productId: string; quantity: number }[];
-  }) {
-    return prisma.order.create({
-      data: {
-        userId: data.userId,
-        amount: data.amount,
-        orderItems: {
-          create: data.orderItems,
-        },
-      },
-      include: { orderItems: true },
+  async clearCart(userId: string) {
+    const cart = await prisma.cart.findUnique({
+      where: { userId },
     });
-  }
 
-  async clearCart(cartId: string) {
-    return prisma.cartItem.deleteMany({ where: { cartId } });
+    if (!cart) {
+      return;
+    }
+
+    return prisma.cartItem.deleteMany({
+      where: { cartId: cart.id },
+    });
   }
 }
 
