@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { debounce } from "lodash";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
 import { Loader2, ArrowUpDown, FileText, RefreshCw } from "lucide-react";
@@ -29,6 +29,10 @@ interface TableProps {
   totalResults?: number;
   resultsPerPage?: number;
   currentPage?: number;
+  expandable?: boolean; // New prop to enable expandable rows
+  expandedRowId?: string | null; // ID of the currently expanded row
+  renderExpandedRow?: (row: any) => React.ReactNode; // Function to render expanded content
+  className?: string; // Allow custom Tailwind classes
 }
 
 const Table: React.FC<TableProps> = ({
@@ -46,6 +50,10 @@ const Table: React.FC<TableProps> = ({
   totalResults,
   resultsPerPage,
   currentPage,
+  expandable = false,
+  expandedRowId = null,
+  renderExpandedRow,
+  className = "",
 }) => {
   const { query, updateQuery } = useQueryParams();
   const [sortKey, setSortKey] = useState<string | null>(null);
@@ -54,7 +62,7 @@ const Table: React.FC<TableProps> = ({
   // Parse the sort parameter from the query (e.g., "price:asc")
   useEffect(() => {
     if (query.sort) {
-      const [field, direction] = (query.sort as string).split(":"); // "price:asc"
+      const [field, direction] = (query.sort as string).split(":");
       setSortKey(field || null);
       setSortDirection((direction as "asc" | "desc") || "asc");
     } else {
@@ -70,16 +78,12 @@ const Table: React.FC<TableProps> = ({
     setSortKey(key);
     setSortDirection(newSortDirection);
     const sortValue = `${key}:${newSortDirection}`;
-    updateQuery({
-      sort: sortValue,
-    });
+    updateQuery({ sort: sortValue });
   };
 
   const debouncedSearch = useCallback(
     debounce((searchQuery: string) => {
-      updateQuery({
-        searchQuery: searchQuery || "",
-      });
+      updateQuery({ searchQuery: searchQuery || "" });
     }, 300),
     [updateQuery]
   );
@@ -88,49 +92,47 @@ const Table: React.FC<TableProps> = ({
     debouncedSearch(data.searchQuery);
   };
 
+  if (!Array.isArray(data)) {
+    return (
+      <div className="text-center py-12 text-gray-600">{emptyMessage}</div>
+    );
+  }
+
   return (
-    <div className="w-full bg-white rounded-xl shadow-sm border border-blue-50 overflow-hidden">
+    <div
+      className={`w-full bg-white rounded-xl shadow-sm border border-blue-50 overflow-hidden ${className}`}
+    >
       {showHeader && (
-        <>
-          {/* Table Header */}
-          <div className="p-4 sm:p-6 border-b border-blue-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            {(title || subtitle) && (
-              <div>
-                {title && (
-                  <h2 className="font-semibold text-lg text-gray-800">
-                    {title}
-                  </h2>
-                )}
-                {subtitle && (
-                  <p className="text-sm text-gray-500">{subtitle}</p>
-                )}
-              </div>
-            )}
-
-            <p className="text-[15px] text-gray-700 pt-[15px] pb-[6px]">
-              Showing {totalResults !== undefined ? totalResults : 0} results
-              {currentPage ? ` (Page ${currentPage})` : ""}
-              {totalResults !== undefined && totalResults > 0 && resultsPerPage
-                ? `, showing ${resultsPerPage} items per page`
-                : ""}
-            </p>
-
-            <div className="flex items-center gap-2 self-end sm:self-auto">
-              <div className="relative">
-                {showSearchBar && <SearchBar onSearch={handleSearch} />}
-              </div>
-
-              {onRefresh && (
-                <button
-                  onClick={onRefresh}
-                  className="p-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
-                >
-                  <RefreshCw size={16} />
-                </button>
+        <div className="p-4 sm:p-6 border-b border-blue-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          {(title || subtitle) && (
+            <div>
+              {title && (
+                <h2 className="font-semibold text-lg text-gray-800">{title}</h2>
               )}
+              {subtitle && <p className="text-sm text-gray-500">{subtitle}</p>}
             </div>
+          )}
+
+          <p className="text-[15px] text-gray-700 pt-[15px] pb-[6px]">
+            Showing {totalResults !== undefined ? totalResults : 0} results
+            {currentPage ? ` (Page ${currentPage})` : ""}
+            {totalResults !== undefined && totalResults > 0 && resultsPerPage
+              ? `, showing ${resultsPerPage} items per page`
+              : ""}
+          </p>
+
+          <div className="flex items-center gap-2 self-end sm:self-auto">
+            {showSearchBar && <SearchBar onSearch={handleSearch} />}
+            {onRefresh && (
+              <button
+                onClick={onRefresh}
+                className="p-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
+              >
+                <RefreshCw size={16} />
+              </button>
+            )}
           </div>
-        </>
+        </div>
       )}
 
       {/* Table Content */}
@@ -185,38 +187,51 @@ const Table: React.FC<TableProps> = ({
               </tr>
             ) : data.length > 0 ? (
               data.map((row, rowIndex) => (
-                <tr
-                  key={row.id || row._id || rowIndex}
-                  className="hover:bg-blue-50/50 transition-colors text-sm"
-                >
-                  {columns.map((column) => (
-                    <td
-                      key={column.key}
-                      className={`px-6 py-4 text-${column.align || "left"} ${
-                        rowIndex % 2 === 0 ? "bg-white" : "bg-blue-50/30"
-                      }`}
-                    >
-                      {column.render ? column.render(row) : row[column.key]}
-                    </td>
-                  ))}
-                </tr>
+                <React.Fragment key={row.id || row._id || rowIndex}>
+                  <tr className="hover:bg-blue-50/50 transition-colors text-sm">
+                    {columns.map((column) => (
+                      <td
+                        key={column.key}
+                        className={`px-6 py-4 text-${column.align || "left"} ${
+                          rowIndex % 2 === 0 ? "bg-white" : "bg-blue-50/30"
+                        }`}
+                      >
+                        {column.render ? column.render(row) : row[column.key]}
+                      </td>
+                    ))}
+                  </tr>
+                  {/* Expanded Row */}
+                  {expandable &&
+                    expandedRowId === (row.id || row._id) &&
+                    renderExpandedRow && (
+                      <tr>
+                        <td colSpan={columns.length} className="p-0">
+                          {renderExpandedRow(row)}
+                        </td>
+                      </tr>
+                    )}
+                </React.Fragment>
               ))
             ) : (
-              <tr>
-                <td colSpan={columns.length} className="text-center py-16">
-                  <div className="flex flex-col items-center text-blue-300">
-                    <FileText size={32} className="mb-2 opacity-50" />
-                    <p>{emptyMessage}</p>
-                  </div>
-                </td>
-              </tr>
+              <>
+                <tr>
+                  <td colSpan={columns.length} className="text-center py-16">
+                    <div className="flex flex-col items-center text-blue-300">
+                      <FileText size={32} className="mb-2 opacity-50" />
+                      <p>{emptyMessage}</p>
+                    </div>
+                  </td>
+                </tr>
+              </>
             )}
           </tbody>
         </table>
       </div>
 
-      {showPaginationDetails && (
-        <PaginationComponent totalPages={totalPages!} />
+      {showPaginationDetails && totalPages !== undefined && (
+        <div className="p-4 border-t border-blue-100">
+          <PaginationComponent totalPages={totalPages} />
+        </div>
       )}
     </div>
   );

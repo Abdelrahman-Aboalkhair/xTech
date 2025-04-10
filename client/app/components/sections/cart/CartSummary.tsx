@@ -2,6 +2,7 @@ import { useInitiateCheckoutMutation } from "@/app/store/apis/CheckoutApi";
 import React, { useMemo } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import useToast from "@/app/hooks/ui/useToast";
+import { motion } from "framer-motion";
 
 interface CartSummaryProps {
   subtotal: number;
@@ -16,17 +17,13 @@ const CartSummary: React.FC<CartSummaryProps> = ({
   shippingRate = 0.01,
   currency = "$",
   totalItems,
+  cartId,
 }) => {
   const { showToast } = useToast();
   const stripePromise = loadStripe(
     "pk_test_51R9gs72KGvEXtMtXXTm7UscmmHYsvk9j3ktaM8vxRb3evNJgG1dpD05YWACweIfcPtpCgOIs4HkpGrTCKE1dZD0p00sLC6iIBg"
   );
-
-  const [initiateCheckout, { isLoading, error }] =
-    useInitiateCheckoutMutation();
-  if (error) {
-    console.log("error: ", error);
-  }
+  const [initiateCheckout, { isLoading }] = useInitiateCheckoutMutation();
 
   const shippingFee = useMemo(
     () => subtotal * shippingRate,
@@ -36,60 +33,65 @@ const CartSummary: React.FC<CartSummaryProps> = ({
 
   const handleInitiateCheckout = async () => {
     try {
-      const res = await initiateCheckout({}).unwrap();
-      console.log("res => ", res);
-
+      const res = await initiateCheckout({ cartId }).unwrap();
       const stripe = await stripePromise;
       const result = await stripe?.redirectToCheckout({
         sessionId: res.sessionId,
       });
 
       if (result?.error) {
-        showToast(result.error?.message, "error");
+        showToast(result.error.message, "error");
         console.error(result.error.message);
       }
     } catch (error) {
-      console.log("Error checking out: ", error);
+      console.error("Error checking out:", error);
+      showToast("Failed to initiate checkout", "error");
     }
   };
 
   return (
-    <div className="border border-gray-200 rounded-lg p-8 px-16 mt-4 space-y-3 shadow-sm w-full max-w-md">
-      <h2 className="text-lg font-semibold mb-4 text-center">Cart Summary</h2>
-      <div className="flex justify-between">
-        <span>Total items</span>
-        <span>{totalItems}</span>
-      </div>
-      <div className="flex justify-between">
-        <span>Subtotal</span>
-        <span>
-          {currency}
-          {subtotal.toFixed(2)}
-        </span>
-      </div>
-      <div className="flex justify-between">
-        <span>Shipping ({(shippingRate * 100).toFixed(0)}%):</span>
-        <span>
-          {currency}
-          {shippingFee.toFixed(2)}
-        </span>
-      </div>
-      <hr className="my-2 text-gray-300" />
-      <div className="flex justify-between font-semibold text-lg">
-        <span>Total:</span>
-        <span>
-          {currency}
-          {total.toFixed(2)}
-        </span>
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.4 }}
+      className="lg:col-span-1 bg-white rounded-xl shadow-md p-6 border border-gray-100 sticky top-8"
+    >
+      <h2 className="text-xl font-bold text-gray-800 mb-6">Order Summary</h2>
+      <div className="space-y-4">
+        <div className="flex justify-between text-gray-700">
+          <span>Total Items</span>
+          <span>{totalItems}</span>
+        </div>
+        <div className="flex justify-between text-gray-700">
+          <span>Subtotal</span>
+          <span className="font-medium text-gray-800">
+            {currency}
+            {subtotal.toFixed(2)}
+          </span>
+        </div>
+        <div className="flex justify-between text-gray-700">
+          <span>Shipping ({(shippingRate * 100).toFixed(0)}%)</span>
+          <span className="font-medium text-gray-800">
+            {currency}
+            {shippingFee.toFixed(2)}
+          </span>
+        </div>
+        <div className="flex justify-between pt-4 border-t border-gray-100">
+          <span className="font-semibold text-gray-800">Total</span>
+          <span className="font-semibold text-gray-800">
+            {currency}
+            {total.toFixed(2)}
+          </span>
+        </div>
       </div>
       <button
-        disabled={isLoading}
+        disabled={isLoading || totalItems === 0}
         onClick={handleInitiateCheckout}
-        className="mt-4 w-full bg-primary text-white p-3 rounded-md"
+        className="mt-6 w-full bg-indigo-500 text-white py-3 rounded-lg hover:bg-indigo-600 transition-colors duration-300 disabled:bg-gray-300 disabled:cursor-not-allowed"
       >
-        {isLoading ? "Loading..." : "Proceed to checkout"}
+        {isLoading ? "Processing..." : "Proceed to Checkout"}
       </button>
-    </div>
+    </motion.div>
   );
 };
 

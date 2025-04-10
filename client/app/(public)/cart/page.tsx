@@ -1,10 +1,9 @@
 "use client";
 import BreadCrumb from "@/app/components/feedback/BreadCrumb";
 import MainLayout from "@/app/components/templates/MainLayout";
-import { Trash2 } from "lucide-react";
+import { Trash2, ShoppingCart } from "lucide-react";
 import React, { useMemo } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 import CartSummary from "@/app/components/sections/cart/CartSummary";
 import {
@@ -12,106 +11,125 @@ import {
   useRemoveFromCartMutation,
 } from "@/app/store/apis/CartApi";
 import QuantitySelector from "@/app/components/molecules/QuantitySelector";
-import Table from "@/app/components/layout/Table";
+import { motion } from "framer-motion";
 
 const Cart = () => {
   const { control } = useForm();
   const { data, isLoading } = useGetCartQuery({});
-  const [remmoveFromCart] = useRemoveFromCartMutation();
-  const cartItems = data?.cart?.cartItems;
-  console.log("cartItems: ", cartItems);
+  const [removeFromCart] = useRemoveFromCartMutation();
+  const cartItems = data?.cart?.cartItems || [];
 
   const subtotal = useMemo(() => {
-    if (!cartItems || cartItems.length === 0) return 0;
-    return cartItems.reduce((sum: number, item: any) => {
-      return sum + item.product.price * item.quantity;
-    }, 0);
+    if (!cartItems.length) return 0;
+    return cartItems.reduce(
+      (sum, item) => sum + item.product.price * item.quantity,
+      0
+    );
   }, [cartItems]);
-  console.log("subtotal: ", subtotal);
 
-  const handleRemoveFromCart = async (id: string) => {
-    const result = await remmoveFromCart(id).unwrap();
-    console.log("result: ", result);
+  const handleRemoveFromCart = async (id) => {
+    try {
+      await removeFromCart(id).unwrap();
+    } catch (error) {
+      console.error("Error removing item:", error);
+    }
   };
-
-  const columns = [
-    {
-      key: "product",
-      label: "Product",
-      render: (row: any) => (
-        <div className="flex items-center space-x-4">
-          <button
-            onClick={() => handleRemoveFromCart(row.id)}
-            className="text-red-500 text-lg"
-          >
-            <Trash2 size={18} />
-          </button>
-          <Image
-            src={row.product.images[0]}
-            alt={row.name + " image"}
-            width={50}
-            height={50}
-          />
-          <span>{row.name}</span>
-        </div>
-      ),
-    },
-    {
-      key: "price",
-      label: "Price",
-      render: (row: any) => `$${row.product.price}`,
-    },
-    {
-      key: "quantity",
-      label: "Quantity",
-      render: (row: any) => (
-        <Controller
-          name={`quantity-${row.product.id}`}
-          defaultValue={row.quantity}
-          control={control}
-          render={({ field }) => (
-            <QuantitySelector
-              itemId={row.id}
-              value={field.value}
-              onChange={field.onChange}
-            />
-          )}
-        />
-      ),
-    },
-
-    {
-      key: "subtotal",
-      label: "Subtotal",
-      render: (row: any) => `$${row.product.price}`,
-    },
-  ];
 
   return (
     <MainLayout>
-      <div className="flex flex-col items-start gap-4 mt-8 px-[10%]">
+      <div className="max-w-7xl mx-auto px-4 py-8">
         <BreadCrumb />
-        <div className="w-full mt-6">
-          <Table
-            data={cartItems}
-            columns={columns}
-            isLoading={isLoading}
-            showPaginationDetails={false}
-            showSearchBar={false}
-            showHeader={false}
-          />
-        </div>
-        <div className="flex justify-between w-full mt-6">
-          <Link href={"/shop"} className="border px-6 py-2">
-            Return To Shop
-          </Link>
-          <button className="border px-6 py-2">Update Cart</button>
-        </div>
-        <CartSummary
-          subtotal={subtotal}
-          totalItems={cartItems?.length}
-          cartId={data?.cart?.id}
-        />
+
+        {/* Cart Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center space-x-2 mt-6 mb-8"
+        >
+          <h1 className="text-2xl font-bold text-gray-800">Your Cart</h1>
+          <span className="text-gray-500">({cartItems.length} items)</span>
+        </motion.div>
+
+        {/* Cart Content */}
+        {isLoading ? (
+          <div className="text-center text-gray-500">Loading...</div>
+        ) : cartItems.length === 0 ? (
+          <div className="text-center py-12">
+            <ShoppingCart size={48} className="mx-auto text-gray-400 mb-4" />
+            <p className="text-lg text-gray-600">Your cart is empty</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Cart Items */}
+            <div className="lg:col-span-2 space-y-6">
+              {cartItems.map((item) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow duration-300 flex items-center space-x-4"
+                >
+                  {/* Product Image */}
+                  <div className="w-20 h-20 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden shadow-sm">
+                    <Image
+                      src={item.product.images[0]}
+                      alt={item.product.name}
+                      width={80}
+                      height={80}
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Product Details */}
+                  <div className="flex-1">
+                    <p className="font-semibold text-gray-800">
+                      {item.product.name}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      ${item.product.price.toFixed(2)}
+                    </p>
+                  </div>
+
+                  {/* Quantity Selector */}
+                  <Controller
+                    name={`quantity-${item.product.id}`}
+                    defaultValue={item.quantity}
+                    control={control}
+                    render={({ field }) => (
+                      <QuantitySelector
+                        itemId={item.id}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    )}
+                  />
+
+                  {/* Subtotal and Remove */}
+                  <div className="text-right space-y-2">
+                    <p className="font-medium text-gray-800">
+                      ${(item.product.price * item.quantity).toFixed(2)}
+                    </p>
+                    <button
+                      onClick={() => handleRemoveFromCart(item.id)}
+                      className="text-red-500 hover:text-red-600 transition-colors duration-200"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Cart Summary */}
+            <CartSummary
+              subtotal={subtotal}
+              totalItems={cartItems.length}
+              cartId={data?.cart?.id}
+            />
+          </div>
+        )}
       </div>
     </MainLayout>
   );

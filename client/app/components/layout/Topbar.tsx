@@ -4,7 +4,7 @@ import { Truck, Clock, Gift } from "lucide-react";
 
 const Topbar = () => {
   return (
-    <div className="bg-gray-800 text-white py-[19px]">
+    <div className="bg-indigo-950 text-white py-[19px]">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-6 text-sm">

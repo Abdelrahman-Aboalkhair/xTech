@@ -16,6 +16,7 @@ export const categoriesApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["Category"],
     }),
+
     createCategory: builder.mutation({
       query: (categoryData) => ({
         url: "/categories",

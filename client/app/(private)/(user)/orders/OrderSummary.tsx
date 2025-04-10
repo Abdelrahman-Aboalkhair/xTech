@@ -1,6 +1,9 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import useFormatPrice from "@/app/hooks/ui/useFormatPrice";
+import ToggleableId from "@/app/components/atoms/ToggleableId";
+import formatDate from "@/app/utils/formatDate";
+import { Calendar, Package, ShoppingBag } from "lucide-react";
 
 const OrderSummary = ({ order }) => {
   const formatPrice = useFormatPrice();
@@ -12,37 +15,67 @@ const OrderSummary = ({ order }) => {
   }, [subtotal, shippingCost, platformFees]);
 
   return (
-    <>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.3 }}
-        className="bg-white rounded-lg shadow p-6"
-      >
-        <h2 className="font-bold mb-4">Order Summary</h2>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.3 }}
+      className="bg-white rounded-xl shadow-md p-6 border border-gray-100"
+    >
+      <h2 className="font-bold text-gray-800 mb-4">Order Details</h2>
+
+      {/* Order Details Section */}
+      <div className="border-b border-gray-100 pb-4 mb-4">
         <div className="space-y-3">
-          <div className="flex justify-between">
-            <p>Product Price</p>
-            <div className="flex items-center">
-              <span>{order.orderItems.length} Item(s)</span>
-              <span className="ml-8 font-medium">{formatPrice(subtotal)}</span>
-            </div>
+          <div className="flex items-center space-x-2">
+            <Package size={16} />
+            <span className="font-medium text-gray-800">Tracking Number:</span>
+            <ToggleableId id={order.shipment.trackingNumber} />
           </div>
-          <div className="flex justify-between">
-            <p>Shipping Cost</p>
-            <span className="font-medium">{formatPrice(shippingCost)}</span>
+          <div className="flex items-center space-x-2">
+            <ShoppingBag size={16} />
+            <span className="font-medium text-gray-800">Order ID:</span>
+            <ToggleableId id={order.id} />
           </div>
-          <div className="flex justify-between">
-            <p>Platform Fees</p>
-            <span className="font-medium">{formatPrice(platformFees)}</span>
-          </div>
-          <div className="flex justify-between">
-            <p>Total</p>
-            <span className="font-medium">{total}</span>
+          <div className="flex items-center space-x-2">
+            <Calendar size={16} />
+            <span className="font-medium text-gray-800">
+              Placed on {formatDate(order.orderDate)}
+            </span>
           </div>
         </div>
-      </motion.div>
-    </>
+      </div>
+
+      {/* Financial Summary Section */}
+      <div className="space-y-3">
+        <div className="flex justify-between text-gray-700">
+          <p>Product Price</p>
+          <div className="flex items-center space-x-4">
+            <span className="text-gray-500">
+              {order.orderItems.length} Item(s)
+            </span>
+            <span className="font-medium text-gray-800">
+              {formatPrice(subtotal)}
+            </span>
+          </div>
+        </div>
+        <div className="flex justify-between text-gray-700">
+          <p>Shipping Cost</p>
+          <span className="font-medium text-gray-800">
+            {formatPrice(shippingCost)}
+          </span>
+        </div>
+        <div className="flex justify-between text-gray-700">
+          <p>Platform Fees</p>
+          <span className="font-medium text-gray-800">
+            {formatPrice(platformFees)}
+          </span>
+        </div>
+        <div className="flex justify-between pt-2 border-t border-gray-100">
+          <p className="font-semibold text-gray-800">Total</p>
+          <span className="font-semibold text-gray-800">{total}</span>
+        </div>
+      </div>
+    </motion.div>
   );
 };
 

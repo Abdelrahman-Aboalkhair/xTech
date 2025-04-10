@@ -5,6 +5,8 @@ import ProductCard from "../products/ProductCard";
 import { Product } from "@/app/types/productTypes";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
 import PaginationComponent from "../../organisms/Pagination";
+import { motion } from "framer-motion";
+import { Package } from "lucide-react";
 
 interface ProductSectionProps {
   title: string;
@@ -21,55 +23,75 @@ const ProductSection: React.FC<ProductSectionProps> = ({
 }) => {
   const { query } = useQueryParams();
   const { data, isLoading, isError } = useGetAllProductsQuery(query);
-  console.log("data => ", data);
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
 
-  const noProductsFound = data?.products.length === 0;
+  const noProductsFound = data?.products?.length === 0;
 
   return (
-    <div className="px-[10%] w-full">
-      {showPagination && (
-        <p className="text-[15px] text-gray-700 pt-[15px] pb-[6px] ">
-          Showing {data?.totalResults} results
-          {data?.currentPage ? ` (Page ${data?.currentPage})` : ""}
-          {data?.totalResults > 0 && data?.resultsPerPage
-            ? `, showing ${data?.resultsPerPage} items per page`
+    <div className="max-w-7xl px-4 py-8">
+      {/* Header */}
+      {(showTitle || viewAllButton) && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center justify-between mb-8"
+        >
+          {showTitle && (
+            <div className="flex items-center space-x-3">
+              <Package size={24} className="text-indigo-500" />
+              <h2 className="text-2xl font-bold text-gray-800 capitalize">
+                {title}
+              </h2>
+            </div>
+          )}
+          {viewAllButton && (
+            <button className="bg-indigo-500 text-white px-6 py-2 rounded-lg hover:bg-indigo-600 transition-colors duration-300 font-medium">
+              View All
+            </button>
+          )}
+        </motion.div>
+      )}
+
+      {/* Pagination Info */}
+      {showPagination && data && (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-sm text-gray-600 mb-6"
+        >
+          Showing {data.totalResults} results
+          {data.currentPage && ` (Page ${data.currentPage})`}
+          {data.totalResults > 0 && data.resultsPerPage
+            ? `, ${data.resultsPerPage} items per page`
             : ""}
-        </p>
+        </motion.p>
       )}
 
-      <div className="flex items-center justify-between mb-8">
-        {showTitle && (
-          <h2
-            className="text-2xl font-semibold capitalize relative before:content-[''] 
-         before:absolute before:left-0 before:top-[-2px] before:w-[6px] before:rounded before:h-[2.5rem] before:bg-[#db4444] text-[#db4444] pl-6"
-          >
-            {title}
-          </h2>
-        )}
-        {viewAllButton && (
-          <button className="bg-primary text-white px-8 py-[12px] rounded-sm tracking-wider hover:bg-red-600 transition">
-            View All
-          </button>
-        )}
-      </div>
-
+      {/* Loading/Error/Empty States */}
       {isLoading && (
-        <div className="text-center text-gray-500">Loading products...</div>
+        <div className="text-center py-12">
+          <Package
+            size={48}
+            className="mx-auto text-gray-400 mb-4 animate-pulse"
+          />
+          <p className="text-lg text-gray-600">Loading products...</p>
+        </div>
       )}
-
       {isError && (
-        <div className="text-center text-red-500">
-          An error occurred while loading products.
+        <div className="text-center py-12">
+          <p className="text-lg text-red-500">Error loading products</p>
+        </div>
+      )}
+      {noProductsFound && !isLoading && !isError && (
+        <div className="text-center py-12">
+          <Package size={48} className="mx-auto text-gray-400 mb-4" />
+          <p className="text-lg text-gray-600">No products found</p>
         </div>
       )}
 
-      {noProductsFound && (
-        <div className="text-center text-gray-500">
-          No products found. Please try adjusting your filters.
-        </div>
-      )}
-
+      {/* Product Grid */}
       {!isLoading && !isError && !noProductsFound && (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -83,8 +105,10 @@ const ProductSection: React.FC<ProductSectionProps> = ({
             ))}
           </div>
 
-          {showPagination && data?.totalPages && data?.totalPages > 1 && (
-            <PaginationComponent totalPages={data?.totalPages} />
+          {showPagination && data?.totalPages > 1 && (
+            <div className="mt-8">
+              <PaginationComponent totalPages={data.totalPages} />
+            </div>
           )}
         </>
       )}
