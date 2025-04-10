@@ -1,6 +1,15 @@
 import prisma from "../config/database";
 
 class OrderRepository {
+  async findAllOrders() {
+    return prisma.order.findMany({
+      include: {
+        orderItems: { include: { product: true } },
+        tracking: true,
+      },
+      orderBy: { orderDate: "desc" },
+    });
+  }
   // Get all orders for a user
   async findOrdersByUserId(userId: string) {
     return prisma.order.findMany({

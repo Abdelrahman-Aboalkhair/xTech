@@ -15,6 +15,7 @@
   "dependencies": {
     "@prisma/client": "^6.5.0",
     "@types/cors": "^2.8.17",
+    "@types/uuid": "^10.0.0",
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
     "body-parser": "^1.20.3",
@@ -46,6 +47,7 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-twitter": "^1.0.4",
     "stripe": "^18.0.0",
+    "uuid": "^11.1.0",
     "winston": "^3.17.0",
     "xss-clean": "^0.1.4"
   },

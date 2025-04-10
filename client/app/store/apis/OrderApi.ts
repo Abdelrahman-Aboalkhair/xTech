@@ -11,6 +11,15 @@ export const orderApi = apiSlice.injectEndpoints({
       providesTags: ["Order"],
     }),
 
+    getUserOrders: builder.query({
+      query: () => ({
+        url: "/orders/user",
+        method: "GET",
+        credentials: "include",
+      }),
+      providesTags: ["Order"],
+    }),
+
     createOrder: builder.mutation({
       query: (orderData) => ({
         url: "/orders",
@@ -40,7 +49,7 @@ export const orderApi = apiSlice.injectEndpoints({
       invalidatesTags: ["Order"],
     }),
 
-    getSingleOrder: builder.query({
+    getOrder: builder.query({
       query: (orderId) => ({
         url: `/orders/${orderId}`,
         method: "GET",
@@ -53,8 +62,9 @@ export const orderApi = apiSlice.injectEndpoints({
 
 export const {
   useGetAllOrdersQuery,
+  useGetUserOrdersQuery,
   useCreateOrderMutation,
   useDeleteOrderMutation,
   useUpdateOrderMutation,
-  useGetSingleOrderQuery,
+  useGetOrderQuery,
 } = orderApi;

@@ -22,10 +22,13 @@ interface TableProps {
   title?: string;
   subtitle?: string;
   onRefresh?: () => void;
-  totalPages: number;
-  totalResults: number;
-  resultsPerPage: number;
-  currentPage: number;
+  showHeader?: boolean;
+  showPaginationDetails?: boolean;
+  showSearchBar?: boolean;
+  totalPages?: number;
+  totalResults?: number;
+  resultsPerPage?: number;
+  currentPage?: number;
 }
 
 const Table: React.FC<TableProps> = ({
@@ -36,6 +39,9 @@ const Table: React.FC<TableProps> = ({
   title,
   subtitle,
   onRefresh,
+  showHeader = true,
+  showSearchBar = true,
+  showPaginationDetails = true,
   totalPages,
   totalResults,
   resultsPerPage,
@@ -84,38 +90,48 @@ const Table: React.FC<TableProps> = ({
 
   return (
     <div className="w-full bg-white rounded-xl shadow-sm border border-blue-50 overflow-hidden">
-      {/* Table Header */}
-      <div className="p-4 sm:p-6 border-b border-blue-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        {(title || subtitle) && (
-          <div>
-            {title && (
-              <h2 className="font-semibold text-lg text-gray-800">{title}</h2>
+      {showHeader && (
+        <>
+          {/* Table Header */}
+          <div className="p-4 sm:p-6 border-b border-blue-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            {(title || subtitle) && (
+              <div>
+                {title && (
+                  <h2 className="font-semibold text-lg text-gray-800">
+                    {title}
+                  </h2>
+                )}
+                {subtitle && (
+                  <p className="text-sm text-gray-500">{subtitle}</p>
+                )}
+              </div>
             )}
-            {subtitle && <p className="text-sm text-gray-500">{subtitle}</p>}
-          </div>
-        )}
-        <p className="text-[15px] text-gray-700 pt-[15px] pb-[6px]">
-          Showing {totalResults} results
-          {currentPage ? ` (Page ${currentPage})` : ""}
-          {totalResults > 0 && resultsPerPage
-            ? `, showing ${resultsPerPage} items per page`
-            : ""}
-        </p>
-        <div className="flex items-center gap-2 self-end sm:self-auto">
-          <div className="relative">
-            <SearchBar onSearch={handleSearch} />
-          </div>
 
-          {onRefresh && (
-            <button
-              onClick={onRefresh}
-              className="p-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
-            >
-              <RefreshCw size={16} />
-            </button>
-          )}
-        </div>
-      </div>
+            <p className="text-[15px] text-gray-700 pt-[15px] pb-[6px]">
+              Showing {totalResults !== undefined ? totalResults : 0} results
+              {currentPage ? ` (Page ${currentPage})` : ""}
+              {totalResults !== undefined && totalResults > 0 && resultsPerPage
+                ? `, showing ${resultsPerPage} items per page`
+                : ""}
+            </p>
+
+            <div className="flex items-center gap-2 self-end sm:self-auto">
+              <div className="relative">
+                {showSearchBar && <SearchBar onSearch={handleSearch} />}
+              </div>
+
+              {onRefresh && (
+                <button
+                  onClick={onRefresh}
+                  className="p-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
+                >
+                  <RefreshCw size={16} />
+                </button>
+              )}
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Table Content */}
       <div className="w-full overflow-x-auto scrollbar-hide">
@@ -199,7 +215,9 @@ const Table: React.FC<TableProps> = ({
         </table>
       </div>
 
-      <PaginationComponent totalPages={totalPages} />
+      {showPaginationDetails && (
+        <PaginationComponent totalPages={totalPages!} />
+      )}
     </div>
   );
 };

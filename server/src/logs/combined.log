@@ -4832,3 +4832,271 @@ Argument `category`: Invalid value provided. Expected CategoryUpdateOneWithoutPr
 [2025-04-09T08:01:44.475Z] [32MINFO[39M: ::1 - - [09/Apr/2025:08:01:44 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-04-09T08:02:51.161Z] [32MINFO[39M: ::1 - - [09/Apr/2025:08:02:51 +0000] "GET /api/v1/products?sort=price%3Aasc HTTP/1.1" 200 791 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-04-09T08:02:52.076Z] [32MINFO[39M: ::1 - - [09/Apr/2025:08:02:52 +0000] "GET /api/v1/products?sort=price%3Adesc HTTP/1.1" 200 791 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:43:33.571Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-09T13:43:33.593Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:43:33 +0000] "GET /api/v1/users/me HTTP/1.1" 401 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:43:33.668Z] [31MERROR[39M: Refresh token not found
+[2025-04-09T13:43:33.673Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:43:33 +0000] "GET /api/v1/auth/refresh-token HTTP/1.1" 401 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:43:33.880Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:43:33 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:43:33.881Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:43:33 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:43:33.889Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:43:33 +0000] "GET /api/v1/cart HTTP/1.1" 200 246 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:04.582Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:04 +0000] "GET /api/v1/products?category=electronics HTTP/1.1" 200 140 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:15.217Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:15 +0000] "GET /api/v1/products?category=appliances HTTP/1.1" 200 140 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:36.278Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:36 +0000] "GET /api/v1/auth/google HTTP/1.1" 302 0 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:40.301Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:40 +0000] "GET /api/v1/auth/google/callback?code=4%2F0Ab_5qlnmW7C3m1Cr7QwVnLtIbL-7kLqS_a5sblkzmm7IYYlqpohUqibn03dyCunGErBQjA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=0&prompt=none HTTP/1.1" 302 50 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:40.853Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:40 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:40.935Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:40 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:40.937Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:40 +0000] "GET /api/v1/cart HTTP/1.1" 200 265 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:40.938Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:40 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:51.217Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:51 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:52.809Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:52 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:52.815Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:52 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:52.816Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:52 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:57.952Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:57 +0000] "GET /api/v1/dashboard/year-range HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:44:57.983Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:44:57 +0000] "GET /api/v1/dashboard/stats?timePeriod=allTime HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:46:34.733Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:46:34 +0000] "GET /api/v1/dashboard/stats?timePeriod=last7days HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:46:38.982Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:46:38 +0000] "GET /api/v1/dashboard/stats?timePeriod=lastYear HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:49:31.141Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:49:31 +0000] "GET /api/v1/dashboard/stats?timePeriod=lastYear HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:50:09.833Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:50:09 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:50:09.855Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:50:09 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:50:12.607Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:50:12 +0000] "GET /api/v1/orders HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:50:14.613Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:50:14 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-09T13:50:20.143Z] [32MINFO[39M: ::1 - - [09/Apr/2025:13:50:20 +0000] "GET /api/v1/products/slug/gaming-laptop-rtx-4070 HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:12:40.032Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:12:40 +0000] "GET /api/v1/products?sort=price:asc HTTP/1.1" 200 791 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T02:13:12.784Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-10T02:13:12.790Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:13:12 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 401 - "-" "PostmanRuntime/7.43.2"
+[2025-04-10T02:13:24.671Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:13:24 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 229 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T02:13:29.342Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:13:29 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 200 707 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T02:15:51.781Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:15:51 +0000] "GET /api/v1/products?sort=price:asc HTTP/1.1" 200 779 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T02:16:43.152Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:16:43 +0000] "GET /api/v1/products?sort=price:asc HTTP/1.1" 200 976 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T02:17:56.286Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:17:56 +0000] "GET /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 200 904 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T02:18:59.057Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:18:59 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 200 707 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T02:19:48.497Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:19:48 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 200 707 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T02:24:21.182Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T02:24:21.197Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:21 +0000] "GET /api/v1/users/me HTTP/1.1" 401 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:21.250Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:21 +0000] "GET /api/v1/auth/refresh-token HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:21.332Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:21 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:21.341Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:21 +0000] "GET /api/v1/products? HTTP/1.1" 200 779 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:21.345Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:21 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:31.971Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:31 +0000] "GET /api/v1/auth/google HTTP/1.1" 302 0 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:35.278Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:35 +0000] "GET /api/v1/auth/google/callback?code=4%2F0Ab_5qln3xm75XOl35qZJWuDYm1dSeSYURiqvk0kXPpUsXW60O6RMvkx7-_PIPInTochWtQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none HTTP/1.1" 302 50 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:35.742Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:35 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:35.852Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:35 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:35.854Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:35 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:35.855Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:35 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:41.033Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:41 +0000] "GET /api/v1/dashboard/year-range HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:24:41.074Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:24:41 +0000] "GET /api/v1/dashboard/stats?timePeriod=allTime HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:26:23.098Z] [31MERROR[39M: 
+Invalid `prisma.product.update()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:112:27
+
+  109     categoryId?: string;
+  110   }>
+  111 ) {
+→ 112   return prisma.product.update({
+          where: {
+            id: "294eb9e2-da1a-4847-826d-44ab6d101dd1"
+          },
+          data: {
+            name: "updated name 2",
+            price: 1899.99,
+            discount: 10,
+            stock: 30,
+            category: "",
+                      ~~
+            description: "Powerful gaming laptop with an Intel Core i7 processor, 16GB RAM, and NVIDIA RTX 4070 GPU.",
+            images: [
+              "https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg",
+              "https://m.media-amazon.com/images/I/71Y3bN4rybL._AC_SL1500_.jpg"
+            ]
+          }
+        })
+
+Argument `category`: Invalid value provided. Expected CategoryUpdateOneWithoutProductsNestedInput, provided String.
+[2025-04-10T02:26:23.100Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:26:23 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 500 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:26:36.180Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:26:36 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:26:36.279Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:26:36 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:26:36.283Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:26:36 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:27:21.283Z] [31MERROR[39M: 
+Invalid `prisma.product.update()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:112:27
+
+  109     categoryId?: string;
+  110   }>
+  111 ) {
+→ 112   return prisma.product.update({
+          where: {
+            id: "294eb9e2-da1a-4847-826d-44ab6d101dd1"
+          },
+          data: {
+            name: "updated name 2",
+            price: 1899.99,
+            discount: 10,
+            stock: 30,
+            category: "",
+                      ~~
+            description: "Powerful gaming laptop with an Intel Core i7 processor, 16GB RAM, and NVIDIA RTX 4070 GPU.",
+            images: [
+              "https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg",
+              "https://m.media-amazon.com/images/I/71Y3bN4rybL._AC_SL1500_.jpg"
+            ]
+          }
+        })
+
+Argument `category`: Invalid value provided. Expected CategoryUpdateOneWithoutProductsNestedInput, provided String.
+[2025-04-10T02:27:21.285Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:27:21 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 500 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:38:21.068Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:38:21 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:38:21.223Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:38:21 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:38:21.229Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:38:21 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:38:26.820Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T02:38:26.825Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:38:26 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 400 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:39:19.191Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T02:39:19.194Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:39:19 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 400 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:42:45.216Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:42:45 +0000] "GET /api/v1/products?sort=price:asc HTTP/1.1" 200 779 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T02:43:15.305Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T02:43:15.310Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:43:15 +0000] "GET /api/v1/users/me HTTP/1.1" 401 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:43:15.389Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:43:15 +0000] "GET /api/v1/auth/refresh-token HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:43:15.511Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:43:15 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:43:15.529Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:43:15 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:46:31.053Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:46:31 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 200 709 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:46:31.085Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:46:31 +0000] "GET /api/v1/products? HTTP/1.1" 200 781 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:47:39.250Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:47:39 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 200 709 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:47:39.279Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:47:39 +0000] "GET /api/v1/products? HTTP/1.1" 200 781 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:48:59.713Z] [31MERROR[39M: Validation errors:
+[2025-04-10T02:48:59.714Z] [31MERROR[39M: Validation failed
+[2025-04-10T02:48:59.716Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:48:59 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 400 668 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:49:56.472Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:49:56 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:49:56.632Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:49:56 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:49:56.639Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:49:56 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:50:02.511Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T02:50:02.518Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:50:02 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 400 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:52:43.814Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T02:52:43.818Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:52:43 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 400 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:55:57.471Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:55:57 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:55:57.670Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:55:57 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:55:57.678Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:55:57 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:56:15.092Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:56:15 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 200 706 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:56:15.120Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:56:15 +0000] "GET /api/v1/products? HTTP/1.1" 200 778 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:56:41.080Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:56:41 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 200 706 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:56:41.112Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:56:41 +0000] "GET /api/v1/products? HTTP/1.1" 200 778 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:56:47.990Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T02:56:47.994Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:56:47 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 400 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:57:04.224Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:57:04 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 200 706 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T02:57:04.249Z] [32MINFO[39M: ::1 - - [10/Apr/2025:02:57:04 +0000] "GET /api/v1/products? HTTP/1.1" 200 778 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:04:50.813Z] [31MERROR[39M: request entity too large
+[2025-04-10T03:05:19.662Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T03:05:19.664Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:05:19 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 401 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:05:19.692Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:05:19 +0000] "GET /api/v1/auth/refresh-token HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:05:24.954Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:05:24 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:05:25.152Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:05:25 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:05:25.157Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:05:25 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:06:08.756Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:08 +0000] "PUT /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 200 575 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:06:08.783Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:08 +0000] "GET /api/v1/products? HTTP/1.1" 200 647 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:06:13.516Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:13 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:06:13.698Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:13 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:06:13.702Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:13 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:06:18.453Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:18 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:06:20.864Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:20 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:06:21.059Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:21 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:06:21.063Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:21 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:06:21.076Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:21 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:06:42.377Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:42 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 229 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T03:06:47.140Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:06:47 +0000] "GET /api/v1/products?sort=price:asc HTTP/1.1" 200 647 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T03:07:06.175Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:07:06 +0000] "DELETE /api/v1/products/294eb9e2-da1a-4847-826d-44ab6d101dd1 HTTP/1.1" 200 57 "-" "PostmanRuntime/7.43.2"
+[2025-04-10T03:10:30.249Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:10:30 +0000] "GET /api/v1/dashboard/year-range HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:10:30.261Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:10:30 +0000] "GET /api/v1/dashboard/stats?timePeriod=allTime HTTP/1.1" 200 850 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:10:36.768Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:10:36 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:10:36.924Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:10:36 +0000] "GET /api/v1/dashboard/year-range HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:10:36.927Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:10:36 +0000] "GET /api/v1/dashboard/stats?timePeriod=allTime HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:10:39.165Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:10:39 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:10:39.169Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:10:39 +0000] "GET /api/v1/products? HTTP/1.1" 200 140 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:11:33.653Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:11:33 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:12:12.714Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:12:12 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:12:12.865Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:12:12 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:12:12.869Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:12:12 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:13:31.248Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T03:13:31.251Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:13:31 +0000] "POST /api/v1/products HTTP/1.1" 400 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:14:31.257Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:14:31 +0000] "POST /api/v1/products HTTP/1.1" 201 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:14:31.299Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:14:31 +0000] "GET /api/v1/products? HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:15:11.837Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:15:11 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:15:18.418Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:15:18 +0000] "GET /api/v1/dashboard/year-range HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:15:18.420Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:15:18 +0000] "GET /api/v1/dashboard/stats?timePeriod=allTime HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:15:33.604Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:15:33 +0000] "POST /api/v1/cart HTTP/1.1" 200 303 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:15:33.616Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:15:33 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:15:53.711Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:15:53 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:15:53.901Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:15:53 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:21:55.109Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T03:21:55.111Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:21:55 +0000] "POST /api/v1/checkout HTTP/1.1" 401 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:21:55.130Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:21:55 +0000] "GET /api/v1/auth/refresh-token HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:03.557Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:03 +0000] "GET /api/v1/auth/sign-out HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:07.596Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:07 +0000] "GET /api/v1/cart HTTP/1.1" 200 246 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:10.607Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:10 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 229 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:10.986Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:10 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:11.123Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:11 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:11.128Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:11 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:15.896Z] [31MERROR[39M: Duplicate field value entered
+[2025-04-10T03:22:15.898Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:15 +0000] "POST /api/v1/cart HTTP/1.1" 400 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:15.910Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:15 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:26.851Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:26 +0000] "DELETE /api/v1/cart/item/802385cb-1f80-43c3-ae34-ed74d1e59366 HTTP/1.1" 200 64 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:26.867Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:26 +0000] "GET /api/v1/cart HTTP/1.1" 200 265 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:28.988Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:28 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:29.137Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:29 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:31.443Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:31 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:31.445Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:31 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:33.278Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:33 +0000] "POST /api/v1/cart HTTP/1.1" 200 303 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:33.290Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:33 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:22:38.669Z] [31MERROR[39M: Invalid URL: URL must be 2048 characters or less.
+[2025-04-10T03:22:38.671Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:22:38 +0000] "POST /api/v1/checkout HTTP/1.1" 500 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:23:54.092Z] [31MERROR[39M: Invalid URL: URL must be 2048 characters or less.
+[2025-04-10T03:23:54.097Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:23:54 +0000] "POST /api/v1/checkout HTTP/1.1" 500 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:26:17.401Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:26:17 +0000] "POST /api/v1/checkout HTTP/1.1" 200 134 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:26:34.389Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:26:34 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:28:08.086Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:28:08 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:36:24.826Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:36:24 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:36:24.996Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:36:24 +0000] "GET /api/v1/orders/user HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:36:25.004Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:36:25 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:45:33.024Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T03:45:33.029Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:45:33 +0000] "GET /api/v1/users/me HTTP/1.1" 401 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:45:33.077Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:45:33 +0000] "GET /api/v1/auth/refresh-token HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:46:14.534Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:46:14 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:46:14.667Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:46:14 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:46:14.676Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:46:14 +0000] "GET /api/v1/orders/c0a766b1-7dbd-4869-a8a8-b5cd0ffa39f7 HTTP/1.1" 200 542 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:56:29.275Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:56:29 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:56:31.278Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:56:31 +0000] "GET /api/v1/orders/c0a766b1-7dbd-4869-a8a8-b5cd0ffa39f7 HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:56:31.352Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:56:31 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:57:07.504Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:57:07 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T03:59:04.223Z] [32MINFO[39M: ::1 - - [10/Apr/2025:03:59:04 +0000] "GET /api/v1/orders/c0a766b1-7dbd-4869-a8a8-b5cd0ffa39f7 HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:02:40.250Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T04:02:40.254Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:02:40 +0000] "GET /api/v1/users/me HTTP/1.1" 401 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:02:40.297Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:02:40 +0000] "GET /api/v1/auth/refresh-token HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:04:14.293Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:04:14 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:04:37.336Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:04:37 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:04:50.724Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:04:50 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:05:14.471Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:05:14 +0000] "GET /api/v1/orders/c0a766b1-7dbd-4869-a8a8-b5cd0ffa39f7 HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:09:56.521Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:09:56 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:09:57.358Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:09:57 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:09:57.594Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:09:57 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:09:57.601Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:09:57 +0000] "GET /api/v1/orders/c0a766b1-7dbd-4869-a8a8-b5cd0ffa39f7 HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:13:11.740Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:13:11 +0000] "DELETE /api/v1/cart/item/a487cb55-b33d-443a-9ce2-3ee5b27021b4 HTTP/1.1" 200 64 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:13:11.756Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:13:11 +0000] "GET /api/v1/cart HTTP/1.1" 200 265 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:13:13.605Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:13:13 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:13:13.609Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:13:13 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:13:54.254Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:13:54 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:13:54.338Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:13:54 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:13:54.341Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:13:54 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:13:54.353Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:13:54 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:14:00.941Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:14:00 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:14:01.067Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:14:01 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:14:01.070Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:14:01 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:14:01.072Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:14:01 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:17:36.517Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:17:36 +0000] "GET /api/v1/dashboard/year-range HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:17:36.537Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:17:36 +0000] "GET /api/v1/dashboard/stats?timePeriod=allTime HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:17:40.668Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T04:17:40.670Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:17:40 +0000] "GET /api/v1/orders HTTP/1.1" 401 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:17:40.682Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:17:40 +0000] "GET /api/v1/auth/refresh-token HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:17:44.371Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:17:44 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:17:44.480Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:17:44 +0000] "GET /api/v1/orders HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:17:53.087Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:17:53 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:17:53.100Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:17:53 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:18:00.614Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:18:00 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:18:00.689Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:18:00 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-10T04:18:00.691Z] [32MINFO[39M: ::1 - - [10/Apr/2025:04:18:00 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"

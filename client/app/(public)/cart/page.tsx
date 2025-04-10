@@ -4,7 +4,6 @@ import MainLayout from "@/app/components/templates/MainLayout";
 import { Trash2 } from "lucide-react";
 import React, { useMemo } from "react";
 import Image from "next/image";
-import Table from "@/app/components/organisms/Table";
 import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 import CartSummary from "@/app/components/sections/cart/CartSummary";
@@ -13,6 +12,7 @@ import {
   useRemoveFromCartMutation,
 } from "@/app/store/apis/CartApi";
 import QuantitySelector from "@/app/components/molecules/QuantitySelector";
+import Table from "@/app/components/layout/Table";
 
 const Cart = () => {
   const { control } = useForm();
@@ -92,7 +92,14 @@ const Cart = () => {
       <div className="flex flex-col items-start gap-4 mt-8 px-[10%]">
         <BreadCrumb />
         <div className="w-full mt-6">
-          <Table data={cartItems} columns={columns} isLoading={isLoading} />
+          <Table
+            data={cartItems}
+            columns={columns}
+            isLoading={isLoading}
+            showPaginationDetails={false}
+            showSearchBar={false}
+            showHeader={false}
+          />
         </div>
         <div className="flex justify-between w-full mt-6">
           <Link href={"/shop"} className="border px-6 py-2">

@@ -1,33 +1,18 @@
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import {
-  X,
-  Upload,
-  DollarSign,
-  Package,
-  Tag,
-  FileText,
-  Image,
-} from "lucide-react";
+import { X, Upload, DollarSign, Package, Tag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Dropdown from "@/app/components/molecules/Dropdown";
 import { useGetAllCategoriesQuery } from "@/app/store/apis/CategoryApi";
-
-interface ProductFormData {
-  name: string;
-  price: number;
-  discount: number;
-  stock: number;
-  category: string;
-  description: string;
-  images: string[];
-}
+import { ProductFormData } from "./page";
+import ImageUploader from "@/app/components/molecules/ImageUploader";
+import CustomLoader from "@/app/components/feedback/CustomLoader";
 
 interface ProductModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (data: ProductFormData) => void;
-  initialData?: ProductFormData;
+  initialData: ProductFormData;
   isLoading?: boolean;
   error?: any;
 }
@@ -44,16 +29,15 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const categories = data?.categories.map((category) => {
     return {
       label: category.name,
-      value: category.slug,
+      value: category.id,
     };
   });
-
-  console.log("categories =>  ", data);
-  console.log("initalData => ", initialData);
 
   const {
     control,
     handleSubmit,
+    setValue,
+    watch,
     reset,
     formState: { errors },
   } = useForm<ProductFormData>({
@@ -62,7 +46,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
       price: 0,
       discount: 0,
       stock: 0,
-      category: "",
+      categoryId: "",
       description: "",
       images: [""],
     },
@@ -77,7 +61,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
         price: 0,
         discount: 0,
         stock: 0,
-        category: "",
+        categoryId: "",
         description: "",
         images: [""],
       });
@@ -97,7 +81,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
           transition={{ duration: 0.1 }}
         >
           <motion.div
-            className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-2xl border border-gray-100"
+            className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-2xl max-h-[80%] overflow-auto  border border-gray-100"
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
@@ -120,7 +104,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              {/* Name */}
               <div className="relative">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Product Name
@@ -217,9 +200,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 </div>
               </div>
 
-              {/* Stock & Category - Side by side */}
               <div className="grid grid-cols-2 gap-4">
-                {/* Stock */}
                 <div className="relative">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Stock
@@ -260,7 +241,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   </label>
                   <div className="relative">
                     <Controller
-                      name="category"
+                      name="categoryId"
                       control={control}
                       render={({ field }) => (
                         <Dropdown
@@ -295,42 +276,13 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 />
               </div>
 
-              {/* Images */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Image URL
-                </label>
-                <div className="relative">
-                  <Controller
-                    name="images"
-                    control={control}
-                    rules={{
-                      validate: (value) =>
-                        value[0] ? true : "Image URL is required",
-                    }}
-                    render={({ field }) => (
-                      <input
-                        type="text"
-                        value={field.value[0] || ""}
-                        onChange={(e) => field.onChange([e.target.value])}
-                        className="pl-10 pr-4 py-3 w-full border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200"
-                        placeholder="https://example.com/image.jpg"
-                      />
-                    )}
-                  />
-                  <Image
-                    className="absolute left-3 top-3.5 text-gray-400"
-                    size={18}
-                  />
-                </div>
-                {errors.images && (
-                  <p className="text-red-500 text-xs mt-1 pl-10">
-                    {errors.images.message}
-                  </p>
-                )}
-              </div>
+              <ImageUploader
+                control={control}
+                errors={errors}
+                setValue={setValue}
+                watch={watch}
+              />
 
-              {/* Error Message */}
               {error && (
                 <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
                   <p className="text-red-600 text-sm font-medium">
@@ -339,7 +291,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 </div>
               )}
 
-              {/* Submit Button */}
               <div className="flex justify-end space-x-3 mt-8">
                 <button
                   type="button"
@@ -358,26 +309,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   } transition-all duration-200`}
                 >
                   {isLoading ? (
-                    <svg
-                      className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
+                    <CustomLoader />
                   ) : (
                     <Upload className="mr-2" size={16} />
                   )}

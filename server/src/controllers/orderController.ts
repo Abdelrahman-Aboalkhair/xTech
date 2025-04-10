@@ -8,6 +8,11 @@ import { UpdateTrackingStatusDto } from "../dtos/orderDto";
 class OrderController {
   constructor(private orderService: OrderService) {}
 
+  getAllOrders = asyncHandler(async (req: Request, res: Response) => {
+    const orders = await this.orderService.getAllOrders();
+    sendResponse(res, 200, { orders }, "Orders retrieved successfully");
+  });
+
   // Get all orders for the authenticated user
   getUserOrders = asyncHandler(async (req: Request, res: Response) => {
     const userId = req.user?.id; // From protect middleware

@@ -4,7 +4,14 @@ import OrderRepository from "../repositories/orderRepository";
 class OrderService {
   constructor(private orderRepository: OrderRepository) {}
 
-  // Get all orders for the authenticated user
+  async getAllOrders() {
+    const orders = await this.orderRepository.findAllOrders();
+    if (!orders || orders.length === 0) {
+      throw new AppError(404, "No orders found");
+    }
+    return orders;
+  }
+
   async getUserOrders(userId: string) {
     const orders = await this.orderRepository.findOrdersByUserId(userId);
     if (!orders || orders.length === 0) {
@@ -13,7 +20,6 @@ class OrderService {
     return orders;
   }
 
-  // Get details of a specific order
   async getOrderDetails(orderId: string, userId: string) {
     const order = await this.orderRepository.findOrderById(orderId);
     if (!order) {
@@ -25,7 +31,6 @@ class OrderService {
     return order;
   }
 
-  // Update tracking status (admin only)
   async updateTrackingStatus(
     orderId: string,
     status: string,

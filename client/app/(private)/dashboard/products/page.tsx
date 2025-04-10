@@ -14,12 +14,13 @@ import { Trash2, Edit } from "lucide-react";
 import ConfirmModal from "@/app/components/organisms/ConfirmModal";
 import useToast from "@/app/hooks/ui/useToast";
 
-interface ProductFormData {
+export interface ProductFormData {
+  id: string;
   name: string;
   price: number;
   discount: number;
   stock: number;
-  category: string;
+  categoryId: string;
   description: string;
   images: string[];
 }
@@ -36,15 +37,22 @@ const ProductsDashboard = () => {
   console.log("deleteError => ", deleteError);
   const { data, isLoading, refetch } = useGetAllProductsQuery(query);
   const products = data?.products || [];
-  console.log("products => ", products);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<ProductFormData | null>(
     null
   );
+  console.log("editing product => ", editingProduct);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
 
   const handleCreateProduct = async (data: ProductFormData) => {
+    const formattedPrice = Number(data.price);
+    const formattedDiscount = Number(data.discount);
+    const formattedStock = Number(data.stock);
+
+    data.price = formattedPrice;
+    data.discount = formattedDiscount;
+    data.stock = formattedStock;
     try {
       await createProduct(data).unwrap();
       setIsModalOpen(false);
@@ -57,9 +65,21 @@ const ProductsDashboard = () => {
   };
 
   const handleUpdateProduct = async (data: ProductFormData) => {
+    console.log("submitten form data => ", data);
     if (!editingProduct) return;
+
+    const formattedPrice = Number(data.price);
+    const formattedDiscount = Number(data.discount);
+    const formattedStock = Number(data.stock);
+
     try {
-      await updateProduct({ id: editingProduct.id, ...data }).unwrap();
+      await updateProduct({
+        ...data,
+        price: formattedPrice,
+        discount: formattedDiscount,
+        stock: formattedStock,
+        id: editingProduct.id,
+      }).unwrap();
       setIsModalOpen(false);
       setEditingProduct(null);
       refetch();
@@ -152,7 +172,7 @@ const ProductsDashboard = () => {
                 price: row.price,
                 discount: row.discount,
                 stock: row.stock,
-                category: row.category || "",
+                categoryId: row.categoryId,
                 description: row.description || "",
                 images: row.images || [""],
               });
@@ -215,7 +235,7 @@ const ProductsDashboard = () => {
           setEditingProduct(null);
         }}
         onSubmit={editingProduct ? handleUpdateProduct : handleCreateProduct}
-        initialData={editingProduct}
+        initialData={editingProduct!}
         isLoading={editingProduct ? isUpdating : isCreating}
         error={editingProduct ? updateError : createError}
       />

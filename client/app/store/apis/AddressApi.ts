@@ -8,7 +8,6 @@ export const addressApi = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
-    // Fetch all addresses for the authenticated user
     getUserAddresses: builder.query({
       query: () => ({
         url: "/addresses",
@@ -16,7 +15,6 @@ export const addressApi = apiSlice.injectEndpoints({
       }),
     }),
 
-    // Fetch a specific address by ID for the authenticated user
     getAddressById: builder.query({
       query: (addressId) => ({
         url: `/addresses/${addressId}`,
@@ -24,7 +22,6 @@ export const addressApi = apiSlice.injectEndpoints({
       }),
     }),
 
-    // Delete an address by ID for the authenticated user
     deleteAddress: builder.mutation({
       query: (addressId) => ({
         url: `/addresses/${addressId}`,

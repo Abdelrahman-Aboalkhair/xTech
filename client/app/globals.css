@@ -12,7 +12,7 @@
 
 @layer base {
   :root {
-    --primary: @apply text-blue-500;
+    --primary: #64a5e2;
     --background: #fdfdfd;
     --foreground: #171717;
     --secondary: #fefae0;

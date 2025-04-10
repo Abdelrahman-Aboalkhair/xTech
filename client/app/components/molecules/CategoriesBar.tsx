@@ -25,7 +25,7 @@ const CategoriesBar = () => {
           {categories.map((category: Category, index: number) => (
             <React.Fragment key={category.id + index}>
               <Link
-                href={`/category/${category.slug}`}
+                href={`/shop?category=${category.slug}`}
                 className="flex items-center text-gray-700 hover:text-black transition-colors font-medium text-[16px] capitalize"
               >
                 {category.name}

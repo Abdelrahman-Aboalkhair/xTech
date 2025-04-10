@@ -13,7 +13,7 @@ class CheckoutRepository {
     amount: number;
     orderItems: { productId: string; quantity: number }[];
   }) {
-    return prisma.order.create({
+    const order = await prisma.order.create({
       data: {
         userId: data.userId,
         amount: data.amount,
@@ -23,6 +23,8 @@ class CheckoutRepository {
       },
       include: { orderItems: true },
     });
+
+    return order;
   }
 
   async createPayment(data: {
@@ -59,12 +61,27 @@ class CheckoutRepository {
     });
   }
 
-  async createTrackingDetail(data: { orderId: string }) {
+  async createTrackingDetail(data: { orderId: string; status: string }) {
     return prisma.trackingDetail.create({
       data: {
+        status: data.status,
         orderId: data.orderId,
       },
     });
+  }
+
+  async createShipment(data: {
+    orderId: string;
+    status: string;
+    trackingNumber: string;
+    shippedDate: Date;
+    deliveryDate: Date;
+    carrier: string;
+  }) {
+    const shipment = await prisma.shipment.create({
+      data,
+    });
+    return shipment;
   }
 
   async deleteCartItemsByCartId(cartId: string) {

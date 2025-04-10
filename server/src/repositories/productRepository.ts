@@ -54,6 +54,13 @@ class ProductRepository {
     });
   }
 
+  async updateProductStock(id: string, stock: number) {
+    return prisma.product.update({
+      where: { id },
+      data: { stock },
+    });
+  }
+
   async findProductById(id: string) {
     return prisma.product.findUnique({
       where: { id },

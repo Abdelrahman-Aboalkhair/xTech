@@ -9,9 +9,6 @@ import {
   User,
   LogOut,
   ShoppingCart,
-  Users,
-  Settings,
-  ShieldCheck,
 } from "lucide-react";
 import Button from "../atoms/Button";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
@@ -35,70 +32,36 @@ const UserMenu = ({ menuOpen, closeMenu }: any) => {
     }
   };
 
-  // Define routes based on role
-  const getRoutesForRole = () => {
-    switch (user?.role) {
-      case "SUPERADMIN":
-        return [
-          {
-            href: "/superadmin-dashboard",
-            label: "Dashboard",
-            icon: <LayoutDashboard size={18} />,
-          },
-          {
-            href: "/manage-users",
-            label: "Manage Users",
-            icon: <Users size={18} />,
-          },
-          {
-            href: "/manage-admins",
-            label: "Manage Admins",
-            icon: <ShieldCheck size={18} />,
-          },
-          {
-            href: "/orders",
-            label: "Orders",
-            icon: <ShoppingCart size={18} />,
-          },
-          {
-            href: "/settings",
-            label: "Settings",
-            icon: <Settings size={18} />,
-          },
-        ];
-      case "ADMIN":
-        return [
-          {
-            href: "/dashboard",
-            label: "Dashboard",
-            icon: <LayoutDashboard size={18} />,
-          },
-          {
-            href: "/manage-users",
-            label: "Manage Users",
-            icon: <Users size={18} />,
-          },
-          {
-            href: "/orders",
-            label: "Orders",
-            icon: <ShoppingCart size={18} />,
-          },
-        ];
-      case "USER":
-        return [
-          {
-            href: "/orders",
-            label: "My Orders",
-            icon: <ShoppingCart size={18} />,
-          },
-          { href: "/me", label: "Profile", icon: <User size={18} /> },
-        ];
-      default:
-        return [];
-    }
-  };
+  const basicRoutes = [
+    {
+      href: "/",
+      label: "Home",
+      icon: <Home size={18} />,
+    },
+    {
+      href: "/orders",
+      label: "My Orders",
+      icon: <ShoppingCart size={18} />,
+    },
+    {
+      href: "/me",
+      label: "Profile",
+      icon: <User size={18} />,
+    },
+  ];
 
-  const roleBasedRoutes = getRoutesForRole();
+  const adminRoutes = [
+    {
+      href: "/dashboard",
+      label: "Dashboard",
+      icon: <LayoutDashboard size={18} />,
+    },
+  ];
+
+  const roleBasedRoutes =
+    user?.role === "ADMIN" || user?.role === "SUPERADMIN"
+      ? [...basicRoutes, ...adminRoutes]
+      : basicRoutes;
 
   return (
     menuOpen && (
@@ -111,15 +74,6 @@ const UserMenu = ({ menuOpen, closeMenu }: any) => {
         <div className="absolute top-[-10px] right-4 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-white"></div>
 
         <div className="flex flex-col text-gray-700">
-          <Link
-            href="/"
-            className="flex items-center px-4 py-3 gap-2 hover:bg-gray-100 transition"
-            onClick={closeMenu}
-          >
-            <Home size={18} />
-            <span>Home</span>
-          </Link>
-
           {roleBasedRoutes.map((route) => (
             <Link
               key={route.href}

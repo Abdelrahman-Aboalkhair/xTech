@@ -61,7 +61,7 @@ model Product {
   featured      Boolean   @default(false)
   promotional   Boolean   @default(false)  
   newArrival    Boolean   @default(false)  
-  averageRating Float     @default(0) // Removed redundant `ratings` field
+  averageRating Float     @default(0) 
 
   category      Category? @relation(fields: [categoryId], references: [id]) 
   categoryId    String?
@@ -85,6 +85,8 @@ model Order {
   tracking    TrackingDetail?
   payment     Payment?  @relation("OrderPayment")
   address     Address?  @relation("OrderAddress")
+  shipment    Shipment? @relation("OrderShipment")
+
   status      ORDER_STATUS @default(PENDING)
 
   createdAt   DateTime  @default(now())
@@ -142,6 +144,21 @@ model TrackingDetail {
 
   order     Order   @relation(fields: [orderId], references: [id])
   orderId   String  @unique 
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Shipment {
+  id        String  @id @default(uuid()) 
+  carrier   String
+  trackingNumber String
+  shippedDate DateTime
+  deliveryDate DateTime?
+  status    String
+
+  order     Order   @relation("OrderShipment", fields: [orderId], references: [id])
+  orderId   String  @unique
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

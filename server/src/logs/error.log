@@ -1280,3 +1280,79 @@ Invalid `prisma.product.update()` invocation in
 Argument `category`: Invalid value provided. Expected CategoryUpdateOneWithoutProductsNestedInput, provided String.
 [2025-04-09T07:58:05.296Z] [31MERROR[39M: Can't find /api/v1/tracking/all on this server!
 [2025-04-09T08:01:37.910Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-09T13:43:33.571Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-09T13:43:33.668Z] [31MERROR[39M: Refresh token not found
+[2025-04-10T02:13:12.784Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-10T02:24:21.182Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T02:26:23.098Z] [31MERROR[39M: 
+Invalid `prisma.product.update()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:112:27
+
+  109     categoryId?: string;
+  110   }>
+  111 ) {
+→ 112   return prisma.product.update({
+          where: {
+            id: "294eb9e2-da1a-4847-826d-44ab6d101dd1"
+          },
+          data: {
+            name: "updated name 2",
+            price: 1899.99,
+            discount: 10,
+            stock: 30,
+            category: "",
+                      ~~
+            description: "Powerful gaming laptop with an Intel Core i7 processor, 16GB RAM, and NVIDIA RTX 4070 GPU.",
+            images: [
+              "https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg",
+              "https://m.media-amazon.com/images/I/71Y3bN4rybL._AC_SL1500_.jpg"
+            ]
+          }
+        })
+
+Argument `category`: Invalid value provided. Expected CategoryUpdateOneWithoutProductsNestedInput, provided String.
+[2025-04-10T02:27:21.283Z] [31MERROR[39M: 
+Invalid `prisma.product.update()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/productRepository.ts:112:27
+
+  109     categoryId?: string;
+  110   }>
+  111 ) {
+→ 112   return prisma.product.update({
+          where: {
+            id: "294eb9e2-da1a-4847-826d-44ab6d101dd1"
+          },
+          data: {
+            name: "updated name 2",
+            price: 1899.99,
+            discount: 10,
+            stock: 30,
+            category: "",
+                      ~~
+            description: "Powerful gaming laptop with an Intel Core i7 processor, 16GB RAM, and NVIDIA RTX 4070 GPU.",
+            images: [
+              "https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg",
+              "https://m.media-amazon.com/images/I/71Y3bN4rybL._AC_SL1500_.jpg"
+            ]
+          }
+        })
+
+Argument `category`: Invalid value provided. Expected CategoryUpdateOneWithoutProductsNestedInput, provided String.
+[2025-04-10T02:38:26.820Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T02:39:19.191Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T02:43:15.305Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T02:48:59.713Z] [31MERROR[39M: Validation errors:
+[2025-04-10T02:48:59.714Z] [31MERROR[39M: Validation failed
+[2025-04-10T02:50:02.511Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T02:52:43.814Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T02:56:47.990Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T03:04:50.813Z] [31MERROR[39M: request entity too large
+[2025-04-10T03:05:19.662Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T03:13:31.248Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-10T03:21:55.109Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T03:22:15.896Z] [31MERROR[39M: Duplicate field value entered
+[2025-04-10T03:22:38.669Z] [31MERROR[39M: Invalid URL: URL must be 2048 characters or less.
+[2025-04-10T03:23:54.092Z] [31MERROR[39M: Invalid URL: URL must be 2048 characters or less.
+[2025-04-10T03:45:33.024Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T04:02:40.250Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T04:17:40.668Z] [31MERROR[39M: Invalid access token, please log in
