@@ -28,7 +28,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   const noProductsFound = data?.products?.length === 0;
 
   return (
-    <div className="max-w-7xl mx-[10%] py-8">
+    <div className="w-[90%] p-8">
       {/* Header */}
       {(showTitle || viewAllButton) && (
         <motion.div

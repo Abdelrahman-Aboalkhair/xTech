@@ -76,7 +76,7 @@ const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
       id: o.id,
       title: `Order #${o.id}`,
       description: o.status,
-      action: () => router.push(`/dashboard/orders/${o.id}`),
+      action: () => router.push(`/orders/${o.id}`),
     })),
     ...(paymentsData?.payments || []).map((p) => ({
       type: "payment" as const,

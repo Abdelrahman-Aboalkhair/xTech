@@ -7,7 +7,7 @@ const ShopPage = () => {
   return (
     <>
       <Header />
-      <div className="flex px-[3%]">
+      <div className="flex items-start justify-between px-[2%]">
         <FilterBar />
         <ProductSection title="Shop now" showPagination />
       </div>

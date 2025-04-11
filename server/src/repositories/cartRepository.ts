@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import prisma from "../config/database";
 
 class CartRepository {
@@ -77,8 +78,8 @@ class CartRepository {
     return prisma.cart.delete({ where: { id } });
   }
 
-  async clearCart(userId: string) {
-    const cart = await prisma.cart.findUnique({
+  async clearCart(userId: string, tx?: Prisma.TransactionClient) {
+    const cart = await tx?.cart.findUnique({
       where: { userId },
     });
 

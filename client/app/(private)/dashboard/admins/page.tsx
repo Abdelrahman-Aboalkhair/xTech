@@ -2,60 +2,73 @@
 import Table from "@/app/components/layout/Table";
 import {
   useCreateAdminMutation,
+  useUpdateUserMutation,
   useDeleteUserMutation,
   useGetAllUsersQuery,
 } from "@/app/store/apis/UserApi";
 import Image from "next/image";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { ShieldCheck, Loader2, AlertCircle, Trash2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ShieldCheck,
+  Loader2,
+  AlertCircle,
+  Trash2,
+  Pencil,
+  Plus,
+  X,
+} from "lucide-react";
 import ConfirmModal from "@/app/components/organisms/ConfirmModal";
-import Modal from "@/app/components/organisms/Modal";
 import useToast from "@/app/hooks/ui/useToast";
 import ToggleableText from "@/app/components/atoms/ToggleableText";
-
-interface AdminFormData {
-  name: string;
-  email: string;
-  avatar?: string;
-}
+import { useForm } from "react-hook-form";
+import AdminForm, { AdminFormData } from "./AdminForm";
 
 const AdminsDashboard = () => {
   const { showToast } = useToast();
   const { data, isLoading, error, refetch } = useGetAllUsersQuery({});
-  const [createUser, { isLoading: isCreating }] = useCreateAdminMutation();
-  const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
+  const [createAdmin, { isLoading: isCreating }] = useCreateAdminMutation();
+  const [updateAdmin, { isLoading: isUpdating }] = useUpdateUserMutation();
+  const [deleteAdmin, { isLoading: isDeleting }] = useDeleteUserMutation();
   const admins =
     data?.users?.filter((user: any) => user.role === "ADMIN") || [];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingAdmin, setEditingAdmin] = useState<AdminFormData | null>(null);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [adminToDelete, setAdminToDelete] = useState<string | null>(null);
 
-  const handleCreateAdmin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data: AdminFormData = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      avatar: (formData.get("avatar") as string) || "/default-avatar.png",
-    };
+  const form = useForm<AdminFormData>({
+    defaultValues: {
+      name: "",
+      email: "",
+      avatar: "/default-avatar.png",
+    },
+  });
 
+  const handleCreateOrUpdate = async (data: AdminFormData) => {
     try {
-      await createUser({ ...data, role: "ADMIN" }).unwrap();
+      if (editingAdmin) {
+        await updateAdmin({ id: editingAdmin.id!, ...data }).unwrap();
+        showToast("Admin updated successfully", "success");
+      } else {
+        await createAdmin({ ...data, role: "ADMIN" }).unwrap();
+        showToast("Admin created successfully", "success");
+      }
       setIsModalOpen(false);
+      setEditingAdmin(null);
+      form.reset();
       refetch();
-      showToast("Admin created successfully", "success");
     } catch (err) {
-      console.error("Failed to create admin:", err);
-      showToast("Failed to create admin", "error");
+      console.error("Failed to save admin:", err);
+      showToast("Failed to save admin", "error");
     }
   };
 
   const handleDeleteAdmin = async () => {
     if (!adminToDelete) return;
     try {
-      await deleteUser(adminToDelete).unwrap();
+      await deleteAdmin(adminToDelete).unwrap();
       setIsConfirmModalOpen(false);
       setAdminToDelete(null);
       refetch();
@@ -152,17 +165,30 @@ const AdminsDashboard = () => {
       key: "actions",
       label: "Actions",
       render: (row: any) => (
-        <button
-          onClick={() => {
-            setAdminToDelete(row.id);
-            setIsConfirmModalOpen(true);
-          }}
-          className="flex items-center gap-1 text-red-600 hover:text-red-800 transition-colors"
-          disabled={isDeleting && adminToDelete === row.id}
-        >
-          <Trash2 size={16} />
-          {isDeleting && adminToDelete === row.id ? "Deleting..." : "Delete"}
-        </button>
+        <div className="flex space-x-2">
+          <button
+            onClick={() => {
+              setEditingAdmin(row);
+              form.reset(row);
+              setIsModalOpen(true);
+            }}
+            className="flex items-center gap-1 text-purple-600 hover:text-purple-800 transition-colors"
+          >
+            <Pencil size={16} />
+            Edit
+          </button>
+          <button
+            onClick={() => {
+              setAdminToDelete(row.id);
+              setIsConfirmModalOpen(true);
+            }}
+            className="flex items-center gap-1 text-red-600 hover:text-red-800 transition-colors"
+            disabled={isDeleting && adminToDelete === row.id}
+          >
+            <Trash2 size={16} />
+            {isDeleting && adminToDelete === row.id ? "Deleting..." : "Delete"}
+          </button>
+        </div>
       ),
     },
   ];
@@ -190,10 +216,15 @@ const AdminsDashboard = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setIsModalOpen(true)}
-              className="px-4 py-2 bg-purple-600 text-white rounded-lg shadow-md hover:bg-purple-700 transition-colors"
+              onClick={() => {
+                setEditingAdmin(null);
+                form.reset();
+                setIsModalOpen(true);
+              }}
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg shadow-md hover:bg-purple-700 transition-colors flex items-center gap-2"
             >
-              + New Admin
+              <Plus size={16} />
+              New Admin
             </motion.button>
           </div>
         </div>
@@ -226,65 +257,46 @@ const AdminsDashboard = () => {
         </motion.div>
       </motion.div>
 
-      {/* Create Admin Modal */}
-      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-gray-800">Create Admin</h2>
-          <form onSubmit={handleCreateAdmin} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                required
-                className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+      {/* Create/Edit Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white rounded-xl shadow-xl w-full max-w-lg p-6 border border-gray-100"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-gray-800">
+                  {editingAdmin ? "Edit Admin" : "Create Admin"}
+                </h2>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <AdminForm
+                form={form}
+                onSubmit={handleCreateOrUpdate}
+                isLoading={editingAdmin ? isUpdating : isCreating}
+                submitLabel={editingAdmin ? "Update" : "Create"}
               />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                required
-                className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Avatar URL (Optional)
-              </label>
-              <input
-                type="text"
-                name="avatar"
-                placeholder="/default-avatar.png"
-                className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-              />
-            </div>
-            <div className="flex justify-end space-x-3">
-              <button
-                type="button"
-                onClick={() => setIsModalOpen(false)}
-                className="px-4 py-2 text-gray-600 hover:text-gray-800"
-              >
-                Cancel
-              </button>
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                disabled={isCreating}
-                className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 disabled:bg-purple-400 transition-colors"
-              >
-                {isCreating ? "Creating..." : "Create"}
-              </motion.button>
-            </div>
-          </form>
-        </div>
-      </Modal>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Delete Confirmation Modal */}
       <ConfirmModal
@@ -292,6 +304,8 @@ const AdminsDashboard = () => {
         message="Are you sure you want to delete this admin? This action cannot be undone."
         onConfirm={handleDeleteAdmin}
         onCancel={() => setIsConfirmModalOpen(false)}
+        title="Delete Admin"
+        type="danger"
       />
     </div>
   );

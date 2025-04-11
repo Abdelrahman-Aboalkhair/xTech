@@ -9,6 +9,7 @@ interface RadioButtonProps {
   value: string;
   currentValue?: string;
   onChangeExtra?: (value: string) => void;
+  icon?: React.ReactNode;
 }
 
 const RadioButton: React.FC<RadioButtonProps> = ({
@@ -19,6 +20,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   value,
   currentValue,
   onChangeExtra,
+  icon,
 }) => {
   const isChecked = currentValue === value;
 
@@ -38,12 +40,17 @@ const RadioButton: React.FC<RadioButtonProps> = ({
           }}
         >
           <div
-            className={`w-[20px] h-[20px] flex items-center justify-center border rounded-full transition-all ${
+            className={`w-5 h-5 flex items-center justify-center border rounded-full transition-all ${
               isChecked ? "bg-primary border-primary" : "border-gray-400"
             }`}
           >
-            {isChecked && (
-              <div className="w-[10px] h-[10px] rounded-full bg-white" />
+            {isChecked && icon ? (
+              // Use the icon passed through props if checked
+              <div className="text-white w-3 h-3 flex items-center justify-center">
+                {icon}
+              </div>
+            ) : (
+              isChecked && <div className="w-2.5 h-2.5 rounded-full bg-white" />
             )}
           </div>
           {label && (

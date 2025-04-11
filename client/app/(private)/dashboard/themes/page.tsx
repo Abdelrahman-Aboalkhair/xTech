@@ -1,71 +1,83 @@
 "use client";
-import { useGetAllThemesQuery } from "@/app/store/apis/ThemeApi";
+import {
+  useGetAllThemesQuery,
+  useCreateThemeMutation,
+  useUpdateThemeMutation,
+  useDeleteThemeMutation,
+} from "@/app/store/apis/ThemeApi";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Palette, Loader2, AlertCircle, Pencil, Plus } from "lucide-react";
-import Modal from "@/app/components/organisms/Modal";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Palette,
+  Loader2,
+  AlertCircle,
+  Pencil,
+  Plus,
+  Trash2,
+  X,
+} from "lucide-react";
 import useToast from "@/app/hooks/ui/useToast";
-import { ChromePicker, ColorResult } from "react-color";
-
-interface ThemeData {
-  id: number;
-  name: string;
-  primaryColor: string;
-  secondaryColor: string;
-  fontFamily: string;
-  isActive: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
+import { useForm } from "react-hook-form";
+import ThemeForm, { ThemeFormData } from "./ThemeForm";
+import ConfirmModal from "@/app/components/organisms/ConfirmModal";
 
 const ThemesDashboard = () => {
   const { showToast } = useToast();
   const { data, isLoading, error, refetch } = useGetAllThemesQuery({});
+  const [createTheme, { isLoading: isCreating }] = useCreateThemeMutation();
+  const [updateTheme, { isLoading: isUpdating }] = useUpdateThemeMutation();
+  const [deleteTheme, { isLoading: isDeleting }] = useDeleteThemeMutation();
   const themes = data?.themes || [];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingTheme, setEditingTheme] = useState<ThemeData | null>(null);
-  const [primaryColor, setPrimaryColor] = useState<string>(
-    editingTheme?.primaryColor || "#3B82F6"
-  );
-  const [secondaryColor, setSecondaryColor] = useState<string>(
-    editingTheme?.secondaryColor || "#F59E0B"
-  );
+  const [editingTheme, setEditingTheme] = useState<ThemeFormData | null>(null);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [themeToDelete, setThemeToDelete] = useState<number | null>(null);
 
-  // Update color states when editingTheme changes
-  React.useEffect(() => {
-    if (editingTheme) {
-      setPrimaryColor(editingTheme.primaryColor);
-      setSecondaryColor(editingTheme.secondaryColor);
-    }
-  }, [editingTheme]);
+  const form = useForm<ThemeFormData>({
+    defaultValues: {
+      name: "",
+      primaryColor: "#3B82F6",
+      secondaryColor: "#F59E0B",
+      fontFamily: "Poppins",
+      isActive: false,
+    },
+  });
 
-  const handleEditTheme = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const updatedTheme: Partial<ThemeData> = {
-      id: editingTheme?.id,
-      name: formData.get("name") as string,
-      primaryColor,
-      secondaryColor,
-      fontFamily: formData.get("fontFamily") as string,
-      isActive: formData.get("isActive") === "true",
-    };
-
+  const handleCreateOrUpdate = async (data: ThemeFormData) => {
     try {
-      // Placeholder for update API call (e.g., useUpdateThemeMutation)
-      console.log("Updated theme:", updatedTheme);
+      if (editingTheme) {
+        await updateTheme({ id: editingTheme.id!, ...data }).unwrap();
+        showToast("Theme updated successfully", "success");
+      } else {
+        await createTheme(data).unwrap();
+        showToast("Theme created successfully", "success");
+      }
       setIsModalOpen(false);
       setEditingTheme(null);
+      form.reset();
       refetch();
-      showToast("Theme updated successfully", "success");
     } catch (err) {
-      console.error("Failed to update theme:", err);
-      showToast("Failed to update theme", "error");
+      console.error("Failed to save theme:", err);
+      showToast("Failed to save theme", "error");
     }
   };
 
-  const renderThemePreview = (theme: ThemeData) => {
+  const handleDelete = async () => {
+    if (!themeToDelete) return;
+    try {
+      await deleteTheme(themeToDelete).unwrap();
+      setIsConfirmModalOpen(false);
+      setThemeToDelete(null);
+      refetch();
+      showToast("Theme deleted successfully", "success");
+    } catch (err) {
+      console.error("Failed to delete theme:", err);
+      showToast("Failed to delete theme", "error");
+    }
+  };
+
+  const renderThemePreview = (theme: ThemeFormData) => {
     return (
       <div className="space-y-3">
         <div className="flex items-center space-x-4">
@@ -121,8 +133,7 @@ const ThemesDashboard = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => {
                 setEditingTheme(null);
-                setPrimaryColor("#3B82F6");
-                setSecondaryColor("#F59E0B");
+                form.reset();
                 setIsModalOpen(true);
               }}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-colors flex items-center gap-2"
@@ -158,15 +169,28 @@ const ThemesDashboard = () => {
                   <h3 className="text-lg font-semibold text-gray-800">
                     {theme.name}
                   </h3>
-                  <button
-                    onClick={() => {
-                      setEditingTheme(theme);
-                      setIsModalOpen(true);
-                    }}
-                    className="text-blue-600 hover:text-blue-800 transition-colors"
-                  >
-                    <Pencil size={18} />
-                  </button>
+                  <div className="flex space-x-2">
+                    <button
+                      onClick={() => {
+                        setEditingTheme(theme);
+                        form.reset(theme);
+                        setIsModalOpen(true);
+                      }}
+                      className="text-blue-600 hover:text-blue-800 transition-colors"
+                    >
+                      <Pencil size={18} />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setThemeToDelete(theme.id);
+                        setIsConfirmModalOpen(true);
+                      }}
+                      className="text-red-600 hover:text-red-800 transition-colors"
+                      disabled={isDeleting}
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
                 </div>
                 <div className="space-y-3">
                   <p className="text-sm text-gray-600">
@@ -194,103 +218,56 @@ const ThemesDashboard = () => {
         )}
       </motion.div>
 
-      {/* Edit Theme Modal */}
-      {isModalOpen && (
-        <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-800">
-              {editingTheme ? "Edit Theme" : "Create Theme"}
-            </h2>
-            <form onSubmit={handleEditTheme} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  defaultValue={editingTheme?.name || ""}
-                  required
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Primary Color
-                </label>
-                <ChromePicker
-                  color={primaryColor}
-                  onChange={(color: ColorResult) => setPrimaryColor(color.hex)}
-                  className="mt-1"
-                />
-                <input type="hidden" name="primaryColor" value={primaryColor} />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Secondary Color
-                </label>
-                <ChromePicker
-                  color={secondaryColor}
-                  onChange={(color: ColorResult) =>
-                    setSecondaryColor(color.hex)
-                  }
-                  className="mt-1"
-                />
-                <input
-                  type="hidden"
-                  name="secondaryColor"
-                  value={secondaryColor}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Font Family
-                </label>
-                <select
-                  name="fontFamily"
-                  defaultValue={editingTheme?.fontFamily || "Poppins"}
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="Poppins">Poppins</option>
-                  <option value="Roboto">Roboto</option>
-                  <option value="Inter">Inter</option>
-                  <option value="Open Sans">Open Sans</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Active
-                </label>
-                <select
-                  name="isActive"
-                  defaultValue={editingTheme?.isActive ? "true" : "false"}
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
-                </select>
-              </div>
-              <div className="flex justify-end space-x-3">
+      {/* Create/Edit Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white rounded-xl shadow-xl w-full max-w-lg p-6 border border-gray-100 max-h-[80vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-gray-800">
+                  {editingTheme ? "Edit Theme" : "Create Theme"}
+                </h2>
                 <button
-                  type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                  className="text-gray-500 hover:text-gray-700"
                 >
-                  Cancel
+                  <X size={20} />
                 </button>
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                >
-                  {editingTheme ? "Update" : "Create"}
-                </motion.button>
               </div>
-            </form>
-          </div>
-        </Modal>
-      )}
+              <ThemeForm
+                form={form}
+                onSubmit={handleCreateOrUpdate}
+                isLoading={editingTheme ? isUpdating : isCreating}
+                submitLabel={editingTheme ? "Update" : "Create"}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Delete Confirmation */}
+      <ConfirmModal
+        isOpen={isConfirmModalOpen}
+        message="Are you sure you want to delete this theme? This action cannot be undone."
+        onConfirm={handleDelete}
+        onCancel={() => setIsConfirmModalOpen(false)}
+        title="Delete Theme"
+        type="danger"
+      />
     </div>
   );
 };

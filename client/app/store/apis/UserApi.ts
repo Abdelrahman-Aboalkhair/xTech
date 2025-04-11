@@ -24,6 +24,15 @@ export const userApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["User"],
     }),
+    updateUser: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/users/${id}`,
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      }),
+      invalidatesTags: ["User"],
+    }),
     getMe: builder.query({
       query: () => ({
         url: "/users/me",
@@ -56,6 +65,7 @@ export const userApi = apiSlice.injectEndpoints({
 
 export const {
   useGetAllAdminsQuery,
+  useUpdateUserMutation,
   useCreateAdminMutation,
   useDeleteUserMutation,
   useGetProfileQuery,

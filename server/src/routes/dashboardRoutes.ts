@@ -15,6 +15,7 @@ const dashboardService = new DashboardService(
 );
 const dashboardController = new DashboardController(dashboardService);
 
+// router.get('/search', protect, authorizeRole("ADMIN", "SUPERADMIN"), dashboardController.search);
 router.get(
   "/stats",
   protect,

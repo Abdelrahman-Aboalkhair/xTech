@@ -1489,3 +1489,47 @@ Attempted to serialize non-enum-compatible value 'null' for enum 'SECTION_TYPE'
 [2025-04-11T13:54:17.495Z] [31MERROR[39M: Validation failed
 [2025-04-11T14:00:34.630Z] [31MERROR[39M: Validation errors:
 [2025-04-11T14:00:34.631Z] [31MERROR[39M: Validation failed
+[2025-04-11T14:07:11.387Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T14:07:11.391Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T14:07:11.429Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-11T14:08:10.271Z] [31MERROR[39M: Validation errors:
+[2025-04-11T14:08:10.272Z] [31MERROR[39M: Validation failed
+[2025-04-11T14:15:51.549Z] [31MERROR[39M: Validation errors:
+[2025-04-11T14:15:51.549Z] [31MERROR[39M: Validation failed
+[2025-04-11T14:19:43.055Z] [31MERROR[39M: Validation errors:
+[2025-04-11T14:19:43.056Z] [31MERROR[39M: Validation failed
+[2025-04-11T14:45:45.723Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T14:45:45.913Z] [31MERROR[39M: Validation errors:
+[2025-04-11T14:45:45.914Z] [31MERROR[39M: Validation failed
+[2025-04-11T14:46:12.985Z] [31MERROR[39M: Validation errors:
+[2025-04-11T14:46:12.986Z] [31MERROR[39M: Validation failed
+[2025-04-11T14:51:54.507Z] [31MERROR[39M: Validation errors:
+[2025-04-11T14:51:54.507Z] [31MERROR[39M: Validation failed
+[2025-04-11T15:06:33.197Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T15:06:33.207Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T15:06:33.210Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T15:06:33.232Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-11T15:06:41.120Z] [31MERROR[39M: Validation errors:
+[2025-04-11T15:06:41.121Z] [31MERROR[39M: Validation failed
+[2025-04-11T15:06:46.224Z] [31MERROR[39M: Validation errors:
+[2025-04-11T15:06:46.225Z] [31MERROR[39M: Validation failed
+[2025-04-11T15:06:51.578Z] [31MERROR[39M: Validation errors:
+[2025-04-11T15:06:51.579Z] [31MERROR[39M: Validation failed
+[2025-04-11T15:11:44.163Z] [31MERROR[39M: Validation errors:
+[2025-04-11T15:11:44.167Z] [31MERROR[39M: Validation failed
+[2025-04-11T15:12:05.206Z] [31MERROR[39M: Validation errors:
+[2025-04-11T15:12:05.207Z] [31MERROR[39M: Validation failed
+[2025-04-11T15:18:34.228Z] [31MERROR[39M: Validation errors:
+[2025-04-11T15:18:34.230Z] [31MERROR[39M: Validation failed
+[2025-04-11T15:35:30.348Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T15:35:30.400Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-11T15:37:30.786Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T15:37:30.881Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-11T15:41:14.022Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T15:41:14.056Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-11T15:44:47.626Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T15:44:47.682Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-11T15:46:28.813Z] [31MERROR[39M: Validation errors:
+[2025-04-11T15:46:28.814Z] [31MERROR[39M: Validation failed
+[2025-04-11T15:57:37.220Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-11T16:03:02.224Z] [31MERROR[39M: Invalid input. Please check your request data.

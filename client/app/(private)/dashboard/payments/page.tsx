@@ -3,13 +3,14 @@ import React from "react";
 import { useGetAllPaymentsQuery } from "@/app/store/apis/PaymentApi";
 import Table from "@/app/components/layout/Table";
 import { motion } from "framer-motion";
-import { CreditCard, DollarSign, Calendar, FileText } from "lucide-react";
+import { CreditCard, DollarSign, Calendar, FileText, Eye } from "lucide-react";
 import ToggleableText from "@/app/components/atoms/ToggleableText";
+import { useRouter } from "next/navigation";
 
 const PaymentsDashboard = () => {
+  const router = useRouter();
   const { data, isLoading, error } = useGetAllPaymentsQuery({});
   const payments = data?.payments || [];
-  console.log("payments: ", payments);
 
   const columns = [
     {
@@ -77,6 +78,19 @@ const PaymentsDashboard = () => {
         </div>
       ),
     },
+    {
+      key: "actions",
+      label: "Actions",
+      render: (row) => (
+        <button
+          onClick={() => router.push(`/dashboard/payments/${row.id}`)}
+          className="text-indigo-600 hover:text-indigo-800 flex items-center gap-1"
+        >
+          <Eye size={16} />
+          Details
+        </button>
+      ),
+    },
   ];
 
   return (
@@ -104,7 +118,7 @@ const PaymentsDashboard = () => {
       ) : error ? (
         <div className="text-center py-12">
           <p className="text-lg text-red-500">
-            Error loading payments: {error.message || "Unknown error"}
+            Error loading payments: {(error as any)?.message || "Unknown error"}
           </p>
         </div>
       ) : payments.length === 0 ? (

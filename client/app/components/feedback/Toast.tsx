@@ -2,7 +2,7 @@
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { removeToast } from "../../store/slices/ToastSlice";
 import { useEffect } from "react";
-import { X, Check, CircleAlert } from "lucide-react";
+import { X, Check, CircleAlert, Info } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const toastStyles = {
@@ -26,6 +26,14 @@ const toastStyles = {
     icon: (
       <CircleAlert
         className="text-yellow-700 p-[5px] w-[23px] h-[23px] rounded-full"
+        size={27}
+      />
+    ),
+  },
+  info: {
+    icon: (
+      <Info
+        className="text-blue-700 p-[5px] w-[23px] h-[23px] rounded-full"
         size={27}
       />
     ),

@@ -8,6 +8,7 @@ interface SwitchProps {
   label?: string;
   disabled?: boolean;
   className?: string;
+  checked?: boolean;
 }
 
 const Switch: React.FC<SwitchProps> = ({
@@ -15,6 +16,7 @@ const Switch: React.FC<SwitchProps> = ({
   label,
   disabled = false,
   className,
+  checked,
 }) => {
   const { control } = useFormContext();
 

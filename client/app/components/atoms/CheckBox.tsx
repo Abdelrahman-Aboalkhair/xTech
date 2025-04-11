@@ -9,6 +9,7 @@ interface CheckBoxProps {
   label?: string;
   defaultValue?: boolean;
   onChangeExtra?: (name: string, value: boolean) => void;
+  icon?: React.ReactNode;
 }
 
 const CheckBox: React.FC<CheckBoxProps> = ({
@@ -18,6 +19,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   label,
   defaultValue = false,
   onChangeExtra,
+  icon,
 }) => {
   return (
     <Controller
@@ -36,11 +38,15 @@ const CheckBox: React.FC<CheckBoxProps> = ({
           }}
         >
           <div
-            className={`w-[22px] h-[22px] flex items-center justify-center border rounded-md transition-all ${
+            className={`w-5 h-5 flex items-center justify-center border rounded-md transition-all ${
               field.value ? "bg-primary border-primary" : "border-gray-400"
             }`}
           >
-            {field.value && <Check className="text-white text-lg" />}
+            {field.value && (
+              <div className="text-white w-4 h-4 flex items-center justify-center">
+                {icon || <Check className="w-4 h-4" />}
+              </div>
+            )}
           </div>
           {label && (
             <span className="text-gray-700 select-none font-medium">

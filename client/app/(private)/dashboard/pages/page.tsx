@@ -3,51 +3,40 @@ import {
   useCreatePageMutation,
   useGetAllPagesQuery,
   useUpdatePageMutation,
+  useDeletePageMutation,
 } from "@/app/store/apis/PageApi";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { FileText, Loader2, AlertCircle, Pencil } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FileText,
+  Loader2,
+  AlertCircle,
+  Pencil,
+  Trash2,
+  X,
+} from "lucide-react";
 import Table from "@/app/components/layout/Table";
 import useToast from "@/app/hooks/ui/useToast";
-import { FormProvider, useForm } from "react-hook-form";
-import Switch from "@/app/components/atoms/Switch";
-import Modal from "@/app/components/organisms/Modal";
+import { useForm } from "react-hook-form";
 import ToggleableText from "@/app/components/atoms/ToggleableText";
-
-interface PageData {
-  id: number;
-  slug: string;
-  title: string;
-  isVisible: boolean;
-  showInNavbar: boolean;
-  isPublished: boolean;
-  metaTitle: string;
-  metaDescription: string;
-  createdAt: string;
-  updatedAt: string;
-  sections: any[];
-  banners: any[];
-}
+import PageForm, { PageFormData } from "./PageForm";
+import ConfirmModal from "@/app/components/organisms/ConfirmModal";
 
 const PagesDashboard = () => {
   const { showToast } = useToast();
   const { data, isLoading, error, refetch } = useGetAllPagesQuery({});
-  const [updatePage, { error: updateError }] = useUpdatePageMutation();
-  if (updateError) {
-    console.log("updateError => ", updateError);
-  }
-  const [createPage, { error: createError }] = useCreatePageMutation();
-  if (createError) {
-    console.log("createError => ", createError);
-  }
+  const [createPage, { isLoading: isCreating }] = useCreatePageMutation();
+  const [updatePage, { isLoading: isUpdating }] = useUpdatePageMutation();
+  const [deletePage, { isLoading: isDeleting }] = useDeletePageMutation();
   const pages = data?.pages || [];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingPage, setEditingPage] = useState<PageData | null>(null);
+  const [editingPage, setEditingPage] = useState<PageFormData | null>(null);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [pageToDelete, setPageToDelete] = useState<number | null>(null);
 
-  const methods = useForm<PageData>({
-    defaultValues: editingPage || {
-      id: 0,
+  const form = useForm<PageFormData>({
+    defaultValues: {
       slug: "",
       title: "",
       isVisible: true,
@@ -55,50 +44,43 @@ const PagesDashboard = () => {
       isPublished: true,
       metaTitle: "",
       metaDescription: "",
+      createdAt: new Date(),
     },
   });
 
-  const { handleSubmit, reset } = methods;
-
-  React.useEffect(() => {
-    if (editingPage) {
-      reset(editingPage);
-    } else {
-      reset({
-        slug: "",
-        title: "",
-        isVisible: true,
-        showInNavbar: true,
-        isPublished: true,
-        metaTitle: "",
-        metaDescription: "",
-      });
-    }
-  }, [editingPage, reset]);
-
-  const onSubmit = async (data: PageData) => {
-    const updatedPage: Partial<PageData> = {
-      ...data,
-    };
-
-    console.log("updatedPage => ", updatedPage);
-
+  const handleCreateOrUpdate = async (data: PageFormData) => {
     try {
       if (editingPage) {
         await updatePage({
-          pageId: editingPage?.id || 0,
-          updatedPage,
+          pageId: editingPage.id || 0,
+          updatedPage: data,
         }).unwrap();
+        showToast("Page updated successfully", "success");
       } else {
         await createPage(data).unwrap();
+        showToast("Page created successfully", "success");
       }
       setIsModalOpen(false);
       setEditingPage(null);
+      form.reset();
       refetch();
-      showToast("Page updated successfully", "success");
     } catch (err) {
-      console.error("Failed to update page:", err);
-      showToast("Failed to update page", "error");
+      console.error("Failed to save page:", err);
+      showToast("Failed to save page", "error");
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!pageToDelete) return;
+    try {
+      await deletePage(pageToDelete).unwrap();
+      setIsConfirmModalOpen(false);
+      setPageToDelete(null);
+      refetch();
+      showToast("Page deleted successfully", "success");
+    } catch (err) {
+      console.error("Failed to delete page:", err);
+      showToast("Failed to delete page", "error");
     }
   };
 
@@ -107,7 +89,7 @@ const PagesDashboard = () => {
       key: "id",
       label: "Page ID",
       sortable: true,
-      render: (row: PageData) => (
+      render: (row: PageFormData) => (
         <span className="text-sm text-gray-600 font-mono">{row.id}</span>
       ),
     },
@@ -115,7 +97,7 @@ const PagesDashboard = () => {
       key: "title",
       label: "Title",
       sortable: true,
-      render: (row: PageData) => (
+      render: (row: PageFormData) => (
         <span className="text-sm font-medium text-gray-800">{row.title}</span>
       ),
     },
@@ -123,14 +105,14 @@ const PagesDashboard = () => {
       key: "slug",
       label: "Slug",
       sortable: true,
-      render: (row: PageData) => (
+      render: (row: PageFormData) => (
         <span className="text-sm text-gray-600">{row.slug}</span>
       ),
     },
     {
       key: "isVisible",
       label: "Visible",
-      render: (row: PageData) => (
+      render: (row: PageFormData) => (
         <span
           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
             row.isVisible
@@ -145,7 +127,7 @@ const PagesDashboard = () => {
     {
       key: "showInNavbar",
       label: "In Navbar",
-      render: (row: PageData) => (
+      render: (row: PageFormData) => (
         <span
           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
             row.showInNavbar
@@ -160,7 +142,7 @@ const PagesDashboard = () => {
     {
       key: "isPublished",
       label: "Published",
-      render: (row: PageData) => (
+      render: (row: PageFormData) => (
         <span
           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
             row.isPublished
@@ -175,7 +157,7 @@ const PagesDashboard = () => {
     {
       key: "metaTitle",
       label: "Meta Title",
-      render: (row: PageData) => (
+      render: (row: PageFormData) => (
         <span className="text-sm text-gray-600 truncate max-w-xs">
           {row.metaTitle}
         </span>
@@ -184,7 +166,7 @@ const PagesDashboard = () => {
     {
       key: "metaDescription",
       label: "Meta Description",
-      render: (row: PageData) => (
+      render: (row: PageFormData) => (
         <ToggleableText
           content={row.metaDescription}
           truncateLength={20}
@@ -196,7 +178,7 @@ const PagesDashboard = () => {
       key: "createdAt",
       label: "Created",
       sortable: true,
-      render: (row: PageData) => (
+      render: (row: PageFormData) => (
         <span className="text-sm text-gray-600">
           {new Date(row.createdAt).toLocaleDateString("en-US", {
             month: "short",
@@ -209,17 +191,31 @@ const PagesDashboard = () => {
     {
       key: "actions",
       label: "Actions",
-      render: (row: PageData) => (
-        <button
-          onClick={() => {
-            setEditingPage(row);
-            setIsModalOpen(true);
-          }}
-          className="flex items-center gap-1 text-blue-600 hover:text-blue-800 transition-colors"
-        >
-          <Pencil size={16} />
-          Edit
-        </button>
+      render: (row: PageFormData) => (
+        <div className="flex space-x-2">
+          <button
+            onClick={() => {
+              setEditingPage(row);
+              form.reset(row);
+              setIsModalOpen(true);
+            }}
+            className="flex items-center gap-1 text-indigo-600 hover:text-indigo-800 transition-colors"
+          >
+            <Pencil size={16} />
+            Edit
+          </button>
+          <button
+            onClick={() => {
+              setPageToDelete(row.id);
+              setIsConfirmModalOpen(true);
+            }}
+            className="flex items-center gap-1 text-red-600 hover:text-red-800 transition-colors"
+            disabled={isDeleting}
+          >
+            <Trash2 size={16} />
+            {isDeleting && pageToDelete === row.id ? "Deleting..." : "Delete"}
+          </button>
+        </div>
       ),
     },
   ];
@@ -249,6 +245,7 @@ const PagesDashboard = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => {
                 setEditingPage(null);
+                form.reset();
                 setIsModalOpen(true);
               }}
               className="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition-colors"
@@ -286,77 +283,56 @@ const PagesDashboard = () => {
         </motion.div>
       </motion.div>
 
-      {/* Edit Page Modal */}
-      {isModalOpen && (
-        <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <h2 className="text-2xl font-semibold text-gray-800">
-                {editingPage ? "Edit Page" : "Create Page"}
-              </h2>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Title
-                </label>
-                <input
-                  {...methods.register("title", { required: true })}
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Slug
-                </label>
-                <input
-                  {...methods.register("slug", { required: true })}
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
-              <div className="grid grid-cols-3 gap-4">
-                <Switch name="isVisible" label="Visible" />
-                <Switch name="showInNavbar" label="In Navbar" />
-                <Switch name="isPublished" label="Published" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Meta Title
-                </label>
-                <input
-                  {...methods.register("metaTitle", { required: true })}
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Meta Description
-                </label>
-                <textarea
-                  {...methods.register("metaDescription", { required: true })}
-                  rows={3}
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
-              <div className="flex justify-end space-x-3">
+      {/* Create/Edit Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white rounded-xl shadow-xl w-full max-w-lg p-6 border border-gray-100"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-gray-800">
+                  {editingPage ? "Edit Page" : "Create Page"}
+                </h2>
                 <button
-                  type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                  className="text-gray-500 hover:text-gray-700"
                 >
-                  Cancel
+                  <X size={20} />
                 </button>
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
-                >
-                  {editingPage ? "Update" : "Create"}
-                </motion.button>
               </div>
-            </form>
-          </FormProvider>
-        </Modal>
-      )}
+              <PageForm
+                form={form}
+                onSubmit={handleCreateOrUpdate}
+                isLoading={editingPage ? isUpdating : isCreating}
+                submitLabel={editingPage ? "Update" : "Create"}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Delete Confirmation */}
+      <ConfirmModal
+        isOpen={isConfirmModalOpen}
+        message="Are you sure you want to delete this page? This action cannot be undone."
+        onConfirm={handleDelete}
+        onCancel={() => setIsConfirmModalOpen(false)}
+        title="Delete Page"
+        type="danger"
+      />
     </div>
   );
 };

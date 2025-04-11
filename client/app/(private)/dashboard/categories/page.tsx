@@ -8,11 +8,14 @@ import {
 import Table from "@/app/components/layout/Table";
 import { motion } from "framer-motion";
 import { Tag, Trash2, Plus } from "lucide-react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Modal from "@/app/components/organisms/Modal";
 import ConfirmModal from "@/app/components/organisms/ConfirmModal";
+import CategoryForm, { CategoryFormData } from "./CategoryForm";
+import useToast from "@/app/hooks/ui/useToast";
 
 const CategoriesDashboard = () => {
+  const { showToast } = useToast();
   const { data, isLoading, error } = useGetAllCategoriesQuery({});
   const [createCategory, { isLoading: isCreating }] =
     useCreateCategoryMutation();
@@ -24,12 +27,9 @@ const CategoriesDashboard = () => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [categoryToDelete, setCategoryToDelete] = useState<string | null>(null);
 
-  const {
-    control,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const form = useForm<CategoryFormData>({
+    defaultValues: { name: "", slug: "" },
+  });
 
   const columns = [
     {
@@ -78,18 +78,22 @@ const CategoriesDashboard = () => {
       await deleteCategory(categoryToDelete).unwrap();
       setIsConfirmModalOpen(false);
       setCategoryToDelete(null);
+      showToast("Category deleted successfully", "success");
     } catch (err) {
       console.error("Failed to delete category:", err);
+      showToast("Failed to delete category", "error");
     }
   };
 
-  const onSubmit = async (formData) => {
+  const onSubmit = async (formData: CategoryFormData) => {
     try {
       await createCategory(formData).unwrap();
       setIsCreateModalOpen(false);
-      reset({ name: "", slug: "" });
+      form.reset({ name: "", slug: "" });
+      showToast("Category created successfully", "success");
     } catch (err) {
       console.error("Failed to create category:", err);
+      showToast("Failed to create category", "error");
     }
   };
 
@@ -126,7 +130,8 @@ const CategoriesDashboard = () => {
       ) : error ? (
         <div className="text-center py-12">
           <p className="text-lg text-red-500">
-            Error loading categories: {error.message || "Unknown error"}
+            Error loading categories:{" "}
+            {(error as any)?.message || "Unknown error"}
           </p>
         </div>
       ) : categories.length === 0 ? (
@@ -151,70 +156,12 @@ const CategoriesDashboard = () => {
         <h2 className="text-xl font-bold text-gray-800 mb-6">
           Create Category
         </h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Category Name
-            </label>
-            <Controller
-              name="name"
-              control={control}
-              defaultValue=""
-              rules={{ required: "Category name is required" }}
-              render={({ field }) => (
-                <input
-                  {...field}
-                  type="text"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-800"
-                  placeholder="Enter category name"
-                />
-              )}
-            />
-            {errors.name && (
-              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-            )}
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Slug
-            </label>
-            <Controller
-              name="slug"
-              control={control}
-              defaultValue=""
-              rules={{ required: "Slug is required" }}
-              render={({ field }) => (
-                <input
-                  {...field}
-                  type="text"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-800"
-                  placeholder="Enter slug"
-                />
-              )}
-            />
-            {errors.slug && (
-              <p className="text-red-500 text-sm mt-1">{errors.slug.message}</p>
-            )}
-          </div>
-          <div className="flex justify-end space-x-3">
-            <button
-              type="button"
-              onClick={() => setIsCreateModalOpen(false)}
-              className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors duration-200"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={isCreating}
-              className={`px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors duration-300 ${
-                isCreating ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-            >
-              {isCreating ? "Creating..." : "Create"}
-            </button>
-          </div>
-        </form>
+        <CategoryForm
+          form={form}
+          onSubmit={onSubmit}
+          isLoading={isCreating}
+          submitLabel="Create"
+        />
       </Modal>
 
       <ConfirmModal

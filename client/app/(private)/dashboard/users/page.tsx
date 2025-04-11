@@ -1,18 +1,43 @@
 "use client";
 import Table from "@/app/components/layout/Table";
-import { useGetAllUsersQuery } from "@/app/store/apis/UserApi";
+import {
+  useGetAllUsersQuery,
+  useUpdateUserMutation,
+  useDeleteUserMutation,
+} from "@/app/store/apis/UserApi";
 import Image from "next/image";
-import React from "react";
-import { motion } from "framer-motion";
-import { Users, Loader2, AlertCircle } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Users, Loader2, AlertCircle, Pencil, Trash2, X } from "lucide-react";
+import useToast from "@/app/hooks/ui/useToast";
+import { useForm } from "react-hook-form";
+import UserForm, { UserFormData } from "./UserForm";
+import ConfirmModal from "@/app/components/organisms/ConfirmModal";
 
 const UsersDashboard = () => {
-  const { data, isLoading, error } = useGetAllUsersQuery({});
-
-  // Handle error and loading states gracefully
+  const { showToast } = useToast();
+  const { data, isLoading, error, refetch } = useGetAllUsersQuery({});
+  const [updateUser, { isLoading: isUpdating }] = useUpdateUserMutation();
+  const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
   const users = data?.users || [];
 
-  // Define table columns with enhanced rendering
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingUser, setEditingUser] = useState<UserFormData | null>(null);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [userToDelete, setUserToDelete] = useState<string | number | null>(
+    null
+  );
+
+  const form = useForm<UserFormData>({
+    defaultValues: {
+      id: "",
+      name: "",
+      email: "",
+      role: "user",
+      emailVerified: false,
+    },
+  });
+
   const columns = [
     {
       key: "id",
@@ -28,7 +53,7 @@ const UsersDashboard = () => {
       render: (row: any) => (
         <div className="flex items-center space-x-3">
           <Image
-            src={row.avatar || "/default-avatar.png"} // Fallback image
+            src={row.avatar || "/default-avatar.png"}
             alt={row.name}
             width={36}
             height={36}
@@ -109,10 +134,67 @@ const UsersDashboard = () => {
         </span>
       ),
     },
+    {
+      key: "actions",
+      label: "Actions",
+      render: (row: any) => (
+        <div className="flex space-x-2">
+          <button
+            onClick={() => {
+              setEditingUser(row);
+              form.reset(row);
+              setIsModalOpen(true);
+            }}
+            className="text-blue-600 hover:text-blue-800 flex items-center gap-1"
+          >
+            <Pencil size={16} />
+            Edit
+          </button>
+          <button
+            onClick={() => {
+              setUserToDelete(row.id);
+              setIsConfirmModalOpen(true);
+            }}
+            className="text-red-600 hover:text-red-800 flex items-center gap-1"
+            disabled={isDeleting}
+          >
+            <Trash2 size={16} />
+            {isDeleting && userToDelete === row.id ? "Deleting..." : "Delete"}
+          </button>
+        </div>
+      ),
+    },
   ];
 
+  const handleEditSubmit = async (data: UserFormData) => {
+    try {
+      await updateUser(data).unwrap();
+      setIsModalOpen(false);
+      setEditingUser(null);
+      refetch();
+      showToast("User updated successfully", "success");
+    } catch (err) {
+      console.error("Failed to update user:", err);
+      showToast("Failed to update user", "error");
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!userToDelete) return;
+    try {
+      await deleteUser(userToDelete).unwrap();
+      setIsConfirmModalOpen(false);
+      setUserToDelete(null);
+      refetch();
+      showToast("User deleted successfully", "success");
+    } catch (err) {
+      console.error("Failed to delete user:", err);
+      showToast("Failed to delete user", "error");
+    }
+  };
+
   return (
-    <div className="min-h-screen  p-6">
+    <div className="min-h-screen p-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -139,7 +221,6 @@ const UsersDashboard = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
         >
-          {/* Loading State */}
           {isLoading && (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-8 w-8 text-blue-500 animate-spin" />
@@ -147,7 +228,6 @@ const UsersDashboard = () => {
             </div>
           )}
 
-          {/* Error State */}
           {error && !isLoading && (
             <div className="flex items-center justify-center py-12 text-red-600">
               <AlertCircle className="h-8 w-8 mr-2" />
@@ -155,7 +235,6 @@ const UsersDashboard = () => {
             </div>
           )}
 
-          {/* Table */}
           {!isLoading && !error && (
             <Table
               data={users}
@@ -166,6 +245,55 @@ const UsersDashboard = () => {
           )}
         </motion.div>
       </motion.div>
+
+      {/* Edit Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white rounded-xl shadow-xl w-full max-w-lg p-6 border border-gray-100"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-gray-800">Edit User</h2>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <UserForm
+                form={form}
+                onSubmit={handleEditSubmit}
+                isLoading={isUpdating}
+                submitLabel="Save Changes"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Delete Confirmation */}
+      <ConfirmModal
+        isOpen={isConfirmModalOpen}
+        message="Are you sure you want to delete this user? This action cannot be undone."
+        onConfirm={handleDelete}
+        onCancel={() => setIsConfirmModalOpen(false)}
+        title="Delete User"
+        type="danger"
+      />
     </div>
   );
 };

@@ -1,73 +1,94 @@
 "use client";
-import { useGetAllBannersQuery } from "@/app/store/apis/BannerApi";
+import {
+  useGetAllBannersQuery,
+  useCreateBannerMutation,
+  useUpdateBannerMutation,
+  useDeleteBannerMutation,
+} from "@/app/store/apis/BannerApi";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { ImageIcon, Loader2, AlertCircle, Pencil, Plus } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ImageIcon,
+  Loader2,
+  AlertCircle,
+  Pencil,
+  Plus,
+  Trash2,
+  X,
+} from "lucide-react";
 import useToast from "@/app/hooks/ui/useToast";
-import Modal from "@/app/components/organisms/Modal";
+import { useForm } from "react-hook-form";
+import BannerForm, { BannerFormData } from "./BannerForm";
+import ConfirmModal from "@/app/components/organisms/ConfirmModal";
 import Image from "next/image";
-
-interface BannerData {
-  id: number;
-  title: string;
-  type: string;
-  config: {
-    image: string;
-    headline: string;
-    buttonText: string;
-    buttonColor: string;
-    backgroundColor: string;
-    link: string;
-  };
-  isVisible: boolean;
-  order: number;
-  pageId: number;
-  createdAt: string;
-  updatedAt: string;
-}
 
 const BannersDashboard = () => {
   const { showToast } = useToast();
   const { data, isLoading, error, refetch } = useGetAllBannersQuery({});
+  const [createBanner, { isLoading: isCreating }] = useCreateBannerMutation();
+  const [updateBanner, { isLoading: isUpdating }] = useUpdateBannerMutation();
+  const [deleteBanner, { isLoading: isDeleting }] = useDeleteBannerMutation();
   const banners = data?.banners || [];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingBanner, setEditingBanner] = useState<BannerData | null>(null);
+  const [editingBanner, setEditingBanner] = useState<BannerFormData | null>(
+    null
+  );
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [bannerToDelete, setBannerToDelete] = useState<number | null>(null);
 
-  const handleEditBanner = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const updatedBanner: Partial<BannerData> = {
-      id: editingBanner?.id,
-      title: formData.get("title") as string,
-      type: formData.get("type") as string,
+  const form = useForm<BannerFormData>({
+    defaultValues: {
+      title: "",
+      type: "FullWidth",
       config: {
-        image: formData.get("image") as string,
-        headline: formData.get("headline") as string,
-        buttonText: formData.get("buttonText") as string,
-        buttonColor: formData.get("buttonColor") as string,
-        backgroundColor: formData.get("backgroundColor") as string,
-        link: formData.get("link") as string,
+        image: "",
+        headline: "",
+        buttonText: "",
+        buttonColor: "#000000",
+        backgroundColor: "#FFFFFF",
+        link: "",
       },
-      isVisible: formData.get("isVisible") === "true",
-      order: Number(formData.get("order")),
-      pageId: Number(formData.get("pageId")),
-    };
+      isVisible: true,
+      order: 1,
+      pageId: 0,
+    },
+  });
 
+  const handleCreateOrUpdate = async (data: BannerFormData) => {
     try {
-      // Placeholder for update API call (e.g., useUpdateBannerMutation)
-      console.log("Updated banner:", updatedBanner);
+      if (editingBanner) {
+        await updateBanner({ id: editingBanner.id!, ...data }).unwrap();
+        showToast("Banner updated successfully", "success");
+      } else {
+        await createBanner(data).unwrap();
+        showToast("Banner created successfully", "success");
+      }
       setIsModalOpen(false);
       setEditingBanner(null);
+      form.reset();
       refetch();
-      showToast("Banner updated successfully", "success");
     } catch (err) {
-      console.error("Failed to update banner:", err);
-      showToast("Failed to update banner", "error");
+      console.error("Failed to save banner:", err);
+      showToast("Failed to save banner", "error");
     }
   };
 
-  const renderBannerPreview = (banner: BannerData) => {
+  const handleDelete = async () => {
+    if (!bannerToDelete) return;
+    try {
+      await deleteBanner(bannerToDelete).unwrap();
+      setIsConfirmModalOpen(false);
+      setBannerToDelete(null);
+      refetch();
+      showToast("Banner deleted successfully", "success");
+    } catch (err) {
+      console.error("Failed to delete banner:", err);
+      showToast("Failed to delete banner", "error");
+    }
+  };
+
+  const renderBannerPreview = (banner: BannerFormData) => {
     const { config } = banner;
     return (
       <div
@@ -124,6 +145,7 @@ const BannersDashboard = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => {
                 setEditingBanner(null);
+                form.reset();
                 setIsModalOpen(true);
               }}
               className="px-4 py-2 bg-orange-600 text-white rounded-lg shadow-md hover:bg-orange-700 transition-colors flex items-center gap-2"
@@ -159,15 +181,28 @@ const BannersDashboard = () => {
                   <h3 className="text-lg font-semibold text-gray-800">
                     {banner.title}
                   </h3>
-                  <button
-                    onClick={() => {
-                      setEditingBanner(banner);
-                      setIsModalOpen(true);
-                    }}
-                    className="text-orange-600 hover:text-orange-800 transition-colors"
-                  >
-                    <Pencil size={18} />
-                  </button>
+                  <div className="flex space-x-2">
+                    <button
+                      onClick={() => {
+                        setEditingBanner(banner);
+                        form.reset(banner);
+                        setIsModalOpen(true);
+                      }}
+                      className="text-orange-600 hover:text-orange-800 transition-colors"
+                    >
+                      <Pencil size={18} />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setBannerToDelete(banner.id);
+                        setIsConfirmModalOpen(true);
+                      }}
+                      className="text-red-600 hover:text-red-800 transition-colors"
+                      disabled={isDeleting}
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
                 </div>
                 <div className="space-y-3">
                   <p className="text-sm text-gray-600">
@@ -205,174 +240,56 @@ const BannersDashboard = () => {
         )}
       </motion.div>
 
-      {/* Edit Banner Modal */}
-      {isModalOpen && (
-        <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-800">
-              {editingBanner ? "Edit Banner" : "Create Banner"}
-            </h2>
-            <form onSubmit={handleEditBanner} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Title
-                </label>
-                <input
-                  type="text"
-                  name="title"
-                  defaultValue={editingBanner?.title || ""}
-                  required
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Type
-                </label>
-                <select
-                  name="type"
-                  defaultValue={editingBanner?.type || "FullWidth"}
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                >
-                  <option value="FullWidth">Full Width</option>
-                  <option value="Sidebar">Sidebar</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Image URL
-                </label>
-                <input
-                  type="text"
-                  name="image"
-                  defaultValue={editingBanner?.config.image || ""}
-                  required
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Headline
-                </label>
-                <input
-                  type="text"
-                  name="headline"
-                  defaultValue={editingBanner?.config.headline || ""}
-                  required
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Button Text
-                </label>
-                <input
-                  type="text"
-                  name="buttonText"
-                  defaultValue={editingBanner?.config.buttonText || ""}
-                  required
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Button Color
-                </label>
-                <input
-                  type="text"
-                  name="buttonColor"
-                  defaultValue={editingBanner?.config.buttonColor || "#000000"}
-                  required
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="#HEXCODE"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Background Color
-                </label>
-                <input
-                  type="text"
-                  name="backgroundColor"
-                  defaultValue={
-                    editingBanner?.config.backgroundColor || "#FFFFFF"
-                  }
-                  required
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="#HEXCODE"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Link
-                </label>
-                <input
-                  type="text"
-                  name="link"
-                  defaultValue={editingBanner?.config.link || ""}
-                  required
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Order
-                </label>
-                <input
-                  type="number"
-                  name="order"
-                  defaultValue={editingBanner?.order || 1}
-                  min={1}
-                  required
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Visible
-                </label>
-                <select
-                  name="isVisible"
-                  defaultValue={editingBanner?.isVisible ? "true" : "false"}
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                >
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Page ID
-                </label>
-                <input
-                  type="number"
-                  name="pageId"
-                  defaultValue={editingBanner?.pageId || ""}
-                  required
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                />
-              </div>
-              <div className="flex justify-end space-x-3">
+      {/* Create/Edit Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white rounded-xl shadow-xl w-full max-w-lg p-6 border border-gray-100 max-h-[80vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-gray-800">
+                  {editingBanner ? "Edit Banner" : "Create Banner"}
+                </h2>
                 <button
-                  type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                  className="text-gray-500 hover:text-gray-700"
                 >
-                  Cancel
+                  <X size={20} />
                 </button>
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors"
-                >
-                  {editingBanner ? "Update" : "Create"}
-                </motion.button>
               </div>
-            </form>
-          </div>
-        </Modal>
-      )}
+              <BannerForm
+                form={form}
+                onSubmit={handleCreateOrUpdate}
+                isLoading={editingBanner ? isUpdating : isCreating}
+                submitLabel={editingBanner ? "Update" : "Create"}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Delete Confirmation */}
+      <ConfirmModal
+        isOpen={isConfirmModalOpen}
+        message="Are you sure you want to delete this banner? This action cannot be undone."
+        onConfirm={handleDelete}
+        onCancel={() => setIsConfirmModalOpen(false)}
+        title="Delete Banner"
+        type="danger"
+      />
     </div>
   );
 };

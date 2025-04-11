@@ -1,16 +1,20 @@
+import { Prisma } from "@prisma/client";
 import prisma from "../config/database";
 
 class AddressRepository {
-  async createAddress(data: {
-    orderId: string;
-    userId: string;
-    street: string;
-    city: string;
-    state: string;
-    country: string;
-    zip: string;
-  }) {
-    return prisma.address.create({
+  async createAddress(
+    data: {
+      orderId: string;
+      userId: string;
+      street: string;
+      city: string;
+      state: string;
+      country: string;
+      zip: string;
+    },
+    tx?: Prisma.TransactionClient
+  ) {
+    return tx?.address.create({
       data: {
         orderId: data.orderId,
         userId: data.userId,
