@@ -21,7 +21,6 @@ const ToggleableText: React.FC<ToggleableTextProps> = ({
   truncateClassName = "truncate",
   fullClassName = "whitespace-pre-wrap",
 }) => {
-  console.log("content: ", content);
   const [isFullVisible, toggleFullVisible] = useToggle(false);
 
   const displayedText = isFullVisible

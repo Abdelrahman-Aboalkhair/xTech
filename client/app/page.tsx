@@ -1,8 +1,6 @@
 import {
   BestSellingSection,
-  ExploreProductsSection,
   NewArrivalSection,
-  FlashSaleSection,
   PromotionalBanner,
   BenefitsSection,
 } from "./components/sections/home";
@@ -13,10 +11,8 @@ const Home = () => {
   return (
     <MainLayout>
       <HeroSection />
-      <FlashSaleSection />
       <BestSellingSection />
       <PromotionalBanner />
-      <ExploreProductsSection />
       <NewArrivalSection />
       <BenefitsSection />
     </MainLayout>

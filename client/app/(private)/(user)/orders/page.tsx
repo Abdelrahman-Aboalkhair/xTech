@@ -5,8 +5,8 @@ import Table from "@/app/components/layout/Table";
 import MainLayout from "@/app/components/templates/MainLayout";
 import { motion } from "framer-motion";
 import { Package, Calendar, ExternalLink } from "lucide-react";
-import ToggleableId from "@/app/components/atoms/ToggleableText";
 import Link from "next/link";
+import ToggleableText from "@/app/components/atoms/ToggleableText";
 
 const UserOrders = () => {
   const { data, isLoading, error } = useGetUserOrdersQuery({});
@@ -17,7 +17,9 @@ const UserOrders = () => {
       key: "id",
       label: "Order ID",
       sortable: true,
-      render: (row) => <ToggleableId id={row?.id || "N/A"} />,
+      render: (row) => (
+        <ToggleableText content={row?.id || "N/A"} truncateLength={10} />
+      ),
     },
     {
       key: "orderDate",

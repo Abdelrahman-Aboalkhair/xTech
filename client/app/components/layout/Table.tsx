@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { debounce } from "lodash";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
 import { Loader2, ArrowUpDown, FileText, RefreshCw } from "lucide-react";
-import SearchBar from "../atoms/SearchBar";
+import SearchBar from "../molecules/SearchBar";
 import PaginationComponent from "../organisms/Pagination";
 
 interface Column {

@@ -35,9 +35,17 @@ class PageRepository {
   }
 
   async update(id: number, data: any) {
+    const cleanData = { ...data };
+
+    for (const key of ["sections", "banners"]) {
+      if (Array.isArray(cleanData[key]) && cleanData[key].length === 0) {
+        delete cleanData[key];
+      }
+    }
+
     return prisma.page.update({
       where: { id },
-      data,
+      data: cleanData,
     });
   }
 

@@ -2,90 +2,191 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Package } from "lucide-react";
-import { useGetSectionByPageSlugQuery } from "@/app/store/apis/SectionApi";
 
-const NewArrivalSection = () => {
-  const { data: sectionsData, isLoading } =
-    useGetSectionByPageSlugQuery("landing");
+interface Arrival {
+  image: string;
+  title: string;
+  description: string;
+}
 
-  // Find the NewArrivals section from the API response
-  const newArrivalsSection = sectionsData?.sections?.find(
-    (section: any) => section.type === "NewArrivals"
-  );
-  const arrivals = newArrivalsSection?.content || []; // Default to empty array if no data
+interface NewArrivalSectionProps {
+  data?: {
+    content: Arrival[];
+  };
+  isPreview?: boolean;
+}
+
+const defaultArrivals: Arrival[] = [
+  {
+    image: "/images/product-placeholder.png",
+    title: "Featured Arrival",
+    description: "Discover our latest flagship product.",
+  },
+  {
+    image: "/images/product-placeholder.png",
+    title: "New Release",
+    description: "A stylish addition to our collection.",
+  },
+  {
+    image: "/images/product-placeholder.png",
+    title: "Hot Pick",
+    description: "Explore this trending item today.",
+  },
+];
+
+const NewArrivalSection = ({
+  data,
+  isPreview = false,
+}: NewArrivalSectionProps) => {
+  const arrivals =
+    Array.isArray(data?.content) && data.content.length > 0
+      ? data.content
+      : defaultArrivals;
 
   return (
-    <section className="max-w-7xl px-4 py-12">
+    <section
+      className={`w-full ${
+        isPreview
+          ? "max-w-full scale-75 py-4 px-2"
+          : "max-w-7xl py-16 px-6 mx-auto"
+      } bg-gray-50 rounded-2xl`}
+    >
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center space-x-3 mb-8"
+        className={`flex items-center space-x-3 ${
+          isPreview ? "mb-4" : "mb-10"
+        }`}
       >
-        <Package size={24} className="text-indigo-500" />
-        <h2 className="text-2xl font-bold text-gray-800 capitalize">
+        <Package
+          size={isPreview ? 16 : 28}
+          className="text-indigo-600"
+          aria-hidden="true"
+        />
+        <h2
+          className={`font-semibold text-gray-900 capitalize ${
+            isPreview ? "text-xl" : "text-3xl"
+          } tracking-tight`}
+        >
           New Arrivals
         </h2>
       </motion.div>
 
       {/* Grid Layout */}
-      {isLoading ? (
-        <div className="text-center">Loading new arrivals...</div>
-      ) : arrivals.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {/* Large Featured Item (First Item) */}
+      <div
+        className={`grid grid-cols-1 ${
+          isPreview ? "md:grid-cols-2 gap-4" : "md:grid-cols-4 gap-8"
+        }`}
+      >
+        {/* Large Featured Item (First Item) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className={`${
+            isPreview
+              ? "md:col-span-1 md:row-span-1 h-40"
+              : "md:col-span-2 md:row-span-2 h-[500px]"
+          } relative rounded-2xl overflow-hidden shadow-lg group bg-white`}
+          role="article"
+          aria-labelledby={`featured-title-${arrivals[0].title}`}
+        >
+          <Image
+            src={arrivals[0].image}
+            alt={arrivals[0].title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10"></div>
+          <div
+            className={`absolute inset-0 flex flex-col justify-end text-white z-20 ${
+              isPreview ? "p-3" : "p-8"
+            }`}
+          >
+            <h3
+              id={`featured-title-${arrivals[0].title}`}
+              className={`font-semibold tracking-tight ${
+                isPreview ? "text-base" : "text-2xl"
+              }`}
+            >
+              {arrivals[0].title}
+            </h3>
+            <p
+              className={`mt-2 line-clamp-2 ${
+                isPreview ? "text-xs" : "text-base"
+              } opacity-90`}
+            >
+              {arrivals[0].description}
+            </p>
+            <button
+              className={`${
+                isPreview
+                  ? "mt-2 text-xs px-4 py-1.5"
+                  : "mt-4 text-sm px-6 py-2"
+              } font-medium bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-all duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+              aria-label={`Shop ${arrivals[0].title}`}
+            >
+              Shop Now
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Smaller Items */}
+        {arrivals.slice(1).map((item: Arrival, index: number) => (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="md:col-span-2 md:row-span-2 relative h-[450px] rounded-xl overflow-hidden group"
+            key={item.title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.15 }}
+            className={`relative ${
+              isPreview ? "h-32" : "h-[240px]"
+            } rounded-2xl overflow-hidden shadow-md group bg-white`}
+            role="article"
+            aria-labelledby={`item-title-${item.title}`}
           >
             <Image
-              src={arrivals[0].image}
-              alt={arrivals[0].title}
+              src={item.image}
+              alt={item.title}
               fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"></div>
-            <div className="absolute inset-0 flex flex-col justify-end p-6 text-white z-20">
-              <h3 className="text-xl font-semibold">{arrivals[0].title}</h3>
-              <p className="text-sm mt-1">{arrivals[0].description}</p>
-              <button className="mt-3 text-sm font-medium text-indigo-300 hover:text-indigo-100 transition-colors duration-200 w-fit">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10"></div>
+            <div
+              className={`absolute inset-0 flex flex-col justify-end text-white z-20 ${
+                isPreview ? "p-3" : "p-5"
+              }`}
+            >
+              <h3
+                id={`item-title-${item.title}`}
+                className={`font-semibold tracking-tight ${
+                  isPreview ? "text-sm" : "text-lg"
+                }`}
+              >
+                {item.title}
+              </h3>
+              <p
+                className={`mt-1 line-clamp-2 ${
+                  isPreview ? "text-[10px]" : "text-sm"
+                } opacity-90`}
+              >
+                {item.description}
+              </p>
+              <button
+                className={`${
+                  isPreview
+                    ? "mt-2 text-[10px] px-3 py-1"
+                    : "mt-3 text-xs px-4 py-1.5"
+                } font-medium bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-all duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+                aria-label={`Shop ${item.title}`}
+              >
                 Shop Now
               </button>
             </div>
           </motion.div>
-
-          {/* Smaller Items */}
-          {arrivals.slice(1).map((item: any, index: number) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative h-[200px] rounded-xl overflow-hidden group"
-            >
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"></div>
-              <div className="absolute inset-0 flex flex-col justify-end p-4 text-white z-20">
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="text-xs mt-1 line-clamp-2">{item.description}</p>
-                <button className="mt-2 text-xs font-medium text-indigo-300 hover:text-indigo-100 transition-colors duration-200 w-fit">
-                  Shop Now
-                </button>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      ) : (
-        <div className="text-center">No new arrivals available</div>
-      )}
+        ))}
+      </div>
     </section>
   );
 };

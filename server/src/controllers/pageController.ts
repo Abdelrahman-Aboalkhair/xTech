@@ -22,6 +22,7 @@ class PageController {
   });
 
   updatePage = asyncHandler(async (req: Request, res: Response) => {
+    console.log("req.body => ", req.body);
     const updated = await this.pageService.updatePage(
       Number(req.params.id),
       req.body

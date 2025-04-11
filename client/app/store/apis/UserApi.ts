@@ -9,6 +9,13 @@ export const userApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["User"],
     }),
+    getAllAdmins: builder.query({
+      query: () => ({
+        url: "/users/admins",
+        credentials: "include",
+      }),
+      providesTags: ["User"],
+    }),
     getProfile: builder.query({
       query: (id) => ({
         url: `/users/profile/${id}`,
@@ -48,6 +55,7 @@ export const userApi = apiSlice.injectEndpoints({
 });
 
 export const {
+  useGetAllAdminsQuery,
   useCreateAdminMutation,
   useDeleteUserMutation,
   useGetProfileQuery,

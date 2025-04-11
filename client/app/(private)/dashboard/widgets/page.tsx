@@ -3,15 +3,16 @@ import { useGetAllWidgetsQuery } from "@/app/store/apis/WidgetApi";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Sliders, Loader2, AlertCircle, Pencil, Plus } from "lucide-react";
-import Modal from "@/app/components/organisms/Modal";
 import useToast from "@/app/hooks/ui/useToast";
-import Image from "next/image";
+import Topbar from "@/app/components/layout/Topbar";
+import Modal from "@/app/components/organisms/Modal";
+import HeroSection from "@/app/components/sections/home/HeroSection";
 
 interface WidgetData {
   id: number;
   name: string;
   type: string;
-  config: any; // Varies by type (PromoSection or Topbar)
+  config: any;
   isVisible: boolean;
   location: string;
   order: number;
@@ -37,11 +38,9 @@ const WidgetsDashboard = () => {
       isVisible: formData.get("isVisible") === "true",
       location: formData.get("location") as string,
       order: Number(formData.get("order")),
-      // Config editing simplified; expand for type-specific fields
     };
 
     try {
-      // Placeholder for update API call (e.g., useUpdateWidgetMutation)
       console.log("Updated widget:", updatedWidget);
       setIsModalOpen(false);
       setEditingWidget(null);
@@ -56,66 +55,9 @@ const WidgetsDashboard = () => {
   const renderWidgetPreview = (widget: WidgetData) => {
     switch (widget.type) {
       case "PromoSection":
-        const promoConfig = widget.config as {
-          link: string;
-          promoText: string;
-          productIcon: string;
-          productName: string;
-          sliderImages: string[];
-          backgroundColor: string;
-        };
-        return (
-          <div
-            className="p-4 rounded-md"
-            style={{ backgroundColor: promoConfig.backgroundColor }}
-          >
-            <div className="flex items-center space-x-3 mb-2">
-              <Image
-                src={promoConfig.productIcon}
-                alt={promoConfig.productName}
-                width={40}
-                height={40}
-                className="object-cover rounded-full"
-              />
-              <div>
-                <p className="text-sm font-medium text-white">
-                  {promoConfig.productName}
-                </p>
-                <p className="text-xs text-gray-200">{promoConfig.promoText}</p>
-              </div>
-            </div>
-            <div className="flex space-x-2 overflow-x-auto">
-              {promoConfig.sliderImages.slice(0, 3).map((img, idx) => (
-                <Image
-                  key={idx}
-                  src={img}
-                  alt={`Slide ${idx + 1}`}
-                  width={60}
-                  height={60}
-                  className="object-cover rounded-md"
-                />
-              ))}
-            </div>
-          </div>
-        );
+        return <HeroSection config={widget.config} isPreview={true} />;
       case "Topbar":
-        const topbarConfig = widget.config as {
-          shopLink: string;
-          shopText: string;
-          dispatchText: string;
-          giftCardText: string;
-          shippingText: string;
-        };
-        return (
-          <div className="bg-gray-800 p-2 rounded-md text-white text-xs">
-            <div className="flex justify-between items-center">
-              <span>{topbarConfig.shopText}</span>
-              <span>{topbarConfig.dispatchText}</span>
-              <span>{topbarConfig.giftCardText}</span>
-              <span>{topbarConfig.shippingText}</span>
-            </div>
-          </div>
-        );
+        return <Topbar config={widget.config} isPreview={true} />; // Assuming Topbar accepts similar props
       default:
         return <p className="text-sm text-gray-600">No preview available</p>;
     }
@@ -298,7 +240,6 @@ const WidgetsDashboard = () => {
                   <option value="false">No</option>
                 </select>
               </div>
-              {/* Config editing simplified; expand for type-specific fields */}
               <p className="text-sm text-gray-500">
                 Config editing is type-specific and requires additional fields.
               </p>

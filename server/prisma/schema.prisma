@@ -20,6 +20,14 @@ enum ORDER_STATUS {
   DELIVERED
 }
 
+enum SECTION_TYPE {
+  HERO
+  FEATURED_LIST
+  CTA
+  PROMO
+  TESTIMONIAL
+}
+
 model User {
   id                            String    @id @default(uuid())
   googleId                      String?   

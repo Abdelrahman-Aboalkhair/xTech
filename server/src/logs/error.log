@@ -1421,3 +1421,71 @@ Argument `category`: Invalid value provided. Expected CategoryUpdateOneWithoutPr
 [2025-04-10T16:39:43.081Z] [31MERROR[39M: Can't find /api/v1/banners on this server!
 [2025-04-10T16:41:42.894Z] [31MERROR[39M: Can't find /api/v1/sections on this server!
 [2025-04-10T16:51:19.321Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T17:07:37.703Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T17:07:37.710Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-10T17:07:37.753Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-11T09:07:45.503Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-11T09:07:45.587Z] [31MERROR[39M: Refresh token not found
+[2025-04-11T09:18:39.298Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.page.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/pageRepository.ts:9:24
+
+  6 }
+  7 
+  8 async findAll() {
+→ 9   return prisma.page.findMany(
+Error converting field "type" of expected non-nullable type "String", found incompatible value of "HERO".
+[2025-04-11T09:18:42.412Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.page.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/pageRepository.ts:9:24
+
+  6 }
+  7 
+  8 async findAll() {
+→ 9   return prisma.page.findMany(
+Error converting field "type" of expected non-nullable type "String", found incompatible value of "HERO".
+[2025-04-11T09:24:14.097Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-11T09:25:13.929Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-11T09:28:08.603Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T09:28:20.343Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-11T09:28:53.957Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-11T09:33:40.979Z] [31MERROR[39M: 
+Invalid `prisma.page.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/repositories/pageRepository.ts:9:24
+
+  6 }
+  7 
+  8 async findAll() {
+→ 9   return prisma.page.findMany(
+Attempted to serialize non-enum-compatible value 'null' for enum 'SECTION_TYPE'
+[2025-04-11T09:34:05.322Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-11T09:40:30.835Z] [31MERROR[39M: Record not found
+[2025-04-11T09:43:16.667Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T09:43:16.670Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T09:43:16.696Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-11T10:02:29.700Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T10:23:40.683Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T10:23:40.694Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T10:23:40.726Z] [31MERROR[39M: Refresh token is invalidated
+[2025-04-11T10:40:53.967Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T10:52:08.318Z] [31MERROR[39M: request entity too large
+[2025-04-11T10:58:50.768Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T13:21:37.756Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-11T13:21:37.812Z] [31MERROR[39M: Refresh token not found
+[2025-04-11T13:31:12.894Z] [31MERROR[39M: Validation errors:
+[2025-04-11T13:31:12.895Z] [31MERROR[39M: Validation failed
+[2025-04-11T13:43:10.498Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-11T13:43:10.790Z] [31MERROR[39M: Validation errors:
+[2025-04-11T13:43:10.791Z] [31MERROR[39M: Validation failed
+[2025-04-11T13:43:23.394Z] [31MERROR[39M: Validation errors:
+[2025-04-11T13:43:23.395Z] [31MERROR[39M: Validation failed
+[2025-04-11T13:43:29.838Z] [31MERROR[39M: Validation errors:
+[2025-04-11T13:43:29.839Z] [31MERROR[39M: Validation failed
+[2025-04-11T13:44:13.498Z] [31MERROR[39M: Validation errors:
+[2025-04-11T13:44:13.499Z] [31MERROR[39M: Validation failed
+[2025-04-11T13:45:54.084Z] [31MERROR[39M: Validation errors:
+[2025-04-11T13:45:54.084Z] [31MERROR[39M: Validation failed
+[2025-04-11T13:54:17.494Z] [31MERROR[39M: Validation errors:
+[2025-04-11T13:54:17.495Z] [31MERROR[39M: Validation failed
+[2025-04-11T14:00:34.630Z] [31MERROR[39M: Validation errors:
+[2025-04-11T14:00:34.631Z] [31MERROR[39M: Validation failed

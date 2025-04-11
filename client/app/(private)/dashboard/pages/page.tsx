@@ -1,5 +1,9 @@
 "use client";
-import { useGetAllPagesQuery } from "@/app/store/apis/PageApi";
+import {
+  useCreatePageMutation,
+  useGetAllPagesQuery,
+  useUpdatePageMutation,
+} from "@/app/store/apis/PageApi";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FileText, Loader2, AlertCircle, Pencil } from "lucide-react";
@@ -28,6 +32,14 @@ interface PageData {
 const PagesDashboard = () => {
   const { showToast } = useToast();
   const { data, isLoading, error, refetch } = useGetAllPagesQuery({});
+  const [updatePage, { error: updateError }] = useUpdatePageMutation();
+  if (updateError) {
+    console.log("updateError => ", updateError);
+  }
+  const [createPage, { error: createError }] = useCreatePageMutation();
+  if (createError) {
+    console.log("createError => ", createError);
+  }
   const pages = data?.pages || [];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,6 +47,7 @@ const PagesDashboard = () => {
 
   const methods = useForm<PageData>({
     defaultValues: editingPage || {
+      id: 0,
       slug: "",
       title: "",
       isVisible: true,
@@ -47,7 +60,6 @@ const PagesDashboard = () => {
 
   const { handleSubmit, reset } = methods;
 
-  // Reset form values when editingPage changes
   React.useEffect(() => {
     if (editingPage) {
       reset(editingPage);
@@ -66,13 +78,20 @@ const PagesDashboard = () => {
 
   const onSubmit = async (data: PageData) => {
     const updatedPage: Partial<PageData> = {
-      id: editingPage?.id,
       ...data,
     };
 
+    console.log("updatedPage => ", updatedPage);
+
     try {
-      // Placeholder for actual update mutation
-      console.log("Updated page:", updatedPage);
+      if (editingPage) {
+        await updatePage({
+          pageId: editingPage?.id || 0,
+          updatedPage,
+        }).unwrap();
+      } else {
+        await createPage(data).unwrap();
+      }
       setIsModalOpen(false);
       setEditingPage(null);
       refetch();
