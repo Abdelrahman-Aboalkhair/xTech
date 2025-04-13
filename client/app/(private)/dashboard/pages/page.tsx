@@ -49,8 +49,10 @@ const PagesDashboard = () => {
   });
 
   const handleCreateOrUpdate = async (data: PageFormData) => {
+    console.log("data being submitted => ", data);
     try {
       if (editingPage) {
+        console.log("editingPage => ", editingPage);
         await updatePage({
           pageId: editingPage.id || 0,
           updatedPage: data,
@@ -283,7 +285,6 @@ const PagesDashboard = () => {
         </motion.div>
       </motion.div>
 
-      {/* Create/Edit Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <motion.div

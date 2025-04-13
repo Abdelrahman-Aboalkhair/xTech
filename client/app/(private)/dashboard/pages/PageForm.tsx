@@ -92,17 +92,23 @@ const PageForm: React.FC<PageFormProps> = ({
         <Controller
           name="isVisible"
           control={control}
-          render={() => <Switch name="isVisible" label="Visible" />}
+          render={() => (
+            <Switch control={control} name="isVisible" label="Visible" />
+          )}
         />
         <Controller
           name="showInNavbar"
           control={control}
-          render={() => <Switch name="showInNavbar" label="In Navbar" />}
+          render={() => (
+            <Switch control={control} name="showInNavbar" label="In Navbar" />
+          )}
         />
         <Controller
           name="isPublished"
           control={control}
-          render={() => <Switch name="isPublished" label="Published" />}
+          render={() => (
+            <Switch control={control} name="isPublished" label="Published" />
+          )}
         />
       </div>
 

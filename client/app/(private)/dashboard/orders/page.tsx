@@ -9,6 +9,8 @@ import {
   Calendar,
   DollarSign,
   ExternalLink,
+  Trash2,
+  Edit,
 } from "lucide-react";
 import Link from "next/link";
 import ToggleableText from "@/app/components/atoms/ToggleableText";
@@ -106,6 +108,40 @@ const OrdersDashboard = () => {
           <ExternalLink size={16} />
           <span>Track</span>
         </Link>
+      ),
+    },
+    {
+      key: "actions",
+      label: "Actions",
+      render: (row: any) => (
+        <div className="flex space-x-2">
+          <button
+            onClick={() => {
+              // setEditingProduct({
+              //   id: row.id,
+              //   name: row.name,
+              //   price: row.price,
+              //   discount: row.discount,
+              //   stock: row.stock,
+              //   categoryId: row.categoryId,
+              //   description: row.description || "",
+              //   images: row.images || [""],
+              // });
+              // setIsModalOpen(true);
+            }}
+            className="text-blue-600 hover:text-blue-800 flex items-center gap-1"
+          >
+            <Edit size={16} />
+            Edit
+          </button>
+          <button
+            onClick={() => console.log(row.id)}
+            className="text-red-600 hover:text-red-800 flex items-center gap-1"
+          >
+            <Trash2 size={16} />
+            Delete
+          </button>
+        </div>
       ),
     },
   ];

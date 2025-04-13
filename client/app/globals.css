@@ -34,3 +34,13 @@
 .td {
   @apply p-3 text-[13.5px] font-medium capitalize;
 }
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}

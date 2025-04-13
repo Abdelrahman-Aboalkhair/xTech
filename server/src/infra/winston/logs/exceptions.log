@@ -1,0 +1,252 @@
+[2025-04-11T15:34:30.959Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m48[0m:[93m50[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m48[0m     const product = await this.productRepository.findProductById(productId);
+[7m  [0m [91m                                                 ~~~~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/productRepository.ts[0m:[93m68[0m:[93m37[0m
+    [7m68[0m   async findProductById(id: string, tx: Prisma.TransactionClient) {
+    [7m  [0m [96m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'tx' was not provided.
+[96msrc/services/productService.ts[0m:[93m89[0m:[93m58[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m89[0m     const existingProduct = await this.productRepository.findProductById(
+[7m  [0m [91m                                                         ~~~~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/productRepository.ts[0m:[93m68[0m:[93m37[0m
+    [7m68[0m   async findProductById(id: string, tx: Prisma.TransactionClient) {
+    [7m  [0m [96m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'tx' was not provided.
+[96msrc/services/productService.ts[0m:[93m104[0m:[93m50[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m104[0m     const product = await this.productRepository.findProductById(productId);
+[7m   [0m [91m                                                 ~~~~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/productRepository.ts[0m:[93m68[0m:[93m37[0m
+    [7m68[0m   async findProductById(id: string, tx: Prisma.TransactionClient) {
+    [7m  [0m [96m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'tx' was not provided.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/productService.ts[0m:[93m48[0m:[93m50[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m48[0m     const product = await this.productRepository.findProductById(productId);
+[7m  [0m [91m                                                 ~~~~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/productRepository.ts[0m:[93m68[0m:[93m37[0m
+    [7m68[0m   async findProductById(id: string, tx: Prisma.TransactionClient) {
+    [7m  [0m [96m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'tx' was not provided.
+[96msrc/services/productService.ts[0m:[93m89[0m:[93m58[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m89[0m     const existingProduct = await this.productRepository.findProductById(
+[7m  [0m [91m                                                         ~~~~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/productRepository.ts[0m:[93m68[0m:[93m37[0m
+    [7m68[0m   async findProductById(id: string, tx: Prisma.TransactionClient) {
+    [7m  [0m [96m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'tx' was not provided.
+[96msrc/services/productService.ts[0m:[93m104[0m:[93m50[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m104[0m     const product = await this.productRepository.findProductById(productId);
+[7m   [0m [91m                                                 ~~~~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/productRepository.ts[0m:[93m68[0m:[93m37[0m
+    [7m68[0m   async findProductById(id: string, tx: Prisma.TransactionClient) {
+    [7m  [0m [96m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'tx' was not provided.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-11T15:34:49.829Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/orderService.ts[0m:[93m24[0m:[93m46[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m24[0m     const order = await this.orderRepository.findOrderById(orderId);
+[7m  [0m [91m                                             ~~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/orderRepository.ts[0m:[93m17[0m:[93m40[0m
+    [7m17[0m   async findOrderById(orderId: string, tx: Prisma.TransactionClient) {
+    [7m  [0m [96m                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'tx' was not provided.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/orderService.ts[0m:[93m24[0m:[93m46[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 1.
+
+[7m24[0m     const order = await this.orderRepository.findOrderById(orderId);
+[7m  [0m [91m                                             ~~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/orderRepository.ts[0m:[93m17[0m:[93m40[0m
+    [7m17[0m   async findOrderById(orderId: string, tx: Prisma.TransactionClient) {
+    [7m  [0m [96m                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'tx' was not provided.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-11T15:34:56.647Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m73[0m:[93m9[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m73[0m         tx
+[7m  [0m [91m        ~~[0m
+[96msrc/services/webhookService.ts[0m:[93m86[0m:[93m11[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m86[0m           tx
+[7m  [0m [91m          ~~[0m
+[96msrc/services/webhookService.ts[0m:[93m131[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'tx' does not exist in type '{ userId: string; amount: number; orderItems: { productId: string; quantity: number; }[]; status: ORDER_STATUS; }'.
+
+[7m131[0m           tx: tx as Prisma.TransactionClient,
+[7m   [0m [91m          ~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m73[0m:[93m9[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+
+[7m73[0m         tx
+[7m  [0m [91m        ~~[0m
+[96msrc/services/webhookService.ts[0m:[93m86[0m:[93m11[0m - [91merror[0m[90m TS2554: [0mExpected 2 arguments, but got 3.
+
+[7m86[0m           tx
+[7m  [0m [91m          ~~[0m
+[96msrc/services/webhookService.ts[0m:[93m131[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'tx' does not exist in type '{ userId: string; amount: number; orderItems: { productId: string; quantity: number; }[]; status: ORDER_STATUS; }'.
+
+[7m131[0m           tx: tx as Prisma.TransactionClient,
+[7m   [0m [91m          ~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-11T15:35:06.066Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m114[0m:[93m64[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ orderId: string; userId: string; method: any; amount: number; }' is not assignable to parameter of type '{ orderId: string; userId: string; method: string; amount: number; tx: TransactionClient; }'.
+  Property 'tx' is missing in type '{ orderId: string; userId: string; method: any; amount: number; }' but required in type '{ orderId: string; userId: string; method: string; amount: number; tx: TransactionClient; }'.
+
+[7m114[0m     const payment = await this.paymentRepository.createPayment({
+[7m   [0m [91m                                                               ~[0m
+[7m115[0m       orderId: order.id,
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m118[0m       amount,
+[7m   [0m [91m~~~~~~~~~~~~~[0m
+[7m119[0m     });
+[7m   [0m [91m~~~~~[0m
+
+  [96msrc/repositories/paymentRepository.ts[0m:[93m10[0m:[93m5[0m
+    [7m10[0m     tx: Prisma.TransactionClient;
+    [7m  [0m [96m    ~~[0m
+    'tx' is declared here.
+[96msrc/services/webhookService.ts[0m:[93m122[0m:[93m67[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' is not assignable to parameter of type '{ orderId: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; tx: TransactionClient; }'.
+  Property 'tx' is missing in type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' but required in type '{ orderId: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; tx: TransactionClient; }'.
+
+[7m122[0m     const shipment = await this.shipmentRepository.createShipment(shipmentData);
+[7m   [0m [91m                                                                  ~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/shipmentRepository.ts[0m:[93m10[0m:[93m5[0m
+    [7m10[0m     tx: Prisma.TransactionClient;
+    [7m  [0m [96m    ~~[0m
+    'tx' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m114[0m:[93m64[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ orderId: string; userId: string; method: any; amount: number; }' is not assignable to parameter of type '{ orderId: string; userId: string; method: string; amount: number; tx: TransactionClient; }'.
+  Property 'tx' is missing in type '{ orderId: string; userId: string; method: any; amount: number; }' but required in type '{ orderId: string; userId: string; method: string; amount: number; tx: TransactionClient; }'.
+
+[7m114[0m     const payment = await this.paymentRepository.createPayment({
+[7m   [0m [91m                                                               ~[0m
+[7m115[0m       orderId: order.id,
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m118[0m       amount,
+[7m   [0m [91m~~~~~~~~~~~~~[0m
+[7m119[0m     });
+[7m   [0m [91m~~~~~[0m
+
+  [96msrc/repositories/paymentRepository.ts[0m:[93m10[0m:[93m5[0m
+    [7m10[0m     tx: Prisma.TransactionClient;
+    [7m  [0m [96m    ~~[0m
+    'tx' is declared here.
+[96msrc/services/webhookService.ts[0m:[93m122[0m:[93m67[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' is not assignable to parameter of type '{ orderId: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; tx: TransactionClient; }'.
+  Property 'tx' is missing in type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' but required in type '{ orderId: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; tx: TransactionClient; }'.
+
+[7m122[0m     const shipment = await this.shipmentRepository.createShipment(shipmentData);
+[7m   [0m [91m                                                                  ~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/shipmentRepository.ts[0m:[93m10[0m:[93m5[0m
+    [7m10[0m     tx: Prisma.TransactionClient;
+    [7m  [0m [96m    ~~[0m
+    'tx' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-11T15:35:16.086Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m122[0m:[93m67[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' is not assignable to parameter of type '{ orderId: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; tx: TransactionClient; }'.
+  Property 'tx' is missing in type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' but required in type '{ orderId: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; tx: TransactionClient; }'.
+
+[7m122[0m     const shipment = await this.shipmentRepository.createShipment(shipmentData);
+[7m   [0m [91m                                                                  ~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/shipmentRepository.ts[0m:[93m10[0m:[93m5[0m
+    [7m10[0m     tx: Prisma.TransactionClient;
+    [7m  [0m [96m    ~~[0m
+    'tx' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/webhookService.ts[0m:[93m122[0m:[93m67[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' is not assignable to parameter of type '{ orderId: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; tx: TransactionClient; }'.
+  Property 'tx' is missing in type '{ carrier: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; orderId: string; }' but required in type '{ orderId: string; trackingNumber: string; shippedDate: Date; deliveryDate: Date; carrier: string; tx: TransactionClient; }'.
+
+[7m122[0m     const shipment = await this.shipmentRepository.createShipment(shipmentData);
+[7m   [0m [91m                                                                  ~~~~~~~~~~~~[0m
+
+  [96msrc/repositories/shipmentRepository.ts[0m:[93m10[0m:[93m5[0m
+    [7m10[0m     tx: Prisma.TransactionClient;
+    [7m  [0m [96m    ~~[0m
+    'tx' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-12T13:22:41.262Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
+Error: EIO: i/o error, write
+    at writeSync (node:fs:925:3)
+    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
+    at writeOrBuffer (node:internal/streams/writable:570:12)
+    at _write (node:internal/streams/writable:499:10)
+    at SyncWriteStream.Writable.write (node:internal/streams/writable:508:10)
+    at console.value (node:internal/console/constructor:298:16)
+    at console.log (node:internal/console/constructor:384:26)
+    at EventEmitter.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/config/redis.ts:50:32)
+    at EventEmitter.emit (node:events:507:28)
+    at EventEmitter.emit (node:domain:489:12)

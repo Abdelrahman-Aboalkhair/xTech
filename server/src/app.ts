@@ -9,7 +9,7 @@ import AppError from "./utils/AppError";
 import ExpressMongoSanitize from "express-mongo-sanitize";
 import hpp from "hpp";
 import morgan from "morgan";
-import logger from "./config/logger";
+import logger from "./infra/winston/logger";
 import compression from "compression";
 import usersRoutes from "./routes/userRoutes";
 import authRoutes from "./routes/authRoutes";
@@ -32,9 +32,9 @@ import widgetRoutes from "./routes/widgetRoutes";
 import bannerRoutes from "./routes/bannerRoutes";
 
 import passport from "passport";
-import configurePassport from "./config/passport";
+import configurePassport from "./infra/passport/passport";
 import session from "express-session";
-import redisClient from "./config/redis";
+import redisClient from "./infra/cache/redis";
 import { RedisStore } from "connect-redis";
 import bodyParser = require("body-parser");
 

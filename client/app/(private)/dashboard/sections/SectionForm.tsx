@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
 import { Layout } from "lucide-react";
 
@@ -30,19 +29,6 @@ const SectionForm: React.FC<SectionFormProps> = ({
     handleSubmit,
     formState: { errors },
   } = form;
-  const [contentError, setContentError] = useState<string | null>(null);
-
-  // Validate and parse JSON content
-  const validateContent = (value: string) => {
-    try {
-      JSON.parse(value);
-      setContentError(null);
-      return true;
-    } catch (e) {
-      setContentError("Invalid JSON format");
-      return false;
-    }
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -92,44 +78,6 @@ const SectionForm: React.FC<SectionFormProps> = ({
         />
         {errors.type && (
           <p className="text-red-500 text-sm mt-1">{errors.type.message}</p>
-        )}
-      </div>
-
-      {/* Content (JSON Editor) */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Content (JSON)
-        </label>
-        <Controller
-          name="content"
-          control={control}
-          rules={{
-            required: "Content is required",
-            validate: (value) =>
-              validateContent(JSON.stringify(value, null, 2)) || "Invalid JSON",
-          }}
-          render={({ field }) => (
-            <textarea
-              {...field}
-              value={
-                typeof field.value === "string"
-                  ? field.value
-                  : JSON.stringify(field.value, null, 2)
-              }
-              onChange={(e) => {
-                field.onChange(e.target.value);
-                validateContent(e.target.value);
-              }}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-gray-800 font-mono text-sm h-40"
-              placeholder='{"text": "Welcome", "image": "url"}'
-            />
-          )}
-        />
-        {errors.content && (
-          <p className="text-red-500 text-sm mt-1">{errors.content.message}</p>
-        )}
-        {contentError && !errors.content && (
-          <p className="text-red-500 text-sm mt-1">{contentError}</p>
         )}
       </div>
 

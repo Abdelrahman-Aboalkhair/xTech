@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Package } from "lucide-react";
-
+import Img1 from "@/app/assets/images/woman.png";
+import Img2 from "@/app/assets/images/speakers.png";
+import Img3 from "@/app/assets/images/gucci.png";
 interface Arrival {
   image: string;
   title: string;
@@ -18,17 +19,17 @@ interface NewArrivalSectionProps {
 
 const defaultArrivals: Arrival[] = [
   {
-    image: "/images/product-placeholder.png",
+    image: Img1,
     title: "Featured Arrival",
     description: "Discover our latest flagship product.",
   },
   {
-    image: "/images/product-placeholder.png",
+    image: Img2,
     title: "New Release",
     description: "A stylish addition to our collection.",
   },
   {
-    image: "/images/product-placeholder.png",
+    image: Img3,
     title: "Hot Pick",
     description: "Explore this trending item today.",
   },
@@ -45,33 +46,23 @@ const NewArrivalSection = ({
 
   return (
     <section
-      className={`w-full ${
-        isPreview
-          ? "max-w-full scale-75 py-4 px-2"
-          : "max-w-7xl py-16 px-6 mx-auto"
-      } bg-gray-50 rounded-2xl`}
+      className={`w-full my-[6%] ${
+        isPreview ? "max-w-full scale-75 py-4 px-2" : ""
+      } rounded-2xl`}
     >
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`flex items-center space-x-3 ${
+        className={`flex items-center space-x-3 my-10 ${
           isPreview ? "mb-4" : "mb-10"
         }`}
       >
-        <Package
-          size={isPreview ? 16 : 28}
-          className="text-indigo-600"
-          aria-hidden="true"
-        />
-        <h2
-          className={`font-semibold text-gray-900 capitalize ${
-            isPreview ? "text-xl" : "text-3xl"
-          } tracking-tight`}
-        >
+        <div className="h-6 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-600"></div>
+        <span className="ml-2 text-md font-semibold tracking-wider text-gray-700 uppercase">
           New Arrivals
-        </h2>
+        </span>
       </motion.div>
 
       {/* Grid Layout */}
@@ -149,7 +140,8 @@ const NewArrivalSection = ({
             <Image
               src={item.image}
               alt={item.title}
-              fill
+              width={300}
+              height={200}
               className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10"></div>

@@ -1,9 +1,5 @@
 import ProductSection from "../products/ProductSection";
 
-export const BestSellingSection = () => (
-  <ProductSection title="Best Selling Products" showTitle />
-);
-
 export const RelatedContentSection = () => (
   <ProductSection title="Related Content" showTitle />
 );

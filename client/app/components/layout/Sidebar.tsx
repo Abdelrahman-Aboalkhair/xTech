@@ -101,14 +101,14 @@ const Sidebar = () => {
         href={fullHref}
         className={`relative group flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 ${
           isActive
-            ? "bg-blue-100 text-blue-700 font-medium shadow-sm"
+            ? "bg-indigo-100 text-indigo-600 font-medium shadow-sm"
             : "text-gray-600 hover:bg-gray-100"
         }`}
       >
         <motion.div whileHover={{ scale: 1.1 }}>
           <Icon
             className={`h-5 w-5 transition ${
-              isActive ? "text-blue-700" : "group-hover:text-black"
+              isActive ? "text-indigo-600" : "group-hover:text-black"
             }`}
           />
         </motion.div>

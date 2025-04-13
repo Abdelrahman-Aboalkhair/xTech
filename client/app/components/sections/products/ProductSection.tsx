@@ -28,21 +28,21 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   const noProductsFound = data?.products?.length === 0;
 
   return (
-    <div className="w-[90%] p-8">
+    <div className="w-full p-8">
       {/* Header */}
       {(showTitle || viewAllButton) && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex items-center justify-between mb-8"
+          className="flex items-center justify-between mb-[2rem]"
         >
           {showTitle && (
             <div className="flex items-center space-x-3">
-              <Package size={24} className="text-indigo-500" />
-              <h2 className="text-2xl font-bold text-gray-800 capitalize">
+              <div className="h-6 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-600"></div>
+              <span className="ml-2 text-md font-semibold tracking-wider text-gray-700 uppercase">
                 {title}
-              </h2>
+              </span>
             </div>
           )}
           {viewAllButton && (

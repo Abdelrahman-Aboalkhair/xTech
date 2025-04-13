@@ -1,5 +1,8 @@
 "use client";
-
+import SliderImg1 from "@/app/assets/images/playstation.png";
+import SliderImg2 from "@/app/assets/images/gucci.png";
+import SliderImg3 from "@/app/assets/images/speakers.png";
+import AppleIcon from "@/app/assets/icons/apple.png";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -27,15 +30,11 @@ interface HeroSectionProps {
 
 const defaultContent: HeroContent = {
   backgroundColor: "#1a1a1a",
-  sliderImages: [
-    "/images/hero-placeholder1.jpg",
-    "/images/hero-placeholder2.jpg",
-    "/images/hero-placeholder3.jpg",
-  ],
+  sliderImages: [SliderImg1, SliderImg2, SliderImg3],
   promoText: "Discover Premium Products for Your Lifestyle",
   secondaryText: "Limited time offers with exclusive benefits",
   productName: "Featured Collection",
-  productIcon: "/icons/product-placeholder.png",
+  productIcon: AppleIcon,
   link: "/shop",
   buttonText: "Explore Now",
 };
@@ -113,7 +112,7 @@ const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
 
   return (
     <main
-      className={`relative w-[80%] mx-auto ${
+      className={`relative w-full mx-auto ${
         isPreview ? "scale-90 my-2" : "my-12"
       } overflow-hidden rounded-xl`}
       style={{
@@ -139,18 +138,6 @@ const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
             variants={itemVariants}
             className="flex items-center space-x-3 mb-2"
           >
-            {content.productIcon && (
-              <div className="bg-white/10 backdrop-blur-sm p-2 rounded-full">
-                <Image
-                  src={content.productIcon}
-                  alt={`${content.productName} Logo`}
-                  width={isPreview ? 24 : 32}
-                  height={isPreview ? 24 : 32}
-                  className="object-contain"
-                  aria-hidden="true"
-                />
-              </div>
-            )}
             <span
               className={`font-medium text-indigo-200 ${
                 isPreview ? "text-sm" : "text-lg"
@@ -187,7 +174,7 @@ const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
               href={content.link}
               className={`group inline-flex items-center ${
                 isPreview ? "text-sm px-4 py-2" : "px-6 py-3"
-              } font-semibold bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-all 
+              } font-semibold bg-indigo-700 text-white rounded-full hover:bg-indigo-700 transition-all 
               duration-300 shadow-lg hover:shadow-indigo-500/50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
               aria-label={`Shop ${content.productName}`}
             >
@@ -227,18 +214,18 @@ const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
                   x: { type: "spring", stiffness: 300, damping: 30 },
                   opacity: { duration: 0.5 },
                 }}
-                className="absolute inset-0"
+                className="absolute inset-0 flex items-center justify-center mx-auto w-full h-full"
                 style={{
-                  display: index === currentImageIndex ? "block" : "none",
+                  display: index === currentImageIndex ? "flex" : "none",
                 }}
               >
                 <Image
                   src={image}
                   alt={`Product image ${index + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  width={400}
+                  height={500}
                   priority={index === currentImageIndex}
-                  className="object-cover object-center"
+                  className="object-contain max-h-full max-w-full"
                 />
               </motion.div>
             ))}
@@ -260,20 +247,22 @@ const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
                   ))}
                 </div>
 
-                <button
-                  onClick={prevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all z-30"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft size={24} />
-                </button>
-                <button
-                  onClick={nextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all z-30"
-                  aria-label="Next image"
-                >
-                  <ChevronRight size={24} />
-                </button>
+                <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 flex justify-between px-4 z-30">
+                  <button
+                    onClick={prevImage}
+                    className="bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft size={24} />
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight size={24} />
+                  </button>
+                </div>
               </>
             )}
           </div>
@@ -286,7 +275,5 @@ const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
     </main>
   );
 };
-
-// Helper function to adjust color brightness
 
 export default HeroSection;

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { cn } from "@/app/utils";
 
 interface SwitchProps {
@@ -9,6 +9,7 @@ interface SwitchProps {
   disabled?: boolean;
   className?: string;
   checked?: boolean;
+  control: any;
 }
 
 const Switch: React.FC<SwitchProps> = ({
@@ -16,10 +17,8 @@ const Switch: React.FC<SwitchProps> = ({
   label,
   disabled = false,
   className,
-  checked,
+  control,
 }) => {
-  const { control } = useFormContext();
-
   return (
     <Controller
       name={name}

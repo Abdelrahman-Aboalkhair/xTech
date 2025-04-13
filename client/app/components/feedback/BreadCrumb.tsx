@@ -11,7 +11,10 @@ const BreadCrumb: React.FC = () => {
     <nav aria-label="Breadcrumb" className="mb-4">
       <ol className="flex flex-wrap items-center text-sm text-gray-500 space-x-1 sm:space-x-2">
         <li>
-          <Link href="/" className="hover:text-red-600 font-medium transition">
+          <Link
+            href="/"
+            className="hover:text-indigo-600 font-medium transition"
+          >
             Home
           </Link>
         </li>
@@ -25,13 +28,13 @@ const BreadCrumb: React.FC = () => {
               <span className="text-gray-400">/</span>
               <li>
                 {isLast ? (
-                  <span className="capitalize text-gray-700 font-semibold">
+                  <span className="capitalize text-indigo-500 font-semibold">
                     {decodeURIComponent(segment)}
                   </span>
                 ) : (
                   <Link
                     href={href}
-                    className="capitalize hover:text-red-600 font-medium transition"
+                    className="capitalize hover:text-indigo-600 font-medium transition"
                   >
                     {decodeURIComponent(segment)}
                   </Link>

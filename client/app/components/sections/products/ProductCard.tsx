@@ -127,7 +127,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 disabled={isLoading}
               >
                 <ShoppingCart size={16} />
-                <span>{isLoading ? "Adding..." : "Add to Cart"}</span>
+                <span>Add to Cart</span>
               </motion.button>
             ) : (
               <motion.div

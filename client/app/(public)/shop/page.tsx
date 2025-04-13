@@ -1,17 +1,16 @@
 import React from "react";
 import FilterBar from "@/app/components/organisms/FilterBar";
 import ProductSection from "@/app/components/sections/products/ProductSection";
-import Header from "@/app/components/layout/Header";
+import MainLayout from "@/app/components/templates/MainLayout";
 
 const ShopPage = () => {
   return (
-    <>
-      <Header />
-      <div className="flex items-start justify-between px-[2%]">
+    <MainLayout>
+      <div className="flex items-start justify-between w-full">
         <FilterBar />
         <ProductSection title="Shop now" showPagination />
       </div>
-    </>
+    </MainLayout>
   );
 };
 

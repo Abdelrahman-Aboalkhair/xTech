@@ -1,5 +1,5 @@
 import Footer from "../layout/Footer";
-import Header from "../layout/Header";
+import Navbar from "../layout/Navbar";
 
 export default function MainLayout({
   children,
@@ -8,8 +8,8 @@ export default function MainLayout({
 }) {
   return (
     <main className="flex flex-col min-h-screen w-full">
-      <Header />
-      {children}
+      <Navbar />
+      <div className="w-[82%] mx-auto "> {children}</div>
       <Footer />
     </main>
   );

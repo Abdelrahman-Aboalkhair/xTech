@@ -114,10 +114,8 @@ const Topbar = ({
 
   return (
     <div
-      className={`${
-        theme.bg
-      } text-white relative transition-all duration-300 ease-in-out ${
-        collapsed ? "h-0 overflow-hidden" : isPreview ? "p-2" : "py-2 px-4"
+      className={`bg-gradient-to-br from-gray-900 to-gray-950 text-white relative transition-all duration-300 ease-in-out ${
+        collapsed ? "h-0 overflow-hidden" : isPreview ? "p-2" : "py-4 px-4"
       }`}
     >
       {/* Collapse button (only on non-preview) */}

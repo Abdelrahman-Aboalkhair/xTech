@@ -23,7 +23,7 @@ const StatsCard = ({
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-medium text-gray-800">{title}</h3>
         {icon && (
-          <div className="text-blue-600 bg-blue-100 rounded-full p-2">
+          <div className="text-indigo-600 bg-indigo-100 rounded-full p-2">
             {icon}
           </div>
         )}
