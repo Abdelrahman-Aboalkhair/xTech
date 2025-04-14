@@ -1,7 +1,7 @@
 import { ORDER_STATUS } from "@prisma/client";
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class OrderRepository {
+export class OrderRepository {
   async findAllOrders() {
     return prisma.order.findMany({
       orderBy: { orderDate: "desc" },
@@ -46,5 +46,3 @@ class OrderRepository {
     return order;
   }
 }
-
-export default OrderRepository;

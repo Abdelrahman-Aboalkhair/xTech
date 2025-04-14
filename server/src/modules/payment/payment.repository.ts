@@ -1,6 +1,6 @@
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class PaymentRepository {
+export class PaymentRepository {
   async createPayment(data: {
     orderId: string;
     userId: string;
@@ -35,5 +35,3 @@ class PaymentRepository {
     });
   }
 }
-
-export default PaymentRepository;

@@ -1,7 +1,7 @@
+import prisma from "@/infra/database/database.config";
 import { ROLE } from "@prisma/client";
-import prisma from "../config/database";
 
-class UserRepository {
+export class UserRepository {
   async findAllUsers() {
     return await prisma.user.findMany();
   }
@@ -39,5 +39,3 @@ class UserRepository {
     return await prisma.user.delete({ where: { id } });
   }
 }
-
-export default UserRepository;

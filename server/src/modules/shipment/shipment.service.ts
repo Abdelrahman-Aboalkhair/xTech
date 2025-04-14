@@ -1,12 +1,7 @@
-import ShipmentRepository from "../repositories/shipmentRepository";
-import AppError from "../utils/AppError";
+import { ShipmentRepository } from "./shipment.repository";
 
-class ShipmentService {
-  private shipmentRepository: ShipmentRepository;
-
-  constructor() {
-    this.shipmentRepository = new ShipmentRepository();
-  }
+export class ShipmentService {
+  constructor(private shipmentRepository: ShipmentRepository) {}
 
   async createShipment(data: {
     orderId: string;
@@ -20,5 +15,3 @@ class ShipmentService {
     return shipment;
   }
 }
-
-export default ShipmentService;

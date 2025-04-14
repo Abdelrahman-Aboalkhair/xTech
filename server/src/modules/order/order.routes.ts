@@ -1,14 +1,10 @@
 import express from "express";
-import OrderController from "../controllers/orderController";
-import OrderService from "../services/orderService";
-import OrderRepository from "../repositories/orderRepository";
-import protect from "../middlewares/protect";
-import authorizeRole from "../middlewares/authorizeRole";
+import protect from "@/shared/middlewares/protect";
+import authorizeRole from "@/shared/middlewares/authorizeRole";
+import { makeOrderController } from "./order.factory";
 
 const router = express.Router();
-const orderRepository = new OrderRepository();
-const orderService = new OrderService(orderRepository);
-const orderController = new OrderController(orderService);
+const orderController = makeOrderController();
 
 router.get(
   "/",

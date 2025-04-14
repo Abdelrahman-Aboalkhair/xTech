@@ -1,6 +1,6 @@
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class ThemeRepository {
+export class ThemeRepository {
   async create(data: any) {
     return prisma.theme.create({ data });
   }
@@ -26,5 +26,3 @@ class ThemeRepository {
     return prisma.theme.delete({ where: { id } });
   }
 }
-
-export default ThemeRepository;

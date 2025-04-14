@@ -1,16 +1,16 @@
-import AppError from "../utils/AppError";
-import WebhookRepository from "../repositories/webhookRepository";
-import stripe from "../config/stripe";
-import CartRepository from "../repositories/cartRepository";
 import { v4 as uuidv4 } from "uuid";
-import redisClient from "../config/redis";
-import ProductRepository from "../repositories/productRepository";
-import ShipmentRepository from "../repositories/shipmentRepository";
-import OrderRepository from "../repositories/orderRepository";
-import AddressRepository from "../repositories/addressRepository";
-import PaymentRepository from "../repositories/paymentRepository";
+import { WebhookRepository } from "./webhook.repository";
+import { ShipmentRepository } from "../shipment/shipment.repository";
+import { PaymentRepository } from "../payment/payment.repository";
+import { OrderRepository } from "../order/order.repository";
+import { CartRepository } from "../cart/cart.repository";
+import { AddressRepository } from "../address/address.repository";
+import { ProductRepository } from "../product/product.repository";
+import AppError from "@/shared/errors/AppError";
+import redisClient from "@/infra/cache/redis";
+import stripe from "@/infra/payment/stripe";
 
-class WebhookService {
+export class WebhookService {
   constructor(
     private webhookRepository: WebhookRepository,
     private shipmentRepository: ShipmentRepository,
@@ -156,5 +156,3 @@ class WebhookService {
     return { order, payment, shipment, address: address || null };
   }
 }
-
-export default WebhookService;

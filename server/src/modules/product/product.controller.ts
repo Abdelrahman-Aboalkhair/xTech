@@ -1,15 +1,11 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
-import sendResponse from "../utils/sendResponse";
-import ProductService from "../services/productService";
-import slugify from "../utils/slugify";
+import asyncHandler from "@/shared/utils/asyncHandler";
+import sendResponse from "@/shared/utils/sendResponse";
+import { ProductService } from "./product.service";
+import slugify from "@/shared/utils/slugify";
 
-class ProductController {
-  private productService: ProductService;
-
-  constructor(productService: ProductService) {
-    this.productService = productService;
-  }
+export class ProductController {
+  constructor(private productService: ProductService) {}
 
   getAllProducts = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
@@ -20,18 +16,16 @@ class ProductController {
         currentPage,
         resultsPerPage,
       } = await this.productService.getAllProducts(req.query);
-      sendResponse(
-        res,
-        200,
-        {
+      sendResponse(res, 200, {
+        data: {
           products,
           totalResults,
           totalPages,
           currentPage,
           resultsPerPage,
         },
-        "Products fetched successfully"
-      );
+        message: "Products fetched successfully",
+      });
     }
   );
 
@@ -39,7 +33,10 @@ class ProductController {
     async (req: Request, res: Response): Promise<void> => {
       const { id: productId } = req.params;
       const product = await this.productService.getProductById(productId);
-      sendResponse(res, 200, { product }, "Product fetched successfully");
+      sendResponse(res, 200, {
+        data: product,
+        message: "Product fetched successfully",
+      });
     }
   );
 
@@ -47,7 +44,10 @@ class ProductController {
     async (req: Request, res: Response): Promise<void> => {
       const { slug: productSlug } = req.params;
       const product = await this.productService.getProductBySlug(productSlug);
-      sendResponse(res, 200, { product }, "Product fetched successfully");
+      sendResponse(res, 200, {
+        data: product,
+        message: "Product fetched successfully",
+      });
     }
   );
 
@@ -68,7 +68,10 @@ class ProductController {
         categoryId,
       });
 
-      sendResponse(res, 201, { product }, "Product created successfully");
+      sendResponse(res, 201, {
+        data: product,
+        message: "Product created successfully",
+      });
     }
   );
 
@@ -81,7 +84,10 @@ class ProductController {
         productId,
         updatedData
       );
-      sendResponse(res, 200, { product }, "Product updated successfully");
+      sendResponse(res, 200, {
+        data: product,
+        message: "Product updated successfully",
+      });
     }
   );
 
@@ -90,9 +96,7 @@ class ProductController {
       const { id: productId } = req.params;
       console.log("productId: ", productId);
       await this.productService.deleteProduct(productId);
-      sendResponse(res, 200, {}, "Product deleted successfully");
+      sendResponse(res, 200, { message: "Product deleted successfully" });
     }
   );
 }
-
-export default new ProductController(new ProductService());

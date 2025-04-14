@@ -11,12 +11,10 @@ import { CartService } from "../cart/cart.service";
 const { maxAge, ...clearCookieOptions } = cookieOptions;
 
 export class AuthController {
-  private authService: AuthService;
-
-  constructor(authService: AuthService, private cartService?: CartService) {
-    this.authService = authService;
-    this.cartService = cartService;
-  }
+  constructor(
+    private authService: AuthService,
+    private cartService?: CartService
+  ) {}
 
   register = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
@@ -165,5 +163,3 @@ export class AuthController {
     }
   );
 }
-
-export default new AuthController(new AuthService(), new CartService());

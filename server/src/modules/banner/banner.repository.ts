@@ -1,6 +1,6 @@
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class BannerRepository {
+export class BannerRepository {
   async create(data: any) {
     return prisma.banner.create({ data });
   }
@@ -33,5 +33,3 @@ class BannerRepository {
     return prisma.banner.delete({ where: { id } });
   }
 }
-
-export default BannerRepository;

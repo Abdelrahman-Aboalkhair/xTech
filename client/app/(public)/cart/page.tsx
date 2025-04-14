@@ -5,7 +5,7 @@ import { Trash2, ShoppingCart } from "lucide-react";
 import React, { useMemo } from "react";
 import Image from "next/image";
 import { Controller, useForm } from "react-hook-form";
-import CartSummary from "@/app/components/sections/cart/CartSummary";
+import CartSummary from "@/app/(public)/cart/CartSummary";
 import {
   useGetCartQuery,
   useRemoveFromCartMutation,

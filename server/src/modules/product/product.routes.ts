@@ -1,9 +1,10 @@
 import express from "express";
-import productController from "../controllers/productController";
-import authorizeRole from "../middlewares/authorizeRole";
-import protect from "../middlewares/protect";
+import authorizeRole from "@/shared/middlewares/authorizeRole";
+import protect from "@/shared/middlewares/protect";
+import { makeProductController } from "./product.factory";
 
 const router = express.Router();
+const productController = makeProductController();
 
 router.get("/", productController.getAllProducts);
 router.get("/:id", productController.getProductById);

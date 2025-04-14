@@ -1,11 +1,11 @@
+import stripe from "@/infra/payment/stripe";
+import AppError from "@/shared/errors/AppError";
+import asyncHandler from "@/shared/utils/asyncHandler";
+import sendResponse from "@/shared/utils/sendResponse";
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
-import sendResponse from "../utils/sendResponse";
-import AppError from "../utils/AppError";
-import stripe from "../config/stripe";
-import WebhookService from "../services/webhookService";
+import { WebhookService } from "./webhook.service";
 
-class WebhookController {
+export class WebhookController {
   constructor(private webhookService: WebhookService) {}
 
   handleWebhook = asyncHandler(async (req: Request, res: Response) => {
@@ -33,8 +33,6 @@ class WebhookController {
       console.log("address =>", address);
     }
 
-    sendResponse(res, 200, {}, "Webhook received");
+    sendResponse(res, 200, { message: "Webhook received successfully" });
   });
 }
-
-export default WebhookController;

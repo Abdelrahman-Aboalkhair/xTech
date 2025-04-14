@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/client";
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class ProductRepository {
+export class ProductRepository {
   async findManyProducts(params: {
     where?: Prisma.ProductWhereInput & { categorySlug?: string };
     orderBy?:
@@ -128,5 +128,3 @@ class ProductRepository {
     });
   }
 }
-
-export default ProductRepository;

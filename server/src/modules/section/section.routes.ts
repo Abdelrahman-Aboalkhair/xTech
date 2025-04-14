@@ -1,7 +1,8 @@
 import { Router } from "express";
-import sectionController from "../controllers/sectionController";
+import { makeSectionController } from "./section.factory";
 
 const router = Router();
+const sectionController = makeSectionController();
 
 router.get("/", sectionController.getAllSections);
 

@@ -1,11 +1,12 @@
 import express from "express";
-import categoryController from "../controllers/categoryController";
-import protect from "../middlewares/protect";
-import authorizeRole from "../middlewares/authorizeRole";
-import { validateDto } from "../middlewares/validateDto";
-import { CreateCategoryDto } from "../dtos/categoryDto";
+import protect from "@/shared/middlewares/protect";
+import authorizeRole from "@/shared/middlewares/authorizeRole";
+import { validateDto } from "@/shared/middlewares/validateDto";
+import { CreateCategoryDto } from "./category.dto";
+import { makeCategoryController } from "./category.factory";
 
 const router = express.Router();
+const categoryController = makeCategoryController();
 
 router.get("/", categoryController.getAllCategories);
 router.get("/:id", categoryController.getCategory);

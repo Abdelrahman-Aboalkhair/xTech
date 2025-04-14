@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
-import sendResponse from "../utils/sendResponse";
-import CheckoutService from "../services/checkoutService";
-import AppError from "../utils/AppError";
-import CartService from "../services/cartService";
+import asyncHandler from "@/shared/utils/asyncHandler";
+import sendResponse from "@/shared/utils/sendResponse";
+import { CheckoutService } from "./checkout.service";
+import AppError from "@/shared/errors/AppError";
+import { CartService } from "../cart/cart.service";
 
-class CheckoutController {
+export class CheckoutController {
   constructor(
     private checkoutService: CheckoutService,
     private cartService: CartService
@@ -23,13 +23,9 @@ class CheckoutController {
       cart,
       userId
     );
-    sendResponse(
-      res,
-      200,
-      { sessionId: session.id },
-      "Checkout session created"
-    );
+    sendResponse(res, 200, {
+      data: { sessionId: session.id },
+      message: "Checkout initiated successfully",
+    });
   });
 }
-
-export default new CheckoutController(new CheckoutService(), new CartService());

@@ -1,19 +1,10 @@
 import express from "express";
-import DashboardController from "../controllers/dashboardController";
-import DashboardService from "../services/dashboardService";
-import DashboardRepository from "../repositories/dashboardRepository";
-import protect from "../middlewares/protect";
-import authorizeRole from "../middlewares/authorizeRole";
-import ProductRepository from "../repositories/productRepository";
+import protect from "@/shared/middlewares/protect";
+import authorizeRole from "@/shared/middlewares/authorizeRole";
+import { makeDashboardController } from "./dashboard.factory";
 
 const router = express.Router();
-const dashboardRepository = new DashboardRepository();
-const productRepository = new ProductRepository();
-const dashboardService = new DashboardService(
-  dashboardRepository,
-  productRepository
-);
-const dashboardController = new DashboardController(dashboardService);
+const dashboardController = makeDashboardController();
 
 // router.get('/search', protect, authorizeRole("ADMIN", "SUPERADMIN"), dashboardController.search);
 router.get(

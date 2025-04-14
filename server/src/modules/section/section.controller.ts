@@ -1,26 +1,35 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
-import sendResponse from "../utils/sendResponse";
-import SectionService from "../services/sectionService";
+import asyncHandler from "@/shared/utils/asyncHandler";
+import sendResponse from "@/shared/utils/sendResponse";
+import { SectionService } from "./section.service";
 
-class SectionController {
+export class SectionController {
   constructor(private sectionService: SectionService) {}
 
   getAllSections = asyncHandler(async (_req: Request, res: Response) => {
     const sections = await this.sectionService.getAllSections();
-    sendResponse(res, 200, { sections }, "Sections fetched successfully");
+    sendResponse(res, 200, {
+      data: sections,
+      message: "Sections fetched successfully",
+    });
   });
 
   createSection = asyncHandler(async (req: Request, res: Response) => {
     const section = await this.sectionService.createSection(req.body);
-    sendResponse(res, 201, { section }, "Section created successfully");
+    sendResponse(res, 201, {
+      data: section,
+      message: "Section created successfully",
+    });
   });
 
   getSectionsByPageId = asyncHandler(async (req: Request, res: Response) => {
     const sections = await this.sectionService.getSectionsByPageId(
       Number(req.params.pageId)
     );
-    sendResponse(res, 200, { sections }, "Sections fetched successfully");
+    sendResponse(res, 200, {
+      data: sections,
+      message: "Sections fetched successfully",
+    });
   });
 
   getSectionsByPageSlug = asyncHandler(async (req: Request, res: Response) => {
@@ -28,14 +37,20 @@ class SectionController {
     const sections = await this.sectionService.getSectionsByPageSlug(
       req.params.slug
     );
-    sendResponse(res, 200, { sections }, "Sections fetched successfully");
+    sendResponse(res, 200, {
+      data: sections,
+      message: "Sections fetched successfully",
+    });
   });
 
   getSectionById = asyncHandler(async (req: Request, res: Response) => {
     const section = await this.sectionService.getSectionById(
       Number(req.params.id)
     );
-    sendResponse(res, 200, { section }, "Section fetched successfully");
+    sendResponse(res, 200, {
+      data: section,
+      message: "Section fetched successfully",
+    });
   });
 
   updateSection = asyncHandler(async (req: Request, res: Response) => {
@@ -43,18 +58,14 @@ class SectionController {
       Number(req.params.id),
       req.body
     );
-    sendResponse(
-      res,
-      200,
-      { section: updated },
-      "Section updated successfully"
-    );
+    sendResponse(res, 200, {
+      data: { updated },
+      message: "Section updated successfully",
+    });
   });
 
   deleteSection = asyncHandler(async (req: Request, res: Response) => {
     await this.sectionService.deleteSection(Number(req.params.id));
-    sendResponse(res, 200, {}, "Section deleted successfully");
+    sendResponse(res, 200, { message: "Section deleted successfully" });
   });
 }
-
-export default new SectionController(new SectionService());

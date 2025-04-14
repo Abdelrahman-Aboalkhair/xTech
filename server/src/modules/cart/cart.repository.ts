@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/client";
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class CartRepository {
+export class CartRepository {
   async getCartByUserId(userId: string) {
     return prisma.cart.findUnique({
       where: { userId },
@@ -94,5 +94,3 @@ class CartRepository {
     });
   }
 }
-
-export default CartRepository;

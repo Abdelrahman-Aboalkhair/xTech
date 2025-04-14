@@ -1,7 +1,8 @@
 import { Router } from "express";
-import widgetController from "../controllers/widgetController";
+import { makeWidgetController } from "./widget.factory";
 
 const router = Router();
+const widgetController = makeWidgetController();
 
 router.get("/hero-promo", widgetController.getHeroPromo);
 router.get("/topbar", widgetController.getTopbar);

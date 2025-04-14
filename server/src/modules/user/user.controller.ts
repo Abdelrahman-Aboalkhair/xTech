@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
-import sendResponse from "../utils/sendResponse";
-import UserService from "../services/userService";
+import { UserService } from "./user.service";
+import asyncHandler from "@/shared/utils/asyncHandler";
+import sendResponse from "@/shared/utils/sendResponse";
 
-class UserController {
+export class UserController {
   private userService: UserService;
 
   constructor(userService: UserService) {
@@ -13,7 +13,10 @@ class UserController {
   getAllUsers = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
       const users = await this.userService.getAllUsers();
-      sendResponse(res, 200, { users }, "Users fetched successfully");
+      sendResponse(res, 200, {
+        data: users,
+        message: "Users fetched successfully",
+      });
     }
   );
 
@@ -21,7 +24,10 @@ class UserController {
     async (req: Request, res: Response): Promise<void> => {
       const { id } = req.params;
       const user = await this.userService.getUserById(id);
-      sendResponse(res, 200, { user }, "User fetched successfully");
+      sendResponse(res, 200, {
+        data: user,
+        message: "User fetched successfully",
+      });
     }
   );
 
@@ -29,7 +35,10 @@ class UserController {
     async (req: Request, res: Response): Promise<void> => {
       const { email } = req.params;
       const user = await this.userService.getUserByEmail(email);
-      sendResponse(res, 200, { user }, "User fetched successfully");
+      sendResponse(res, 200, {
+        data: user,
+        message: "User fetched successfully",
+      });
     }
   );
 
@@ -38,7 +47,10 @@ class UserController {
     console.log("id: ", id);
     const user = await this.userService.getMe(id);
     console.log("user: ", user);
-    sendResponse(res, 200, { user }, "User profile fetched successfully");
+    sendResponse(res, 200, {
+      data: user,
+      message: "User fetched successfully",
+    });
   });
 
   updateMe = asyncHandler(
@@ -46,7 +58,10 @@ class UserController {
       const { id } = req.params;
       const updatedData = req.body;
       const user = await this.userService.updateMe(id, updatedData);
-      sendResponse(res, 200, { user }, "User updated successfully");
+      sendResponse(res, 200, {
+        data: user,
+        message: "User updated successfully",
+      });
     }
   );
 
@@ -54,9 +69,7 @@ class UserController {
     async (req: Request, res: Response): Promise<void> => {
       const { id } = req.params;
       await this.userService.deleteUser(id);
-      sendResponse(res, 204, {}, "User deleted successfully");
+      sendResponse(res, 204, { message: "User deleted successfully" });
     }
   );
 }
-
-export default new UserController(new UserService());

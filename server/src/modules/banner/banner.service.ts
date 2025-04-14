@@ -1,12 +1,8 @@
-import AppError from "../utils/AppError";
-import BannerRepository from "../repositories/bannerRepository";
+import AppError from "@/shared/errors/AppError";
+import { BannerRepository } from "./banner.repository";
 
-class BannerService {
-  private bannerRepository: BannerRepository;
-
-  constructor() {
-    this.bannerRepository = new BannerRepository();
-  }
+export class BannerService {
+  constructor(private bannerRepository: BannerRepository) {}
 
   async createBanner(data: any) {
     return this.bannerRepository.create(data);
@@ -30,5 +26,3 @@ class BannerService {
     return this.bannerRepository.delete(id);
   }
 }
-
-export default BannerService;

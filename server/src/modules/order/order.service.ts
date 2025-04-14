@@ -1,7 +1,7 @@
-import AppError from "../utils/AppError";
-import OrderRepository from "../repositories/orderRepository";
+import AppError from "@/shared/errors/AppError";
+import { OrderRepository } from "./order.repository";
 
-class OrderService {
+export class OrderService {
   constructor(private orderRepository: OrderRepository) {}
 
   async getAllOrders() {
@@ -31,5 +31,3 @@ class OrderService {
     return order;
   }
 }
-
-export default OrderService;

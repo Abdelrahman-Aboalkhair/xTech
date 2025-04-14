@@ -1,12 +1,8 @@
-import AppError from "../utils/AppError";
-import WidgetRepository from "../repositories/widgetRepository";
+import AppError from "@/shared/errors/AppError";
+import { WidgetRepository } from "./widget.repository";
 
-class WidgetService {
-  private widgetRepository: WidgetRepository;
-
-  constructor() {
-    this.widgetRepository = new WidgetRepository();
-  }
+export class WidgetService {
+  constructor(private widgetRepository: WidgetRepository) {}
   async getHeroPromo() {
     return this.widgetRepository.findByLocation("hero");
   }
@@ -37,5 +33,3 @@ class WidgetService {
     return this.widgetRepository.delete(id);
   }
 }
-
-export default WidgetService;

@@ -1,11 +1,12 @@
 import { Router } from "express";
-import userController from "../controllers/userController";
-import protect from "../middlewares/protect";
-import authorizeRole from "../middlewares/authorizeRole";
-import { validateDto } from "../middlewares/validateDto";
-import { UpdateUserDto, UserEmailDto, UserIdDto } from "../dtos/userDto";
+import { makeUserController } from "./user.factory";
+import protect from "@/shared/middlewares/protect";
+import authorizeRole from "@/shared/middlewares/authorizeRole";
+import { validateDto } from "@/shared/middlewares/validateDto";
+import { UpdateUserDto, UserEmailDto, UserIdDto } from "./user.dto";
 
 const router = Router();
+const userController = makeUserController();
 
 router.get("/me", protect, userController.getMe);
 

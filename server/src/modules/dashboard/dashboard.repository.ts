@@ -1,7 +1,7 @@
 import { Order, OrderItem } from "@prisma/client";
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class DashboardRepository {
+export class DashboardRepository {
   constructor() {}
 
   async getOrdersByTimePeriod(
@@ -90,5 +90,3 @@ class DashboardRepository {
     });
   }
 }
-
-export default DashboardRepository;

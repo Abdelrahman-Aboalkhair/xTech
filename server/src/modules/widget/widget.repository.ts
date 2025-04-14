@@ -1,6 +1,6 @@
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class WidgetRepository {
+export class WidgetRepository {
   async findByLocation(location: string) {
     return prisma.widget.findMany({
       where: { location, isVisible: true },
@@ -30,5 +30,3 @@ class WidgetRepository {
     return prisma.widget.delete({ where: { id } });
   }
 }
-
-export default WidgetRepository;

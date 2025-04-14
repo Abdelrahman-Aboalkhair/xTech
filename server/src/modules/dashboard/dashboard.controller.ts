@@ -1,11 +1,10 @@
-// dashboardController.ts
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
-import sendResponse from "../utils/sendResponse";
-import DashboardService from "../services/dashboardService";
-import AppError from "../utils/AppError";
+import asyncHandler from "@/shared/utils/asyncHandler";
+import sendResponse from "@/shared/utils/sendResponse";
+import DashboardService from "./dashboard.service";
+import AppError from "@/shared/errors/AppError";
 
-class DashboardController {
+export class DashboardController {
   constructor(private dashboardService: DashboardService) {}
 
   getDashboardStats = asyncHandler(async (req: Request, res: Response) => {
@@ -77,13 +76,17 @@ class DashboardController {
       customStartDate,
       customEndDate
     );
-    sendResponse(res, 200, stats, "Dashboard stats retrieved successfully");
+    sendResponse(res, 200, {
+      data: stats,
+      message: "Dashboard stats retrieved successfully",
+    });
   });
 
   getYearRange = asyncHandler(async (req: Request, res: Response) => {
     const yearRange = await this.dashboardService.getOrderYearRange();
-    sendResponse(res, 200, yearRange, "Year range retrieved successfully");
+    sendResponse(res, 200, {
+      data: yearRange,
+      message: "Year range retrieved successfully",
+    });
   });
 }
-
-export default DashboardController;

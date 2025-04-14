@@ -1,8 +1,9 @@
 import express from "express";
-import optionalAuth from "../middlewares/optionalAuth";
-import shipmentController from "../controllers/shipmentController";
+import { makeShipmentController } from "./shipment.factory";
+import optionalAuth from "@/shared/middlewares/optionalAuth";
 
 const router = express.Router();
+const shipmentController = makeShipmentController();
 
 router.post("/", optionalAuth, shipmentController.createShipment);
 

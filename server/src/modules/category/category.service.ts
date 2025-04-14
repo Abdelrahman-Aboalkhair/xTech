@@ -1,14 +1,10 @@
-import AppError from "../utils/AppError";
-import slugify from "../utils/slugify";
-import ApiFeatures from "../utils/ApiFeatures";
-import CategoryRepository from "../repositories/categoryRepository";
+import AppError from "@/shared/errors/AppError";
+import slugify from "@/shared/utils/slugify";
+import ApiFeatures from "@/shared/utils/ApiFeatures";
+import { CategoryRepository } from "./category.repository";
 
-class CategoryService {
-  private categoryRepository: CategoryRepository;
-
-  constructor() {
-    this.categoryRepository = new CategoryRepository();
-  }
+export class CategoryService {
+  constructor(private categoryRepository: CategoryRepository) {}
 
   async getAllCategories(queryString: Record<string, any>) {
     const apiFeatures = new ApiFeatures(queryString)

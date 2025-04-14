@@ -1,12 +1,8 @@
-import AppError from "../utils/AppError";
-import ThemeRepository from "../repositories/themeRepository";
+import AppError from "@/shared/errors/AppError";
+import { ThemeRepository } from "./theme.repository";
 
-class ThemeService {
-  private themeRepository: ThemeRepository;
-
-  constructor() {
-    this.themeRepository = new ThemeRepository();
-  }
+export class ThemeService {
+  constructor(private themeRepository: ThemeRepository) {}
 
   async createTheme(data: any) {
     return this.themeRepository.create(data);
@@ -30,5 +26,3 @@ class ThemeService {
     return this.themeRepository.delete(id);
   }
 }
-
-export default ThemeService;

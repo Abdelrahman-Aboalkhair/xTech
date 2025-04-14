@@ -1,13 +1,9 @@
-import AppError from "../utils/AppError";
-import ApiFeatures from "../utils/ApiFeatures";
-import ProductRepository from "../repositories/productRepository";
+import AppError from "@/shared/errors/AppError";
+import ApiFeatures from "@/shared/utils/ApiFeatures";
+import { ProductRepository } from "./product.repository";
 
-class ProductService {
-  private productRepository: ProductRepository;
-
-  constructor() {
-    this.productRepository = new ProductRepository();
-  }
+export class ProductService {
+  constructor(private productRepository: ProductRepository) {}
   async getAllProducts(queryString: Record<string, any>) {
     const apiFeatures = new ApiFeatures(queryString)
       .filter()
@@ -109,5 +105,3 @@ class ProductService {
     await this.productRepository.deleteProduct(productId);
   }
 }
-
-export default ProductService;

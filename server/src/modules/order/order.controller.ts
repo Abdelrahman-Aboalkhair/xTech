@@ -1,15 +1,18 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
-import sendResponse from "../utils/sendResponse";
-import AppError from "../utils/AppError";
-import OrderService from "../services/orderService";
+import asyncHandler from "@/shared/utils/asyncHandler";
+import sendResponse from "@/shared/utils/sendResponse";
+import AppError from "@/shared/errors/AppError";
+import { OrderService } from "./order.service";
 
-class OrderController {
+export class OrderController {
   constructor(private orderService: OrderService) {}
 
   getAllOrders = asyncHandler(async (req: Request, res: Response) => {
     const orders = await this.orderService.getAllOrders();
-    sendResponse(res, 200, { orders }, "Orders retrieved successfully");
+    sendResponse(res, 200, {
+      data: orders,
+      message: "Orders retrieved successfully",
+    });
   });
 
   getUserOrders = asyncHandler(async (req: Request, res: Response) => {
@@ -18,7 +21,10 @@ class OrderController {
       throw new AppError(400, "User not found");
     }
     const orders = await this.orderService.getUserOrders(userId);
-    sendResponse(res, 200, { orders }, "Orders retrieved successfully");
+    sendResponse(res, 200, {
+      data: orders,
+      message: "Orders retrieved successfully",
+    });
   });
 
   getOrderDetails = asyncHandler(async (req: Request, res: Response) => {
@@ -28,8 +34,9 @@ class OrderController {
       throw new AppError(400, "User not found");
     }
     const order = await this.orderService.getOrderDetails(orderId, userId);
-    sendResponse(res, 200, { order }, "Order details retrieved successfully");
+    sendResponse(res, 200, {
+      data: order,
+      message: "Order details retrieved successfully",
+    });
   });
 }
-
-export default OrderController;

@@ -1,35 +1,32 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import globalError from "./middlewares/globalError";
 import cookieParser from "cookie-parser";
-import { cookieParserOptions } from "./constants";
 import helmet from "helmet";
-import AppError from "./utils/AppError";
 import ExpressMongoSanitize from "express-mongo-sanitize";
 import hpp from "hpp";
 import morgan from "morgan";
 import logger from "./infra/winston/logger";
 import compression from "compression";
-import usersRoutes from "./routes/userRoutes";
-import authRoutes from "./routes/authRoutes";
-import productRoutes from "./routes/productRoutes";
-import categoryRoutes from "./routes/categoryRoutes";
-import orderRoutes from "./routes/orderRoutes";
-import checkoutRoutes from "./routes/checkoutRoutes";
-import webhookRoutes from "./routes/webhookRoutes";
-import cartRoutes from "./routes/cartRoutes";
-import dashboardRoutes from "./routes/dashboardRoutes";
-import paymentRoutes from "./routes/paymentRoutes";
-import addressRoutes from "./routes/addressRoutes";
-import shipmentRoutes from "./routes/shipmentRoutes";
+import usersRoutes from "./modules/user/user.routes";
+import authRoutes from "./modules/auth/auth.routes";
+import productRoutes from "./modules/product/product.routes";
+import categoryRoutes from "./modules/category/category.routes";
+import orderRoutes from "./modules/order/order.routes";
+import checkoutRoutes from "./modules/checkout/checkout.routes";
+import webhookRoutes from "./modules/webhook/webhook.routes";
+import cartRoutes from "./modules/cart/cart.routes";
+import dashboardRoutes from "./modules/dashboard/dashboard.routes";
+import paymentRoutes from "./modules/payment/payment.routes";
+import addressRoutes from "./modules/address/address.routes";
+import shipmentRoutes from "./modules/shipment/shipment.routes";
 
 // Import the newly created routes
-import pageRoutes from "./routes/pageRoutes";
-import themeRoutes from "./routes/themeRoutes";
-import sectionRoutes from "./routes/sectionRoutes";
-import widgetRoutes from "./routes/widgetRoutes";
-import bannerRoutes from "./routes/bannerRoutes";
+import pageRoutes from "./modules/page/page.routes";
+import themeRoutes from "./modules/theme/theme.routes";
+import sectionRoutes from "./modules/section/section.routes";
+import widgetRoutes from "./modules/widget/widget.routes";
+import bannerRoutes from "./modules/banner/banner.routes";
 
 import passport from "passport";
 import configurePassport from "./infra/passport/passport";
@@ -37,6 +34,9 @@ import session from "express-session";
 import redisClient from "./infra/cache/redis";
 import { RedisStore } from "connect-redis";
 import bodyParser = require("body-parser");
+import { cookieParserOptions } from "./shared/constants";
+import AppError from "./shared/errors/AppError";
+import globalError from "./shared/errors/globalError";
 
 dotenv.config();
 

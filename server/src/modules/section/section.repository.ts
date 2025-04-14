@@ -1,6 +1,6 @@
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class SectionRepository {
+export class SectionRepository {
   async findAll() {
     return prisma.section.findMany();
   }
@@ -39,5 +39,3 @@ class SectionRepository {
     return prisma.section.delete({ where: { id } });
   }
 }
-
-export default SectionRepository;

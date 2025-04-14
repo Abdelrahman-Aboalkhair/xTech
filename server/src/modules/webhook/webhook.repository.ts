@@ -1,6 +1,6 @@
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class WebhookRepository {
+export class WebhookRepository {
   async logWebhookEvent(eventType: string, eventData: any) {
     return prisma.webhookLog.create({
       data: {
@@ -10,5 +10,3 @@ class WebhookRepository {
     });
   }
 }
-
-export default WebhookRepository;

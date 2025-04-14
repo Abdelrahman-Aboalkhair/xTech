@@ -1,12 +1,8 @@
-import AppError from "../utils/AppError";
-import SectionRepository from "../repositories/sectionRepository";
+import AppError from "@/shared/errors/AppError";
+import { SectionRepository } from "./section.repository";
 
-class SectionService {
-  private sectionRepository: SectionRepository;
-
-  constructor() {
-    this.sectionRepository = new SectionRepository();
-  }
+export class SectionService {
+  constructor(private sectionRepository: SectionRepository) {}
 
   async getAllSections() {
     return this.sectionRepository.findAll();
@@ -37,5 +33,3 @@ class SectionService {
     return this.sectionRepository.delete(id);
   }
 }
-
-export default SectionService;

@@ -1,4 +1,4 @@
-import stripe from "../config/stripe";
+import stripe from "@/infra/payment/stripe";
 
 const PLACEHOLDER_IMAGE = "https://via.placeholder.com/150";
 
@@ -10,7 +10,7 @@ function validImage(url: string): string {
   return url.length <= 2048 ? url : PLACEHOLDER_IMAGE;
 }
 
-class CheckoutService {
+export class CheckoutService {
   constructor() {}
 
   async createStripeSession(cart: any, userId: string) {
@@ -48,5 +48,3 @@ class CheckoutService {
     return session;
   }
 }
-
-export default CheckoutService;

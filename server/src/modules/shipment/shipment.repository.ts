@@ -1,6 +1,6 @@
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class ShipmentRepository {
+export class ShipmentRepository {
   async createShipment(data: {
     orderId: string;
     trackingNumber: string;
@@ -14,5 +14,3 @@ class ShipmentRepository {
     return shipment;
   }
 }
-
-export default ShipmentRepository;

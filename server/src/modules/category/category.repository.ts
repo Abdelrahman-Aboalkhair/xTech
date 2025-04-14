@@ -1,6 +1,6 @@
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class CategoryRepository {
+export class CategoryRepository {
   async findManyCategories(params: {
     where?: Record<string, any>;
     orderBy?: Record<string, any> | Record<string, any>[];
@@ -34,5 +34,3 @@ class CategoryRepository {
     });
   }
 }
-
-export default CategoryRepository;

@@ -1,12 +1,8 @@
-import AppError from "../utils/AppError";
-import UserRepository from "../repositories/UserRepository";
+import AppError from "@/shared/errors/AppError";
+import { UserRepository } from "./user.repository";
 
-class UserService {
-  private userRepository: UserRepository;
-
-  constructor() {
-    this.userRepository = new UserRepository();
-  }
+export class UserService {
+  constructor(private userRepository: UserRepository) {}
 
   async getAllUsers() {
     return await this.userRepository.findAllUsers();
@@ -59,5 +55,3 @@ class UserService {
     await this.userRepository.deleteUser(id);
   }
 }
-
-export default UserService;

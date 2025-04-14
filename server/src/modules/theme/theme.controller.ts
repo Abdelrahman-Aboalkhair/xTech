@@ -1,24 +1,32 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
-import sendResponse from "../utils/sendResponse";
-import ThemeService from "../services/themeService";
-
-class ThemeController {
+import { ThemeService } from "./theme.service";
+import asyncHandler from "@/shared/utils/asyncHandler";
+import sendResponse from "@/shared/utils/sendResponse";
+export class ThemeController {
   constructor(private themeService: ThemeService) {}
 
   createTheme = asyncHandler(async (req: Request, res: Response) => {
     const theme = await this.themeService.createTheme(req.body);
-    sendResponse(res, 201, { theme }, "Theme created successfully");
+    sendResponse(res, 201, {
+      data: theme,
+      message: "Theme created successfully",
+    });
   });
 
   getAllThemes = asyncHandler(async (_req: Request, res: Response) => {
     const themes = await this.themeService.getAllThemes();
-    sendResponse(res, 200, { themes }, "Themes fetched successfully");
+    sendResponse(res, 200, {
+      data: themes,
+      message: "Themes fetched successfully",
+    });
   });
 
   getActiveTheme = asyncHandler(async (_req: Request, res: Response) => {
     const theme = await this.themeService.getActiveTheme();
-    sendResponse(res, 200, { theme }, "Active theme fetched successfully");
+    sendResponse(res, 200, {
+      data: theme,
+      message: "Theme fetched successfully",
+    });
   });
 
   updateTheme = asyncHandler(async (req: Request, res: Response) => {
@@ -26,13 +34,14 @@ class ThemeController {
       Number(req.params.id),
       req.body
     );
-    sendResponse(res, 200, { theme: updated }, "Theme updated successfully");
+    sendResponse(res, 200, {
+      data: { theme: updated },
+      message: "Theme updated successfully",
+    });
   });
 
   deleteTheme = asyncHandler(async (req: Request, res: Response) => {
     await this.themeService.deleteTheme(Number(req.params.id));
-    sendResponse(res, 200, {}, "Theme deleted successfully");
+    sendResponse(res, 200, { message: "Theme deleted successfully" });
   });
 }
-
-export default new ThemeController(new ThemeService());

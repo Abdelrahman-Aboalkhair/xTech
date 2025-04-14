@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
-import sendResponse from "../utils/sendResponse";
-import CartService from "../services/cartService";
+import asyncHandler from "@/shared/utils/asyncHandler";
+import sendResponse from "@/shared/utils/sendResponse";
+import { CartService } from "./cart.service";
 
-class CartController {
+export class CartController {
   private cartService: CartService;
 
   constructor(cartService: CartService) {
@@ -16,7 +16,10 @@ class CartController {
 
     const cart = await this.cartService.getOrCreateCart(userId, sessionId);
 
-    sendResponse(res, 200, { cart }, "Cart fetched successfully");
+    sendResponse(res, 200, {
+      data: cart,
+      message: "Cart fetched successfully",
+    });
   });
 
   addToCart = asyncHandler(async (req: Request, res: Response) => {
@@ -31,7 +34,10 @@ class CartController {
       sessionId
     );
 
-    sendResponse(res, 200, { item }, "Item added to cart successfully");
+    sendResponse(res, 200, {
+      data: item,
+      message: "Item added to cart successfully",
+    });
   });
 
   updateCartItem = asyncHandler(async (req: Request, res: Response) => {
@@ -42,19 +48,17 @@ class CartController {
       quantity
     );
 
-    sendResponse(
-      res,
-      200,
-      { item: updatedItem },
-      "Item quantity updated successfully"
-    );
+    sendResponse(res, 200, {
+      data: { item: updatedItem },
+      message: "Item quantity updated successfully",
+    });
   });
 
   removeFromCart = asyncHandler(async (req: Request, res: Response) => {
     const { itemId } = req.params;
     await this.cartService.removeFromCart(itemId);
 
-    sendResponse(res, 200, {}, "Item removed from cart successfully");
+    sendResponse(res, 200, { message: "Item removed from cart successfully" });
   });
 
   mergeCarts = asyncHandler(async (req: Request, res: Response) => {
@@ -62,8 +66,6 @@ class CartController {
     const userId = req.user?.id;
     await this.cartService.mergeCartsOnLogin(sessionId, userId);
 
-    sendResponse(res, 200, {}, "Carts merged successfully");
+    sendResponse(res, 200, { message: "Carts merged successfully" });
   });
 }
-
-export default new CartController(new CartService());

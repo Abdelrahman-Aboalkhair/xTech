@@ -1,12 +1,8 @@
 import AppError from "@/shared/errors/AppError";
-import CartRepository from "./cart.repository";
+import { CartRepository } from "./cart.repository";
 
 export class CartService {
-  private cartRepository: CartRepository;
-
-  constructor() {
-    this.cartRepository = new CartRepository();
-  }
+  constructor(private cartRepository: CartRepository) {}
 
   async getOrCreateCart(userId?: string, sessionId?: string) {
     let cart;

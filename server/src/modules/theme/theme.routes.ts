@@ -1,7 +1,8 @@
 import { Router } from "express";
-import themeController from "../controllers/themeController";
+import { makeThemeController } from "./theme.factory";
 
 const router = Router();
+const themeController = makeThemeController();
 
 router.post("/", themeController.createTheme);
 
