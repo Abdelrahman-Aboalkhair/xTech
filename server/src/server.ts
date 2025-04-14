@@ -1,3 +1,4 @@
+import "module-alias/register";
 import app from "./app";
 import { connectDB } from "./infra/database/database.config";
 

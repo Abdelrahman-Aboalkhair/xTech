@@ -1,8 +1,9 @@
 import express from "express";
-import cartController from "../controllers/cartController";
-import optionalAuth from "../middlewares/optionalAuth";
+import { makeCartController } from "./cart.factory";
+import optionalAuth from "@/shared/middlewares/optionalAuth";
 
 const router = express.Router();
+const cartController = makeCartController();
 
 router.get("/", optionalAuth, cartController.getCart);
 router.post("/", optionalAuth, cartController.addToCart);

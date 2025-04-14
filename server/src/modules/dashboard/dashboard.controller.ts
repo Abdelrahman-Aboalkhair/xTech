@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
-import DashboardService from "./dashboard.service";
 import AppError from "@/shared/errors/AppError";
+import { DashboardService } from "./dashboard.service";
 
 export class DashboardController {
   constructor(private dashboardService: DashboardService) {}

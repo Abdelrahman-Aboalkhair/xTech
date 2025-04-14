@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 import { User } from "../types/userTypes";
 
 const optionalAuth = async (

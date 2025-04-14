@@ -2,7 +2,7 @@ import { DashboardRepository } from "./dashboard.repository";
 import { subDays, subMonths, subYears, startOfYear, endOfYear } from "date-fns";
 import calculatePercentageChange from "@/shared/utils/calculatePercentChange";
 import redisClient from "@/infra/cache/redis";
-import ProductRepository from "../product/product.repository";
+import { ProductRepository } from "../product/product.repository";
 
 export class DashboardService {
   constructor(

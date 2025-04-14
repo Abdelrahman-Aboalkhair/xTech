@@ -1,7 +1,8 @@
 import { Router } from "express";
-import pageController from "../controllers/pageController";
+import { makePageController } from "./page.factory";
 
 const router = Router();
+const pageController = makePageController();
 
 router.post("/", pageController.createPage);
 

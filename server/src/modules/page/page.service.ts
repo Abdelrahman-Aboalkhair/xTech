@@ -1,12 +1,8 @@
-import AppError from "../utils/AppError";
-import PageRepository from "../repositories/pageRepository";
+import AppError from "@/shared/errors/AppError";
+import { PageRepository } from "./page.repository";
 
-class PageService {
-  private pageRepository: PageRepository;
-
-  constructor() {
-    this.pageRepository = new PageRepository();
-  }
+export class PageService {
+  constructor(private pageRepository: PageRepository) {}
 
   async createPage(data: any) {
     return this.pageRepository.create(data);
@@ -30,5 +26,3 @@ class PageService {
     return this.pageRepository.delete(id);
   }
 }
-
-export default PageService;

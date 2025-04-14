@@ -1,9 +1,11 @@
 import prisma from "@/infra/database/database.config";
+import { CartRepository } from "@/modules/cart/cart.repository";
 import { CartService } from "@/modules/cart/cart.service";
 import { cookieOptions } from "@/shared/constants";
 import passport from "passport";
 
-const cartService = new CartService();
+const cartRepo = new CartRepository();
+const cartService = new CartService(cartRepo);
 
 type OAuthProvider = "googleId" | "facebookId" | "twitterId";
 

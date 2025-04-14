@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
-import logger from "../config/logger";
 import AppError from "../errors/AppError";
+import logger from "@/infra/winston/logger";
 
 export function validateDto(type: any) {
   return async (req: Request, res: Response, next: NextFunction) => {

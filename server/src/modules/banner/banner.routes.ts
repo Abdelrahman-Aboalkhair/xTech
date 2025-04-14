@@ -1,7 +1,8 @@
 import { Router } from "express";
-import bannerController from "../controllers/bannerController";
+import { makeBannerController } from "./banner.factory";
 
 const router = Router();
+const bannerController = makeBannerController();
 
 router.get("/", bannerController.getAllBanners);
 

@@ -1,6 +1,6 @@
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
-class PageRepository {
+export class PageRepository {
   async create(data: any) {
     return prisma.page.create({ data });
   }
@@ -53,5 +53,3 @@ class PageRepository {
     return prisma.page.delete({ where: { id } });
   }
 }
-
-export default PageRepository;

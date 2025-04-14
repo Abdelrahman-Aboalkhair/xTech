@@ -3,8 +3,8 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as FacebookStrategy } from "passport-facebook";
 import { Strategy as TwitterStrategy } from "passport-twitter";
 import { Profile } from "passport";
-import { oauthCallback } from "@/shared/utils/authUtils";
 import { VerifyCallback } from "jsonwebtoken";
+import { oauthCallback } from "@/shared/utils/auth/oauthUtils";
 
 export default function configurePassport() {
   passport.use(

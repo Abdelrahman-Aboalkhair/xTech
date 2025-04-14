@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import AppError from "../errors/AppError";
-import prisma from "../config/database";
+import prisma from "@/infra/database/database.config";
 
 const authorizeRole = (...allowedRoles: string[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
