@@ -8,6 +8,8 @@ import {
   AnalyticsOverview,
   ProductPerformance,
   CustomerAnalytics,
+  InteractionAnalytics,
+  InteractionEntry,
 } from "./analytics.types";
 
 export class AnalyticsService {
@@ -321,15 +323,12 @@ export class AnalyticsService {
       }
     }
 
-    // Fetch users and their orders
     const users = await this.analyticsRepository.getUsersByTimePeriod(
       currentStartDate,
       endDate,
       yearStart,
       yearEnd
     );
-
-    // Fetch interactions
     const interactions =
       await this.analyticsRepository.getInteractionsByTimePeriod(
         currentStartDate,
@@ -338,10 +337,8 @@ export class AnalyticsService {
         yearEnd
       );
 
-    // Calculate metrics
     const totalCustomers = users.length;
 
-    // Retention Rate: Customers with orders in both current and previous periods
     let retentionRate = 0;
     if (
       timePeriod !== "allTime" &&
@@ -365,7 +362,6 @@ export class AnalyticsService {
           : 0;
     }
 
-    // Lifetime Value: Average total revenue per customer
     const totalRevenue = users.reduce((sum, user) => {
       const userRevenue = user.orders.reduce(
         (orderSum, order) => orderSum + order.amount,
@@ -373,19 +369,16 @@ export class AnalyticsService {
       );
       return sum + userRevenue;
     }, 0);
-
     const lifetimeValue =
       totalCustomers > 0 ? totalRevenue / totalCustomers : 0;
 
-    // Repeat Purchase Rate: Percentage of customers with more than one order
     const repeatCustomers = users.filter(
       (user) => user.orders.length > 1
     ).length;
     const repeatPurchaseRate =
       totalCustomers > 0 ? (repeatCustomers / totalCustomers) * 100 : 0;
 
-    // Engagement Score: Based on interactions (e.g., 1 point for view, 2 for click, 3 for other actions)
-    const engagementScores: { [userId: string]: number } = {}; // { userId: score }
+    const engagementScores: { [userId: string]: number } = {};
     interactions.forEach((interaction) => {
       const userId = interaction.userId;
       if (!engagementScores[userId]) {
@@ -399,7 +392,7 @@ export class AnalyticsService {
           engagementScores[userId] += 2;
           break;
         default:
-          engagementScores[userId] += 3; // Other actions (e.g., wishlist, cart add)
+          engagementScores[userId] += 3;
       }
     });
     const totalEngagementScore = Object.values(engagementScores).reduce(
@@ -409,7 +402,6 @@ export class AnalyticsService {
     const averageEngagementScore =
       totalCustomers > 0 ? totalEngagementScore / totalCustomers : 0;
 
-    // Top Customers: Based on order count and total spent
     const topCustomers = users
       .map((user) => {
         const orderCount = user.orders.length;
@@ -426,8 +418,44 @@ export class AnalyticsService {
           engagementScore: engagementScores[user.id] || 0,
         };
       })
-      .sort((a, b) => b.totalSpent - a.totalSpent) // Sort by total spent
-      .slice(0, 5); // Top 5 customers
+      .sort((a, b) => b.totalSpent - a.totalSpent)
+      .slice(0, 5);
+
+    // Interaction Trends
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const interactionTrends: {
+      [month: string]: { views: number; clicks: number; others: number };
+    } = {};
+    months.forEach((_, index) => {
+      interactionTrends[index + 1] = { views: 0, clicks: 0, others: 0 };
+    });
+
+    interactions.forEach((interaction) => {
+      const month = interaction.createdAt.getMonth() + 1;
+      switch (interaction.type.toLowerCase()) {
+        case "view":
+          interactionTrends[month].views += 1;
+          break;
+        case "click":
+          interactionTrends[month].clicks += 1;
+          break;
+        default:
+          interactionTrends[month].others += 1;
+      }
+    });
 
     const result: CustomerAnalytics = {
       totalCustomers,
@@ -436,6 +464,115 @@ export class AnalyticsService {
       repeatPurchaseRate: Number(repeatPurchaseRate.toFixed(2)),
       engagementScore: Number(averageEngagementScore.toFixed(2)),
       topCustomers,
+      interactionTrends: {
+        labels: months,
+        views: months.map((_, index) => interactionTrends[index + 1].views),
+        clicks: months.map((_, index) => interactionTrends[index + 1].clicks),
+        others: months.map((_, index) => interactionTrends[index + 1].others),
+      },
+    };
+
+    await redisClient.setex(cacheKey, 300, JSON.stringify(result));
+    return result;
+  }
+
+  async recordInteraction(entry: InteractionEntry): Promise<void> {
+    await this.analyticsRepository.createInteraction(entry);
+  }
+
+  async getInteractionAnalytics(
+    query: DateRangeQuery
+  ): Promise<InteractionAnalytics> {
+    const { timePeriod, year, startDate, endDate } = query;
+    const cacheKey = `analytics:interactions:${timePeriod}:${year || "all"}:${
+      startDate?.toISOString() || "none"
+    }:${endDate?.toISOString() || "none"}`;
+    const cachedData = await redisClient.get(cacheKey);
+
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    }
+
+    const now = new Date();
+    let currentStartDate: Date | undefined;
+    let yearStart: Date | undefined;
+    let yearEnd: Date | undefined;
+
+    if (year) {
+      yearStart = startOfYear(new Date(year, 0, 1));
+      yearEnd = endOfYear(new Date(year, 0, 1));
+    }
+
+    if (startDate && endDate) {
+      currentStartDate = startDate;
+    } else {
+      switch (timePeriod) {
+        case "last7days":
+          currentStartDate = subDays(now, 7);
+          break;
+        case "lastMonth":
+          currentStartDate = subMonths(now, 1);
+          break;
+        case "lastYear":
+          currentStartDate = subYears(now, 1);
+          break;
+        case "allTime":
+          currentStartDate = undefined;
+          break;
+        case "custom":
+          throw new Error("Custom time period requires startDate and endDate");
+      }
+    }
+
+    const interactions =
+      await this.analyticsRepository.getInteractionsByTimePeriod(
+        currentStartDate,
+        endDate,
+        yearStart,
+        yearEnd
+      );
+
+    const totalInteractions = interactions.length;
+    const byType = {
+      views: interactions.filter((i) => i.type.toLowerCase() === "view").length,
+      clicks: interactions.filter((i) => i.type.toLowerCase() === "click")
+        .length,
+      others: interactions.filter(
+        (i) => !["view", "click"].includes(i.type.toLowerCase())
+      ).length,
+    };
+
+    const productViews: {
+      [productId: string]: { name: string; count: number };
+    } = {};
+    for (const interaction of interactions) {
+      if (interaction.type.toLowerCase() === "view" && interaction.productId) {
+        if (!productViews[interaction.productId]) {
+          const product = await this.productRepository.findProductById(
+            interaction.productId
+          );
+          productViews[interaction.productId] = {
+            name: product?.name || "Unknown",
+            count: 0,
+          };
+        }
+        productViews[interaction.productId].count += 1;
+      }
+    }
+
+    const mostViewedProducts = Object.entries(productViews) // conver it to this format: [{ productId, productName, viewCount }]
+      .map(([productId, data]) => ({
+        productId,
+        productName: data.name,
+        viewCount: data.count,
+      }))
+      .sort((a, b) => b.viewCount - a.viewCount)
+      .slice(0, 5);
+
+    const result: InteractionAnalytics = {
+      totalInteractions,
+      byType,
+      mostViewedProducts,
     };
 
     await redisClient.setex(cacheKey, 300, JSON.stringify(result));

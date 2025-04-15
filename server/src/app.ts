@@ -38,6 +38,7 @@ import bodyParser = require("body-parser");
 import { cookieParserOptions } from "./shared/constants";
 import AppError from "./shared/errors/AppError";
 import globalError from "./shared/errors/globalError";
+import { logRequest } from "./shared/middlewares/logRequest";
 
 dotenv.config();
 
@@ -160,5 +161,8 @@ app.all("*", (req, res, next) => {
 
 // Global Error Handler
 app.use(globalError);
+
+// Logger
+app.use(logRequest);
 
 export default app;

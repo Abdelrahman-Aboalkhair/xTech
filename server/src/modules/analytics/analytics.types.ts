@@ -48,6 +48,32 @@ export interface CustomerAnalytics {
     totalSpent: number;
     engagementScore: number;
   }[];
+  interactionTrends: {
+    labels: string[];
+    views: number[];
+    clicks: number[];
+    others: number[];
+  };
+}
+
+export interface InteractionAnalytics {
+  totalInteractions: number;
+  byType: {
+    views: number;
+    clicks: number;
+    others: number;
+  };
+  mostViewedProducts: {
+    productId: string;
+    productName: string;
+    viewCount: number;
+  }[];
+}
+
+export interface InteractionEntry {
+  userId: string;
+  productId?: string;
+  type: "view" | "click" | "wishlist" | "cart_add" | "other";
 }
 
 export interface InteractionSummary {

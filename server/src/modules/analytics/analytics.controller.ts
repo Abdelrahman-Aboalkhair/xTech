@@ -5,8 +5,10 @@ import AppError from "@/shared/errors/AppError";
 import { AnalyticsService } from "./analytics.service";
 import { ExportUtils } from "@/shared/utils/exportUtils";
 import { DateRangeQuery, ExportableData } from "./analytics.types";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class AnalyticsController {
+  private logsService = makeLogsService();
   constructor(
     private analyticsService: AnalyticsService,
     private exportUtils: ExportUtils
@@ -153,6 +155,107 @@ export class AnalyticsController {
       message: "Customer analytics retrieved successfully",
     });
   });
+
+  recordInteraction = asyncHandler(async (req: Request, res: Response) => {
+    const { productId, type } = req.body;
+    const userId = req.user?.id;
+
+    const validTypes = ["view", "click", "wishlist", "cart_add", "other"];
+    if (!type || !validTypes.includes(type)) {
+      throw new AppError(
+        400,
+        "Invalid interaction type. Use: view, click, wishlist, cart_add, or other"
+      );
+    }
+
+    await this.analyticsService.recordInteraction({
+      userId: userId as string,
+      productId,
+      type,
+    });
+
+    await this.logsService.info("Recorded interaction", {
+      userId,
+      productId,
+      type,
+    });
+
+    sendResponse(res, 200, {
+      message: "Interaction recorded successfully",
+    });
+  });
+
+  getInteractionAnalytics = asyncHandler(
+    async (req: Request, res: Response) => {
+      const { timePeriod, year, startDate, endDate } = req.query;
+      const user = req.user;
+
+      const validPeriods = [
+        "last7days",
+        "lastMonth",
+        "lastYear",
+        "allTime",
+        "custom",
+      ];
+      if (!timePeriod || !validPeriods.includes(timePeriod as string)) {
+        throw new AppError(
+          400,
+          "Invalid or missing timePeriod. Use: last7days, lastMonth, lastYear, allTime, or custom"
+        );
+      }
+
+      let selectedYear: number | undefined;
+      if (year) {
+        selectedYear = parseInt(year as string, 10);
+        if (isNaN(selectedYear)) {
+          throw new AppError(400, "Invalid year format.");
+        }
+      }
+
+      let customStartDate: Date | undefined;
+      let customEndDate: Date | undefined;
+      if (startDate && endDate) {
+        customStartDate = new Date(startDate as string);
+        customEndDate = new Date(endDate as string);
+
+        if (
+          isNaN(customStartDate.getTime()) ||
+          isNaN(customEndDate.getTime())
+        ) {
+          throw new AppError(
+            400,
+            "Invalid startDate or endDate format. Use YYYY-MM-DD."
+          );
+        }
+
+        if (customStartDate > customEndDate) {
+          throw new AppError(400, "startDate must be before endDate.");
+        }
+      } else if (startDate || endDate) {
+        throw new AppError(
+          400,
+          "Both startDate and endDate must be provided for a custom range."
+        );
+      }
+
+      const analytics = await this.analyticsService.getInteractionAnalytics({
+        timePeriod: timePeriod as string,
+        year: selectedYear,
+        startDate: customStartDate,
+        endDate: customEndDate,
+      });
+
+      await this.logsService.info("Fetched interaction analytics", {
+        userId: user?.id,
+        timePeriod,
+      });
+
+      sendResponse(res, 200, {
+        data: analytics,
+        message: "Interaction analytics retrieved successfully",
+      });
+    }
+  );
 
   exportAnalytics = asyncHandler(async (req: Request, res: Response) => {
     const { type, format, timePeriod, year, startDate, endDate } = req.query;

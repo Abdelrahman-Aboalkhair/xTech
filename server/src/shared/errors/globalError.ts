@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import AppError from "./AppError";
 import logger from "@/infra/winston/logger";
+import { makeLogsService } from "@/modules/logs/logs.factory";
 
 interface CustomError extends Error {
   name: string;
@@ -12,11 +13,11 @@ interface CustomError extends Error {
   stack?: string;
 }
 
-// Define specific handlers for known error types
+const logsService = makeLogsService();
+
 type ErrorHandler = (err: CustomError) => AppError;
 
 const errorHandlers: Record<string | number, ErrorHandler> = {
-  // Mongoose validation errors (optional)
   ValidationError: (err) =>
     new AppError(
       400,
@@ -24,25 +25,15 @@ const errorHandlers: Record<string | number, ErrorHandler> = {
         .map((val) => val.message)
         .join(", ")
     ),
-
-  // MongoDB duplicate key error
   11000: () => new AppError(400, "Duplicate field value entered"),
-
-  // Mongoose cast error
   CastError: (err) => new AppError(400, `Invalid ${err.path}: ${err.value}`),
-
-  // JWT token expired
   TokenExpiredError: () =>
     new AppError(401, "Your session has expired, please login again."),
-
-  // Joi validation errors
   Joi: (err) =>
     new AppError(
       400,
       (err.details || []).map((detail) => detail.message).join(", ")
     ),
-
-  // Prisma error handlers
   PrismaClientKnownRequestError: (err) => {
     switch (err.code) {
       case "P2002":
@@ -53,13 +44,10 @@ const errorHandlers: Record<string | number, ErrorHandler> = {
         return new AppError(400, `Prisma error: ${err.message}`);
     }
   },
-
   PrismaClientValidationError: () =>
     new AppError(400, "Invalid input. Please check your request data."),
-
   PrismaClientInitializationError: () =>
     new AppError(500, "Database initialization error. Please try again later."),
-
   PrismaClientRustPanicError: () =>
     new AppError(
       500,
@@ -67,13 +55,12 @@ const errorHandlers: Record<string | number, ErrorHandler> = {
     ),
 };
 
-const globalError = (
+const globalError = async (
   err: CustomError | AppError,
   req: Request,
   res: Response,
   _next: NextFunction
-): void => {
-  // Fallback generic error
+): Promise<void> => {
   let error: AppError =
     err instanceof AppError ? err : new AppError(500, err.message);
 
@@ -115,7 +102,16 @@ const globalError = (
     );
   }
 
-  // Send error response
+  // 🛠️ Logs Service Integration
+  await logsService.error(`Error: ${error.message}`, {
+    statusCode: error.statusCode,
+    stack: err.stack,
+    method: req.method,
+    url: req.originalUrl,
+    userId: (req as any)?.user?.id || null, // Optional, if available in request
+  });
+
+  // 📤 Error Response
   res.status(error.statusCode || 500).json({
     status:
       error.statusCode >= 400 && error.statusCode < 500 ? "fail" : "error",

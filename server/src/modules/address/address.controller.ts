@@ -3,8 +3,10 @@ import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
 import { AddressService } from "@/modules/address/address.service";
 import NotFoundError from "@/shared/errors/NotFoundError";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class AddressController {
+  private logsService = makeLogsService();
   constructor(private addressService: AddressService) {}
 
   getUserAddresses = asyncHandler(async (req: Request, res: Response) => {
@@ -16,6 +18,11 @@ export class AddressController {
     sendResponse(res, 200, {
       data: addresses,
       message: "Addresses retrieved successfully",
+    });
+
+    this.logsService.info("Get User Addresses", {
+      userId,
+      timePeriod: req.query.timePeriod,
     });
   });
 
