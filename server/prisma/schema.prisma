@@ -28,6 +28,12 @@ enum SECTION_TYPE {
   TESTIMONIAL
 }
 
+enum CART_STATUS {
+  ACTIVE
+  ABANDONED
+  CONVERTED
+}
+
 model User {
   id                            String    @id @default(uuid())
   googleId                      String?   
@@ -48,6 +54,8 @@ model User {
   orders                        Order[]
   payments                      Payment[]
   addresses                     Address[]
+  interactions                  Interaction[]
+  reports                       Report[]
   cart                          Cart?
 
   createdAt                     DateTime  @default(now())
@@ -77,6 +85,7 @@ model Product {
 
   orderItems    OrderItem[]
   cartItems     CartItem[]
+  interactions  Interaction[]
 
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -171,6 +180,8 @@ model Cart {
   sessionId String?   @unique
   cartItems CartItem[]
 
+  status    CART_STATUS @default(ABANDONED)
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
@@ -200,6 +211,27 @@ model Category {
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+}
+
+model Interaction {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  productId String?
+  product   Product? @relation(fields: [productId], references: [id]) 
+  type      String   
+  createdAt DateTime @default(now())
+}
+
+model Report {
+  id        String   @id @default(uuid())
+  type      String   
+  format    String   
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  parameters Json     
+  filePath  String?  
 }
 
 

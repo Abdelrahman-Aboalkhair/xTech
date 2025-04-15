@@ -16,7 +16,8 @@ import orderRoutes from "./modules/order/order.routes";
 import checkoutRoutes from "./modules/checkout/checkout.routes";
 import webhookRoutes from "./modules/webhook/webhook.routes";
 import cartRoutes from "./modules/cart/cart.routes";
-import dashboardRoutes from "./modules/dashboard/dashboard.routes";
+import reportRoutes from "./modules/reports/reports.routes";
+import analyticsRoutes from "./modules/analytics/analytics.routes";
 import paymentRoutes from "./modules/payment/payment.routes";
 import addressRoutes from "./modules/address/address.routes";
 import shipmentRoutes from "./modules/shipment/shipment.routes";
@@ -140,10 +141,11 @@ app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/checkout", checkoutRoutes);
 app.use("/api/v1/orders", orderRoutes);
-app.use("/api/v1/dashboard", dashboardRoutes);
 app.use("/api/v1/payments", paymentRoutes);
 app.use("/api/v1/addresses", addressRoutes);
 app.use("/api/v1/shipment", shipmentRoutes);
+app.use("/api/v1/reports", reportRoutes);
+app.use("/api/v1/analytics", analyticsRoutes);
 
 // Add the new CMS-related routes
 app.use("/api/v1/banners", bannerRoutes);
