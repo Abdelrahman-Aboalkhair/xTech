@@ -75,6 +75,16 @@ export class ProductController {
     }
   );
 
+  bulkCreateProducts = asyncHandler(async (req: Request, res: Response) => {
+    const file = req.file;
+    const result = await this.productService.bulkCreateProducts(file!);
+
+    sendResponse(res, 201, {
+      data: { count: result.count },
+      message: `${result.count} products created successfully`,
+    });
+  });
+
   updateProduct = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
       const { id: productId } = req.params;

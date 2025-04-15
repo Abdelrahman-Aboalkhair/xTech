@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Product } from "@/app/types/productTypes";
 import Image from "next/image";
 import Link from "next/link";
-import Rating from "../../feedback/Rating";
 import { useAddToCartMutation } from "@/app/store/apis/CartApi";
+import Rating from "@/app/components/feedback/Rating";
 
 interface ProductCardProps {
   product: Product;

@@ -1,13 +1,12 @@
 "use client";
 import ProtectedRoute from "@/app/components/auth/ProtectedRoute";
 import AreaChart from "@/app/components/charts/AreaChart";
-import React from "react";
-import { motion } from "framer-motion";
-import {
-  useGetStatsQuery,
-  useGetYearRangeQuery,
-} from "@/app/store/apis/DashboardApi";
+import DonutChart from "@/app/components/charts/DonutChart";
+import BarChart from "@/app/components/charts/BarChart";
+import ListCard from "@/app/components/organisms/ListCard";
 import StatsCard from "@/app/components/organisms/StatsCard";
+import Dropdown from "@/app/components/molecules/Dropdown";
+import DateRangePicker from "@/app/components/molecules/DateRangePicker";
 import {
   BarChart2,
   CreditCard,
@@ -15,17 +14,34 @@ import {
   ShoppingCart,
   Users,
 } from "lucide-react";
-import DonutChart from "@/app/components/charts/DonutChart";
-import BarChart from "@/app/components/charts/BarChart";
-import ListCard from "@/app/components/organisms/ListCard";
+import { motion } from "framer-motion";
 import { Controller, useForm } from "react-hook-form";
-import Dropdown from "@/app/components/molecules/Dropdown";
-import DateRangePicker from "@/app/components/molecules/DateRangePicker";
+import React from "react";
 import useFormatPrice from "@/app/hooks/ui/useFormatPrice";
+import {
+  useGetOverviewQuery,
+  useGetProductPerformanceQuery,
+  useGetCustomerAnalyticsQuery,
+  useGetYearRangeQuery,
+} from "@/app/store/apis/AnalyticsApi";
+
+interface FormData {
+  timePeriod: string;
+  year?: string;
+  startDate?: string;
+  endDate?: string;
+  useCustomRange?: boolean;
+}
 
 const Dashboard = () => {
-  const { control, watch } = useForm();
+  const { control, watch } = useForm<FormData>({
+    defaultValues: {
+      timePeriod: "allTime",
+      useCustomRange: false,
+    },
+  });
   const formatPrice = useFormatPrice();
+
   const timePeriodOptions = [
     { label: "Last 7 Days", value: "last7days" },
     { label: "Last Month", value: "lastMonth" },
@@ -35,7 +51,8 @@ const Dashboard = () => {
 
   const { timePeriod, year, startDate, endDate, useCustomRange } = watch();
 
-  const { data: yearRangeData } = useGetYearRangeQuery({});
+  // Fetch year range for dropdown
+  const { data: yearRangeData } = useGetYearRangeQuery();
   const minYear = yearRangeData?.minYear || new Date().getFullYear();
   const maxYear = yearRangeData?.maxYear || new Date().getFullYear();
   const yearOptions = Array.from({ length: maxYear - minYear + 1 }, (_, i) => ({
@@ -43,15 +60,71 @@ const Dashboard = () => {
     value: (minYear + i).toString(),
   }));
 
-  const { data, isLoading, error } = useGetStatsQuery({
+  // Query parameters
+  const queryParams = {
     timePeriod: timePeriod || "allTime",
-    year: useCustomRange ? undefined : year,
-    startDate: useCustomRange ? startDate : undefined,
-    endDate: useCustomRange ? endDate : undefined,
-  });
-  console.log("Stats => ", data);
-  console.log("error : ", error);
-  if (isLoading) return <div>Loading...</div>;
+    year: useCustomRange ? undefined : year ? parseInt(year, 10) : undefined,
+    startDate: useCustomRange && startDate ? startDate : undefined,
+    endDate: useCustomRange && endDate ? endDate : undefined,
+  };
+
+  // Fetch data
+  const {
+    data: overviewData,
+    isLoading: isOverviewLoading,
+    error: overviewError,
+  } = useGetOverviewQuery(queryParams);
+
+  const {
+    data: productData,
+    isLoading: isProductLoading,
+    error: productError,
+  } = useGetProductPerformanceQuery(queryParams);
+
+  const {
+    data: customerData,
+    isLoading: isCustomerLoading,
+    error: customerError,
+  } = useGetCustomerAnalyticsQuery(queryParams);
+
+  // Handle loading state
+  if (isOverviewLoading || isProductLoading || isCustomerLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // Handle errors
+  if (overviewError || productError || customerError) {
+    console.error("Errors:", { overviewError, productError, customerError });
+    return <div>Error loading dashboard data</div>;
+  }
+
+  // Derive chart and list data
+  const mostSoldProducts = {
+    labels: productData?.slice(0, 5).map((p) => p.name) || [],
+    data: productData?.slice(0, 5).map((p) => p.quantity) || [],
+  };
+
+  const salesByProduct = {
+    categories: productData?.map((p) => p.name) || [],
+    data: productData?.map((p) => p.revenue) || [],
+  };
+
+  const topItems =
+    productData?.slice(0, 5).map((p) => ({
+      id: p.id,
+      name: p.name,
+      quantity: p.quantity,
+      revenue: formatPrice(p.revenue),
+    })) || [];
+
+  const topCustomers =
+    customerData?.topCustomers.slice(0, 5).map((c) => ({
+      id: c.id,
+      name: c.name,
+      email: c.email,
+      orderCount: c.orderCount,
+      totalSpent: formatPrice(c.totalSpent),
+    })) || [];
 
   return (
     <ProtectedRoute requiredRoles={["ADMIN", "SUPERADMIN"]}>
@@ -62,12 +135,11 @@ const Dashboard = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-semibold">Dashboad overview</h1>
+          <h1 className="text-xl font-semibold">Dashboard Overview</h1>
           <div className="flex items-center justify-center gap-2">
             <Controller
               name="timePeriod"
               control={control}
-              defaultValue={timePeriod}
               render={({ field }) => (
                 <Dropdown
                   onChange={field.onChange}
@@ -78,7 +150,6 @@ const Dashboard = () => {
                 />
               )}
             />
-
             <Controller
               name="year"
               control={control}
@@ -93,7 +164,6 @@ const Dashboard = () => {
                 />
               )}
             />
-
             <DateRangePicker
               label="Custom Date Range"
               control={control}
@@ -105,93 +175,92 @@ const Dashboard = () => {
         <div className="flex gap-4">
           <StatsCard
             title="Total Revenue"
-            value={formatPrice(data?.totalRevenue)}
-            percentage={data?.changes?.revenue}
-            caption="since last month"
+            value={formatPrice(overviewData?.totalRevenue || 0)}
+            percentage={overviewData?.changes.revenue}
+            caption="since last period"
             icon={<DollarSign className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Orders"
-            value={data?.totalOrders}
-            percentage={data?.changes?.orders}
-            caption="since last month"
+            value={overviewData?.totalOrders || 0}
+            percentage={overviewData?.changes.orders}
+            caption="since last period"
             icon={<ShoppingCart className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Sales"
-            value={data?.totalSales}
-            percentage={data?.changes?.sales}
-            caption="since last month"
+            value={overviewData?.totalSales || 0}
+            percentage={overviewData?.changes.sales}
+            caption="since last period"
             icon={<BarChart2 className="w-5 h-5" />}
           />
-
           <StatsCard
             title="Average Order Value"
-            value={formatPrice(data?.averageOrderValue)}
-            percentage={data?.changes?.averageOrderValue}
-            caption="since last month"
+            value={formatPrice(overviewData?.averageOrderValue || 0)}
+            percentage={overviewData?.changes.averageOrderValue}
+            caption="since last period"
             icon={<CreditCard className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Users"
-            value={data?.totalUsers}
-            percentage={data?.changes?.users}
-            caption="since last month"
+            value={overviewData?.totalUsers || 0}
+            percentage={overviewData?.changes.users}
+            caption="since last period"
             icon={<Users className="w-5 h-5" />}
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AreaChart
             title="Order Analytics"
-            data={data?.monthly?.orders || []}
-            categories={data?.monthly?.labels || []}
+            data={overviewData?.monthlyTrends.orders || []}
+            categories={overviewData?.monthlyTrends.labels || []}
             color="#ec4899"
-            percentageChange={data?.changes?.orders}
+            percentageChange={overviewData?.changes.orders}
           />
           <AreaChart
             title="Revenue Analytics"
-            data={data?.monthly?.revenue || []}
-            categories={data?.monthly?.labels || []}
+            data={overviewData?.monthlyTrends.revenue || []}
+            categories={overviewData?.monthlyTrends.labels || []}
             color="#22c55e"
-            percentageChange={data?.changes?.revenue}
+            percentageChange={overviewData?.changes.revenue}
           />
           <AreaChart
             title="Sales Analytics"
-            data={data?.monthly?.sales || []}
-            categories={data?.monthly?.labels || []}
+            data={overviewData?.monthlyTrends.sales || []}
+            categories={overviewData?.monthlyTrends.labels || []}
             color="#3b82f6"
-            percentageChange={data?.changes?.sales}
+            percentageChange={overviewData?.changes.sales}
           />
           <AreaChart
             title="User Analytics"
-            data={data?.monthly?.users || []}
-            categories={data?.monthly?.labels || []}
+            data={overviewData?.monthlyTrends.users || []}
+            categories={overviewData?.monthlyTrends.labels || []}
             color="#f59e0b"
-            percentageChange={data?.changes?.users}
+            percentageChange={overviewData?.changes.users}
           />
           <DonutChart
             title="Most Sold Products"
-            data={data?.mostSoldProducts?.data || []}
-            labels={data?.mostSoldProducts?.labels || []}
+            data={mostSoldProducts.data}
+            labels={mostSoldProducts.labels}
           />
           <ListCard
             title="Top Customers"
             viewAllLink="/dashboard/users"
-            items={data?.topUsers || []}
+            items={topCustomers}
             itemType="user"
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <BarChart
             title="Sales by Product"
-            data={data?.salesByProduct?.data || []}
-            categories={data?.salesByProduct?.categories || []}
+            data={salesByProduct.data}
+            categories={salesByProduct.categories}
             color="#4CAF50"
           />
           <ListCard
             title="Top Items"
-            viewAllLink={`/shop`}
-            items={data?.topItems || []}
+            viewAllLink="/shop"
+            items={topItems}
             itemType="product"
           />
         </div>

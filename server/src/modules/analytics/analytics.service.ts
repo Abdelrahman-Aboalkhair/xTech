@@ -266,6 +266,18 @@ export class AnalyticsService {
     await redisClient.setex(cacheKey, 300, JSON.stringify(result));
     return result;
   }
+  async getOrderYearRange(): Promise<any> {
+    const cacheKey = "dashboard:year-range";
+    const cachedData = await redisClient.get(cacheKey);
+
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    }
+
+    const yearRange = await this.analyticsRepository.getOrderYearRange();
+    await redisClient.setex(cacheKey, 3600, JSON.stringify(yearRange));
+    return yearRange;
+  }
 
   async getCustomerAnalytics(
     query: DateRangeQuery

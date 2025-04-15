@@ -104,6 +104,24 @@ export class ProductRepository {
     return prisma.product.create({ data });
   }
 
+  async createManyProducts(
+    data: {
+      name: string;
+      slug: string;
+      description?: string;
+      price: number;
+      discount: number;
+      images: string[];
+      stock: number;
+      categoryId?: string;
+    }[]
+  ) {
+    return prisma.product.createMany({
+      data,
+      skipDuplicates: true,
+    });
+  }
+
   async updateProduct(
     id: string,
     data: Partial<{

@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { useGetAllProductsQuery } from "@/app/store/apis/ProductApi";
-import ProductCard from "../products/ProductCard";
 import { Product } from "@/app/types/productTypes";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
-import PaginationComponent from "../../organisms/Pagination";
 import { motion } from "framer-motion";
 import { Package } from "lucide-react";
+import ProductCard from "./ProductCard";
+import PaginationComponent from "@/app/components/organisms/Pagination";
 
 interface ProductSectionProps {
   title: string;

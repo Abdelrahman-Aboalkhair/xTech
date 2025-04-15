@@ -86,6 +86,8 @@ export class AnalyticsController {
       category: category as string,
     });
 
+    console.log("performace: ", performance);
+
     sendResponse(res, 200, {
       data: performance,
       message: "Product performance retrieved successfully",
@@ -256,6 +258,14 @@ export class AnalyticsController {
       });
     }
   );
+
+  getYearRange = asyncHandler(async (req: Request, res: Response) => {
+    const yearRange = await this.analyticsService.getOrderYearRange();
+    sendResponse(res, 200, {
+      data: yearRange,
+      message: "Year range retrieved successfully",
+    });
+  });
 
   exportAnalytics = asyncHandler(async (req: Request, res: Response) => {
     const { type, format, timePeriod, year, startDate, endDate } = req.query;

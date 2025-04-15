@@ -1,10 +1,10 @@
 import {
+  BenefitsSection,
   NewArrivalSection,
   PromotionalBanner,
-  BenefitsSection,
-} from "./components/sections/home";
-import HeroSection from "./components/sections/home/HeroSection";
-import ProductSection from "./components/sections/products/ProductSection";
+} from "./(public)/(home)";
+import HeroSection from "./(public)/(home)/HeroSection";
+import ProductSection from "./(public)/product/ProductSection";
 import MainLayout from "./components/templates/MainLayout";
 
 const Home = () => {

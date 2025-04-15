@@ -42,7 +42,7 @@ const UserMenu = ({ menuOpen, closeMenu }) => {
 
   const handleSignOut = async () => {
     try {
-      const res = await signout().unwrap();
+      await signout().unwrap();
       dispatch(clearUser());
       router.push("/sign-in");
     } catch (error) {

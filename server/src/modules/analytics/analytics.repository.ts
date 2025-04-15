@@ -8,6 +8,17 @@ export class AnalyticsRepository {
     this.prisma = new PrismaClient();
   }
 
+  async getOrderYearRange(): Promise<number[]> {
+    const orders = await this.prisma.order.findMany({
+      select: { orderDate: true },
+      orderBy: { orderDate: "asc" },
+    });
+    const years = [
+      ...new Set(orders.map((order) => order.orderDate.getFullYear())),
+    ];
+    return years;
+  }
+
   async getOrdersByTimePeriod(
     start?: Date,
     end?: Date,

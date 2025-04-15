@@ -1,0 +1,16 @@
+[2025-04-15T14:43:25.296Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-15T14:43:25.398Z] [31MERROR[39M: Refresh token not found
+[2025-04-15T14:43:49.173Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-15T14:43:49.222Z] [31MERROR[39M: Refresh token not found
+[2025-04-15T14:58:55.039Z] [31MERROR[39M: Can't find /api/v1/analytics/years on this server!
+[2025-04-15T14:58:55.057Z] [31MERROR[39M: Validation errors:
+[2025-04-15T14:58:55.058Z] [31MERROR[39M: Validation failed
+[2025-04-15T14:58:55.063Z] [31MERROR[39M: Invalid or missing timePeriod. Use: last7days, lastMonth, lastYear, allTime, or custom
+[2025-04-15T14:58:55.070Z] [31MERROR[39M: Invalid or missing timePeriod. Use: last7days, lastMonth, lastYear, allTime, or custom
+[2025-04-15T14:59:22.295Z] [31MERROR[39M: Invalid or missing timePeriod. Use: last7days, lastMonth, lastYear, allTime, or custom
+[2025-04-15T14:59:22.315Z] [31MERROR[39M: Validation errors:
+[2025-04-15T14:59:22.316Z] [31MERROR[39M: Validation failed
+[2025-04-15T14:59:22.335Z] [31MERROR[39M: Invalid or missing timePeriod. Use: last7days, lastMonth, lastYear, allTime, or custom
+[2025-04-15T15:01:04.736Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-15T15:01:15.267Z] [31MERROR[39M: Invalid or missing timePeriod. Use: last7days, lastMonth, lastYear, allTime, or custom
+[2025-04-15T15:05:00.510Z] [31MERROR[39M: Invalid or missing timePeriod. Use: last7days, lastMonth, lastYear, allTime, or custom

@@ -1,9 +1,17 @@
 import AppError from "@/shared/errors/AppError";
 import ApiFeatures from "@/shared/utils/ApiFeatures";
 import { ProductRepository } from "./product.repository";
+import slugify from "@/shared/utils/slugify";
+import { parse } from "csv-parse/sync";
+import * as XLSX from "xlsx";
+import prisma from "@/infra/database/database.config";
+import { RecommendationService } from "../recommendation/recommendation.service";
 
 export class ProductService {
-  constructor(private productRepository: ProductRepository) {}
+  constructor(
+    private productRepository: ProductRepository,
+    private recommendationService: RecommendationService
+  ) {}
   async getAllProducts(queryString: Record<string, any>) {
     const apiFeatures = new ApiFeatures(queryString)
       .filter()
@@ -68,6 +76,94 @@ export class ProductService {
   }) {
     const product = await this.productRepository.createProduct(data);
     return { product };
+  }
+
+  async bulkCreateProducts(file: Express.Multer.File) {
+    if (!file) {
+      throw new AppError(400, "No file uploaded");
+    }
+
+    let records: any[];
+    try {
+      if (file.mimetype === "text/csv") {
+        records = parse(file.buffer.toString(), {
+          columns: true,
+          skip_empty_lines: true,
+          trim: true,
+        });
+      } else if (
+        file.mimetype ===
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      ) {
+        const workbook = XLSX.read(file.buffer, { type: "buffer" });
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        records = XLSX.utils.sheet_to_json(sheet);
+      } else {
+        throw new AppError(400, "Unsupported file format. Use CSV or XLSX");
+      }
+    } catch (error) {
+      throw new AppError(400, "Failed to parse file");
+    }
+
+    if (records.length === 0) {
+      throw new AppError(400, "File is empty");
+    }
+
+    // Validate and transform records
+    const products = records.map((record) => {
+      if (!record.name || !record.price || !record.stock) {
+        throw new AppError(400, `Invalid record: ${JSON.stringify(record)}`);
+      }
+
+      return {
+        name: String(record.name),
+        slug: slugify(record.name),
+        description: record.description
+          ? String(record.description)
+          : undefined,
+        price: Number(record.price),
+        discount: record.discount ? Number(record.discount) : 0,
+        images: record.images
+          ? String(record.images)
+              .split(",")
+              .map((img: string) => img.trim())
+          : [],
+        stock: Number(record.stock),
+        categoryId: record.categoryId ? String(record.categoryId) : undefined,
+      };
+    });
+
+    // Validate categoryIds (if provided)
+    const categoryIds = products
+      .filter((p) => p.categoryId)
+      .map((p) => p.categoryId!);
+    if (categoryIds.length > 0) {
+      const existingCategories = await prisma.category.findMany({
+        where: { id: { in: categoryIds } },
+        select: { id: true },
+      });
+      const validCategoryIds = new Set(existingCategories.map((c) => c.id));
+      for (const product of products) {
+        if (product.categoryId && !validCategoryIds.has(product.categoryId)) {
+          throw new AppError(400, `Invalid categoryId: ${product.categoryId}`);
+        }
+      }
+    }
+
+    // Create products
+    await this.productRepository.createManyProducts(products);
+
+    // ** Update recommendation model
+    // for (const product of products) {
+    //   await this.recommendationService.updateModel({
+    //     id: product.slug,
+    //     title: product.name,
+    //     description: product.description,
+    //     category: product.categoryId,
+    //   });
+    // }
+
+    return { count: products.length };
   }
 
   async updateProduct(
