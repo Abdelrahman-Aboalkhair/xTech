@@ -30,6 +30,7 @@ export class ReviewController {
       page: Number(page),
       limit: Number(limit),
     });
+    console.log("reviews result => ", result);
 
     sendResponse(res, 200, {
       data: result,

@@ -12,7 +12,7 @@ export interface Product {
   salesCount: number;
   bestSeller: boolean;
   featured: boolean;
-  ratings: number;
+  reviewCount: number;
   averageRating: number;
   category?: Category | null;
   categoryId?: string | null;

@@ -50,3 +50,17 @@
 [2025-04-15T18:46:58.076Z] [31MERROR[39M: Validation errors:
 [2025-04-15T18:46:58.084Z] [31MERROR[39M: Validation failed
 [2025-04-15T18:54:25.612Z] [31MERROR[39M: Invalid record: {"name":"Anker PowerCore 10000","description":"Portable charger, 10000mAh","price":29.99,"discount":0}
+[2025-04-15T21:06:47.970Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-15T21:06:48.231Z] [31MERROR[39M: Refresh token not found
+[2025-04-15T21:08:45.336Z] [31MERROR[39M: Validation errors:
+[2025-04-15T21:08:45.339Z] [31MERROR[39M: Validation failed
+[2025-04-15T21:09:42.862Z] [31MERROR[39M: Validation errors:
+[2025-04-15T21:09:42.867Z] [31MERROR[39M: Validation failed
+[2025-04-15T21:11:47.997Z] [31MERROR[39M: Validation errors:
+[2025-04-15T21:11:47.998Z] [31MERROR[39M: Validation failed
+[2025-04-15T21:13:45.456Z] [31MERROR[39M: Can't find /api/v1/reviews/525e7a84-1888-419e-bc0d-386b8d7644f1 on this server!
+[2025-04-15T21:14:15.821Z] [31MERROR[39M: Can't find /api/v1/reviews/525e7a84-1888-419e-bc0d-386b8d7644f1 on this server!
+[2025-04-15T21:15:39.418Z] [31MERROR[39M: Can't find /api/v1/reviews/525e7a84-1888-419e-bc0d-386b8d7644f1 on this server!
+[2025-04-15T21:21:02.343Z] [31MERROR[39M: Validation errors:
+[2025-04-15T21:21:02.348Z] [31MERROR[39M: Validation failed
+[2025-04-15T21:26:08.352Z] [31MERROR[39M: Invalid access token, please log in

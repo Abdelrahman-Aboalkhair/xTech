@@ -5,14 +5,34 @@ import BreadCrumb from "@/app/components/feedback/BreadCrumb";
 import { useParams } from "next/navigation";
 import ProductImageGallery from "../ProductImageGallery";
 import ProductInfo from "../ProductInfo";
+import ProductReviews from "../ProductReviews";
+import { useAppSelector } from "@/app/store/hooks";
 
 const ProductDetailsPage = () => {
+  const { user } = useAppSelector((state) => state.auth);
   const { slug } = useParams();
-  const { data } = useGetProductBySlugQuery(slug || "");
+  const { data: product, isLoading } = useGetProductBySlugQuery(slug || "");
 
-  if (!data || !data.success) return <div>Loading...</div>;
+  const userId = user?.id;
+  const isAdmin = user?.role === "ADMIN";
 
-  const product = data.product;
+  if (isLoading)
+    return (
+      <MainLayout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="animate-spin h-8 w-8 border-4 border-blue-500 rounded-full border-t-transparent"></div>
+        </div>
+      </MainLayout>
+    );
+
+  if (!product || !product.success)
+    return (
+      <MainLayout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-red-500">Product not found</div>
+        </div>
+      </MainLayout>
+    );
 
   return (
     <MainLayout>
@@ -25,11 +45,19 @@ const ProductDetailsPage = () => {
         <ProductInfo
           name={product.name}
           averageRating={product.averageRating}
-          ratings={product.ratings}
+          reviewCount={product.reviewCount}
           stock={product.stock}
           price={product.price}
           discount={product.discount}
           description={product.description}
+        />
+      </div>
+
+      <div className="w-[84%] mx-auto p-6">
+        <ProductReviews
+          productId={product.id}
+          userId={userId}
+          isAdmin={isAdmin}
         />
       </div>
     </MainLayout>

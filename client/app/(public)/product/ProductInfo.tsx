@@ -6,7 +6,7 @@ import { CheckCircle, Truck, RotateCcw } from "lucide-react";
 interface ProductInfoProps {
   name: string;
   averageRating: number;
-  ratings: number;
+  reviewCount: number;
   stock: number;
   price: number;
   discount: number;
@@ -16,7 +16,7 @@ interface ProductInfoProps {
 const ProductInfo: React.FC<ProductInfoProps> = ({
   name,
   averageRating,
-  ratings,
+  reviewCount,
   stock,
   price,
   discount,
@@ -33,7 +33,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
       {/* Rating and Stock */}
       <div className="flex items-center gap-2 text-sm text-gray-600">
         <Rating rating={averageRating} />
-        <span>({ratings} reviews)</span>
+        <span>({reviewCount} reviews)</span>
         <span className="text-green-600 font-medium ml-2">
           {stock > 0 ? `${stock} in stock` : "Out of stock"}
         </span>
@@ -67,7 +67,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
       </div>
 
       {/* Action Buttons */}
-      <div className="mt-6 flex flex-col sm:flex-row items-stretch gap-4">
+      <div className="mt-6 flex flex-col sm:flex-row items-stretch gap-2">
         <button
           disabled={!stock}
           className={`w-full sm:w-auto px-8 py-3 text-sm font-medium text-white rounded-xl transition duration-300 ${
@@ -80,9 +80,9 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
         </button>
         <button
           disabled={!stock}
-          className={`w-full sm:w-auto px-8 py-3 text-sm font-medium border rounded-xl transition duration-300 ${
+          className={`w-full sm:w-auto px-8 py-3 text-sm font-medium border-[2px] rounded-xl transition duration-300 ${
             stock
-              ? "border-indigo-600 text-gray-800 hover:bg-gray-100"
+              ? "border-indigo-600 text-indigo-600 hover:bg-gray-100"
               : "border-gray-300 text-gray-400 cursor-not-allowed"
           }`}
         >

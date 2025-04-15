@@ -24,11 +24,14 @@ const ProductModal: React.FC<ProductModalProps> = ({
   error,
 }) => {
   const { data } = useGetAllCategoriesQuery({});
+  console.log("categories => ", data);
 
-  const categories = data?.categories?.map((category) => ({
-    label: category.name,
-    value: category.id,
-  }));
+  const categories = Object?.values(data)
+    .filter((item) => item !== null && typeof item === "object" && "id" in item)
+    .map((category) => ({
+      label: category.name,
+      value: category.id,
+    }));
 
   const form = useForm<ProductFormData>({
     defaultValues: {

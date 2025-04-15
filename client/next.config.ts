@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
       "www.dyson.com", // Dyson images
       "store.hp.com", // HP images
       "i1.adis.ws", // Canon images
-      "i5.walmartimages.com", // Walmart images
+      "i5.walmartimages.com", // Walmart images,
+      "lh3.googleusercontent.com",
     ],
     remotePatterns: [
       {

@@ -105,7 +105,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <div className="flex items-center">
               <Rating rating={product.averageRating} />
               <span className="text-gray-500 text-sm ml-1">
-                ({product.ratings})
+                ({product.reviewCount})
               </span>
             </div>
           </div>

@@ -189,7 +189,7 @@ const Navbar = () => {
               pathname !== "/sign-in" && (
                 <Link
                   href="/sign-in"
-                  className="hidden sm:inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm transition-all duration-200"
+                  className="hidden sm:inline-flex whitespace-nowrap items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm transition-all duration-200"
                 >
                   Sign in
                 </Link>

@@ -79,7 +79,7 @@ model Product {
   promotional   Boolean   @default(false)  
   newArrival    Boolean   @default(false)  
   averageRating Float     @default(0) 
-  reviewCount   Int       @default(0) // New: Track number of reviews
+  reviewCount   Int       @default(0) 
 
   category      Category? @relation(fields: [categoryId], references: [id]) 
   categoryId    String?
