@@ -61,7 +61,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
 
     const { left, top, width, height } =
       e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - left) / width) * 100;
+    const x = ((e.clientX - left) / width) * 100; // normalize to 0-100
     const y = ((e.clientY - top) / height) * 100;
 
     setMousePosition({ x, y });

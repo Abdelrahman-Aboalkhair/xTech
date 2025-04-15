@@ -70,10 +70,15 @@ export const analyticsApi = apiSlice.injectEndpoints({
     }),
 
     exportAnalytics: builder.query<Blob, void>({
-      query: () => ({
+      query: ({ type, format, timePeriod }: any) => ({
         url: "/analytics/export",
         method: "GET",
         responseHandler: (response) => response.blob(),
+        params: {
+          type,
+          format,
+          timePeriod,
+        },
       }),
     }),
   }),
@@ -86,5 +91,5 @@ export const {
   useGetCustomerAnalyticsQuery,
   useGetInteractionAnalyticsQuery,
   useRecordInteractionMutation,
-  useExportAnalyticsQuery,
+  useLazyExportAnalyticsQuery,
 } = analyticsApi;

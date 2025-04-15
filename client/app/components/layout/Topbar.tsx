@@ -114,7 +114,7 @@ const Topbar = ({
 
   return (
     <div
-      className={`bg-gradient-to-br from-gray-900 to-gray-950 text-white relative transition-all duration-300 ease-in-out ${
+      className={`bg-indigo-950 text-white relative transition-all duration-300 ease-in-out ${
         collapsed ? "h-0 overflow-hidden" : isPreview ? "p-2" : "py-4 px-4"
       }`}
     >
@@ -144,7 +144,7 @@ const Topbar = ({
           {/* Shop CTA */}
           <a
             href={shopLink}
-            className={`flex items-center gap-1 font-medium ${theme.textHighlight} hover:underline transition-colors px-3 py-1 rounded-full ${theme.accent} ${theme.hover}`}
+            className={`flex items-center gap-1 bg-indigo-700 font-medium hover:underline transition-colors px-3 py-1 rounded-full`}
           >
             {shopText}
             <ExternalLink size={14} />

@@ -1,7 +1,7 @@
 import React from "react";
 import FilterBar from "@/app/components/organisms/FilterBar";
-import ProductSection from "@/app/components/sections/products/ProductSection";
 import MainLayout from "@/app/components/templates/MainLayout";
+import ProductSection from "../product/ProductSection";
 
 const ShopPage = () => {
   return (

@@ -64,3 +64,20 @@
 [2025-04-15T21:21:02.343Z] [31MERROR[39M: Validation errors:
 [2025-04-15T21:21:02.348Z] [31MERROR[39M: Validation failed
 [2025-04-15T21:26:08.352Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-15T21:35:18.255Z] [31MERROR[39M: Validation errors:
+[2025-04-15T21:35:18.256Z] [31MERROR[39M: Validation failed
+[2025-04-15T21:43:46.468Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-15T21:43:46.481Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-15T21:43:46.493Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-15T21:43:46.542Z] [31MERROR[39M: Refresh token not found
+[2025-04-15T21:43:46.551Z] [31MERROR[39M: Refresh token not found
+[2025-04-15T21:43:54.746Z] [31MERROR[39M: Validation errors:
+[2025-04-15T21:43:54.748Z] [31MERROR[39M: Validation failed
+[2025-04-15T21:46:37.879Z] [31MERROR[39M: Validation errors:
+[2025-04-15T21:46:37.880Z] [31MERROR[39M: Validation failed
+[2025-04-15T21:46:54.276Z] [31MERROR[39M: Validation errors:
+[2025-04-15T21:46:54.277Z] [31MERROR[39M: Validation failed
+[2025-04-15T21:47:10.901Z] [31MERROR[39M: Validation errors:
+[2025-04-15T21:47:10.902Z] [31MERROR[39M: Validation failed
+[2025-04-15T21:47:55.933Z] [31MERROR[39M: Validation errors:
+[2025-04-15T21:47:55.934Z] [31MERROR[39M: Validation failed
