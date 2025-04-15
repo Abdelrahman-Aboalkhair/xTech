@@ -3,9 +3,8 @@ import { useGetProductBySlugQuery } from "@/app/store/apis/ProductApi";
 import MainLayout from "@/app/components/templates/MainLayout";
 import BreadCrumb from "@/app/components/feedback/BreadCrumb";
 import { useParams } from "next/navigation";
-import ProductImageGallery from "@/app/components/sections/products/ProductImageGallery";
-import ProductInfo from "@/app/components/sections/products/ProductInfo";
-import { RelatedContentSection } from "@/app/components/sections/home";
+import ProductImageGallery from "../ProductImageGallery";
+import ProductInfo from "../ProductInfo";
 
 const ProductDetailsPage = () => {
   const { slug } = useParams();
@@ -33,8 +32,6 @@ const ProductDetailsPage = () => {
           description={product.description}
         />
       </div>
-
-      <RelatedContentSection />
     </MainLayout>
   );
 };
