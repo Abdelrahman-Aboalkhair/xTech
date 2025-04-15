@@ -74,6 +74,7 @@ const Dashboard = () => {
     isLoading: isOverviewLoading,
     error: overviewError,
   } = useGetOverviewQuery(queryParams);
+  console.log("overviewData => ", overviewData);
 
   const {
     data: productData,
@@ -81,11 +82,15 @@ const Dashboard = () => {
     error: productError,
   } = useGetProductPerformanceQuery(queryParams);
 
+  console.log("productData => ", productData);
+
   const {
     data: customerData,
     isLoading: isCustomerLoading,
     error: customerError,
   } = useGetCustomerAnalyticsQuery(queryParams);
+
+  console.log("customerData => ", customerData);
 
   // Handle loading state
   if (isOverviewLoading || isProductLoading || isCustomerLoading) {
@@ -100,17 +105,17 @@ const Dashboard = () => {
 
   // Derive chart and list data
   const mostSoldProducts = {
-    labels: productData?.slice(0, 5).map((p) => p.name) || [],
-    data: productData?.slice(0, 5).map((p) => p.quantity) || [],
+    labels: productData?.performance?.slice(0, 5).map((p) => p.name) || [],
+    data: productData?.performance?.slice(0, 5).map((p) => p.quantity) || [],
   };
 
   const salesByProduct = {
-    categories: productData?.map((p) => p.name) || [],
-    data: productData?.map((p) => p.revenue) || [],
+    categories: productData?.performance?.map((p) => p.name) || [],
+    data: productData?.performance?.map((p) => p.revenue) || [],
   };
 
   const topItems =
-    productData?.slice(0, 5).map((p) => ({
+    productData?.performance?.slice(0, 5).map((p) => ({
       id: p.id,
       name: p.name,
       quantity: p.quantity,
@@ -150,7 +155,7 @@ const Dashboard = () => {
                 />
               )}
             />
-            <Controller
+            {/* <Controller
               name="year"
               control={control}
               render={({ field }) => (
@@ -163,13 +168,13 @@ const Dashboard = () => {
                   disabled={useCustomRange}
                 />
               )}
-            />
-            <DateRangePicker
+            /> */}
+            {/* <DateRangePicker
               label="Custom Date Range"
               control={control}
               startName="startDate"
               endName="endDate"
-            />
+            /> */}
           </div>
         </div>
         <div className="flex gap-4">

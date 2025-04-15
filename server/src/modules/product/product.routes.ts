@@ -28,11 +28,11 @@ router.post(
   productController.bulkCreateProducts
 );
 
-router.put(
-  "/:id",
+router.post(
+  "/retrain",
   protect,
   authorizeRole("ADMIN", "SUPERADMIN"),
-  productController.updateProduct
+  recommendationController.retrainModel
 );
 
 router.delete(

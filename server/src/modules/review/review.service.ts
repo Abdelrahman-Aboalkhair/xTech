@@ -1,24 +1,18 @@
 import AppError from "@/shared/errors/AppError";
 import { ReviewRepository } from "./review.repository";
-import { RecommendationService } from "../recommendation/recommendation.service";
 import prisma from "@/infra/database/database.config";
 
 export class ReviewService {
-  constructor(
-    private reviewRepository: ReviewRepository,
-    private recommendationService: RecommendationService
-  ) {}
+  constructor(private reviewRepository: ReviewRepository) {}
 
   async createReview(
     userId: string,
     data: { productId: string; rating: number; comment?: string }
   ) {
-    // Validate rating
     if (!Number.isInteger(data.rating) || data.rating < 1 || data.rating > 5) {
       throw new AppError(400, "Rating must be an integer between 1 and 5");
     }
 
-    // Check if product exists
     const product = await prisma.product.findUnique({
       where: { id: data.productId },
     });
@@ -26,20 +20,6 @@ export class ReviewService {
       throw new AppError(404, "Product not found");
     }
 
-    // Optional: Verify purchase (uncomment if needed)
-    /*
-    const hasPurchased = await prisma.orderItem.findFirst({
-      where: {
-        productId: data.productId,
-        order: { userId, status: "DELIVERED" },
-      },
-    });
-    if (!hasPurchased) {
-      throw new AppError(403, "You must purchase this product to review it");
-    }
-    */
-
-    // Check for existing review
     const existingReview =
       await this.reviewRepository.findReviewByUserAndProduct(
         userId,
@@ -49,7 +29,6 @@ export class ReviewService {
       throw new AppError(400, "You have already reviewed this product");
     }
 
-    // Create review
     const review = await this.reviewRepository.createReview({
       userId,
       productId: data.productId,
@@ -57,20 +36,7 @@ export class ReviewService {
       comment: data.comment,
     });
 
-    // Update product rating
     await this.reviewRepository.updateProductRating(data.productId);
-
-    // Update recommender (append comment to product features)
-    // if (data.comment) {
-    //   await this.recommendationService.updateModel({
-    //     id: data.productId,
-    //     title: product.name,
-    //     description: product.description || "",
-    //     category: product.categoryId || "",
-    //     comment: data.comment, // Extend model to include comment
-    //   });
-    // }
-
     return review;
   }
 
@@ -110,19 +76,6 @@ export class ReviewService {
 
     await this.reviewRepository.deleteReview(id);
     await this.reviewRepository.updateProductRating(review.productId);
-
-    // Trigger recommender update (optional, as comment is removed)
-    const product = await prisma.product.findUnique({
-      where: { id: review.productId },
-    });
-    if (product) {
-      await this.recommendationService.updateModel({
-        id: product.id,
-        title: product.name,
-        description: product.description || "",
-        category: product.categoryId || "",
-      });
-    }
 
     return { message: "Review deleted successfully" };
   }

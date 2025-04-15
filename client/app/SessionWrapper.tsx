@@ -24,15 +24,15 @@ const SessionWrapper = ({ children }: SessionWrapperProps) => {
   const pathname = usePathname();
   const shouldSkip = EXCLUDED_ROUTES.includes(pathname);
   const { data, isFetching, error } = useGetMeQuery({}, { skip: shouldSkip });
-  const user = data?.user;
+  console.log("data => ", data);
 
   useEffect(() => {
-    if (user) {
-      dispatch(setUser(user));
+    if (data) {
+      dispatch(setUser(data));
     } else if (error && !shouldSkip) {
       dispatch(clearUser());
     }
-  }, [user, error, shouldSkip, dispatch]);
+  }, [data, error, shouldSkip, dispatch]);
 
   if (isFetching) {
     return <CustomLoader />;

@@ -3,9 +3,15 @@ import { apiSlice } from "../slices/ApiSlice";
 export const analyticsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getOverview: builder.query<any, void>({
-      query: () => ({
+      query: ({ timePeriod, year, startDate, endDate }: any) => ({
         url: "/analytics/overview",
         method: "GET",
+        credentials: "include",
+        params: {
+          timePeriod,
+          ...(year && { year }),
+          ...(startDate && endDate && { startDate, endDate }),
+        },
       }),
     }),
 
@@ -17,23 +23,41 @@ export const analyticsApi = apiSlice.injectEndpoints({
     }),
 
     getProductPerformance: builder.query<any, void>({
-      query: () => ({
+      query: ({ timePeriod, year, startDate, endDate }: any) => ({
         url: "/analytics/products",
         method: "GET",
+        credentials: "include",
+        params: {
+          timePeriod,
+          ...(year && { year }),
+          ...(startDate && endDate && { startDate, endDate }),
+        },
       }),
     }),
 
     getCustomerAnalytics: builder.query<any, void>({
-      query: () => ({
+      query: ({ timePeriod, year, startDate, endDate }: any) => ({
         url: "/analytics/customers",
         method: "GET",
+        credentials: "include",
+        params: {
+          timePeriod,
+          ...(year && { year }),
+          ...(startDate && endDate && { startDate, endDate }),
+        },
       }),
     }),
 
     getInteractionAnalytics: builder.query<any, void>({
-      query: () => ({
+      query: ({ timePeriod, year, startDate, endDate }: any) => ({
         url: "/analytics/interactions",
         method: "GET",
+        credentials: "include",
+        params: {
+          timePeriod,
+          ...(year && { year }),
+          ...(startDate && endDate && { startDate, endDate }),
+        },
       }),
     }),
 

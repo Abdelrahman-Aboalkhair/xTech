@@ -89,7 +89,7 @@ export class AnalyticsController {
     console.log("performace: ", performance);
 
     sendResponse(res, 200, {
-      data: performance,
+      data: { performance },
       message: "Product performance retrieved successfully",
     });
   });

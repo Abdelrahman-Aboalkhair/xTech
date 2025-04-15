@@ -23,6 +23,8 @@ import {
   Paintbrush,
   ShieldCheck,
   Image,
+  ChartCandlestick,
+  ClipboardPlus,
 } from "lucide-react";
 import DashboardSearchBar from "../molecules/DashboardSearchbar";
 
@@ -65,6 +67,13 @@ const Sidebar = () => {
         links: [
           { name: "Customers", href: "/users", icon: Users },
           { name: "Administrators", href: "/admins", icon: ShieldCheck },
+        ],
+      },
+      {
+        title: "Stats",
+        links: [
+          { name: "Analytics", href: "/analytics", icon: ChartCandlestick },
+          { name: "Reports", href: "/reports", icon: ClipboardPlus },
         ],
       },
     ],

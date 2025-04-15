@@ -10,9 +10,10 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 import ProductModal from "./ProductModal";
-import { Trash2, Edit } from "lucide-react";
+import { Trash2, Edit, Upload, X } from "lucide-react";
 import ConfirmModal from "@/app/components/organisms/ConfirmModal";
 import useToast from "@/app/hooks/ui/useToast";
+import ProductFileUpload from "./ProductFileUpload";
 
 export interface ProductFormData {
   id: string;
@@ -32,18 +33,17 @@ const ProductsDashboard = () => {
     useCreateProductMutation();
   const [updateProduct, { isLoading: isUpdating, error: updateError }] =
     useUpdateProductMutation();
-  const [deleteProduct, { isLoading: isDeleting, error: deleteError }] =
-    useDeleteProductMutation();
-  console.log("deleteError => ", deleteError);
+  const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
+
   const { data, isLoading, refetch } = useGetAllProductsQuery(query);
   const products = data?.products || [];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<ProductFormData | null>(
     null
   );
-  console.log("editing product => ", editingProduct);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
+  const [isFileUploadOpen, setIsFileUploadOpen] = useState(false);
 
   const handleCreateProduct = async (data: ProductFormData) => {
     const formattedPrice = Number(data.price);
@@ -65,7 +65,6 @@ const ProductsDashboard = () => {
   };
 
   const handleUpdateProduct = async (data: ProductFormData) => {
-    console.log("submitten form data => ", data);
     if (!editingProduct) return;
 
     const formattedPrice = Number(data.price);
@@ -112,6 +111,10 @@ const ProductsDashboard = () => {
   const cancelDelete = () => {
     setIsConfirmModalOpen(false);
     setProductToDelete(null);
+  };
+
+  const handleFileUploadSuccess = () => {
+    refetch();
   };
 
   const columns = [
@@ -205,16 +208,40 @@ const ProductsDashboard = () => {
           <h1 className="text-xl font-semibold">Product List</h1>
           <p className="text-sm text-gray-500">Manage and view your products</p>
         </div>
-        <button
-          onClick={() => {
-            setEditingProduct(null);
-            setIsModalOpen(true);
-          }}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-        >
-          Create Product
-        </button>
+        <div className="flex space-x-3">
+          <button
+            onClick={() => setIsFileUploadOpen(!isFileUploadOpen)}
+            className="px-4 py-2 bg-green-700 text-white rounded-md hover:bg-green-800 flex items-center"
+          >
+            <Upload className="mr-2 h-4 w-4" />
+            Bulk Import
+          </button>
+          <button
+            onClick={() => {
+              setEditingProduct(null);
+              setIsModalOpen(true);
+            }}
+            className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+          >
+            Create Product
+          </button>
+        </div>
       </div>
+
+      {isFileUploadOpen && (
+        <div className="mb-6 bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+          <div className="flex justify-between items-center mb-3">
+            <h2 className="text-lg font-medium">Import Products</h2>
+            <button
+              onClick={() => setIsFileUploadOpen(false)}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              <X size={20} />
+            </button>
+          </div>
+          <ProductFileUpload onUploadSuccess={handleFileUploadSuccess} />
+        </div>
+      )}
 
       <Table
         data={products}

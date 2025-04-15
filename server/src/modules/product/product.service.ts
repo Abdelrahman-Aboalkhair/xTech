@@ -5,13 +5,9 @@ import slugify from "@/shared/utils/slugify";
 import { parse } from "csv-parse/sync";
 import * as XLSX from "xlsx";
 import prisma from "@/infra/database/database.config";
-import { RecommendationService } from "../recommendation/recommendation.service";
 
 export class ProductService {
-  constructor(
-    private productRepository: ProductRepository,
-    private recommendationService: RecommendationService
-  ) {}
+  constructor(private productRepository: ProductRepository) {}
   async getAllProducts(queryString: Record<string, any>) {
     const apiFeatures = new ApiFeatures(queryString)
       .filter()
@@ -152,16 +148,6 @@ export class ProductService {
 
     // Create products
     await this.productRepository.createManyProducts(products);
-
-    // ** Update recommendation model
-    // for (const product of products) {
-    //   await this.recommendationService.updateModel({
-    //     id: product.slug,
-    //     title: product.name,
-    //     description: product.description,
-    //     category: product.categoryId,
-    //   });
-    // }
 
     return { count: products.length };
   }

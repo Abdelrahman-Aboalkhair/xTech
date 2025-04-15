@@ -1,4 +1,3 @@
-// src/controllers/review.controller.ts
 import { Request, Response } from "express";
 import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";

@@ -37,6 +37,14 @@ export const productApi = apiSlice.injectEndpoints({
       },
     }),
 
+    bulkProducts: builder.mutation({
+      query: (data) => ({
+        url: "/products/bulk",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
     getProductById: builder.query({
       query: (id) => `/products/${id}`,
     }),
@@ -67,6 +75,7 @@ export const productApi = apiSlice.injectEndpoints({
 });
 
 export const {
+  useBulkProductsMutation,
   useGetAllProductsQuery,
   useGetProductBySlugQuery,
   useGetProductByIdQuery,

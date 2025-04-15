@@ -20,4 +20,12 @@ export class RecommendationController {
       message: "Recommendations fetched successfully",
     });
   });
+
+  retrainModel = asyncHandler(async (req: Request, res: Response) => {
+    const result = await this.recommendationService.retrainModel();
+    sendResponse(res, 200, {
+      data: result,
+      message: "Model retraining triggered successfully",
+    });
+  });
 }

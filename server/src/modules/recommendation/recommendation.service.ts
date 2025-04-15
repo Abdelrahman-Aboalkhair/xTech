@@ -29,16 +29,18 @@ export class RecommendationService {
     }
   }
 
-  async updateModel(product: {
-    id: string;
-    title: string;
-    description?: string;
-    category?: string;
-  }) {
+  async retrainModel() {
     try {
-      await axios.post(`${this.apiUrl}/update`, product);
+      const response = await axios.post(
+        `${this.apiUrl}/retrain`,
+        {},
+        {
+          headers: { "X-API-Key": process.env.RECOMMENDER_API_KEY },
+        }
+      );
+      return response.data;
     } catch (error) {
-      console.error("Failed to update recommender model:", error);
+      throw new AppError(500, "Failed to retrain recommendation model");
     }
   }
 }
