@@ -19,11 +19,6 @@ export class AddressController {
       data: addresses,
       message: "Addresses retrieved successfully",
     });
-
-    this.logsService.info("Get User Addresses", {
-      userId,
-      timePeriod: req.query.timePeriod,
-    });
   });
 
   getAddressDetails = asyncHandler(async (req: Request, res: Response) => {
@@ -47,5 +42,13 @@ export class AddressController {
 
     await this.addressService.deleteAddress(addressId);
     sendResponse(res, 200, { message: "Address deleted successfully" });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Address deleted", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 }

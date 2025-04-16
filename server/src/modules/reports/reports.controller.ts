@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import asyncHandler from "@/shared/utils/asyncHandler";
-import sendResponse from "@/shared/utils/sendResponse";
 import AppError from "@/shared/errors/AppError";
 import { ReportsService } from "./reports.service";
 import { DateRangeQuery, ReportData } from "./reports.types";
 import { ExportUtils } from "@/shared/utils/exportUtils";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class ReportsController {
+  private logsService = makeLogsService();
   constructor(
     private reportsService: ReportsService,
     private exportUtils: ExportUtils
@@ -131,5 +132,14 @@ export class ReportsController {
     res.setHeader("Content-Type", contentType);
     res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
     res.send(result);
+
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Report generated", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 }

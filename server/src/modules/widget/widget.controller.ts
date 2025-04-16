@@ -2,8 +2,10 @@ import { Request, Response } from "express";
 import { WidgetService } from "./widget.service";
 import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class WidgetController {
+  private logsService = makeLogsService();
   constructor(private widgetService: WidgetService) {}
 
   getHeroPromo = asyncHandler(async (req: Request, res: Response) => {
@@ -34,6 +36,14 @@ export class WidgetController {
       data: widget,
       message: "Widget created successfully",
     });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Widget created", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 
   getAllWidgets = asyncHandler(async (_req: Request, res: Response) => {
@@ -63,10 +73,26 @@ export class WidgetController {
       data: { widget: updated },
       message: "Widget updated successfully",
     });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Widget updated", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 
   deleteWidget = asyncHandler(async (req: Request, res: Response) => {
     await this.widgetService.deleteWidget(Number(req.params.id));
     sendResponse(res, 200, { message: "Widget deleted successfully" });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Widget deleted", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 }

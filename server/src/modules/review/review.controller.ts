@@ -2,8 +2,10 @@ import { Request, Response } from "express";
 import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
 import { ReviewService } from "./review.service";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class ReviewController {
+  private logsService = makeLogsService();
   constructor(private reviewService: ReviewService) {}
 
   createReview = asyncHandler(async (req: Request, res: Response) => {
@@ -19,6 +21,15 @@ export class ReviewController {
     sendResponse(res, 201, {
       data: review,
       message: "Review created successfully",
+    });
+
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Review created", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
     });
   });
 
@@ -45,5 +56,13 @@ export class ReviewController {
     const result = await this.reviewService.deleteReview(id, userId);
 
     sendResponse(res, 200, result);
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Review deleted", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 }

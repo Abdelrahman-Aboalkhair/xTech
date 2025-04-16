@@ -4,8 +4,10 @@ import sendResponse from "@/shared/utils/sendResponse";
 import { CheckoutService } from "./checkout.service";
 import AppError from "@/shared/errors/AppError";
 import { CartService } from "../cart/cart.service";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class CheckoutController {
+  private logsService = makeLogsService();
   constructor(
     private checkoutService: CheckoutService,
     private cartService: CartService
@@ -26,6 +28,14 @@ export class CheckoutController {
     sendResponse(res, 200, {
       data: { sessionId: session.id },
       message: "Checkout initiated successfully",
+    });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Checkout initiated", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
     });
   });
 }

@@ -2,8 +2,10 @@ import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
 import { Request, Response } from "express";
 import { PageService } from "./page.service";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class PageController {
+  private logsService = makeLogsService();
   constructor(private pageService: PageService) {}
 
   createPage = asyncHandler(async (req: Request, res: Response) => {
@@ -11,6 +13,14 @@ export class PageController {
     sendResponse(res, 201, {
       data: page,
       message: "Page created successfully",
+    });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Page created", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
     });
   });
 
@@ -40,10 +50,26 @@ export class PageController {
       data: { page: updated },
       message: "Page updated successfully",
     });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Page updated", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 
   deletePage = asyncHandler(async (req: Request, res: Response) => {
     await this.pageService.deletePage(Number(req.params.id));
     sendResponse(res, 200, { message: "Page deleted successfully" });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Page deleted", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 }

@@ -4,8 +4,10 @@ import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
 import { Request, Response } from "express";
 import { WebhookService } from "./webhook.service";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class WebhookController {
+  private logsService = makeLogsService();
   constructor(private webhookService: WebhookService) {}
 
   handleWebhook = asyncHandler(async (req: Request, res: Response) => {
@@ -34,5 +36,14 @@ export class WebhookController {
     }
 
     sendResponse(res, 200, { message: "Webhook received successfully" });
+
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Webhook received", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 }

@@ -3,13 +3,11 @@ import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
 import CategoryService from "./category.service";
 import { CreateCategoryDto } from "./category.dto";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class CategoryController {
-  private categoryService: CategoryService;
-
-  constructor(categoryService: CategoryService) {
-    this.categoryService = categoryService;
-  }
+  private logsService = makeLogsService();
+  constructor(private categoryService: CategoryService) {}
 
   getAllCategories = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
@@ -43,6 +41,14 @@ export class CategoryController {
         data: category,
         message: "Category created successfully",
       });
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("Category created", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 
@@ -51,6 +57,14 @@ export class CategoryController {
       const { id: categoryId } = req.params;
       await this.categoryService.deleteCategory(categoryId);
       sendResponse(res, 204, { message: "Category deleted successfully" });
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("Category deleted", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 }

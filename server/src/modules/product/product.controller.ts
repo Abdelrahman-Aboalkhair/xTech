@@ -3,8 +3,10 @@ import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
 import { ProductService } from "./product.service";
 import slugify from "@/shared/utils/slugify";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class ProductController {
+  private logsService = makeLogsService();
   constructor(private productService: ProductService) {}
 
   getAllProducts = asyncHandler(
@@ -72,6 +74,14 @@ export class ProductController {
         data: product,
         message: "Product created successfully",
       });
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("Product created", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 
@@ -82,6 +92,14 @@ export class ProductController {
     sendResponse(res, 201, {
       data: { count: result.count },
       message: `${result.count} products created successfully`,
+    });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Bulk Products created", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
     });
   });
 
@@ -98,6 +116,14 @@ export class ProductController {
         data: product,
         message: "Product updated successfully",
       });
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("Product updated", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 
@@ -107,6 +133,14 @@ export class ProductController {
       console.log("productId: ", productId);
       await this.productService.deleteProduct(productId);
       sendResponse(res, 200, { message: "Product deleted successfully" });
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("Product deleted", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 }

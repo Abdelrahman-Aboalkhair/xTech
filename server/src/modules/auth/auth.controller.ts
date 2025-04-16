@@ -7,10 +7,12 @@ import { AuthService } from "./auth.service";
 import { tokenUtils } from "@/shared/utils/authUtils";
 import AppError from "@/shared/errors/AppError";
 import { CartService } from "../cart/cart.service";
+import { makeLogsService } from "../logs/logs.factory";
 
 const { maxAge, ...clearCookieOptions } = cookieOptions;
 
 export class AuthController {
+  private logsService = makeLogsService();
   constructor(
     private authService: AuthService,
     private cartService?: CartService
@@ -18,6 +20,8 @@ export class AuthController {
 
   register = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
+      const start = Date.now();
+      const end = Date.now();
       const { name, email, password, role } = req.body;
       const { user, accessToken, refreshToken } =
         await this.authService.registerUser({
@@ -48,15 +52,29 @@ export class AuthController {
           },
         },
       });
+      this.logsService.info("Register", {
+        userId,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 
   getVerificationEmail = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
       const { email } = req.params;
+      const userId = req.user?.id;
       const result = await this.authService.sendVerificationEmail(email);
-
       sendResponse(res, 200, { message: result.message });
+
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("Send Verification Email", {
+        userId,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 
@@ -64,8 +82,18 @@ export class AuthController {
     async (req: Request, res: Response): Promise<void> => {
       const { emailVerificationToken } = req.body;
       const result = await this.authService.verifyEmail(emailVerificationToken);
+      const userId = req.user?.id;
 
       sendResponse(res, 200, { message: result.message });
+
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("Verify Email", {
+        userId,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 
@@ -93,11 +121,21 @@ export class AuthController {
       },
       message: "User logged in successfully",
     });
+
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Sign in", {
+      userId,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 
   signout = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const refreshToken = req?.cookies?.refreshToken;
     const accessToken = req?.cookies?.accessToken;
+    const userId = req.user?.id;
 
     if (refreshToken) {
       const decoded: any = jwt.decode(refreshToken);
@@ -125,14 +163,31 @@ export class AuthController {
     res.clearCookie("accessToken", clearCookieOptions);
 
     sendResponse(res, 200, { message: "Logged out successfully" });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Sign out", {
+      userId,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 
   forgotPassword = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
       const { email } = req.body;
       const response = await this.authService.forgotPassword(email);
+      const userId = req.user?.id;
 
       sendResponse(res, 200, { message: response.message });
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("Forgot Password", {
+        userId,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 
@@ -140,8 +195,17 @@ export class AuthController {
     async (req: Request, res: Response): Promise<void> => {
       const { token, newPassword } = req.body;
       const response = await this.authService.resetPassword(token, newPassword);
+      const userId = req.user?.id;
 
       sendResponse(res, 200, { message: response.message });
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("Reset Password", {
+        userId,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 
@@ -160,6 +224,14 @@ export class AuthController {
       res.cookie("accessToken", newAccessToken, clearCookieOptions);
 
       sendResponse(res, 200, { message: "Token refreshed successfully" });
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("Refresh Token", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 }

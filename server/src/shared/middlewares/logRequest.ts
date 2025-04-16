@@ -20,7 +20,7 @@ export const logRequest = async (
       method,
       url,
       status,
-      duration,
+      timePeriod: duration,
       ip,
       userId,
     });

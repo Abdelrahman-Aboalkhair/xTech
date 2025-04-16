@@ -2,13 +2,11 @@ import { Request, Response } from "express";
 import { UserService } from "./user.service";
 import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class UserController {
-  private userService: UserService;
-
-  constructor(userService: UserService) {
-    this.userService = userService;
-  }
+  private logsService = makeLogsService();
+  constructor(private userService: UserService) {}
 
   getAllUsers = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
@@ -62,6 +60,14 @@ export class UserController {
         data: user,
         message: "User updated successfully",
       });
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("User updated", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 
@@ -70,6 +76,14 @@ export class UserController {
       const { id } = req.params;
       await this.userService.deleteUser(id);
       sendResponse(res, 204, { message: "User deleted successfully" });
+      const start = Date.now();
+      const end = Date.now();
+
+      this.logsService.info("User deleted", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
     }
   );
 }

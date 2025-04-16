@@ -108,7 +108,7 @@ const globalError = async (
     stack: err.stack,
     method: req.method,
     url: req.originalUrl,
-    userId: (req as any)?.user?.id || null, // Optional, if available in request
+    userId: (req as any)?.user?.id || null,
   });
 
   // 📤 Error Response

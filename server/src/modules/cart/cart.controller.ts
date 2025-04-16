@@ -2,13 +2,11 @@ import { Request, Response } from "express";
 import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
 import { CartService } from "./cart.service";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class CartController {
-  private cartService: CartService;
-
-  constructor(cartService: CartService) {
-    this.cartService = cartService;
-  }
+  private logsService = makeLogsService();
+  constructor(private cartService: CartService) {}
 
   getCart = asyncHandler(async (req: Request, res: Response) => {
     const userId = req.user?.id;
@@ -19,6 +17,15 @@ export class CartController {
     sendResponse(res, 200, {
       data: cart,
       message: "Cart fetched successfully",
+    });
+
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Cart fetched", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
     });
   });
 
@@ -38,6 +45,14 @@ export class CartController {
       data: item,
       message: "Item added to cart successfully",
     });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Item added to cart", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 
   updateCartItem = asyncHandler(async (req: Request, res: Response) => {
@@ -52,6 +67,14 @@ export class CartController {
       data: { item: updatedItem },
       message: "Item quantity updated successfully",
     });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Item quantity updated", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 
   removeFromCart = asyncHandler(async (req: Request, res: Response) => {
@@ -59,6 +82,14 @@ export class CartController {
     await this.cartService.removeFromCart(itemId);
 
     sendResponse(res, 200, { message: "Item removed from cart successfully" });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Item removed from cart", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 
   mergeCarts = asyncHandler(async (req: Request, res: Response) => {
@@ -67,5 +98,13 @@ export class CartController {
     await this.cartService.mergeCartsOnLogin(sessionId, userId);
 
     sendResponse(res, 200, { message: "Carts merged successfully" });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Carts merged", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 }

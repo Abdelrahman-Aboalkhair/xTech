@@ -9,8 +9,10 @@ import { ProductRepository } from "../product/product.repository";
 import AppError from "@/shared/errors/AppError";
 import redisClient from "@/infra/cache/redis";
 import stripe from "@/infra/payment/stripe";
+import { makeLogsService } from "../logs/logs.factory";
 
 export class WebhookService {
+  private logsService = makeLogsService();
   constructor(
     private webhookRepository: WebhookRepository,
     private shipmentRepository: ShipmentRepository,
@@ -127,16 +129,29 @@ export class WebhookService {
   }
 
   async handleCheckoutCompletion(session: any) {
-    console.log("session: ", session);
+    this.logsService.info("Webhook - Checkout completion started", {
+      sessionId: session.id,
+    });
+
     const fullSession = await stripe.checkout.sessions.retrieve(session.id);
     const userId = fullSession?.metadata?.userId;
 
     if (!userId) {
+      await this.logsService.error(
+        "Webhook - No userId in payment_intent metadata",
+        {
+          sessionId: session.id,
+        }
+      );
       throw new AppError(400, "No userId in payment_intent metadata");
     }
 
     const cart = await this.cartRepository.getCartByUserId(userId);
     if (!cart || !cart.cartItems.length) {
+      await this.logsService.warn("Webhook - Cart is empty or not found", {
+        userId,
+        sessionId: session.id,
+      });
       throw new AppError(400, "Cart is empty or not found");
     }
 
@@ -145,13 +160,31 @@ export class WebhookService {
     const { order, payment, shipment, address } =
       await this.createOrderAndDependencies(userId, fullSession, cart, amount);
 
+    this.logsService.info("Webhook - Order and dependencies created", {
+      userId,
+      orderId: order?.id,
+      paymentId: payment.id,
+      shipmentId: shipment.id,
+      addressId: address?.id,
+      amount,
+    });
+
     await this.updateProductStock(cart);
+    this.logsService.debug("Webhook - Product stock updated", { userId });
+
     await this.clearCartAndInvalidateCache(userId);
+    this.logsService.debug("Webhook - Cart cleared and cache invalidated", {
+      userId,
+    });
 
     await this.webhookRepository.logWebhookEvent(
       "checkout.session.completed",
       session
     );
+    this.logsService.info("Webhook - checkout.session.completed logged in DB", {
+      userId,
+      sessionId: session.id,
+    });
 
     return { order, payment, shipment, address: address || null };
   }

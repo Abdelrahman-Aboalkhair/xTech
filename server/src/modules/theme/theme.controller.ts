@@ -2,7 +2,9 @@ import { Request, Response } from "express";
 import { ThemeService } from "./theme.service";
 import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
+import { makeLogsService } from "../logs/logs.factory";
 export class ThemeController {
+  private logsService = makeLogsService();
   constructor(private themeService: ThemeService) {}
 
   createTheme = asyncHandler(async (req: Request, res: Response) => {
@@ -10,6 +12,14 @@ export class ThemeController {
     sendResponse(res, 201, {
       data: theme,
       message: "Theme created successfully",
+    });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Theme created", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
     });
   });
 
@@ -43,5 +53,13 @@ export class ThemeController {
   deleteTheme = asyncHandler(async (req: Request, res: Response) => {
     await this.themeService.deleteTheme(Number(req.params.id));
     sendResponse(res, 200, { message: "Theme deleted successfully" });
+    const start = Date.now();
+    const end = Date.now();
+
+    this.logsService.info("Theme deleted", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
   });
 }
