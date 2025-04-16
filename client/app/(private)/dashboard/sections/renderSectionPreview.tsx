@@ -1,10 +1,7 @@
+import { BenefitsSection, NewArrivalSection } from "@/app/(public)/(home)";
+import HeroSection from "@/app/(public)/(home)/HeroSection";
+import PromotionalSection from "@/app/(public)/(home)/PromotionalBanner";
 import React from "react";
-import {
-  BenefitsSection,
-  NewArrivalSection,
-} from "@/app/components/sections/home";
-import PromotionalSection from "@/app/components/sections/home/PromotionalBanner";
-import HeroSection from "@/app/components/sections/home/HeroSection";
 
 interface SectionData {
   id: number;

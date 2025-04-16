@@ -8,6 +8,31 @@ export class LogsRepository {
     this.prisma = new PrismaClient();
   }
 
+  async getLogs() {
+    return this.prisma.log.findMany();
+  }
+
+  async getLogById(id: string) {
+    return this.prisma.log.findUnique({
+      where: { id },
+    });
+  }
+  async getLogsByLevel(level: string) {
+    return this.prisma.log.findMany({
+      where: { level },
+    });
+  }
+
+  async deleteLog(id: string) {
+    return this.prisma.log.delete({
+      where: { id },
+    });
+  }
+
+  async clearLogs() {
+    return this.prisma.log.deleteMany();
+  }
+
   async createLog(data: LogEntry) {
     return this.prisma.log.create({
       data: {

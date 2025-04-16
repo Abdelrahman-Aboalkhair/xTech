@@ -22,6 +22,7 @@ import analyticsRoutes from "./modules/analytics/analytics.routes";
 import paymentRoutes from "./modules/payment/payment.routes";
 import addressRoutes from "./modules/address/address.routes";
 import shipmentRoutes from "./modules/shipment/shipment.routes";
+import logRoutes from "./modules/logs/logs.routes";
 
 // Import the newly created routes
 import pageRoutes from "./modules/page/page.routes";
@@ -149,6 +150,7 @@ app.use("/api/v1/addresses", addressRoutes);
 app.use("/api/v1/shipment", shipmentRoutes);
 app.use("/api/v1/reports", reportRoutes);
 app.use("/api/v1/analytics", analyticsRoutes);
+app.use("/api/v1/logs", logRoutes);
 
 // Add the new CMS-related routes
 app.use("/api/v1/banners", bannerRoutes);

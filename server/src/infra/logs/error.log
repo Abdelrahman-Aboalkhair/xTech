@@ -81,3 +81,67 @@
 [2025-04-15T21:47:10.902Z] [31MERROR[39M: Validation failed
 [2025-04-15T21:47:55.933Z] [31MERROR[39M: Validation errors:
 [2025-04-15T21:47:55.934Z] [31MERROR[39M: Validation failed
+[2025-04-16T15:38:12.962Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-16T15:38:13.098Z] [31MERROR[39M: Refresh token not found
+[2025-04-16T15:38:23.688Z] [31MERROR[39M: Validation errors:
+[2025-04-16T15:38:23.690Z] [31MERROR[39M: Validation failed
+[2025-04-16T15:38:23.746Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T15:38:23.781Z] [31MERROR[39M: No orders found
+[2025-04-16T15:38:26.356Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T15:38:26.357Z] [31MERROR[39M: Validation errors:
+[2025-04-16T15:38:26.358Z] [31MERROR[39M: Validation failed
+[2025-04-16T15:38:26.389Z] [31MERROR[39M: No orders found
+[2025-04-16T15:39:18.477Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T15:39:18.478Z] [31MERROR[39M: Validation errors:
+[2025-04-16T15:39:18.479Z] [31MERROR[39M: Validation failed
+[2025-04-16T15:39:18.481Z] [31MERROR[39M: No orders found
+[2025-04-16T15:39:44.565Z] [31MERROR[39M: No orders found
+[2025-04-16T15:39:44.580Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T15:39:44.587Z] [31MERROR[39M: Validation errors:
+[2025-04-16T15:39:44.590Z] [31MERROR[39M: Validation failed
+[2025-04-16T15:40:24.329Z] [31MERROR[39M: No orders found
+[2025-04-16T15:40:24.332Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T15:40:24.457Z] [31MERROR[39M: Validation errors:
+[2025-04-16T15:40:24.460Z] [31MERROR[39M: Validation failed
+[2025-04-16T15:52:09.033Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T15:52:09.046Z] [31MERROR[39M: Validation errors:
+[2025-04-16T15:52:09.048Z] [31MERROR[39M: Validation failed
+[2025-04-16T15:52:09.061Z] [31MERROR[39M: No orders found
+[2025-04-16T15:54:32.424Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T15:54:32.434Z] [31MERROR[39M: No orders found
+[2025-04-16T15:54:32.440Z] [31MERROR[39M: Validation errors:
+[2025-04-16T15:54:32.444Z] [31MERROR[39M: Validation failed
+[2025-04-16T16:03:46.951Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-16T16:04:06.419Z] [31MERROR[39M: No orders found
+[2025-04-16T16:04:06.428Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T16:04:06.478Z] [31MERROR[39M: Validation errors:
+[2025-04-16T16:04:06.483Z] [31MERROR[39M: Validation failed
+[2025-04-16T16:04:24.316Z] [31MERROR[39M: Record not found
+[2025-04-16T16:04:26.701Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T16:04:26.718Z] [31MERROR[39M: No orders found
+[2025-04-16T16:04:26.722Z] [31MERROR[39M: Validation errors:
+[2025-04-16T16:04:26.723Z] [31MERROR[39M: Validation failed
+[2025-04-16T16:05:54.180Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T16:05:54.187Z] [31MERROR[39M: Validation errors:
+[2025-04-16T16:05:54.188Z] [31MERROR[39M: Validation failed
+[2025-04-16T16:05:54.202Z] [31MERROR[39M: No orders found
+[2025-04-16T16:06:04.139Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T16:06:04.146Z] [31MERROR[39M: No orders found
+[2025-04-16T16:06:04.150Z] [31MERROR[39M: Validation errors:
+[2025-04-16T16:06:04.151Z] [31MERROR[39M: Validation failed
+[2025-04-16T16:06:43.819Z] [31MERROR[39M: No orders found
+[2025-04-16T16:06:43.821Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T16:06:43.839Z] [31MERROR[39M: Validation errors:
+[2025-04-16T16:06:43.847Z] [31MERROR[39M: Validation failed
+[2025-04-16T16:08:19.759Z] [31MERROR[39M: No orders found
+[2025-04-16T16:08:22.042Z] [31MERROR[39M: No orders found
+[2025-04-16T16:08:22.048Z] [31MERROR[39M: No payments found for this user
+[2025-04-16T16:08:22.049Z] [31MERROR[39M: Validation errors:
+[2025-04-16T16:08:22.049Z] [31MERROR[39M: Validation failed
+[2025-04-16T16:08:33.042Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-16T16:08:33.044Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-16T16:08:33.046Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-16T16:08:33.070Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-16T16:08:33.104Z] [31MERROR[39M: Refresh token not found
+[2025-04-16T16:08:33.129Z] [31MERROR[39M: Refresh token not found
+[2025-04-16T16:08:33.285Z] [31MERROR[39M: Refresh token not found

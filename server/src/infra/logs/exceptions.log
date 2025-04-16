@@ -1,14 +1,14 @@
-[2025-04-15T18:20:58.624Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/review/review.factory.ts[0m:[93m9[0m:[93m49[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+[2025-04-16T15:37:18.099Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/user/user.controller.ts[0m:[93m5[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../logs/logs.factory"' has no exported member 'makeLogsService'.
 
-[7m9[0m   const service = new ReviewService(repository, recommendationService);
-[7m [0m [91m                                                ~~~~~~~~~~~~~~~~~~~~~[0m
+[7m5[0m import { makeLogsService } from "../logs/logs.factory";
+[7m [0m [91m         ~~~~~~~~~~~~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/review/review.factory.ts[0m:[93m9[0m:[93m49[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 2.
+[96msrc/modules/user/user.controller.ts[0m:[93m5[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../logs/logs.factory"' has no exported member 'makeLogsService'.
 
-[7m9[0m   const service = new ReviewService(repository, recommendationService);
-[7m [0m [91m                                                ~~~~~~~~~~~~~~~~~~~~~[0m
+[7m5[0m import { makeLogsService } from "../logs/logs.factory";
+[7m [0m [91m         ~~~~~~~~~~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -20,27 +20,25 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-15T18:21:13.427Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/review/review.controller.ts[0m:[93m45[0m:[93m45[0m - [91merror[0m[90m TS2554: [0mExpected 3 arguments, but got 2.
+[2025-04-16T15:37:36.760Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/user/user.controller.ts[0m:[93m66[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'info' does not exist on type 'LogsController'.
 
-[7m45[0m     const result = await this.reviewService.deleteReview(id, userId);
-[7m  [0m [91m                                            ~~~~~~~~~~~~[0m
+[7m66[0m       this.logsService.info("User updated", {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/modules/user/user.controller.ts[0m:[93m82[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'info' does not exist on type 'LogsController'.
 
-  [96msrc/modules/review/review.service.ts[0m:[93m71[0m:[93m50[0m
-    [7m71[0m   async deleteReview(id: string, userId: string, userRole: string) {
-    [7m  [0m [96m                                                 ~~~~~~~~~~~~~~~~[0m
-    An argument for 'userRole' was not provided.
+[7m82[0m       this.logsService.info("User deleted", {
+[7m  [0m [91m                       ~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/review/review.controller.ts[0m:[93m45[0m:[93m45[0m - [91merror[0m[90m TS2554: [0mExpected 3 arguments, but got 2.
+[96msrc/modules/user/user.controller.ts[0m:[93m66[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'info' does not exist on type 'LogsController'.
 
-[7m45[0m     const result = await this.reviewService.deleteReview(id, userId);
-[7m  [0m [91m                                            ~~~~~~~~~~~~[0m
+[7m66[0m       this.logsService.info("User updated", {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/modules/user/user.controller.ts[0m:[93m82[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'info' does not exist on type 'LogsController'.
 
-  [96msrc/modules/review/review.service.ts[0m:[93m71[0m:[93m50[0m
-    [7m71[0m   async deleteReview(id: string, userId: string, userRole: string) {
-    [7m  [0m [96m                                                 ~~~~~~~~~~~~~~~~[0m
-    An argument for 'userRole' was not provided.
+[7m82[0m       this.logsService.info("User deleted", {
+[7m  [0m [91m                       ~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -52,25 +50,21 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-16T14:33:24.108Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/webhook/webhook.service.ts[0m:[93m165[0m:[93m16[0m - [91merror[0m[90m TS18047: [0m'order' is possibly 'null'.
-
-[7m165[0m       orderId: order.id,
-[7m   [0m [91m               ~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/webhook/webhook.service.ts[0m:[93m165[0m:[93m16[0m - [91merror[0m[90m TS18047: [0m'order' is possibly 'null'.
-
-[7m165[0m       orderId: order.id,
-[7m   [0m [91m               ~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-16T15:40:02.504Z] [31MERROR[39M: uncaughtException: Cannot destructure property 'accessToken' of 'user' as it is undefined.
+TypeError: Cannot destructure property 'accessToken' of 'user' as it is undefined.
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:112:15
+    at Generator.next (<anonymous>)
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:4:12)
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:110:34
+    at Layer.handle [as handle_request] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:175:3)
+    at router (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/layer.js:95:5)

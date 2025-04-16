@@ -102,6 +102,9 @@ const globalError = async (
     );
   }
 
+  const start = Date.now();
+  const end = Date.now();
+
   // 🛠️ Logs Service Integration
   await logsService.error(`Error: ${error.message}`, {
     statusCode: error.statusCode,
@@ -109,6 +112,7 @@ const globalError = async (
     method: req.method,
     url: req.originalUrl,
     userId: (req as any)?.user?.id || null,
+    timePeriod: end - start,
   });
 
   // 📤 Error Response
