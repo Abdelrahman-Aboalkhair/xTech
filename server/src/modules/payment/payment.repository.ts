@@ -1,4 +1,5 @@
 import prisma from "@/infra/database/database.config";
+import { PAYMENT_STATUS } from "@prisma/client";
 
 export class PaymentRepository {
   async createPayment(data: {
@@ -6,6 +7,7 @@ export class PaymentRepository {
     userId: string;
     method: string;
     amount: number;
+    status: PAYMENT_STATUS;
   }) {
     return prisma.payment.create({
       data: {
@@ -13,6 +15,7 @@ export class PaymentRepository {
         userId: data.userId,
         method: data.method,
         amount: data.amount,
+        status: data.status,
       },
     });
   }

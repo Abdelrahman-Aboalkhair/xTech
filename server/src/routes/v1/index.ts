@@ -14,11 +14,6 @@ import paymentRoutes from "@/modules/payment/payment.routes";
 import addressRoutes from "@/modules/address/address.routes";
 import shipmentRoutes from "@/modules/shipment/shipment.routes";
 import logRoutes from "@/modules/logs/logs.routes";
-import pageRoutes from "@/modules/page/page.routes";
-import themeRoutes from "@/modules/theme/theme.routes";
-import sectionRoutes from "@/modules/section/section.routes";
-import widgetRoutes from "@/modules/widget/widget.routes";
-import bannerRoutes from "@/modules/banner/banner.routes";
 import bodyParser from "body-parser";
 
 const router = Router();
@@ -37,11 +32,6 @@ router.use("/shipment", shipmentRoutes);
 router.use("/reports", reportRoutes);
 router.use("/analytics", analyticsRoutes);
 router.use("/logs", logRoutes);
-router.use("/banners", bannerRoutes);
-router.use("/pages", pageRoutes);
-router.use("/themes", themeRoutes);
-router.use("/sections", sectionRoutes);
-router.use("/widgets", widgetRoutes);
 router.use(
   "/webhook",
   bodyParser.raw({ type: "application/json" }),

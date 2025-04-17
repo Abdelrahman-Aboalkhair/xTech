@@ -1,10 +1,11 @@
+import prisma from "@/infra/database/database.config";
 import { PrismaClient } from "@prisma/client";
 
 export class TransactionRepository {
-  constructor(private prisma: PrismaClient) {}
+  constructor() {}
 
   async createTransaction(data: any) {
-    return this.prisma.transaction.create({
+    return prisma.transaction.create({
       data,
     });
   }

@@ -3,7 +3,7 @@ import prisma from "@/infra/database/database.config";
 
 export class CartRepository {
   async getCartByUserId(userId: string) {
-    return prisma.cart.findUnique({
+    return prisma.cart.findFirst({
       where: { userId },
       include: { cartItems: { include: { product: true } } },
     });
@@ -79,7 +79,7 @@ export class CartRepository {
   }
 
   async clearCart(userId: string, tx?: Prisma.TransactionClient) {
-    const cart = await tx?.cart.findUnique({
+    const cart = await tx?.cart.findFirst({
       where: { userId },
     });
 

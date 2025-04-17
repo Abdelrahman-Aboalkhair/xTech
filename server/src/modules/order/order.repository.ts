@@ -1,4 +1,3 @@
-import { ORDER_STATUS } from "@prisma/client";
 import prisma from "@/infra/database/database.config";
 
 export class OrderRepository {
@@ -30,7 +29,6 @@ export class OrderRepository {
     userId: string;
     amount: number;
     orderItems: { productId: string; quantity: number; price: number }[];
-    status: ORDER_STATUS;
   }) {
     const order = await prisma.order.create({
       data: {
@@ -39,7 +37,6 @@ export class OrderRepository {
         orderItems: {
           create: data.orderItems,
         },
-        status: data.status || "PENDING",
       },
     });
 

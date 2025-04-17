@@ -13,11 +13,24 @@ enum ROLE {
   SUPERADMIN
 }
 
-enum ORDER_STATUS {
+enum TRANSACTION_STATUS {
+  PENDING
+  PROCESSING
+  SHIPPED
+  IN_TRANSIT
+  DELIVERED
+  CANCELED
+  RETURNED
+  REFUNDED
+}
+
+enum PAYMENT_STATUS {
   PENDING
   PAID
-  SHIPPED
-  DELIVERED
+  CANCELED
+  FAILED
+  REFUNDED
+  PARTIALLY_REFUNDED
 }
 
 
@@ -48,7 +61,7 @@ model User {
   interactions                    Interaction[]
   reports                         Report[]
   reviews                         Review[]
-  carts                           Cart[] // Changed to one-to-many to allow multiple carts per user
+  carts                           Cart[] 
   createdAt                       DateTime      @default(now())
   updatedAt                       DateTime      @updatedAt
 
@@ -90,7 +103,7 @@ model Review {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   productId String
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  rating    Int // 1 to 5
+  rating    Int 
   comment   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -108,12 +121,11 @@ model Order {
   payment     Payment?     @relation("OrderPayment")
   address     Address?     @relation("OrderAddress")
   shipment    Shipment?    @relation("OrderShipment")
-  transaction Transaction? @relation("OrderTransaction") // Made optional to allow orders without transactions
-  status      ORDER_STATUS @default(PENDING)
+  transaction Transaction? @relation("OrderTransaction") 
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 
-  @@index([userId, status])
+  @@index([userId])
 }
 
 model OrderItem {
@@ -138,7 +150,7 @@ model Payment {
   userId    String
   order     Order?   @relation("OrderPayment", fields: [orderId], references: [id], onDelete: SetNull)
   orderId   String?  @unique
-  status    String? // Added to align with DashboardSearchBar's status filtering
+  status    PAYMENT_STATUS @default(PENDING)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -179,15 +191,13 @@ model Shipment {
 model Transaction {
   id              String       @id @default(uuid())
   order           Order        @relation("OrderTransaction", fields: [orderId], references: [id], onDelete: Cascade)
-  orderId         String       @unique // Ensured one-to-one relation
+  orderId         String       @unique 
   amount          Float
-  status          ORDER_STATUS @default(PENDING) // Renamed to status for consistency
+  status          TRANSACTION_STATUS @default(PENDING) 
   paymentMethod   String
   transactionDate DateTime     @default(now())
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
-  // Removed redundant Shipment and Address relations, as they are accessible via Order
-
   @@index([orderId])
 }
 
@@ -255,16 +265,11 @@ model Report {
   @@index([userId])
 }
 
-model Theme {
-  id             String   @id @default(uuid()) 
-  name           String   @unique
-  primaryColor   String
-  secondaryColor String?
-  fontFamily     String?
-  status         String   @default("INACTIVE") 
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
 
-  @@index([name])
+model Log {
+  id        String   @id @default(uuid())
+  level     String   // e.g., "info", "error", "warn", "debug"
+  message   String
+  context   Json?    // Optional: Additional data (e.g., userId, request details)
+  createdAt DateTime @default(now())
 }
-

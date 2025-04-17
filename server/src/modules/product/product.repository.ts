@@ -122,6 +122,13 @@ export class ProductRepository {
     });
   }
 
+  async incrementSalesCount(id: string, quantity: number) {
+    return prisma.product.update({
+      where: { id },
+      data: { salesCount: { increment: quantity } },
+    });
+  }
+
   async updateProduct(
     id: string,
     data: Partial<{
