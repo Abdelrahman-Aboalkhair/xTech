@@ -5,6 +5,7 @@ import analyticsOverview from "./resolvers/analyticsOverview";
 import yearRange from "./resolvers/yearRange";
 import customerAnalytics from "./resolvers/customerAnalytics";
 import interactionAnalytics from "./resolvers/interactionAnalytics";
+import { searchDashboardResolver } from "./resolvers/searchDashboard";
 
 export interface Context {
   prisma: PrismaClient;
@@ -19,5 +20,6 @@ export const analyticsResolvers = {
     ...customerAnalytics.Query,
     ...interactionAnalytics.Query,
     ...productPerformance.Query,
+    ...searchDashboardResolver.Query,
   },
 };

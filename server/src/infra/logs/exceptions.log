@@ -26,3 +26,1069 @@ TSError: ⨯ Unable to compile TypeScript:
     at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.factory.ts:3:1)
     at Module._compile (node:internal/modules/cjs/loader:1723:14)
     at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-17T13:29:17.493Z] [31MERROR[39M: uncaughtException: Query.searchDashboard defined in resolvers, but not in schema
+Error: Query.searchDashboard defined in resolvers, but not in schema
+    at addResolversToSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/addResolversToSchema.js:83:39)
+    at makeExecutableSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:76:65)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:105:52)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/graphql/v1/schema.ts:1:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-17T13:29:44.430Z] [31MERROR[39M: uncaughtException: Query.searchDashboard defined in resolvers, but not in schema
+Error: Query.searchDashboard defined in resolvers, but not in schema
+    at addResolversToSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/addResolversToSchema.js:83:39)
+    at makeExecutableSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:76:65)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:120:52)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/graphql/v1/schema.ts:1:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-17T13:52:20.913Z] [31MERROR[39M: uncaughtException: 
+Invalid `this.prisma.log.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/logs/logs.repository.ts:37:28
+
+  34 }
+  35 
+  36 async createLog(data: LogEntry) {
+→ 37   return this.prisma.log.create(
+The table `public.Log` does not exist in the current database.
+PrismaClientKnownRequestError: 
+Invalid `this.prisma.log.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/logs/logs.repository.ts:37:28
+
+  34 }
+  35 
+  36 async createLog(data: LogEntry) {
+→ 37   return this.prisma.log.create(
+The table `public.Log` does not exist in the current database.
+    at zn.handleRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:7459)
+    at zn.handleAndLogRequestError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:6784)
+    at zn.request (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:6491)
+    at async l (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@prisma/client/runtime/library.js:130:9778)
+[2025-04-17T13:52:50.680Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:52:59.307Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:53:03.899Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:53:09.946Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:54:05.457Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:54:09.764Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:54:43.616Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:54:50.997Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:55:05.237Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:55:40.881Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:56:01.539Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:59:00.671Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:59:09.904Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:59:14.904Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:59:20.486Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:59:31.930Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:59:40.483Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-17T13:59:49.086Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'.
+  Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; AND?: Exact<CartWhereInput | CartWhereInput[] | undefined, CartWhereInput | CartWhereInput[] | undefined>; ... 7 more ...; cartItems?: Exact<...>; }': id, sessionId
+
+[7m7[0m       where: { userId },
+[7m [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; }' is not assignable to type 'CartWhereUniqueInput'.
+  Type '{ userId: string; }' is not assignable to type '{ id: string; sessionId: string; } & { id?: string | undefined; sessionId?: string | undefined; AND?: CartWhereInput | CartWhereInput[] | undefined; ... 7 more ...; cartItems?: CartItemListRelationFilter | undefined; }'.
+    Type '{ userId: string; }' is missing the following properties from type '{ id: string; sessionId: string; }': id, sessionId
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m      ~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13948[0m:[93m5[0m
+    [7m13948[0m     where: CartWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: CartSelect<DefaultArgs> | null | undefined; omit?: CartOmit<DefaultArgs> | null | undefined; include?: CartInclude<DefaultArgs> | null | undefined; where: CartWhereUniqueInput; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

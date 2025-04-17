@@ -20,13 +20,6 @@ enum ORDER_STATUS {
   DELIVERED
 }
 
-enum SECTION_TYPE {
-  HERO
-  FEATURED_LIST
-  CTA
-  PROMO
-  TESTIMONIAL
-}
 
 enum CART_STATUS {
   ACTIVE
@@ -35,287 +28,243 @@ enum CART_STATUS {
 }
 
 model User {
-  id                            String    @id @default(uuid())
-  googleId                      String?   
-  twitterId                     String?   
-  facebookId                    String?   
-  email                         String    @unique
-  password                      String?
-  name                          String
-  avatar                        String?
-
-  emailVerified                 Boolean
-  emailVerificationToken        String?
+  id                              String        @id @default(uuid())
+  googleId                        String?
+  twitterId                       String?
+  facebookId                      String?
+  email                           String        @unique
+  password                        String?
+  name                            String
+  avatar                          String?
+  emailVerified                   Boolean       @default(false)
+  emailVerificationToken          String?
   emailVerificationTokenExpiresAt DateTime?
-  resetPasswordToken            String?
-  resetPasswordTokenExpiresAt   DateTime?
+  resetPasswordToken              String?
+  resetPasswordTokenExpiresAt     DateTime?
+  role                            ROLE          @default(USER)
+  orders                          Order[]
+  payments                        Payment[]
+  addresses                       Address[]
+  interactions                    Interaction[]
+  reports                         Report[]
+  reviews                         Review[]
+  carts                           Cart[] // Changed to one-to-many to allow multiple carts per user
+  createdAt                       DateTime      @default(now())
+  updatedAt                       DateTime      @updatedAt
 
-  role                          ROLE      @default(USER)
-  orders                        Order[]
-  payments                      Payment[]
-  addresses                     Address[]
-  interactions                  Interaction[]
-  reports                       Report[]
-  reviews                       Review[]
-  cart                          Cart?
-
-  createdAt                     DateTime  @default(now())
-  updatedAt                     DateTime  @updatedAt
+  @@index([email])
 }
 
 model Product {
-  id            String    @id @default(uuid()) 
-  name          String    @unique
+  id            String        @id @default(uuid())
+  name          String        @unique
   description   String?
   price         Float
-  discount      Float
-  slug          String    @unique
+  discount      Float         @default(0)
+  slug          String        @unique
   images        String[]
   stock         Int
-  salesCount    Int       @default(0)
+  salesCount    Int           @default(0)
   sku           String?
-  bestSeller    Boolean   @default(false)
-  featured      Boolean   @default(false)
-  promotional   Boolean   @default(false)  
-  newArrival    Boolean   @default(false)  
-  averageRating Float     @default(0) 
-  reviewCount   Int       @default(0) 
-
-  category      Category? @relation(fields: [categoryId], references: [id]) 
+  bestSeller    Boolean       @default(false)
+  featured      Boolean       @default(false)
+  promotional   Boolean       @default(false)
+  newArrival    Boolean       @default(false)
+  averageRating Float         @default(0)
+  reviewCount   Int           @default(0)
+  category      Category?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   categoryId    String?
   orderItems    OrderItem[]
   cartItems     CartItem[]
   interactions  Interaction[]
-  reviews       Review[]  // New: Relation to reviews
+  reviews       Review[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  @@index([name, slug])
 }
 
 model Review {
   id        String   @id @default(uuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   productId String
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  rating    Int      // 1 to 5
+  rating    Int // 1 to 5
   comment   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([productId]) // For faster queries by product
+  @@index([productId, userId])
 }
 
 model Order {
-  id          String    @id @default(uuid()) 
+  id          String       @id @default(uuid())
   amount      Float
-  orderDate   DateTime  @default(now())
-  user        User      @relation(fields: [userId], references: [id]) 
-  userId      String    
+  orderDate   DateTime     @default(now())
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
   orderItems  OrderItem[]
-  payment     Payment?  @relation("OrderPayment")
-  address     Address?  @relation("OrderAddress")
-  shipment    Shipment? @relation("OrderShipment")
+  payment     Payment?     @relation("OrderPayment")
+  address     Address?     @relation("OrderAddress")
+  shipment    Shipment?    @relation("OrderShipment")
+  transaction Transaction? @relation("OrderTransaction") // Made optional to allow orders without transactions
   status      ORDER_STATUS @default(PENDING)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([userId, status])
 }
 
 model OrderItem {
-  id        String  @id @default(uuid()) 
-  order     Order   @relation(fields: [orderId], references: [id])
-  orderId   String  
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  id        String   @id @default(uuid())
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId   String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String
-  quantity  Int     @default(1)
+  quantity  Int      @default(1)
   price     Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  @@index([orderId, productId])
 }
 
 model Payment {
-  id        String  @id @default(uuid()) 
+  id        String   @id @default(uuid())
   method    String
   amount    Float
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  order     Order?   @relation("OrderPayment", fields: [orderId], references: [id], onDelete: SetNull)
+  orderId   String?  @unique
+  status    String? // Added to align with DashboardSearchBar's status filtering
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  user      User    @relation(fields: [userId], references: [id]) 
-  userId    String  
-
-  order     Order?  @relation("OrderPayment", fields: [orderId], references: [id]) 
-  orderId   String? @unique
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  @@index([userId, orderId])
 }
 
 model Address {
-  id        String  @id @default(uuid()) 
+  id        String   @id @default(uuid())
   city      String
   state     String
   country   String
   zip       String
   street    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  order     Order?   @relation("OrderAddress", fields: [orderId], references: [id], onDelete: SetNull)
+  orderId   String?  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  user      User    @relation(fields: [userId], references: [id])
-  userId    String  
-
-  order     Order?  @relation("OrderAddress", fields: [orderId], references: [id])
-  orderId   String? @unique
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  @@index([userId, orderId])
 }
-
 
 model Shipment {
-  id            String    @id @default(uuid()) 
-  carrier       String
+  id             String    @id @default(uuid())
+  carrier        String
   trackingNumber String
-  shippedDate   DateTime
-  deliveryDate  DateTime?
-  order         Order     @relation("OrderShipment", fields: [orderId], references: [id])
-  orderId       String    @unique
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  shippedDate    DateTime
+  deliveryDate   DateTime?
+  order          Order     @relation("OrderShipment", fields: [orderId], references: [id], onDelete: Cascade)
+  orderId        String    @unique
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([orderId])
 }
 
-model WebhookLog {
-  id        String   @id @default(cuid())
-  eventType String
-  payload   Json
-  createdAt DateTime @default(now())
+model Transaction {
+  id              String       @id @default(uuid())
+  order           Order        @relation("OrderTransaction", fields: [orderId], references: [id], onDelete: Cascade)
+  orderId         String       @unique // Ensured one-to-one relation
+  amount          Float
+  status          ORDER_STATUS @default(PENDING) // Renamed to status for consistency
+  paymentMethod   String
+  transactionDate DateTime     @default(now())
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  // Removed redundant Shipment and Address relations, as they are accessible via Order
+
+  @@index([orderId])
 }
 
 model Cart {
-  id        String   @id  @default(uuid())
-
-  user      User?     @relation(fields: [userId], references: [id]) 
-  userId    String?   @unique
-
-  sessionId String?   @unique
+  id        String      @id @default(uuid())
+  user      User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId    String? 
+  sessionId String?     @unique
   cartItems CartItem[]
-
   status    CART_STATUS @default(ABANDONED)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  @@index([userId, sessionId])
 }
 
 model CartItem {
-  id        String   @id @default(uuid()) 
-
+  id        String   @id @default(uuid())
   cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  cartId    String   
-
+  cartId    String
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String
-
   quantity  Int      @default(1)
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([cartId, productId])
+  @@index([cartId, productId])
 }
 
 model Category {
-  id        String   @id @default(uuid()) 
-  slug      String   @unique
-  name      String
-  products  Product[] 
+  id          String    @id @default(uuid())
+  slug        String    @unique
+  name        String
+  description String? // Added to support DashboardSearchBar filtering
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  @@index([name, slug])
 }
 
 model Interaction {
   id        String   @id @default(uuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   productId String?
-  product   Product? @relation(fields: [productId], references: [id]) 
-  type      String   
+  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  type      String
   createdAt DateTime @default(now())
+
+  @@index([userId, productId])
 }
 
 model Report {
-  id        String   @id @default(uuid())
-  type      String   
-  format    String   
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  parameters Json     
-  filePath  String?  
-}
+  id         String   @id @default(uuid())
+  type       String
+  format     String
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  parameters Json
+  filePath   String?
 
-
-model Page {
-  id          Int       @id @default(autoincrement())
-  slug        String    @unique 
-  title       String
-  isVisible   Boolean   @default(true) 
-  showInNavbar Boolean   @default(true)
-  isPublished Boolean   @default(false)
-  metaTitle   String?   
-  metaDescription String?
-  sections    Section[] 
-  banners     Banner[]  @relation("PageBanners") 
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-}
-
-model Section {
-  id        Int      @id @default(autoincrement())
-  title     String   
-  type      String?
-  content   Json     
-  order     Int      
-  isVisible Boolean  @default(true)
-  pageId    Int
-  page      Page     @relation(fields: [pageId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Banner {
-  id        Int      @id @default(autoincrement())
-  title     String   
-  content   Json     
-  isVisible Boolean  @default(true)
-  pages     Page[]   @relation("PageBanners") 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Widget {
-  id          Int      @id @default(autoincrement())
-  name        String   @unique 
-  type        String?   
-  config      Json   
-  isVisible   Boolean  @default(true) 
-  location    String?  
-  order       Int?    
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  @@index([userId])
 }
 
 model Theme {
-  id           Int      @id @default(autoincrement())
-  name         String   @unique 
-  primaryColor String  
+  id             String   @id @default(uuid()) 
+  name           String   @unique
+  primaryColor   String
   secondaryColor String?
-  fontFamily   String?  
-  isActive     Boolean  @default(false)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  fontFamily     String?
+  status         String   @default("INACTIVE") 
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([name])
 }
 
-model Log {
-  id        String   @id @default(uuid())
-  level     String   // e.g., "info", "error", "warn", "debug"
-  message   String
-  context   Json?    // Optional: Additional data (e.g., userId, request details)
-  createdAt DateTime @default(now())
-}

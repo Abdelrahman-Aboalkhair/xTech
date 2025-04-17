@@ -93,12 +93,28 @@ const typeDefs = gql`
     category: String
   }
 
+  type SearchResult {
+    type: String!
+    id: String!
+    title: String!
+    description: String
+  }
+
+  input SearchInput {
+    searchQuery: String!
+    timePeriod: String
+    year: Int
+    startDate: String
+    endDate: String
+  }
+
   type Query {
     yearRange: YearRange!
     analyticsOverview(params: DateRangeQueryInput!): AnalyticsOverview!
     productPerformance(params: DateRangeQueryInput!): [ProductPerformance!]!
     customerAnalytics(params: DateRangeQueryInput!): CustomerAnalytics!
     interactionAnalytics(params: DateRangeQueryInput!): InteractionAnalytics!
+    searchDashboard(params: SearchInput!): [SearchResult!]!
   }
 `;
 

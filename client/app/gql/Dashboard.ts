@@ -69,3 +69,14 @@ export const GET_ANALYTICS_OVERVIEW = gql`
     }
   }
 `;
+
+export const SEARCH_DASHBOARD = gql`
+  query SearchDashboard($params: SearchInput!) {
+    searchDashboard(params: $params) {
+      type
+      id
+      title
+      description
+    }
+  }
+`;

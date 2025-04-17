@@ -3,37 +3,21 @@ import React, { useState, useEffect } from "react";
 import { Search, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useGetAllSectionsQuery } from "@/app/store/apis/SectionApi";
-import { useGetAllOrdersQuery } from "@/app/store/apis/OrderApi";
-import { useGetAllPaymentsQuery } from "@/app/store/apis/PaymentApi";
-import { useGetAllPagesQuery } from "@/app/store/apis/PageApi";
-import { useGetAllBannersQuery } from "@/app/store/apis/BannerApi";
-import { useGetAllWidgetsQuery } from "@/app/store/apis/WidgetApi";
-import { useGetAllThemesQuery } from "@/app/store/apis/ThemeApi";
-import { useGetAllProductsQuery } from "@/app/store/apis/ProductApi";
-import { useGetAllCategoriesQuery } from "@/app/store/apis/CategoryApi";
-import {
-  useGetAllAdminsQuery,
-  useGetAllUsersQuery,
-} from "@/app/store/apis/UserApi";
+import { useLazyQuery } from "@apollo/client";
+import { SEARCH_DASHBOARD } from "@/app/gql/Dashboard";
 
 interface SearchResult {
   type:
-    | "section"
     | "order"
-    | "payment"
     | "page"
-    | "banner"
-    | "widget"
     | "theme"
     | "product"
     | "category"
     | "user"
-    | "admin";
-  id: string | number;
+    | "transaction";
+  id: string;
   title: string;
   description?: string;
-  action: () => void;
 }
 
 interface DashboardSearchBarProps {
@@ -49,102 +33,53 @@ const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
   const [query, setQuery] = useState("");
   const router = useRouter();
 
-  // RTK Queries for all entities
-  const { data: sectionsData } = useGetAllSectionsQuery({});
-  const { data: ordersData } = useGetAllOrdersQuery({});
-  const { data: paymentsData } = useGetAllPaymentsQuery({});
-  const { data: pagesData } = useGetAllPagesQuery({});
-  const { data: bannersData } = useGetAllBannersQuery({});
-  const { data: widgetsData } = useGetAllWidgetsQuery({});
-  const { data: themesData } = useGetAllThemesQuery({});
-  const { data: productsData } = useGetAllProductsQuery({});
-  const { data: categoriesData } = useGetAllCategoriesQuery({});
-  const { data: usersData } = useGetAllUsersQuery({});
-  const { data: adminsData } = useGetAllAdminsQuery({});
+  // GraphQL Lazy Query
+  const [searchDashboard, { data, loading }] = useLazyQuery(SEARCH_DASHBOARD);
 
-  // Normalize data into search results
-  const searchResults: SearchResult[] = [
-    ...(sectionsData?.sections || []).map((s) => ({
-      type: "section" as const,
-      id: s.id,
-      title: s.title,
-      description: `Type: ${s.type}`,
-      action: () => router.push(`/dashboard/sections/${s.id}`),
-    })),
-    ...(ordersData?.orders || []).map((o) => ({
-      type: "order" as const,
-      id: o.id,
-      title: `Order #${o.id}`,
-      description: o.status,
-      action: () => router.push(`/orders/${o.id}`),
-    })),
-    ...(paymentsData?.payments || []).map((p) => ({
-      type: "payment" as const,
-      id: p.id,
-      title: `Payment #${p.id}`,
-      description: `$${p.amount} - ${p.status}`,
-      action: () => router.push(`/dashboard/payments/${p.id}`),
-    })),
-    ...(pagesData?.pages || []).map((p) => ({
-      type: "page" as const,
-      id: p.id,
-      title: p.title,
-      description: p.slug,
-      action: () => router.push(`/dashboard/pages/${p.id}`),
-    })),
-    ...(bannersData?.banners || []).map((b) => ({
-      type: "banner" as const,
-      id: b.id,
-      title: b.title,
-      description: b.type,
-      action: () => router.push(`/dashboard/banners/${b.id}`),
-    })),
-    ...(widgetsData?.widgets || []).map((w) => ({
-      type: "widget" as const,
-      id: w.id,
-      title: w.title,
-      description: w.type,
-      action: () => router.push(`/dashboard/widgets/${w.id}`),
-    })),
-    ...(themesData?.themes || []).map((t) => ({
-      type: "theme" as const,
-      id: t.id,
-      title: t.name,
-      description: t.status,
-      action: () => router.push(`/dashboard/themes/${t.id}`),
-    })),
-    ...(productsData?.products || []).map((p) => ({
-      type: "product" as const,
-      id: p.id,
-      title: p.name,
-      description: `$${p.price}`,
-      action: () => router.push(`/dashboard/products/${p.id}`),
-    })),
-    ...(categoriesData?.categories || []).map((c) => ({
-      type: "category" as const,
-      id: c.id,
-      title: c.name,
-      description: c.description,
-      action: () => router.push(`/dashboard/categories/${c.id}`),
-    })),
-    ...(usersData?.users || []).map((u) => ({
-      type: "user" as const,
-      id: u.id,
-      title: u.name,
-      description: u.email,
-      action: () => router.push(`/dashboard/users/${u.id}`),
-    })),
-    ...(adminsData?.admins || []).map((a) => ({
-      type: "admin" as const,
-      id: a.id,
-      title: a.name,
-      description: a.role,
-      action: () => router.push(`/dashboard/admins/${a.id}`),
-    })),
-  ].filter((result) =>
-    `${result.title} ${result.description || ""}`
-      .toLowerCase()
-      .includes(query.toLowerCase())
+  console.log("search dashboard data => ", data);
+
+  // Trigger search when query changes
+  useEffect(() => {
+    if (query && isOpen) {
+      searchDashboard({
+        variables: {
+          params: {
+            searchQuery: query,
+          },
+        },
+      });
+    }
+  }, [query, isOpen, searchDashboard]);
+
+  // Map GraphQL results to actions
+  const searchResults: SearchResult[] = (data?.searchDashboard || []).map(
+    (result: SearchResult) => ({
+      ...result,
+      action: () => {
+        switch (result.type) {
+          case "transaction":
+            router.push(`/transactions/${result.id}`);
+          case "order":
+            router.push(`/orders/${result.id}`);
+            break;
+          case "theme":
+            router.push(`/dashboard/themes/${result.id}`);
+            break;
+          case "product":
+            router.push(`/dashboard/products/${result.id}`);
+            break;
+          case "category":
+            router.push(`/dashboard/categories/${result.id}`);
+            break;
+          case "user":
+            router.push(`/dashboard/users/${result.id}`);
+            break;
+
+          default:
+            break;
+        }
+      },
+    })
   );
 
   // Ctrl + K shortcut
@@ -162,8 +97,8 @@ const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
 
   // Handler to navigate and close modal
   const handleResultClick = (action: () => void) => {
-    action(); // Perform navigation
-    setIsOpen(false); // Close modal
+    action();
+    setIsOpen(false);
   };
 
   return (
@@ -177,7 +112,6 @@ const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
         <Search size={24} />
       </button>
 
-      {/* MODAL */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -216,7 +150,9 @@ const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
               </div>
 
               <div className="mt-2 max-h-96 overflow-y-auto">
-                {query && searchResults.length === 0 ? (
+                {loading ? (
+                  <p className="p-3 text-gray-500 text-sm">Loading...</p>
+                ) : query && searchResults.length === 0 ? (
                   <p className="p-3 text-gray-500 text-sm">No results found.</p>
                 ) : (
                   searchResults.map((result) => (

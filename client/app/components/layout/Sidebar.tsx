@@ -12,20 +12,15 @@ import { clearUser } from "@/app/store/slices/AuthSlice";
 import {
   LayoutDashboard,
   ShoppingCart,
-  CreditCard,
   Layers,
   Users,
   LogOut,
   PanelsRightBottom,
-  FileText,
-  LayoutGrid,
   Boxes,
-  Paintbrush,
-  ShieldCheck,
-  Image,
   ChartCandlestick,
   ClipboardPlus,
   ClipboardCheck,
+  Home,
 } from "lucide-react";
 import DashboardSearchBar from "../molecules/DashboardSearchbar";
 
@@ -47,28 +42,16 @@ const Sidebar = () => {
       {
         title: "E-commerce",
         links: [
-          { name: "Orders", href: "/orders", icon: ShoppingCart },
+          { name: "Home Page", href: "/home", icon: Home },
+          { name: "Transactions", href: "/transactions", icon: ShoppingCart },
           { name: "Products", href: "/products", icon: Layers },
           { name: "Categories", href: "/categories", icon: Boxes },
-          { name: "Payments", href: "/payments", icon: CreditCard },
         ],
       },
-      {
-        title: "Content Management",
-        links: [
-          { name: "Pages", href: "/pages", icon: FileText },
-          { name: "Sections", href: "/sections", icon: LayoutGrid },
-          { name: "Banners", href: "/banners", icon: Image },
-          { name: "Widgets", href: "/widgets", icon: LayoutGrid },
-          { name: "Themes", href: "/themes", icon: Paintbrush },
-        ],
-      },
+
       {
         title: "User Management",
-        links: [
-          { name: "Customers", href: "/users", icon: Users },
-          { name: "Administrators", href: "/admins", icon: ShieldCheck },
-        ],
+        links: [{ name: "Customers", href: "/users", icon: Users }],
       },
       {
         title: "Stats",
