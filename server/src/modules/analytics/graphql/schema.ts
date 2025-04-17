@@ -97,15 +97,10 @@ const typeDefs = gql`
     type: String!
     id: String!
     title: String!
-    description: String
   }
 
   input SearchInput {
     searchQuery: String!
-    timePeriod: String
-    year: Int
-    startDate: String
-    endDate: String
   }
 
   type Query {

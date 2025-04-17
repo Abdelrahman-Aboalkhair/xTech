@@ -1,36 +1,92 @@
-[2025-04-17T16:34:12.007Z] [31MERROR[39M: uncaughtException: Syntax Error: Expected Name, found "(".
-GraphQLError: Syntax Error: Expected Name, found "(".
-    at syntaxError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/error/syntaxError.js:15:10)
-    at Parser.expectToken (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:1406:40)
-    at Parser.parseName (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:117:24)
-    at Parser.parseNamedType (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:716:18)
-    at Parser.parseTypeReference (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:697:19)
-    at Parser.parseFieldDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:848:23)
-    at Parser.optionalMany (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:1501:28)
-    at Parser.parseFieldsDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:831:17)
-    at Parser.parseObjectTypeDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:803:25)
-    at Parser.parseDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:181:23)
-    at Parser.many (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:1520:26)
-    at Parser.parseDocument (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:131:25)
-    at Object.parse (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:32:27)
-    at parseDocument (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql-tag/src/index.ts:96:20)
-    at gql (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql-tag/src/index.ts:134:10)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/product/graphql/schema.ts:5:21)
-[2025-04-17T16:35:01.558Z] [31MERROR[39M: uncaughtException: Syntax Error: Expected Name, found "(".
-GraphQLError: Syntax Error: Expected Name, found "(".
-    at syntaxError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/error/syntaxError.js:15:10)
-    at Parser.expectToken (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:1406:40)
-    at Parser.parseName (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:117:24)
-    at Parser.parseNamedType (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:716:18)
-    at Parser.parseTypeReference (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:697:19)
-    at Parser.parseFieldDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:848:23)
-    at Parser.optionalMany (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:1501:28)
-    at Parser.parseFieldsDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:831:17)
-    at Parser.parseObjectTypeDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:803:25)
-    at Parser.parseDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:181:23)
-    at Parser.many (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:1520:26)
-    at Parser.parseDocument (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:131:25)
-    at Object.parse (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:32:27)
-    at parseDocument (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql-tag/src/index.ts:96:20)
-    at gql (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql-tag/src/index.ts:134:10)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/product/graphql/schema.ts:5:21)
+[2025-04-17T17:29:48.853Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m37[0m:[93m34[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+
+[7m37[0m       const transactions = await searchModel(
+[7m  [0m [91m                                 ~~~~~~~~~~~[0m
+
+  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
+    [7m7[0m const searchModelRaw = async (
+    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
+    'searchModelRaw' is declared here.
+[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m44[0m:[93m30[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+
+[7m44[0m       const products = await searchModel(
+[7m  [0m [91m                             ~~~~~~~~~~~[0m
+
+  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
+    [7m7[0m const searchModelRaw = async (
+    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
+    'searchModelRaw' is declared here.
+[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m51[0m:[93m32[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+
+[7m51[0m       const categories = await searchModel(
+[7m  [0m [91m                               ~~~~~~~~~~~[0m
+
+  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
+    [7m7[0m const searchModelRaw = async (
+    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
+    'searchModelRaw' is declared here.
+[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m58[0m:[93m27[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+
+[7m58[0m       const users = await searchModel(
+[7m  [0m [91m                          ~~~~~~~~~~~[0m
+
+  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
+    [7m7[0m const searchModelRaw = async (
+    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
+    'searchModelRaw' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m37[0m:[93m34[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+
+[7m37[0m       const transactions = await searchModel(
+[7m  [0m [91m                                 ~~~~~~~~~~~[0m
+
+  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
+    [7m7[0m const searchModelRaw = async (
+    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
+    'searchModelRaw' is declared here.
+[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m44[0m:[93m30[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+
+[7m44[0m       const products = await searchModel(
+[7m  [0m [91m                             ~~~~~~~~~~~[0m
+
+  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
+    [7m7[0m const searchModelRaw = async (
+    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
+    'searchModelRaw' is declared here.
+[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m51[0m:[93m32[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+
+[7m51[0m       const categories = await searchModel(
+[7m  [0m [91m                               ~~~~~~~~~~~[0m
+
+  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
+    [7m7[0m const searchModelRaw = async (
+    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
+    'searchModelRaw' is declared here.
+[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m58[0m:[93m27[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+
+[7m58[0m       const users = await searchModel(
+[7m  [0m [91m                          ~~~~~~~~~~~[0m
+
+  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
+    [7m7[0m const searchModelRaw = async (
+    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
+    'searchModelRaw' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/resolver.ts:8:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)

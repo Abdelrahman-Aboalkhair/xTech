@@ -7,14 +7,7 @@ import { useLazyQuery } from "@apollo/client";
 import { SEARCH_DASHBOARD } from "@/app/gql/Dashboard";
 
 interface SearchResult {
-  type:
-    | "order"
-    | "page"
-    | "theme"
-    | "product"
-    | "category"
-    | "user"
-    | "transaction";
+  type: "product" | "category" | "user" | "transaction";
   id: string;
   title: string;
   description?: string;
@@ -51,7 +44,6 @@ const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
     }
   }, [query, isOpen, searchDashboard]);
 
-  // Map GraphQL results to actions
   const searchResults: SearchResult[] = (data?.searchDashboard || []).map(
     (result: SearchResult) => ({
       ...result,
@@ -59,12 +51,6 @@ const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
         switch (result.type) {
           case "transaction":
             router.push(`/transactions/${result.id}`);
-          case "order":
-            router.push(`/orders/${result.id}`);
-            break;
-          case "theme":
-            router.push(`/dashboard/themes/${result.id}`);
-            break;
           case "product":
             router.push(`/dashboard/products/${result.id}`);
             break;
@@ -74,7 +60,6 @@ const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
           case "user":
             router.push(`/dashboard/users/${result.id}`);
             break;
-
           default:
             break;
         }
@@ -96,7 +81,7 @@ const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
   }, [isOpen]);
 
   // Handler to navigate and close modal
-  const handleResultClick = (action: () => void) => {
+  const handleResultClick = (action): void => {
     action();
     setIsOpen(false);
   };
