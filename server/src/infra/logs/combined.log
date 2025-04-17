@@ -1573,3 +1573,27 @@
 [2025-04-17T13:33:42.591Z] [32MINFO[39M: ::1 - - [17/Apr/2025:13:33:42 +0000] "GET /api/v1/pages HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-04-17T13:33:42.596Z] [32MINFO[39M: ::1 - - [17/Apr/2025:13:33:42 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-04-17T13:52:20.840Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-17T16:18:52.873Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:18:52 +0000] "POST /api/v1/graphql HTTP/1.1" 200 25 "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:18:59.233Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-17T16:18:59.299Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:18:59 +0000] "POST /api/v1/products HTTP/1.1" 401 - "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:19:42.820Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:19:42 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 138 "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:19:49.087Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.product.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/product/product.repository.ts:104:27
+
+  101   stock: number;
+  102   categoryId?: string;
+  103 }) {
+→ 104   return prisma.product.create(
+Foreign key constraint violated: `Product_categoryId_fkey (index)`
+[2025-04-17T16:19:49.092Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:19:49 +0000] "POST /api/v1/products HTTP/1.1" 400 - "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:19:59.280Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:19:59 +0000] "GET /api/v1/categories?slug=appliances,electronics HTTP/1.1" 200 60 "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:20:35.136Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:20:35 +0000] "GET /api/v1/categories?slug=appliances,electronics HTTP/1.1" 200 76 "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:20:54.570Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:20:54 +0000] "POST /api/v1/categories HTTP/1.1" 201 240 "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:21:05.886Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:21:05 +0000] "POST /api/v1/products HTTP/1.1" 201 677 "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:21:10.154Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:21:10 +0000] "POST /api/v1/graphql HTTP/1.1" 200 - "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:22:25.965Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:22:25 +0000] "POST /api/v1/graphql HTTP/1.1" 200 266 "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:22:35.211Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:22:35 +0000] "POST /api/v1/graphql HTTP/1.1" 200 112 "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:35:40.030Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:35:40 +0000] "POST /api/v1/graphql HTTP/1.1" 400 - "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:35:45.919Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:35:45 +0000] "POST /api/v1/graphql HTTP/1.1" 400 - "-" "PostmanRuntime/7.43.3"
+[2025-04-17T16:35:52.007Z] [32MINFO[39M: ::1 - - [17/Apr/2025:16:35:52 +0000] "POST /api/v1/graphql HTTP/1.1" 200 94 "-" "PostmanRuntime/7.43.3"

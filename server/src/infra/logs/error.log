@@ -336,3 +336,13 @@
 [2025-04-17T13:12:42.402Z] [31MERROR[39M: Validation failed
 [2025-04-17T13:30:46.026Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-17T13:52:20.840Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-17T16:18:59.233Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-17T16:19:49.087Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.product.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/product/product.repository.ts:104:27
+
+  101   stock: number;
+  102   categoryId?: string;
+  103 }) {
+→ 104   return prisma.product.create(
+Foreign key constraint violated: `Product_categoryId_fkey (index)`

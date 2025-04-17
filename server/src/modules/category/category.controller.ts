@@ -13,7 +13,7 @@ export class CategoryController {
     async (req: Request, res: Response): Promise<void> => {
       const categories = await this.categoryService.getAllCategories(req.query);
       sendResponse(res, 200, {
-        data: categories,
+        data: { categories },
         message: "Categories fetched successfully",
       });
     }
@@ -24,7 +24,7 @@ export class CategoryController {
       const { id: categoryId } = req.params;
       const category = await this.categoryService.getCategory(categoryId);
       sendResponse(res, 200, {
-        data: category,
+        data: { category },
         message: "Category fetched successfully",
       });
     }
@@ -38,7 +38,7 @@ export class CategoryController {
       const { name } = req.body;
       const { category } = await this.categoryService.createCategory(name);
       sendResponse(res, 201, {
-        data: category,
+        data: { category },
         message: "Category created successfully",
       });
       const start = Date.now();
