@@ -18,14 +18,8 @@ import { motion } from "framer-motion";
 import { Controller, useForm } from "react-hook-form";
 import React from "react";
 import useFormatPrice from "@/app/hooks/ui/useFormatPrice";
-import {
-  useGetOverviewQuery,
-  useGetProductPerformanceQuery,
-  useGetCustomerAnalyticsQuery,
-  useGetYearRangeQuery,
-} from "@/app/store/apis/AnalyticsApi";
 import { useQuery } from "@apollo/client";
-import { OVERVIEW_QUERY } from "@/app/gql/Dashboard";
+import { GET_ANALYTICS_OVERVIEW } from "@/app/gql/Dashboard";
 
 interface FormData {
   timePeriod: string;
@@ -53,15 +47,6 @@ const Dashboard = () => {
 
   const { timePeriod, year, startDate, endDate, useCustomRange } = watch();
 
-  // // Fetch year range for dropdown
-  // const { data: yearRangeData } = useGetYearRangeQuery();
-  // const minYear = yearRangeData?.minYear || new Date().getFullYear();
-  // const maxYear = yearRangeData?.maxYear || new Date().getFullYear();
-  // const yearOptions = Array.from({ length: maxYear - minYear + 1 }, (_, i) => ({
-  //   label: (minYear + i).toString(),
-  //   value: (minYear + i).toString(),
-  // }));
-
   // Query parameters
   const queryParams = {
     timePeriod: timePeriod || "allTime",
@@ -70,75 +55,68 @@ const Dashboard = () => {
     endDate: useCustomRange && endDate ? endDate : undefined,
   };
 
-  const { data, loading, error } = useQuery(OVERVIEW_QUERY, {
+  // Fetch data using GraphQL
+  const { data, loading, error } = useQuery(GET_ANALYTICS_OVERVIEW, {
     variables: { params: queryParams },
   });
-  console.log("GQL error => ", error);
 
-  console.log("GQL data => ", data);
+  // Handle loading state
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  // Fetch data
-  // const {
-  //   data: overviewData,
-  //   isLoading: isOverviewLoading,
-  //   error: overviewError,
-  // } = useGetOverviewQuery(queryParams);
-  // console.log("overviewData => ", overviewData);
+  // Handle errors
+  if (error) {
+    console.error("GraphQL Error:", error);
+    return <div>Error loading dashboard data</div>;
+  }
 
-  // const {
-  //   data: productData,
-  //   isLoading: isProductLoading,
-  //   error: productError,
-  // } = useGetProductPerformanceQuery(queryParams);
+  // Year range for dropdown
+  const minYear = data?.yearRange?.minYear || new Date().getFullYear();
+  const maxYear = data?.yearRange?.maxYear || new Date().getFullYear();
+  const yearOptions = Array.from({ length: maxYear - minYear + 1 }, (_, i) => ({
+    label: (minYear + i).toString(),
+    value: (minYear + i).toString(),
+  }));
 
-  // console.log("productData => ", productData);
+  // Derive chart and list data
+  const mostSoldProducts = {
+    labels: data?.productPerformance?.slice(0, 5).map((p: any) => p.name) || [],
+    data:
+      data?.productPerformance?.slice(0, 5).map((p: any) => p.quantity) || [],
+  };
 
-  // const {
-  //   data: customerData,
-  //   isLoading: isCustomerLoading,
-  //   error: customerError,
-  // } = useGetCustomerAnalyticsQuery(queryParams);
+  const salesByProduct = {
+    categories: data?.productPerformance?.map((p: any) => p.name) || [],
+    data: data?.productPerformance?.map((p: any) => p.revenue) || [],
+  };
 
-  // console.log("customerData => ", customerData);
+  const topItems =
+    data?.productPerformance?.slice(0, 5).map((p: any) => ({
+      id: p.id,
+      name: p.name,
+      quantity: p.quantity,
+      revenue: formatPrice(p.revenue),
+    })) || [];
 
-  // // Handle loading state
-  // if (isOverviewLoading || isProductLoading || isCustomerLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  const topCustomers =
+    data?.customerAnalytics?.topCustomers?.slice(0, 5).map((c: any) => ({
+      id: c.id,
+      name: c.name,
+      email: c.email,
+      orderCount: c.orderCount,
+      totalSpent: formatPrice(c.totalSpent),
+      engagementScore: c.engagementScore,
+    })) || [];
 
-  // // Handle errors
-  // if (overviewError || productError || customerError) {
-  //   console.error("Errors:", { overviewError, productError, customerError });
-  //   return <div>Error loading dashboard data</div>;
-  // }
-
-  // // Derive chart and list data
-  // const mostSoldProducts = {
-  //   labels: productData?.performance?.slice(0, 5).map((p) => p.name) || [],
-  //   data: productData?.performance?.slice(0, 5).map((p) => p.quantity) || [],
-  // };
-
-  // const salesByProduct = {
-  //   categories: productData?.performance?.map((p) => p.name) || [],
-  //   data: productData?.performance?.map((p) => p.revenue) || [],
-  // };
-
-  // const topItems =
-  //   productData?.performance?.slice(0, 5).map((p) => ({
-  //     id: p.id,
-  //     name: p.name,
-  //     quantity: p.quantity,
-  //     revenue: formatPrice(p.revenue),
-  //   })) || [];
-
-  // const topCustomers =
-  //   customerData?.topCustomers.slice(0, 5).map((c) => ({
-  //     id: c.id,
-  //     name: c.name,
-  //     email: c.email,
-  //     orderCount: c.orderCount,
-  //     totalSpent: formatPrice(c.totalSpent),
-  //   })) || [];
+  const mostViewedProducts =
+    data?.interactionAnalytics?.mostViewedProducts
+      ?.slice(0, 5)
+      .map((p: any) => ({
+        id: p.productId,
+        name: p.productName,
+        viewCount: p.viewCount,
+      })) || [];
 
   return (
     <ProtectedRoute requiredRoles={["ADMIN", "SUPERADMIN"]}>
@@ -164,94 +142,95 @@ const Dashboard = () => {
                 />
               )}
             />
-            {/* <Controller
+            <Controller
               name="year"
               control={control}
               render={({ field }) => (
                 <Dropdown
                   onChange={field.onChange}
                   options={yearOptions}
-                  value={field.value}
+                  value={field.value ?? ""}
                   label="Year"
                   className="min-w-[150px] w-full max-w-[200px]"
                   disabled={useCustomRange}
                 />
               )}
-            /> */}
-            {/* <DateRangePicker
+            />
+            <DateRangePicker
               label="Custom Date Range"
               control={control}
               startName="startDate"
               endName="endDate"
-            /> */}
+            />
           </div>
         </div>
-        {/* <div className="flex gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           <StatsCard
             title="Total Revenue"
-            value={formatPrice(overviewData?.totalRevenue || 0)}
-            percentage={overviewData?.changes.revenue}
+            value={formatPrice(data?.analyticsOverview?.totalRevenue || 0)}
+            percentage={data?.analyticsOverview?.changes?.revenue}
             caption="since last period"
             icon={<DollarSign className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Orders"
-            value={overviewData?.totalOrders || 0}
-            percentage={overviewData?.changes.orders}
+            value={data?.analyticsOverview?.totalOrders || 0}
+            percentage={data?.analyticsOverview?.changes?.orders}
             caption="since last period"
             icon={<ShoppingCart className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Sales"
-            value={overviewData?.totalSales || 0}
-            percentage={overviewData?.changes.sales}
+            value={data?.analyticsOverview?.totalSales || 0}
+            percentage={data?.analyticsOverview?.changes?.sales}
             caption="since last period"
             icon={<BarChart2 className="w-5 h-5" />}
           />
           <StatsCard
             title="Average Order Value"
-            value={formatPrice(overviewData?.averageOrderValue || 0)}
-            percentage={overviewData?.changes.averageOrderValue}
+            value={formatPrice(data?.analyticsOverview?.averageOrderValue || 0)}
+            percentage={data?.analyticsOverview?.changes?.averageOrderValue}
             caption="since last period"
             icon={<CreditCard className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Users"
-            value={overviewData?.totalUsers || 0}
-            percentage={overviewData?.changes.users}
+            value={data?.analyticsOverview?.totalUsers || 0}
+            percentage={data?.analyticsOverview?.changes?.users}
             caption="since last period"
             icon={<Users className="w-5 h-5" />}
           />
-        </div> */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AreaChart
             title="Order Analytics"
-            data={overviewData?.monthlyTrends.orders || []}
-            categories={overviewData?.monthlyTrends.labels || []}
+            data={data?.analyticsOverview?.monthlyTrends?.orders || []}
+            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
             color="#ec4899"
-            percentageChange={overviewData?.changes.orders}
+            percentageChange={data?.analyticsOverview?.changes?.orders}
           />
           <AreaChart
             title="Revenue Analytics"
-            data={overviewData?.monthlyTrends.revenue || []}
-            categories={overviewData?.monthlyTrends.labels || []}
+            data={data?.analyticsOverview?.monthlyTrends?.revenue || []}
+            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
             color="#22c55e"
-            percentageChange={overviewData?.changes.revenue}
+            percentageChange={data?.analyticsOverview?.changes?.revenue}
           />
           <AreaChart
             title="Sales Analytics"
-            data={overviewData?.monthlyTrends.sales || []}
-            categories={overviewData?.monthlyTrends.labels || []}
+            data={data?.analyticsOverview?.monthlyTrends?.sales || []}
+            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
             color="#3b82f6"
-            percentageChange={overviewData?.changes.sales}
+            percentageChange={data?.analyticsOverview?.changes?.sales}
           />
           <AreaChart
             title="User Analytics"
-            data={overviewData?.monthlyTrends.users || []}
-            categories={overviewData?.monthlyTrends.labels || []}
+            data={data?.analyticsOverview?.monthlyTrends?.users || []}
+            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
             color="#f59e0b"
-            percentageChange={overviewData?.changes.users}
+            percentageChange={data?.analyticsOverview?.changes?.users}
           />
+
           <DonutChart
             title="Most Sold Products"
             data={mostSoldProducts.data}
@@ -263,8 +242,8 @@ const Dashboard = () => {
             items={topCustomers}
             itemType="user"
           />
-        </div> */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <BarChart
             title="Sales by Product"
             data={salesByProduct.data}
@@ -277,7 +256,13 @@ const Dashboard = () => {
             items={topItems}
             itemType="product"
           />
-        </div> */}
+          <ListCard
+            title="Most Viewed Products"
+            viewAllLink="/shop"
+            items={mostViewedProducts}
+            itemType="product"
+          />
+        </div>
       </motion.div>
     </ProtectedRoute>
   );

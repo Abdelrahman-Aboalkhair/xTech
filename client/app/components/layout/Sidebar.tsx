@@ -110,6 +110,7 @@ const Sidebar = () => {
     return (
       <Link
         href={fullHref}
+        prefetch={false}
         className={`relative group flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 ${
           isActive
             ? "bg-indigo-100 text-indigo-600 font-medium shadow-sm"

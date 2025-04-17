@@ -14,6 +14,7 @@ import { Trash2, Edit, Upload, X } from "lucide-react";
 import ConfirmModal from "@/app/components/organisms/ConfirmModal";
 import useToast from "@/app/hooks/ui/useToast";
 import ProductFileUpload from "./ProductFileUpload";
+import { usePathname } from "next/navigation";
 
 export interface ProductFormData {
   id: string;
@@ -35,7 +36,13 @@ const ProductsDashboard = () => {
     useUpdateProductMutation();
   const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
 
-  const { data, isLoading, refetch } = useGetAllProductsQuery(query);
+  const pathname = usePathname();
+
+  const shouldFetchProducts = pathname === "/dashboard/products";
+
+  const { data, isLoading } = useGetAllProductsQuery(undefined, {
+    skip: !shouldFetchProducts,
+  });
   const products = data?.products || [];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<ProductFormData | null>(

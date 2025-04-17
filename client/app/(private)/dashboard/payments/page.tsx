@@ -5,11 +5,17 @@ import Table from "@/app/components/layout/Table";
 import { motion } from "framer-motion";
 import { CreditCard, DollarSign, Calendar, FileText, Eye } from "lucide-react";
 import ToggleableText from "@/app/components/atoms/ToggleableText";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const PaymentsDashboard = () => {
   const router = useRouter();
-  const { data, isLoading, error } = useGetAllPaymentsQuery({});
+  const pathname = usePathname();
+
+  const shouldFetchPayments = pathname === "/dashboard/payments";
+
+  const { data, isLoading, error } = useGetAllPaymentsQuery(undefined, {
+    skip: !shouldFetchPayments,
+  });
   const payments = data?.payments || [];
 
   const columns = [

@@ -1,4 +1,3 @@
-// New utility: Calculate customer metrics
 export const calculateCustomerMetrics = (
   users: any[]
 ): {
@@ -9,13 +8,17 @@ export const calculateCustomerMetrics = (
   repeatPurchaseRate: number;
 } => {
   const totalCustomers = users.length;
-  const totalRevenue = users.reduce((sum, user) => {
-    const userRevenue = user.orders.reduce(
+  const getUserRevenue = (user: any) =>
+    user.orders.reduce(
       (orderSum: number, order: any) => orderSum + order.amount,
       0
     );
-    return sum + userRevenue;
-  }, 0);
+
+  const totalRevenue = users.reduce(
+    (sum, user) => sum + getUserRevenue(user),
+    0
+  );
+
   const lifetimeValue = totalCustomers > 0 ? totalRevenue / totalCustomers : 0;
   const repeatCustomers = users.filter((user) => user.orders.length > 1).length;
   const repeatPurchaseRate =

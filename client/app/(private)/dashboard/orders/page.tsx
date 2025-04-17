@@ -14,10 +14,16 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import ToggleableText from "@/app/components/atoms/ToggleableText";
+import { usePathname } from "next/navigation";
 
 const OrdersDashboard = () => {
-  const { data, isLoading, error } = useGetAllOrdersQuery({});
+  const pathname = usePathname();
 
+  const shouldFetchOrders = pathname === "/dashboard/orders";
+
+  const { data, isLoading, error } = useGetAllOrdersQuery(undefined, {
+    skip: !shouldFetchOrders,
+  });
   const columns = [
     {
       key: "id",
@@ -171,7 +177,9 @@ const OrdersDashboard = () => {
       ) : error ? (
         <div className="text-center py-12">
           <p className="text-lg text-red-500">
-            Error loading orders: {error.message || "Unknown error"}
+            <p className="text-lg text-red-500">
+              Error loading orders: {error?.message || "Unknown error"}
+            </p>{" "}
           </p>
         </div>
       ) : !data?.orders ? (

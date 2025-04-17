@@ -24,7 +24,7 @@ const customerAnalytics = {
         yearEnd,
       } = getDateRange({ timePeriod, year, startDate, endDate });
 
-      // Fetch users and interactions using fetchData, consolidating Prisma query logic and date filtering.
+      // Fetch users and interactions for the current period
       const users = await fetchData(
         prisma,
         "user",
@@ -46,7 +46,8 @@ const customerAnalytics = {
         yearEnd
       );
 
-      // Fetch previous period users only when needed, using shouldFetchPreviousPeriod to avoid redundant checks.
+      // Fetch previous period users only when needed, using shouldFetchPreviousPeriod to avoid redundant checks
+      // ** Fetch previous is just a fancy way of getting users but like a week ago
       const fetchPrevious = shouldFetchPreviousPeriod(timePeriod);
       const previousUsers = fetchPrevious
         ? await fetchData(
@@ -88,6 +89,7 @@ const customerAnalytics = {
       // Return the response with rounded numbers for clean presentation.
       return {
         totalCustomers,
+        totalRevenue: Number(totalRevenue.toFixed(2)),
         retentionRate: Number(retentionRate.toFixed(2)),
         lifetimeValue: Number(lifetimeValue.toFixed(2)),
         repeatPurchaseRate: Number(repeatPurchaseRate.toFixed(2)),

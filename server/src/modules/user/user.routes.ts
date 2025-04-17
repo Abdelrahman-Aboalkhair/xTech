@@ -10,12 +10,7 @@ const userController = makeUserController();
 
 router.get("/me", protect, userController.getMe);
 
-router.get(
-  "/",
-  protect,
-  authorizeRole("ADMIN", "SUPERADMIN"),
-  userController.getAllUsers
-);
+router.get("/", userController.getAllUsers);
 router.get(
   "/:id",
   protect,

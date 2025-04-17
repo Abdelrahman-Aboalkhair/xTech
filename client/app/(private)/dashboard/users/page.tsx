@@ -13,10 +13,18 @@ import useToast from "@/app/hooks/ui/useToast";
 import { useForm } from "react-hook-form";
 import UserForm, { UserFormData } from "./UserForm";
 import ConfirmModal from "@/app/components/organisms/ConfirmModal";
+import { usePathname } from "next/navigation";
 
 const UsersDashboard = () => {
   const { showToast } = useToast();
-  const { data, isLoading, error, refetch } = useGetAllUsersQuery({});
+  const pathname = usePathname();
+
+  const shouldFetchUsers = pathname === "/dashboard/users";
+
+  const { data, isLoading, error } = useGetAllUsersQuery(undefined, {
+    skip: !shouldFetchUsers,
+  });
+
   const [updateUser, { isLoading: isUpdating }] = useUpdateUserMutation();
   const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
   const users = data?.users || [];
