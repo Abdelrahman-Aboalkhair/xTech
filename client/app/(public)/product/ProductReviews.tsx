@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import {
-  useGetReviewsByProductIdQuery,
   useCreateReviewMutation,
   useDeleteReviewMutation,
 } from "@/app/store/apis/ReviewApi";
@@ -17,18 +16,13 @@ import {
 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
-const ProductReviews = ({ productId, userId, isAdmin = false }) => {
+const ProductReviews = ({ reviews, productId, userId, isAdmin = false }) => {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
   const [hoveredStar, setHoveredStar] = useState(0);
 
-  const {
-    data: reviewData,
-    isLoading,
-    isError,
-  } = useGetReviewsByProductIdQuery(productId);
-
-  const [createReview, { isLoading: isSubmitting }] = useCreateReviewMutation();
+  const [createReview, { isLoading: isSubmitting, error }] =
+    useCreateReviewMutation();
   const [deleteReview] = useDeleteReviewMutation();
 
   const handleSubmitReview = async (e) => {
@@ -76,17 +70,16 @@ const ProductReviews = ({ productId, userId, isAdmin = false }) => {
 
   // Get rating distribution if data is available
   const getRatingDistribution = () => {
-    if (!reviewData || !reviewData.reviews || reviewData.reviews.length === 0)
-      return null;
+    if (reviews || reviews.length === 0) return null;
 
     const distribution = [0, 0, 0, 0, 0]; // For 5 star ratings
-    reviewData.reviews.forEach((review) => {
+    reviews.forEach((review) => {
       if (review.rating >= 1 && review.rating <= 5) {
         distribution[review.rating - 1]++;
       }
     });
 
-    const total = reviewData.reviews.length;
+    const total = reviews.length;
     return distribution
       .map((count) => ({
         count,
@@ -96,14 +89,13 @@ const ProductReviews = ({ productId, userId, isAdmin = false }) => {
   };
 
   const ratingDistribution = getRatingDistribution();
-  const averageRating = reviewData?.reviews?.length
+  const averageRating = reviews?.length
     ? (
-        reviewData.reviews.reduce((acc, review) => acc + review.rating, 0) /
-        reviewData.reviews.length
+        reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
       ).toFixed(1)
     : 0;
 
-  if (isLoading)
+  if (isSubmitting)
     return (
       <div className="my-12 text-center flex justify-center items-center space-x-2">
         <div className="animate-spin h-5 w-5 border-2 border-blue-600 rounded-full border-t-transparent"></div>
@@ -111,15 +103,13 @@ const ProductReviews = ({ productId, userId, isAdmin = false }) => {
       </div>
     );
 
-  if (isError)
+  if (error)
     return (
       <div className="my-12 text-center flex justify-center items-center text-red-500">
         <AlertCircle className="mr-2" size={20} />
         <span>Error loading reviews. Please try again later.</span>
       </div>
     );
-
-  const reviews = reviewData?.reviews || [];
 
   return (
     <div className="mt-16 mb-12">

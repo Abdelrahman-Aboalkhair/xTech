@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { useGetAllProductsQuery } from "@/app/store/apis/ProductApi";
 import { Product } from "@/app/types/productTypes";
-import useQueryParams from "@/app/hooks/network/useQueryParams";
 import { motion } from "framer-motion";
 import { Package } from "lucide-react";
 import ProductCard from "./ProductCard";
 import PaginationComponent from "@/app/components/organisms/Pagination";
+import { useQuery } from "@apollo/client";
+import { GET_ALL_PRODUCTS } from "@/app/gql/Product";
 
 interface ProductSectionProps {
   title: string;
@@ -21,15 +21,15 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   viewAllButton = false,
   showPagination = false,
 }) => {
-  const { query } = useQueryParams();
-  const { data, isLoading, isError } = useGetAllProductsQuery(query);
+  const { data, loading, error } = useQuery(GET_ALL_PRODUCTS);
+  console.log("data from gql => ", data);
+  console.log("error => ", error);
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
 
   const noProductsFound = data?.products?.length === 0;
 
   return (
     <div className="w-full p-8">
-      {/* Header */}
       {(showTitle || viewAllButton) && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -53,8 +53,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
         </motion.div>
       )}
 
-      {/* Pagination Info */}
-      {showPagination && data && (
+      {/* {showPagination && data && (
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -67,10 +66,9 @@ const ProductSection: React.FC<ProductSectionProps> = ({
             ? `, ${data.resultsPerPage} items per page`
             : ""}
         </motion.p>
-      )}
+      )} */}
 
-      {/* Loading/Error/Empty States */}
-      {isLoading && (
+      {loading && (
         <div className="text-center py-12">
           <Package
             size={48}
@@ -79,12 +77,12 @@ const ProductSection: React.FC<ProductSectionProps> = ({
           <p className="text-lg text-gray-600">Loading products...</p>
         </div>
       )}
-      {isError && (
+      {error && (
         <div className="text-center py-12">
           <p className="text-lg text-red-500">Error loading products</p>
         </div>
       )}
-      {noProductsFound && !isLoading && !isError && (
+      {noProductsFound && !loading && !error && (
         <div className="text-center py-12">
           <Package size={48} className="mx-auto text-gray-400 mb-4" />
           <p className="text-lg text-gray-600">No products found</p>
@@ -92,7 +90,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
       )}
 
       {/* Product Grid */}
-      {!isLoading && !isError && !noProductsFound && (
+      {!loading && !error && !noProductsFound && (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {data?.products.map((product: Product) => (

@@ -1,5 +1,4 @@
 "use client";
-import { useGetProductBySlugQuery } from "@/app/store/apis/ProductApi";
 import MainLayout from "@/app/components/templates/MainLayout";
 import BreadCrumb from "@/app/components/feedback/BreadCrumb";
 import { useParams } from "next/navigation";
@@ -7,29 +6,28 @@ import ProductImageGallery from "../ProductImageGallery";
 import ProductInfo from "../ProductInfo";
 import ProductReviews from "../ProductReviews";
 import { useAppSelector } from "@/app/store/hooks";
+import { useQuery } from "@apollo/client";
+import { GET_SINGLE_PRODUCT } from "@/app/gql/Product";
 
 const ProductDetailsPage = () => {
   const { user } = useAppSelector((state) => state.auth);
   const { slug } = useParams();
-  const { data: product, isLoading } = useGetProductBySlugQuery(slug || "");
+  console.log("slug: ", slug);
+  const { data, loading, error } = useQuery(GET_SINGLE_PRODUCT, {
+    variables: { slug },
+  });
+  const product = data?.product;
+  console.log("product from gql => ", product);
+  console.log("error => ", error);
 
   const userId = user?.id;
   const isAdmin = user?.role === "ADMIN";
 
-  if (isLoading)
+  if (loading)
     return (
       <MainLayout>
         <div className="min-h-screen flex items-center justify-center">
           <div className="animate-spin h-8 w-8 border-4 border-blue-500 rounded-full border-t-transparent"></div>
-        </div>
-      </MainLayout>
-    );
-
-  if (!product || !product.success)
-    return (
-      <MainLayout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-red-500">Product not found</div>
         </div>
       </MainLayout>
     );
@@ -55,6 +53,7 @@ const ProductDetailsPage = () => {
 
       <div className="w-[84%] mx-auto p-6">
         <ProductReviews
+          reviews={product.reviews}
           productId={product.id}
           userId={userId}
           isAdmin={isAdmin}

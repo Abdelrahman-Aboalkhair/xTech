@@ -9,11 +9,9 @@ import SearchBar from "../molecules/SearchBar";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
 import { useGetCartQuery } from "@/app/store/apis/CartApi";
 import { useAppSelector } from "@/app/store/hooks";
-import { useGetAllPagesQuery } from "@/app/store/apis/PageApi";
 import Topbar from "./Topbar";
 
 const Navbar = () => {
-  const { data: pagesData, isLoading } = useGetAllPagesQuery({});
   const { updateQuery } = useQueryParams();
   const { user } = useAppSelector((state) => state.auth);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,10 +65,6 @@ const Navbar = () => {
     setShowSearch(false);
   };
 
-  const navbarPages =
-    pagesData?.pages?.filter((page) => page.showInNavbar && page.isPublished) ||
-    [];
-
   return (
     <>
       <Topbar />
@@ -82,54 +76,43 @@ const Navbar = () => {
         }`}
       >
         <nav className="max-w-[80%] mx-auto flex items-center justify-between">
-          {/* Logo Section */}
-          <Link href="/" className="flex items-center">
-            <span className="font-bold text-2xl text-gray-900 hover:text-indigo-600 transition-colors duration-200">
-              Kgkraft
-            </span>
-          </Link>
+          <div className="flex justify-between items-center gap-8">
+            <Link href="/" className="flex items-center">
+              <span className="font-bold text-2xl text-gray-900 hover:text-indigo-600 transition-colors duration-200">
+                Kgkraft
+              </span>
+            </Link>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            {isLoading ? (
-              <div className="h-2 w-24 bg-gray-200 animate-pulse rounded"></div>
-            ) : navbarPages.length > 0 ? (
-              <>
-                {/* Home link directly to "/" */}
-                <Link
-                  href="/"
-                  className={`relative text-gray-700 hover:text-indigo-600 font-medium text-sm transition-colors duration-200 py-2 ${
-                    pathname === "/"
-                      ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-indigo-600"
-                      : ""
-                  }`}
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/"
-                  className={`relative text-gray-700 hover:text-indigo-600 font-medium text-sm transition-colors duration-200 py-2 ${
-                    pathname === "/about"
-                      ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-indigo-600"
-                      : ""
-                  }`}
-                >
-                  About Us
-                </Link>
-                <Link
-                  href="/"
-                  className={`relative text-gray-700 hover:text-indigo-600 font-medium text-sm transition-colors duration-200 py-2 ${
-                    pathname === "/about"
-                      ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-indigo-600"
-                      : ""
-                  }`}
-                >
-                  Contact Us
-                </Link>
-              </>
-            ) : (
-              <span className="text-sm text-gray-500">No pages available</span>
-            )}
+            <Link
+              href="/"
+              className={`relative text-gray-700 hover:text-indigo-600 font-medium text-sm transition-colors duration-200 py-2 ${
+                pathname === "/"
+                  ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-indigo-600"
+                  : ""
+              }`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/"
+              className={`relative text-gray-700 hover:text-indigo-600 font-medium text-sm transition-colors duration-200 py-2 ${
+                pathname === "/about"
+                  ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-indigo-600"
+                  : ""
+              }`}
+            >
+              About Us
+            </Link>
+            <Link
+              href="/"
+              className={`relative text-gray-700 hover:text-indigo-600 font-medium text-sm transition-colors duration-200 py-2 ${
+                pathname === "/about"
+                  ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-indigo-600"
+                  : ""
+              }`}
+            >
+              Contact Us
+            </Link>
           </div>
 
           {/* Right section - Search, Cart, User */}
@@ -243,28 +226,6 @@ const Navbar = () => {
             >
               Home
             </Link>
-
-            {isLoading ? (
-              <div className="animate-pulse space-y-2">
-                <div className="h-8 bg-gray-200 rounded"></div>
-                <div className="h-8 bg-gray-200 rounded"></div>
-              </div>
-            ) : (
-              navbarPages.map((page) => (
-                <Link
-                  key={page.id}
-                  href={`/${page.slug}`}
-                  className={`block py-2 px-4 rounded-md ${
-                    pathname === `/${page.slug}`
-                      ? "bg-indigo-50 text-indigo-600 font-medium"
-                      : "text-gray-800"
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {page.title}
-                </Link>
-              ))
-            )}
 
             <div className="pt-4 mt-4 border-t border-gray-200">
               {!user && (

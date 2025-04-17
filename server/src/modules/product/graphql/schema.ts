@@ -5,6 +5,7 @@ import { productResolvers } from "./resolver";
 const typeDefs = gql`
   type Product {
     id: String!
+    slug: String!
     name: String!
     price: Float!
     discount: Float!
@@ -21,7 +22,7 @@ const typeDefs = gql`
 
   type Query {
     products: [Product!]
-    product(id: String!): Product
+    product(slug: String!): Product
   }
 `;
 

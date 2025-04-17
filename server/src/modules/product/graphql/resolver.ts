@@ -12,9 +12,9 @@ export const productResolvers = {
     products: async (_: any, __: any, context: Context) => {
       return context.prisma.product.findMany();
     },
-    product: async (_: any, args: { id: string }, context: Context) => {
+    product: async (_: any, { slug }: { slug: string }, context: Context) => {
       return context.prisma.product.findUnique({
-        where: { id: args.id },
+        where: { slug },
       });
     },
   },

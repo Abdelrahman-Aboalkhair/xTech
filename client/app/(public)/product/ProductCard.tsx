@@ -19,11 +19,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
   hoveredProductId,
   setHoveredProductId,
 }) => {
+  console.log("product.slug => ", product.slug);
   const [addToCart, { isLoading }] = useAddToCartMutation();
   const isHovered = hoveredProductId === product.id;
 
   const handleAddToCart = async (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent any bubbling that might trigger unwanted navigation
+    e.preventDefault();
     try {
       await addToCart({ productId: product.id, quantity: 1 }).unwrap();
     } catch (error) {
