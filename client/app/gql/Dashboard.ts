@@ -6,21 +6,33 @@ export const OVERVIEW_QUERY = gql`
       minYear
       maxYear
     }
-    dashboardOverview(params: $params) {
-      totalSales
-      totalOrders
-      averageOrderValue
-    }
-    productPerformance(params: $params) {
-      productId
-      name
-      sales
-      unitsSold
-    }
-    customerAnalytics(params: $params) {
-      totalCustomers
-      newCustomers
-      repeatCustomers
-    }
   }
 `;
+
+// analyticsOverview(params: $params) {
+//   totalSales
+//   totalOrders
+//   averageOrderValue
+// }
+// productPerformance(params: $params) {
+//   productId
+//   name
+//   sales
+//   unitsSold
+// }
+// customerAnalytics(params: $params) {
+//   totalCustomers
+//   newCustomers
+//   repeatCustomers
+// }
+// interactionAnalytics(params: $params) {
+//   totalInteractions
+//   byType {
+//     type
+//     count
+//   }
+//   mostViewedProducts {
+//     productId
+//     name
+//     views
+//   }

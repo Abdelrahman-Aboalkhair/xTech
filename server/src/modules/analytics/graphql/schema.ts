@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export const typeDefs = gql`
+export const analyticsSchema = gql`
   type YearRange {
     minYear: Int!
     maxYear: Int!

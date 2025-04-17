@@ -47,6 +47,7 @@
     "express-session": "^1.18.1",
     "graphql": "^16.10.0",
     "graphql-tag": "^2.12.6",
+    "graphql-tools": "^9.0.18",
     "helmet": "^8.1.0",
     "hpp": "^0.2.3",
     "http": "^0.0.1-security",

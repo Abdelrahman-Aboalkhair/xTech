@@ -73,6 +73,7 @@ const Dashboard = () => {
   const { data, loading, error } = useQuery(OVERVIEW_QUERY, {
     variables: { params: queryParams },
   });
+  console.log("GQL error => ", error);
 
   console.log("GQL data => ", data);
 
