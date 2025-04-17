@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-import cors from "cors";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import helmet from "helmet";
 import ExpressMongoSanitize from "express-mongo-sanitize";
 import hpp from "hpp";
@@ -12,26 +12,26 @@ import compression from "compression";
 import passport from "passport";
 import session from "express-session";
 import { RedisStore } from "connect-redis";
-import { startApp } from "./graphql";
-import { allowedOrigins } from "./graphql";
-import mainRouter from "./routes";
-import configurePassport from "./infra/passport/passport";
 import redisClient from "./infra/cache/redis";
+import configurePassport from "./infra/passport/passport";
 import { cookieParserOptions } from "./shared/constants";
 import AppError from "./shared/errors/AppError";
 import globalError from "./shared/errors/globalError";
 import { logRequest } from "./shared/middlewares/logRequest";
+import mainRouter from "./routes";
+import { configureGraphQL, allowedOrigins } from "./graphql";
 
 dotenv.config();
 
-(async () => {
-  const app = await startApp(); // ✅ wait for the app
+export const createApp = async () => {
+  const app = express();
 
+  // Basic Middleware
   app.use(express.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser(process.env.COOKIE_SECRET, cookieParserOptions));
-  app.use(cookieParser());
 
+  // Session & Passport
   app.use(
     session({
       store: new RedisStore({ client: redisClient }),
@@ -46,9 +46,9 @@ dotenv.config();
   );
   app.use(passport.initialize());
   app.use(passport.session());
-
   configurePassport();
 
+  // Security Headers
   app.use(helmet());
   app.use(
     helmet.contentSecurityPolicy({
@@ -75,9 +75,9 @@ dotenv.config();
       },
     })
   );
-
   app.use(helmet.frameguard({ action: "deny" }));
 
+  // CORS - already handled again in `configureGraphQL` for /api/v1/graphql
   app.use(
     cors({
       origin: (origin, callback) => {
@@ -91,6 +91,7 @@ dotenv.config();
     })
   );
 
+  // Host Whitelist Check
   const allowedHosts =
     process.env.NODE_ENV === "production"
       ? ["egwinch.com", "www.egwinch.com"]
@@ -103,6 +104,7 @@ dotenv.config();
     next();
   });
 
+  // Extra Security
   app.use(ExpressMongoSanitize());
   app.use(
     hpp({
@@ -118,18 +120,17 @@ dotenv.config();
       },
     })
   );
-
   app.use(compression());
 
+  // Routes
   app.use("/api", mainRouter);
 
-  // Global Error Handler
-  app.use(globalError);
+  // GraphQL setup
+  await configureGraphQL(app);
 
-  // Logger
+  // Error & Logging
+  app.use(globalError);
   app.use(logRequest);
 
-  app.listen(process.env.PORT, () => {
-    console.log(`Server running on port ${process.env.PORT}`);
-  });
-})();
+  return app;
+};

@@ -3,6 +3,7 @@ export const aggregateMonthlyTrends = (
   orderItems: any[],
   users: any[]
 ) => {
+  // ? Define the structure => { "Jan": { revenue: 0, orders: 0, sales: 0, users: 0 } }
   const monthlyData: {
     [key: string]: {
       revenue: number;
@@ -11,6 +12,7 @@ export const aggregateMonthlyTrends = (
       users: number;
     };
   } = {};
+
   const months = [
     "Jan",
     "Feb",

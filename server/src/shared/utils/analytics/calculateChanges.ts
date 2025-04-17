@@ -11,18 +11,22 @@ export const calculateChanges = (
           current.totalRevenue,
           previous.totalRevenue
         ),
+
         orders: calculatePercentageChange(
           current.totalOrders,
           previous.totalOrders
         ),
+
         sales: calculatePercentageChange(
           current.totalSales,
           previous.totalSales
         ),
+
         users: calculatePercentageChange(
           current.totalUsers,
           previous.totalUsers
         ),
+
         averageOrderValue: calculatePercentageChange(
           current.averageOrderValue,
           previous.averageOrderValue

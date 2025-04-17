@@ -2,7 +2,6 @@ import { subDays, subMonths, subYears, startOfYear, endOfYear } from "date-fns";
 import redisClient from "@/infra/cache/redis";
 import { AnalyticsRepository } from "./analytics.repository";
 import { ProductRepository } from "../product/product.repository";
-import calculatePercentageChange from "@/shared/utils/calculatePercentChange";
 import {
   DateRangeQuery,
   AnalyticsOverview,
@@ -11,6 +10,7 @@ import {
   InteractionAnalytics,
   InteractionEntry,
 } from "./analytics.types";
+import { calculatePercentageChange } from "@/shared/utils/analytics";
 
 export class AnalyticsService {
   constructor(

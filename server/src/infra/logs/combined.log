@@ -1242,3 +1242,6 @@
 [2025-04-17T08:55:45.276Z] [32MINFO[39M: ::1 - - [17/Apr/2025:08:55:45 +0000] "GET /api/v1/products? HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-04-17T08:55:45.280Z] [32MINFO[39M: ::1 - - [17/Apr/2025:08:55:45 +0000] "GET /api/v1/users HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-04-17T08:55:54.202Z] [32MINFO[39M: ::1 - - [17/Apr/2025:08:55:54 +0000] "POST /graphql HTTP/1.1" 400 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-17T12:21:09.479Z] [32MINFO[39M: ::1 - - [17/Apr/2025:12:21:09 +0000] "GET /api/v1/products?sort=price:asc HTTP/1.1" 200 140 "-" "PostmanRuntime/7.43.3"
+[2025-04-17T12:21:13.251Z] [32MINFO[39M: ::1 - - [17/Apr/2025:12:21:13 +0000] "POST /graphql/v1 HTTP/1.1" 404 150 "-" "PostmanRuntime/7.43.3"
+[2025-04-17T12:21:21.249Z] [32MINFO[39M: ::1 - - [17/Apr/2025:12:21:21 +0000] "POST /api/v1/graphql HTTP/1.1" 200 52 "-" "PostmanRuntime/7.43.3"

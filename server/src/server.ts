@@ -1,16 +1,16 @@
 import "module-alias/register";
 import http from "http";
-import { startApp } from "./graphql";
+import { createApp } from "./app";
 
 const PORT = process.env.PORT || 5000;
 
 async function bootstrap() {
-  const app = await startApp(); // ✅ await the promise here
+  const app = await createApp();
 
   const server = http.createServer(app);
 
   server.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}/graphql`);
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
   });
 
   server.on("error", (err) => {

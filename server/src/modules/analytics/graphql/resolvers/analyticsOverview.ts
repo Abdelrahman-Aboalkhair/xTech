@@ -22,8 +22,7 @@ const analyticsOverview = {
         yearEnd,
       } = getDateRange({ timePeriod, year, startDate, endDate });
 
-      // Fetch current period data using a generic fetchData utility, reducing repetitive Prisma query code.
-      // The utility handles date filters and optional role/include parameters, making queries more concise.
+      // ? This fetchData utility consolidates the logic for fetching data for the current period.
       const currentOrders = await fetchData(
         prisma,
         "order",
@@ -56,7 +55,7 @@ const analyticsOverview = {
       );
 
       // Fetch previous period data only when needed, using the same fetchData utility.
-      // shouldFetchPreviousPeriod centralizes the logic for skipping 'allTime' and 'custom' periods.
+      //* shouldFetchPreviousPeriod centralizes the logic for skipping 'allTime' and 'custom' periods.
       const fetchPrevious = shouldFetchPreviousPeriod(timePeriod);
       const previousOrders = fetchPrevious
         ? await fetchData(
@@ -138,6 +137,7 @@ const analyticsOverview = {
       );
 
       // Aggregate monthly trends using a utility that handles initialization and data mapping, keeping the resolver focused on orchestration.
+      //* structure => { "Jan": { revenue: 0, orders: 0, sales: 0, users: 0 } }
       const monthlyTrends = aggregateMonthlyTrends(
         ordersForTrends,
         orderItemsForTrends,

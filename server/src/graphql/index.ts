@@ -13,13 +13,11 @@ export const allowedOrigins =
     ? ["https://egwinch.com"]
     : ["http://localhost:3000"];
 
-export const startApp = async () => {
-  const app = express();
-
+export const configureGraphQL = async (app: express.Application) => {
   await serverV1.start();
 
   app.use(
-    "/graphql/v1",
+    "/api/v1/graphql",
     cors({
       origin: (origin, callback) => {
         if (!origin || allowedOrigins.includes(origin)) {
@@ -39,6 +37,4 @@ export const startApp = async () => {
       }),
     })
   );
-
-  return app;
 };
