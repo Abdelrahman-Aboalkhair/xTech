@@ -1,7 +1,5 @@
-import { startOfYear, endOfYear, subDays, subMonths, subYears } from "date-fns";
+import { endOfYear, startOfYear, subDays, subMonths, subYears } from "date-fns";
 
-// Input can either specify a predefined time period, or a custom range via startDate and endDate.
-// Optionally, a specific year can be provided to get that year's boundaries.
 interface DateRangeInput {
   timePeriod?: string;
   year?: number;

@@ -1,6 +1,8 @@
 import gql from "graphql-tag";
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import { analyticsResolvers } from "./resolver";
 
-export const analyticsSchema = gql`
+const typeDefs = gql`
   type YearRange {
     minYear: Int!
     maxYear: Int!
@@ -99,3 +101,8 @@ export const analyticsSchema = gql`
     interactionAnalytics(params: DateRangeQueryInput!): InteractionAnalytics!
   }
 `;
+
+export const analyticsSchema = makeExecutableSchema({
+  typeDefs: typeDefs,
+  resolvers: analyticsResolvers,
+});

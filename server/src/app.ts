@@ -24,110 +24,112 @@ import { logRequest } from "./shared/middlewares/logRequest";
 
 dotenv.config();
 
-const app = startApp();
+(async () => {
+  const app = await startApp(); // ✅ wait for the app
 
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser(process.env.COOKIE_SECRET, cookieParserOptions));
-app.use(cookieParser());
+  app.use(express.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(cookieParser(process.env.COOKIE_SECRET, cookieParserOptions));
+  app.use(cookieParser());
 
-app.use(
-  session({
-    store: new RedisStore({ client: redisClient }),
-    secret: process.env.SESSION_SECRET!,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-    },
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
+  app.use(
+    session({
+      store: new RedisStore({ client: redisClient }),
+      secret: process.env.SESSION_SECRET!,
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+      },
+    })
+  );
+  app.use(passport.initialize());
+  app.use(passport.session());
 
-configurePassport();
+  configurePassport();
 
-app.use(helmet());
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: [
-        "'self'",
-        "https://trusted.cdn.com",
-        "https://embeddable-sandbox.cdn.apollographql.com",
-      ],
-      styleSrc: [
-        "'self'",
-        "https://embeddable-sandbox.cdn.apollographql.com",
-        "'unsafe-inline'", // Required for Sandbox inline styles
-      ],
-      connectSrc: [
-        "'self'",
-        "http://localhost:5000", // Allow local server for GraphQL
-        "https://embeddable-sandbox.cdn.apollographql.com",
-        "https://*.apollographql.com", // For telemetry
-      ],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  })
-);
+  app.use(helmet());
+  app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          "https://trusted.cdn.com",
+          "https://embeddable-sandbox.cdn.apollographql.com",
+        ],
+        styleSrc: [
+          "'self'",
+          "https://embeddable-sandbox.cdn.apollographql.com",
+          "'unsafe-inline'",
+        ],
+        connectSrc: [
+          "'self'",
+          "http://localhost:5000",
+          "https://embeddable-sandbox.cdn.apollographql.com",
+          "https://*.apollographql.com",
+        ],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+      },
+    })
+  );
 
-app.use(helmet.frameguard({ action: "deny" }));
+  app.use(helmet.frameguard({ action: "deny" }));
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new AppError(403, "CORS policy violation"));
-      }
-    },
-    credentials: true,
-  })
-);
+  app.use(
+    cors({
+      origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new AppError(403, "CORS policy violation"));
+        }
+      },
+      credentials: true,
+    })
+  );
 
-const allowedHosts =
-  process.env.NODE_ENV === "production"
-    ? ["egwinch.com", "www.egwinch.com"]
-    : ["localhost", "127.0.0.1"];
+  const allowedHosts =
+    process.env.NODE_ENV === "production"
+      ? ["egwinch.com", "www.egwinch.com"]
+      : ["localhost", "127.0.0.1"];
 
-app.use((req, res, next) => {
-  if (!allowedHosts.includes(req.hostname)) {
-    return next(new AppError(403, "Forbidden"));
-  }
-  next();
-});
+  app.use((req, res, next) => {
+    if (!allowedHosts.includes(req.hostname)) {
+      return next(new AppError(403, "Forbidden"));
+    }
+    next();
+  });
 
-app.use(ExpressMongoSanitize());
-app.use(
-  hpp({
-    whitelist: ["sort", "filter", "fields", "page", "limit"],
-  })
-);
+  app.use(ExpressMongoSanitize());
+  app.use(
+    hpp({
+      whitelist: ["sort", "filter", "fields", "page", "limit"],
+    })
+  );
 
-// Logging & Performance
-app.use(
-  morgan("combined", {
-    stream: {
-      write: (message) => logger.info(message.trim()),
-    },
-  })
-);
+  // Logging & Performance
+  app.use(
+    morgan("combined", {
+      stream: {
+        write: (message) => logger.info(message.trim()),
+      },
+    })
+  );
 
-app.use(compression());
+  app.use(compression());
 
-app.use("/api", mainRouter);
+  app.use("/api", mainRouter);
 
-// Global Error Handler
-app.use(globalError);
+  // Global Error Handler
+  app.use(globalError);
 
-// Logger
-app.use(logRequest);
+  // Logger
+  app.use(logRequest);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
-});
+  app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}`);
+  });
+})();

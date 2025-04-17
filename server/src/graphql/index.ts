@@ -13,9 +13,11 @@ export const allowedOrigins =
     ? ["https://egwinch.com"]
     : ["http://localhost:3000"];
 
-const app = express();
+export const startApp = async () => {
+  const app = express();
 
-export const startApp = () => {
+  await serverV1.start();
+
   app.use(
     "/graphql/v1",
     cors({

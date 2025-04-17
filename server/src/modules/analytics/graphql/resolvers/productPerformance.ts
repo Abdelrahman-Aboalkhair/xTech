@@ -1,4 +1,4 @@
-import { getDateRange } from "@/shared/utils/getDateRange";
+import { getDateRange } from "@/shared/utils/analytics";
 import { Context } from "../resolver";
 
 const productPerformance = {
@@ -19,10 +19,10 @@ const productPerformance = {
       const orderItems = await prisma.orderItem.findMany({
         where: {
           createdAt: {
-            gte: currentStartDate,
-            lte: endDate ? new Date(endDate) : undefined,
-            gte: yearStart,
-            lte: yearEnd,
+            ...(currentStartDate && { gte: currentStartDate }),
+            ...(endDate && { lte: new Date(endDate) }),
+            ...(yearStart && { gte: yearStart }),
+            ...(yearEnd && { lte: yearEnd }),
           },
           product: category ? { categoryId: category } : undefined,
         },

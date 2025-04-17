@@ -1,12 +1,19 @@
-import calculatePercentageChange from "@/shared/utils/calculatePercentChange";
+import {
+  aggregateMonthlyTrends,
+  calculateChanges,
+  calculateMetrics,
+  fetchData,
+  getDateRange,
+  shouldFetchPreviousPeriod,
+} from "@/shared/utils/analytics";
 import { Context } from "../resolver";
-import { getDateRange } from "@/shared/utils/getDateRange";
 import { ROLE } from "@prisma/client";
 
 const analyticsOverview = {
   Query: {
     analyticsOverview: async (_: any, { params }: any, { prisma }: Context) => {
       const { timePeriod, year, startDate, endDate } = params;
+      // Use getDateRange to compute date ranges for current and previous periods, keeping date logic abstracted.
       const {
         currentStartDate,
         previousStartDate,
@@ -15,229 +22,135 @@ const analyticsOverview = {
         yearEnd,
       } = getDateRange({ timePeriod, year, startDate, endDate });
 
-      // Fetch current period data
-      const currentOrders = await prisma.order.findMany({
-        where: {
-          orderDate: {
-            gte: currentStartDate,
-            lte: endDate ? new Date(endDate) : undefined,
-          },
-          createdAt: {
-            gte: yearStart,
-            lte: yearEnd,
-          },
-        },
-      });
-      const currentOrderItems = await prisma.orderItem.findMany({
-        where: {
-          createdAt: {
-            gte: currentStartDate,
-            lte: endDate ? new Date(endDate) : undefined,
-            gte: yearStart,
-            lte: yearEnd,
-          },
-        },
-        include: { product: true },
-      });
-      const currentUsers = await prisma.user.findMany({
-        where: {
-          createdAt: {
-            gte: currentStartDate,
-            lte: endDate ? new Date(endDate) : undefined,
-            gte: yearStart,
-            lte: yearEnd,
-          },
-          role: ROLE.USER,
-        },
-      });
-
-      // Fetch previous period data
-      const previousOrders =
-        timePeriod !== "allTime" && timePeriod !== "custom"
-          ? await prisma.order.findMany({
-              where: {
-                orderDate: {
-                  gte: previousStartDate,
-                  lte: previousEndDate,
-                },
-                createdAt: {
-                  gte: yearStart,
-                  lte: yearEnd,
-                },
-              },
-            })
-          : [];
-      const previousOrderItems =
-        timePeriod !== "allTime" && timePeriod !== "custom"
-          ? await prisma.orderItem.findMany({
-              where: {
-                createdAt: {
-                  gte: previousStartDate,
-                  lte: previousEndDate,
-                  gte: yearStart,
-                  lte: yearEnd,
-                },
-              },
-              include: { product: true },
-            })
-          : [];
-      const previousUsers =
-        timePeriod !== "allTime" && timePeriod !== "custom"
-          ? await prisma.user.findMany({
-              where: {
-                createdAt: {
-                  gte: previousStartDate,
-                  lte: previousEndDate,
-                  gte: yearStart,
-                  lte: yearEnd,
-                },
-                role: ROLE.USER,
-              },
-            })
-          : [];
-
-      // Calculate metrics
-      const totalRevenue = currentOrders.reduce(
-        (sum, order) => sum + order.amount,
-        0
+      // Fetch current period data using a generic fetchData utility, reducing repetitive Prisma query code.
+      // The utility handles date filters and optional role/include parameters, making queries more concise.
+      const currentOrders = await fetchData(
+        prisma,
+        "order",
+        "orderDate",
+        currentStartDate,
+        endDate,
+        yearStart,
+        yearEnd
       );
-      const totalOrders = currentOrders.length;
-      const totalSales = currentOrderItems.reduce(
-        (sum, item) => sum + item.quantity,
-        0
+      const currentOrderItems = await fetchData(
+        prisma,
+        "orderItem",
+        "createdAt",
+        currentStartDate,
+        endDate,
+        yearStart,
+        yearEnd,
+        undefined,
+        { product: true }
       );
-      const totalUsers = currentUsers.length;
-      const averageOrderValue =
-        totalOrders > 0 ? totalRevenue / totalOrders : 0;
-
-      const previousTotalRevenue = previousOrders.reduce(
-        (sum, order) => sum + order.amount,
-        0
+      const currentUsers = await fetchData(
+        prisma,
+        "user",
+        "createdAt",
+        currentStartDate,
+        endDate,
+        yearStart,
+        yearEnd,
+        ROLE.USER
       );
-      const previousTotalOrders = previousOrders.length;
-      const previousTotalSales = previousOrderItems.reduce(
-        (sum, item) => sum + item.quantity,
-        0
+
+      // Fetch previous period data only when needed, using the same fetchData utility.
+      // shouldFetchPreviousPeriod centralizes the logic for skipping 'allTime' and 'custom' periods.
+      const fetchPrevious = shouldFetchPreviousPeriod(timePeriod);
+      const previousOrders = fetchPrevious
+        ? await fetchData(
+            prisma,
+            "order",
+            "orderDate",
+            previousStartDate,
+            previousEndDate,
+            yearStart,
+            yearEnd
+          )
+        : [];
+      const previousOrderItems = fetchPrevious
+        ? await fetchData(
+            prisma,
+            "orderItem",
+            "createdAt",
+            previousStartDate,
+            previousEndDate,
+            yearStart,
+            yearEnd,
+            undefined,
+            { product: true }
+          )
+        : [];
+      const previousUsers = fetchPrevious
+        ? await fetchData(
+            prisma,
+            "user",
+            "createdAt",
+            previousStartDate,
+            previousEndDate,
+            yearStart,
+            yearEnd,
+            ROLE.USER
+          )
+        : [];
+
+      // Calculate metrics for both periods using a single utility, consolidating revenue, orders, sales, users, and AOV logic.
+      const currentMetrics = calculateMetrics(
+        currentOrders,
+        currentOrderItems,
+        currentUsers
       );
-      const previousTotalUsers = previousUsers.length;
-      const previousAverageOrderValue =
-        previousTotalOrders > 0
-          ? previousTotalRevenue / previousTotalOrders
-          : 0;
+      const previousMetrics = calculateMetrics(
+        previousOrders,
+        previousOrderItems,
+        previousUsers
+      );
 
-      const revenueChange =
-        timePeriod !== "allTime" && timePeriod !== "custom"
-          ? calculatePercentageChange(totalRevenue, previousTotalRevenue)
-          : null;
-      const ordersChange =
-        timePeriod !== "allTime" && timePeriod !== "custom"
-          ? calculatePercentageChange(totalOrders, previousTotalOrders)
-          : null;
-      const salesChange =
-        timePeriod !== "allTime" && timePeriod !== "custom"
-          ? calculatePercentageChange(totalSales, previousTotalSales)
-          : null;
-      const usersChange =
-        timePeriod !== "allTime" && timePeriod !== "custom"
-          ? calculatePercentageChange(totalUsers, previousTotalUsers)
-          : null;
-      const aovChange =
-        timePeriod !== "allTime" && timePeriod !== "custom"
-          ? calculatePercentageChange(
-              averageOrderValue,
-              previousAverageOrderValue
-            )
-          : null;
+      // Compute percentage changes using a utility that handles all metrics and conditional logic for skipping changes.
+      const changes = calculateChanges(
+        currentMetrics,
+        previousMetrics,
+        fetchPrevious
+      );
 
-      // Monthly trends
-      const ordersForTrends = await prisma.order.findMany({
-        where: {
-          createdAt: {
-            gte: yearStart,
-            lte: yearEnd,
-          },
-        },
-      });
-      const orderItemsForTrends = await prisma.orderItem.findMany({
-        where: {
-          createdAt: {
-            gte: yearStart,
-            lte: yearEnd,
-          },
-        },
-      });
-      const usersForTrends = await prisma.user.findMany({
-        where: {
-          createdAt: {
-            gte: yearStart,
-            lte: yearEnd,
-          },
-          role: ROLE.USER,
-        },
-      });
+      // Fetch data for monthly trends, reusing fetchData for consistency.
+      const ordersForTrends = await fetchData(
+        prisma,
+        "order",
+        "createdAt",
+        yearStart,
+        yearEnd
+      );
+      const orderItemsForTrends = await fetchData(
+        prisma,
+        "orderItem",
+        "createdAt",
+        yearStart,
+        yearEnd
+      );
+      const usersForTrends = await fetchData(
+        prisma,
+        "user",
+        "createdAt",
+        yearStart,
+        yearEnd
+      );
 
-      const monthlyData: {
-        [key: string]: {
-          revenue: number;
-          orders: number;
-          sales: number;
-          users: number;
-        };
-      } = {};
-      const months = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
-      months.forEach((_, index) => {
-        monthlyData[index + 1] = { revenue: 0, orders: 0, sales: 0, users: 0 };
-      });
+      // Aggregate monthly trends using a utility that handles initialization and data mapping, keeping the resolver focused on orchestration.
+      const monthlyTrends = aggregateMonthlyTrends(
+        ordersForTrends,
+        orderItemsForTrends,
+        usersForTrends
+      );
 
-      ordersForTrends.forEach((order) => {
-        const month = order.orderDate.getMonth() + 1;
-        monthlyData[month].revenue += order.amount;
-        monthlyData[month].orders += 1;
-      });
-      orderItemsForTrends.forEach((item) => {
-        const month = item.createdAt.getMonth() + 1;
-        monthlyData[month].sales += item.quantity;
-      });
-      usersForTrends.forEach((user) => {
-        const month = user.createdAt.getMonth() + 1;
-        monthlyData[month].users += 1;
-      });
-
+      // Return the response with rounded numbers, leveraging calculated metrics and trends.
       return {
-        totalRevenue: Number(totalRevenue.toFixed(2)),
-        totalOrders,
-        totalSales,
-        totalUsers,
-        averageOrderValue: Number(averageOrderValue.toFixed(2)),
-        changes: {
-          revenue: revenueChange,
-          orders: ordersChange,
-          sales: salesChange,
-          users: usersChange,
-          averageOrderValue: aovChange,
-        },
-        monthlyTrends: {
-          labels: months,
-          revenue: months.map((_, index) =>
-            Number(monthlyData[index + 1].revenue.toFixed(2))
-          ),
-          orders: months.map((_, index) => monthlyData[index + 1].orders),
-          sales: months.map((_, index) => monthlyData[index + 1].sales),
-          users: months.map((_, index) => monthlyData[index + 1].users),
-        },
+        ...currentMetrics,
+        totalRevenue: Number(currentMetrics.totalRevenue.toFixed(2)),
+        averageOrderValue: Number(currentMetrics.averageOrderValue.toFixed(2)),
+        changes,
+        monthlyTrends,
       };
     },
   },
