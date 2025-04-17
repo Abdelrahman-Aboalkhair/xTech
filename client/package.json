@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.13.7",
     "@reduxjs/toolkit": "^2.6.1",
     "@stripe/stripe-js": "^7.0.0",
     "apexcharts": "^4.5.0",
     "axios": "^1.8.4",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.5.0",
+    "graphql": "^16.10.0",
     "lodash": "^4.17.21",
     "lodash.isequal": "^4.5.0",
     "lucide-react": "^0.483.0",

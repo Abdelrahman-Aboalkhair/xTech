@@ -29,7 +29,7 @@ export class OrderRepository {
   async createOrder(data: {
     userId: string;
     amount: number;
-    orderItems: { productId: string; quantity: number }[];
+    orderItems: { productId: string; quantity: number; price: number }[];
     status: ORDER_STATUS;
   }) {
     const order = await prisma.order.create({

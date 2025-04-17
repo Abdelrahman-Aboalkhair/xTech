@@ -2,6 +2,8 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";
 import SessionWrapper from "./SessionWrapper";
+// import { ApolloProvider } from "@apollo/client";
+// import client from "./lib/apolloClient";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -17,8 +19,6 @@ export const metadata = {
   },
 };
 
-// Add the icon to the metadata
-
 export default function RootLayout({
   children,
 }: {
@@ -27,9 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
+        {/* <ApolloProvider client={client}> */}
         <StoreProvider>
           <SessionWrapper>{children}</SessionWrapper>
         </StoreProvider>
+        {/* </ApolloProvider> */}
       </body>
     </html>
   );

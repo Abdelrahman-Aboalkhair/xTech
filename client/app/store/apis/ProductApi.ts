@@ -5,7 +5,6 @@ export const productApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllProducts: builder.query({
       query: (params) => {
-        console.log("incoming params: ", params);
         const queryString = new URLSearchParams();
 
         if (params) {
@@ -27,8 +26,6 @@ export const productApi = apiSlice.injectEndpoints({
           if (featured) queryString.set("featured", "true");
           if (bestselling) queryString.set("bestselling", "true");
         }
-
-        console.log("queryString: ", queryString.toString());
 
         return {
           url: `/products?${queryString.toString()}`,

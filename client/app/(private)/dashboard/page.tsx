@@ -24,6 +24,8 @@ import {
   useGetCustomerAnalyticsQuery,
   useGetYearRangeQuery,
 } from "@/app/store/apis/AnalyticsApi";
+import { useQuery } from "@apollo/client";
+import { OVERVIEW_QUERY } from "@/app/gql/Dashboard";
 
 interface FormData {
   timePeriod: string;
@@ -51,14 +53,14 @@ const Dashboard = () => {
 
   const { timePeriod, year, startDate, endDate, useCustomRange } = watch();
 
-  // Fetch year range for dropdown
-  const { data: yearRangeData } = useGetYearRangeQuery();
-  const minYear = yearRangeData?.minYear || new Date().getFullYear();
-  const maxYear = yearRangeData?.maxYear || new Date().getFullYear();
-  const yearOptions = Array.from({ length: maxYear - minYear + 1 }, (_, i) => ({
-    label: (minYear + i).toString(),
-    value: (minYear + i).toString(),
-  }));
+  // // Fetch year range for dropdown
+  // const { data: yearRangeData } = useGetYearRangeQuery();
+  // const minYear = yearRangeData?.minYear || new Date().getFullYear();
+  // const maxYear = yearRangeData?.maxYear || new Date().getFullYear();
+  // const yearOptions = Array.from({ length: maxYear - minYear + 1 }, (_, i) => ({
+  //   label: (minYear + i).toString(),
+  //   value: (minYear + i).toString(),
+  // }));
 
   // Query parameters
   const queryParams = {
@@ -68,68 +70,74 @@ const Dashboard = () => {
     endDate: useCustomRange && endDate ? endDate : undefined,
   };
 
+  const { data, loading, error } = useQuery(OVERVIEW_QUERY, {
+    variables: { params: queryParams },
+  });
+
+  console.log("GQL data => ", data);
+
   // Fetch data
-  const {
-    data: overviewData,
-    isLoading: isOverviewLoading,
-    error: overviewError,
-  } = useGetOverviewQuery(queryParams);
-  console.log("overviewData => ", overviewData);
+  // const {
+  //   data: overviewData,
+  //   isLoading: isOverviewLoading,
+  //   error: overviewError,
+  // } = useGetOverviewQuery(queryParams);
+  // console.log("overviewData => ", overviewData);
 
-  const {
-    data: productData,
-    isLoading: isProductLoading,
-    error: productError,
-  } = useGetProductPerformanceQuery(queryParams);
+  // const {
+  //   data: productData,
+  //   isLoading: isProductLoading,
+  //   error: productError,
+  // } = useGetProductPerformanceQuery(queryParams);
 
-  console.log("productData => ", productData);
+  // console.log("productData => ", productData);
 
-  const {
-    data: customerData,
-    isLoading: isCustomerLoading,
-    error: customerError,
-  } = useGetCustomerAnalyticsQuery(queryParams);
+  // const {
+  //   data: customerData,
+  //   isLoading: isCustomerLoading,
+  //   error: customerError,
+  // } = useGetCustomerAnalyticsQuery(queryParams);
 
-  console.log("customerData => ", customerData);
+  // console.log("customerData => ", customerData);
 
-  // Handle loading state
-  if (isOverviewLoading || isProductLoading || isCustomerLoading) {
-    return <div>Loading...</div>;
-  }
+  // // Handle loading state
+  // if (isOverviewLoading || isProductLoading || isCustomerLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  // Handle errors
-  if (overviewError || productError || customerError) {
-    console.error("Errors:", { overviewError, productError, customerError });
-    return <div>Error loading dashboard data</div>;
-  }
+  // // Handle errors
+  // if (overviewError || productError || customerError) {
+  //   console.error("Errors:", { overviewError, productError, customerError });
+  //   return <div>Error loading dashboard data</div>;
+  // }
 
-  // Derive chart and list data
-  const mostSoldProducts = {
-    labels: productData?.performance?.slice(0, 5).map((p) => p.name) || [],
-    data: productData?.performance?.slice(0, 5).map((p) => p.quantity) || [],
-  };
+  // // Derive chart and list data
+  // const mostSoldProducts = {
+  //   labels: productData?.performance?.slice(0, 5).map((p) => p.name) || [],
+  //   data: productData?.performance?.slice(0, 5).map((p) => p.quantity) || [],
+  // };
 
-  const salesByProduct = {
-    categories: productData?.performance?.map((p) => p.name) || [],
-    data: productData?.performance?.map((p) => p.revenue) || [],
-  };
+  // const salesByProduct = {
+  //   categories: productData?.performance?.map((p) => p.name) || [],
+  //   data: productData?.performance?.map((p) => p.revenue) || [],
+  // };
 
-  const topItems =
-    productData?.performance?.slice(0, 5).map((p) => ({
-      id: p.id,
-      name: p.name,
-      quantity: p.quantity,
-      revenue: formatPrice(p.revenue),
-    })) || [];
+  // const topItems =
+  //   productData?.performance?.slice(0, 5).map((p) => ({
+  //     id: p.id,
+  //     name: p.name,
+  //     quantity: p.quantity,
+  //     revenue: formatPrice(p.revenue),
+  //   })) || [];
 
-  const topCustomers =
-    customerData?.topCustomers.slice(0, 5).map((c) => ({
-      id: c.id,
-      name: c.name,
-      email: c.email,
-      orderCount: c.orderCount,
-      totalSpent: formatPrice(c.totalSpent),
-    })) || [];
+  // const topCustomers =
+  //   customerData?.topCustomers.slice(0, 5).map((c) => ({
+  //     id: c.id,
+  //     name: c.name,
+  //     email: c.email,
+  //     orderCount: c.orderCount,
+  //     totalSpent: formatPrice(c.totalSpent),
+  //   })) || [];
 
   return (
     <ProtectedRoute requiredRoles={["ADMIN", "SUPERADMIN"]}>
@@ -177,7 +185,7 @@ const Dashboard = () => {
             /> */}
           </div>
         </div>
-        <div className="flex gap-4">
+        {/* <div className="flex gap-4">
           <StatsCard
             title="Total Revenue"
             value={formatPrice(overviewData?.totalRevenue || 0)}
@@ -213,8 +221,8 @@ const Dashboard = () => {
             caption="since last period"
             icon={<Users className="w-5 h-5" />}
           />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div> */}
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AreaChart
             title="Order Analytics"
             data={overviewData?.monthlyTrends.orders || []}
@@ -254,8 +262,8 @@ const Dashboard = () => {
             items={topCustomers}
             itemType="user"
           />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        </div> */}
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <BarChart
             title="Sales by Product"
             data={salesByProduct.data}
@@ -268,7 +276,7 @@ const Dashboard = () => {
             items={topItems}
             itemType="product"
           />
-        </div>
+        </div> */}
       </motion.div>
     </ProtectedRoute>
   );

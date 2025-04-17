@@ -145,3 +145,53 @@
 [2025-04-16T16:08:33.104Z] [31MERROR[39M: Refresh token not found
 [2025-04-16T16:08:33.129Z] [31MERROR[39M: Refresh token not found
 [2025-04-16T16:08:33.285Z] [31MERROR[39M: Refresh token not found
+[2025-04-17T07:37:06.842Z] [31MERROR[39M: Can't find /graphql on this server!
+[2025-04-17T07:37:07.049Z] [31MERROR[39M: Can't find /favicon.ico on this server!
+[2025-04-17T07:40:44.903Z] [31MERROR[39M: Can't find /graphql on this server!
+[2025-04-17T07:42:06.568Z] [31MERROR[39M: Can't find /graphql on this server!
+[2025-04-17T07:42:21.079Z] [31MERROR[39M: Can't find /graphql on this server!
+[2025-04-17T07:42:23.730Z] [31MERROR[39M: Can't find /graphql on this server!
+[2025-04-17T07:48:02.350Z] [31MERROR[39M: Route not found
+[2025-04-17T07:48:03.007Z] [31MERROR[39M: Route not found
+[2025-04-17T07:51:05.596Z] [31MERROR[39M: Route not found
+[2025-04-17T08:05:15.331Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-17T08:05:15.412Z] [31MERROR[39M: Refresh token not found
+[2025-04-17T08:05:44.985Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-17T08:05:45.023Z] [31MERROR[39M: Refresh token not found
+[2025-04-17T08:08:56.007Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:08:57.311Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:08:58.189Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:09:13.987Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:09:15.356Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:09:20.213Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:23:24.801Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:23:29.796Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:23:34.797Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:23:39.383Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:23:44.382Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:23:49.383Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:23:54.382Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:23:59.382Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:24:04.382Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:24:06.150Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:24:09.382Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:24:14.382Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:24:19.382Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:24:24.392Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:24:29.382Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:25:16.454Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:25:21.449Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:25:26.450Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:26:07.177Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:26:08.012Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:26:09.745Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:26:13.012Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:26:42.631Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:26:47.628Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:26:52.627Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:26:57.629Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:26:59.071Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:27:02.630Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:27:07.627Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:27:12.628Z] [31MERROR[39M: CORS policy violation
+[2025-04-17T08:31:44.589Z] [31MERROR[39M: Invalid access token, please log in
