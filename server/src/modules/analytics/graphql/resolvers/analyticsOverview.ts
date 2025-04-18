@@ -13,7 +13,6 @@ const analyticsOverview = {
   Query: {
     analyticsOverview: async (_: any, { params }: any, { prisma }: Context) => {
       const { timePeriod, year, startDate, endDate } = params;
-      // Use getDateRange to compute date ranges for current and previous periods, keeping date logic abstracted.
       const {
         currentStartDate,
         previousStartDate,
@@ -22,7 +21,6 @@ const analyticsOverview = {
         yearEnd,
       } = getDateRange({ timePeriod, year, startDate, endDate });
 
-      // ? This fetchData utility consolidates the logic for fetching data for the current period.
       const currentOrders = await fetchData(
         prisma,
         "order",
@@ -53,6 +51,7 @@ const analyticsOverview = {
         yearEnd,
         ROLE.USER
       );
+      console.log("Current users => ", currentUsers);
 
       // Fetch previous period data only when needed, using the same fetchData utility.
       //* shouldFetchPreviousPeriod centralizes the logic for skipping 'allTime' and 'custom' periods.

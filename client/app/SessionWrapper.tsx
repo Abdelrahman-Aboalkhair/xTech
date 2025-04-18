@@ -23,7 +23,9 @@ const SessionWrapper = ({ children }: SessionWrapperProps) => {
   const dispatch = useDispatch();
   const pathname = usePathname();
   const shouldSkip = EXCLUDED_ROUTES.includes(pathname);
-  const { data, isFetching, error } = useGetMeQuery({}, { skip: shouldSkip });
+  const { data, isFetching, error } = useGetMeQuery(undefined, {
+    skip: shouldSkip,
+  });
 
   useEffect(() => {
     if (data) {

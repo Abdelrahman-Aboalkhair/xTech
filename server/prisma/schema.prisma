@@ -192,9 +192,7 @@ model Transaction {
   id              String       @id @default(uuid())
   order           Order        @relation("OrderTransaction", fields: [orderId], references: [id], onDelete: Cascade)
   orderId         String       @unique 
-  amount          Float
   status          TRANSACTION_STATUS @default(PENDING) 
-  paymentMethod   String
   transactionDate DateTime     @default(now())
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
@@ -273,3 +271,62 @@ model Log {
   context   Json?    // Optional: Additional data (e.g., userId, request details)
   createdAt DateTime @default(now())
 }
+
+enum SECTION_TYPE {
+  HERO
+  PROMOTIONAL
+  BENEFITS
+  NEW_ARRIVALS
+}
+
+
+model Section {
+  id Int @id @unique @default(autoincrement())
+  type SECTION_TYPE @default(HERO)
+  title String
+  description String? 
+  images String
+  icons String?
+  link String?
+  ctaText String
+  isVisible Boolean @default(false)
+  primaryColor String?
+  secondaryColor String?
+}
+
+// * SECETION 1
+// interface HeroContent {
+//   sliderImages: string[];
+//   promoText: string;
+//   productName: string;
+//   productIcon?: string;
+//   link: string;
+//   buttonText?: string;
+//   secondaryText?: string;
+// }
+
+// ** SECTION 2
+// interface Promo {
+//   headline: string;
+//   subheadline?: string;
+//   buttonText: string;
+//   buttonColor: string;
+//   image: string;
+//   imageAlt: string;
+//   accent?: string;
+// }
+
+
+// *** SECTION 3
+// interface Arrival {
+//   image: string;
+//   title: string;
+//   description: string;
+// }
+
+// **** SECTION 4
+// interface Benefit {
+//   icon: string;
+//   title: string;
+//   description: string;
+// }

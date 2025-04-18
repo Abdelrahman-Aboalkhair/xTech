@@ -15,6 +15,7 @@ import addressRoutes from "@/modules/address/address.routes";
 import shipmentRoutes from "@/modules/shipment/shipment.routes";
 import transactionRoutes from "@/modules/transaction/transaction.routes";
 import logRoutes from "@/modules/logs/logs.routes";
+import sectionRoutes from "@/modules/section/section.routes";
 import bodyParser from "body-parser";
 
 const router = Router();
@@ -30,10 +31,15 @@ router.use("/checkout", checkoutRoutes);
 router.use("/reports", reportRoutes);
 router.use("/analytics", analyticsRoutes);
 router.use("/logs", logRoutes);
+router.use("/orders", orderRoutes);
+router.use("/shipment", shipmentRoutes);
+router.use("/payments", paymentRoutes);
+router.use("/addresses", addressRoutes);
 router.use(
   "/webhook",
   bodyParser.raw({ type: "application/json" }),
   webhookRoutes
 );
+router.use("/sections", sectionRoutes);
 
 export default router;

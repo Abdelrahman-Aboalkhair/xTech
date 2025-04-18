@@ -12,7 +12,6 @@ export const fetchData = async <T>(
   role?: ROLE,
   include?: Record<string, boolean>
 ): Promise<T[]> => {
-  // Build the structure => { orderDate: { gte: startDate, lte: endDate } }
   const where: any = {
     [dateField]: buildDateFilter(startDate, endDate, yearStart, yearEnd),
   };

@@ -6,7 +6,6 @@ import BarChart from "@/app/components/charts/BarChart";
 import ListCard from "@/app/components/organisms/ListCard";
 import StatsCard from "@/app/components/organisms/StatsCard";
 import Dropdown from "@/app/components/molecules/Dropdown";
-import DateRangePicker from "@/app/components/molecules/DateRangePicker";
 import {
   BarChart2,
   CreditCard,
@@ -20,6 +19,7 @@ import React from "react";
 import useFormatPrice from "@/app/hooks/ui/useFormatPrice";
 import { useQuery } from "@apollo/client";
 import { GET_ANALYTICS_OVERVIEW } from "@/app/gql/Dashboard";
+import CustomLoader from "@/app/components/feedback/CustomLoader";
 
 interface FormData {
   timePeriod: string;
@@ -45,41 +45,27 @@ const Dashboard = () => {
     { label: "All Time", value: "allTime" },
   ];
 
-  const { timePeriod, year, startDate, endDate, useCustomRange } = watch();
+  const { timePeriod } = watch();
 
-  // Query parameters
   const queryParams = {
     timePeriod: timePeriod || "allTime",
-    year: useCustomRange ? undefined : year ? parseInt(year, 10) : undefined,
-    startDate: useCustomRange && startDate ? startDate : undefined,
-    endDate: useCustomRange && endDate ? endDate : undefined,
   };
 
-  // Fetch data using GraphQL
   const { data, loading, error } = useQuery(GET_ANALYTICS_OVERVIEW, {
     variables: { params: queryParams },
   });
 
-  // Handle loading state
+  console.log("Analytics Overview => ", data);
+
   if (loading) {
-    return <div>Loading...</div>;
+    return <CustomLoader />;
   }
 
-  // Handle errors
   if (error) {
     console.error("GraphQL Error:", error);
     return <div>Error loading dashboard data</div>;
   }
 
-  // Year range for dropdown
-  const minYear = data?.yearRange?.minYear || new Date().getFullYear();
-  const maxYear = data?.yearRange?.maxYear || new Date().getFullYear();
-  const yearOptions = Array.from({ length: maxYear - minYear + 1 }, (_, i) => ({
-    label: (minYear + i).toString(),
-    value: (minYear + i).toString(),
-  }));
-
-  // Derive chart and list data
   const mostSoldProducts = {
     labels: data?.productPerformance?.slice(0, 5).map((p: any) => p.name) || [],
     data:
@@ -141,26 +127,6 @@ const Dashboard = () => {
                   className="min-w-[150px] w-full max-w-[200px]"
                 />
               )}
-            />
-            <Controller
-              name="year"
-              control={control}
-              render={({ field }) => (
-                <Dropdown
-                  onChange={field.onChange}
-                  options={yearOptions}
-                  value={field.value ?? ""}
-                  label="Year"
-                  className="min-w-[150px] w-full max-w-[200px]"
-                  disabled={useCustomRange}
-                />
-              )}
-            />
-            <DateRangePicker
-              label="Custom Date Range"
-              control={control}
-              startName="startDate"
-              endName="endDate"
             />
           </div>
         </div>

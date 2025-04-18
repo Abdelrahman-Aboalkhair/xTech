@@ -1,12 +1,12 @@
 "use client";
 
-import { useGetOrderQuery } from "@/app/store/apis/OrderApi";
 import { useParams } from "next/navigation";
 import MainLayout from "@/app/components/templates/MainLayout";
 import ShippingAddressCard from "../ShippingAddressCard";
 import OrderSummary from "../OrderSummary";
 import OrderStatus from "../OrderStatus";
 import OrderItems from "../OrderItems";
+import { useGetOrderQuery } from "@/app/store/apis/OrderApi";
 
 const OrderTrackingPage = () => {
   const { orderId } = useParams();

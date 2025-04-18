@@ -113,9 +113,7 @@ export class WebhookService {
       const transaction = await tx.transaction.create({
         data: {
           orderId: order.id,
-          amount,
           status: TRANSACTION_STATUS.PENDING,
-          paymentMethod: fullSession.payment_method_types?.[0] || "unknown",
           transactionDate: new Date(),
         },
       });
