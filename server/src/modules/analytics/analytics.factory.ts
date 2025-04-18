@@ -1,4 +1,3 @@
-// analytics.factory.ts
 import { AnalyticsRepository } from "./analytics.repository";
 import { AnalyticsService } from "./analytics.service";
 import { AnalyticsController } from "./analytics.controller";

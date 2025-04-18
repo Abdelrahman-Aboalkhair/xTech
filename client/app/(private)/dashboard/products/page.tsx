@@ -63,7 +63,7 @@ const ProductsDashboard = () => {
     try {
       await createProduct(data).unwrap();
       setIsModalOpen(false);
-      refetch();
+
       showToast("Product created successfully", "success");
     } catch (err) {
       console.error("Failed to create product:", err);
@@ -88,7 +88,7 @@ const ProductsDashboard = () => {
       }).unwrap();
       setIsModalOpen(false);
       setEditingProduct(null);
-      refetch();
+
       showToast("Product updated successfully", "success");
     } catch (err) {
       console.error("Failed to update product:", err);
@@ -107,7 +107,7 @@ const ProductsDashboard = () => {
       await deleteProduct(productToDelete).unwrap();
       setIsConfirmModalOpen(false);
       setProductToDelete(null);
-      refetch();
+
       showToast("Product deleted successfully", "success");
     } catch (err) {
       console.error("Failed to delete product:", err);
@@ -120,9 +120,7 @@ const ProductsDashboard = () => {
     setProductToDelete(null);
   };
 
-  const handleFileUploadSuccess = () => {
-    refetch();
-  };
+  const handleFileUploadSuccess = () => {};
 
   const columns = [
     {
@@ -255,7 +253,7 @@ const ProductsDashboard = () => {
         columns={columns}
         isLoading={isLoading}
         emptyMessage="No products available"
-        onRefresh={refetch}
+        onRefresh={() => console.log("refreshed")}
         totalPages={data?.totalPages}
         totalResults={data?.totalResults}
         resultsPerPage={data?.resultsPerPage}

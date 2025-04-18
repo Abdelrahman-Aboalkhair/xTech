@@ -1,78 +1,190 @@
-[2025-04-17T17:29:48.853Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m37[0m:[93m34[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+[2025-04-18T07:08:50.286Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | IntNullableFilter<"Cart"> | null | undefined, number | IntNullableFilter<"Cart"> | null | undefined>'.
 
-[7m37[0m       const transactions = await searchModel(
-[7m  [0m [91m                                 ~~~~~~~~~~~[0m
+[7m7[0m       where: { userId },
+[7m [0m [91m               ~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m21[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; sessionId?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; sessionId?: string | undefined; }' is not assignable to type '{ id?: undefined; userId?: undefined; sessionId?: Exact<string | null | undefined, string | null | undefined>; status?: Exact<CART_STATUS | undefined, CART_STATUS | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
 
-  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
-    [7m7[0m const searchModelRaw = async (
-    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
-    'searchModelRaw' is declared here.
-[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m44[0m:[93m30[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+[7m21[0m       data,
+[7m  [0m [91m      ~~~~[0m
 
-[7m44[0m       const products = await searchModel(
-[7m  [0m [91m                             ~~~~~~~~~~~[0m
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m14362[0m:[93m5[0m
+    [7m14362[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m27[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | IntFilter<"CartItem"> | undefined, number | IntFilter<"CartItem"> | undefined>'.
 
-  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
-    [7m7[0m const searchModelRaw = async (
-    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
-    'searchModelRaw' is declared here.
-[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m51[0m:[93m32[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+[7m27[0m       where: { cartId, productId },
+[7m  [0m [91m               ~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m27[0m:[93m24[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | IntFilter<"CartItem"> | undefined, number | IntFilter<"CartItem"> | undefined>'.
 
-[7m51[0m       const categories = await searchModel(
-[7m  [0m [91m                               ~~~~~~~~~~~[0m
+[7m27[0m       where: { cartId, productId },
+[7m  [0m [91m                       ~~~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m36[0m:[93m37[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is missing the following properties from type '{ id?: undefined; productId?: undefined; cartId?: undefined; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<...>; cart: { ...; }; product: { ...; }; }': cart, product
 
-  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
-    [7m7[0m const searchModelRaw = async (
-    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
-    'searchModelRaw' is declared here.
-[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m58[0m:[93m27[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+[7m36[0m     return prisma.cartItem.create({ data });
+[7m  [0m [91m                                    ~~~~[0m
 
-[7m58[0m       const users = await searchModel(
-[7m  [0m [91m                          ~~~~~~~~~~~[0m
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m15530[0m:[93m5[0m
+    [7m15530[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m41[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | undefined, number | undefined>'.
 
-  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
-    [7m7[0m const searchModelRaw = async (
-    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
-    'searchModelRaw' is declared here.
+[7m41[0m       where: { id: itemId },
+[7m  [0m [91m               ~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m21411[0m:[93m5[0m
+    [7m21411[0m     id?: number
+    [7m     [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'Exact<CartItemWhereUniqueInput, CartItemWhereUniqueInput>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m47[0m:[93m46[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | undefined, number | undefined>'.
+
+[7m47[0m     return prisma.cartItem.delete({ where: { id: itemId } });
+[7m  [0m [91m                                             ~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m21411[0m:[93m5[0m
+    [7m21411[0m     id?: number
+    [7m     [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'Exact<CartItemWhereUniqueInput, CartItemWhereUniqueInput>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m52[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | IntFilter<"CartItem"> | undefined, number | IntFilter<"CartItem"> | undefined>'.
+
+[7m52[0m       where: { cartId: sessionCartId },
+[7m  [0m [91m               ~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m57[0m:[93m18[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | IntFilter<"CartItem"> | undefined, number | IntFilter<"CartItem"> | undefined>'.
+
+[7m57[0m         where: { cartId: userCartId, productId: item.productId },
+[7m  [0m [91m                 ~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m67[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+
+[7m67[0m             cartId: userCartId,
+[7m  [0m [91m            ~~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m22604[0m:[93m5[0m
+    [7m22604[0m     cartId: number
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'cartId' which is declared here on type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m74[0m:[93m41[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | undefined, number | undefined>'.
+
+[7m74[0m     await prisma.cart.delete({ where: { id: sessionCartId } });
+[7m  [0m [91m                                        ~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m21346[0m:[93m5[0m
+    [7m21346[0m     id?: number
+    [7m     [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m78[0m:[93m42[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | undefined, number | undefined>'.
+
+[7m78[0m     return prisma.cart.delete({ where: { id } });
+[7m  [0m [91m                                         ~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m21346[0m:[93m5[0m
+    [7m21346[0m     id?: number
+    [7m     [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number | IntNullableFilter<"Cart"> | null | undefined'.
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m               ~~~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m37[0m:[93m34[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+[96msrc/modules/cart/cart.repository.ts[0m:[93m7[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | IntNullableFilter<"Cart"> | null | undefined, number | IntNullableFilter<"Cart"> | null | undefined>'.
 
-[7m37[0m       const transactions = await searchModel(
-[7m  [0m [91m                                 ~~~~~~~~~~~[0m
+[7m7[0m       where: { userId },
+[7m [0m [91m               ~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m21[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId?: string | undefined; sessionId?: string | undefined; }' is not assignable to type 'Exact<(Without<CartCreateInput, CartUncheckedCreateInput> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput), (Without<...> & CartUncheckedCreateInput) | (Without<...> & CartCreateInput)>'.
+  Type '{ userId?: string | undefined; sessionId?: string | undefined; }' is not assignable to type '{ id?: undefined; userId?: undefined; sessionId?: Exact<string | null | undefined, string | null | undefined>; status?: Exact<CART_STATUS | undefined, CART_STATUS | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; user?: Exact<...>; cartItems?: Exact<...>; }'.
+    Types of property 'userId' are incompatible.
+      Type 'string | undefined' is not assignable to type 'undefined'.
+        Type 'string' is not assignable to type 'undefined'.
 
-  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
-    [7m7[0m const searchModelRaw = async (
-    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
-    'searchModelRaw' is declared here.
-[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m44[0m:[93m30[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+[7m21[0m       data,
+[7m  [0m [91m      ~~~~[0m
 
-[7m44[0m       const products = await searchModel(
-[7m  [0m [91m                             ~~~~~~~~~~~[0m
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m14362[0m:[93m5[0m
+    [7m14362[0m     data: XOR<CartCreateInput, CartUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m27[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | IntFilter<"CartItem"> | undefined, number | IntFilter<"CartItem"> | undefined>'.
 
-  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
-    [7m7[0m const searchModelRaw = async (
-    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
-    'searchModelRaw' is declared here.
-[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m51[0m:[93m32[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+[7m27[0m       where: { cartId, productId },
+[7m  [0m [91m               ~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m27[0m:[93m24[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | IntFilter<"CartItem"> | undefined, number | IntFilter<"CartItem"> | undefined>'.
 
-[7m51[0m       const categories = await searchModel(
-[7m  [0m [91m                               ~~~~~~~~~~~[0m
+[7m27[0m       where: { cartId, productId },
+[7m  [0m [91m                       ~~~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m36[0m:[93m37[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is missing the following properties from type '{ id?: undefined; productId?: undefined; cartId?: undefined; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<string | Date | undefined, string | Date | undefined>; updatedAt?: Exact<...>; cart: { ...; }; product: { ...; }; }': cart, product
 
-  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
-    [7m7[0m const searchModelRaw = async (
-    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
-    'searchModelRaw' is declared here.
-[96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m58[0m:[93m27[0m - [91merror[0m[90m TS2552: [0mCannot find name 'searchModel'. Did you mean 'searchModelRaw'?
+[7m36[0m     return prisma.cartItem.create({ data });
+[7m  [0m [91m                                    ~~~~[0m
 
-[7m58[0m       const users = await searchModel(
-[7m  [0m [91m                          ~~~~~~~~~~~[0m
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m15530[0m:[93m5[0m
+    [7m15530[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m41[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | undefined, number | undefined>'.
 
-  [96msrc/modules/analytics/graphql/resolvers/searchDashboard.ts[0m:[93m7[0m:[93m7[0m
-    [7m7[0m const searchModelRaw = async (
-    [7m [0m [96m      ~~~~~~~~~~~~~~[0m
-    'searchModelRaw' is declared here.
+[7m41[0m       where: { id: itemId },
+[7m  [0m [91m               ~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m21411[0m:[93m5[0m
+    [7m21411[0m     id?: number
+    [7m     [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'Exact<CartItemWhereUniqueInput, CartItemWhereUniqueInput>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m47[0m:[93m46[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | undefined, number | undefined>'.
+
+[7m47[0m     return prisma.cartItem.delete({ where: { id: itemId } });
+[7m  [0m [91m                                             ~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m21411[0m:[93m5[0m
+    [7m21411[0m     id?: number
+    [7m     [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'Exact<CartItemWhereUniqueInput, CartItemWhereUniqueInput>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m52[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | IntFilter<"CartItem"> | undefined, number | IntFilter<"CartItem"> | undefined>'.
+
+[7m52[0m       where: { cartId: sessionCartId },
+[7m  [0m [91m               ~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m57[0m:[93m18[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | IntFilter<"CartItem"> | undefined, number | IntFilter<"CartItem"> | undefined>'.
+
+[7m57[0m         where: { cartId: userCartId, productId: item.productId },
+[7m  [0m [91m                 ~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m67[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+
+[7m67[0m             cartId: userCartId,
+[7m  [0m [91m            ~~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m22604[0m:[93m5[0m
+    [7m22604[0m     cartId: number
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'cartId' which is declared here on type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m74[0m:[93m41[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | undefined, number | undefined>'.
+
+[7m74[0m     await prisma.cart.delete({ where: { id: sessionCartId } });
+[7m  [0m [91m                                        ~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m21346[0m:[93m5[0m
+    [7m21346[0m     id?: number
+    [7m     [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m78[0m:[93m42[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | undefined, number | undefined>'.
+
+[7m78[0m     return prisma.cart.delete({ where: { id } });
+[7m  [0m [91m                                         ~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m21346[0m:[93m5[0m
+    [7m21346[0m     id?: number
+    [7m     [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m83[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number | IntNullableFilter<"Cart"> | null | undefined'.
+
+[7m83[0m       where: { userId },
+[7m  [0m [91m               ~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -84,9 +196,277 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/resolver.ts:8:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-18T07:13:04.895Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m80[0m:[93m42[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | undefined, number | undefined>'.
+
+[7m80[0m     return prisma.cart.delete({ where: { id } });
+[7m  [0m [91m                                         ~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m21346[0m:[93m5[0m
+    [7m21346[0m     id?: number
+    [7m     [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m85[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number | IntNullableFilter<"Cart"> | null | undefined'.
+
+[7m85[0m       where: { userId },
+[7m  [0m [91m               ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m80[0m:[93m42[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'Exact<number | undefined, number | undefined>'.
+
+[7m80[0m     return prisma.cart.delete({ where: { id } });
+[7m  [0m [91m                                         ~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m21346[0m:[93m5[0m
+    [7m21346[0m     id?: number
+    [7m     [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'Exact<CartWhereUniqueInput, CartWhereUniqueInput>'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m85[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number | IntNullableFilter<"Cart"> | null | undefined'.
+
+[7m85[0m       where: { userId },
+[7m  [0m [91m               ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-18T07:13:11.955Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m11[0m:[93m56[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m11[0m       cart = await this.cartRepository.getCartByUserId(userId);
+[7m  [0m [91m                                                       ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m13[0m:[93m55[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+
+[7m13[0m         cart = await this.cartRepository.createCart({ userId });
+[7m  [0m [91m                                                      ~~~~~~[0m
+
+  [96msrc/modules/cart/cart.repository.ts[0m:[93m19[0m:[93m28[0m
+    [7m19[0m   async createCart(data: { userId?: number; sessionId?: string }) {
+    [7m  [0m [96m                           ~~~~~~[0m
+    The expected type comes from property 'userId' which is declared here on type '{ userId?: number | undefined; sessionId?: string | undefined; }'
+[96msrc/modules/cart/cart.service.ts[0m:[93m36[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+
+[7m36[0m       productId,
+[7m  [0m [91m      ~~~~~~~~~[0m
+
+  [96msrc/modules/cart/cart.repository.ts[0m:[93m33[0m:[93m5[0m
+    [7m33[0m     productId: number;
+    [7m  [0m [96m    ~~~~~~~~~[0m
+    The expected type comes from property 'productId' which is declared here on type '{ cartId: number; productId: number; quantity: number; }'
+[96msrc/modules/cart/cart.service.ts[0m:[93m42[0m:[93m55[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m42[0m     return this.cartRepository.updateCartItemQuantity(itemId, quantity);
+[7m  [0m [91m                                                      ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m46[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m46[0m     return this.cartRepository.removeCartItem(itemId);
+[7m  [0m [91m                                              ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m11[0m:[93m56[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m11[0m       cart = await this.cartRepository.getCartByUserId(userId);
+[7m  [0m [91m                                                       ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m13[0m:[93m55[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+
+[7m13[0m         cart = await this.cartRepository.createCart({ userId });
+[7m  [0m [91m                                                      ~~~~~~[0m
+
+  [96msrc/modules/cart/cart.repository.ts[0m:[93m19[0m:[93m28[0m
+    [7m19[0m   async createCart(data: { userId?: number; sessionId?: string }) {
+    [7m  [0m [96m                           ~~~~~~[0m
+    The expected type comes from property 'userId' which is declared here on type '{ userId?: number | undefined; sessionId?: string | undefined; }'
+[96msrc/modules/cart/cart.service.ts[0m:[93m36[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+
+[7m36[0m       productId,
+[7m  [0m [91m      ~~~~~~~~~[0m
+
+  [96msrc/modules/cart/cart.repository.ts[0m:[93m33[0m:[93m5[0m
+    [7m33[0m     productId: number;
+    [7m  [0m [96m    ~~~~~~~~~[0m
+    The expected type comes from property 'productId' which is declared here on type '{ cartId: number; productId: number; quantity: number; }'
+[96msrc/modules/cart/cart.service.ts[0m:[93m42[0m:[93m55[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m42[0m     return this.cartRepository.updateCartItemQuantity(itemId, quantity);
+[7m  [0m [91m                                                      ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m46[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m46[0m     return this.cartRepository.removeCartItem(itemId);
+[7m  [0m [91m                                              ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-18T07:14:33.393Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m11[0m:[93m56[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m11[0m       cart = await this.cartRepository.getCartByUserId(userId);
+[7m  [0m [91m                                                       ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m13[0m:[93m55[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+
+[7m13[0m         cart = await this.cartRepository.createCart({ userId });
+[7m  [0m [91m                                                      ~~~~~~[0m
+
+  [96msrc/modules/cart/cart.repository.ts[0m:[93m19[0m:[93m28[0m
+    [7m19[0m   async createCart(data: { userId?: number; sessionId?: string }) {
+    [7m  [0m [96m                           ~~~~~~[0m
+    The expected type comes from property 'userId' which is declared here on type '{ userId?: number | undefined; sessionId?: string | undefined; }'
+[96msrc/modules/cart/cart.service.ts[0m:[93m36[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+
+[7m36[0m       productId,
+[7m  [0m [91m      ~~~~~~~~~[0m
+
+  [96msrc/modules/cart/cart.repository.ts[0m:[93m33[0m:[93m5[0m
+    [7m33[0m     productId: number;
+    [7m  [0m [96m    ~~~~~~~~~[0m
+    The expected type comes from property 'productId' which is declared here on type '{ cartId: number; productId: number; quantity: number; }'
+[96msrc/modules/cart/cart.service.ts[0m:[93m42[0m:[93m55[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m42[0m     return this.cartRepository.updateCartItemQuantity(itemId, quantity);
+[7m  [0m [91m                                                      ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m46[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m46[0m     return this.cartRepository.removeCartItem(itemId);
+[7m  [0m [91m                                              ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m11[0m:[93m56[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m11[0m       cart = await this.cartRepository.getCartByUserId(userId);
+[7m  [0m [91m                                                       ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m13[0m:[93m55[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+
+[7m13[0m         cart = await this.cartRepository.createCart({ userId });
+[7m  [0m [91m                                                      ~~~~~~[0m
+
+  [96msrc/modules/cart/cart.repository.ts[0m:[93m19[0m:[93m28[0m
+    [7m19[0m   async createCart(data: { userId?: number; sessionId?: string }) {
+    [7m  [0m [96m                           ~~~~~~[0m
+    The expected type comes from property 'userId' which is declared here on type '{ userId?: number | undefined; sessionId?: string | undefined; }'
+[96msrc/modules/cart/cart.service.ts[0m:[93m36[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+
+[7m36[0m       productId,
+[7m  [0m [91m      ~~~~~~~~~[0m
+
+  [96msrc/modules/cart/cart.repository.ts[0m:[93m33[0m:[93m5[0m
+    [7m33[0m     productId: number;
+    [7m  [0m [96m    ~~~~~~~~~[0m
+    The expected type comes from property 'productId' which is declared here on type '{ cartId: number; productId: number; quantity: number; }'
+[96msrc/modules/cart/cart.service.ts[0m:[93m42[0m:[93m55[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m42[0m     return this.cartRepository.updateCartItemQuantity(itemId, quantity);
+[7m  [0m [91m                                                      ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m46[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
+
+[7m46[0m     return this.cartRepository.removeCartItem(itemId);
+[7m  [0m [91m                                              ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-18T07:27:46.622Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/transaction/transaction.repository.ts[0m:[93m18[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'data' does not exist in type '{ select?: Exact<TransactionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, TransactionSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'.
+
+[7m18[0m       data: id,
+[7m  [0m [91m      ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/transaction/transaction.repository.ts[0m:[93m18[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'data' does not exist in type '{ select?: Exact<TransactionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, TransactionSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'.
+
+[7m18[0m       data: id,
+[7m  [0m [91m      ~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-18T07:30:45.519Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/transaction/transaction.repository.ts[0m:[93m23[0m:[93m38[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ where: { id: string; }; }' is not assignable to parameter of type '{ select?: Exact<TransactionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, TransactionSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; where: Exact<...>; }'.
+  Property 'data' is missing in type '{ where: { id: string; }; }' but required in type '{ select?: Exact<TransactionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, TransactionSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; where: Exact<...>; }'.
+
+[7m23[0m     return prisma.transaction.update({
+[7m  [0m [91m                                     ~[0m
+[7m24[0m       where: { id },
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~[0m
+[7m25[0m     });
+[7m  [0m [91m~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13129[0m:[93m5[0m
+    [7m13129[0m     data: XOR<TransactionUpdateInput, TransactionUncheckedUpdateInput>
+    [7m     [0m [96m    ~~~~[0m
+    'data' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/transaction/transaction.repository.ts[0m:[93m23[0m:[93m38[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ where: { id: string; }; }' is not assignable to parameter of type '{ select?: Exact<TransactionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, TransactionSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; where: Exact<...>; }'.
+  Property 'data' is missing in type '{ where: { id: string; }; }' but required in type '{ select?: Exact<TransactionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, TransactionSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; where: Exact<...>; }'.
+
+[7m23[0m     return prisma.transaction.update({
+[7m  [0m [91m                                     ~[0m
+[7m24[0m       where: { id },
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~[0m
+[7m25[0m     });
+[7m  [0m [91m~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13129[0m:[93m5[0m
+    [7m13129[0m     data: XOR<TransactionUpdateInput, TransactionUncheckedUpdateInput>
+    [7m     [0m [96m    ~~~~[0m
+    'data' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-18T07:39:48.763Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/v1/index.ts[0m:[93m16[0m:[93m8[0m - [91merror[0m[90m TS1192: [0mModule '"/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/transaction/transaction.routes"' has no default export.
+
+[7m16[0m import transactionRoutes from "@/modules/transaction/transaction.routes";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/v1/index.ts[0m:[93m16[0m:[93m8[0m - [91merror[0m[90m TS1192: [0mModule '"/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/transaction/transaction.routes"' has no default export.
+
+[7m16[0m import transactionRoutes from "@/modules/transaction/transaction.routes";
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

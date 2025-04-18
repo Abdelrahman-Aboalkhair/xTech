@@ -141,7 +141,7 @@ const Navbar = () => {
                   className="flex items-center focus:outline-none"
                   aria-label="User menu"
                 >
-                  <div className="rounded-full overflow-hidden flex items-center justify-center bg-gray-100 border border-gray-200">
+                  <div className="rounded-full overflow-hidden flex items-center justify-center bg-gray-100 border p-2 border-gray-200">
                     {user?.avatar ? (
                       <Image
                         src={user.avatar}
@@ -155,7 +155,7 @@ const Navbar = () => {
                         }}
                       />
                     ) : (
-                      <User size={16} className="text-gray-500" />
+                      <User size={20} className="text-gray-800" />
                     )}
                   </div>
                 </button>
