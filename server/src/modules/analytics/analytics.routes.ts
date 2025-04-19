@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { makeAnalyticsController } from "./analytics.factory";
 import protect from "@/shared/middlewares/protect";
-import authorizeRole from "@/shared/middlewares/authorizeRole";
 import optionalAuth from "@/shared/middlewares/optionalAuth";
 
 const router = Router();

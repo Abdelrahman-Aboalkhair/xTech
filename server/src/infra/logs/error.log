@@ -443,3 +443,8 @@ Foreign key constraint violated: `Product_categoryId_fkey (index)`
 [2025-04-19T09:41:00.176Z] [31MERROR[39M: Refresh token not found
 [2025-04-19T09:41:33.298Z] [31MERROR[39M: Unauthorized, please log in
 [2025-04-19T09:41:33.357Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T10:28:44.811Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T10:28:45.060Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T10:35:29.509Z] [31MERROR[39M: Invalid type. Use: overview, products, or customers
+[2025-04-19T10:38:28.181Z] [31MERROR[39M: Invalid type. Use: overview, products, or customers
+[2025-04-19T10:45:11.688Z] [31MERROR[39M: Invalid access token, please log in

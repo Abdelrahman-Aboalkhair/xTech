@@ -69,15 +69,19 @@ export const analyticsApi = apiSlice.injectEndpoints({
       }),
     }),
 
-    exportAnalytics: builder.query<Blob, void>({
-      query: ({ type, format, timePeriod }: any) => ({
+    exportAnalytics: builder.query<Blob, any>({
+      query: ({ type, format, timePeriod, year, startDate, endDate }: any) => ({
         url: "/analytics/export",
         method: "GET",
+        credentials: "include",
         responseHandler: (response) => response.blob(),
         params: {
           type,
           format,
           timePeriod,
+          year,
+          startDate,
+          endDate,
         },
       }),
     }),

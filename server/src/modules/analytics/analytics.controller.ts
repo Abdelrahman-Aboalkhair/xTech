@@ -269,14 +269,13 @@ export class AnalyticsController {
 
   exportAnalytics = asyncHandler(async (req: Request, res: Response) => {
     const { type, format, timePeriod, year, startDate, endDate } = req.query;
+    console.log("req.query: ", req.query);
 
-    // Validate format
     const validFormats = ["csv", "pdf", "xlsx"];
     if (!format || !validFormats.includes(format as string)) {
       throw new AppError(400, "Invalid format. Use: csv, pdf, or xlsx");
     }
 
-    // Validate type
     const validTypes = ["overview", "products", "customers"];
     if (!type || !validTypes.includes(type as string)) {
       throw new AppError(
@@ -383,6 +382,7 @@ export class AnalyticsController {
 
     res.setHeader("Content-Type", contentType);
     res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+    console.log("result => ", result);
     res.send(result);
   });
 }

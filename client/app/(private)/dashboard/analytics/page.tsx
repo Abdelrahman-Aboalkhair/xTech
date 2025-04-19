@@ -24,10 +24,8 @@ import {
   useGetProductPerformanceQuery,
   useGetCustomerAnalyticsQuery,
   useGetYearRangeQuery,
-  useExportAnalyticsQuery,
   useLazyExportAnalyticsQuery,
 } from "@/app/store/apis/AnalyticsApi";
-import { skip } from "node:test";
 
 interface FormData {
   timePeriod: string;
@@ -100,17 +98,7 @@ const AnalyticsDashboard = () => {
   const [
     triggerExport,
     { data: exportData, isLoading: isExporting, error: exportError },
-  ] = useLazyExportAnalyticsQuery(
-    {
-      type: exportType || "pdf",
-      format: exportFormat,
-      timePeriod: queryParams.timePeriod,
-      year: queryParams.year,
-      startDate: queryParams.startDate,
-      endDate: queryParams.endDate,
-    },
-    { skip: true }
-  );
+  ] = useLazyExportAnalyticsQuery();
 
   console.log("exportData => ", exportData);
   console.log("exportError => ", exportError);
@@ -118,7 +106,14 @@ const AnalyticsDashboard = () => {
   // Handle export
   const handleExport = async () => {
     try {
-      await triggerExport();
+      await triggerExport({
+        type: exportType || "overview",
+        format: exportFormat || "csv",
+        timePeriod: queryParams.timePeriod,
+        year: queryParams.year,
+        startDate: queryParams.startDate,
+        endDate: queryParams.endDate,
+      });
       if (exportData) {
         const mimeTypes: { [key: string]: string } = {
           csv: "text/csv",
@@ -126,9 +121,12 @@ const AnalyticsDashboard = () => {
           xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         };
         const blob = new Blob([exportData], { type: mimeTypes[exportFormat] });
+        console.log("blob: ", blob);
         const link = document.createElement("a");
+        console.log("link: ", link);
         link.href = URL.createObjectURL(blob);
         link.download = `analytics_${exportType}_${exportFormat}_${new Date().toISOString()}.${exportFormat}`;
+        console.log("download link: ", link);
         link.click();
       }
     } catch (err) {
