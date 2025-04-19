@@ -26,15 +26,17 @@ const authSlice = createSlice({
       state.isLoggedIn = !!action.payload;
     },
     clearUser: (state) => {
+      console.log("user state =>  ", state.user);
+      console.log("user state =>  ", state.user);
       state.user = null;
-      state.isLoggedIn = false;
+      localStorage.removeItem("isLoggedIn");
     },
   },
   extraReducers: (builder) => {
     builder
       .addMatcher(userApi.endpoints.getMe.matchFulfilled, (state, action) => {
+        console.log("action.payload => ", action.payload);
         state.user = action.payload.user;
-        state.isLoggedIn = true;
       })
       .addMatcher(userApi.endpoints.getMe.matchRejected, (state) => {
         state.user = null;

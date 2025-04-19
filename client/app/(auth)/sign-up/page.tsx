@@ -10,8 +10,9 @@ import MainLayout from "@/app/components/templates/MainLayout";
 import GirlShoppingImage from "@/app/assets/images/girl_shopping.png";
 import Image from "next/image";
 import LoginButtons from "../(oAuth)/LoginButtons";
-import { useAuth } from "@/app/context/AuthContext";
 import { useSignupMutation } from "@/app/store/apis/AuthApi";
+import { setUser } from "@/app/store/slices/AuthSlice";
+import { useAppDispatch } from "@/app/store/hooks";
 
 interface InputForm {
   name: string;
@@ -33,8 +34,8 @@ const emailSchema = (value: string) => {
 };
 
 const Signup = () => {
-  const { setUser } = useAuth();
   const [signUp, { isLoading, error }] = useSignupMutation();
+  const dispatch = useAppDispatch();
   const router = useRouter();
 
   const {
@@ -51,11 +52,11 @@ const Signup = () => {
     },
   });
 
-  const onSubmit = async (formData: InputForm) => {
+  const onSubmit = async (formData) => {
     try {
       const result = await signUp(formData).unwrap();
       if (result.success) {
-        setUser(result.user);
+        dispatch(setUser(result.user));
         router.push("/");
       }
     } catch (error) {

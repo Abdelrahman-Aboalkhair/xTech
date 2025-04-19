@@ -20,7 +20,7 @@ import {
   ChartCandlestick,
   ClipboardPlus,
   ClipboardCheck,
-  Home,
+  Section,
 } from "lucide-react";
 import DashboardSearchBar from "../molecules/DashboardSearchbar";
 
@@ -42,17 +42,14 @@ const Sidebar = () => {
       {
         title: "E-commerce",
         links: [
-          { name: "Home Page", href: "/home", icon: Home },
           { name: "Transactions", href: "/transactions", icon: ShoppingCart },
           { name: "Products", href: "/products", icon: Layers },
           { name: "Categories", href: "/categories", icon: Boxes },
+          { name: "Sections", href: "/sections", icon: Section },
+          { name: "Users", href: "/users", icon: Users },
         ],
       },
 
-      {
-        title: "User Management",
-        links: [{ name: "Customers", href: "/users", icon: Users }],
-      },
       {
         title: "Stats",
         links: [

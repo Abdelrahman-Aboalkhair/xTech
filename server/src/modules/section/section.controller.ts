@@ -11,15 +11,17 @@ export class SectionController {
   getAllSections = asyncHandler(async (_req: Request, res: Response) => {
     const sections = await this.sectionService.getAllSections();
     sendResponse(res, 200, {
-      data: sections,
+      data: { sections },
       message: "Sections fetched successfully",
     });
   });
 
   createSection = asyncHandler(async (req: Request, res: Response) => {
+    console.log("req.body => ", req.body);
     const section = await this.sectionService.createSection(req.body);
+
     sendResponse(res, 201, {
-      data: section,
+      data: { section },
       message: "Section created successfully",
     });
     const start = Date.now();

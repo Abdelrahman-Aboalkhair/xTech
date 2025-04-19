@@ -13,7 +13,9 @@ import Topbar from "./Topbar";
 
 const Navbar = () => {
   const { updateQuery } = useQueryParams();
-  const { user } = useAppSelector((state) => state.auth);
+  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
+  console.log("user state from navbar: ", user);
+  console.log("isLoggedIn: ", isLoggedIn);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -22,6 +24,7 @@ const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { data } = useGetCartQuery({});
+  console.log("cart data => ", data);
   const cartItemCount = data?.cart?.cartItems?.length || 0;
 
   // Handle scroll effect

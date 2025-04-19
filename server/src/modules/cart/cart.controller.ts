@@ -15,7 +15,7 @@ export class CartController {
     const cart = await this.cartService.getOrCreateCart(userId, sessionId);
 
     sendResponse(res, 200, {
-      data: cart,
+      data: { cart },
       message: "Cart fetched successfully",
     });
 
@@ -42,7 +42,7 @@ export class CartController {
     );
 
     sendResponse(res, 200, {
-      data: item,
+      data: { item },
       message: "Item added to cart successfully",
     });
     const start = Date.now();
@@ -64,7 +64,7 @@ export class CartController {
     );
 
     sendResponse(res, 200, {
-      data: { item: updatedItem },
+      data: { item: { updatedItem } },
       message: "Item quantity updated successfully",
     });
     const start = Date.now();

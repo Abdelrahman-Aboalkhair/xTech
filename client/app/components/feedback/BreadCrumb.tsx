@@ -28,7 +28,7 @@ const BreadCrumb: React.FC = () => {
               <span className="text-gray-400">/</span>
               <li>
                 {isLast ? (
-                  <span className="capitalize text-indigo-500 font-semibold">
+                  <span className="capitalize font-semibold">
                     {decodeURIComponent(segment)}
                   </span>
                 ) : (

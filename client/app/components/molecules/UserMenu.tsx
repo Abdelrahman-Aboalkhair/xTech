@@ -42,7 +42,8 @@ const UserMenu = ({ menuOpen, closeMenu }) => {
 
   const handleSignOut = async () => {
     try {
-      await signout().unwrap();
+      const res = await signout();
+      console.log("res => ", res);
       dispatch(clearUser());
       router.push("/sign-in");
     } catch (error) {
@@ -143,21 +144,6 @@ const UserMenu = ({ menuOpen, closeMenu }) => {
         >
           {/* Decorative arrow */}
           <div className="absolute top-[-8px] right-4 w-4 h-4 bg-white transform rotate-45 border-l border-t border-gray-100"></div>
-
-          {/* User profile section */}
-          <div className="px-4 py-4 border-b border-gray-100">
-            <div className="flex items-center gap-3">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center text-white font-medium">
-                {user?.name?.charAt(0) || user?.email?.charAt(0) || "U"}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">
-                  {user?.name || "User"}
-                </p>
-                <p className="text-xs text-gray-500 truncate">{user?.email}</p>
-              </div>
-            </div>
-          </div>
 
           {/* Menu sections */}
           <div className="py-2 max-h-[calc(100vh-200px)] overflow-y-auto">

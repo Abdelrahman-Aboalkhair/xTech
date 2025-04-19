@@ -199,8 +199,8 @@ const ProductForm: React.FC<ProductFormProps> = ({
         />
       </div>
 
-      {/* Image Uploader */}
       <ImageUploader
+        label={"Product Images"}
         control={control}
         errors={errors}
         setValue={setValue}

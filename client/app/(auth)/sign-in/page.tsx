@@ -39,6 +39,7 @@ const SignIn = () => {
   const onSubmit = async (formData: InputForm) => {
     try {
       const result = await signIn(formData).unwrap();
+      console.log("sign in result =>  ", result);
       console.log("result: ", result);
       if (result.success) {
         dispatch(setUser(result.user));

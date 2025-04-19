@@ -50,31 +50,31 @@ export const createApp = async () => {
 
   // Security Headers
   app.use(helmet());
-  app.use(
-    helmet.contentSecurityPolicy({
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: [
-          "'self'",
-          "https://trusted.cdn.com",
-          "https://embeddable-sandbox.cdn.apollographql.com",
-        ],
-        styleSrc: [
-          "'self'",
-          "https://embeddable-sandbox.cdn.apollographql.com",
-          "'unsafe-inline'",
-        ],
-        connectSrc: [
-          "'self'",
-          "http://localhost:5000",
-          "https://embeddable-sandbox.cdn.apollographql.com",
-          "https://*.apollographql.com",
-        ],
-        objectSrc: ["'none'"],
-        upgradeInsecureRequests: [],
-      },
-    })
-  );
+  // app.use(
+  //   helmet.contentSecurityPolicy({
+  //     directives: {
+  //       defaultSrc: ["'self'"],
+  //       scriptSrc: [
+  //         "'self'",
+  //         "https://trusted.cdn.com",
+  //         "https://embeddable-sandbox.cdn.apollographql.com",
+  //       ],
+  //       styleSrc: [
+  //         "'self'",
+  //         "https://embeddable-sandbox.cdn.apollographql.com",
+  //         "'unsafe-inline'",
+  //       ],
+  //       connectSrc: [
+  //         "'self'",
+  //         "http://localhost:5000",
+  //         "https://embeddable-sandbox.cdn.apollographql.com",
+  //         "https://*.apollographql.com",
+  //       ],
+  //       objectSrc: ["'none'"],
+  //       upgradeInsecureRequests: [],
+  //     },
+  //   })
+  // );
   app.use(helmet.frameguard({ action: "deny" }));
 
   // CORS - already handled again in `configureGraphQL` for /api/v1/graphql

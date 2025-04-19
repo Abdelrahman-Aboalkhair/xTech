@@ -385,3 +385,61 @@ Foreign key constraint violated: `Product_categoryId_fkey (index)`
 [2025-04-18T07:59:02.320Z] [31MERROR[39M: request entity too large
 [2025-04-18T08:02:22.243Z] [31MERROR[39M: Duplicate field value entered
 [2025-04-18T08:02:37.964Z] [31MERROR[39M: Duplicate field value entered
+[2025-04-18T15:23:09.249Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-18T15:23:09.388Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T07:35:13.622Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T07:35:13.847Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T08:01:55.387Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-19T08:20:27.845Z] [31MERROR[39M: request entity too large
+[2025-04-19T08:20:42.803Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-19T08:21:15.890Z] [31MERROR[39M: request entity too large
+[2025-04-19T08:22:18.212Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-19T08:23:44.514Z] [31MERROR[39M: request entity too large
+[2025-04-19T08:24:18.316Z] [31MERROR[39M: request entity too large
+[2025-04-19T08:25:10.994Z] [31MERROR[39M: request entity too large
+[2025-04-19T08:26:57.282Z] [31MERROR[39M: request entity too large
+[2025-04-19T08:27:11.925Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-19T08:29:18.565Z] [31MERROR[39M: request entity too large
+[2025-04-19T08:32:41.247Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-19T08:36:37.607Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-19T08:42:33.599Z] [31MERROR[39M: Invalid file type. Only CSV and XLSX are allowed
+[2025-04-19T08:43:42.776Z] [31MERROR[39M: request entity too large
+[2025-04-19T08:52:20.681Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-19T08:59:09.567Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T08:59:09.590Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:01:01.730Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:01:01.746Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:03:19.877Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:03:19.892Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:03:21.813Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:03:21.868Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:04:11.089Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:04:11.115Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:04:12.838Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:04:12.878Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:23:51.274Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:23:51.374Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:25:57.042Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:25:57.125Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:26:04.152Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:26:04.198Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:34:30.767Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:34:30.793Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:34:32.992Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:34:33.053Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:35:20.212Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:35:20.269Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:36:30.185Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:36:30.198Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:37:35.299Z] [31MERROR[39M: Duplicate field value entered
+[2025-04-19T09:39:23.160Z] [31MERROR[39M: Duplicate field value entered
+[2025-04-19T09:39:49.114Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:39:49.144Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:40:11.457Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:40:11.541Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:40:52.701Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:40:52.800Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:41:00.114Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:41:00.176Z] [31MERROR[39M: Refresh token not found
+[2025-04-19T09:41:33.298Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-19T09:41:33.357Z] [31MERROR[39M: Refresh token not found

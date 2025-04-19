@@ -283,50 +283,14 @@ enum SECTION_TYPE {
 model Section {
   id Int @id @unique @default(autoincrement())
   type SECTION_TYPE @default(HERO)
-  title String
+  title String?
   description String? 
-  images String
+  images String?
   icons String?
   link String?
-  ctaText String
-  isVisible Boolean @default(false)
+  ctaText String?
+  isVisible Boolean? @default(false)
   primaryColor String?
   secondaryColor String?
 }
 
-// * SECETION 1
-// interface HeroContent {
-//   sliderImages: string[];
-//   promoText: string;
-//   productName: string;
-//   productIcon?: string;
-//   link: string;
-//   buttonText?: string;
-//   secondaryText?: string;
-// }
-
-// ** SECTION 2
-// interface Promo {
-//   headline: string;
-//   subheadline?: string;
-//   buttonText: string;
-//   buttonColor: string;
-//   image: string;
-//   imageAlt: string;
-//   accent?: string;
-// }
-
-
-// *** SECTION 3
-// interface Arrival {
-//   image: string;
-//   title: string;
-//   description: string;
-// }
-
-// **** SECTION 4
-// interface Benefit {
-//   icon: string;
-//   title: string;
-//   description: string;
-// }

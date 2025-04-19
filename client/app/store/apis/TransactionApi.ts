@@ -6,7 +6,7 @@ export const transactionApi = apiSlice.injectEndpoints({
       query: () => "/transactions",
     }),
     getTransaction: builder.query({
-      query: (id: string) => `/transactions/${id}`,
+      query: (id) => `/transactions/${id}`,
     }),
     deleteTransaction: builder.mutation({
       query: (id) => ({

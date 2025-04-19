@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { usePathname } from "next/navigation";
 import { useGetMeQuery } from "./store/apis/UserApi";
 import { clearUser, setUser } from "./store/slices/AuthSlice";
 import CustomLoader from "./components/feedback/CustomLoader";
+import { useAppDispatch } from "./store/hooks";
 
 interface SessionWrapperProps {
   children: React.ReactNode;
@@ -20,9 +20,10 @@ const EXCLUDED_ROUTES = [
 ];
 
 const SessionWrapper = ({ children }: SessionWrapperProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const pathname = usePathname();
   const shouldSkip = EXCLUDED_ROUTES.includes(pathname);
+  console.log("shouldSkip => ", shouldSkip);
   const { data, isFetching, error } = useGetMeQuery(undefined, {
     skip: shouldSkip,
   });

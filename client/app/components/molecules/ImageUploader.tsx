@@ -2,15 +2,17 @@ import { UploadCloud, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { Controller } from "react-hook-form";
 
-const ImageUploader = ({ control, errors, watch, setValue }) => {
+const ImageUploader = ({ control, errors, watch, setValue, label }) => {
   const images = watch("images") || [];
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    console.log("file =>  ", file);
     if (!file) return;
 
     const reader = new FileReader();
     reader.onloadend = () => {
+      console.log("reader.result =>  ", reader.result);
       setValue("images", [...images, reader.result]);
     };
     reader.readAsDataURL(file);
@@ -25,7 +27,7 @@ const ImageUploader = ({ control, errors, watch, setValue }) => {
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">
-        Product Images
+        {label}
       </label>
 
       {images.length > 0 && (
