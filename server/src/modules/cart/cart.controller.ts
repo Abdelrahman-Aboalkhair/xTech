@@ -13,6 +13,7 @@ export class CartController {
     const sessionId = req.session.id;
 
     const cart = await this.cartService.getOrCreateCart(userId, sessionId);
+    console.log("getOrCreateCart result => ", cart);
 
     sendResponse(res, 200, {
       data: { cart },
@@ -31,7 +32,9 @@ export class CartController {
 
   addToCart = asyncHandler(async (req: Request, res: Response) => {
     const userId = req.user?.id;
+    console.log("userId addToCart => ", userId);
     const sessionId = req.session.id;
+    console.log("sessionId addToCart => ", sessionId);
     const { productId, quantity } = req.body;
 
     const item = await this.cartService.addToCart(
@@ -40,6 +43,8 @@ export class CartController {
       userId,
       sessionId
     );
+
+    console.log("item from addToCart => ", item);
 
     sendResponse(res, 200, {
       data: { item },

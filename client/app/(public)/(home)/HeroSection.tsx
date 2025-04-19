@@ -1,4 +1,5 @@
 "use client";
+
 import SliderImg1 from "@/app/assets/images/playstation.png";
 import SliderImg2 from "@/app/assets/images/gucci.png";
 import SliderImg3 from "@/app/assets/images/speakers.png";
@@ -9,54 +10,69 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import adjustColor from "@/app/utils/adjustColor";
+import { useGetHeroQuery } from "@/app/store/apis/SectionApi";
 
-interface HeroContent {
-  backgroundColor: string;
-  sliderImages: string[];
-  promoText: string;
-  productName: string;
-  productIcon?: string;
-  link: string;
-  buttonText?: string;
-  secondaryText?: string;
+interface HeroSection {
+  id: number;
+  type: string;
+  title?: string;
+  description?: string;
+  images?: string[];
+  icons?: string;
+  link?: string;
+  ctaText?: string;
+  isVisible?: boolean;
+  primaryColor?: string;
+  secondaryColor?: string;
 }
 
 interface HeroSectionProps {
-  data?: {
-    content: HeroContent;
-  };
   isPreview?: boolean;
 }
 
-const defaultContent: HeroContent = {
-  backgroundColor: "#1a1a1a",
-  sliderImages: [SliderImg1, SliderImg2, SliderImg3],
-  promoText: "Discover Premium Products for Your Lifestyle",
-  secondaryText: "Limited time offers with exclusive benefits",
+// Default fallback content if API data is missing
+const defaultContent = {
+  primaryColor: "#1a1a1a",
+  images: [SliderImg1, SliderImg2, SliderImg3],
+  title: "Discover Premium Products for Your Lifestyle",
+  description: "Limited time offers with exclusive benefits",
   productName: "Featured Collection",
-  productIcon: AppleIcon,
+  icons: AppleIcon,
   link: "/shop",
-  buttonText: "Explore Now",
+  ctaText: "Explore Now",
 };
 
-const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
-  const content =
-    data?.content && typeof data.content === "object"
-      ? { ...defaultContent, ...data.content }
-      : defaultContent;
+const HeroSection = ({ isPreview = false }: HeroSectionProps) => {
+  const { data, isLoading } = useGetHeroQuery(undefined);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
 
+  // Extract hero section from API data or use defaults
+  const heroSection = data?.hero || null;
+
+  // Determine what content to display based on API data availability
+  const backgroundColor =
+    heroSection?.primaryColor || defaultContent.primaryColor;
+  const sliderImages = heroSection?.images?.length
+    ? heroSection.images
+    : defaultContent.images;
+  const promoText = heroSection?.title || defaultContent.title;
+  const secondaryText = heroSection?.description || defaultContent.description;
+  const productName = heroSection?.type || defaultContent.productName;
+  const productIcon = heroSection?.icons || defaultContent.icons;
+  const link = heroSection?.link || defaultContent.link;
+  const buttonText = heroSection?.ctaText || defaultContent.ctaText;
+
   const nextImage = () => {
     setCurrentImageIndex((prev) =>
-      prev === content.sliderImages.length - 1 ? 0 : prev + 1
+      prev === sliderImages.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prev) =>
-      prev === 0 ? content.sliderImages.length - 1 : prev - 1
+      prev === 0 ? sliderImages.length - 1 : prev - 1
     );
   };
 
@@ -110,15 +126,25 @@ const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
     },
   };
 
+  // Show loading state when data is being fetched
+  if (isLoading && !isPreview) {
+    return (
+      <div className="w-full mx-auto my-12 h-64 bg-gray-100 rounded-xl flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
     <main
       className={`relative w-full mx-auto ${
         isPreview ? "scale-90 my-2" : "my-12"
       } overflow-hidden rounded-xl`}
       style={{
-        background: `linear-gradient(135deg, ${
-          content.backgroundColor
-        }, ${adjustColor(content.backgroundColor, -20)})`,
+        background: `linear-gradient(135deg, ${backgroundColor}, ${adjustColor(
+          backgroundColor,
+          -20
+        )})`,
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent z-10"></div>
@@ -143,7 +169,7 @@ const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
                 isPreview ? "text-sm" : "text-lg"
               }`}
             >
-              {content.productName}
+              {productName}
             </span>
           </motion.div>
 
@@ -155,30 +181,30 @@ const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
                 : "text-4xl lg:text-6xl"
             }`}
           >
-            {content.promoText}
+            {promoText}
           </motion.h1>
 
-          {content.secondaryText && (
+          {secondaryText && (
             <motion.p
               variants={itemVariants}
               className={`font-light ${
                 isPreview ? "text-sm line-clamp-2" : "text-lg lg:text-xl"
               }`}
             >
-              {content.secondaryText}
+              {secondaryText}
             </motion.p>
           )}
 
           <motion.div variants={itemVariants} className="pt-4">
             <Link
-              href={content.link}
+              href={link}
               className={`group inline-flex items-center ${
                 isPreview ? "text-sm px-4 py-2" : "px-6 py-3"
               } font-semibold bg-indigo-700 text-white rounded-full hover:bg-indigo-700 transition-all 
               duration-300 shadow-lg hover:shadow-indigo-500/50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
-              aria-label={`Shop ${content.productName}`}
+              aria-label={`Shop ${productName}`}
             >
-              {content.buttonText || "Shop Now"}
+              {buttonText}
               <ArrowRight
                 size={isPreview ? 16 : 20}
                 className="ml-2 group-hover:translate-x-1 transition-transform"
@@ -202,7 +228,7 @@ const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
               isPreview ? "h-56" : "h-72 lg:h-96"
             }`}
           >
-            {content.sliderImages.map((image, index) => (
+            {sliderImages.map((image, index) => (
               <motion.div
                 key={index}
                 custom={index < currentImageIndex ? -1 : 1}
@@ -233,7 +259,7 @@ const HeroSection = ({ data, isPreview = false }: HeroSectionProps) => {
             {!isPreview && (
               <>
                 <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-30">
-                  {content.sliderImages.map((_, index) => (
+                  {sliderImages.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}

@@ -18,6 +18,7 @@ const Cart = () => {
   const { data, isLoading } = useGetCartQuery({});
   const [removeFromCart] = useRemoveFromCartMutation();
   const cartItems = data?.cart?.cartItems || [];
+  console.log("items => ", cartItems);
 
   const subtotal = useMemo(() => {
     if (!cartItems.length) return 0;

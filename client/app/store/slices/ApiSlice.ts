@@ -4,6 +4,7 @@ import type {
   FetchArgs,
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
+import { clearUser } from "./AuthSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5000/api/v1",
@@ -15,15 +16,22 @@ const baseQueryWithReauth: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-  const result = await baseQuery(args, api, extraOptions);
+  let result = await baseQuery(args, api, extraOptions);
 
   if (result.error?.status === 401) {
     console.log("Received 401, attempting token refresh...");
-    await baseQuery(
+    const refreshResult = await baseQuery(
       { url: "/auth/refresh-token", method: "GET" },
       api,
       extraOptions
     );
+
+    if (refreshResult.data) {
+      result = await baseQuery(args, api, extraOptions);
+    } else {
+      api.dispatch(clearUser());
+      window.location.href = "/sign-in";
+    }
   }
   return result;
 };
@@ -31,6 +39,14 @@ const baseQueryWithReauth: BaseQueryFn<
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithReauth,
-  tagTypes: ["User", "Product", "Category", "Cart", "Order", "Review"],
+  tagTypes: [
+    "User",
+    "Product",
+    "Category",
+    "Cart",
+    "Order",
+    "Review",
+    "Section",
+  ],
   endpoints: () => ({}),
 });

@@ -1,7 +1,7 @@
 import session from "express-session";
 
 const sessionConfig = session({
-  secret: process.env.SESSION_SECRET || "your-secret-key",
+  secret: process.env.SESSION_SECRET!,
   resave: false,
   saveUninitialized: false,
   cookie: {

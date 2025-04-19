@@ -31,8 +31,8 @@ export class AuthController {
           role,
         });
 
-      res.cookie("refreshToken", refreshToken, clearCookieOptions);
-      res.cookie("accessToken", accessToken, clearCookieOptions);
+      res.cookie("refreshToken", refreshToken, cookieOptions);
+      res.cookie("accessToken", accessToken, cookieOptions);
 
       const userId = user.id;
       const sessionId = req.session.id;
@@ -104,8 +104,8 @@ export class AuthController {
       password,
     });
 
-    res.cookie("refreshToken", refreshToken, clearCookieOptions);
-    res.cookie("accessToken", accessToken, clearCookieOptions);
+    res.cookie("refreshToken", refreshToken, cookieOptions);
+    res.cookie("accessToken", accessToken, cookieOptions);
 
     const userId = user.id;
     const sessionId = req.session.id;
@@ -220,8 +220,8 @@ export class AuthController {
       const { newAccessToken, newRefreshToken } =
         await this.authService.refreshToken(oldRefreshToken);
 
-      res.cookie("refreshToken", newRefreshToken, clearCookieOptions);
-      res.cookie("accessToken", newAccessToken, clearCookieOptions);
+      res.cookie("refreshToken", newRefreshToken, cookieOptions);
+      res.cookie("accessToken", newAccessToken, cookieOptions);
 
       sendResponse(res, 200, { message: "Token refreshed successfully" });
       const start = Date.now();

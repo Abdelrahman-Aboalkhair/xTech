@@ -1,27 +1,47 @@
-import { UploadCloud, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import { Controller } from "react-hook-form";
+import { useState } from "react";
 
-const ImageUploader = ({ control, errors, watch, setValue, label }) => {
+interface ImageUploaderProps {
+  control: any;
+  errors: any;
+  watch: any;
+  setValue: any;
+  label: string;
+  existingImages?: string[];
+}
+
+const ImageUploader = ({
+  control,
+  errors,
+  watch,
+  setValue,
+  label,
+  existingImages,
+}: ImageUploaderProps) => {
   const images = watch("images") || [];
+  const [previews, setPreviews] = useState(existingImages || []);
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    console.log("file =>  ", file);
-    if (!file) return;
+  const handleFileUpload = (e) => {
+    const files = Array.from(e.target.files);
+    if (!files.length) return;
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      console.log("reader.result =>  ", reader.result);
-      setValue("images", [...images, reader.result]);
-    };
-    reader.readAsDataURL(file);
+    // Generate previews for display
+    const newPreviews = files.map((file: any) => URL.createObjectURL(file));
+    setPreviews((prev) => [...prev, ...newPreviews]);
+
+    // Update form images (store File objects)
+    setValue("images", [...images, ...files]);
   };
 
-  const removeImage = (index: number) => {
+  const removeImage = (index) => {
     const newImages = [...images];
+    const newPreviews = [...previews];
     newImages.splice(index, 1);
+    newPreviews.splice(index, 1);
     setValue("images", newImages);
+    setPreviews(newPreviews);
   };
 
   return (
@@ -30,22 +50,20 @@ const ImageUploader = ({ control, errors, watch, setValue, label }) => {
         {label}
       </label>
 
-      {images.length > 0 && (
+      {previews.length > 0 && (
         <div className="flex gap-3 flex-wrap mb-3">
-          {images.map((img, index) => (
+          {previews.map((img, index) => (
             <div
               key={index}
               className="relative group w-24 h-24 rounded-lg border border-gray-200 overflow-hidden"
             >
-              {img !== "" && (
-                <Image
-                  src={img}
-                  alt={`Uploaded ${index}`}
-                  width={200}
-                  height={200}
-                  className="object-cover"
-                />
-              )}
+              <Image
+                src={img}
+                alt={`Uploaded ${index}`}
+                width={200}
+                height={200}
+                className="object-cover"
+              />
               <button
                 type="button"
                 onClick={() => removeImage(index)}
@@ -64,37 +82,19 @@ const ImageUploader = ({ control, errors, watch, setValue, label }) => {
         render={() => (
           <div className="relative mb-3">
             <input
-              type="text"
-              placeholder="Paste image URL"
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && e.currentTarget.value.trim()) {
-                  e.preventDefault();
-                  setValue("images", [...images, e.currentTarget.value.trim()]);
-                  e.currentTarget.value = "";
-                }
-              }}
-              className="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
-            />
-            <UploadCloud
-              className="absolute left-3 top-3.5 text-gray-400"
-              size={18}
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleFileUpload}
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
+                file:rounded-lg file:border-0
+                file:text-sm file:font-semibold
+                file:bg-blue-50 file:text-blue-700
+                hover:file:bg-blue-100"
             />
           </div>
         )}
       />
-
-      <div className="mb-2">
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileUpload}
-          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
-            file:rounded-lg file:border-0
-            file:text-sm file:font-semibold
-            file:bg-blue-50 file:text-blue-700
-            hover:file:bg-blue-100"
-        />
-      </div>
 
       {errors.images && (
         <p className="text-red-500 text-xs mt-1">{errors.images.message}</p>

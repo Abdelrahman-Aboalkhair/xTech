@@ -6,13 +6,15 @@ const router = Router();
 const sectionController = makeSectionController();
 
 router.get("/", sectionController.getAllSections);
+router.get("/hero", sectionController.findHero);
+router.get("/promo", sectionController.findPromo);
+router.get("/benefits", sectionController.findBenefits);
+router.get("/arrivals", sectionController.findArrivals);
 
-router.post("/", upload.single("file"), sectionController.createSection);
+router.post("/", upload.array("images", 5), sectionController.createSection);
 
-router.get("/:id", sectionController.getSectionById);
+router.put("/:type", sectionController.updateSection);
 
-router.put("/:id", sectionController.updateSection);
-
-router.delete("/:id", sectionController.deleteSection);
+router.delete("/:type", sectionController.deleteSection);
 
 export default router;

@@ -4,55 +4,64 @@ import React, { useEffect, useState } from "react";
 import SpeakerImg from "@/app/assets/images/speaker.png";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useGetPromoQuery } from "@/app/store/apis/SectionApi";
 
-interface Promo {
-  headline: string;
-  subheadline?: string;
-  buttonText: string;
-  buttonColor: string;
-  backgroundColor: string;
-  textColor?: string;
-  image: string;
-  imageAlt: string;
-  accent?: string;
+interface PromoSection {
+  id: number;
+  type: string;
+  title?: string;
+  description?: string;
+  images?: string[];
+  link?: string;
+  ctaText?: string;
+  isVisible?: boolean;
+  primaryColor?: string;
+  secondaryColor?: string;
 }
 
 interface PromotionalSectionProps {
-  data?: {
-    content: Promo;
-  };
   isPreview?: boolean;
 }
 
-const defaultPromo: Promo = {
-  headline: "Enhance Your Music Experience",
-  subheadline: "Premium audio that transforms your listening journey",
-  buttonText: "Shop Now",
+// Default fallback content if API data is missing
+const defaultPromo = {
+  title: "Enhance Your Music Experience",
+  description: "Premium audio that transforms your listening journey",
+  ctaText: "Shop Now",
   buttonColor: "#22c55e",
   backgroundColor: "#000000",
   textColor: "#ffffff",
-  image: SpeakerImg,
+  images: [SpeakerImg],
   imageAlt: "Placeholder Product",
   accent: "#22c55e",
 };
 
-const PromotionalSection = ({
-  data,
-  isPreview = false,
-}: PromotionalSectionProps) => {
-  const promo =
-    data?.content && typeof data.content === "object"
-      ? { ...defaultPromo, ...data.content }
-      : defaultPromo;
-
+const PromotionalSection = ({ isPreview = false }: PromotionalSectionProps) => {
+  const { data, isLoading } = useGetPromoQuery(undefined);
+  console.log("data promo => ", data);
   const [isVisible, setIsVisible] = useState(false);
+
+  // Extract promo section from API data
+  const promoSection = data?.promo || null;
+
+  // Determine what content to display based on API data availability
+  const headline = promoSection?.title || defaultPromo.title;
+  const subheadline = promoSection?.description || defaultPromo.description;
+  const buttonText = promoSection?.ctaText || defaultPromo.ctaText;
+  const backgroundColor =
+    promoSection?.primaryColor || defaultPromo.backgroundColor;
+  const buttonColor = promoSection?.secondaryColor || defaultPromo.buttonColor;
+  const textColor = defaultPromo.textColor; // Use default as this might not come from API
+  const image = promoSection?.images?.[0] || defaultPromo.images[0];
+  const imageAlt = promoSection?.title || defaultPromo.imageAlt;
+  const accent = buttonColor; // Use buttonColor as accent if not specified
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   // Split headline for animation
-  const headlineWords = promo.headline.split(" ");
+  const headlineWords = headline.split(" ");
 
   // Animation variants
   const containerVariants = {
@@ -84,6 +93,15 @@ const PromotionalSection = ({
     },
   };
 
+  // Show loading state when data is being fetched
+  if (isLoading && !isPreview) {
+    return (
+      <div className="w-full mx-auto my-16 h-64 bg-gray-100 rounded-xl flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
     <section
       className={`relative w-full ${
@@ -92,20 +110,21 @@ const PromotionalSection = ({
         isPreview ? "my-2" : "my-16"
       } shadow-2xl`}
       style={{
-        background: `linear-gradient(135deg, ${
-          promo.backgroundColor
-        }, ${adjustColorBrightness(promo.backgroundColor, -15)})`,
+        background: `linear-gradient(135deg, ${backgroundColor}, ${adjustColorBrightness(
+          backgroundColor,
+          -15
+        )})`,
       }}
     >
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div
           className="absolute -right-24 -top-24 w-64 h-64 rounded-full opacity-20"
-          style={{ background: promo.accent || promo.buttonColor }}
+          style={{ background: accent }}
         ></div>
         <div
           className="absolute -left-16 -bottom-16 w-48 h-48 rounded-full opacity-10"
-          style={{ background: promo.accent || promo.buttonColor }}
+          style={{ background: accent }}
         ></div>
       </div>
 
@@ -128,10 +147,10 @@ const PromotionalSection = ({
                 className={`font-bold leading-tight ${
                   isPreview ? "text-lg" : "text-5xl md:text-6xl"
                 }`}
-                style={{ color: promo.textColor }}
+                style={{ color: textColor }}
               >
                 {isPreview ? (
-                  promo.headline
+                  headline
                 ) : (
                   <>
                     {headlineWords.map((word, index) => (
@@ -147,30 +166,28 @@ const PromotionalSection = ({
                 )}
               </motion.h1>
 
-              {!isPreview && promo.subheadline && (
+              {!isPreview && subheadline && (
                 <motion.p
                   className="text-lg opacity-80 mt-3 max-w-lg"
-                  style={{ color: promo.textColor }}
+                  style={{ color: textColor }}
                   variants={itemVariants}
                 >
-                  {promo.subheadline}
+                  {subheadline}
                 </motion.p>
               )}
             </div>
 
             <motion.div variants={itemVariants}>
               <button
-                className={`group flex items-center border-2 border-indigo-500 text-white font-semibold tracking-wider rounded-full transition-all duration-300 ${
+                className={`group flex items-center border-2 text-white font-semibold tracking-wider rounded-full transition-all duration-300 ${
                   isPreview ? "py-1 px-4 text-xs" : "py-4 px-8 text-base"
                 } hover:shadow-lg`}
                 style={{
-                  boxShadow: `0 10px 25px -5px ${hexToRgba(
-                    promo.buttonColor,
-                    0.4
-                  )}`,
+                  borderColor: buttonColor,
+                  boxShadow: `0 10px 25px -5px ${hexToRgba(buttonColor, 0.4)}`,
                 }}
               >
-                {promo.buttonText}
+                {buttonText}
                 {!isPreview && (
                   <ArrowRight
                     size={18}
@@ -182,18 +199,16 @@ const PromotionalSection = ({
           </motion.div>
 
           <motion.div
-            className={`absolute right-0 top-1/2 transform -translate-y-1/2 ${
-              isPreview ? "w-[40%]" : "w-1/2"
-            }`}
+            className={`absolute right-0 top-1/2 transform -translate-y-1/2 w-1/3`}
             initial="hidden"
             animate={isVisible ? "visible" : "hidden"}
             variants={imageVariants}
           >
             <Image
-              src={promo.image}
-              alt={promo.imageAlt}
-              width={isPreview ? 150 : 650}
-              height={isPreview ? 120 : 500}
+              src={image}
+              alt={imageAlt}
+              width={230}
+              height={230}
               className="object-contain drop-shadow-2xl"
               priority
             />

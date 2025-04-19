@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import "./infra/cloudinary/config";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -48,33 +49,7 @@ export const createApp = async () => {
   app.use(passport.session());
   configurePassport();
 
-  // Security Headers
   app.use(helmet());
-  // app.use(
-  //   helmet.contentSecurityPolicy({
-  //     directives: {
-  //       defaultSrc: ["'self'"],
-  //       scriptSrc: [
-  //         "'self'",
-  //         "https://trusted.cdn.com",
-  //         "https://embeddable-sandbox.cdn.apollographql.com",
-  //       ],
-  //       styleSrc: [
-  //         "'self'",
-  //         "https://embeddable-sandbox.cdn.apollographql.com",
-  //         "'unsafe-inline'",
-  //       ],
-  //       connectSrc: [
-  //         "'self'",
-  //         "http://localhost:5000",
-  //         "https://embeddable-sandbox.cdn.apollographql.com",
-  //         "https://*.apollographql.com",
-  //       ],
-  //       objectSrc: ["'none'"],
-  //       upgradeInsecureRequests: [],
-  //     },
-  //   })
-  // );
   app.use(helmet.frameguard({ action: "deny" }));
 
   // CORS - already handled again in `configureGraphQL` for /api/v1/graphql

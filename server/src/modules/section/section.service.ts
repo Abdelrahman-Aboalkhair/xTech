@@ -1,6 +1,6 @@
 import AppError from "@/shared/errors/AppError";
 import { SectionRepository } from "./section.repository";
-import { Section } from "@prisma/client";
+import { SECTION_TYPE } from "@prisma/client";
 
 export class SectionService {
   constructor(private sectionRepository: SectionRepository) {}
@@ -9,7 +9,23 @@ export class SectionService {
     return this.sectionRepository.findAll();
   }
 
-  async createSection(data: Section) {
+  async findHero() {
+    return this.sectionRepository.findHero();
+  }
+
+  async findPromo() {
+    return this.sectionRepository.findPromo();
+  }
+
+  async findBenefits() {
+    return this.sectionRepository.findBenefits();
+  }
+
+  async findArrivals() {
+    return this.sectionRepository.findArrivals();
+  }
+
+  async createSection(data: any) {
     return this.sectionRepository.create(data);
   }
 
@@ -19,11 +35,11 @@ export class SectionService {
     return section;
   }
 
-  async updateSection(id: number, data: any) {
-    return this.sectionRepository.update(id, data);
+  async updateSection(type: SECTION_TYPE, data: any) {
+    return this.sectionRepository.update(type, data);
   }
 
-  async deleteSection(id: number) {
-    return this.sectionRepository.delete(id);
+  async deleteSection(type: SECTION_TYPE) {
+    return this.sectionRepository.deleteByType(type);
   }
 }

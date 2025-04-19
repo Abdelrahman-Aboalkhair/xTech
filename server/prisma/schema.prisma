@@ -279,18 +279,16 @@ enum SECTION_TYPE {
   NEW_ARRIVALS
 }
 
-
 model Section {
-  id Int @id @unique @default(autoincrement())
-  type SECTION_TYPE @default(HERO)
-  title String?
-  description String? 
-  images String?
-  icons String?
-  link String?
-  ctaText String?
-  isVisible Boolean? @default(false)
-  primaryColor String?
+  id            Int          @id @unique @default(autoincrement())
+  type          SECTION_TYPE @default(HERO)
+  title         String?
+  description   String?
+  images        String[]     @default([]) 
+  icons         String?
+  link          String?
+  ctaText       String?
+  isVisible     Boolean?     @default(false)
+  primaryColor  String?
   secondaryColor String?
 }
-

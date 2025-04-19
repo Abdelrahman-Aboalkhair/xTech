@@ -137,7 +137,7 @@ const Navbar = () => {
             </Link>
 
             {/* User Menu */}
-            {user ? (
+            {isLoggedIn ? (
               <div className="relative" ref={menuRef}>
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
