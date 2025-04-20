@@ -38,11 +38,12 @@ const SessionWrapper = ({ children }: SessionWrapperProps) => {
 
   const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
   const isExcludedRoute = EXCLUDED_ROUTES.includes(pathname);
-  const shouldSkip = isExcludedRoute || isPublicRoute || !!user;
+  const shouldSkip = isExcludedRoute || !!user;
 
   const { data, isFetching, error } = useGetMeQuery(undefined, {
     skip: shouldSkip,
   });
+  console.log("data: ", data);
 
   useEffect(() => {
     if (data && !user) {

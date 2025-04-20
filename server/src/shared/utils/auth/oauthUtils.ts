@@ -51,8 +51,8 @@ async function findOrCreateUser(
 
 export const oauthCallback = async (
   providerIdField: OAuthProvider,
-  accessTokenFromProvider: string,
-  refreshTokenFromProvider: string,
+  accessToken: string,
+  refreshToken: string,
   profile: any,
   done: (error: any, user?: any) => void
 ) => {
@@ -88,11 +88,13 @@ export const oauthCallback = async (
         profile.photos?.[0]?.value || ""
       );
     }
-    if (!user?.id) {
-      throw new Error("User ID is required");
+
+    if (!user) {
+      return done(null);
     }
 
     const id = user.id;
+
     const accessToken = generateAccessToken(id);
     const refreshToken = generateRefreshToken(id);
 
@@ -107,9 +109,16 @@ export const oauthCallback = async (
 };
 
 export const handleSocialLogin = (provider: string) => {
+  const scopes =
+    provider === "google"
+      ? ["email", "profile"]
+      : provider === "facebook"
+      ? ["email", "public_profile"]
+      : [];
+
   return passport.authenticate(provider, {
     session: false,
-    scope: ["email", "profile"],
+    scope: scopes,
   });
 };
 
@@ -121,7 +130,6 @@ export const handleSocialLoginCallback = (provider: string) => {
     }),
     async (req: any, res: any) => {
       const user = req.user as any;
-      console.log("req.user => ", req.user);
 
       const { accessToken, refreshToken } = user;
 
