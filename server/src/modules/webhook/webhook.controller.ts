@@ -5,8 +5,6 @@ import sendResponse from "@/shared/utils/sendResponse";
 import { Request, Response } from "express";
 import { WebhookService } from "./webhook.service";
 import { makeLogsService } from "../logs/logs.factory";
-import prisma from "@/infra/database/database.config";
-import { PAYMENT_STATUS, TRANSACTION_STATUS } from "@prisma/client";
 
 export class WebhookController {
   private logsService = makeLogsService();
@@ -36,32 +34,16 @@ export class WebhookController {
       console.log("shipment =>", shipment);
       console.log("address =>", address);
     }
-    // } else if (
-    //   (event.type as "payment_intent.refunded" | string) ===
-    //   "payment_intent.refunded"
-    // ) {
-    //   const session = event.data.object;
-    //   await prisma.$transaction(async (tx) => {
-    //     await tx.payment.update({
-    //       where: { orderId: session.orderId },
-    //       data: { status: PAYMENT_STATUS.REFUNDED },
-    //     });
-    //     await tx.transaction.update({
-    //       where: { orderId: session.orderId },
-    //       data: { status: TRANSACTION_STATUS.REFUNDED },
-    //     });
-    //   });
-    // }
 
     sendResponse(res, 200, { message: "Webhook received successfully" });
 
-    const start = Date.now();
-    const end = Date.now();
+    // const start = Date.now();
+    // const end = Date.now();
 
-    this.logsService.info("Webhook received", {
-      userId: req.user?.id,
-      sessionId: req.session.id,
-      timePeriod: end - start,
-    });
+    // this.logsService.info("Webhook received", {
+    //   userId: req.user?.id,
+    //   sessionId: req.session.id,
+    //   timePeriod: end - start,
+    // });
   });
 }

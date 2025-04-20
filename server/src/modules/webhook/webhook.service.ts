@@ -34,6 +34,8 @@ export class WebhookService {
       where: { id: fullSession.id },
     });
 
+    console.log("EXISTING ORDER => ", existingOrder);
+
     if (existingOrder) {
       this.logsService.info("Webhook - Duplicate event ignored", {
         sessionId: session.id,
@@ -55,11 +57,14 @@ export class WebhookService {
       where: { userId },
       include: { cartItems: { include: { product: true } } },
     });
+    console.log("CART FOUND => ", cart);
     if (!cart || cart.cartItems.length === 0) {
       throw new AppError(400, "Cart is empty or not found");
     }
 
     const amount = await this.calculateOrderAmount(cart);
+
+    console.log("ORDER AMOUNT => ", amount);
     if (Math.abs(amount - (fullSession.amount_total ?? 0) / 100) > 0.01) {
       throw new AppError(400, "Amount mismatch between cart and session");
     }
@@ -81,6 +86,8 @@ export class WebhookService {
         },
       });
 
+      console.log("ORDER CREATED => ", order);
+
       // 2. Create Address (if provided)
       let address;
       const customerAddress = fullSession.customer_details?.address;
@@ -98,6 +105,8 @@ export class WebhookService {
         });
       }
 
+      console.log("ADDRESS CREATED => ", address);
+
       // 3. Create Payment
       const payment = await tx.payment.create({
         data: {
@@ -109,6 +118,8 @@ export class WebhookService {
         },
       });
 
+      console.log("PAYMENT CREATED => ", payment);
+
       // 4. Create Transaction
       const transaction = await tx.transaction.create({
         data: {
@@ -117,6 +128,8 @@ export class WebhookService {
           transactionDate: new Date(),
         },
       });
+
+      console.log("TRANSACTION CREATED => ", transaction);
 
       // 5. Create Shipment
       const shipment = await tx.shipment.create({
@@ -129,8 +142,9 @@ export class WebhookService {
         },
       });
 
-      // 6. Update Product Stock
+      console.log("SHIPMENT CREATED => ", shipment);
 
+      // 6. Update Product Stock
       for (const item of cart.cartItems) {
         const product = await tx.product.findUnique({
           where: { id: item.productId },
@@ -162,6 +176,8 @@ export class WebhookService {
 
       return { order, payment, transaction, shipment, address };
     });
+
+    console.log("TRANSACTION RESULT => ", result);
 
     // Post-transaction actions (non-atomic)
     await redisClient.del("dashboard:year-range");

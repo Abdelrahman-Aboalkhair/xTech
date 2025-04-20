@@ -6,7 +6,6 @@ import reviewRoutes from "@/modules/review/review.routes";
 import categoryRoutes from "@/modules/category/category.routes";
 import orderRoutes from "@/modules/order/order.routes";
 import checkoutRoutes from "@/modules/checkout/checkout.routes";
-import webhookRoutes from "@/modules/webhook/webhook.routes";
 import cartRoutes from "@/modules/cart/cart.routes";
 import reportRoutes from "@/modules/reports/reports.routes";
 import analyticsRoutes from "@/modules/analytics/analytics.routes";
@@ -16,7 +15,6 @@ import shipmentRoutes from "@/modules/shipment/shipment.routes";
 import transactionRoutes from "@/modules/transaction/transaction.routes";
 import logRoutes from "@/modules/logs/logs.routes";
 import sectionRoutes from "@/modules/section/section.routes";
-import bodyParser from "body-parser";
 
 const router = Router();
 
@@ -35,11 +33,6 @@ router.use("/orders", orderRoutes);
 router.use("/shipment", shipmentRoutes);
 router.use("/payments", paymentRoutes);
 router.use("/addresses", addressRoutes);
-router.use(
-  "/webhook",
-  bodyParser.raw({ type: "application/json" }),
-  webhookRoutes
-);
 router.use("/sections", sectionRoutes);
 
 export default router;

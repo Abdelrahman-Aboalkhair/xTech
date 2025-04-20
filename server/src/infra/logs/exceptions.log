@@ -286,3 +286,12 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-20T17:13:16.062Z] [31MERROR[39M: uncaughtException: Cannot set headers after they are sent to the client
+Error: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:699:11)
+    at ServerResponse.header (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/response.js:278:15)
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/errors/globalError.ts:119:39
+    at Generator.next (<anonymous>)
+    at fulfilled (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/errors/globalError.ts:5:58)

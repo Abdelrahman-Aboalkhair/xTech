@@ -21,13 +21,19 @@ import globalError from "./shared/errors/globalError";
 import { logRequest } from "./shared/middlewares/logRequest";
 import mainRouter from "./routes";
 import { configureGraphQL, allowedOrigins } from "./graphql";
+import webhookRoutes from "./modules/webhook/webhook.routes";
 
 dotenv.config();
 
 export const createApp = async () => {
   const app = express();
 
-  // Basic Middleware
+  // Basic
+  app.use(
+    "/api/v1/webhook",
+    bodyParser.raw({ type: "application/json" }),
+    webhookRoutes
+  );
   app.use(express.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser(process.env.COOKIE_SECRET, cookieParserOptions));

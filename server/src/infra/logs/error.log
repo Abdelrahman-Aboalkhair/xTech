@@ -610,3 +610,64 @@ Foreign key constraint violated: `Product_categoryId_fkey (index)`
 [2025-04-20T16:49:52.664Z] [31MERROR[39M: Item already exists in cart
 [2025-04-20T16:50:14.464Z] [31MERROR[39M: Unauthorized, please log in
 [2025-04-20T16:50:14.511Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:51:29.613Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:51:40.059Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:51:57.334Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:52:22.590Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:59:23.621Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T16:59:23.632Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T16:59:23.667Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T16:59:23.825Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T16:59:25.825Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T16:59:27.062Z] [31MERROR[39M: No orders found for this user
+[2025-04-20T17:09:33.257Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-20T17:09:41.255Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T17:09:41.315Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T17:09:41.453Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T17:09:41.489Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T17:09:43.535Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T17:10:03.974Z] [31MERROR[39M: No orders found for this user
+[2025-04-20T17:11:12.945Z] [31MERROR[39M: No orders found for this user
+[2025-04-20T17:13:15.983Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
+[2025-04-20T17:13:16.021Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
+[2025-04-20T17:13:16.058Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')

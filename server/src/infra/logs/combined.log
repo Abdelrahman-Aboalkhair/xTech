@@ -3323,3 +3323,150 @@ Foreign key constraint violated: `Product_categoryId_fkey (index)`
 [2025-04-20T16:50:14.672Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:50:14 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-04-20T16:50:14.672Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:50:14 +0000] "GET /api/v1/sections/hero HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-04-20T16:50:14.672Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:50:14 +0000] "GET /api/v1/sections/promo HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:51:29.613Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:51:29.618Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:51:29 +0000] "POST /api/v1/cart HTTP/1.1" 500 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:51:29.629Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:51:29 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:51:40.059Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:51:40.065Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:51:40 +0000] "POST /api/v1/cart HTTP/1.1" 500 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:51:40.075Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:51:40 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:51:47.907Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:51:47 +0000] "DELETE /api/v1/cart/item/5c1c97ad-a694-490e-8dc1-da6a3cc0ff90 HTTP/1.1" 200 64 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:51:47.917Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:51:47 +0000] "GET /api/v1/cart HTTP/1.1" 200 282 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:51:52.464Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:51:52 +0000] "POST /api/v1/cart HTTP/1.1" 200 303 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:51:52.474Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:51:52 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:51:57.334Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:51:57.343Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:51:57 +0000] "POST /api/v1/cart HTTP/1.1" 500 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:51:57.351Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:51:57 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:52:07.404Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:52:07 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 199 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:52:22.590Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:52:22.599Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:52:22 +0000] "POST /api/v1/cart HTTP/1.1" 500 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:52:22.612Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:52:22 +0000] "GET /api/v1/cart HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:53:33.460Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:53:33 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:53:33.658Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:53:33 +0000] "POST /api/v1/graphql HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:53:33.677Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:53:33 +0000] "GET /api/v1/sections/promo HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:53:33.677Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:53:33 +0000] "GET /api/v1/sections/hero HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:53:33.683Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:53:33 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:59:11.354Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:59:11 +0000] "POST /api/v1/checkout HTTP/1.1" 200 141 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:59:23.621Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T16:59:23.632Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T16:59:23.667Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T16:59:23.714Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:16:59:23 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T16:59:23.720Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:16:59:23 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T16:59:23.721Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:16:59:23 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T16:59:23.825Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T16:59:23.830Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:16:59:23 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T16:59:25.231Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:59:25 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:59:25.825Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T16:59:25.836Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:16:59:25 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T16:59:27.049Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:59:27 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T16:59:27.062Z] [31MERROR[39M: No orders found for this user
+[2025-04-20T16:59:27.071Z] [32MINFO[39M: ::1 - - [20/Apr/2025:16:59:27 +0000] "GET /api/v1/orders/user HTTP/1.1" 404 493 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:09:33.257Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-20T17:09:33.379Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:09:33 +0000] "POST /api/v1/checkout HTTP/1.1" 401 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:09:33.476Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:09:33 +0000] "GET /api/v1/auth/refresh-token HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:09:34.308Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:09:34 +0000] "POST /api/v1/checkout HTTP/1.1" 200 141 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:09:41.255Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T17:09:41.258Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:09:41 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:09:41.315Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T17:09:41.319Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:09:41 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:09:41.453Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T17:09:41.463Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:09:41 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:09:41.489Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T17:09:41.493Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:09:41 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:09:43.535Z] [31MERROR[39M: Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. 
+Signature verification is impossible without access to the original signed material. 
+
+Learn more about webhook signing and explore webhook integration examples for various frameworks at https://docs.stripe.com/webhooks/signature
+
+[2025-04-20T17:09:43.546Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:09:43 +0000] "POST /api/v1/webhook HTTP/1.1" 500 - "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:09:43.715Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:09:43 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:10:03.961Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:10:03 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:10:03.974Z] [31MERROR[39M: No orders found for this user
+[2025-04-20T17:10:03.986Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:10:03 +0000] "GET /api/v1/orders/user HTTP/1.1" 404 493 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:10:05.495Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:10:05 +0000] "GET /api/v1/sections/hero HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:10:05.495Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:10:05 +0000] "GET /api/v1/sections/promo HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:10:05.589Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:10:05 +0000] "POST /api/v1/graphql HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:10:52.266Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:10:52 +0000] "POST /api/v1/checkout HTTP/1.1" 200 141 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:10:58.396Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:10:58 +0000] "POST /api/v1/webhook HTTP/1.1" 404 154 "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:10:58.429Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:10:58 +0000] "POST /api/v1/webhook HTTP/1.1" 404 154 "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:10:58.475Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:10:58 +0000] "POST /api/v1/webhook HTTP/1.1" 404 154 "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:10:58.526Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:10:58 +0000] "POST /api/v1/webhook HTTP/1.1" 404 154 "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:11:00.637Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:11:00 +0000] "POST /api/v1/webhook HTTP/1.1" 404 154 "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:11:00.690Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:00 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:12.925Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:12 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:12.945Z] [31MERROR[39M: No orders found for this user
+[2025-04-20T17:11:13.071Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:13 +0000] "GET /api/v1/orders/user HTTP/1.1" 404 493 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:14.798Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:14 +0000] "GET /api/v1/sections/hero HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:14.801Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:14 +0000] "GET /api/v1/sections/promo HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:14.899Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:14 +0000] "POST /api/v1/graphql HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:15.840Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:15 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:16.059Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:16 +0000] "POST /api/v1/graphql HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:16.089Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:16 +0000] "GET /api/v1/sections/hero HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:16.089Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:16 +0000] "GET /api/v1/sections/promo HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:16.113Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:16 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:17.736Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:17 +0000] "GET /api/v1/auth/sign-out HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:20.098Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:20 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 199 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:22.960Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:22 +0000] "POST /api/v1/checkout HTTP/1.1" 200 141 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:11:28.064Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:11:28 +0000] "POST /api/v1/webhook HTTP/1.1" 404 154 "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:11:28.132Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:11:28 +0000] "POST /api/v1/webhook HTTP/1.1" 404 154 "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:11:28.141Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:11:28 +0000] "POST /api/v1/webhook HTTP/1.1" 404 154 "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:11:28.178Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:11:28 +0000] "POST /api/v1/webhook HTTP/1.1" 404 154 "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:11:30.332Z] [32MINFO[39M: ::ffff:127.0.0.1 - - [20/Apr/2025:17:11:30 +0000] "POST /api/v1/webhook HTTP/1.1" 404 154 "-" "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+[2025-04-20T17:11:30.457Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:11:30 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:13:08.314Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:13:08 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:13:10.871Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:13:10 +0000] "POST /api/v1/checkout HTTP/1.1" 200 141 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:13:15.983Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
+[2025-04-20T17:13:16.021Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
+[2025-04-20T17:13:16.058Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
+[2025-04-20T17:15:12.723Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:15:12 +0000] "POST /api/v1/auth/sign-in HTTP/1.1" 200 199 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:15:13.018Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:15:13 +0000] "GET /api/v1/sections/hero HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:15:13.024Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:15:13 +0000] "GET /api/v1/cart HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:15:13.032Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:15:13 +0000] "GET /api/v1/sections/promo HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:15:13.116Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:15:13 +0000] "POST /api/v1/graphql HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:15:16.199Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:15:16 +0000] "POST /api/v1/checkout HTTP/1.1" 200 141 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:15:26.369Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:15:26 +0000] "GET /api/v1/users/me HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:17:04.368Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:17:04 +0000] "GET /api/v1/cart HTTP/1.1" 200 251 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:17:04.369Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:17:04 +0000] "GET /api/v1/orders/user HTTP/1.1" 200 253 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:17:06.913Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:17:06 +0000] "POST /api/v1/graphql HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:17:06.927Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:17:06 +0000] "GET /api/v1/sections/hero HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:17:06.929Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:17:06 +0000] "GET /api/v1/sections/promo HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:17:10.342Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:17:10 +0000] "POST /api/v1/graphql HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:17:13.437Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:17:13 +0000] "GET /api/v1/transactions HTTP/1.1" 200 316 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:17:40.218Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:17:40 +0000] "POST /api/v1/graphql HTTP/1.1" 200 227 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:17:42.383Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:17:42 +0000] "GET /api/v1/categories HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-04-20T17:17:42.390Z] [32MINFO[39M: ::1 - - [20/Apr/2025:17:17:42 +0000] "GET /api/v1/products? HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
