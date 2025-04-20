@@ -7,9 +7,7 @@ import { clearUser, setUser } from "./store/slices/AuthSlice";
 import CustomLoader from "./components/feedback/CustomLoader";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 
-interface SessionWrapperProps {
-  children: React.ReactNode;
-}
+const PROTECTED_ROUTES = ["/dashboard", "/profile", "/orders", "/checkout"];
 
 const EXCLUDED_ROUTES = [
   "/sign-in",
@@ -19,13 +17,28 @@ const EXCLUDED_ROUTES = [
   "/reset-password",
 ];
 
+const PUBLIC_ROUTES = [
+  "/",
+  "/cart",
+  "/shop",
+  "/product/:slug",
+  "/about",
+  "/contact",
+];
+
+interface SessionWrapperProps {
+  children: React.ReactNode;
+}
+
 const SessionWrapper = ({ children }: SessionWrapperProps) => {
   const dispatch = useAppDispatch();
   const pathname = usePathname();
   const router = useRouter();
-  const user = useAppSelector((state) => state.auth.user); // Check if user exists in Redux
-  const shouldSkip = EXCLUDED_ROUTES.includes(pathname) || !!user; // Skip if on excluded route or user is set
-  console.log("shouldSkip => ", shouldSkip);
+  const user = useAppSelector((state) => state.auth.user);
+
+  const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
+  const isExcludedRoute = EXCLUDED_ROUTES.includes(pathname);
+  const shouldSkip = isExcludedRoute || isPublicRoute || !!user;
 
   const { data, isFetching, error } = useGetMeQuery(undefined, {
     skip: shouldSkip,
@@ -33,16 +46,18 @@ const SessionWrapper = ({ children }: SessionWrapperProps) => {
 
   useEffect(() => {
     if (data && !user) {
-      dispatch(setUser(data)); // Set user only if not already set
+      dispatch(setUser(data));
     } else if (error && !shouldSkip) {
-      dispatch(clearUser()); // Clear user on error (e.g., invalid token)
-      if (!EXCLUDED_ROUTES.includes(pathname)) {
-        router.push("/sign-in");
+      dispatch(clearUser());
+      if (!isExcludedRoute) {
+        if (PROTECTED_ROUTES.includes(pathname)) {
+          router.push("/sign-in");
+        }
       }
     }
-  }, [data, error, shouldSkip, dispatch, user]);
+  }, [data, error, shouldSkip, dispatch, user, isExcludedRoute]);
 
-  if (isFetching && !user) {
+  if (isFetching && !user && !isPublicRoute) {
     return <CustomLoader />;
   }
 
