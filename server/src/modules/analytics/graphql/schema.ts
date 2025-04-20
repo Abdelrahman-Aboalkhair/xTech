@@ -97,6 +97,7 @@ const typeDefs = gql`
     type: String!
     id: String!
     title: String!
+    description: String
   }
 
   input SearchInput {

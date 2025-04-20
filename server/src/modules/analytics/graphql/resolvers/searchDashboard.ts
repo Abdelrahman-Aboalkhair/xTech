@@ -1,23 +1,5 @@
 import { Context } from "@/modules/product/graphql/resolver";
-
-const searchModel = async (
-  model: any,
-  fields: string[],
-  searchQuery: string,
-  prisma: any
-) => {
-  return await prisma[model].findMany({
-    where: {
-      OR: fields.map((field) => ({
-        [field]: { contains: searchQuery, mode: "insensitive" },
-      })),
-    },
-    select: fields.reduce((acc: any, field: string) => {
-      acc[field] = true;
-      return acc;
-    }, {}),
-  });
-};
+import searchModel from "@/shared/utils/searchModel";
 
 export const searchDashboardResolver = {
   Query: {
@@ -28,30 +10,40 @@ export const searchDashboardResolver = {
     ) => {
       const { searchQuery } = params;
 
+      // Define searchable fields for each model
       const transactions = await searchModel(
         "transaction",
-        ["id", "status"],
+        [{ name: "status", isString: false }], // Status is an enum
         searchQuery,
         prisma
       );
 
       const products = await searchModel(
         "product",
-        ["name", "description"],
+        [
+          { name: "name", isString: true },
+          { name: "description", isString: true },
+        ],
         searchQuery,
         prisma
       );
 
       const categories = await searchModel(
         "category",
-        ["name", "description"],
+        [
+          { name: "name", isString: true },
+          { name: "description", isString: true },
+        ],
         searchQuery,
         prisma
       );
 
       const users = await searchModel(
         "user",
-        ["name", "email"],
+        [
+          { name: "name", isString: true },
+          { name: "email", isString: true },
+        ],
         searchQuery,
         prisma
       );
@@ -62,13 +54,13 @@ export const searchDashboardResolver = {
           type: "transaction",
           id: t.id,
           title: `Transaction #${t.id}`,
-          description: `$${t.amount} - ${t.status || "Pending"}`,
+          description: `$${t.amount || 0} - ${t.status || "Pending"}`,
         })),
         ...products.map((p: any) => ({
           type: "product",
           id: p.id,
           title: p.name,
-          description: p.description || `$${p.price}`,
+          description: p.description || `$${p.price || 0}`,
         })),
         ...categories.map((c: any) => ({
           type: "category",
