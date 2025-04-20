@@ -22,7 +22,6 @@ import {
   ClipboardCheck,
   Section,
 } from "lucide-react";
-import DashboardSearchBar from "../molecules/DashboardSearchbar";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useStorage<boolean>("sidebarOpen", true, "local");
@@ -119,15 +118,12 @@ const Sidebar = () => {
       className="bg-white border-r border-gray-200 shadow-lg min-h-fit flex flex-col p-4 justify-between"
     >
       <div>
-        <div className="flex items-center justify-between my-4">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 flex items-center justify-end rounded-lg transition"
-          >
-            <PanelsRightBottom size={24} className="text-gray-700" />
-          </button>
-          <DashboardSearchBar />
-        </div>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 flex items-center justify-end rounded-lg transition"
+        >
+          <PanelsRightBottom size={24} className="text-gray-700" />
+        </button>
 
         {/* Navigation */}
         <nav className="flex flex-col space-y-2">

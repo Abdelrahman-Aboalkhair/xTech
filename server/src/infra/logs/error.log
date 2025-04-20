@@ -511,3 +511,6 @@ Foreign key constraint violated: `Product_categoryId_fkey (index)`
 [2025-04-19T17:19:33.505Z] [31MERROR[39M: Invalid input. Please check your request data.
 [2025-04-19T17:31:03.250Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-19T17:44:24.573Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-20T09:14:53.503Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T09:14:53.662Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T09:32:18.107Z] [31MERROR[39M: Invalid access token, please log in
