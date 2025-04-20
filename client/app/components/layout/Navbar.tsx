@@ -144,13 +144,13 @@ const Navbar = () => {
                   className="flex items-center focus:outline-none"
                   aria-label="User menu"
                 >
-                  <div className="rounded-full overflow-hidden flex items-center justify-center bg-gray-100 border p-2 border-gray-200">
+                  <div className="rounded-full overflow-hidden flex items-center justify-center bg-gray-100">
                     {user?.avatar ? (
                       <Image
                         src={user.avatar}
                         alt="User Profile"
-                        width={45}
-                        height={45}
+                        width={50}
+                        height={50}
                         className="rounded-full object-cover"
                         onError={(e) => {
                           e.currentTarget.style.display = "none";

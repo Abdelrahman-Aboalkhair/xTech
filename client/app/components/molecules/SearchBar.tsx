@@ -1,5 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Search, X, Clock, Sparkles, ArrowRight } from "lucide-react";
+import {
+  Search,
+  X,
+  Clock,
+  Sparkles,
+  ArrowRight,
+  TrendingUp,
+  Tag,
+} from "lucide-react";
 import { useForm } from "react-hook-form";
 import useStorage from "@/app/hooks/state/useStorage";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,7 +24,7 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({
   onSearch,
-  placeholder = "Search for products, brands, and more...",
+  placeholder = "Search products, brands...",
   suggestedCategories = [
     "New Arrivals",
     "Best Sellers",
@@ -42,6 +50,28 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchQuery = watch("searchQuery");
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  // Sample trending products for the dropdown
+  const trendingProducts = [
+    {
+      id: 1,
+      name: "Wireless Headphones",
+      category: "Electronics",
+      image: "/api/placeholder/60/60",
+    },
+    {
+      id: 2,
+      name: "Summer Dress",
+      category: "Women",
+      image: "/api/placeholder/60/60",
+    },
+    {
+      id: 3,
+      name: "Smart Watch",
+      category: "Accessories",
+      image: "/api/placeholder/60/60",
+    },
+  ];
 
   useEffect(() => {
     // Handle clicks outside search component
@@ -104,20 +134,21 @@ const SearchBar: React.FC<SearchBarProps> = ({
       >
         <div className="flex items-center">
           <div className="relative flex items-center w-full">
-            <span className="absolute left-4 text-indigo-600 transition-all duration-300">
+            <span className="absolute left-3 text-indigo-600 transition-all duration-300">
               <Search
                 className={`transition-all duration-300 ${
                   isFocused ? "text-indigo-600" : "text-gray-400"
                 }`}
-                size={20}
+                size={18}
               />
             </span>
 
             <input
               type="text"
               placeholder={placeholder}
-              className="w-full py-3 pl-12 pr-12 bg-white/95 rounded-full text-gray-800 placeholder-gray-400
-               shadow-lg shadow-indigo-100/30 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 text-sm transition-all duration-300 hover:shadow-xl"
+              className="w-full py-2.5 pl-10 pr-12 bg-white rounded-full text-gray-800 placeholder-gray-400
+                border border-gray-200 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 
+                text-sm transition-all duration-200 hover:border-gray-300"
               {...register("searchQuery")}
               onFocus={() => setIsFocused(true)}
               ref={(e) => {
@@ -138,18 +169,18 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   exit={{ opacity: 0, scale: 0.8 }}
                   type="button"
                   onClick={clearSearch}
-                  className="absolute right-14 p-1 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 transition-all duration-200"
+                  className="absolute right-12 p-1 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 transition-all duration-200"
                 >
-                  <X size={16} />
+                  <X size={14} />
                 </motion.button>
               )}
             </AnimatePresence>
 
             <button
               type="submit"
-              className="absolute right-3 p-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 shadow-md hover:shadow-indigo-500/50"
+              className="absolute right-2 p-1.5 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300"
             >
-              <ArrowRight size={18} />
+              <ArrowRight size={16} />
             </button>
           </div>
         </div>
@@ -163,51 +194,96 @@ const SearchBar: React.FC<SearchBarProps> = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="absolute w-full mt-2 bg-white rounded-2xl shadow-xl z-[1000] border border-gray-100 overflow-hidden"
+            className="absolute w-full md:w-96 right-0 mt-2 bg-white rounded-lg shadow-xl z-[1000] border border-gray-100 overflow-hidden"
             onMouseEnter={() => setIsHoveringDropdown(true)}
             onMouseLeave={() => setIsHoveringDropdown(false)}
           >
+            {/* Trending products section */}
+            <div className="p-3 border-b border-gray-100">
+              <div className="flex items-center text-sm text-gray-500 mb-2">
+                <TrendingUp size={14} className="mr-2 text-indigo-500" />
+                <span className="font-medium">Trending Products</span>
+              </div>
+              <ul className="space-y-2">
+                {trendingProducts.map((product) => (
+                  <li
+                    key={product.id}
+                    className="flex items-center p-1.5 cursor-pointer hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => handleSelectRecentQuery(product.name)}
+                  >
+                    <div className="h-10 w-10 bg-gray-100 rounded overflow-hidden mr-3 flex-shrink-0">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm text-gray-800">
+                        {product.name}
+                      </span>
+                      <span className="text-xs text-gray-500 flex items-center">
+                        <Tag size={10} className="mr-1" />
+                        {product.category}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Recent searches section */}
             {recentQueries.length > 0 && (
-              <>
-                <div className="p-3 border-b border-gray-100">
-                  <div className="flex items-center text-sm text-gray-500 mb-2">
+              <div className="p-3 border-b border-gray-100">
+                <div className="flex items-center justify-between text-sm mb-2">
+                  <div className="flex items-center text-gray-500">
                     <Clock size={14} className="mr-2" />
-                    <span>Recent Searches</span>
+                    <span className="font-medium">Recent Searches</span>
                   </div>
-                  <ul>
-                    {recentQueries.map((query, index) => (
-                      <li
-                        key={index}
-                        className="flex justify-between items-center p-2 cursor-pointer hover:bg-gray-50 rounded-lg text-gray-700 group transition-all duration-200"
-                        onClick={() => handleSelectRecentQuery(query)}
-                      >
-                        <div className="flex items-center">
-                          <Search size={14} className="mr-3 text-gray-400" />
-                          <span>{query}</span>
-                        </div>
-                        <button
-                          onClick={(e) => removeRecentQuery(index, e)}
-                          className="opacity-0 group-hover:opacity-100 p-1 hover:bg-gray-200 rounded-full transition-opacity duration-200"
-                        >
-                          <X size={14} className="text-gray-500" />
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
+                  <button
+                    className="text-xs text-indigo-600 hover:text-indigo-800 font-medium"
+                    onClick={() => setRecentQueries([])}
+                  >
+                    Clear all
+                  </button>
                 </div>
-              </>
+                <ul className="grid grid-cols-2 gap-1">
+                  {recentQueries.map((query, index) => (
+                    <li
+                      key={index}
+                      className="flex justify-between items-center py-1 px-2 cursor-pointer hover:bg-gray-50 rounded-md text-gray-700 group transition-all duration-200"
+                      onClick={() => handleSelectRecentQuery(query)}
+                    >
+                      <div className="flex items-center overflow-hidden">
+                        <Search
+                          size={12}
+                          className="mr-2 text-gray-400 flex-shrink-0"
+                        />
+                        <span className="text-sm truncate">{query}</span>
+                      </div>
+                      <button
+                        onClick={(e) => removeRecentQuery(index, e)}
+                        className="opacity-0 group-hover:opacity-100 p-1 hover:bg-gray-200 rounded-full transition-opacity duration-200 flex-shrink-0"
+                      >
+                        <X size={12} className="text-gray-500" />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
 
+            {/* Popular categories section */}
             <div className="p-3">
               <div className="flex items-center text-sm text-gray-500 mb-2">
                 <Sparkles size={14} className="mr-2 text-indigo-500" />
-                <span>Popular Categories</span>
+                <span className="font-medium">Popular Categories</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {suggestedCategories.map((category, index) => (
                   <button
                     key={index}
-                    className="px-3 py-1.5 bg-gray-50 hover:bg-indigo-50 text-gray-600 hover:text-indigo-600 rounded-full text-sm transition-colors duration-200"
+                    className="px-3 py-1.5 bg-gray-50 hover:bg-indigo-50 text-gray-600 hover:text-indigo-600 rounded-full text-xs transition-colors duration-200"
                     onClick={() => handleSelectRecentQuery(category)}
                   >
                     {category}

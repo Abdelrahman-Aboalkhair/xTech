@@ -1,24 +1,58 @@
-[2025-04-18T15:08:13.341Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/webhook/webhook.service.ts[0m:[93m116[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'amount' does not exist in type 'Without<TransactionCreateInput, TransactionUncheckedCreateInput> & TransactionUncheckedCreateInput'.
+[2025-04-20T09:59:11.293Z] [31MERROR[39M: uncaughtException: Cannot destructure property 'accessToken' of 'user' as it is undefined.
+TypeError: Cannot destructure property 'accessToken' of 'user' as it is undefined.
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:112:15
+    at Generator.next (<anonymous>)
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:4:12)
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:110:34
+    at Layer.handle [as handle_request] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:175:3)
+    at router (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/layer.js:95:5)
+[2025-04-20T10:00:28.582Z] [31MERROR[39M: uncaughtException: Cannot destructure property 'accessToken' of 'user' as it is undefined.
+TypeError: Cannot destructure property 'accessToken' of 'user' as it is undefined.
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:113:15
+    at Generator.next (<anonymous>)
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:4:12)
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/utils/auth/oauthUtils.ts:110:34
+    at Layer.handle [as handle_request] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:175:3)
+    at router (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/express/lib/router/layer.js:95:5)
+[2025-04-20T10:13:11.270Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m91[0m:[93m25[0m - [91merror[0m[90m TS2304: [0mCannot find name 'generateAccessToken'.
 
-[7m116[0m           amount,
-[7m   [0m [91m          ~~~~~~[0m
+[7m91[0m     const accessToken = generateAccessToken(user); // you generate JWT or similar here
+[7m  [0m [91m                        ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m92[0m:[93m26[0m - [91merror[0m[90m TS2304: [0mCannot find name 'generateRefreshToken'.
 
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13104[0m:[93m5[0m
-    [7m13104[0m     data: XOR<TransactionCreateInput, TransactionUncheckedCreateInput>
-    [7m     [0m [96m    ~~~~[0m
-    The expected type comes from property 'data' which is declared here on type '{ select?: TransactionSelect<DefaultArgs> | null | undefined; omit?: TransactionOmit<DefaultArgs> | null | undefined; include?: TransactionInclude<...> | ... 1 more ... | undefined; data: (Without<...> & TransactionUncheckedCreateInput) | (Without<...> & TransactionCreateInput); }'
+[7m92[0m     const refreshToken = generateRefreshToken(user);
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/webhook/webhook.service.ts[0m:[93m116[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'amount' does not exist in type 'Without<TransactionCreateInput, TransactionUncheckedCreateInput> & TransactionUncheckedCreateInput'.
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m91[0m:[93m25[0m - [91merror[0m[90m TS2304: [0mCannot find name 'generateAccessToken'.
 
-[7m116[0m           amount,
-[7m   [0m [91m          ~~~~~~[0m
+[7m91[0m     const accessToken = generateAccessToken(user); // you generate JWT or similar here
+[7m  [0m [91m                        ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m92[0m:[93m26[0m - [91merror[0m[90m TS2304: [0mCannot find name 'generateRefreshToken'.
 
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m13104[0m:[93m5[0m
-    [7m13104[0m     data: XOR<TransactionCreateInput, TransactionUncheckedCreateInput>
-    [7m     [0m [96m    ~~~~[0m
-    The expected type comes from property 'data' which is declared here on type '{ select?: TransactionSelect<DefaultArgs> | null | undefined; omit?: TransactionOmit<DefaultArgs> | null | undefined; include?: TransactionInclude<...> | ... 1 more ... | undefined; data: (Without<...> & TransactionUncheckedCreateInput) | (Without<...> & TransactionCreateInput); }'
+[7m92[0m     const refreshToken = generateRefreshToken(user);
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -30,48 +64,29 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-18T15:38:43.769Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
-Error: EIO: i/o error, write
-    at writeSync (node:fs:925:3)
-    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
-    at writeOrBuffer (node:internal/streams/writable:570:12)
-    at _write (node:internal/streams/writable:499:10)
-    at SyncWriteStream.Writable.write (node:internal/streams/writable:508:10)
-    at console.value (node:internal/console/constructor:298:16)
-    at console.log (node:internal/console/constructor:384:26)
-    at EventEmitter.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/infra/cache/redis.ts:50:32)
-    at EventEmitter.emit (node:events:507:28)
-    at EventEmitter.emit (node:domain:489:12)
-    at processTicksAndRejections (node:internal/process/task_queues:85:11)
-[2025-04-19T10:55:32.294Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2448: [0mBlock-scoped variable 'sessionId' used before its declaration.
+[2025-04-20T10:13:27.151Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m92[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m92[0m     const accessToken = generateAccessToken(user?.id);
+[7m  [0m [91m                                            ~~~~~~~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m93[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-  [96msrc/modules/cart/cart.controller.ts[0m:[93m36[0m:[93m11[0m
-    [7m36[0m     const sessionId = req.session.id;
-    [7m  [0m [96m          ~~~~~~~~~[0m
-    'sessionId' is declared here.
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2454: [0mVariable 'sessionId' is used before being assigned.
-
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m93[0m     const refreshToken = generateRefreshToken(user?.id);
+[7m  [0m [91m                                              ~~~~~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2448: [0mBlock-scoped variable 'sessionId' used before its declaration.
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m92[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m92[0m     const accessToken = generateAccessToken(user?.id);
+[7m  [0m [91m                                            ~~~~~~~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m93[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-  [96msrc/modules/cart/cart.controller.ts[0m:[93m36[0m:[93m11[0m
-    [7m36[0m     const sessionId = req.session.id;
-    [7m  [0m [96m          ~~~~~~~~~[0m
-    'sessionId' is declared here.
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2454: [0mVariable 'sessionId' is used before being assigned.
-
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m93[0m     const refreshToken = generateRefreshToken(user?.id);
+[7m  [0m [91m                                              ~~~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -83,35 +98,37 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-19T10:55:42.399Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2448: [0mBlock-scoped variable 'sessionId' used before its declaration.
+[2025-04-20T10:13:38.903Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m91[0m:[93m16[0m - [91merror[0m[90m TS18048: [0m'user' is possibly 'undefined'.
 
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m91[0m     const id = user.id;
+[7m  [0m [91m               ~~~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m92[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ googleId: string | null; facebookId: string | null; twitterId: string | null; name: string; id: string; email: string; password: string | null; avatar: string | null; emailVerified: boolean; ... 6 more ...; updatedAt: Date; } | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-  [96msrc/modules/cart/cart.controller.ts[0m:[93m36[0m:[93m11[0m
-    [7m36[0m     const sessionId = req.session.id;
-    [7m  [0m [96m          ~~~~~~~~~[0m
-    'sessionId' is declared here.
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2454: [0mVariable 'sessionId' is used before being assigned.
+[7m92[0m     const accessToken = generateAccessToken(user);
+[7m  [0m [91m                                            ~~~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m93[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ googleId: string | null; facebookId: string | null; twitterId: string | null; name: string; id: string; email: string; password: string | null; avatar: string | null; emailVerified: boolean; ... 6 more ...; updatedAt: Date; } | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m93[0m     const refreshToken = generateRefreshToken(user);
+[7m  [0m [91m                                              ~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2448: [0mBlock-scoped variable 'sessionId' used before its declaration.
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m91[0m:[93m16[0m - [91merror[0m[90m TS18048: [0m'user' is possibly 'undefined'.
 
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m91[0m     const id = user.id;
+[7m  [0m [91m               ~~~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m92[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ googleId: string | null; facebookId: string | null; twitterId: string | null; name: string; id: string; email: string; password: string | null; avatar: string | null; emailVerified: boolean; ... 6 more ...; updatedAt: Date; } | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-  [96msrc/modules/cart/cart.controller.ts[0m:[93m36[0m:[93m11[0m
-    [7m36[0m     const sessionId = req.session.id;
-    [7m  [0m [96m          ~~~~~~~~~[0m
-    'sessionId' is declared here.
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2454: [0mVariable 'sessionId' is used before being assigned.
+[7m92[0m     const accessToken = generateAccessToken(user);
+[7m  [0m [91m                                            ~~~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m93[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ googleId: string | null; facebookId: string | null; twitterId: string | null; name: string; id: string; email: string; password: string | null; avatar: string | null; emailVerified: boolean; ... 6 more ...; updatedAt: Date; } | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m93[0m     const refreshToken = generateRefreshToken(user);
+[7m  [0m [91m                                              ~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -123,35 +140,29 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-19T10:55:49.138Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2448: [0mBlock-scoped variable 'sessionId' used before its declaration.
+[2025-04-20T10:13:51.616Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m92[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m92[0m     const accessToken = generateAccessToken(id);
+[7m  [0m [91m                                            ~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m93[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-  [96msrc/modules/cart/cart.controller.ts[0m:[93m36[0m:[93m11[0m
-    [7m36[0m     const sessionId = req.session.id;
-    [7m  [0m [96m          ~~~~~~~~~[0m
-    'sessionId' is declared here.
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2454: [0mVariable 'sessionId' is used before being assigned.
-
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m93[0m     const refreshToken = generateRefreshToken(id);
+[7m  [0m [91m                                              ~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2448: [0mBlock-scoped variable 'sessionId' used before its declaration.
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m92[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m92[0m     const accessToken = generateAccessToken(id);
+[7m  [0m [91m                                            ~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m93[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-  [96msrc/modules/cart/cart.controller.ts[0m:[93m36[0m:[93m11[0m
-    [7m36[0m     const sessionId = req.session.id;
-    [7m  [0m [96m          ~~~~~~~~~[0m
-    'sessionId' is declared here.
-[96msrc/modules/cart/cart.controller.ts[0m:[93m35[0m:[93m41[0m - [91merror[0m[90m TS2454: [0mVariable 'sessionId' is used before being assigned.
-
-[7m35[0m     console.log("userId addToCart => ", sessionId);
-[7m  [0m [91m                                        ~~~~~~~~~[0m
+[7m93[0m     const refreshToken = generateRefreshToken(id);
+[7m  [0m [91m                                              ~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -163,27 +174,19 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-19T15:38:46.801Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.routes.ts[0m:[93m10[0m:[93m53[0m - [91merror[0m[90m TS2552: [0mCannot find name 'createSection'. Did you mean 'CDATASection'?
+[2025-04-20T10:14:06.842Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m93[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m10[0m router.post("/sections", upload.array("images", 5), createSection); // Allow up to 5 images
-[7m  [0m [91m                                                    ~~~~~~~~~~~~~[0m
-
-  [96mnode_modules/typescript/lib/lib.dom.d.ts[0m:[93m3616[0m:[93m13[0m
-    [7m3616[0m declare var CDATASection: {
-    [7m    [0m [96m            ~~~~~~~~~~~~[0m
-    'CDATASection' is declared here.
+[7m93[0m     const refreshToken = generateRefreshToken(id);
+[7m  [0m [91m                                              ~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.routes.ts[0m:[93m10[0m:[93m53[0m - [91merror[0m[90m TS2552: [0mCannot find name 'createSection'. Did you mean 'CDATASection'?
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m93[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m10[0m router.post("/sections", upload.array("images", 5), createSection); // Allow up to 5 images
-[7m  [0m [91m                                                    ~~~~~~~~~~~~~[0m
-
-  [96mnode_modules/typescript/lib/lib.dom.d.ts[0m:[93m3616[0m:[93m13[0m
-    [7m3616[0m declare var CDATASection: {
-    [7m    [0m [96m            ~~~~~~~~~~~~[0m
-    'CDATASection' is declared here.
+[7m93[0m     const refreshToken = generateRefreshToken(id);
+[7m  [0m [91m                                              ~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -195,33 +198,29 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/routes/v1/index.ts:18:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T15:50:47.006Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m26[0m:[93m18[0m - [91merror[0m[90m TS2365: [0mOperator '>' cannot be applied to types 'number | File[]' and 'number'.
+[2025-04-20T10:14:17.815Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m92[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m26[0m     if (files && files.length > 0) {
-[7m  [0m [91m                 ~~~~~~~~~~~~~~~~[0m
-[96msrc/modules/section/section.controller.ts[0m:[93m41[0m:[93m61[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ title: any; description: any; type: any; ctaText: any; images: any[]; }' is not assignable to parameter of type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }'.
-  Type '{ title: any; description: any; type: any; ctaText: any; images: any[]; }' is missing the following properties from type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }': link, id, icons, isVisible, and 2 more.
+[7m92[0m     const accessToken = generateAccessToken(id);
+[7m  [0m [91m                                            ~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m93[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m41[0m     const section = await this.sectionService.createSection(sectionData);
-[7m  [0m [91m                                                            ~~~~~~~~~~~[0m
+[7m93[0m     const refreshToken = generateRefreshToken(id);
+[7m  [0m [91m                                              ~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m26[0m:[93m18[0m - [91merror[0m[90m TS2365: [0mOperator '>' cannot be applied to types 'number | File[]' and 'number'.
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m92[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m26[0m     if (files && files.length > 0) {
-[7m  [0m [91m                 ~~~~~~~~~~~~~~~~[0m
-[96msrc/modules/section/section.controller.ts[0m:[93m41[0m:[93m61[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ title: any; description: any; type: any; ctaText: any; images: any[]; }' is not assignable to parameter of type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }'.
-  Type '{ title: any; description: any; type: any; ctaText: any; images: any[]; }' is missing the following properties from type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }': link, id, icons, isVisible, and 2 more.
+[7m92[0m     const accessToken = generateAccessToken(id);
+[7m  [0m [91m                                            ~~[0m
+[96msrc/shared/utils/auth/oauthUtils.ts[0m:[93m93[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
 
-[7m41[0m     const section = await this.sectionService.createSection(sectionData);
-[7m  [0m [91m                                                            ~~~~~~~~~~~[0m
+[7m93[0m     const refreshToken = generateRefreshToken(id);
+[7m  [0m [91m                                              ~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -233,521 +232,3 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T15:51:16.595Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m35[0m:[93m18[0m - [91merror[0m[90m TS2365: [0mOperator '>' cannot be applied to types 'number | File[]' and 'number'.
-
-[7m35[0m     if (files && files.length > 0) {
-[7m  [0m [91m                 ~~~~~~~~~~~~~~~~[0m
-[96msrc/modules/section/section.controller.ts[0m:[93m54[0m:[93m61[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ title: any; description: any; type: any; ctaText: any; icons: any; link: any; primaryColor: any; secondaryColor: any; images: any[]; }' is not assignable to parameter of type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }'.
-  Type '{ title: any; description: any; type: any; ctaText: any; icons: any; link: any; primaryColor: any; secondaryColor: any; images: any[]; }' is missing the following properties from type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }': id, isVisible
-
-[7m54[0m     const section = await this.sectionService.createSection(sectionData);
-[7m  [0m [91m                                                            ~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m35[0m:[93m18[0m - [91merror[0m[90m TS2365: [0mOperator '>' cannot be applied to types 'number | File[]' and 'number'.
-
-[7m35[0m     if (files && files.length > 0) {
-[7m  [0m [91m                 ~~~~~~~~~~~~~~~~[0m
-[96msrc/modules/section/section.controller.ts[0m:[93m54[0m:[93m61[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ title: any; description: any; type: any; ctaText: any; icons: any; link: any; primaryColor: any; secondaryColor: any; images: any[]; }' is not assignable to parameter of type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }'.
-  Type '{ title: any; description: any; type: any; ctaText: any; icons: any; link: any; primaryColor: any; secondaryColor: any; images: any[]; }' is missing the following properties from type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }': id, isVisible
-
-[7m54[0m     const section = await this.sectionService.createSection(sectionData);
-[7m  [0m [91m                                                            ~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T15:51:29.344Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m54[0m:[93m61[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ title: any; description: any; type: any; ctaText: any; icons: any; link: any; primaryColor: any; secondaryColor: any; images: any[]; }' is not assignable to parameter of type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }'.
-  Type '{ title: any; description: any; type: any; ctaText: any; icons: any; link: any; primaryColor: any; secondaryColor: any; images: any[]; }' is missing the following properties from type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }': id, isVisible
-
-[7m54[0m     const section = await this.sectionService.createSection(sectionData);
-[7m  [0m [91m                                                            ~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m54[0m:[93m61[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ title: any; description: any; type: any; ctaText: any; icons: any; link: any; primaryColor: any; secondaryColor: any; images: any[]; }' is not assignable to parameter of type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }'.
-  Type '{ title: any; description: any; type: any; ctaText: any; icons: any; link: any; primaryColor: any; secondaryColor: any; images: any[]; }' is missing the following properties from type '{ link: string | null; id: number; type: SECTION_TYPE; description: string | null; images: string | null; title: string | null; icons: string | null; ctaText: string | null; isVisible: boolean | null; primaryColor: string | null; secondaryColor: string | null; }': id, isVisible
-
-[7m54[0m     const section = await this.sectionService.createSection(sectionData);
-[7m  [0m [91m                                                            ~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T16:19:07.412Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m14[0m:[93m48[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
-
-[7m14[0m     const sections = await this.sectionService.getAllSections();
-[7m  [0m [91m                                               ~~~~~~~~~~~~~~[0m
-
-  [96msrc/modules/section/section.service.ts[0m:[93m7[0m:[93m24[0m
-    [7m7[0m   async getAllSections({ type }: any) {
-    [7m [0m [96m                       ~~~~~~~~~~~~~[0m
-    An argument matching this binding pattern was not provided.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m14[0m:[93m48[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
-
-[7m14[0m     const sections = await this.sectionService.getAllSections();
-[7m  [0m [91m                                               ~~~~~~~~~~~~~~[0m
-
-  [96msrc/modules/section/section.service.ts[0m:[93m7[0m:[93m24[0m
-    [7m7[0m   async getAllSections({ type }: any) {
-    [7m [0m [96m                       ~~~~~~~~~~~~~[0m
-    An argument matching this binding pattern was not provided.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T16:27:25.668Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m13[0m:[93m48[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
-
-[7m13[0m     const sections = await this.sectionService.getAllSections();
-[7m  [0m [91m                                               ~~~~~~~~~~~~~~[0m
-
-  [96msrc/modules/section/section.service.ts[0m:[93m7[0m:[93m24[0m
-    [7m7[0m   async getAllSections(type: any) {
-    [7m [0m [96m                       ~~~~~~~~~[0m
-    An argument for 'type' was not provided.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m13[0m:[93m48[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
-
-[7m13[0m     const sections = await this.sectionService.getAllSections();
-[7m  [0m [91m                                               ~~~~~~~~~~~~~~[0m
-
-  [96msrc/modules/section/section.service.ts[0m:[93m7[0m:[93m24[0m
-    [7m7[0m   async getAllSections(type: any) {
-    [7m [0m [96m                       ~~~~~~~~~[0m
-    An argument for 'type' was not provided.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T16:27:57.137Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.repository.ts[0m:[93m10[0m:[93m48[0m - [91merror[0m[90m TS2820: [0mType '"hero"' is not assignable to type 'Exact<SECTION_TYPE | EnumSECTION_TYPEFilter<"Section"> | undefined, SECTION_TYPE | EnumSECTION_TYPEFilter<"Section"> | undefined>'. Did you mean '"HERO"'?
-
-[7m10[0m     return prisma.section.findFirst({ where: { type: "hero" } });
-[7m  [0m [91m                                               ~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.repository.ts[0m:[93m10[0m:[93m48[0m - [91merror[0m[90m TS2820: [0mType '"hero"' is not assignable to type 'Exact<SECTION_TYPE | EnumSECTION_TYPEFilter<"Section"> | undefined, SECTION_TYPE | EnumSECTION_TYPEFilter<"Section"> | undefined>'. Did you mean '"HERO"'?
-
-[7m10[0m     return prisma.section.findFirst({ where: { type: "hero" } });
-[7m  [0m [91m                                               ~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:2:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T16:57:51.701Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m138[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
-
-[7m138[0m     await this.sectionService.deleteSection(String(req.params.type));
-[7m   [0m [91m                                            ~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m138[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
-
-[7m138[0m     await this.sectionService.deleteSection(String(req.params.type));
-[7m   [0m [91m                                            ~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T16:58:07.022Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m138[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
-
-[7m138[0m     await this.sectionService.deleteSection(String(req.params.type));
-[7m   [0m [91m                                            ~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m138[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
-
-[7m138[0m     await this.sectionService.deleteSection(String(req.params.type));
-[7m   [0m [91m                                            ~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T16:58:34.061Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m138[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
-
-[7m138[0m     await this.sectionService.deleteSection(String(req.params.type));
-[7m   [0m [91m                                            ~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m138[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'number'.
-
-[7m138[0m     await this.sectionService.deleteSection(String(req.params.type));
-[7m   [0m [91m                                            ~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T16:58:54.041Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.repository.ts[0m:[93m41[0m:[93m36[0m - [91merror[0m[90m TS2322: [0mType '{ type: any; }' is not assignable to type 'Exact<SectionWhereUniqueInput, SectionWhereUniqueInput>'.
-  Property 'id' is missing in type '{ type: any; }' but required in type '{ id: number; AND?: Exact<SectionWhereInput | SectionWhereInput[] | undefined, SectionWhereInput | SectionWhereInput[] | undefined>; ... 11 more ...; secondaryColor?: Exact<...>; }'.
-
-[7m41[0m     return prisma.section.delete({ where: { type } });
-[7m  [0m [91m                                   ~~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m22503[0m:[93m5[0m
-    [7m22503[0m     id?: number
-    [7m     [0m [96m    ~~[0m
-    'id' is declared here.
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m20857[0m:[93m5[0m
-    [7m20857[0m     where: SectionWhereUniqueInput
-    [7m     [0m [96m    ~~~~~[0m
-    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; where: Exact<...>; }'
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.repository.ts[0m:[93m41[0m:[93m36[0m - [91merror[0m[90m TS2322: [0mType '{ type: any; }' is not assignable to type 'Exact<SectionWhereUniqueInput, SectionWhereUniqueInput>'.
-  Property 'id' is missing in type '{ type: any; }' but required in type '{ id: number; AND?: Exact<SectionWhereInput | SectionWhereInput[] | undefined, SectionWhereInput | SectionWhereInput[] | undefined>; ... 11 more ...; secondaryColor?: Exact<...>; }'.
-
-[7m41[0m     return prisma.section.delete({ where: { type } });
-[7m  [0m [91m                                   ~~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m22503[0m:[93m5[0m
-    [7m22503[0m     id?: number
-    [7m     [0m [96m    ~~[0m
-    'id' is declared here.
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m20857[0m:[93m5[0m
-    [7m20857[0m     where: SectionWhereUniqueInput
-    [7m     [0m [96m    ~~~~~[0m
-    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; where: Exact<...>; }'
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:2:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T16:59:04.199Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.repository.ts[0m:[93m41[0m:[93m36[0m - [91merror[0m[90m TS2322: [0mType '{ type: $Enums.SECTION_TYPE; }' is not assignable to type 'Exact<SectionWhereUniqueInput, SectionWhereUniqueInput>'.
-  Property 'id' is missing in type '{ type: $Enums.SECTION_TYPE; }' but required in type '{ id: number; AND?: Exact<SectionWhereInput | SectionWhereInput[] | undefined, SectionWhereInput | SectionWhereInput[] | undefined>; ... 11 more ...; secondaryColor?: Exact<...>; }'.
-
-[7m41[0m     return prisma.section.delete({ where: { type } });
-[7m  [0m [91m                                   ~~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m22503[0m:[93m5[0m
-    [7m22503[0m     id?: number
-    [7m     [0m [96m    ~~[0m
-    'id' is declared here.
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m20857[0m:[93m5[0m
-    [7m20857[0m     where: SectionWhereUniqueInput
-    [7m     [0m [96m    ~~~~~[0m
-    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; where: Exact<...>; }'
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.repository.ts[0m:[93m41[0m:[93m36[0m - [91merror[0m[90m TS2322: [0mType '{ type: $Enums.SECTION_TYPE; }' is not assignable to type 'Exact<SectionWhereUniqueInput, SectionWhereUniqueInput>'.
-  Property 'id' is missing in type '{ type: $Enums.SECTION_TYPE; }' but required in type '{ id: number; AND?: Exact<SectionWhereInput | SectionWhereInput[] | undefined, SectionWhereInput | SectionWhereInput[] | undefined>; ... 11 more ...; secondaryColor?: Exact<...>; }'.
-
-[7m41[0m     return prisma.section.delete({ where: { type } });
-[7m  [0m [91m                                   ~~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m22503[0m:[93m5[0m
-    [7m22503[0m     id?: number
-    [7m     [0m [96m    ~~[0m
-    'id' is declared here.
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m20857[0m:[93m5[0m
-    [7m20857[0m     where: SectionWhereUniqueInput
-    [7m     [0m [96m    ~~~~~[0m
-    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; where: Exact<...>; }'
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:2:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T16:59:11.431Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m138[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'SECTION_TYPE'.
-
-[7m138[0m     await this.sectionService.deleteSection(req.params.type);
-[7m   [0m [91m                                            ~~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m138[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'SECTION_TYPE'.
-
-[7m138[0m     await this.sectionService.deleteSection(req.params.type);
-[7m   [0m [91m                                            ~~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T16:59:56.972Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m140[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'SECTION_TYPE'.
-
-[7m140[0m     await this.sectionService.deleteSection(req.params.type);
-[7m   [0m [91m                                            ~~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m140[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'SECTION_TYPE'.
-
-[7m140[0m     await this.sectionService.deleteSection(req.params.type);
-[7m   [0m [91m                                            ~~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T17:00:05.313Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m140[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'isValidSectionType'.
-
-[7m140[0m     if (!isValidSectionType(type)) {
-[7m   [0m [91m         ~~~~~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m140[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'isValidSectionType'.
-
-[7m140[0m     if (!isValidSectionType(type)) {
-[7m   [0m [91m         ~~~~~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T17:00:21.573Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.repository.ts[0m:[93m41[0m:[93m36[0m - [91merror[0m[90m TS2322: [0mType '{ type: $Enums.SECTION_TYPE; }' is not assignable to type 'Exact<SectionWhereUniqueInput, SectionWhereUniqueInput>'.
-  Property 'id' is missing in type '{ type: $Enums.SECTION_TYPE; }' but required in type '{ id: number; AND?: Exact<SectionWhereInput | SectionWhereInput[] | undefined, SectionWhereInput | SectionWhereInput[] | undefined>; ... 11 more ...; secondaryColor?: Exact<...>; }'.
-
-[7m41[0m     return prisma.section.delete({ where: { type } });
-[7m  [0m [91m                                   ~~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m22503[0m:[93m5[0m
-    [7m22503[0m     id?: number
-    [7m     [0m [96m    ~~[0m
-    'id' is declared here.
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m20857[0m:[93m5[0m
-    [7m20857[0m     where: SectionWhereUniqueInput
-    [7m     [0m [96m    ~~~~~[0m
-    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; where: Exact<...>; }'
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.repository.ts[0m:[93m41[0m:[93m36[0m - [91merror[0m[90m TS2322: [0mType '{ type: $Enums.SECTION_TYPE; }' is not assignable to type 'Exact<SectionWhereUniqueInput, SectionWhereUniqueInput>'.
-  Property 'id' is missing in type '{ type: $Enums.SECTION_TYPE; }' but required in type '{ id: number; AND?: Exact<SectionWhereInput | SectionWhereInput[] | undefined, SectionWhereInput | SectionWhereInput[] | undefined>; ... 11 more ...; secondaryColor?: Exact<...>; }'.
-
-[7m41[0m     return prisma.section.delete({ where: { type } });
-[7m  [0m [91m                                   ~~~~~[0m
-
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m22503[0m:[93m5[0m
-    [7m22503[0m     id?: number
-    [7m     [0m [96m    ~~[0m
-    'id' is declared here.
-  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m20857[0m:[93m5[0m
-    [7m20857[0m     where: SectionWhereUniqueInput
-    [7m     [0m [96m    ~~~~~[0m
-    The expected type comes from property 'where' which is declared here on type '{ select?: Exact<SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, SectionSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined>; omit?: Exact<...>; where: Exact<...>; }'
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:2:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-04-19T17:02:25.122Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m120[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type 'number' is not assignable to parameter of type 'SECTION_TYPE'.
-
-[7m120[0m       Number(req.params.id),
-[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/section/section.controller.ts[0m:[93m120[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type 'number' is not assignable to parameter of type 'SECTION_TYPE'.
-
-[7m120[0m       Number(req.params.id),
-[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
-    at Module.require (node:internal/modules/cjs/loader:1480:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/section/section.factory.ts:1:1)
-    at Module._compile (node:internal/modules/cjs/loader:1723:14)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)

@@ -3,6 +3,7 @@ import { CartRepository } from "@/modules/cart/cart.repository";
 import { CartService } from "@/modules/cart/cart.service";
 import { cookieOptions } from "@/shared/constants";
 import passport from "passport";
+import { generateAccessToken, generateRefreshToken } from "./tokenUtils";
 
 const cartRepo = new CartRepository();
 const cartService = new CartService(cartRepo);
@@ -50,8 +51,8 @@ async function findOrCreateUser(
 
 export const oauthCallback = async (
   providerIdField: OAuthProvider,
-  accessToken: string,
-  refreshToken: string,
+  accessTokenFromProvider: string,
+  refreshTokenFromProvider: string,
   profile: any,
   done: (error: any, user?: any) => void
 ) => {
@@ -87,8 +88,19 @@ export const oauthCallback = async (
         profile.photos?.[0]?.value || ""
       );
     }
+    if (!user?.id) {
+      throw new Error("User ID is required");
+    }
 
-    return done(null, user);
+    const id = user.id;
+    const accessToken = generateAccessToken(id);
+    const refreshToken = generateRefreshToken(id);
+
+    return done(null, {
+      ...user,
+      accessToken,
+      refreshToken,
+    });
   } catch (error) {
     return done(error);
   }
@@ -102,13 +114,15 @@ export const handleSocialLogin = (provider: string) => {
 };
 
 export const handleSocialLoginCallback = (provider: string) => {
-  return (
+  return [
     passport.authenticate(provider, {
       session: false,
       failureRedirect: "http://localhost:3000/sign-in",
     }),
     async (req: any, res: any) => {
       const user = req.user as any;
+      console.log("req.user => ", req.user);
+
       const { accessToken, refreshToken } = user;
 
       res.cookie("refreshToken", refreshToken, cookieOptions);
@@ -119,6 +133,6 @@ export const handleSocialLoginCallback = (provider: string) => {
       await cartService?.mergeCartsOnLogin(sessionId, userId);
 
       res.redirect("http://localhost:3000");
-    }
-  );
+    },
+  ];
 };

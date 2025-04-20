@@ -514,3 +514,17 @@ Foreign key constraint violated: `Product_categoryId_fkey (index)`
 [2025-04-20T09:14:53.503Z] [31MERROR[39M: Unauthorized, please log in
 [2025-04-20T09:14:53.662Z] [31MERROR[39M: Refresh token not found
 [2025-04-20T09:32:18.107Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-20T09:47:36.098Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T09:47:36.118Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T09:47:38.283Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T09:47:38.302Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T09:47:40.556Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T09:47:40.570Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T09:47:42.411Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T09:47:42.425Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T09:47:44.445Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T09:47:44.485Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T09:47:46.764Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T09:47:46.778Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T09:58:49.005Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T09:58:49.171Z] [31MERROR[39M: Refresh token not found
