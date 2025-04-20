@@ -1,12 +1,13 @@
 "use client";
 import React from "react";
-import { Heart, Eye, ShoppingCart } from "lucide-react";
+import { Heart, Eye, ShoppingCart, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Product } from "@/app/types/productTypes";
 import Image from "next/image";
 import Link from "next/link";
 import { useAddToCartMutation } from "@/app/store/apis/CartApi";
 import Rating from "@/app/components/feedback/Rating";
+import useToast from "@/app/hooks/ui/useToast";
 
 interface ProductCardProps {
   product: Product;
@@ -19,6 +20,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   hoveredProductId,
   setHoveredProductId,
 }) => {
+  const { showToast } = useToast();
   console.log("product.slug => ", product.slug);
   const [addToCart, { isLoading }] = useAddToCartMutation();
   const isHovered = hoveredProductId === product.id;
@@ -28,6 +30,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     try {
       await addToCart({ productId: product.id, quantity: 1 }).unwrap();
     } catch (error) {
+      showToast(error.data.message, "error");
       console.error("Error adding to cart:", error);
     }
   };
@@ -112,7 +115,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </Link>
 
-        {/* Button Container - Always takes up the same height whether visible or not */}
         <div className="h-10 mt-auto relative">
           <AnimatePresence>
             {isHovered ? (
@@ -122,13 +124,24 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className={`absolute inset-0 w-full bg-indigo-500 text-white py-2 rounded-lg flex items-center justify-center space-x-2 hover:bg-indigo-600 transition-colors duration-300 ${
-                  isLoading ? "bg-gray-400 cursor-not-allowed" : ""
+                className={`absolute inset-0 w-full py-2 rounded-lg flex items-center justify-center space-x-2 transition-all duration-300 ${
+                  isLoading
+                    ? "bg-indigo-400 text-white cursor-wait"
+                    : "bg-indigo-500 text-white hover:bg-indigo-600"
                 }`}
                 disabled={isLoading}
               >
-                <ShoppingCart size={16} />
-                <span>Add to Cart</span>
+                {isLoading ? (
+                  <>
+                    <Loader2 className="animate-spin" />
+                    <span>Adding...</span>
+                  </>
+                ) : (
+                  <>
+                    <ShoppingCart size={16} />
+                    <span>Add to Cart</span>
+                  </>
+                )}
               </motion.button>
             ) : (
               <motion.div

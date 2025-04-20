@@ -542,3 +542,71 @@ Foreign key constraint violated: `Product_categoryId_fkey (index)`
 [2025-04-20T10:46:13.156Z] [31MERROR[39M: Refresh token not found
 [2025-04-20T10:46:14.730Z] [31MERROR[39M: Unauthorized, please log in
 [2025-04-20T10:46:14.793Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:17:33.229Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:17:33.418Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:17:48.452Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:17:48.488Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:22:29.025Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:22:29.086Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:22:31.901Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:22:31.956Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:22:45.437Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:22:45.652Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:22:53.476Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:22:53.543Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:23:32.136Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:23:32.226Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:24:07.013Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:24:07.052Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:24:33.205Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:24:33.274Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:26:02.602Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:26:02.695Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:26:41.333Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:26:41.421Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:27:24.032Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:27:24.058Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:27:47.840Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:27:47.923Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:29:05.372Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:29:05.434Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:29:10.319Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:29:10.437Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:29:14.212Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:29:14.307Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:29:19.004Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:29:19.087Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:31:00.515Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:31:00.630Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:31:27.782Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:31:27.796Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:33:29.340Z] [31MERROR[39M: No orders found for this user
+[2025-04-20T16:35:32.258Z] [31MERROR[39M: Duplicate field value entered
+[2025-04-20T16:35:33.195Z] [31MERROR[39M: Duplicate field value entered
+[2025-04-20T16:35:35.627Z] [31MERROR[39M: Duplicate field value entered
+[2025-04-20T16:36:01.963Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:36:02.046Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:36:06.773Z] [31MERROR[39M: Duplicate field value entered
+[2025-04-20T16:38:26.957Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:38:27.131Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:39:00.251Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:39:00.336Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:39:09.730Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:40:12.677Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:40:12.787Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:40:45.990Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:40:59.701Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:41:36.750Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:41:36.792Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:44:34.520Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:44:34.594Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:46:01.382Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:46:01.614Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:49:13.922Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:49:38.944Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:49:39.050Z] [31MERROR[39M: Refresh token not found
+[2025-04-20T16:49:43.326Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:49:50.859Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:49:52.664Z] [31MERROR[39M: Item already exists in cart
+[2025-04-20T16:50:14.464Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-20T16:50:14.511Z] [31MERROR[39M: Refresh token not found

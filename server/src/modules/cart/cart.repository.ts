@@ -33,7 +33,17 @@ export class CartRepository {
     productId: string;
     quantity: number;
   }) {
-    return prisma.cartItem.create({ data });
+    try {
+      return await prisma.cartItem.create({ data });
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2002"
+      ) {
+        throw new Error("Item already exists in cart");
+      }
+      throw error;
+    }
   }
 
   async updateCartItemQuantity(itemId: string, quantity: number) {

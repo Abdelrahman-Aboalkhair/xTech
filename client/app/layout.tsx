@@ -5,6 +5,7 @@ import StoreProvider from "./StoreProvider";
 import SessionWrapper from "./SessionWrapper";
 import { ApolloProvider } from "@apollo/client";
 import client from "./lib/apolloClient";
+import Toast from "./components/feedback/Toast";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -31,6 +32,7 @@ export default function RootLayout({
         <StoreProvider>
           <ApolloProvider client={client}>
             <SessionWrapper>{children}</SessionWrapper>
+            <Toast />
           </ApolloProvider>
         </StoreProvider>
       </body>

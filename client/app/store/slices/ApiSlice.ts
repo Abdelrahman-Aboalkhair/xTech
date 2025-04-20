@@ -4,7 +4,6 @@ import type {
   FetchArgs,
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
-import { clearUser } from "./AuthSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5000/api/v1",
@@ -19,7 +18,8 @@ const baseQueryWithReauth: BaseQueryFn<
   let result = await baseQuery(args, api, extraOptions);
 
   if (result.error?.status === 401) {
-    console.log("Received 401, attempting token refresh...");
+    console.log("⚠️ Received 401, attempting token refresh...");
+
     const refreshResult = await baseQuery(
       { url: "/auth/refresh-token", method: "GET" },
       api,
@@ -29,10 +29,12 @@ const baseQueryWithReauth: BaseQueryFn<
     if (refreshResult.data) {
       result = await baseQuery(args, api, extraOptions);
     } else {
-      api.dispatch(clearUser());
-      window.location.href = "/sign-in";
+      console.warn("Unauthorized");
+      // api.dispatch(clearUser());
+      // window.dispatchEvent(new CustomEvent("unauthorized"));
     }
   }
+
   return result;
 };
 

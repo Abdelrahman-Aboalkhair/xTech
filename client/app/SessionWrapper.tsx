@@ -8,7 +8,6 @@ import CustomLoader from "./components/feedback/CustomLoader";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 
 const PROTECTED_ROUTES = ["/dashboard", "/profile", "/orders", "/checkout"];
-
 const EXCLUDED_ROUTES = [
   "/sign-in",
   "/sign-up",
@@ -16,15 +15,24 @@ const EXCLUDED_ROUTES = [
   "/forgot-password",
   "/reset-password",
 ];
+// const PUBLIC_ROUTES = [
+//   "/",
+//   "/cart",
+//   "/shop",
+//   "/product/:slug",
+//   "/about",
+//   "/contact",
+// ];
 
-const PUBLIC_ROUTES = [
-  "/",
-  "/cart",
-  "/shop",
-  "/product/:slug",
-  "/about",
-  "/contact",
-];
+const matchPath = (routes: string[], path: string) => {
+  return routes.some((route) => {
+    if (route.includes("/:")) {
+      const base = route.split("/:")[0];
+      return path.startsWith(base);
+    }
+    return route === path;
+  });
+};
 
 interface SessionWrapperProps {
   children: React.ReactNode;
@@ -36,29 +44,38 @@ const SessionWrapper = ({ children }: SessionWrapperProps) => {
   const router = useRouter();
   const user = useAppSelector((state) => state.auth.user);
 
-  const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
-  const isExcludedRoute = EXCLUDED_ROUTES.includes(pathname);
+  const isExcludedRoute = matchPath(EXCLUDED_ROUTES, pathname);
+  const isProtectedRoute = matchPath(PROTECTED_ROUTES, pathname);
   const shouldSkip = isExcludedRoute || !!user;
 
   const { data, isFetching, error } = useGetMeQuery(undefined, {
     skip: shouldSkip,
   });
-  console.log("data: ", data);
 
+  // Handle unauthorized event globally
+  useEffect(() => {
+    const handleUnauthorized = () => {
+      dispatch(clearUser());
+      if (pathname !== "/sign-in") {
+        router.push("/sign-in");
+      }
+    };
+
+    window.addEventListener("unauthorized", handleUnauthorized);
+    return () => window.removeEventListener("unauthorized", handleUnauthorized);
+  }, [dispatch, router, pathname]);
+
+  // Handle user data
   useEffect(() => {
     if (data && !user) {
       dispatch(setUser(data));
-    } else if (error && !shouldSkip) {
+    } else if (error && !shouldSkip && isProtectedRoute) {
       dispatch(clearUser());
-      if (!isExcludedRoute) {
-        if (PROTECTED_ROUTES.includes(pathname)) {
-          router.push("/sign-in");
-        }
-      }
+      router.push("/sign-in");
     }
-  }, [data, error, shouldSkip, dispatch, user, isExcludedRoute]);
+  }, [data, error, shouldSkip, dispatch, user, isProtectedRoute, router]);
 
-  if (isFetching && !user && !isPublicRoute) {
+  if (isFetching && !user && isProtectedRoute) {
     return <CustomLoader />;
   }
 
