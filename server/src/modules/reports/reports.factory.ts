@@ -1,15 +1,19 @@
-import { ReportsRepository } from "./reports.repository";
 import { ReportsService } from "./reports.service";
-import { ReportsController } from "./reports.controller";
+import { ReportsRepository } from "./reports.repository";
 import { AnalyticsRepository } from "../analytics/analytics.repository";
 import { ProductRepository } from "../product/product.repository";
-import { ExportUtils } from "@/shared/utils/exportUtils";
+import { ReportsController } from "./reports.controller";
 
-export const makeReportsController = () => {
-  const reportsRepo = new ReportsRepository();
-  const analyticsRepo = new AnalyticsRepository();
-  const productRepo = new ProductRepository();
-  const service = new ReportsService(reportsRepo, analyticsRepo, productRepo);
-  const exportUtils = new ExportUtils();
-  return new ReportsController(service, exportUtils);
-};
+export function makeReportsController() {
+  const reportsRepository = new ReportsRepository();
+  const analyticsRepository = new AnalyticsRepository();
+  const productRepository = new ProductRepository();
+  const reportsService = new ReportsService(
+    reportsRepository,
+    analyticsRepository,
+    productRepository
+  );
+  const controller = new ReportsController(reportsService);
+
+  return controller;
+}

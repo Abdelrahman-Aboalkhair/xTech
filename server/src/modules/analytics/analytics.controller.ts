@@ -2,18 +2,17 @@ import { Request, Response } from "express";
 import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
 import AppError from "@/shared/errors/AppError";
-import { ExportUtils } from "@/shared/utils/exportUtils";
 import { DateRangeQuery, ExportableData } from "./analytics.types";
 import { makeLogsService } from "../logs/logs.factory";
 import { AnalyticsService } from "./analytics.service";
+import generateCSV from "@/shared/utils/export/generateCsv";
+import generatePDF from "@/shared/utils/export/generatePdf";
+import generateXLSX from "@/shared/utils/export/generateXlsx";
 
 export class AnalyticsController {
   private logsService = makeLogsService();
 
-  constructor(
-    private exportUtils: ExportUtils,
-    private analyticsService: AnalyticsService
-  ) {}
+  constructor(private analyticsService: AnalyticsService) {}
 
   getYearRange = asyncHandler(async (req: Request, res: Response) => {
     const yearRange = await this.analyticsService.getYearRange();
@@ -124,15 +123,15 @@ export class AnalyticsController {
 
     switch (format) {
       case "csv":
-        result = this.exportUtils.generateCSV(data);
+        result = generateCSV(data);
         contentType = "text/csv";
         break;
       case "pdf":
-        result = await this.exportUtils.generatePDF(data);
+        result = await generatePDF(data);
         contentType = "application/pdf";
         break;
       case "xlsx":
-        result = await this.exportUtils.generateXLSX(data);
+        result = await generateXLSX(data);
         contentType =
           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
         break;

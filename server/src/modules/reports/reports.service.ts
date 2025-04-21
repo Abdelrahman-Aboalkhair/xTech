@@ -6,7 +6,7 @@ import { ProductRepository } from "../product/product.repository";
 import {
   DateRangeQuery,
   SalesReport,
-  CustomerRetentionReport,
+  UserRetentionReport,
 } from "./reports.types";
 import { PrismaClient } from "@prisma/client";
 
@@ -32,46 +32,18 @@ export class ReportsService {
       return JSON.parse(cachedData);
     }
 
-    const now = new Date();
-    let currentStartDate: Date | undefined;
-    let yearStart: Date | undefined;
-    let yearEnd: Date | undefined;
-
-    if (year) {
-      yearStart = startOfYear(new Date(year, 0, 1));
-      yearEnd = endOfYear(new Date(year, 0, 1));
-    }
-
-    if (startDate && endDate) {
-      currentStartDate = startDate;
-    } else {
-      switch (timePeriod) {
-        case "last7days":
-          currentStartDate = subDays(now, 7);
-          break;
-        case "lastMonth":
-          currentStartDate = subMonths(now, 1);
-          break;
-        case "lastYear":
-          currentStartDate = subYears(now, 1);
-          break;
-        case "allTime":
-          currentStartDate = undefined;
-          break;
-        case "custom":
-          throw new Error("Custom time period requires startDate and endDate");
-      }
-    }
+    const { currentStartDate, currentEndDate, yearStart, yearEnd } =
+      this.getDateRange(query);
 
     const orders = await this.analyticsRepository.getOrdersByTimePeriod(
       currentStartDate,
-      endDate,
+      currentEndDate,
       yearStart,
       yearEnd
     );
     const orderItems = await this.analyticsRepository.getOrderItemsByTimePeriod(
       currentStartDate,
-      endDate,
+      currentEndDate,
       yearStart,
       yearEnd
     );
@@ -86,7 +58,6 @@ export class ReportsService {
     const categorySales: {
       [key: string]: { revenue: number; sales: number; name: string };
     } = {};
-
     for (const item of orderItems) {
       const product = await this.productRepository.findProductById(
         item.productId
@@ -104,7 +75,6 @@ export class ReportsService {
         item.quantity * (item.product.price || 0);
       categorySales[categoryId].sales += item.quantity;
     }
-    // Transform the categorySales object into an array: [{ categoryId, categoryName, revenue, sales }]
     const byCategory = Object.entries(categorySales).map(
       ([categoryId, data]) => ({
         categoryId,
@@ -155,66 +125,31 @@ export class ReportsService {
     return result;
   }
 
-  async generateCustomerRetentionReport(
+  async generateUserRetentionReport(
     query: DateRangeQuery
-  ): Promise<CustomerRetentionReport> {
+  ): Promise<UserRetentionReport> {
     const { timePeriod, year, startDate, endDate } = query;
-    const cacheKey = `reports:customer_retention:${timePeriod}:${
-      year || "all"
-    }:${startDate?.toISOString() || "none"}:${
-      endDate?.toISOString() || "none"
-    }`;
+    const cacheKey = `reports:user_retention:${timePeriod}:${year || "all"}:${
+      startDate?.toISOString() || "none"
+    }:${endDate?.toISOString() || "none"}`;
     const cachedData = await redisClient.get(cacheKey);
 
     if (cachedData) {
       return JSON.parse(cachedData);
     }
 
-    const now = new Date();
-    let currentStartDate: Date | undefined;
-    let previousStartDate: Date | undefined;
-    let previousEndDate: Date | undefined;
-    let yearStart: Date | undefined;
-    let yearEnd: Date | undefined;
-
-    if (year) {
-      yearStart = startOfYear(new Date(year, 0, 1));
-      yearEnd = endOfYear(new Date(year, 0, 1));
-    }
-
-    if (startDate && endDate) {
-      currentStartDate = startDate;
-      previousStartDate = undefined;
-    } else {
-      switch (timePeriod) {
-        case "last7days":
-          currentStartDate = subDays(now, 7);
-          previousStartDate = subDays(now, 14);
-          previousEndDate = subDays(now, 7);
-          break;
-        case "lastMonth":
-          currentStartDate = subMonths(now, 1);
-          previousStartDate = subMonths(now, 2);
-          previousEndDate = subMonths(now, 1);
-          break;
-        case "lastYear":
-          currentStartDate = subYears(now, 1);
-          previousStartDate = subYears(now, 2);
-          previousEndDate = subYears(now, 1);
-          break;
-        case "allTime":
-          currentStartDate = undefined;
-          previousStartDate = undefined;
-          previousEndDate = undefined;
-          break;
-        case "custom":
-          throw new Error("Custom time period requires startDate and endDate");
-      }
-    }
+    const {
+      currentStartDate,
+      currentEndDate,
+      previousStartDate,
+      previousEndDate,
+      yearStart,
+      yearEnd,
+    } = this.getDateRange(query);
 
     const users = await this.analyticsRepository.getUsersByTimePeriod(
       currentStartDate,
-      endDate,
+      currentEndDate,
       yearStart,
       yearEnd
     );
@@ -266,7 +201,7 @@ export class ReportsService {
     // Top Customers
     const topCustomers = users
       .map((user) => ({
-        customerId: user.id,
+        userId: user.id,
         name: user.name || "Unknown",
         email: user.email,
         orderCount: user.orders.length,
@@ -275,12 +210,12 @@ export class ReportsService {
       .sort((a, b) => b.totalSpent - a.totalSpent)
       .slice(0, 5);
 
-    const result: CustomerRetentionReport = {
-      totalCustomers,
+    const result: UserRetentionReport = {
+      totalUsers: totalCustomers,
       retentionRate: Number(retentionRate.toFixed(2)),
       repeatPurchaseRate: Number(repeatPurchaseRate.toFixed(2)),
       lifetimeValue: Number(lifetimeValue.toFixed(2)),
-      topCustomers,
+      topUsers: topCustomers,
     };
 
     await redisClient.setex(cacheKey, 300, JSON.stringify(result));
@@ -300,5 +235,65 @@ export class ReportsService {
       parameters: data.parameters,
       filePath: null,
     });
+  }
+
+  private getDateRange(query: DateRangeQuery): {
+    currentStartDate?: Date;
+    currentEndDate?: Date;
+    previousStartDate?: Date;
+    previousEndDate?: Date;
+    yearStart?: Date;
+    yearEnd?: Date;
+  } {
+    const now = new Date();
+    let currentStartDate: Date | undefined;
+    let currentEndDate: Date | undefined = now;
+    let previousStartDate: Date | undefined;
+    let previousEndDate: Date | undefined;
+    let yearStart: Date | undefined;
+    let yearEnd: Date | undefined;
+
+    if (query.year) {
+      yearStart = startOfYear(new Date(query.year, 0, 1));
+      yearEnd = endOfYear(new Date(query.year, 0, 1));
+    }
+
+    if (query.startDate && query.endDate) {
+      currentStartDate = query.startDate;
+      currentEndDate = query.endDate;
+    } else {
+      switch (query.timePeriod) {
+        case "last7days":
+          currentStartDate = subDays(now, 7);
+          previousStartDate = subDays(now, 14);
+          previousEndDate = subDays(now, 7);
+          break;
+        case "lastMonth":
+          currentStartDate = subMonths(now, 1);
+          previousStartDate = subMonths(now, 2);
+          previousEndDate = subMonths(now, 1);
+          break;
+        case "lastYear":
+          currentStartDate = subYears(now, 1);
+          previousStartDate = subYears(now, 2);
+          previousEndDate = subYears(now, 1);
+          break;
+        case "allTime":
+          currentStartDate = undefined;
+          currentEndDate = undefined;
+          break;
+        case "custom":
+          throw new Error("Custom time period requires startDate and endDate");
+      }
+    }
+
+    return {
+      currentStartDate,
+      currentEndDate,
+      previousStartDate,
+      previousEndDate,
+      yearStart,
+      yearEnd,
+    };
   }
 }

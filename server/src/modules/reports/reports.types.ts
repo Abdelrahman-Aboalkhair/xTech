@@ -1,4 +1,3 @@
-// reports/reports.types.ts
 export interface DateRangeQuery {
   timePeriod: string;
   year?: number;
@@ -25,13 +24,13 @@ export interface SalesReport {
   }[];
 }
 
-export interface CustomerRetentionReport {
-  totalCustomers: number;
+export interface UserRetentionReport {
+  totalUsers: number;
   retentionRate: number;
   repeatPurchaseRate: number;
   lifetimeValue: number;
-  topCustomers: {
-    customerId: string;
+  topUsers: {
+    userId: string;
     name: string;
     email: string;
     orderCount: number;
@@ -39,4 +38,9 @@ export interface CustomerRetentionReport {
   }[];
 }
 
-export type ReportData = SalesReport | CustomerRetentionReport;
+export interface AllReports {
+  sales: SalesReport;
+  userRetention: UserRetentionReport;
+}
+
+export type ReportData = SalesReport | UserRetentionReport | AllReports;
