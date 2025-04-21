@@ -6,6 +6,16 @@ import { parse } from "csv-parse/sync";
 import * as XLSX from "xlsx";
 import prisma from "@/infra/database/database.config";
 
+type ProductUpdateData = Partial<{
+  name: string;
+  description: string;
+  price: number;
+  discount: number;
+  images: string[];
+  stock: number;
+  categoryId?: string;
+}>;
+
 export class ProductService {
   constructor(private productRepository: ProductRepository) {}
   async getAllProducts(queryString: Record<string, any>) {
@@ -152,18 +162,7 @@ export class ProductService {
     return { count: products.length };
   }
 
-  async updateProduct(
-    productId: string,
-    updatedData: Partial<{
-      name: string;
-      description: string;
-      price: number;
-      discount: number;
-      images: string[];
-      stock: number;
-      categoryId?: string;
-    }>
-  ) {
+  async updateProduct(productId: string, updatedData: ProductUpdateData) {
     const existingProduct = await this.productRepository.findProductById(
       productId
     );

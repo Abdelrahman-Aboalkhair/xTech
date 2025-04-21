@@ -1,4 +1,3 @@
-import AppError from "@/shared/errors/AppError";
 import { makeLogsService } from "../logs/logs.factory";
 import { TransactionRepository } from "./transaction.repository";
 import { TRANSACTION_STATUS } from "@prisma/client";
@@ -25,6 +24,8 @@ export class TransactionService {
       id,
       data
     );
+
+    return transaction;
   }
   async deleteTransaction(id: string) {
     await this.transactionRepository.deleteTransaction(id);

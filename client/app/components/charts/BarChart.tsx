@@ -21,7 +21,18 @@ const BarChart: React.FC<Props> = ({
   const options = {
     chart: {
       id: "bar-chart",
-      toolbar: { show: false },
+      toolbar: {
+        show: true,
+        tools: {
+          download: true,
+          selection: false,
+          zoom: false,
+          zoomin: false,
+          zoomout: false,
+          pan: false,
+          reset: false,
+        },
+      },
       zoom: { enabled: false },
     },
     colors: [color],

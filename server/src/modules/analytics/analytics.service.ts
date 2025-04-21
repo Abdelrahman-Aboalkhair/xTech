@@ -1,16 +1,27 @@
+import { AnalyticsRepository } from "./analytics.repository";
 import {
   DateRangeQuery,
   AnalyticsOverview,
   ProductPerformance,
   UserAnalytics,
 } from "./analytics.types";
-import { PrismaClient } from "@prisma/client";
-
+import prisma from "@/infra/database/database.config";
 export class AnalyticsService {
-  private prisma: PrismaClient;
+  constructor(private analyticsRepository: AnalyticsRepository) {}
 
-  constructor() {
-    this.prisma = new PrismaClient();
+  async createInteraction(data: {
+    userId?: string;
+    sessionId?: string;
+    productId?: string;
+    type: string;
+    performedBy?: string;
+  }) {
+    return this.analyticsRepository.createInteraction({
+      userId: data.userId,
+      sessionId: data.sessionId,
+      productId: data.productId,
+      type: data.type,
+    });
   }
 
   async getAnalyticsOverview(
@@ -19,7 +30,7 @@ export class AnalyticsService {
     const { startDate, endDate } = this.getDateRange(query);
 
     // Fetch orders within the date range
-    const orders = await this.prisma.order.findMany({
+    const orders = await prisma.order.findMany({
       where: {
         createdAt: {
           gte: startDate,
@@ -40,7 +51,7 @@ export class AnalyticsService {
 
     // Calculate changes (example: compare to previous period)
     const prevPeriod = this.getPreviousPeriod(query);
-    const prevOrders = await this.prisma.order.findMany({
+    const prevOrders = await prisma.order.findMany({
       where: {
         createdAt: {
           gte: prevPeriod.startDate,
@@ -105,7 +116,7 @@ export class AnalyticsService {
   ): Promise<ProductPerformance[]> {
     const { startDate, endDate } = this.getDateRange(query);
 
-    const orderItems = await this.prisma.orderItem.findMany({
+    const orderItems = await prisma.orderItem.findMany({
       where: {
         order: {
           createdAt: {
@@ -137,7 +148,7 @@ export class AnalyticsService {
   async getUserAnalytics(query: DateRangeQuery): Promise<UserAnalytics> {
     const { startDate, endDate } = this.getDateRange(query);
 
-    const orders = await this.prisma.order.findMany({
+    const orders = await prisma.order.findMany({
       where: {
         createdAt: {
           gte: startDate,
@@ -165,7 +176,7 @@ export class AnalyticsService {
       uniqueUsers.size > 0 ? (repeatUsers.size / uniqueUsers.size) * 100 : 0;
 
     // Engagement score (example: based on interactions)
-    const interactions = await this.prisma.interaction.findMany({
+    const interactions = await prisma.interaction.findMany({
       where: {
         createdAt: {
           gte: startDate,
@@ -177,7 +188,7 @@ export class AnalyticsService {
 
     // Changes
     const prevPeriod = this.getPreviousPeriod(query);
-    const prevOrders = await this.prisma.order.findMany({
+    const prevOrders = await prisma.order.findMany({
       where: {
         createdAt: {
           gte: prevPeriod.startDate,
@@ -235,7 +246,7 @@ export class AnalyticsService {
   }
 
   async getYearRange(): Promise<{ minYear: number; maxYear: number }> {
-    const orders = await this.prisma.order.aggregate({
+    const orders = await prisma.order.aggregate({
       _min: { createdAt: true },
       _max: { createdAt: true },
     });
@@ -325,7 +336,7 @@ export class AnalyticsService {
         current.getMonth() + 1,
         0
       );
-      const orders = await this.prisma.order.findMany({
+      const orders = await prisma.order.findMany({
         where: {
           createdAt: {
             gte: monthStart,
@@ -380,7 +391,7 @@ export class AnalyticsService {
         current.getMonth() + 1,
         0
       );
-      const interactions = await this.prisma.interaction.findMany({
+      const interactions = await prisma.interaction.findMany({
         where: {
           createdAt: {
             gte: monthStart,

@@ -179,7 +179,6 @@ const UsersDashboard = () => {
       await updateUser(data).unwrap();
       setIsModalOpen(false);
       setEditingUser(null);
-      refetch();
       showToast("User updated successfully", "success");
     } catch (err) {
       console.error("Failed to update user:", err);
@@ -193,7 +192,6 @@ const UsersDashboard = () => {
       await deleteUser(userToDelete).unwrap();
       setIsConfirmModalOpen(false);
       setUserToDelete(null);
-      refetch();
       showToast("User deleted successfully", "success");
     } catch (err) {
       console.error("Failed to delete user:", err);

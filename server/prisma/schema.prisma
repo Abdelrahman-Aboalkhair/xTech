@@ -230,7 +230,7 @@ model Category {
   id          String    @id @default(uuid())
   slug        String    @unique
   name        String
-  description String? // Added to support DashboardSearchBar filtering
+  description String? 
   products    Product[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -240,14 +240,14 @@ model Category {
 
 model Interaction {
   id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionId String?  
   productId String?
   product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
   type      String
   createdAt DateTime @default(now())
-
-  @@index([userId, productId])
+  @@index([userId, sessionId, productId]) 
 }
 
 model Report {

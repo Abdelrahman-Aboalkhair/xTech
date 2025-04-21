@@ -12,7 +12,7 @@ export class UserController {
     async (req: Request, res: Response): Promise<void> => {
       const users = await this.userService.getAllUsers();
       sendResponse(res, 200, {
-        data: users,
+        data: { users },
         message: "Users fetched successfully",
       });
     }
@@ -23,7 +23,7 @@ export class UserController {
       const { id } = req.params;
       const user = await this.userService.getUserById(id);
       sendResponse(res, 200, {
-        data: user,
+        data: { user },
         message: "User fetched successfully",
       });
     }
@@ -34,7 +34,7 @@ export class UserController {
       const { email } = req.params;
       const user = await this.userService.getUserByEmail(email);
       sendResponse(res, 200, {
-        data: user,
+        data: { user },
         message: "User fetched successfully",
       });
     }
@@ -46,7 +46,7 @@ export class UserController {
     const user = await this.userService.getMe(id);
     console.log("user: ", user);
     sendResponse(res, 200, {
-      data: user,
+      data: { user },
       message: "User fetched successfully",
     });
   });
@@ -57,7 +57,7 @@ export class UserController {
       const updatedData = req.body;
       const user = await this.userService.updateMe(id, updatedData);
       sendResponse(res, 200, {
-        data: user,
+        data: { user },
         message: "User updated successfully",
       });
       const start = Date.now();

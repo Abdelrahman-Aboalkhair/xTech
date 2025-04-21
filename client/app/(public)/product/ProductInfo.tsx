@@ -1,9 +1,11 @@
 import React from "react";
 import Rating from "@/app/components/feedback/Rating";
-import SizeSelector from "@/app/components/atoms/SizeSelector";
 import { CheckCircle, Truck, RotateCcw } from "lucide-react";
+import { useAddToCartMutation } from "@/app/store/apis/CartApi";
+import useToast from "@/app/hooks/ui/useToast";
 
 interface ProductInfoProps {
+  id: string;
   name: string;
   averageRating: number;
   reviewCount: number;
@@ -14,6 +16,7 @@ interface ProductInfoProps {
 }
 
 const ProductInfo: React.FC<ProductInfoProps> = ({
+  id,
   name,
   averageRating,
   reviewCount,
@@ -22,9 +25,20 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
   discount,
   description,
 }) => {
+  const { showToast } = useToast();
   const discountedPrice = (price * (1 - discount / 100)).toFixed(2);
   const isDiscounted = discount > 0;
+  const [addToCart, { isLoading }] = useAddToCartMutation();
 
+  const handleAddToCart = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    try {
+      await addToCart({ productId: id, quantity: 1 }).unwrap();
+    } catch (error: any) {
+      showToast(error.data.message, "error");
+      console.error("Error adding to cart:", error);
+    }
+  };
   return (
     <div className="flex flex-col gap-4 px-4 md:px-8 py-6">
       {/* Product Name */}
@@ -61,16 +75,14 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
         <p className="text-gray-700 leading-relaxed text-sm">{description}</p>
       )}
 
-      {/* Size Selector */}
-      <div className="pt-2">
-        <SizeSelector />
-      </div>
-
       {/* Action Buttons */}
       <div className="mt-6 flex flex-col sm:flex-row items-stretch gap-2">
         <button
           disabled={!stock}
+          onClick={handleAddToCart}
           className={`w-full sm:w-auto px-8 py-3 text-sm font-medium text-white rounded-xl transition duration-300 ${
+            isLoading ? "opacity-50 cursor-not-allowed" : ""
+          } ${
             stock
               ? "bg-indigo-600 hover:bg-indigo-700"
               : "bg-gray-400 cursor-not-allowed"

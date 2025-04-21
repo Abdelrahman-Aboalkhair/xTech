@@ -1,7 +1,7 @@
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import { Controller } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ImageUploaderProps {
   control: any;
@@ -23,8 +23,22 @@ const ImageUploader = ({
   const images = watch("images") || [];
   const [previews, setPreviews] = useState(existingImages || []);
 
-  const handleFileUpload = (e) => {
-    const files = Array.from(e.target.files);
+  useEffect(() => {
+    if (existingImages && existingImages.length > 0) {
+      setPreviews(existingImages);
+    } else if (images && images.length > 0) {
+      // If images are URLs (strings), use them directly; otherwise, create previews
+      const newPreviews = images.map((img) =>
+        typeof img === "string" ? img : URL.createObjectURL(img)
+      );
+      setPreviews(newPreviews);
+    } else {
+      setPreviews([]);
+    }
+  }, [existingImages, images]);
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
     if (!files.length) return;
 
     // Generate previews for display
@@ -35,7 +49,7 @@ const ImageUploader = ({
     setValue("images", [...images, ...files]);
   };
 
-  const removeImage = (index) => {
+  const removeImage = (index: number) => {
     const newImages = [...images];
     const newPreviews = [...previews];
     newImages.splice(index, 1);

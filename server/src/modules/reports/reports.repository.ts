@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { DateRangeQuery } from "./reports.types";
 
 export class ReportsRepository {
   private prisma: PrismaClient;
@@ -12,7 +11,7 @@ export class ReportsRepository {
     type: string;
     format: string;
     userId: string;
-    parameters: DateRangeQuery;
+    parameters: any;
     filePath: string | null;
   }) {
     return this.prisma.report.create({

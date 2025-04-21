@@ -14,6 +14,40 @@ export class AnalyticsController {
 
   constructor(private analyticsService: AnalyticsService) {}
 
+  createInteraction = asyncHandler(async (req: Request, res: Response) => {
+    const { productId, type } = req.body;
+    const user = req.user;
+    const sessionId = req.session.id;
+
+    const validTypes = ["view", "click", "other"];
+    if (!type || !validTypes.includes(type)) {
+      throw new AppError(
+        400,
+        "Invalid interaction type. Use: view, click, or other."
+      );
+    }
+
+    const interaction = await this.analyticsService.createInteraction({
+      userId: user?.id,
+      sessionId, // Always include sessionId
+      productId,
+      type,
+      performedBy: user?.id,
+    });
+
+    this.logsService.info("Interaction recorded", {
+      userId: user?.id,
+      sessionId,
+      interactionType: type,
+      productId,
+    });
+
+    sendResponse(res, 200, {
+      data: { interaction },
+      message: "Interaction recorded successfully",
+    });
+  });
+
   getYearRange = asyncHandler(async (req: Request, res: Response) => {
     const yearRange = await this.analyticsService.getYearRange();
     sendResponse(res, 200, {

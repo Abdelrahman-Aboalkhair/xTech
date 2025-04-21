@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       "i5.walmartimages.com",
       "lh3.googleusercontent.com",
       "res.cloudinary.com",
+      "pbs.twimg.com",
     ],
   },
 };

@@ -686,3 +686,20 @@ Learn more about webhook signing and explore webhook integration examples for va
 [2025-04-21T13:22:58.348Z] [31MERROR[39M: Invalid type. Use: overview, products, or users
 [2025-04-21T14:17:09.096Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-21T14:44:43.934Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-21T17:39:13.772Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-21T18:11:43.871Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-21T18:11:43.873Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-21T18:11:43.874Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-21T18:11:43.956Z] [31MERROR[39M: Refresh token not found
+[2025-04-21T18:11:43.968Z] [31MERROR[39M: Refresh token not found
+[2025-04-21T18:26:44.413Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-21T18:26:51.362Z] [31MERROR[39M: Validation errors:
+[2025-04-21T18:26:51.364Z] [31MERROR[39M: Validation failed
+[2025-04-21T18:28:28.232Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-21T18:41:11.172Z] [31MERROR[39M: Unauthorized, please log in
+[2025-04-21T18:41:11.287Z] [31MERROR[39M: Refresh token not found
+[2025-04-21T18:59:01.537Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-21T19:00:18.217Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-21T19:02:32.128Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-21T19:12:47.305Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-21T19:32:23.182Z] [31MERROR[39M: Invalid access token, please log in

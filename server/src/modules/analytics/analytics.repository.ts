@@ -92,10 +92,16 @@ export class AnalyticsRepository {
       include: { user: true, product: true },
     });
   }
-  async createInteraction(data: any) {
+  async createInteraction(data: {
+    userId?: string;
+    sessionId?: string;
+    productId?: string;
+    type: string;
+  }) {
     return this.prisma.interaction.create({
       data: {
         userId: data.userId,
+        sessionId: data.sessionId,
         productId: data.productId,
         type: data.type,
       },

@@ -12,13 +12,10 @@ import { GET_SINGLE_PRODUCT } from "@/app/gql/Product";
 const ProductDetailsPage = () => {
   const { user } = useAppSelector((state) => state.auth);
   const { slug } = useParams();
-  console.log("slug: ", slug);
-  const { data, loading, error } = useQuery(GET_SINGLE_PRODUCT, {
+  const { data, loading } = useQuery(GET_SINGLE_PRODUCT, {
     variables: { slug },
   });
   const product = data?.product;
-  console.log("product from gql => ", product);
-  console.log("error => ", error);
 
   const userId = user?.id;
   const isAdmin = user?.role === "ADMIN";
@@ -41,6 +38,7 @@ const ProductDetailsPage = () => {
       <div className="w-[84%] mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-10 pt-[3rem]">
         <ProductImageGallery images={product.images} name={product.name} />
         <ProductInfo
+          id={product.id}
           name={product.name}
           averageRating={product.averageRating}
           reviewCount={product.reviewCount}

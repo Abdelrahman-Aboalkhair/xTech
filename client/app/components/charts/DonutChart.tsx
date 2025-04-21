@@ -15,12 +15,24 @@ const DonutChart: React.FC<Props> = ({
   labels,
   colorScheme = ["#3b82f6", "#10b981", "#ef4444", "#f59e0b"],
 }) => {
-  const options = {
+  const options: ApexCharts.ApexOptions = {
     chart: {
       id: "donut-chart",
-      toolbar: { show: false },
+      toolbar: {
+        show: true,
+        tools: {
+          download: true,
+          selection: false,
+          zoom: false,
+          zoomin: false,
+          zoomout: false,
+          pan: false,
+          reset: false,
+        },
+      },
       zoom: { enabled: false },
     },
+
     colors: colorScheme,
     dataLabels: { enabled: true },
     stroke: {

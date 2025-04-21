@@ -5,7 +5,7 @@ export interface UserFormData {
   id: string | number;
   name: string;
   email: string;
-  role: "admin" | "user"; // Assuming roles from your table
+  role: "admin" | "user";
   emailVerified: boolean;
 }
 

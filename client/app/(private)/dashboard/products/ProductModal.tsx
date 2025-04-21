@@ -38,12 +38,17 @@ const ProductModal: React.FC<ProductModalProps> = ({
       stock: 0,
       categoryId: "",
       description: "",
+      images: [],
     },
   });
 
   useEffect(() => {
     if (initialData) {
-      form.reset(initialData);
+      console.log("initialData", initialData);
+      form.reset({
+        ...initialData,
+        images: initialData.images || [],
+      });
     } else {
       form.reset({
         name: "",
@@ -52,7 +57,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
         stock: 0,
         categoryId: "",
         description: "",
-        images: [""],
+        images: [],
       });
     }
   }, [initialData, form]);

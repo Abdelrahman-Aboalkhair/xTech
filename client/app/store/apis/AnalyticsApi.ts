@@ -14,6 +14,16 @@ export const analyticsApi = apiSlice.injectEndpoints({
         },
       }),
     }),
+    createInteraction: builder.mutation<
+      { message: string; interaction: any },
+      { userId: string; productId?: string; type: string }
+    >({
+      query: (data) => ({
+        url: "/analytics/interactions",
+        method: "POST",
+        body: data,
+      }),
+    }),
 
     getYearRange: builder.query<any, void>({
       query: () => ({
@@ -89,6 +99,7 @@ export const analyticsApi = apiSlice.injectEndpoints({
 });
 
 export const {
+  useCreateInteractionMutation,
   useGetOverviewQuery,
   useGetYearRangeQuery,
   useGetProductPerformanceQuery,

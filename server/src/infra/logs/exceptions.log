@@ -1,0 +1,366 @@
+[2025-04-21T17:47:24.250Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/reports/reports.repository.ts[0m:[93m23[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'DateRangeQuery' is not assignable to type 'JsonNull | InputJsonValue'.
+  Type 'DateRangeQuery' is not assignable to type 'InputJsonObject'.
+    Index signature for type 'string' is missing in type 'DateRangeQuery'.
+
+[7m23[0m         parameters: data.parameters,
+[7m  [0m [91m        ~~~~~~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m23669[0m:[93m5[0m
+    [7m23669[0m     parameters: JsonNullValueInput | InputJsonValue
+    [7m     [0m [96m    ~~~~~~~~~~[0m
+    The expected type comes from property 'parameters' which is declared here on type '(Without<ReportCreateInput, ReportUncheckedCreateInput> & ReportUncheckedCreateInput) | (Without<...> & ReportCreateInput)'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/reports/reports.repository.ts[0m:[93m23[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'DateRangeQuery' is not assignable to type 'JsonNull | InputJsonValue'.
+  Type 'DateRangeQuery' is not assignable to type 'InputJsonObject'.
+    Index signature for type 'string' is missing in type 'DateRangeQuery'.
+
+[7m23[0m         parameters: data.parameters,
+[7m  [0m [91m        ~~~~~~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m23669[0m:[93m5[0m
+    [7m23669[0m     parameters: JsonNullValueInput | InputJsonValue
+    [7m     [0m [96m    ~~~~~~~~~~[0m
+    The expected type comes from property 'parameters' which is declared here on type '(Without<ReportCreateInput, ReportUncheckedCreateInput> & ReportUncheckedCreateInput) | (Without<...> & ReportCreateInput)'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-21T18:00:03.763Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m22[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'analyticsRepository' does not exist on type 'AnalyticsService'.
+
+[7m22[0m     return this.analyticsRepository.createInteraction({
+[7m  [0m [91m                ~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m22[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'analyticsRepository' does not exist on type 'AnalyticsService'.
+
+[7m22[0m     return this.analyticsRepository.createInteraction({
+[7m  [0m [91m                ~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.factory.ts:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-21T18:00:34.251Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m11[0m:[93m11[0m - [91merror[0m[90m TS2564: [0mProperty 'prisma' has no initializer and is not definitely assigned in the constructor.
+
+[7m11[0m   private prisma: PrismaClient;
+[7m  [0m [91m          ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m11[0m:[93m11[0m - [91merror[0m[90m TS2564: [0mProperty 'prisma' has no initializer and is not definitely assigned in the constructor.
+
+[7m11[0m   private prisma: PrismaClient;
+[7m  [0m [91m          ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.factory.ts:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-21T18:01:37.698Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/analytics.factory.ts[0m:[93m5[0m:[93m19[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m5[0m   const service = new AnalyticsService();
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/modules/analytics/analytics.service.ts[0m:[93m10[0m:[93m15[0m
+    [7m10[0m   constructor(private analyticsRepository: AnalyticsRepository) {}
+    [7m  [0m [96m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'analyticsRepository' was not provided.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/analytics.factory.ts[0m:[93m5[0m:[93m19[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 0.
+
+[7m5[0m   const service = new AnalyticsService();
+[7m [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/modules/analytics/analytics.service.ts[0m:[93m10[0m:[93m15[0m
+    [7m10[0m   constructor(private analyticsRepository: AnalyticsRepository) {}
+    [7m  [0m [96m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'analyticsRepository' was not provided.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.routes.ts:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-21T18:16:06.346Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m12[0m:[93m23[0m - [91merror[0m[90m TS2304: [0mCannot find name 'asyncHandler'.
+
+[7m12[0m   createInteraction = asyncHandler(async (req: Request, res: Response) => {
+[7m  [0m [91m                      ~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'userId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m            ~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'sessionId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                    ~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'productId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                               ~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m43[0m - [91merror[0m[90m TS2339: [0mProperty 'type' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                                          ~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m14[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request'.
+
+[7m14[0m     const user = req.user; // From auth middleware
+[7m  [0m [91m                     ~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m17[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AppError'.
+
+[7m17[0m       throw new AppError(400, "Either userId or sessionId is required.");
+[7m  [0m [91m                ~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m22[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AppError'.
+
+[7m22[0m       throw new AppError(
+[7m  [0m [91m                ~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m28[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'analyticsService' does not exist on type 'AnalyticsService'.
+
+[7m28[0m     const interaction = await this.analyticsService.createInteraction({
+[7m  [0m [91m                                   ~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m36[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'logsService' does not exist on type 'AnalyticsService'.
+
+[7m36[0m     this.logsService.info("Interaction recorded", {
+[7m  [0m [91m         ~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m38[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'session' does not exist on type 'Request'.
+
+[7m38[0m       sessionId: sessionId || req.session?.id,
+[7m  [0m [91m                                  ~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m44[0m:[93m8[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'Number' has no call signatures.
+
+[7m44[0m       .status(201)
+[7m  [0m [91m       ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m12[0m:[93m23[0m - [91merror[0m[90m TS2304: [0mCannot find name 'asyncHandler'.
+
+[7m12[0m   createInteraction = asyncHandler(async (req: Request, res: Response) => {
+[7m  [0m [91m                      ~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'userId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m            ~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'sessionId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                    ~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'productId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                               ~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m43[0m - [91merror[0m[90m TS2339: [0mProperty 'type' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                                          ~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m14[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request'.
+
+[7m14[0m     const user = req.user; // From auth middleware
+[7m  [0m [91m                     ~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m17[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AppError'.
+
+[7m17[0m       throw new AppError(400, "Either userId or sessionId is required.");
+[7m  [0m [91m                ~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m22[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AppError'.
+
+[7m22[0m       throw new AppError(
+[7m  [0m [91m                ~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m28[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'analyticsService' does not exist on type 'AnalyticsService'.
+
+[7m28[0m     const interaction = await this.analyticsService.createInteraction({
+[7m  [0m [91m                                   ~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m36[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'logsService' does not exist on type 'AnalyticsService'.
+
+[7m36[0m     this.logsService.info("Interaction recorded", {
+[7m  [0m [91m         ~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m38[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'session' does not exist on type 'Request'.
+
+[7m38[0m       sessionId: sessionId || req.session?.id,
+[7m  [0m [91m                                  ~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m44[0m:[93m8[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'Number' has no call signatures.
+
+[7m44[0m       .status(201)
+[7m  [0m [91m       ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.factory.ts:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-21T18:16:18.652Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m12[0m:[93m23[0m - [91merror[0m[90m TS2304: [0mCannot find name 'asyncHandler'.
+
+[7m12[0m   createInteraction = asyncHandler(async (req: Request, res: Response) => {
+[7m  [0m [91m                      ~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'userId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m            ~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'sessionId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                    ~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'productId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                               ~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m43[0m - [91merror[0m[90m TS2339: [0mProperty 'type' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                                          ~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m14[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request'.
+
+[7m14[0m     const user = req.user; // From auth middleware
+[7m  [0m [91m                     ~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m17[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AppError'.
+
+[7m17[0m       throw new AppError(400, "Either userId or sessionId is required.");
+[7m  [0m [91m                ~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m22[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AppError'.
+
+[7m22[0m       throw new AppError(
+[7m  [0m [91m                ~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m28[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'analyticsService' does not exist on type 'AnalyticsService'.
+
+[7m28[0m     const interaction = await this.analyticsService.createInteraction({
+[7m  [0m [91m                                   ~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m36[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'logsService' does not exist on type 'AnalyticsService'.
+
+[7m36[0m     this.logsService.info("Interaction recorded", {
+[7m  [0m [91m         ~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m38[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'session' does not exist on type 'Request'.
+
+[7m38[0m       sessionId: sessionId || req.session?.id,
+[7m  [0m [91m                                  ~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m44[0m:[93m8[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'Number' has no call signatures.
+
+[7m44[0m       .status(201)
+[7m  [0m [91m       ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m12[0m:[93m23[0m - [91merror[0m[90m TS2304: [0mCannot find name 'asyncHandler'.
+
+[7m12[0m   createInteraction = asyncHandler(async (req: Request, res: Response) => {
+[7m  [0m [91m                      ~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'userId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m            ~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'sessionId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                    ~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'productId' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                               ~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m13[0m:[93m43[0m - [91merror[0m[90m TS2339: [0mProperty 'type' does not exist on type 'ReadableStream<Uint8Array<ArrayBufferLike>> | null'.
+
+[7m13[0m     const { userId, sessionId, productId, type } = req.body;
+[7m  [0m [91m                                          ~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m14[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request'.
+
+[7m14[0m     const user = req.user; // From auth middleware
+[7m  [0m [91m                     ~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m17[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AppError'.
+
+[7m17[0m       throw new AppError(400, "Either userId or sessionId is required.");
+[7m  [0m [91m                ~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m22[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AppError'.
+
+[7m22[0m       throw new AppError(
+[7m  [0m [91m                ~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m28[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'analyticsService' does not exist on type 'AnalyticsService'.
+
+[7m28[0m     const interaction = await this.analyticsService.createInteraction({
+[7m  [0m [91m                                   ~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m36[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'logsService' does not exist on type 'AnalyticsService'.
+
+[7m36[0m     this.logsService.info("Interaction recorded", {
+[7m  [0m [91m         ~~~~~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m38[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'session' does not exist on type 'Request'.
+
+[7m38[0m       sessionId: sessionId || req.session?.id,
+[7m  [0m [91m                                  ~~~~~~~[0m
+[96msrc/modules/analytics/analytics.service.ts[0m:[93m44[0m:[93m8[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'Number' has no call signatures.
+
+[7m44[0m       .status(201)
+[7m  [0m [91m       ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.factory.ts:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)

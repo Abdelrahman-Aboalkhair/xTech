@@ -46,6 +46,7 @@ const ProductsDashboard = () => {
   const [editingProduct, setEditingProduct] = useState<ProductFormData | null>(
     null
   );
+  console.log("editingProduct => ", editingProduct);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
   const [isFileUploadOpen, setIsFileUploadOpen] = useState(false);
@@ -85,21 +86,35 @@ const ProductsDashboard = () => {
   const handleUpdateProduct = async (data: ProductFormData) => {
     if (!editingProduct) return;
 
-    const formattedPrice = Number(data.price);
-    const formattedDiscount = Number(data.discount);
-    const formattedStock = Number(data.stock);
+    const payload = new FormData();
+
+    payload.append("name", data.name || "");
+    payload.append("price", data.price.toString());
+    payload.append("discount", data.discount.toString());
+    payload.append("stock", data.stock.toString());
+    payload.append("description", data.description || "");
+    payload.append("categoryId", data.categoryId || "");
+
+    if (data.images && Array.isArray(data.images)) {
+      data.images.forEach((file: any) => {
+        // Include both File objects and existing URLs
+        payload.append("images", file);
+      });
+    }
+
+    // Log payload for debugging
+    console.log("FormData payload:");
+    for (const [key, value] of payload.entries()) {
+      console.log(`${key}: ${value instanceof File ? value.name : value}`);
+    }
 
     try {
       await updateProduct({
-        ...data,
-        price: formattedPrice,
-        discount: formattedDiscount,
-        stock: formattedStock,
         id: editingProduct.id,
+        data: payload,
       }).unwrap();
       setIsModalOpen(false);
       setEditingProduct(null);
-
       showToast("Product updated successfully", "success");
     } catch (err) {
       console.error("Failed to update product:", err);

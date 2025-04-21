@@ -30,8 +30,10 @@ export class TransactionController {
     async (req: Request, res: Response) => {
       const { id } = req.params;
       const { status } = req.body;
+      console.log("status => ", status);
+
       const updatedTransaction =
-        await this.transactionService.updateTransactionStatus(id, status);
+        await this.transactionService.updateTransactionStatus(id, { status });
 
       sendResponse(res, 200, {
         data: { updatedTransaction },
@@ -39,6 +41,7 @@ export class TransactionController {
       });
     }
   );
+
   deleteTransaction = asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
     await this.transactionService.deleteTransaction(id);

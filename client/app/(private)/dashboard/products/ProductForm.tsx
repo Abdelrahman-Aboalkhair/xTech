@@ -205,11 +205,12 @@ const ProductForm: React.FC<ProductFormProps> = ({
 
       <div className="md:col-span-2">
         <ImageUploader
-          label={"Product Images"}
+          label="Product Images"
           control={control}
           errors={errors}
           setValue={setValue}
           watch={watch}
+          existingImages={watch("images") || []}
         />
       </div>
 

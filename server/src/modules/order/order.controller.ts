@@ -10,7 +10,7 @@ export class OrderController {
   getAllOrders = asyncHandler(async (req: Request, res: Response) => {
     const orders = await this.orderService.getAllOrders();
     sendResponse(res, 200, {
-      data: orders,
+      data: { orders },
       message: "Orders retrieved successfully",
     });
   });
@@ -22,7 +22,7 @@ export class OrderController {
     }
     const orders = await this.orderService.getUserOrders(userId);
     sendResponse(res, 200, {
-      data: orders,
+      data: { orders },
       message: "Orders retrieved successfully",
     });
   });
@@ -35,7 +35,7 @@ export class OrderController {
     }
     const order = await this.orderService.getOrderDetails(orderId, userId);
     sendResponse(res, 200, {
-      data: order,
+      data: { order },
       message: "Order details retrieved successfully",
     });
   });

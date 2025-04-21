@@ -14,6 +14,14 @@ router.get("/:id", productController.getProductById);
 router.get("/slug/:slug", productController.getProductBySlug);
 router.get("/:productId", recommendationController.getRecommendations);
 
+router.put(
+  "/:id",
+  protect,
+  authorizeRole("ADMIN", "SUPERADMIN"),
+  upload.array("images", 10),
+  productController.updateProduct
+);
+
 router.post(
   "/",
   protect,

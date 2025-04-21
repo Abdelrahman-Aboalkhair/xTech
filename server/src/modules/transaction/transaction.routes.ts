@@ -21,7 +21,7 @@ router.get(
 );
 
 router.put(
-  "/:id",
+  "/status/:id",
   protect,
   authorizeRole("ADMIN", "SUPERADMIN"),
   transactionController.updateTransactionStatus

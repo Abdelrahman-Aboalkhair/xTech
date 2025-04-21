@@ -118,16 +118,46 @@ export class ProductController {
   updateProduct = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
       const { id: productId } = req.params;
-      const updatedData = req.body;
+      const { name, description, price, discount, stock, categoryId } =
+        req.body;
+      console.log("req.body => ", req.body);
+
+      const files = req.files as Express.Multer.File[];
+      console.log("files => ", files);
+
+      // Format number values
+      const formattedPrice = price !== undefined ? Number(price) : undefined;
+      const formattedDiscount =
+        discount !== undefined ? Number(discount) : undefined;
+      const formattedStock = stock !== undefined ? Number(stock) : undefined;
+
+      let imageUrls: string[] = [];
+      if (Array.isArray(files) && files.length > 0) {
+        const uploadedImages = await uploadToCloudinary(files);
+        imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
+      }
+
+      // Prepare update payload
+      const updatedData: any = {
+        ...(name && { name, slug: slugify(name) }),
+        ...(description && { description }),
+        ...(formattedPrice !== undefined && { price: formattedPrice }),
+        ...(formattedDiscount !== undefined && { discount: formattedDiscount }),
+        ...(formattedStock !== undefined && { stock: formattedStock }),
+        ...(imageUrls.length > 0 && { images: imageUrls }),
+        ...(categoryId && { categoryId }),
+      };
 
       const product = await this.productService.updateProduct(
         productId,
         updatedData
       );
+
       sendResponse(res, 200, {
         data: product,
         message: "Product updated successfully",
       });
+
       const start = Date.now();
       const end = Date.now();
 

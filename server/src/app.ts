@@ -38,13 +38,12 @@ export const createApp = async () => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser(process.env.COOKIE_SECRET, cookieParserOptions));
 
-  // Session & Passport
   app.use(
     session({
       store: new RedisStore({ client: redisClient }),
       secret: process.env.SESSION_SECRET!,
       resave: false,
-      saveUninitialized: false,
+      saveUninitialized: true, //** set to true to track new sessions for interactions */
       cookie: {
         secure: process.env.NODE_ENV === "production",
         maxAge: 1000 * 60 * 60 * 24 * 7,

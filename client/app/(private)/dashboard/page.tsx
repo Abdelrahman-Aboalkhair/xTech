@@ -11,6 +11,7 @@ import useFormatPrice from "@/app/hooks/ui/useFormatPrice";
 import { useQuery } from "@apollo/client";
 import { GET_ANALYTICS_OVERVIEW } from "@/app/gql/Dashboard";
 import CustomLoader from "@/app/components/feedback/CustomLoader";
+import RevenueOverTimeChart from "@/app/components/charts/RevenueOverTimeChart";
 
 interface FormData {
   timePeriod: string;
@@ -60,7 +61,7 @@ const Dashboard = () => {
   return (
     <ProtectedRoute requiredRoles={["ADMIN", "SUPERADMIN"]}>
       <motion.div
-        className="p-2 min-h-screen space-y-4"
+        className="p-2 min-h-screen space-y-4 "
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -83,7 +84,14 @@ const Dashboard = () => {
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <StatsCard
+            title="Total Revenue"
+            value={formatPrice(data?.revenueAnalytics?.totalRevenue || 0)}
+            percentage={data?.revenueAnalytics?.changes?.revenue}
+            caption="since last period"
+            icon={<DollarSign className="w-5 h-5" />}
+          />
           <StatsCard
             title="Total Revenue"
             value={formatPrice(data?.revenueAnalytics?.totalRevenue || 0)}
@@ -106,7 +114,7 @@ const Dashboard = () => {
             icon={<Users className="w-5 h-5" />}
           />
         </div>
-        <div className="grid grid-cols-1 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <AreaChart
             title="Revenue Trends"
             data={data?.revenueAnalytics?.monthlyTrends?.revenue || []}
@@ -114,6 +122,7 @@ const Dashboard = () => {
             color="#22c55e"
             percentageChange={data?.revenueAnalytics?.changes?.revenue}
           />
+          <RevenueOverTimeChart startDate="2023-01-01" endDate="2023-12-31" />
         </div>
       </motion.div>
     </ProtectedRoute>

@@ -1,13 +1,13 @@
 "use client";
-import React from "react";
-import { Heart, Eye, ShoppingCart, Loader2 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect } from "react";
+import { Heart, Eye } from "lucide-react";
+import { motion } from "framer-motion";
 import { Product } from "@/app/types/productTypes";
 import Image from "next/image";
 import Link from "next/link";
-import { useAddToCartMutation } from "@/app/store/apis/CartApi";
 import Rating from "@/app/components/feedback/Rating";
-import useToast from "@/app/hooks/ui/useToast";
+import useTrackInteraction from "@/app/hooks/miscellaneous/useTrackInteraction";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   product: Product;
@@ -17,22 +17,18 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  hoveredProductId,
   setHoveredProductId,
 }) => {
-  const { showToast } = useToast();
-  console.log("product.slug => ", product.slug);
-  const [addToCart, { isLoading }] = useAddToCartMutation();
-  const isHovered = hoveredProductId === product.id;
+  const { trackInteraction } = useTrackInteraction();
+  const router = useRouter();
 
-  const handleAddToCart = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    try {
-      await addToCart({ productId: product.id, quantity: 1 }).unwrap();
-    } catch (error) {
-      showToast(error.data.message, "error");
-      console.error("Error adding to cart:", error);
-    }
+  useEffect(() => {
+    trackInteraction(product.id, "view");
+  }, [product.id, trackInteraction]);
+
+  const handleClick = () => {
+    trackInteraction(product.id, "click");
+    router.push(`/product/${product.slug}`);
   };
 
   return (
@@ -43,6 +39,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       initial={{ opacity: 0.9 }}
       whileHover={{ scale: 1.03, opacity: 1 }}
       transition={{ duration: 0.3 }}
+      onClick={handleClick}
     >
       {/* Image Container */}
       <div className="relative w-full h-48 bg-gray-50 flex items-center justify-center overflow-hidden">
@@ -89,7 +86,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* Details Container - Flex Grow to take available space */}
       <div className="p-4 flex flex-col flex-grow">
         <Link href={`/product/${product.slug}`} className="block flex-grow">
           <h3 className="font-semibold text-gray-800 text-lg mb-2 line-clamp-1 hover:text-indigo-600 transition-colors">
@@ -114,49 +110,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </div>
           </div>
         </Link>
-
-        <div className="h-10 mt-auto relative">
-          <AnimatePresence>
-            {isHovered ? (
-              <motion.button
-                onClick={handleAddToCart}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className={`absolute inset-0 w-full py-2 rounded-lg flex items-center justify-center space-x-2 transition-all duration-300 ${
-                  isLoading
-                    ? "bg-indigo-400 text-white cursor-wait"
-                    : "bg-indigo-500 text-white hover:bg-indigo-600"
-                }`}
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="animate-spin" />
-                    <span>Adding...</span>
-                  </>
-                ) : (
-                  <>
-                    <ShoppingCart size={16} />
-                    <span>Add to Cart</span>
-                  </>
-                )}
-              </motion.button>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="w-full h-full flex items-center"
-              >
-                <span className="text-sm text-gray-500">
-                  {product.stock > 0 ? "In Stock" : "Out of Stock"}
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
       </div>
     </motion.div>
   );

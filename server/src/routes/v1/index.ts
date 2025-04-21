@@ -26,7 +26,7 @@ router.use("/reviews", reviewRoutes);
 router.use("/categories", categoryRoutes);
 router.use("/cart", cartRoutes);
 router.use("/checkout", checkoutRoutes);
-// router.use("/reports", reportRoutes);
+router.use("/reports", reportRoutes);
 router.use("/analytics", analyticsRoutes);
 router.use("/logs", logRoutes);
 router.use("/orders", orderRoutes);

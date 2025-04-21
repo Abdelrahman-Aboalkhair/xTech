@@ -10,6 +10,7 @@ import ToggleableText from "@/app/components/atoms/ToggleableText";
 
 const UserOrders = () => {
   const { data, isLoading, error } = useGetUserOrdersQuery({});
+  console.log("orders data --> ", data);
   const orders = data?.orders || [];
 
   const columns = [

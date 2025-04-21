@@ -10,6 +10,8 @@ import {
   useGetAllTransactionsQuery,
   useUpdateTransactionStatusMutation,
 } from "@/app/store/apis/TransactionApi";
+import Modal from "@/app/components/organisms/Modal";
+import Dropdown from "@/app/components/molecules/Dropdown";
 
 const TransactionsDashboard = () => {
   const { showToast } = useToast();
@@ -25,8 +27,12 @@ const TransactionsDashboard = () => {
   const { data, isLoading } = useGetAllTransactionsQuery(undefined, {
     skip: !shouldFetchTransactions,
   });
-  const [updateTransactionStatus] = useUpdateTransactionStatusMutation();
-  const [deleteTransaction] = useDeleteTransactionMutation();
+  const [updateTransactionStatus, { error: updateError }] =
+    useUpdateTransactionStatusMutation();
+  console.log("Error updating transaction status:", updateError);
+  const [deleteTransaction, { error: deleteError }] =
+    useDeleteTransactionMutation();
+  console.log("Error deleting transaction:", deleteError);
 
   const [transactionToDelete, setTransactionToDelete] = useState<string | null>(
     null
@@ -64,10 +70,11 @@ const TransactionsDashboard = () => {
     if (!selectedTransaction || !newStatus) return;
     setIsStatusModalOpen(false);
     try {
-      await updateTransactionStatus({
+      const res = await updateTransactionStatus({
         id: selectedTransaction.id,
         status: newStatus,
-      }).unwrap();
+      });
+      console.log("res => ", res);
       showToast("Status updated successfully", "success");
     } catch (err) {
       console.error("Failed to update status:", err);
@@ -76,14 +83,14 @@ const TransactionsDashboard = () => {
   };
 
   const TRANSACTION_STATUSES = [
-    "PENDING",
-    "PROCESSING",
-    "SHIPPED",
-    "IN_TRANSIT",
-    "DELIVERED",
-    "CANCELED",
-    "RETURNED",
-    "REFUNDED",
+    { label: "PENDING", value: "PENDING" },
+    { label: "PROCESSING", value: "PROCESSING" },
+    { label: "SHIPPED", value: "SHIPPED" },
+    { label: "IN_TRANSIT", value: "IN_TRANSIT" },
+    { label: "DELIVERED", value: "DELIVERED" },
+    { label: "CANCELED", value: "CANCELED" },
+    { label: "RETURNED", value: "RETURNED" },
+    { label: "REFUNDED", value: "REFUNDED" },
   ];
 
   const getStatusColor = (status) => {
@@ -212,7 +219,6 @@ const TransactionsDashboard = () => {
         currentPage={data?.currentPage}
       />
 
-      {/* Delete Confirmation Modal */}
       <ConfirmModal
         isOpen={isConfirmModalOpen}
         message="Are you sure you want to delete this transaction? This action cannot be undone."
@@ -220,13 +226,9 @@ const TransactionsDashboard = () => {
         onCancel={cancelDelete}
       />
 
-      {/* Status Update Modal */}
-      <div
-        className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 ${
-          isStatusModalOpen ? "" : "hidden"
-        }`}
-      >
-        <div className="bg-white rounded-lg p-6 w-full max-w-md">
+      {/* Update Status Modal */}
+      <Modal open={isStatusModalOpen} onClose={cancelStatusUpdate}>
+        <div>
           <h2 className="text-lg font-semibold mb-4">
             Update Transaction Status
           </h2>
@@ -245,17 +247,12 @@ const TransactionsDashboard = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Status
             </label>
-            <select
+            <Dropdown
+              options={TRANSACTION_STATUSES}
               value={newStatus}
-              onChange={(e) => setNewStatus(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            >
-              {TRANSACTION_STATUSES.map((status) => (
-                <option key={status} value={status}>
-                  {status}
-                </option>
-              ))}
-            </select>
+              onChange={(value) => setNewStatus(value || "")}
+              className="w-full"
+            />
           </div>
           <div className="flex justify-end space-x-2">
             <button
@@ -272,7 +269,7 @@ const TransactionsDashboard = () => {
             </button>
           </div>
         </div>
-      </div>
+      </Modal>
     </div>
   );
 };

@@ -58,7 +58,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
       y: 0,
       transition: {
         type: "spring",
-        damping: 35,
+        damping: 40,
         stiffness: 800,
       },
     },
@@ -74,7 +74,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-xs z-50">
           <motion.div
             className="bg-white p-6 rounded-lg shadow-xl w-96 border border-gray-200"
             variants={modalVariants}
