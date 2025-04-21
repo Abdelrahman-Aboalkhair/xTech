@@ -32,19 +32,21 @@ const StatsCard = ({
       <div className="text-3xl font-bold">{value}</div>
 
       <div className="flex items-center gap-1 text-sm">
-        <span
+        <div
           className={cn(
-            "flex items-center font-medium",
-            isPositive ? "text-green-400" : "text-red-400"
+            "flex items-center justify-center px-2 py-1 rounded-full text-xs font-medium",
+            isPositive
+              ? "bg-green-100 text-green-600"
+              : "bg-red-100 text-red-600"
           )}
         >
           {isPositive ? (
-            <TrendingUp className="w-4 h-4 mr-1" />
+            <TrendingUp className="w-3 h-3 mr-1" />
           ) : (
-            <TrendingDown className="w-4 h-4 mr-1" />
+            <TrendingDown className="w-3 h-3 mr-1" />
           )}
           {Math.abs(percentage)}%
-        </span>
+        </div>
         {caption && <span className="text-gray-800">· {caption}</span>}
       </div>
     </div>

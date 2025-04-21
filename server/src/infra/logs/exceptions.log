@@ -295,3 +295,195 @@ Error: Cannot set headers after they are sent to the client
     at /home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/errors/globalError.ts:119:39
     at Generator.next (<anonymous>)
     at fulfilled (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/shared/errors/globalError.ts:5:58)
+[2025-04-21T12:07:40.013Z] [31MERROR[39M: uncaughtException: Query.analyticsOverview defined in resolvers, but not in schema
+Error: Query.analyticsOverview defined in resolvers, but not in schema
+    at addResolversToSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/addResolversToSchema.js:83:39)
+    at makeExecutableSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:76:65)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:128:52)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/graphql/v1/schema.ts:1:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-21T12:08:12.404Z] [31MERROR[39M: uncaughtException: Query.analyticsOverview defined in resolvers, but not in schema
+Error: Query.analyticsOverview defined in resolvers, but not in schema
+    at addResolversToSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/addResolversToSchema.js:83:39)
+    at makeExecutableSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:76:65)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:128:52)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/graphql/v1/schema.ts:1:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-21T12:08:59.375Z] [31MERROR[39M: uncaughtException: Query.analyticsOverview defined in resolvers, but not in schema
+Error: Query.analyticsOverview defined in resolvers, but not in schema
+    at addResolversToSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/addResolversToSchema.js:83:39)
+    at makeExecutableSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:76:65)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:128:52)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/graphql/v1/schema.ts:1:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-21T12:10:17.286Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m6[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './resolvers/customerAnalytics' or its corresponding type declarations.
+
+[7m6[0m import customerAnalytics from "./resolvers/customerAnalytics";
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m6[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './resolvers/customerAnalytics' or its corresponding type declarations.
+
+[7m6[0m import customerAnalytics from "./resolvers/customerAnalytics";
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-21T12:10:51.128Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m6[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './resolvers/customerAnalytics' or its corresponding type declarations.
+
+[7m6[0m import customerAnalytics from "./resolvers/customerAnalytics";
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m6[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './resolvers/customerAnalytics' or its corresponding type declarations.
+
+[7m6[0m import customerAnalytics from "./resolvers/customerAnalytics";
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-21T12:11:29.352Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m6[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './resolvers/customerAnalytics' or its corresponding type declarations.
+
+[7m6[0m import customerAnalytics from "./resolvers/customerAnalytics";
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m6[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './resolvers/customerAnalytics' or its corresponding type declarations.
+
+[7m6[0m import customerAnalytics from "./resolvers/customerAnalytics";
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-21T12:11:38.332Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m4[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './resolvers/analyticsOverview' or its corresponding type declarations.
+
+[7m4[0m import analyticsOverview from "./resolvers/analyticsOverview";
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m6[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './resolvers/customerAnalytics' or its corresponding type declarations.
+
+[7m6[0m import customerAnalytics from "./resolvers/customerAnalytics";
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m4[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './resolvers/analyticsOverview' or its corresponding type declarations.
+
+[7m4[0m import analyticsOverview from "./resolvers/analyticsOverview";
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m6[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './resolvers/customerAnalytics' or its corresponding type declarations.
+
+[7m6[0m import customerAnalytics from "./resolvers/customerAnalytics";
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-21T12:12:34.873Z] [31MERROR[39M: uncaughtException: Unknown type "CustomerAnalytics". Did you mean "UserAnalytics", "OrderAnalytics", or "RevenueAnalytics"?
+Error: Unknown type "CustomerAnalytics". Did you mean "UserAnalytics", "OrderAnalytics", or "RevenueAnalytics"?
+    at assertValidSDL (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/validation/validate.js:135:11)
+    at buildASTSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/utilities/buildASTSchema.js:44:34)
+    at makeExecutableSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:73:47)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:123:52)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/graphql/v1/schema.ts:1:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)

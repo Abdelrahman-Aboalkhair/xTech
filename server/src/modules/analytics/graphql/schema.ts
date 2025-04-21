@@ -24,14 +24,28 @@ const typeDefs = gql`
     users: [Int!]!
   }
 
-  type AnalyticsOverview {
-    totalRevenue: Float!
+  type OrderAnalytics {
     totalOrders: Int!
     totalSales: Int!
-    totalUsers: Int!
     averageOrderValue: Float!
     changes: Changes!
+  }
+
+  type RevenueAnalytics {
+    totalRevenue: Float!
+    changes: Changes!
     monthlyTrends: MonthlyTrend!
+  }
+
+  type UserAnalytics {
+    totalUsers: Int!
+    totalRevenue: Float!
+    retentionRate: Float!
+    lifetimeValue: Float!
+    repeatPurchaseRate: Float!
+    engagementScore: Float!
+    topUsers: [TopUser!]!
+    interactionTrends: InteractionTrend!
   }
 
   type ProductPerformance {
@@ -41,7 +55,7 @@ const typeDefs = gql`
     revenue: Float!
   }
 
-  type TopCustomer {
+  type TopUser {
     id: ID!
     name: String!
     email: String!
@@ -55,16 +69,6 @@ const typeDefs = gql`
     views: [Int!]!
     clicks: [Int!]!
     others: [Int!]!
-  }
-
-  type CustomerAnalytics {
-    totalCustomers: Int!
-    retentionRate: Float!
-    lifetimeValue: Float!
-    repeatPurchaseRate: Float!
-    engagementScore: Float!
-    topCustomers: [TopCustomer!]!
-    interactionTrends: InteractionTrend!
   }
 
   type InteractionByType {
@@ -106,7 +110,9 @@ const typeDefs = gql`
 
   type Query {
     yearRange: YearRange!
-    analyticsOverview(params: DateRangeQueryInput!): AnalyticsOverview!
+    orderAnalytics(params: DateRangeQueryInput!): OrderAnalytics!
+    revenueAnalytics(params: DateRangeQueryInput!): RevenueAnalytics!
+    userAnalytics(params: DateRangeQueryInput!): UserAnalytics!
     productPerformance(params: DateRangeQueryInput!): [ProductPerformance!]!
     customerAnalytics(params: DateRangeQueryInput!): CustomerAnalytics!
     interactionAnalytics(params: DateRangeQueryInput!): InteractionAnalytics!

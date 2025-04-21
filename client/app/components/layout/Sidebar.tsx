@@ -120,7 +120,7 @@ const Sidebar = () => {
       <div>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 flex items-center justify-end rounded-lg transition"
+          className="p-2 flex items-center justify-end rounded-lg transition mb-4"
         >
           <PanelsRightBottom size={24} className="text-gray-700" />
         </button>

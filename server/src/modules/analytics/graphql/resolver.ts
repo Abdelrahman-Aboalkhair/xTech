@@ -1,11 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 import productPerformance from "./resolvers/productPerformance";
-import analyticsOverview from "./resolvers/analyticsOverview";
 import yearRange from "./resolvers/yearRange";
-import customerAnalytics from "./resolvers/customerAnalytics";
+import customerAnalytics from "./resolvers/userAnalytics";
 import interactionAnalytics from "./resolvers/interactionAnalytics";
 import { searchDashboardResolver } from "./resolvers/searchDashboard";
+import orderAnalytics from "./resolvers/orderAnalytics";
+import revenueAnalytics from "./resolvers/revenueAnalytics";
+import userAnalytics from "./resolvers/userAnalytics";
 
 export interface Context {
   prisma: PrismaClient;
@@ -15,7 +17,9 @@ export interface Context {
 
 export const analyticsResolvers = {
   Query: {
-    ...analyticsOverview.Query,
+    ...orderAnalytics.Query,
+    ...revenueAnalytics.Query,
+    ...userAnalytics.Query,
     ...yearRange.Query,
     ...customerAnalytics.Query,
     ...interactionAnalytics.Query,

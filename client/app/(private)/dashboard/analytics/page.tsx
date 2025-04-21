@@ -20,12 +20,12 @@ import { Controller, useForm } from "react-hook-form";
 import React, { useState } from "react";
 import useFormatPrice from "@/app/hooks/ui/useFormatPrice";
 import {
-  useGetOverviewQuery,
-  useGetProductPerformanceQuery,
-  useGetCustomerAnalyticsQuery,
   useGetYearRangeQuery,
   useLazyExportAnalyticsQuery,
 } from "@/app/store/apis/AnalyticsApi";
+import { useQuery } from "@apollo/client";
+import { GET_ALL_ANALYTICS } from "@/app/gql/Dashboard";
+import CustomLoader from "@/app/components/feedback/CustomLoader";
 
 interface FormData {
   timePeriod: string;
@@ -36,7 +36,7 @@ interface FormData {
 }
 
 const AnalyticsDashboard = () => {
-  const { control, watch, setValue } = useForm<FormData>({
+  const { control, watch } = useForm<FormData>({
     defaultValues: {
       timePeriod: "allTime",
       useCustomRange: false,
@@ -53,21 +53,15 @@ const AnalyticsDashboard = () => {
   ];
 
   const { timePeriod, year, startDate, endDate, useCustomRange } = watch();
+  console.log(
+    "timePeriod, year, startDate, endDate, useCustomRange",
+    timePeriod,
+    year,
+    startDate,
+    endDate,
+    useCustomRange
+  );
 
-  // Export state
-  const [exportType, setExportType] = useState<string>("all");
-  const [exportFormat, setExportFormat] = useState<string>("csv");
-
-  // Fetch year range
-  const { data: yearRangeData } = useGetYearRangeQuery();
-  const minYear = yearRangeData?.minYear || new Date().getFullYear();
-  const maxYear = yearRangeData?.maxYear || new Date().getFullYear();
-  const yearOptions = Array.from({ length: maxYear - minYear + 1 }, (_, i) => ({
-    label: (minYear + i).toString(),
-    value: (minYear + i).toString(),
-  }));
-
-  // Query parameters
   const queryParams = {
     timePeriod: timePeriod || "allTime",
     year: useCustomRange ? undefined : year ? parseInt(year, 10) : undefined,
@@ -75,33 +69,30 @@ const AnalyticsDashboard = () => {
     endDate: useCustomRange && endDate ? endDate : undefined,
   };
 
-  // Fetch analytics data
-  const {
-    data: overviewData,
-    isLoading: isOverviewLoading,
-    error: overviewError,
-  } = useGetOverviewQuery(queryParams);
+  const [exportType, setExportType] = useState<string>("all");
+  const [exportFormat, setExportFormat] = useState<string>("csv");
 
-  const {
-    data: productData,
-    isLoading: isProductLoading,
-    error: productError,
-  } = useGetProductPerformanceQuery(queryParams);
+  const { data, loading, error } = useQuery(GET_ALL_ANALYTICS, {
+    variables: { params: queryParams, searchParams: { searchQuery: "" } },
+  });
 
-  const {
-    data: customerData,
-    isLoading: isCustomerLoading,
-    error: customerError,
-  } = useGetCustomerAnalyticsQuery(queryParams);
+  console.log("Analytics data => ", data);
+  console.log("error loading analytics => ", error);
 
-  // Export query (triggered manually)
+  const minYear = data?.yearRange?.minYear || 2020;
+  const maxYear = data?.yearRange?.maxYear || 2020;
+
+  const yearOptions = Array.from({ length: maxYear - minYear + 1 }, (_, i) => ({
+    label: (minYear + i).toString(),
+    value: (minYear + i).toString(),
+  }));
+
   const [
     triggerExport,
     { data: exportData, isLoading: isExporting, error: exportError },
   ] = useLazyExportAnalyticsQuery();
 
-  console.log("exportData => ", exportData);
-  console.log("exportError => ", exportError);
+  console.log("export error => ", exportError);
 
   // Handle export
   const handleExport = async () => {
@@ -115,18 +106,15 @@ const AnalyticsDashboard = () => {
         endDate: queryParams.endDate,
       });
       if (exportData) {
-        const mimeTypes: { [key: string]: string } = {
+        const mimeTypes = {
           csv: "text/csv",
           pdf: "application/pdf",
           xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         };
         const blob = new Blob([exportData], { type: mimeTypes[exportFormat] });
-        console.log("blob: ", blob);
         const link = document.createElement("a");
-        console.log("link: ", link);
         link.href = URL.createObjectURL(blob);
         link.download = `analytics_${exportType}_${exportFormat}_${new Date().toISOString()}.${exportFormat}`;
-        console.log("download link: ", link);
         link.click();
       }
     } catch (err) {
@@ -135,49 +123,58 @@ const AnalyticsDashboard = () => {
     }
   };
 
-  // Loading state
-  if (isOverviewLoading || isProductLoading || isCustomerLoading) {
-    return <div className="p-4">Loading...</div>;
+  if (loading) {
+    return <CustomLoader />;
   }
 
-  // Error state
-  if (overviewError || productError || customerError) {
-    console.error("Errors:", { overviewError, productError, customerError });
-    return <div className="p-4">Error loading analytics data</div>;
+  if (error) {
+    console.error("GraphQL Error:", error);
+    return <div>Error loading analytics data</div>;
   }
 
   // Chart and list data
   const mostSoldProducts = {
-    labels: productData?.performance?.slice(0, 10).map((p) => p.name) || [],
-    data: productData?.performance?.slice(0, 10).map((p) => p.quantity) || [],
+    labels: data?.productPerformance?.slice(0, 10).map((p) => p.name) || [],
+    data: data?.productPerformance?.slice(0, 10).map((p) => p.quantity) || [],
   };
 
   const salesByProduct = {
-    categories: productData?.performance?.map((p) => p.name) || [],
-    data: productData?.performance?.map((p) => p.revenue) || [],
+    categories: data?.productPerformance?.map((p) => p.name) || [],
+    data: data?.productPerformance?.map((p) => p.revenue) || [],
   };
 
-  const stockLevels = {
-    categories: productData?.performance?.map((p) => p.name) || [],
-    data: productData?.performance?.map((p) => p.stock) || [],
+  const interactionByType = {
+    labels: ["Views", "Clicks", "Others"],
+    data: [
+      data?.interactionAnalytics?.byType?.views || 0,
+      data?.interactionAnalytics?.byType?.clicks || 0,
+      data?.interactionAnalytics?.byType?.others || 0,
+    ],
   };
 
   const topItems =
-    productData?.performance?.slice(0, 10).map((p) => ({
+    data?.productPerformance?.slice(0, 10).map((p) => ({
       id: p.id,
       name: p.name,
       quantity: p.quantity,
       revenue: formatPrice(p.revenue),
-      stock: p.stock,
     })) || [];
 
   const topCustomers =
-    customerData?.topCustomers.slice(0, 10).map((c) => ({
+    data?.customerAnalytics?.topCustomers?.slice(0, 10).map((c) => ({
       id: c.id,
       name: c.name,
       email: c.email,
       orderCount: c.orderCount,
       totalSpent: formatPrice(c.totalSpent),
+      engagementScore: c.engagementScore,
+    })) || [];
+
+  const mostViewedProducts =
+    data?.interactionAnalytics?.mostViewedProducts?.slice(0, 10).map((p) => ({
+      id: p.productId,
+      name: p.productName,
+      viewCount: p.viewCount,
     })) || [];
 
   const exportTypeOptions = [
@@ -224,7 +221,7 @@ const AnalyticsDashboard = () => {
                 <Dropdown
                   onChange={field.onChange}
                   options={yearOptions}
-                  value={field.value}
+                  value={field.value ?? "all"}
                   label="Year"
                   className="min-w-[150px] max-w-[200px]"
                   disabled={useCustomRange}
@@ -236,7 +233,7 @@ const AnalyticsDashboard = () => {
               control={control}
               startName="startDate"
               endName="endDate"
-              onChange={(value) => setValue("useCustomRange", !!value)}
+              // onChange={(value) => setValue("useCustomRange", !!value)}
             />
             <Dropdown
               options={exportTypeOptions}
@@ -267,38 +264,66 @@ const AnalyticsDashboard = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           <StatsCard
             title="Total Revenue"
-            value={formatPrice(overviewData?.totalRevenue || 0)}
-            percentage={overviewData?.changes.revenue}
+            value={formatPrice(data?.analyticsOverview?.totalRevenue || 0)}
+            percentage={data?.analyticsOverview?.changes?.revenue}
             caption="since last period"
             icon={<DollarSign className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Orders"
-            value={overviewData?.totalOrders || 0}
-            percentage={overviewData?.changes.orders}
+            value={data?.analyticsOverview?.totalOrders || 0}
+            percentage={data?.analyticsOverview?.changes?.orders}
             caption="since last period"
             icon={<ShoppingCart className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Sales"
-            value={overviewData?.totalSales || 0}
-            percentage={overviewData?.changes.sales}
+            value={data?.analyticsOverview?.totalSales || 0}
+            percentage={data?.analyticsOverview?.changes?.sales}
             caption="since last period"
             icon={<BarChart2 className="w-5 h-5" />}
           />
           <StatsCard
             title="Average Order Value"
-            value={formatPrice(overviewData?.averageOrderValue || 0)}
-            percentage={overviewData?.changes.averageOrderValue}
+            value={formatPrice(data?.analyticsOverview?.averageOrderValue || 0)}
+            percentage={data?.analyticsOverview?.changes?.averageOrderValue}
             caption="since last period"
             icon={<CreditCard className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Users"
-            value={overviewData?.totalUsers || 0}
-            percentage={overviewData?.changes.users}
+            value={data?.analyticsOverview?.totalUsers || 0}
+            percentage={data?.analyticsOverview?.changes?.users}
             caption="since last period"
             icon={<Users className="w-5 h-5" />}
+          />
+          <StatsCard
+            title="Total Customers"
+            value={data?.customerAnalytics?.totalCustomers || 0}
+            percentage={data?.customerAnalytics?.retentionRate}
+            caption="retention rate"
+            icon={<Users className="w-5 h-5" />}
+          />
+          <StatsCard
+            title="Lifetime Value"
+            value={formatPrice(data?.customerAnalytics?.lifetimeValue || 0)}
+            percentage={data?.customerAnalytics?.repeatPurchaseRate}
+            caption="repeat purchase rate"
+            icon={<DollarSign className="w-5 h-5" />}
+          />
+          <StatsCard
+            title="Engagement Score"
+            value={data?.customerAnalytics?.engagementScore?.toFixed(2) || 0}
+            percentage={data?.customerAnalytics?.averageEngagement}
+            caption="average engagement"
+            icon={<BarChart2 className="w-5 h-5" />}
+          />
+          <StatsCard
+            title="Total Interactions"
+            value={data?.interactionAnalytics?.totalInteractions || 0}
+            percentage={data?.interactionAnalytics?.averageInteractions}
+            caption="all interactions"
+            icon={<BarChart2 className="w-5 h-5" />}
           />
         </div>
 
@@ -306,47 +331,55 @@ const AnalyticsDashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AreaChart
             title="Order Trends"
-            data={overviewData?.monthlyTrends.orders || []}
-            categories={overviewData?.monthlyTrends.labels || []}
+            data={data?.analyticsOverview?.monthlyTrends?.orders || []}
+            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
             color="#ec4899"
-            percentageChange={overviewData?.changes.orders}
+            percentageChange={data?.analyticsOverview?.changes?.orders}
           />
           <AreaChart
             title="Revenue Trends"
-            data={overviewData?.monthlyTrends.revenue || []}
-            categories={overviewData?.monthlyTrends.labels || []}
+            data={data?.analyticsOverview?.monthlyTrends?.revenue || []}
+            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
             color="#22c55e"
-            percentageChange={overviewData?.changes.revenue}
+            percentageChange={data?.analyticsOverview?.changes?.revenue}
           />
           <AreaChart
             title="Sales Trends"
-            data={overviewData?.monthlyTrends.sales || []}
-            categories={overviewData?.monthlyTrends.labels || []}
+            data={data?.analyticsOverview?.monthlyTrends?.sales || []}
+            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
             color="#3b82f6"
-            percentageChange={overviewData?.changes.sales}
+            percentageChange={data?.analyticsOverview?.changes?.sales}
           />
           <AreaChart
             title="User Trends"
-            data={overviewData?.monthlyTrends.users || []}
-            categories={overviewData?.monthlyTrends.labels || []}
+            data={data?.analyticsOverview?.monthlyTrends?.users || []}
+            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
             color="#f59e0b"
-            percentageChange={overviewData?.changes.users}
+            percentageChange={data?.analyticsOverview?.changes?.users}
+          />
+          <AreaChart
+            title="Interaction Trends (Views)"
+            data={data?.customerAnalytics?.interactionTrends?.views || []}
+            categories={
+              data?.customerAnalytics?.interactionTrends?.labels || []
+            }
+            color="#8b5cf6"
+            percentageChange={data?.customerAnalytics?.changes?.views}
           />
           <DonutChart
             title="Top 10 Products by Quantity"
             data={mostSoldProducts.data}
             labels={mostSoldProducts.labels}
           />
-          <BarChart
-            title="Stock Levels"
-            data={stockLevels.data}
-            categories={stockLevels.categories}
-            color="#10b981"
+          <DonutChart
+            title="Interactions by Type"
+            data={interactionByType.data}
+            labels={interactionByType.labels}
           />
         </div>
 
         {/* Lists */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <ListCard
             title="Top Products"
             viewAllLink="/shop"
@@ -358,6 +391,12 @@ const AnalyticsDashboard = () => {
             viewAllLink="/dashboard/users"
             items={topCustomers}
             itemType="user"
+          />
+          <ListCard
+            title="Most Viewed Products"
+            viewAllLink="/shop"
+            items={mostViewedProducts}
+            itemType="product"
           />
           <BarChart
             title="Sales by Product"

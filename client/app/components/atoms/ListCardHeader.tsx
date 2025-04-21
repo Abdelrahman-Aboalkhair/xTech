@@ -1,18 +1,25 @@
 import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 
-const ListCardHeader: React.FC<{ title: string; viewAllLink: string }> = ({
-  title,
-  viewAllLink,
-}) => (
-  <div className="flex justify-between items-center mb-4">
-    <h2 className="font-semibold text-lg text-gray-800">{title}</h2>
-    <Link
-      href={viewAllLink}
-      className="text-gray-500 text-sm hover:text-gray-700 flex items-center transition-colors duration-200"
-    >
-      View All
-    </Link>
-  </div>
-);
+interface ListCardHeaderProps {
+  title: string;
+  viewAllLink?: string;
+}
+
+const ListCardHeader = ({ title, viewAllLink }: ListCardHeaderProps) => {
+  return (
+    <div className="flex items-center justify-between mb-4">
+      <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+      {viewAllLink && (
+        <Link
+          href={viewAllLink}
+          className="text-sm text-indigo-600 hover:text-indigo-800 flex items-center gap-1 transition-colors"
+        >
+          View all <ExternalLink className="w-3 h-3" />
+        </Link>
+      )}
+    </div>
+  );
+};
 
 export default ListCardHeader;

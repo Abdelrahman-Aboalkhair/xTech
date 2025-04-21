@@ -671,3 +671,6 @@ Learn more about webhook signing and explore webhook integration examples for va
 [2025-04-20T17:13:15.983Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
 [2025-04-20T17:13:16.021Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
 [2025-04-20T17:13:16.058Z] [31MERROR[39M: Cannot read properties of undefined (reading 'id')
+[2025-04-21T11:19:47.800Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-21T11:23:28.270Z] [31MERROR[39M: Invalid type. Use: overview, products, or customers
+[2025-04-21T11:38:35.872Z] [31MERROR[39M: Invalid access token, please log in

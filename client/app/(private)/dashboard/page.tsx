@@ -2,7 +2,6 @@
 import ProtectedRoute from "@/app/components/auth/ProtectedRoute";
 import AreaChart from "@/app/components/charts/AreaChart";
 import DonutChart from "@/app/components/charts/DonutChart";
-import BarChart from "@/app/components/charts/BarChart";
 import ListCard from "@/app/components/organisms/ListCard";
 import StatsCard from "@/app/components/organisms/StatsCard";
 import Dropdown from "@/app/components/molecules/Dropdown";
@@ -72,11 +71,6 @@ const Dashboard = () => {
       data?.productPerformance?.slice(0, 5).map((p: any) => p.quantity) || [],
   };
 
-  const salesByProduct = {
-    categories: data?.productPerformance?.map((p: any) => p.name) || [],
-    data: data?.productPerformance?.map((p: any) => p.revenue) || [],
-  };
-
   const topItems =
     data?.productPerformance?.slice(0, 5).map((p: any) => ({
       id: p.id,
@@ -94,15 +88,6 @@ const Dashboard = () => {
       totalSpent: formatPrice(c.totalSpent),
       engagementScore: c.engagementScore,
     })) || [];
-
-  const mostViewedProducts =
-    data?.interactionAnalytics?.mostViewedProducts
-      ?.slice(0, 5)
-      .map((p: any) => ({
-        id: p.productId,
-        name: p.productName,
-        viewCount: p.viewCount,
-      })) || [];
 
   return (
     <ProtectedRoute requiredRoles={["ADMIN", "SUPERADMIN"]}>
@@ -189,14 +174,6 @@ const Dashboard = () => {
             color="#3b82f6"
             percentageChange={data?.analyticsOverview?.changes?.sales}
           />
-          <AreaChart
-            title="User Analytics"
-            data={data?.analyticsOverview?.monthlyTrends?.users || []}
-            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
-            color="#f59e0b"
-            percentageChange={data?.analyticsOverview?.changes?.users}
-          />
-
           <DonutChart
             title="Most Sold Products"
             data={mostSoldProducts.data}
@@ -207,25 +184,11 @@ const Dashboard = () => {
             viewAllLink="/dashboard/users"
             items={topCustomers}
             itemType="user"
-          />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <BarChart
-            title="Sales by Product"
-            data={salesByProduct.data}
-            categories={salesByProduct.categories}
-            color="#4CAF50"
-          />
+          />{" "}
           <ListCard
             title="Top Items"
             viewAllLink="/shop"
             items={topItems}
-            itemType="product"
-          />
-          <ListCard
-            title="Most Viewed Products"
-            viewAllLink="/shop"
-            items={mostViewedProducts}
             itemType="product"
           />
         </div>

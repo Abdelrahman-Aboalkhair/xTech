@@ -2,6 +2,44 @@ import { gql } from "@apollo/client";
 
 export const GET_ANALYTICS_OVERVIEW = gql`
   query GetAnalyticsOverview($params: DateRangeQueryInput!) {
+    revenueAnalytics(params: $params) {
+      totalRevenue
+      changes {
+        revenue
+      }
+      monthlyTrends {
+        labels
+        revenue
+      }
+    }
+    orderAnalytics(params: $params) {
+      totalOrders
+      changes {
+        orders
+      }
+    }
+    userAnalytics(params: $params) {
+      totalUsers
+      changes {
+        users
+      }
+    }
+    yearRange {
+      minYear
+      maxYear
+    }
+  }
+`;
+
+export const GET_ALL_ANALYTICS = gql`
+  query GetAllAnalytics(
+    $params: DateRangeQueryInput!
+    $searchParams: SearchInput!
+  ) {
+    yearRange {
+      minYear
+      maxYear
+    }
     analyticsOverview(params: $params) {
       totalRevenue
       totalOrders
@@ -23,13 +61,14 @@ export const GET_ANALYTICS_OVERVIEW = gql`
         users
       }
     }
-    customerAnalytics(params: $params) {
-      totalCustomers
+    userAnalytics(params: $params) {
+      totalUsers
+      totalRevenue
       retentionRate
       lifetimeValue
       repeatPurchaseRate
       engagementScore
-      topCustomers {
+      topUsers {
         id
         name
         email
@@ -62,10 +101,6 @@ export const GET_ANALYTICS_OVERVIEW = gql`
         productName
         viewCount
       }
-    }
-    yearRange {
-      minYear
-      maxYear
     }
   }
 `;

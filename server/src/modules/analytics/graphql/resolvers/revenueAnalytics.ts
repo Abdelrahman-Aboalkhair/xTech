@@ -1,17 +1,16 @@
 import {
-  aggregateMonthlyTrends,
-  calculateChanges,
   calculateMetrics,
   fetchData,
   getDateRange,
   shouldFetchPreviousPeriod,
+  calculateChanges,
+  aggregateMonthlyTrends,
 } from "@/shared/utils/analytics";
 import { Context } from "../resolver";
-import { ROLE } from "@prisma/client";
 
-const analyticsOverview = {
+const revenueAnalytics = {
   Query: {
-    analyticsOverview: async (_: any, { params }: any, { prisma }: Context) => {
+    revenueAnalytics: async (_: any, { params }: any, { prisma }: Context) => {
       const { timePeriod, year, startDate, endDate } = params;
       const {
         currentStartDate,
@@ -21,6 +20,7 @@ const analyticsOverview = {
         yearEnd,
       } = getDateRange({ timePeriod, year, startDate, endDate });
 
+      // Fetch current period data
       const currentOrders = await fetchData(
         prisma,
         "order",
@@ -41,20 +41,8 @@ const analyticsOverview = {
         undefined,
         { product: true }
       );
-      const currentUsers = await fetchData(
-        prisma,
-        "user",
-        "createdAt",
-        currentStartDate,
-        endDate,
-        yearStart,
-        yearEnd,
-        ROLE.USER
-      );
-      console.log("Current users => ", currentUsers);
 
-      // Fetch previous period data only when needed, using the same fetchData utility.
-      //* shouldFetchPreviousPeriod centralizes the logic for skipping 'allTime' and 'custom' periods.
+      // Fetch previous period data if needed
       const fetchPrevious = shouldFetchPreviousPeriod(timePeriod);
       const previousOrders = fetchPrevious
         ? await fetchData(
@@ -80,39 +68,27 @@ const analyticsOverview = {
             { product: true }
           )
         : [];
-      const previousUsers = fetchPrevious
-        ? await fetchData(
-            prisma,
-            "user",
-            "createdAt",
-            previousStartDate,
-            previousEndDate,
-            yearStart,
-            yearEnd,
-            ROLE.USER
-          )
-        : [];
 
-      // Calculate metrics for both periods using a single utility, consolidating revenue, orders, sales, users, and AOV logic.
+      // Calculate metrics for both periods
       const currentMetrics = calculateMetrics(
         currentOrders,
         currentOrderItems,
-        currentUsers
+        []
       );
       const previousMetrics = calculateMetrics(
         previousOrders,
         previousOrderItems,
-        previousUsers
+        []
       );
 
-      // Compute percentage changes using a utility that handles all metrics and conditional logic for skipping changes.
+      // Compute changes
       const changes = calculateChanges(
         currentMetrics,
         previousMetrics,
         fetchPrevious
       );
 
-      // Fetch data for monthly trends, reusing fetchData for consistency.
+      // Fetch data for monthly trends
       const ordersForTrends = await fetchData(
         prisma,
         "order",
@@ -135,24 +111,22 @@ const analyticsOverview = {
         yearEnd
       );
 
-      // Aggregate monthly trends using a utility that handles initialization and data mapping, keeping the resolver focused on orchestration.
-      //* structure => { "Jan": { revenue: 0, orders: 0, sales: 0, users: 0 } }
+      // Aggregate monthly trends
       const monthlyTrends = aggregateMonthlyTrends(
         ordersForTrends,
         orderItemsForTrends,
         usersForTrends
       );
 
-      // Return the response with rounded numbers, leveraging calculated metrics and trends.
       return {
-        ...currentMetrics,
         totalRevenue: Number(currentMetrics.totalRevenue.toFixed(2)),
-        averageOrderValue: Number(currentMetrics.averageOrderValue.toFixed(2)),
-        changes,
+        changes: {
+          revenue: changes.revenue,
+        },
         monthlyTrends,
       };
     },
   },
 };
 
-export default analyticsOverview;
+export default revenueAnalytics;

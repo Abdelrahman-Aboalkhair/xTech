@@ -11,9 +11,9 @@ import {
   getDateRange,
 } from "@/shared/utils/analytics";
 
-const customerAnalytics = {
+const userAnalytics = {
   Query: {
-    customerAnalytics: async (_: any, { params }: any, { prisma }: Context) => {
+    userAnalytics: async (_: any, { params }: any, { prisma }: Context) => {
       const { timePeriod, year, startDate, endDate } = params;
       // Use getDateRange to compute date ranges, keeping date logic abstracted.
       const {
@@ -47,7 +47,6 @@ const customerAnalytics = {
       );
 
       // Fetch previous period users only when needed, using shouldFetchPreviousPeriod to avoid redundant checks
-      // ** Fetch previous is just a fancy way of getting users but like a week ago
       const fetchPrevious = shouldFetchPreviousPeriod(timePeriod);
       const previousUsers = fetchPrevious
         ? await fetchData(
@@ -63,9 +62,9 @@ const customerAnalytics = {
           )
         : [];
 
-      // Calculate customer metrics (total customers, revenue, LTV, repeat customers, rate) using a single utility.
+      // Calculate user metrics (total users, revenue, LTV, repeat users, rate) using a single utility.
       const {
-        totalCustomers,
+        totalCustomers: totalUsers,
         totalRevenue,
         lifetimeValue,
         repeatPurchaseRate,
@@ -80,25 +79,25 @@ const customerAnalytics = {
       const { scores: engagementScores, averageScore: engagementScore } =
         calculateEngagementScores(interactions);
 
-      // Generate top customers using a utility, isolating mapping and sorting logic.
-      const topCustomers = generateTopCustomers(users, engagementScores);
+      // Generate top users using a utility, isolating mapping and sorting logic.
+      const topUsers = generateTopCustomers(users, engagementScores);
 
       // Aggregate interaction trends (views, clicks, others) using a utility, reusing the monthly aggregation pattern.
       const interactionTrends = aggregateInteractionTrends(interactions);
 
       // Return the response with rounded numbers for clean presentation.
       return {
-        totalCustomers,
+        totalUsers,
         totalRevenue: Number(totalRevenue.toFixed(2)),
         retentionRate: Number(retentionRate.toFixed(2)),
         lifetimeValue: Number(lifetimeValue.toFixed(2)),
         repeatPurchaseRate: Number(repeatPurchaseRate.toFixed(2)),
         engagementScore: Number(engagementScore.toFixed(2)),
-        topCustomers,
+        topUsers,
         interactionTrends,
       };
     },
   },
 };
 
-export default customerAnalytics;
+export default userAnalytics;
