@@ -10,6 +10,17 @@ export class TransactionRepository {
   async findById(id: string) {
     return prisma.transaction.findUnique({
       where: { id },
+      include: {
+        order: {
+          include: {
+            payment: true,
+            shipment: true,
+            user: true,
+            address: true,
+            orderItems: true,
+          },
+        },
+      },
     });
   }
 

@@ -9,6 +9,7 @@ import {
   generateTopCustomers,
   aggregateInteractionTrends,
   getDateRange,
+  calculateChanges,
 } from "@/shared/utils/analytics";
 
 const userAnalytics = {
@@ -46,7 +47,7 @@ const userAnalytics = {
         yearEnd
       );
 
-      // Fetch previous period users only when needed, using shouldFetchPreviousPeriod to avoid redundant checks
+      // Fetch previous period users only when needed
       const fetchPrevious = shouldFetchPreviousPeriod(timePeriod);
       const previousUsers = fetchPrevious
         ? await fetchData(
@@ -62,30 +63,40 @@ const userAnalytics = {
           )
         : [];
 
-      // Calculate user metrics (total users, revenue, LTV, repeat users, rate) using a single utility.
+      // Calculate user metrics
       const {
         totalCustomers: totalUsers,
         totalRevenue,
         lifetimeValue,
         repeatPurchaseRate,
       } = calculateCustomerMetrics(users);
+      const previousMetrics = fetchPrevious
+        ? calculateCustomerMetrics(previousUsers)
+        : { totalCustomers: 0 };
 
-      // Calculate retention rate using a dedicated utility, encapsulating comparison logic.
+      // Calculate retention rate
       const retentionRate = fetchPrevious
         ? calculateRetentionRate(users, previousUsers)
         : 0;
 
-      // Compute engagement scores and average using a utility, simplifying the switch-case logic.
+      // Compute engagement scores
       const { scores: engagementScores, averageScore: engagementScore } =
         calculateEngagementScores(interactions);
 
-      // Generate top users using a utility, isolating mapping and sorting logic.
+      // Generate top users
       const topUsers = generateTopCustomers(users, engagementScores);
 
-      // Aggregate interaction trends (views, clicks, others) using a utility, reusing the monthly aggregation pattern.
+      // Aggregate interaction trends
       const interactionTrends = aggregateInteractionTrends(interactions);
 
-      // Return the response with rounded numbers for clean presentation.
+      // Calculate changes for totalUsers
+      const changes = calculateChanges(
+        { totalUsers },
+        { totalUsers: previousMetrics.totalCustomers },
+        fetchPrevious
+      );
+
+      // Return the response with rounded numbers
       return {
         totalUsers,
         totalRevenue: Number(totalRevenue.toFixed(2)),
@@ -95,6 +106,9 @@ const userAnalytics = {
         engagementScore: Number(engagementScore.toFixed(2)),
         topUsers,
         interactionTrends,
+        changes: {
+          users: Number(changes.users?.toFixed(2)) || 0,
+        },
       };
     },
   },

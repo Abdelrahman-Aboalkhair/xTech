@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { InteractionEntry } from "./analytics.types";
 
 export class AnalyticsRepository {
   private prisma: PrismaClient;
@@ -93,7 +92,7 @@ export class AnalyticsRepository {
       include: { user: true, product: true },
     });
   }
-  async createInteraction(data: InteractionEntry) {
+  async createInteraction(data: any) {
     return this.prisma.interaction.create({
       data: {
         userId: data.userId,

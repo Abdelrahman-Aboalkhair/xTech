@@ -8,6 +8,14 @@ export const transactionApi = apiSlice.injectEndpoints({
     getTransaction: builder.query({
       query: (id) => `/transactions/${id}`,
     }),
+
+    updateTransactionStatus: builder.mutation({
+      query: ({ id, status }) => ({
+        url: `/transactions/${id}`,
+        method: "PUT",
+        body: { status },
+      }),
+    }),
     deleteTransaction: builder.mutation({
       query: (id) => ({
         url: `/transactions/${id}`,
@@ -20,5 +28,6 @@ export const transactionApi = apiSlice.injectEndpoints({
 export const {
   useGetAllTransactionsQuery,
   useGetTransactionQuery,
+  useUpdateTransactionStatusMutation,
   useDeleteTransactionMutation,
 } = transactionApi;

@@ -46,6 +46,7 @@ const typeDefs = gql`
     engagementScore: Float!
     topUsers: [TopUser!]!
     interactionTrends: InteractionTrend!
+    changes: Changes!
   }
 
   type ProductPerformance {
@@ -114,7 +115,6 @@ const typeDefs = gql`
     revenueAnalytics(params: DateRangeQueryInput!): RevenueAnalytics!
     userAnalytics(params: DateRangeQueryInput!): UserAnalytics!
     productPerformance(params: DateRangeQueryInput!): [ProductPerformance!]!
-    customerAnalytics(params: DateRangeQueryInput!): CustomerAnalytics!
     interactionAnalytics(params: DateRangeQueryInput!): InteractionAnalytics!
     searchDashboard(params: SearchInput!): [SearchResult!]!
   }

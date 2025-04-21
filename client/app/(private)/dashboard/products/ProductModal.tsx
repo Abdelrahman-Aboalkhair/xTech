@@ -24,7 +24,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
   error,
 }) => {
   const { data } = useGetAllCategoriesQuery({});
-  console.log("categories => ", data);
 
   const categories = data?.categories?.map((category) => ({
     label: category.name,
@@ -39,7 +38,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
       stock: 0,
       categoryId: "",
       description: "",
-      images: [""],
     },
   });
 

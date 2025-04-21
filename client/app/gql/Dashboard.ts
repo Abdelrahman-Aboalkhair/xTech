@@ -32,26 +32,15 @@ export const GET_ANALYTICS_OVERVIEW = gql`
 `;
 
 export const GET_ALL_ANALYTICS = gql`
-  query GetAllAnalytics(
-    $params: DateRangeQueryInput!
-    $searchParams: SearchInput!
-  ) {
+  query GetAllAnalytics($params: DateRangeQueryInput!) {
     yearRange {
       minYear
       maxYear
     }
-    analyticsOverview(params: $params) {
+    revenueAnalytics(params: $params) {
       totalRevenue
-      totalOrders
-      totalSales
-      totalUsers
-      averageOrderValue
       changes {
         revenue
-        orders
-        sales
-        users
-        averageOrderValue
       }
       monthlyTrends {
         labels
@@ -61,6 +50,16 @@ export const GET_ALL_ANALYTICS = gql`
         users
       }
     }
+    orderAnalytics(params: $params) {
+      totalOrders
+      totalSales
+      averageOrderValue
+      changes {
+        orders
+        sales
+        averageOrderValue
+      }
+    }
     userAnalytics(params: $params) {
       totalUsers
       totalRevenue
@@ -68,6 +67,9 @@ export const GET_ALL_ANALYTICS = gql`
       lifetimeValue
       repeatPurchaseRate
       engagementScore
+      changes {
+        users
+      }
       topUsers {
         id
         name

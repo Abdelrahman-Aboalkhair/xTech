@@ -1,17 +1,9 @@
 "use client";
 import ProtectedRoute from "@/app/components/auth/ProtectedRoute";
 import AreaChart from "@/app/components/charts/AreaChart";
-import DonutChart from "@/app/components/charts/DonutChart";
-import ListCard from "@/app/components/organisms/ListCard";
 import StatsCard from "@/app/components/organisms/StatsCard";
 import Dropdown from "@/app/components/molecules/Dropdown";
-import {
-  BarChart2,
-  CreditCard,
-  DollarSign,
-  ShoppingCart,
-  Users,
-} from "lucide-react";
+import { DollarSign, ShoppingCart, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { Controller, useForm } from "react-hook-form";
 import React from "react";
@@ -65,30 +57,6 @@ const Dashboard = () => {
     return <div>Error loading dashboard data</div>;
   }
 
-  const mostSoldProducts = {
-    labels: data?.productPerformance?.slice(0, 5).map((p: any) => p.name) || [],
-    data:
-      data?.productPerformance?.slice(0, 5).map((p: any) => p.quantity) || [],
-  };
-
-  const topItems =
-    data?.productPerformance?.slice(0, 5).map((p: any) => ({
-      id: p.id,
-      name: p.name,
-      quantity: p.quantity,
-      revenue: formatPrice(p.revenue),
-    })) || [];
-
-  const topCustomers =
-    data?.customerAnalytics?.topCustomers?.slice(0, 5).map((c: any) => ({
-      id: c.id,
-      name: c.name,
-      email: c.email,
-      orderCount: c.orderCount,
-      totalSpent: formatPrice(c.totalSpent),
-      engagementScore: c.engagementScore,
-    })) || [];
-
   return (
     <ProtectedRoute requiredRoles={["ADMIN", "SUPERADMIN"]}>
       <motion.div
@@ -115,81 +83,36 @@ const Dashboard = () => {
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <StatsCard
             title="Total Revenue"
-            value={formatPrice(data?.analyticsOverview?.totalRevenue || 0)}
-            percentage={data?.analyticsOverview?.changes?.revenue}
+            value={formatPrice(data?.revenueAnalytics?.totalRevenue || 0)}
+            percentage={data?.revenueAnalytics?.changes?.revenue}
             caption="since last period"
             icon={<DollarSign className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Orders"
-            value={data?.analyticsOverview?.totalOrders || 0}
-            percentage={data?.analyticsOverview?.changes?.orders}
+            value={data?.orderAnalytics?.totalOrders || 0}
+            percentage={data?.orderAnalytics?.changes?.orders}
             caption="since last period"
             icon={<ShoppingCart className="w-5 h-5" />}
           />
           <StatsCard
-            title="Total Sales"
-            value={data?.analyticsOverview?.totalSales || 0}
-            percentage={data?.analyticsOverview?.changes?.sales}
-            caption="since last period"
-            icon={<BarChart2 className="w-5 h-5" />}
-          />
-          <StatsCard
-            title="Average Order Value"
-            value={formatPrice(data?.analyticsOverview?.averageOrderValue || 0)}
-            percentage={data?.analyticsOverview?.changes?.averageOrderValue}
-            caption="since last period"
-            icon={<CreditCard className="w-5 h-5" />}
-          />
-          <StatsCard
             title="Total Users"
-            value={data?.analyticsOverview?.totalUsers || 0}
-            percentage={data?.analyticsOverview?.changes?.users}
+            value={data?.userAnalytics?.totalUsers || 0}
+            percentage={data?.userAnalytics?.changes?.users}
             caption="since last period"
             icon={<Users className="w-5 h-5" />}
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6">
           <AreaChart
-            title="Order Analytics"
-            data={data?.analyticsOverview?.monthlyTrends?.orders || []}
-            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
-            color="#ec4899"
-            percentageChange={data?.analyticsOverview?.changes?.orders}
-          />
-          <AreaChart
-            title="Revenue Analytics"
-            data={data?.analyticsOverview?.monthlyTrends?.revenue || []}
-            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
+            title="Revenue Trends"
+            data={data?.revenueAnalytics?.monthlyTrends?.revenue || []}
+            categories={data?.revenueAnalytics?.monthlyTrends?.labels || []}
             color="#22c55e"
-            percentageChange={data?.analyticsOverview?.changes?.revenue}
-          />
-          <AreaChart
-            title="Sales Analytics"
-            data={data?.analyticsOverview?.monthlyTrends?.sales || []}
-            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
-            color="#3b82f6"
-            percentageChange={data?.analyticsOverview?.changes?.sales}
-          />
-          <DonutChart
-            title="Most Sold Products"
-            data={mostSoldProducts.data}
-            labels={mostSoldProducts.labels}
-          />
-          <ListCard
-            title="Top Customers"
-            viewAllLink="/dashboard/users"
-            items={topCustomers}
-            itemType="user"
-          />{" "}
-          <ListCard
-            title="Top Items"
-            viewAllLink="/shop"
-            items={topItems}
-            itemType="product"
+            percentageChange={data?.revenueAnalytics?.changes?.revenue}
           />
         </div>
       </motion.div>

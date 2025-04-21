@@ -4,6 +4,7 @@ import sendResponse from "@/shared/utils/sendResponse";
 import { ProductService } from "./product.service";
 import slugify from "@/shared/utils/slugify";
 import { makeLogsService } from "../logs/logs.factory";
+import { uploadToCloudinary } from "@/shared/utils/uploadToCloudinary";
 
 export class ProductController {
   private logsService = makeLogsService();
@@ -55,18 +56,29 @@ export class ProductController {
 
   createProduct = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
-      const { name, description, price, discount, images, stock, categoryId } =
+      const { name, description, price, discount, stock, categoryId } =
         req.body;
       const slugifiedName = slugify(name);
+      const files = req.files as Express.Multer.File[];
+
+      const formattedPrice = Number(price);
+      const formattedDiscount = Number(discount);
+      const formattedStock = Number(stock);
+
+      let imageUrls: string[] = [];
+      if (Array.isArray(files) && files.length > 0) {
+        const uploadedImages = await uploadToCloudinary(files);
+        imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
+      }
 
       const { product } = await this.productService.createProduct({
         name,
         slug: slugifiedName,
         description,
-        price,
-        discount,
-        images,
-        stock,
+        price: formattedPrice,
+        discount: formattedDiscount,
+        stock: formattedStock,
+        images: imageUrls.length > 0 ? imageUrls : undefined,
         categoryId,
       });
 

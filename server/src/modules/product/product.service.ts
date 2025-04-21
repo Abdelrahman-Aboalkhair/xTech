@@ -66,7 +66,7 @@ export class ProductService {
     description?: string;
     price: number;
     discount: number;
-    images: string[];
+    images?: string[];
     stock: number;
     categoryId?: string;
   }) {

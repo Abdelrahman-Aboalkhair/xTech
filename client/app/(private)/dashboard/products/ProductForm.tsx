@@ -30,7 +30,11 @@ const ProductForm: React.FC<ProductFormProps> = ({
   } = form;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form
+      encType="multipart/form-data"
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-6"
+    >
       {/* Product Name */}
       <div className="relative">
         <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -199,13 +203,15 @@ const ProductForm: React.FC<ProductFormProps> = ({
         />
       </div>
 
-      <ImageUploader
-        label={"Product Images"}
-        control={control}
-        errors={errors}
-        setValue={setValue}
-        watch={watch}
-      />
+      <div className="md:col-span-2">
+        <ImageUploader
+          label={"Product Images"}
+          control={control}
+          errors={errors}
+          setValue={setValue}
+          watch={watch}
+        />
+      </div>
 
       {/* Error Message */}
       {error && (

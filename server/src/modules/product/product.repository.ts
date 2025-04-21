@@ -97,7 +97,7 @@ export class ProductRepository {
     description?: string;
     price: number;
     discount: number;
-    images: string[];
+    images?: string[];
     stock: number;
     categoryId?: string;
   }) {

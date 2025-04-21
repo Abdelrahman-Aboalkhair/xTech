@@ -1,6 +1,5 @@
 "use client";
 import Table from "@/app/components/layout/Table";
-import useQueryParams from "@/app/hooks/network/useQueryParams";
 import {
   useCreateProductMutation,
   useDeleteProductMutation,
@@ -29,7 +28,6 @@ export interface ProductFormData {
 
 const ProductsDashboard = () => {
   const { showToast } = useToast();
-  const { query } = useQueryParams();
   const [createProduct, { isLoading: isCreating, error: createError }] =
     useCreateProductMutation();
   const [updateProduct, { isLoading: isUpdating, error: updateError }] =
@@ -53,15 +51,28 @@ const ProductsDashboard = () => {
   const [isFileUploadOpen, setIsFileUploadOpen] = useState(false);
 
   const handleCreateProduct = async (data: ProductFormData) => {
-    const formattedPrice = Number(data.price);
-    const formattedDiscount = Number(data.discount);
-    const formattedStock = Number(data.stock);
+    console.log("submitted form data => ", data);
 
-    data.price = formattedPrice;
-    data.discount = formattedDiscount;
-    data.stock = formattedStock;
+    const payload = new FormData();
+
+    payload.append("name", data.name || "");
+    payload.append("price", data.price.toString());
+    payload.append("discount", data.discount.toString());
+    payload.append("stock", data.stock.toString());
+    payload.append("description", data.description || "");
+
+    if (data.images && Array.isArray(data.images)) {
+      data.images.forEach((file: any) => {
+        if (file instanceof File) {
+          payload.append("images", file);
+        }
+      });
+    }
+
+    payload.append("categoryId", data.categoryId || "");
+
     try {
-      await createProduct(data).unwrap();
+      await createProduct(payload).unwrap();
       setIsModalOpen(false);
 
       showToast("Product created successfully", "success");

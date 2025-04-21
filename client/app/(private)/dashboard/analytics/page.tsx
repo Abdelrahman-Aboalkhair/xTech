@@ -19,10 +19,7 @@ import { motion } from "framer-motion";
 import { Controller, useForm } from "react-hook-form";
 import React, { useState } from "react";
 import useFormatPrice from "@/app/hooks/ui/useFormatPrice";
-import {
-  useGetYearRangeQuery,
-  useLazyExportAnalyticsQuery,
-} from "@/app/store/apis/AnalyticsApi";
+import { useLazyExportAnalyticsQuery } from "@/app/store/apis/AnalyticsApi";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_ANALYTICS } from "@/app/gql/Dashboard";
 import CustomLoader from "@/app/components/feedback/CustomLoader";
@@ -53,14 +50,6 @@ const AnalyticsDashboard = () => {
   ];
 
   const { timePeriod, year, startDate, endDate, useCustomRange } = watch();
-  console.log(
-    "timePeriod, year, startDate, endDate, useCustomRange",
-    timePeriod,
-    year,
-    startDate,
-    endDate,
-    useCustomRange
-  );
 
   const queryParams = {
     timePeriod: timePeriod || "allTime",
@@ -73,7 +62,7 @@ const AnalyticsDashboard = () => {
   const [exportFormat, setExportFormat] = useState<string>("csv");
 
   const { data, loading, error } = useQuery(GET_ALL_ANALYTICS, {
-    variables: { params: queryParams, searchParams: { searchQuery: "" } },
+    variables: { params: queryParams },
   });
 
   console.log("Analytics data => ", data);
@@ -160,14 +149,14 @@ const AnalyticsDashboard = () => {
       revenue: formatPrice(p.revenue),
     })) || [];
 
-  const topCustomers =
-    data?.customerAnalytics?.topCustomers?.slice(0, 10).map((c) => ({
-      id: c.id,
-      name: c.name,
-      email: c.email,
-      orderCount: c.orderCount,
-      totalSpent: formatPrice(c.totalSpent),
-      engagementScore: c.engagementScore,
+  const topUsers =
+    data?.userAnalytics?.topUsers?.slice(0, 10).map((u) => ({
+      id: u.id,
+      name: u.name,
+      email: u.email,
+      orderCount: u.orderCount,
+      totalSpent: formatPrice(u.totalSpent),
+      engagementScore: u.engagementScore,
     })) || [];
 
   const mostViewedProducts =
@@ -181,7 +170,7 @@ const AnalyticsDashboard = () => {
     { label: "All Data", value: "all" },
     { label: "Overview", value: "overview" },
     { label: "Products", value: "products" },
-    { label: "Customers", value: "customers" },
+    { label: "Users", value: "users" },
   ];
 
   const exportFormatOptions = [
@@ -233,7 +222,6 @@ const AnalyticsDashboard = () => {
               control={control}
               startName="startDate"
               endName="endDate"
-              // onChange={(value) => setValue("useCustomRange", !!value)}
             />
             <Dropdown
               options={exportTypeOptions}
@@ -264,64 +252,57 @@ const AnalyticsDashboard = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           <StatsCard
             title="Total Revenue"
-            value={formatPrice(data?.analyticsOverview?.totalRevenue || 0)}
-            percentage={data?.analyticsOverview?.changes?.revenue}
+            value={formatPrice(data?.revenueAnalytics?.totalRevenue || 0)}
+            percentage={data?.revenueAnalytics?.changes?.revenue}
             caption="since last period"
             icon={<DollarSign className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Orders"
-            value={data?.analyticsOverview?.totalOrders || 0}
-            percentage={data?.analyticsOverview?.changes?.orders}
+            value={data?.orderAnalytics?.totalOrders || 0}
+            percentage={data?.orderAnalytics?.changes?.orders}
             caption="since last period"
             icon={<ShoppingCart className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Sales"
-            value={data?.analyticsOverview?.totalSales || 0}
-            percentage={data?.analyticsOverview?.changes?.sales}
+            value={data?.orderAnalytics?.totalSales || 0}
+            percentage={data?.orderAnalytics?.changes?.sales}
             caption="since last period"
             icon={<BarChart2 className="w-5 h-5" />}
           />
           <StatsCard
             title="Average Order Value"
-            value={formatPrice(data?.analyticsOverview?.averageOrderValue || 0)}
-            percentage={data?.analyticsOverview?.changes?.averageOrderValue}
+            value={formatPrice(data?.orderAnalytics?.averageOrderValue || 0)}
+            percentage={data?.orderAnalytics?.changes?.averageOrderValue}
             caption="since last period"
             icon={<CreditCard className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Users"
-            value={data?.analyticsOverview?.totalUsers || 0}
-            percentage={data?.analyticsOverview?.changes?.users}
+            value={data?.userAnalytics?.totalUsers || 0}
+            percentage={data?.userAnalytics?.changes?.users}
             caption="since last period"
             icon={<Users className="w-5 h-5" />}
           />
           <StatsCard
-            title="Total Customers"
-            value={data?.customerAnalytics?.totalCustomers || 0}
-            percentage={data?.customerAnalytics?.retentionRate}
-            caption="retention rate"
-            icon={<Users className="w-5 h-5" />}
-          />
-          <StatsCard
             title="Lifetime Value"
-            value={formatPrice(data?.customerAnalytics?.lifetimeValue || 0)}
-            percentage={data?.customerAnalytics?.repeatPurchaseRate}
+            value={formatPrice(data?.userAnalytics?.lifetimeValue || 0)}
+            percentage={data?.userAnalytics?.repeatPurchaseRate}
             caption="repeat purchase rate"
             icon={<DollarSign className="w-5 h-5" />}
           />
           <StatsCard
             title="Engagement Score"
-            value={data?.customerAnalytics?.engagementScore?.toFixed(2) || 0}
-            percentage={data?.customerAnalytics?.averageEngagement}
-            caption="average engagement"
+            value={data?.userAnalytics?.engagementScore?.toFixed(2) || 0}
+            percentage={data?.userAnalytics?.repeatPurchaseRate}
+            caption="repeat purchase rate"
             icon={<BarChart2 className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Interactions"
             value={data?.interactionAnalytics?.totalInteractions || 0}
-            percentage={data?.interactionAnalytics?.averageInteractions}
+            percentage={null}
             caption="all interactions"
             icon={<BarChart2 className="w-5 h-5" />}
           />
@@ -331,40 +312,38 @@ const AnalyticsDashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AreaChart
             title="Order Trends"
-            data={data?.analyticsOverview?.monthlyTrends?.orders || []}
-            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
+            data={data?.revenueAnalytics?.monthlyTrends?.orders || []}
+            categories={data?.revenueAnalytics?.monthlyTrends?.labels || []}
             color="#ec4899"
-            percentageChange={data?.analyticsOverview?.changes?.orders}
+            percentageChange={data?.orderAnalytics?.changes?.orders}
           />
           <AreaChart
             title="Revenue Trends"
-            data={data?.analyticsOverview?.monthlyTrends?.revenue || []}
-            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
+            data={data?.revenueAnalytics?.monthlyTrends?.revenue || []}
+            categories={data?.revenueAnalytics?.monthlyTrends?.labels || []}
             color="#22c55e"
-            percentageChange={data?.analyticsOverview?.changes?.revenue}
+            percentageChange={data?.revenueAnalytics?.changes?.revenue}
           />
           <AreaChart
             title="Sales Trends"
-            data={data?.analyticsOverview?.monthlyTrends?.sales || []}
-            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
+            data={data?.revenueAnalytics?.monthlyTrends?.sales || []}
+            categories={data?.revenueAnalytics?.monthlyTrends?.labels || []}
             color="#3b82f6"
-            percentageChange={data?.analyticsOverview?.changes?.sales}
+            percentageChange={data?.orderAnalytics?.changes?.sales}
           />
           <AreaChart
             title="User Trends"
-            data={data?.analyticsOverview?.monthlyTrends?.users || []}
-            categories={data?.analyticsOverview?.monthlyTrends?.labels || []}
+            data={data?.revenueAnalytics?.monthlyTrends?.users || []}
+            categories={data?.revenueAnalytics?.monthlyTrends?.labels || []}
             color="#f59e0b"
-            percentageChange={data?.analyticsOverview?.changes?.users}
+            percentageChange={data?.userAnalytics?.changes?.users}
           />
           <AreaChart
             title="Interaction Trends (Views)"
-            data={data?.customerAnalytics?.interactionTrends?.views || []}
-            categories={
-              data?.customerAnalytics?.interactionTrends?.labels || []
-            }
+            data={data?.userAnalytics?.interactionTrends?.views || []}
+            categories={data?.userAnalytics?.interactionTrends?.labels || []}
             color="#8b5cf6"
-            percentageChange={data?.customerAnalytics?.changes?.views}
+            percentageChange={null}
           />
           <DonutChart
             title="Top 10 Products by Quantity"
@@ -387,9 +366,9 @@ const AnalyticsDashboard = () => {
             itemType="product"
           />
           <ListCard
-            title="Top Customers"
+            title="Top Users"
             viewAllLink="/dashboard/users"
-            items={topCustomers}
+            items={topUsers}
             itemType="user"
           />
           <ListCard
