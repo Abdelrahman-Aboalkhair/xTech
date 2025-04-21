@@ -14,7 +14,7 @@ interface DashboardSearchBarProps {
 }
 
 const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
-  placeholder = "Search dashboard (Ctrl + K)",
+  placeholder = "Search Dashboard",
   className = "",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
