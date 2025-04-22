@@ -47,8 +47,8 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
       {/* Rating and Stock */}
       <div className="flex items-center gap-2 text-sm text-gray-600">
         <Rating rating={averageRating} />
-        <span>({reviewCount} reviews)</span>
-        <span className="text-green-600 font-medium ml-2">
+        <span>({reviewCount || 0} reviews)</span>
+        <span className="text-primary font-medium ml-2">
           {stock > 0 ? `${stock} in stock` : "Out of stock"}
         </span>
       </div>
@@ -82,11 +82,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
           onClick={handleAddToCart}
           className={`w-full sm:w-auto px-12 py-3 text-sm font-medium text-white rounded transition duration-300 ${
             isLoading ? "opacity-50 cursor-not-allowed" : ""
-          } ${
-            stock
-              ? "bg-green-600 hover:bg-green-700"
-              : "bg-gray-400 cursor-not-allowed"
-          }`}
+          } ${stock ? "bg-primary" : "bg-gray-400 cursor-not-allowed"}`}
         >
           {stock > 0 ? "Add to Cart" : "Out of Stock"}
         </button>
@@ -94,7 +90,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
           disabled={!stock}
           className={`w-full sm:w-auto px-12 py-3 text-sm font-medium border-[2px] rounded transition duration-300 ${
             stock
-              ? "border-green-600 text-green-600 hover:bg-gray-100"
+              ? "border-primary text-primary hover:bg-gray-100"
               : "border-gray-300 text-gray-400 cursor-not-allowed"
           }`}
         >

@@ -103,7 +103,11 @@ const ProductsDashboard = () => {
     payload.append("discount", data.discount.toString());
     payload.append("stock", data.stock.toString());
     payload.append("description", data.description || "");
-    payload.append("categoryId", data.categoryId || "");
+    payload.append("isNew", data.isNew.toString());
+    payload.append("isTrending", data.isTrending.toString());
+    payload.append("isBestSeller", data.isBestSeller.toString());
+    payload.append("isFeatured", data.isFeatured.toString());
+    payload.append("sku", data.sku || "");
 
     if (data.images && Array.isArray(data.images)) {
       data.images.forEach((file: any) => {

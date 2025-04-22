@@ -11,6 +11,10 @@ const typeDefs = gql`
     discount: Float!
     images: [String!]!
     stock: Int!
+    isNew: Boolean!
+    isFeatured: Boolean!
+    isTrending: Boolean!
+    isBestSeller: Boolean!
     reviews: [Review!]
   }
 
@@ -23,6 +27,10 @@ const typeDefs = gql`
   type Query {
     products: [Product!]
     product(slug: String!): Product
+    newProducts: [Product!]
+    featuredProducts: [Product!]
+    trendingProducts: [Product!]
+    bestSellerProducts: [Product!]
   }
 `;
 

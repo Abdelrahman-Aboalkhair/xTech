@@ -140,12 +140,28 @@ export class ProductController {
   updateProduct = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
       const { id: productId } = req.params;
-      const { name, description, price, discount, stock, categoryId } =
-        req.body;
+      const {
+        name,
+        description,
+        price,
+        discount,
+        stock,
+        categoryId,
+        sku,
+        isNew,
+        isFeatured,
+        isTrending,
+        isBestSeller,
+      } = req.body;
       console.log("req.body => ", req.body);
 
       const files = req.files as Express.Multer.File[];
       console.log("files => ", files);
+
+      const formattedIsNew = isNew === "true";
+      const formattedIsFeatured = isFeatured === "true";
+      const formattedIsTrending = isTrending === "true";
+      const formattedIsBestSeller = isBestSeller === "true";
 
       // Format number values
       const formattedPrice = price !== undefined ? Number(price) : undefined;
@@ -162,6 +178,17 @@ export class ProductController {
       // Prepare update payload
       const updatedData: any = {
         ...(name && { name, slug: slugify(name) }),
+        ...(sku && { sku }),
+        ...(formattedIsNew !== undefined && { isNew: formattedIsNew }),
+        ...(formattedIsFeatured !== undefined && {
+          isFeatured: formattedIsFeatured,
+        }),
+        ...(formattedIsTrending !== undefined && {
+          isTrending: formattedIsTrending,
+        }),
+        ...(formattedIsBestSeller !== undefined && {
+          isBestSeller: formattedIsBestSeller,
+        }),
         ...(description && { description }),
         ...(formattedPrice !== undefined && { price: formattedPrice }),
         ...(formattedDiscount !== undefined && { discount: formattedDiscount }),

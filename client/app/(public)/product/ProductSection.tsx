@@ -4,12 +4,12 @@ import { Product } from "@/app/types/productTypes";
 import { motion } from "framer-motion";
 import { Package } from "lucide-react";
 import ProductCard from "./ProductCard";
-import PaginationComponent from "@/app/components/organisms/Pagination";
 import { useQuery } from "@apollo/client";
-import { GET_ALL_PRODUCTS } from "@/app/gql/Product";
+import { DocumentNode } from "graphql";
 
 interface ProductSectionProps {
   title: string;
+  query: DocumentNode;
   showTitle?: boolean;
   viewAllButton?: boolean;
   showPagination?: boolean;
@@ -17,19 +17,25 @@ interface ProductSectionProps {
 
 const ProductSection: React.FC<ProductSectionProps> = ({
   title,
+  query,
   showTitle = false,
   viewAllButton = false,
-  showPagination = false,
 }) => {
-  const { data, loading, error } = useQuery(GET_ALL_PRODUCTS);
-  console.log("data from gql => ", data);
-  console.log("error => ", error);
+  const { data, loading, error } = useQuery(query);
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
 
-  const noProductsFound = data?.products?.length === 0;
+  const products = data
+    ? data.products ||
+      data.newProducts ||
+      data.featuredProducts ||
+      data.trendingProducts ||
+      data.bestSellerProducts
+    : [];
+
+  const noProductsFound = products?.length === 0;
 
   return (
-    <div className="w-full p-8">
+    <div className="w-full p-12">
       {(showTitle || viewAllButton) && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -40,14 +46,14 @@ const ProductSection: React.FC<ProductSectionProps> = ({
           {showTitle && (
             <div className="flex items-center space-x-3">
               <div className="h-6 w-1 rounded-full bg-primary"></div>
-              <span className="ml-2 text-md font-semibold tracking-wider text-gray-700 uppercase">
+              <span className="ml-2 text-xl font-extrabold font-sans tracking-wide text-gray-700 capitalize">
                 {title}
               </span>
             </div>
           )}
           {viewAllButton && (
             <button className="bg-indigo-500 text-white px-6 py-2 rounded-lg hover:bg-indigo-600 transition-colors duration-300 font-medium">
-              View All
+              ViewTriggered All
             </button>
           )}
         </motion.div>
@@ -77,8 +83,8 @@ const ProductSection: React.FC<ProductSectionProps> = ({
       {/* Product Grid */}
       {!loading && !error && !noProductsFound && (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {data?.products.map((product: Product) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+            {products.map((product: Product) => (
               <ProductCard
                 key={product.id}
                 product={product}
@@ -87,12 +93,6 @@ const ProductSection: React.FC<ProductSectionProps> = ({
               />
             ))}
           </div>
-
-          {showPagination && data?.totalPages > 1 && (
-            <div className="mt-8">
-              <PaginationComponent totalPages={data.totalPages} />
-            </div>
-          )}
         </>
       )}
     </div>

@@ -21,7 +21,7 @@ const FooterLogo = () => (
       fontWeight="bold"
       fill="currentColor"
     >
-      kgkraft
+      NexsyMart
     </text>
   </svg>
 );
@@ -51,8 +51,9 @@ const Footer = () => {
             </div>
 
             <p className="text-gray-400 mt-6 text-sm leading-relaxed">
-              Discover high-quality, handcrafted products at kgkraft. Shop with
-              confidence and enjoy premium selections tailored just for you.
+              Discover high-quality, handcrafted products at NexsyMart. Shop
+              with confidence and enjoy premium selections tailored just for
+              you.
             </p>
 
             <div className="mt-8 flex flex-col space-y-4">
@@ -74,7 +75,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center">
                 <Mail size={18} className="text-green-400 mr-3 flex-shrink-0" />
-                <p className="text-sm text-gray-400">support@kgkraft.com</p>
+                <p className="text-sm text-gray-400">support@NexsyMart.com</p>
               </div>
             </div>
           </div>
@@ -223,7 +224,7 @@ const Footer = () => {
 
           <div className="flex flex-col md:flex-row text-center md:text-left items-center space-y-2 md:space-y-0 md:space-x-8 text-sm">
             <p className="text-gray-400">
-              © {currentYear} kgkraft. All rights reserved.
+              © {currentYear} NexsyMart. All rights reserved.
             </p>
             <div className="flex space-x-4 text-gray-500">
               {["Terms", "Privacy", "Cookies"].map((item, idx) => (

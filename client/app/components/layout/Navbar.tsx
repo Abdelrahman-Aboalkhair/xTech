@@ -84,22 +84,22 @@ const Navbar = () => {
         <nav className="max-w-[80%] mx-auto flex items-center justify-between">
           <div className="flex justify-between items-center gap-8">
             <Link href="/" className="flex items-center">
-              <span className="font-bold text-2xl text-gray-900 ">
+              <span className="font-black font-mono text-2xl text-gray-900 ">
                 NexsyMart
               </span>
             </Link>
           </div>
 
           {/* Right section - Search, Cart, User */}
-          <div className="flex items-center space-x-4 md:space-x-6">
+          <div className="flex items-center">
             <SearchBar onSearch={onSearch} />
 
             <Link
               href="/cart"
-              className="relative text-gray-700 transition-colors"
+              className="relative text-gray-700 transition-colors mx-9"
               aria-label="Shopping cart"
             >
-              <ShoppingCart size={25} />
+              <ShoppingCart size={28} />
               {cartData?.cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 text-white text-xs font-medium rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
                   {cartData?.cartCount}

@@ -138,10 +138,16 @@ export class ProductRepository {
     id: string,
     data: Partial<{
       name: string;
-      description: string;
+      sku: string;
+      isNew: boolean;
+      isTrending: boolean;
+      isBestSeller: boolean;
+      isFeatured: boolean;
+      slug: string;
+      description?: string;
       price: number;
       discount: number;
-      images: string[];
+      images?: string[];
       stock: number;
       categoryId?: string;
     }>

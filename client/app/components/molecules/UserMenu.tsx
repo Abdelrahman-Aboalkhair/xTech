@@ -26,7 +26,6 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
         closeMenu();
       }
     };
-
     if (menuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
@@ -94,31 +93,24 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
     },
   ];
 
-  // Menu animations
+  // ✨ Minimal animation variants
   const menuVariants = {
-    hidden: { opacity: 0, y: -20, scale: 0.95 },
+    hidden: { opacity: 0, y: -10 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 500,
-        damping: 30,
-        staggerChildren: 0.05,
-      },
+      transition: { duration: 0.15, ease: "easeOut" },
     },
     exit: {
       opacity: 0,
-      y: -20,
-      scale: 0.95,
-      transition: { duration: 0.2 },
+      y: -10,
+      transition: { duration: 0.1, ease: "easeIn" },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -10 },
-    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   };
 
   return (
@@ -136,10 +128,8 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
               "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
           }}
         >
-          {/* Decorative arrow */}
-          <div className="absolute top-[-8px] right-4 w-4 h-4 bg-white transform rotate-45 border-l border-t border-gray-100"></div>
+          <div className="absolute top-[-8px] right-4 w-4 h-4 bg-white transform rotate-45 border-l border-t border-gray-100" />
 
-          {/* Menu sections */}
           <div className="py-2 max-h-[calc(100vh-200px)] overflow-y-auto">
             {menuItems.map((section, sectionIndex) => {
               const visibleRoutes = section.routes.filter(
@@ -156,7 +146,7 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
                     <motion.div key={route.href} variants={itemVariants}>
                       <Link
                         href={route.href}
-                        className="flex items-center px-4 py-2.5 gap-3 hover:bg-gray-50/80 text-gray-700 text-sm transition-colors duration-200 relative group"
+                        className="flex items-center px-4 py-2.5 gap-3 hover:bg-gray-50/80 text-gray-700 text-sm transition-colors duration-150 relative group"
                         onClick={closeMenu}
                       >
                         <span className="flex-shrink-0">{route.icon}</span>
@@ -165,10 +155,7 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
                           size={16}
                           className="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity"
                         />
-                        <span
-                          className="absolute left-0 top-0 bottom-0 w-0.5 bg-transparent group-hover:bg-indigo-500 transition-all
-                         duration-200 transform scale-y-0 group-hover:scale-y-100 origin-center"
-                        ></span>
+                        <span className="absolute left-0 top-0 bottom-0 w-0.5 bg-transparent group-hover:bg-indigo-500 transition-all duration-200" />
                       </Link>
                     </motion.div>
                   ))}
@@ -186,7 +173,7 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
                 handleSignOut();
                 closeMenu();
               }}
-              className="flex items-center w-full px-4 py-3 gap-3 text-red-600 hover:bg-red-50/80 transition-colors duration-200 text-sm"
+              className="flex items-center w-full px-4 py-3 gap-3 text-red-600 hover:bg-red-50/80 transition-colors duration-150 text-sm"
             >
               <LogOut size={18} />
               <span>Sign out</span>

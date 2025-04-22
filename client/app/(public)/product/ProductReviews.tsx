@@ -97,7 +97,7 @@ const ProductReviews = ({ reviews, productId }) => {
   if (isSubmitting)
     return (
       <div className="my-12 text-center flex justify-center items-center space-x-2">
-        <div className="animate-spin h-5 w-5 border-2 border-blue-600 rounded-full border-t-transparent"></div>
+        <div className="animate-spin h-5 w-5 border-2 border-green-600 rounded-full border-t-transparent"></div>
         <span className="text-gray-600">Loading reviews...</span>
       </div>
     );
@@ -211,7 +211,7 @@ const ProductReviews = ({ reviews, productId }) => {
                 rows={4}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all"
+                className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none transition-all"
                 placeholder="Share your experience with this product..."
               />
             </div>
@@ -220,7 +220,7 @@ const ProductReviews = ({ reviews, productId }) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-blue-600 text-white py-2 px-5 rounded-lg hover:bg-blue-700 disabled:bg-blue-400 transition-colors flex items-center shadow-sm"
+                className="bg-primary text-white py-2 px-5 rounded-lg transition-colors flex items-center shadow-sm"
               >
                 {isSubmitting ? (
                   <>
@@ -238,7 +238,7 @@ const ProductReviews = ({ reviews, productId }) => {
           </form>
         </div>
       ) : (
-        <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-8 text-blue-700 flex items-center">
+        <div className="bg-green-50 border border-green-100 rounded-lg p-4 mb-8 text-green-700 flex items-center">
           <AlertCircle size={20} className="mr-2" />
           <p>Please log in to write a review.</p>
         </div>
@@ -267,7 +267,7 @@ const ProductReviews = ({ reviews, productId }) => {
               <div className="flex justify-between items-start mb-3">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="bg-blue-100 text-blue-700 rounded-full p-1">
+                    <div className="bg-green-100 text-green-700 rounded-full p-1">
                       <User size={16} />
                     </div>
                     <span className="font-medium">{review.user.name}</span>

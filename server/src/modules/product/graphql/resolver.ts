@@ -17,6 +17,26 @@ export const productResolvers = {
         where: { slug },
       });
     },
+    newProducts: async (_: any, __: any, context: Context) => {
+      return context.prisma.product.findMany({
+        where: { isNew: true },
+      });
+    },
+    featuredProducts: async (_: any, __: any, context: Context) => {
+      return context.prisma.product.findMany({
+        where: { isFeatured: true },
+      });
+    },
+    trendingProducts: async (_: any, __: any, context: Context) => {
+      return context.prisma.product.findMany({
+        where: { isTrending: true },
+      });
+    },
+    bestSellerProducts: async (_: any, __: any, context: Context) => {
+      return context.prisma.product.findMany({
+        where: { isBestSeller: true },
+      });
+    },
   },
   Product: {
     reviews: (parent: any, _: any, context: Context) => {

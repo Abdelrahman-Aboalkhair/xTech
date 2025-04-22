@@ -127,7 +127,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const showSearchResults = isFocused || isHoveringDropdown;
 
   return (
-    <div className="relative w-full min-w-3xl">
+    <div className="relative w-full min-w-xl">
       <form
         ref={formRef}
         onSubmit={handleSubmit(handleSearch)}
@@ -147,8 +147,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <input
               type="text"
               placeholder={placeholder}
-              className="w-full py-2.5 pl-10 pr-12 bg-white rounded-full text-gray-800 placeholder-gray-400
-                border border-gray-200 focus:border-secondary focus:outline-none focus:ring-2 
+              className="w-full py-2.5 pl-10 pr-12 bg-white rounded-full text-gray-800 placeholder-gray-600
+                border border-gray-400 focus:border-secondary focus:outline-none focus:ring-1 
                 text-sm transition-all duration-200 hover:border-gray-300"
               {...register("searchQuery")}
               onFocus={() => setIsFocused(true)}
