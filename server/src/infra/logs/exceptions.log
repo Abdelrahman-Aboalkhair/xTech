@@ -364,3 +364,135 @@ TSError: ⨯ Unable to compile TypeScript:
     at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.factory.ts:3:1)
     at Module._compile (node:internal/modules/cjs/loader:1723:14)
     at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-22T13:49:46.551Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.controller.ts[0m:[93m36[0m:[93m46[0m - [91merror[0m[90m TS2339: [0mProperty 'getCartCount' does not exist on type 'CartService'.
+
+[7m36[0m     const cartCount = await this.cartService.getCartCount(userId, sessionId);
+[7m  [0m [91m                                             ~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.controller.ts[0m:[93m36[0m:[93m46[0m - [91merror[0m[90m TS2339: [0mProperty 'getCartCount' does not exist on type 'CartService'.
+
+[7m36[0m     const cartCount = await this.cartService.getCartCount(userId, sessionId);
+[7m  [0m [91m                                             ~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T13:50:06.853Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m29[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'cartItems' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; userId: string | null; status: CART_STATUS; sessionId: string | null; }'.
+
+[7m29[0m     return cart.cartItems.length;
+[7m  [0m [91m                ~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m29[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'cartItems' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; userId: string | null; status: CART_STATUS; sessionId: string | null; }'.
+
+[7m29[0m     return cart.cartItems.length;
+[7m  [0m [91m                ~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T13:51:03.954Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m29[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'cartItems' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; userId: string | null; status: CART_STATUS; sessionId: string | null; }'.
+
+[7m29[0m     return cart.cartItems.length;
+[7m  [0m [91m                ~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m29[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'cartItems' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; userId: string | null; status: CART_STATUS; sessionId: string | null; }'.
+
+[7m29[0m     return cart.cartItems.length;
+[7m  [0m [91m                ~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T13:51:30.314Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.controller.ts[0m:[93m36[0m:[93m46[0m - [91merror[0m[90m TS2339: [0mProperty 'getCartCount' does not exist on type 'CartService'.
+
+[7m36[0m     const cartCount = await this.cartService.getCartCount(userId, sessionId);
+[7m  [0m [91m                                             ~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.controller.ts[0m:[93m36[0m:[93m46[0m - [91merror[0m[90m TS2339: [0mProperty 'getCartCount' does not exist on type 'CartService'.
+
+[7m36[0m     const cartCount = await this.cartService.getCartCount(userId, sessionId);
+[7m  [0m [91m                                             ~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T13:51:43.815Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.controller.ts[0m:[93m37[0m:[93m46[0m - [91merror[0m[90m TS2339: [0mProperty 'getCartCount' does not exist on type 'CartService'.
+
+[7m37[0m     const cartCount = await this.cartService.getCartCount(cart.id);
+[7m  [0m [91m                                             ~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.controller.ts[0m:[93m37[0m:[93m46[0m - [91merror[0m[90m TS2339: [0mProperty 'getCartCount' does not exist on type 'CartService'.
+
+[7m37[0m     const cartCount = await this.cartService.getCartCount(cart.id);
+[7m  [0m [91m                                             ~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T13:52:38.249Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.controller.ts[0m:[93m37[0m:[93m46[0m - [91merror[0m[90m TS2339: [0mProperty 'getCartCount' does not exist on type 'CartService'.
+
+[7m37[0m     const cartCount = await this.cartService.getCartCount(cart.id);
+[7m  [0m [91m                                             ~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.controller.ts[0m:[93m37[0m:[93m46[0m - [91merror[0m[90m TS2339: [0mProperty 'getCartCount' does not exist on type 'CartService'.
+
+[7m37[0m     const cartCount = await this.cartService.getCartCount(cart.id);
+[7m  [0m [91m                                             ~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

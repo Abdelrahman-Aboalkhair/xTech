@@ -29,6 +29,16 @@ export class CartController {
       timePeriod: end - start,
     });
   });
+  getCartCount = asyncHandler(async (req: Request, res: Response) => {
+    const userId = req.user?.id;
+    const sessionId = req.session.id;
+
+    const cartCount = await this.cartService.getCartCount(userId, sessionId);
+    sendResponse(res, 200, {
+      data: { cartCount },
+      message: "Cart count fetched successfully",
+    });
+  });
 
   addToCart = asyncHandler(async (req: Request, res: Response) => {
     const userId = req.user?.id;

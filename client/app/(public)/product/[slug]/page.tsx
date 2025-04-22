@@ -5,20 +5,15 @@ import { useParams } from "next/navigation";
 import ProductImageGallery from "../ProductImageGallery";
 import ProductInfo from "../ProductInfo";
 import ProductReviews from "../ProductReviews";
-import { useAppSelector } from "@/app/store/hooks";
 import { useQuery } from "@apollo/client";
 import { GET_SINGLE_PRODUCT } from "@/app/gql/Product";
 
 const ProductDetailsPage = () => {
-  const { user } = useAppSelector((state) => state.auth);
   const { slug } = useParams();
   const { data, loading } = useQuery(GET_SINGLE_PRODUCT, {
     variables: { slug },
   });
   const product = data?.product;
-
-  const userId = user?.id;
-  const isAdmin = user?.role === "ADMIN";
 
   if (loading)
     return (
@@ -50,12 +45,7 @@ const ProductDetailsPage = () => {
       </div>
 
       <div className="w-[84%] mx-auto p-6">
-        <ProductReviews
-          reviews={product.reviews}
-          productId={product.id}
-          userId={userId}
-          isAdmin={isAdmin}
-        />
+        <ProductReviews reviews={product.reviews} productId={product.id} />
       </div>
     </MainLayout>
   );

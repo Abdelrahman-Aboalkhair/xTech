@@ -15,8 +15,11 @@ import {
   Send,
 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
+import { useGetMeQuery } from "@/app/store/apis/UserApi";
 
-const ProductReviews = ({ reviews, productId, userId, isAdmin = false }) => {
+const ProductReviews = ({ reviews, productId }) => {
+  const { data } = useGetMeQuery(undefined);
+  const userId = data?.user.id;
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
   const [hoveredStar, setHoveredStar] = useState(0);
@@ -27,10 +30,6 @@ const ProductReviews = ({ reviews, productId, userId, isAdmin = false }) => {
 
   const handleSubmitReview = async (e) => {
     e.preventDefault();
-    if (!userId) {
-      alert("Please log in to submit a review");
-      return;
-    }
 
     try {
       await createReview({
@@ -284,7 +283,7 @@ const ProductReviews = ({ reviews, productId, userId, isAdmin = false }) => {
                   </p>
                 </div>
 
-                {(isAdmin || userId === review.userId) && (
+                {(data?.user.role === "ADMIN" || userId === review.userId) && (
                   <button
                     onClick={() => handleDeleteReview(review.id)}
                     className="text-red-500 hover:text-red-700 transition-colors p-1 rounded-full hover:bg-red-50"

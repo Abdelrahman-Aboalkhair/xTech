@@ -11,6 +11,14 @@ export const cartApi = apiSlice.injectEndpoints({
       providesTags: ["Cart"],
     }),
 
+    getCartCount: builder.query({
+      query: () => ({
+        url: "/cart/count",
+        method: "GET",
+        credentials: "include",
+      }),
+    }),
+
     addToCart: builder.mutation({
       query: (productData) => ({
         url: "/cart",
@@ -44,6 +52,7 @@ export const cartApi = apiSlice.injectEndpoints({
 
 export const {
   useGetCartQuery,
+  useGetCartCountQuery,
   useAddToCartMutation,
   useUpdateCartItemMutation,
   useRemoveFromCartMutation,

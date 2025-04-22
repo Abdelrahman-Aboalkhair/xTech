@@ -7,7 +7,7 @@ import { User, ShoppingCart, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import SearchBar from "../molecules/SearchBar";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
-import { useGetCartQuery } from "@/app/store/apis/CartApi";
+import { useGetCartCountQuery } from "@/app/store/apis/CartApi";
 import Topbar from "./Topbar";
 import { useGetMeQuery } from "@/app/store/apis/UserApi";
 
@@ -18,17 +18,19 @@ const Navbar = () => {
   const pathname = usePathname();
   const isPublicRoute = publicRoutes.includes(pathname);
   const isLoggedOut = localStorage.getItem("isLoggedOut") === "true";
-  const { data, isLoading } = useGetMeQuery(undefined, {
+  const { data } = useGetMeQuery(undefined, {
     skip: isPublicRoute || isLoggedOut,
   });
   const user = data?.user;
+
+  const { data: cartData, error: cartError } = useGetCartCountQuery(undefined);
+  console.log("cartError => ", cartError);
+  console.log("cartData => ", cartData);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef(null);
-  const { data: cartData } = useGetCartQuery({}, { skip: !user });
-  const cartItemCount = cartData?.cart?.cartItems?.length || 0;
 
   // Handle scroll effect
   useEffect(() => {
@@ -123,9 +125,9 @@ const Navbar = () => {
               aria-label="Shopping cart"
             >
               <ShoppingCart size={25} />
-              {cartItemCount > 0 && (
+              {cartData?.cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs font-medium rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
-                  {cartItemCount}
+                  {cartData?.cartCount}
                 </span>
               )}
             </Link>

@@ -24,6 +24,11 @@ export class CartService {
     return cart;
   }
 
+  async getCartCount(userId?: string, sessionId?: string) {
+    const cart = await this.getOrCreateCart(userId, sessionId);
+    return cart.cartItems.length;
+  }
+
   async addToCart(
     productId: string,
     quantity: number,
