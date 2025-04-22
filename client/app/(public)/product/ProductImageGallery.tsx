@@ -101,8 +101,8 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
               onClick={() => handleImageSelect(img, index)}
               className={`relative border-2 rounded-xl p-1 transition-all duration-200 ${
                 selectedImage === img
-                  ? "border-blue-600 shadow-md"
-                  : "border-gray-200 hover:border-blue-400"
+                  ? "border-green-600 shadow-md"
+                  : "border-gray-200 hover:border-green-400"
               }`}
             >
               <div className="relative w-20 h-20">
@@ -115,9 +115,6 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
                   priority={index < 2}
                 />
               </div>
-              {selectedImage === img && (
-                <div className="absolute inset-0 bg-blue-600 bg-opacity-10 rounded-xl"></div>
-              )}
             </button>
           ))}
         </div>
@@ -154,7 +151,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
             <button
               onClick={handleZoomToggle}
               className={`bg-white rounded-full p-2 shadow-md transition-all ${
-                isZoomed ? "bg-blue-100 text-blue-600" : "hover:bg-gray-100"
+                isZoomed ? "bg-green-100 text-green-600" : "hover:bg-gray-100"
               }`}
               aria-label={isZoomed ? "Exit zoom" : "Zoom image"}
             >

@@ -33,6 +33,11 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const form = useForm<ProductFormData>({
     defaultValues: {
       name: "",
+      sku: "",
+      isNew: false,
+      isTrending: false,
+      isFeatured: false,
+      isBestSeller: false,
       price: 0,
       discount: 0,
       stock: 0,

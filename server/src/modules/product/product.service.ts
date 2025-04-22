@@ -72,6 +72,11 @@ export class ProductService {
 
   async createProduct(data: {
     name: string;
+    sku: string;
+    isNew: boolean;
+    isTrending: boolean;
+    isBestSeller: boolean;
+    isFeatured: boolean;
     slug: string;
     description?: string;
     price: number;

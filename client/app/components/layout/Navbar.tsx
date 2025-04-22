@@ -17,7 +17,8 @@ const Navbar = () => {
   const { updateQuery } = useQueryParams();
   const pathname = usePathname();
   const isPublicRoute = publicRoutes.includes(pathname);
-  const isLoggedOut = localStorage.getItem("isLoggedOut") === "true";
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
+
   const { data } = useGetMeQuery(undefined, {
     skip: isPublicRoute || isLoggedOut,
   });
@@ -31,6 +32,11 @@ const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef(null);
+
+  useEffect(() => {
+    const storedLogoutState = localStorage.getItem("isLoggedOut");
+    setIsLoggedOut(storedLogoutState === "true");
+  }, []);
 
   // Handle scroll effect
   useEffect(() => {
@@ -78,40 +84,9 @@ const Navbar = () => {
         <nav className="max-w-[80%] mx-auto flex items-center justify-between">
           <div className="flex justify-between items-center gap-8">
             <Link href="/" className="flex items-center">
-              <span className="font-bold text-2xl text-gray-900 hover:text-indigo-600 transition-colors duration-200">
-                Kgkraft
+              <span className="font-bold text-2xl text-gray-900 ">
+                NexsyMart
               </span>
-            </Link>
-
-            <Link
-              href="/"
-              className={`relative text-gray-700 hover:text-indigo-600 font-medium text-sm transition-colors duration-200 py-2 ${
-                pathname === "/"
-                  ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-indigo-600"
-                  : ""
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className={`relative text-gray-700 hover:text-indigo-600 font-medium text-sm transition-colors duration-200 py-2 ${
-                pathname === "/about"
-                  ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-indigo-600"
-                  : ""
-              }`}
-            >
-              About Us
-            </Link>
-            <Link
-              href="/contact"
-              className={`relative text-gray-700 hover:text-indigo-600 font-medium text-sm transition-colors duration-200 py-2 ${
-                pathname === "/contact"
-                  ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-indigo-600"
-                  : ""
-              }`}
-            >
-              Contact Us
             </Link>
           </div>
 
@@ -121,12 +96,12 @@ const Navbar = () => {
 
             <Link
               href="/cart"
-              className="relative text-gray-700 hover:text-indigo-600 transition-colors"
+              className="relative text-gray-700 transition-colors"
               aria-label="Shopping cart"
             >
               <ShoppingCart size={25} />
               {cartData?.cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs font-medium rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                <span className="absolute -top-2 -right-2 text-white text-xs font-medium rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
                   {cartData?.cartCount}
                 </span>
               )}
@@ -171,7 +146,7 @@ const Navbar = () => {
               pathname !== "/sign-in" && (
                 <Link
                   href="/sign-in"
-                  className="hidden sm:inline-flex whitespace-nowrap items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm transition-all duration-200"
+                  className="text-md font-medium text-gray-700 whitespace-nowrap"
                 >
                   Sign in
                 </Link>

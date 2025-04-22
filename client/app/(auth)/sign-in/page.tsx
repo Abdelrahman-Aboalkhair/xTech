@@ -7,8 +7,10 @@ import MainLayout from "@/app/components/templates/MainLayout";
 import Image from "next/image";
 import GirlShoppingImage from "@/app/assets/images/girl_shopping.png";
 import { Loader2 } from "lucide-react";
-import LoginButtons from "../(oAuth)/LoginButtons";
 import { useSignInMutation } from "@/app/store/apis/AuthApi";
+import GoogleIcon from "@/app/assets/icons/google.png";
+import FacebookIcon from "@/app/assets/icons/facebook.png";
+import TwitterIcon from "@/app/assets/icons/twitter.png";
 
 interface InputForm {
   name: string;
@@ -46,10 +48,14 @@ const SignIn = () => {
     }
   };
 
+  const handleOAuthLogin = (provider) => {
+    window.location.href = `http://localhost:5000/api/v1/auth/${provider}`;
+  };
+
   return (
     <MainLayout>
       <div className="flex flex-row-reverse justify-between items-center w-full py-[3%] px-[10%]">
-        <main className="w-full max-w-[37%] p-[3rem]">
+        <main className="w-full max-w-[37%] p-[3rem] bg-white rounded shadow-sm">
           <h2 className="text-3xl font-medium tracking-wide text-start text-gray-700 mb-6">
             Log in to your account
           </h2>
@@ -62,7 +68,7 @@ const SignIn = () => {
             </div>
           )}
 
-          <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4 ">
             <Input
               name="email"
               type="text"
@@ -98,7 +104,7 @@ const SignIn = () => {
 
             <button
               type="submit"
-              className={`flex items-center justify-center w-full mx-auto py-[16px] bg-blue-500 text-white rounded font-medium hover:opacity-90 ${
+              className={`flex items-center justify-center w-full mx-auto py-[16px] bg-primary text-white rounded font-medium hover:opacity-90 ${
                 isLoading ? "cursor-not-allowed bg-gray-400 text-gray-800" : ""
               }`}
             >
@@ -110,21 +116,42 @@ const SignIn = () => {
             </button>
           </form>
 
-          <div className="flex gap-2 items-center justify-center text-center text-gray-500 pt-4">
+          <div className="flex gap-2 items-center justify-center text-center text-gray-500 pt-6">
             <p>Don&apos;t have an account?</p>
             <Link href="/sign-up" className="text-primary hover:underline">
               Sign up
             </Link>
           </div>
           <p
-            className="relative text-center text-gray-500 py-2 before:content-[''] 
+            className="relative text-center text-gray-500 py-3 before:content-[''] 
               before:absolute before:left-0 before:top-1/2 before:w-[45%] before:h-[1px] before:bg-gray-300 after:content-[''] 
               after:absolute after:right-0 after:top-1/2 after:w-[45%] after:h-[1px] after:bg-gray-300 mb-2"
           >
             or
           </p>
 
-          <LoginButtons />
+          <div className="grid grid-cols-3 gap-3">
+            <button
+              onClick={() => handleOAuthLogin("google")}
+              className="flex justify-center items-center py-3 px-4 hover:bg-gray-50 text-gray-700 font-medium rounded-lg border border-gray-300 transition-all"
+            >
+              <Image width={20} height={20} src={GoogleIcon} alt="Google" />
+            </button>
+
+            <button
+              onClick={() => handleOAuthLogin("facebook")}
+              className="flex justify-center items-center py-3 px-4 hover:bg-gray-50 text-gray-700 font-medium rounded-lg border border-gray-300 transition-all"
+            >
+              <Image width={20} height={20} src={FacebookIcon} alt="Facebook" />
+            </button>
+
+            <button
+              onClick={() => handleOAuthLogin("twitter")}
+              className="flex justify-center items-center py-3 px-4 hover:bg-gray-50 text-gray-700 font-medium rounded-lg border border-gray-300 transition-all"
+            >
+              <Image width={20} height={20} src={TwitterIcon} alt="X" />
+            </button>
+          </div>
         </main>
         <Image
           src={GirlShoppingImage}

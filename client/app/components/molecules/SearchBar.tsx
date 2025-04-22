@@ -11,6 +11,7 @@ import {
 import { useForm } from "react-hook-form";
 import useStorage from "@/app/hooks/state/useStorage";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 type SearchFormValues = {
   searchQuery: string;
@@ -126,7 +127,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const showSearchResults = isFocused || isHoveringDropdown;
 
   return (
-    <div className="relative w-full max-w-2xl">
+    <div className="relative w-full min-w-3xl">
       <form
         ref={formRef}
         onSubmit={handleSubmit(handleSearch)}
@@ -134,10 +135,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
       >
         <div className="flex items-center">
           <div className="relative flex items-center w-full">
-            <span className="absolute left-3 text-indigo-600 transition-all duration-300">
+            <span className="absolute left-3 text-primary transition-all duration-300">
               <Search
                 className={`transition-all duration-300 ${
-                  isFocused ? "text-indigo-600" : "text-gray-400"
+                  isFocused ? "text-primary" : "text-gray-400"
                 }`}
                 size={18}
               />
@@ -147,7 +148,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
               type="text"
               placeholder={placeholder}
               className="w-full py-2.5 pl-10 pr-12 bg-white rounded-full text-gray-800 placeholder-gray-400
-                border border-gray-200 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 
+                border border-gray-200 focus:border-secondary focus:outline-none focus:ring-2 
                 text-sm transition-all duration-200 hover:border-gray-300"
               {...register("searchQuery")}
               onFocus={() => setIsFocused(true)}
@@ -178,7 +179,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
             <button
               type="submit"
-              className="absolute right-2 p-1.5 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300"
+              className="absolute right-2 p-1.5 rounded-full bg-primary text-white transition-all duration-300"
             >
               <ArrowRight size={16} />
             </button>
@@ -194,17 +195,17 @@ const SearchBar: React.FC<SearchBarProps> = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="absolute w-full md:w-96 right-0 mt-2 bg-white rounded-lg shadow-xl z-[1000] border border-gray-100 overflow-hidden"
+            className="absolute w-full mt-2 bg-white rounded-lg shadow-xl z-[1000] border border-gray-100 overflow-hidden"
             onMouseEnter={() => setIsHoveringDropdown(true)}
             onMouseLeave={() => setIsHoveringDropdown(false)}
           >
             {/* Trending products section */}
             <div className="p-3 border-b border-gray-100">
               <div className="flex items-center text-sm text-gray-500 mb-2">
-                <TrendingUp size={14} className="mr-2 text-indigo-500" />
+                <TrendingUp size={14} className="mr-2 text-primary" />
                 <span className="font-medium">Trending Products</span>
               </div>
-              <ul className="space-y-2">
+              <ul className="grid grid-cols-3 gap-2">
                 {trendingProducts.map((product) => (
                   <li
                     key={product.id}
@@ -212,14 +213,16 @@ const SearchBar: React.FC<SearchBarProps> = ({
                     onClick={() => handleSelectRecentQuery(product.name)}
                   >
                     <div className="h-10 w-10 bg-gray-100 rounded overflow-hidden mr-3 flex-shrink-0">
-                      <img
+                      <Image
                         src={product.image}
                         alt={product.name}
+                        width={40}
+                        height={40}
                         className="object-cover w-full h-full"
                       />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-sm text-gray-800">
+                      <span className="text-sm text-gray-800 truncate">
                         {product.name}
                       </span>
                       <span className="text-xs text-gray-500 flex items-center">
@@ -241,13 +244,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
                     <span className="font-medium">Recent Searches</span>
                   </div>
                   <button
-                    className="text-xs text-indigo-600 hover:text-indigo-800 font-medium"
+                    className="text-xs text-text font-medium"
                     onClick={() => setRecentQueries([])}
                   >
                     Clear all
                   </button>
                 </div>
-                <ul className="grid grid-cols-2 gap-1">
+                <ul className="grid grid-cols-3 gap-2">
                   {recentQueries.map((query, index) => (
                     <li
                       key={index}
@@ -276,14 +279,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
             {/* Popular categories section */}
             <div className="p-3">
               <div className="flex items-center text-sm text-gray-500 mb-2">
-                <Sparkles size={14} className="mr-2 text-indigo-500" />
+                <Sparkles size={14} className="mr-2 text-primary" />
                 <span className="font-medium">Popular Categories</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {suggestedCategories.map((category, index) => (
                   <button
                     key={index}
-                    className="px-3 py-1.5 bg-gray-50 hover:bg-indigo-50 text-gray-600 hover:text-indigo-600 rounded-full text-xs transition-colors duration-200"
+                    className="px-3 py-1.5 bg-gray-50 hover:bg-primary text-gray-600 hover:text-primary rounded-full text-xs transition-colors duration-200"
                     onClick={() => handleSelectRecentQuery(category)}
                   >
                     {category}

@@ -71,7 +71,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
               transition={{ duration: 0.3, ease: "easeOut" }}
               style={{
                 backgroundColor:
-                  strength > index ? "rgb(34 197 94)" : "rgb(239 68 68)",
+                  strength > index ? "rgb(107, 142, 35)" : "rgb(220, 38, 38)",
                 transformOrigin: "left",
               }}
             />

@@ -764,3 +764,400 @@ Invalid `prisma.product.findUnique()` invocation in
   15 
 → 16 const product = await prisma.product.findUnique(
 The column `Product.bestSeller` does not exist in the current database.
+[2025-04-22T16:14:23.699Z] [31MERROR[39M: CORS policy violation
+[2025-04-22T16:14:23.715Z] [31MERROR[39M: CORS policy violation
+[2025-04-22T16:14:23.721Z] [31MERROR[39M: CORS policy violation
+[2025-04-22T16:14:23.728Z] [31MERROR[39M: CORS policy violation
+[2025-04-22T16:14:23.732Z] [31MERROR[39M: CORS policy violation
+[2025-04-22T16:15:22.792Z] [31MERROR[39M: CORS policy violation
+[2025-04-22T16:15:26.462Z] [31MERROR[39M: CORS policy violation
+[2025-04-22T16:16:04.666Z] [31MERROR[39M: CORS policy violation
+[2025-04-22T16:16:42.678Z] [31MERROR[39M: CORS policy violation
+[2025-04-22T16:17:08.846Z] [31MERROR[39M: CORS policy violation
+[2025-04-22T16:17:11.079Z] [31MERROR[39M: CORS policy violation
+[2025-04-22T18:08:02.544Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T18:27:59.136Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T18:32:13.357Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-22T18:32:25.229Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-04-22T18:54:35.647Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:00:45.576Z] [31MERROR[39M: Prisma error: 
+Invalid `this.prisma.interaction.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.repository.ts:101:36
+
+   98   productId?: string;
+   99   type: string;
+  100 }) {
+→ 101   return this.prisma.interaction.create(
+Foreign key constraint violated: `Interaction_productId_fkey (index)`
+[2025-04-22T19:00:45.577Z] [31MERROR[39M: Prisma error: 
+Invalid `this.prisma.interaction.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.repository.ts:101:36
+
+   98   productId?: string;
+   99   type: string;
+  100 }) {
+→ 101   return this.prisma.interaction.create(
+Foreign key constraint violated: `Interaction_productId_fkey (index)`
+[2025-04-22T19:00:45.579Z] [31MERROR[39M: Prisma error: 
+Invalid `this.prisma.interaction.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.repository.ts:101:36
+
+   98   productId?: string;
+   99   type: string;
+  100 }) {
+→ 101   return this.prisma.interaction.create(
+Foreign key constraint violated: `Interaction_productId_fkey (index)`
+[2025-04-22T19:00:45.581Z] [31MERROR[39M: Prisma error: 
+Invalid `this.prisma.interaction.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.repository.ts:101:36
+
+   98   productId?: string;
+   99   type: string;
+  100 }) {
+→ 101   return this.prisma.interaction.create(
+Foreign key constraint violated: `Interaction_productId_fkey (index)`
+[2025-04-22T19:00:45.583Z] [31MERROR[39M: Prisma error: 
+Invalid `this.prisma.interaction.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.repository.ts:101:36
+
+   98   productId?: string;
+   99   type: string;
+  100 }) {
+→ 101   return this.prisma.interaction.create(
+Foreign key constraint violated: `Interaction_productId_fkey (index)`
+[2025-04-22T19:00:45.584Z] [31MERROR[39M: Prisma error: 
+Invalid `this.prisma.interaction.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.repository.ts:101:36
+
+   98   productId?: string;
+   99   type: string;
+  100 }) {
+→ 101   return this.prisma.interaction.create(
+Foreign key constraint violated: `Interaction_productId_fkey (index)`
+[2025-04-22T19:00:45.612Z] [31MERROR[39M: Prisma error: 
+Invalid `this.prisma.interaction.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.repository.ts:101:36
+
+   98   productId?: string;
+   99   type: string;
+  100 }) {
+→ 101   return this.prisma.interaction.create(
+Foreign key constraint violated: `Interaction_productId_fkey (index)`
+[2025-04-22T19:00:45.613Z] [31MERROR[39M: Prisma error: 
+Invalid `this.prisma.interaction.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/analytics.repository.ts:101:36
+
+   98   productId?: string;
+   99   type: string;
+  100 }) {
+→ 101   return this.prisma.interaction.create(
+Foreign key constraint violated: `Interaction_productId_fkey (index)`
+[2025-04-22T19:11:49.390Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.392Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.401Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.407Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.413Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.420Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.433Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.453Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.454Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.456Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.459Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.470Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.478Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.499Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.502Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.504Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.505Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.518Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.536Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.569Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.570Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.571Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.574Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.584Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.593Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.614Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.616Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.617Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.618Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.628Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.635Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.650Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.651Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.654Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.655Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.663Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.669Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.688Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.689Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.694Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.700Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.712Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.726Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.729Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.730Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.730Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.735Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.741Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.749Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.750Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.750Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.754Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:11:49.781Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.789Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.797Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.803Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.813Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.821Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.829Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.835Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.842Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.848Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.854Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.860Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.868Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.875Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.880Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.884Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.892Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.900Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.906Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.911Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.918Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.924Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.932Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.940Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.946Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.952Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.956Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.960Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.967Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.975Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.981Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.987Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.992Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:49.996Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.001Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.006Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.010Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.014Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.028Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.033Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.039Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.043Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.049Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.055Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.060Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.065Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.071Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.078Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.083Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.088Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:11:50.092Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.508Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.510Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.518Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.524Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.529Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.534Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.540Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.549Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.550Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.554Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.567Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.570Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.571Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.583Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.585Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.587Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.624Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.626Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.627Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.628Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.634Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.635Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.644Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.667Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.667Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.668Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.669Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.670Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.674Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.682Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.695Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.697Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.699Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.700Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.703Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.711Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.714Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.723Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.724Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.730Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.731Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.739Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.740Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.748Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.759Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.760Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.760Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.761Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.761Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.771Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.778Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.779Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:28:05.788Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.793Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.799Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.805Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.811Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.818Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.825Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.832Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.841Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.847Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.853Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.858Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.866Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.873Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.879Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.884Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.890Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.898Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.909Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.917Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.931Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.941Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.949Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.956Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.963Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.974Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.979Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.982Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.988Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.994Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:05.999Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.005Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.027Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.033Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.038Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.043Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.049Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.054Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.059Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.064Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.068Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.072Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.077Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.084Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.090Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.096Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.101Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.106Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.111Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:28:06.124Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.536Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.542Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.547Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.552Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.556Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.564Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.575Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.590Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.591Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.593Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.595Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.601Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.608Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.627Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.628Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.629Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.630Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.631Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.635Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.640Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.648Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.655Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.656Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.656Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.657Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.662Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.669Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.685Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.687Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.688Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.689Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.707Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.714Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.736Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.738Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.739Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.740Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.741Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.751Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.764Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.765Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.767Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.768Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.771Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.780Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.781Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.789Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.789Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.790Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.790Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.802Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.803Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-22T19:47:01.826Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.833Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.838Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.844Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.852Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.857Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.863Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.869Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.874Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.879Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.886Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.894Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.900Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.905Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.910Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.915Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.921Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.926Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.932Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.939Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.943Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.952Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.959Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.965Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.971Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.975Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.980Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.987Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.992Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:01.998Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.004Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.010Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.015Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.021Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.028Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.035Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.041Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.046Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.051Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.056Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.060Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.065Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.074Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.080Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.086Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.091Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.097Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.102Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.108Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.115Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T19:47:02.122Z] [31MERROR[39M: Refresh token not found
+[2025-04-22T20:11:41.881Z] [31MERROR[39M: Invalid access token, please log in

@@ -1,8 +1,9 @@
 import { Controller, UseFormReturn } from "react-hook-form";
-import { DollarSign, Package, Tag } from "lucide-react";
+import { DollarSign, Package, Tag, Hash } from "lucide-react";
 import Dropdown from "@/app/components/molecules/Dropdown";
 import ImageUploader from "@/app/components/molecules/ImageUploader";
 import { ProductFormData } from "./page";
+import CheckBox from "@/app/components/atoms/CheckBox";
 
 interface ProductFormProps {
   form: UseFormReturn<ProductFormData>;
@@ -35,32 +36,60 @@ const ProductForm: React.FC<ProductFormProps> = ({
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-6"
     >
-      {/* Product Name */}
-      <div className="relative">
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Product Name
-        </label>
+      {/* Product Name & SKU */}
+      <div className="grid grid-cols-2 gap-4">
         <div className="relative">
-          <Controller
-            name="name"
-            control={control}
-            rules={{ required: "Name is required" }}
-            render={({ field }) => (
-              <input
-                {...field}
-                type="text"
-                className="pl-10 pr-4 py-3 w-full border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200"
-                placeholder="Amazing Product"
-              />
-            )}
-          />
-          <Tag className="absolute left-3 top-3.5 text-gray-400" size={18} />
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Product Name
+          </label>
+          <div className="relative">
+            <Controller
+              name="name"
+              control={control}
+              rules={{ required: "Name is required" }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="text"
+                  className="pl-10 pr-4 py-3 w-full border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200"
+                  placeholder="Amazing Product"
+                />
+              )}
+            />
+            <Tag className="absolute left-3 top-3.5 text-gray-400" size={18} />
+          </div>
+          {errors.name && (
+            <p className="text-red-500 text-xs mt-1 pl-10">
+              {errors.name.message}
+            </p>
+          )}
         </div>
-        {errors.name && (
-          <p className="text-red-500 text-xs mt-1 pl-10">
-            {errors.name.message}
-          </p>
-        )}
+
+        <div className="relative">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            SKU
+          </label>
+          <div className="relative">
+            <Controller
+              name="sku"
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="text"
+                  className="pl-10 pr-4 py-3 w-full border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-200"
+                  placeholder="PROD-12345"
+                />
+              )}
+            />
+            <Hash className="absolute left-3 top-3.5 text-gray-400" size={18} />
+          </div>
+          {errors.sku && (
+            <p className="text-red-500 text-xs mt-1 pl-10">
+              {errors.sku.message}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Price & Discount */}
@@ -184,6 +213,39 @@ const ProductForm: React.FC<ProductFormProps> = ({
         </div>
       </div>
 
+      {/* Product Flags */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Product Flags
+        </label>
+        <div className="grid grid-cols-2 gap-4">
+          <CheckBox
+            name="isNew"
+            control={control}
+            label="New Product"
+            defaultValue={false}
+          />
+          <CheckBox
+            name="isBestSeller"
+            control={control}
+            label="Best Seller"
+            defaultValue={false}
+          />
+          <CheckBox
+            name="isFeatured"
+            control={control}
+            label="Featured"
+            defaultValue={false}
+          />
+          <CheckBox
+            name="isTrending"
+            control={control}
+            label="Trending"
+            defaultValue={false}
+          />
+        </div>
+      </div>
+
       {/* Description */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -210,7 +272,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
           errors={errors}
           setValue={setValue}
           watch={watch}
-          existingImages={watch("images") || []}
+          existingImages={watch("images")}
         />
       </div>
 

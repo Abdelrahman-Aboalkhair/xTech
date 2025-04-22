@@ -18,6 +18,11 @@ import { usePathname } from "next/navigation";
 export interface ProductFormData {
   id: string;
   name: string;
+  sku: string;
+  isNew: boolean;
+  isTrending: boolean;
+  isBestSeller: boolean;
+  isFeatured: boolean;
   price: number;
   discount: number;
   stock: number;
@@ -61,6 +66,11 @@ const ProductsDashboard = () => {
     payload.append("discount", data.discount.toString());
     payload.append("stock", data.stock.toString());
     payload.append("description", data.description || "");
+    payload.append("isNew", data.isNew.toString());
+    payload.append("isTrending", data.isTrending.toString());
+    payload.append("isBestSeller", data.isBestSeller.toString());
+    payload.append("isFeatured", data.isFeatured.toString());
+    payload.append("sku", data.sku || "");
 
     if (data.images && Array.isArray(data.images)) {
       data.images.forEach((file: any) => {
@@ -203,9 +213,14 @@ const ProductsDashboard = () => {
               setEditingProduct({
                 id: row.id,
                 name: row.name,
+                sku: row.sku,
                 price: row.price,
                 discount: row.discount,
                 stock: row.stock,
+                isNew: row.isNew,
+                isTrending: row.isTrending,
+                isBestSeller: row.isBestSeller,
+                isFeatured: row.isFeatured,
                 categoryId: row.categoryId,
                 description: row.description || "",
                 images: row.images || [""],

@@ -9,10 +9,10 @@ import { z } from "zod";
 import MainLayout from "@/app/components/templates/MainLayout";
 import GirlShoppingImage from "@/app/assets/images/girl_shopping.png";
 import Image from "next/image";
-import LoginButtons from "../(oAuth)/LoginButtons";
 import { useSignupMutation } from "@/app/store/apis/AuthApi";
-import { setUser } from "@/app/store/slices/AuthSlice";
-import { useAppDispatch } from "@/app/store/hooks";
+import GoogleIcon from "@/app/assets/icons/google.png";
+import FacebookIcon from "@/app/assets/icons/facebook.png";
+import TwitterIcon from "@/app/assets/icons/twitter.png";
 
 interface InputForm {
   name: string;
@@ -35,7 +35,6 @@ const emailSchema = (value: string) => {
 
 const Signup = () => {
   const [signUp, { isLoading, error }] = useSignupMutation();
-  const dispatch = useAppDispatch();
   const router = useRouter();
 
   const {
@@ -56,7 +55,6 @@ const Signup = () => {
     try {
       const result = await signUp(formData).unwrap();
       if (result.success) {
-        dispatch(setUser(result.user));
         router.push("/");
       }
     } catch (error) {
@@ -64,10 +62,14 @@ const Signup = () => {
     }
   };
 
+  const handleOAuthLogin = (provider) => {
+    window.location.href = `http://localhost:5000/api/v1/auth/${provider}`;
+  };
+
   return (
     <MainLayout>
       <div className="flex flex-row-reverse justify-between items-center w-full py-[3%] px-[10%]">
-        <main className="w-full max-w-[37%] p-[3rem]">
+        <main className="w-full max-w-[37%] p-[3rem] bg-white rounded shadow-sm">
           <h2 className="text-3xl font-medium tracking-wide text-start text-gray-700 mb-4">
             Create an account
           </h2>
@@ -134,7 +136,28 @@ const Signup = () => {
           >
             or
           </p>
-          <LoginButtons />
+          <div className="grid grid-cols-3 gap-3">
+            <button
+              onClick={() => handleOAuthLogin("google")}
+              className="flex justify-center items-center py-3 px-4  hover:bg-gray-50 text-gray-700 font-medium rounded-lg border border-gray-300 transition-all"
+            >
+              <Image width={20} height={20} src={GoogleIcon} alt="Google" />
+            </button>
+
+            <button
+              onClick={() => handleOAuthLogin("facebook")}
+              className="flex justify-center items-center py-3 px-4  hover:bg-gray-50 text-gray-700 font-medium rounded-lg border border-gray-300 transition-all"
+            >
+              <Image width={20} height={20} src={FacebookIcon} alt="Facebook" />
+            </button>
+
+            <button
+              onClick={() => handleOAuthLogin("twitter")}
+              className="flex justify-center items-center py-3 px-4  hover:bg-gray-50 text-gray-700 font-medium rounded-lg border border-gray-300 transition-all"
+            >
+              <Image width={20} height={20} src={TwitterIcon} alt="X" />
+            </button>
+          </div>
         </main>
         <Image
           src={GirlShoppingImage}

@@ -1,303 +1,147 @@
 "use client";
 
-import SliderImg1 from "@/app/assets/images/playstation.png";
-import SliderImg2 from "@/app/assets/images/gucci.png";
-import SliderImg3 from "@/app/assets/images/speakers.png";
-import AppleIcon from "@/app/assets/icons/apple.png";
+import SliderImg1 from "@/app/assets/images/slider1.jpg";
+import SliderImg2 from "@/app/assets/images/slider2.jpg";
+import SliderImg3 from "@/app/assets/images/slider3.jpg";
+import Headphones1 from "@/app/assets/images/products/headphones.jpg";
+import Headphones2 from "@/app/assets/images/products/headphone2.jpg";
+import Keyboard from "@/app/assets/images/products/one-handed-keyboard.jpg";
+import BlueShirt from "@/app/assets/images/products/blue-shirt.jpg";
+import BlackSmartWatch from "@/app/assets/images/products/black-smart-watch.jpg";
+import AirPods from "@/app/assets/images/products/airpods.jpg";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import adjustColor from "@/app/utils/adjustColor";
-import { useGetHeroQuery } from "@/app/store/apis/SectionApi";
-
-interface HeroSection {
-  id: number;
-  type: string;
-  title?: string;
-  description?: string;
-  images?: string[];
-  icons?: string;
-  link?: string;
-  ctaText?: string;
-  isVisible?: boolean;
-  primaryColor?: string;
-  secondaryColor?: string;
-}
+import CategoryBox from "./CategoryBox";
 
 interface HeroSectionProps {
   isPreview?: boolean;
 }
 
-// Default fallback content if API data is missing
-const defaultContent = {
-  primaryColor: "#1a1a1a",
-  images: [SliderImg1, SliderImg2, SliderImg3],
-  title: "Discover Premium Products for Your Lifestyle",
-  description: "Limited time offers with exclusive benefits",
-  productName: "Featured Collection",
-  icons: AppleIcon,
-  link: "/shop",
-  ctaText: "Explore Now",
-};
-
 const HeroSection = ({ isPreview = false }: HeroSectionProps) => {
-  const { data, isLoading } = useGetHeroQuery(undefined);
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
 
-  // Extract hero section from API data or use defaults
-  const heroSection = data?.hero || null;
-
-  // Determine what content to display based on API data availability
-  const backgroundColor =
-    heroSection?.primaryColor || defaultContent.primaryColor;
-  const sliderImages = heroSection?.images?.length
-    ? heroSection.images
-    : defaultContent.images;
-  const promoText = heroSection?.title || defaultContent.title;
-  const secondaryText = heroSection?.description || defaultContent.description;
-  const productName = heroSection?.type || defaultContent.productName;
-  const productIcon = heroSection?.icons || defaultContent.icons;
-  const link = heroSection?.link || defaultContent.link;
-  const buttonText = heroSection?.ctaText || defaultContent.ctaText;
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) =>
-      prev === sliderImages.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) =>
-      prev === 0 ? sliderImages.length - 1 : prev - 1
-    );
-  };
+  const sliderImages = [SliderImg1, SliderImg2, SliderImg3];
 
   useEffect(() => {
-    if (!isPreview && !isHovering) {
+    if (!isPreview) {
       const interval = setInterval(() => {
-        nextImage();
+        setCurrentImageIndex((prev) =>
+          prev === sliderImages.length - 1 ? 0 : prev + 1
+        );
       }, 5000);
       return () => clearInterval(interval);
     }
-  }, [isPreview, isHovering]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
+  }, [isPreview, sliderImages.length]);
 
   const imageVariants = {
-    enter: (direction: number) => {
-      return {
-        x: direction > 0 ? 1000 : -1000,
-        opacity: 0,
-      };
-    },
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
     center: {
       zIndex: 1,
       x: 0,
       opacity: 1,
     },
-    exit: (direction: number) => {
-      return {
-        zIndex: 0,
-        x: direction < 0 ? 1000 : -1000,
-        opacity: 0,
-      };
-    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
   };
 
-  // Show loading state when data is being fetched
-  if (isLoading && !isPreview) {
-    return (
-      <div className="w-full mx-auto my-12 h-64 bg-gray-100 rounded-xl flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
+  const categories = [
+    {
+      title: "Get your game on",
+      items: [
+        { name: "Gaming Headphones", image: Headphones1 },
+        { name: "Keyboard", image: Keyboard },
+      ],
+      ctaText: "Shop gaming",
+      ctaLink: "/category/gaming",
+    },
+    {
+      title: "Shop deals in Fashion",
+      items: [
+        { name: "Blue Shirt", image: BlueShirt },
+        { name: "Smart Watch", image: BlackSmartWatch },
+      ],
+      ctaText: "See all deals",
+      ctaLink: "/deals/fashion",
+    },
+    {
+      title: "Gaming accessories",
+      items: [
+        { name: "Pro Headsets", image: Headphones2 },
+        { name: "Wireless Earbuds", image: AirPods },
+      ],
+      ctaText: "See more",
+      ctaLink: "/category/accessories",
+    },
+    {
+      title: "Shop for your home essentials",
+      items: [
+        { name: "Kitchen", image: SliderImg1 },
+        { name: "Decor", image: SliderImg2 },
+      ],
+      ctaText: "Discover more in Home",
+      ctaLink: "/category/home",
+    },
+  ];
 
   return (
     <main
-      className={`relative w-full mx-auto ${
-        isPreview ? "scale-90 my-2" : "my-12"
-      } overflow-hidden rounded-xl`}
-      style={{
-        background: `linear-gradient(135deg, ${backgroundColor}, ${adjustColor(
-          backgroundColor,
-          -20
-        )})`,
-      }}
+      className={`relative w-full mx-auto px-4 ${
+        isPreview ? "scale-90 my-2" : "my-6"
+      }`}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent z-10"></div>
-
-      <motion.div
-        className="relative z-20 flex flex-col lg:flex-row items-center justify-between max-w-7xl mx-auto px-6 lg:px-8 py-8 lg:py-16"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <div
-          className={`flex flex-col w-full lg:w-1/2 text-white space-y-4 lg:space-y-6 ${
-            isPreview ? "text-center lg:text-left" : "text-center lg:text-left"
-          }`}
-        >
-          <motion.div
-            variants={itemVariants}
-            className="flex items-center space-x-3 mb-2"
-          >
-            <span
-              className={`font-medium text-indigo-200 ${
-                isPreview ? "text-sm" : "text-lg"
-              }`}
-            >
-              {productName}
-            </span>
-          </motion.div>
-
-          <motion.h1
-            variants={itemVariants}
-            className={`font-extrabold leading-tight tracking-tight ${
-              isPreview
-                ? "text-2xl lg:text-3xl line-clamp-2"
-                : "text-4xl lg:text-6xl"
-            }`}
-          >
-            {promoText}
-          </motion.h1>
-
-          {secondaryText && (
-            <motion.p
-              variants={itemVariants}
-              className={`font-light ${
-                isPreview ? "text-sm line-clamp-2" : "text-lg lg:text-xl"
-              }`}
-            >
-              {secondaryText}
-            </motion.p>
-          )}
-
-          <motion.div variants={itemVariants} className="pt-4">
-            <Link
-              href={link}
-              className={`group inline-flex items-center ${
-                isPreview ? "text-sm px-4 py-2" : "px-6 py-3"
-              } font-semibold bg-indigo-700 text-white rounded-full hover:bg-indigo-700 transition-all 
-              duration-300 shadow-lg hover:shadow-indigo-500/50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
-              aria-label={`Shop ${productName}`}
-            >
-              {buttonText}
-              <ArrowRight
-                size={isPreview ? 16 : 20}
-                className="ml-2 group-hover:translate-x-1 transition-transform"
-              />
-            </Link>
-          </motion.div>
-        </div>
-
-        {/* Image slider */}
-        <div
-          className={`relative ${
-            isPreview
-              ? "w-full mt-6 lg:mt-0 max-w-sm mx-auto lg:max-w-none lg:w-1/2"
-              : "w-full mt-8 lg:mt-0 lg:w-1/2"
-          }`}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-        >
-          <div
-            className={`relative overflow-hidden rounded-xl shadow-2xl ${
-              isPreview ? "h-56" : "h-72 lg:h-96"
-            }`}
-          >
-            {sliderImages.map((image, index) => (
+      <div className="relative w-full mx-auto">
+        <div className="w-full overflow-hidden rounded-lg shadow-md z-0">
+          <div className="aspect-[16/5] w-full relative">
+            <AnimatePresence initial={false} custom={1}>
               <motion.div
-                key={index}
-                custom={index < currentImageIndex ? -1 : 1}
+                key={currentImageIndex}
+                custom={1}
                 variants={imageVariants}
                 initial="enter"
-                animate={index === currentImageIndex ? "center" : "exit"}
+                animate="center"
                 exit="exit"
                 transition={{
                   x: { type: "spring", stiffness: 300, damping: 30 },
                   opacity: { duration: 0.5 },
                 }}
-                className="absolute inset-0 flex items-center justify-center mx-auto w-full h-full"
-                style={{
-                  display: index === currentImageIndex ? "flex" : "none",
-                }}
+                className="absolute inset-0 w-full h-full"
+                style={{ zIndex: 0 }}
               >
                 <Image
-                  src={image}
-                  alt={`Product image ${index + 1}`}
-                  width={400}
-                  height={500}
-                  priority={index === currentImageIndex}
-                  className="object-contain max-h-full max-w-full"
+                  src={sliderImages[currentImageIndex]}
+                  alt={`Slide image ${currentImageIndex + 1}`}
+                  fill
+                  priority
+                  className="object-cover w-full h-full"
                 />
               </motion.div>
-            ))}
-
-            {!isPreview && (
-              <>
-                <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-30">
-                  {sliderImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        index === currentImageIndex
-                          ? "bg-white w-6"
-                          : "bg-white/50"
-                      }`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 flex justify-between px-4 z-30">
-                  <button
-                    onClick={prevImage}
-                    className="bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft size={24} />
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight size={24} />
-                  </button>
-                </div>
-              </>
-            )}
+            </AnimatePresence>
           </div>
         </div>
-      </motion.div>
 
-      {/* Visual elements for modern look */}
-      <div className="absolute -top-24 -right-24 w-64 h-64 bg-indigo-500/20 blur-3xl rounded-full z-0"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-purple-500/10 blur-3xl rounded-full z-0"></div>
+        <div
+          className="absolute inset-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 mt-[9%]"
+          style={{ zIndex: 10 }}
+        >
+          {categories.map((category, index) => (
+            <CategoryBox
+              key={index}
+              title={category.title}
+              items={category.items}
+              ctaText={category.ctaText}
+              ctaLink={category.ctaLink}
+            />
+          ))}
+        </div>
+      </div>
     </main>
   );
 };

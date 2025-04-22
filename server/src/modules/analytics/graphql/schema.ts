@@ -109,6 +109,12 @@ const typeDefs = gql`
     searchQuery: String!
   }
 
+  type AbandonedCartAnalytics {
+    totalAbandonedCarts: Int!
+    abandonmentRate: Float!
+    potentialRevenueLost: Float!
+  }
+
   type Query {
     yearRange: YearRange!
     orderAnalytics(params: DateRangeQueryInput!): OrderAnalytics!
@@ -117,6 +123,9 @@ const typeDefs = gql`
     productPerformance(params: DateRangeQueryInput!): [ProductPerformance!]!
     interactionAnalytics(params: DateRangeQueryInput!): InteractionAnalytics!
     searchDashboard(params: SearchInput!): [SearchResult!]!
+    abandonedCartAnalytics(
+      params: DateRangeQueryInput!
+    ): AbandonedCartAnalytics!
   }
 `;
 

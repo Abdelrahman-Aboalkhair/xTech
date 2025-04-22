@@ -984,3 +984,230 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T16:17:31.956Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
+Error: EIO: i/o error, write
+    at writeSync (node:fs:925:3)
+    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
+    at writeOrBuffer (node:internal/streams/writable:570:12)
+    at _write (node:internal/streams/writable:499:10)
+    at SyncWriteStream.Writable.write (node:internal/streams/writable:508:10)
+    at console.value (node:internal/console/constructor:298:16)
+    at console.log (node:internal/console/constructor:384:26)
+    at EventEmitter.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/infra/cache/redis.ts:50:32)
+    at EventEmitter.emit (node:events:507:28)
+    at EventEmitter.emit (node:domain:489:12)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+[2025-04-22T16:20:15.093Z] [31MERROR[39M: uncaughtException: Unknown type "AnalyticsResponse".
+Error: Unknown type "AnalyticsResponse".
+    at assertValidSDL (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/validation/validate.js:135:11)
+    at buildASTSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/utilities/buildASTSchema.js:44:34)
+    at makeExecutableSchema (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:73:47)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:130:52)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/graphql/v1/schema.ts:1:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+[2025-04-22T16:23:27.929Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m11[0m:[93m36[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts' is not a module.
+
+[7m11[0m import abandonedCartAnalytics from "./resolvers/abandonedCartAnalytics";
+[7m  [0m [91m                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolver.ts[0m:[93m11[0m:[93m36[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts' is not a module.
+
+[7m11[0m import abandonedCartAnalytics from "./resolvers/abandonedCartAnalytics";
+[7m  [0m [91m                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/schema.ts:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-22T16:24:21.035Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts[0m:[93m12[0m:[93m41[0m - [91merror[0m[90m TS2339: [0mProperty 'abandonedCart' does not exist on type 'PrismaClient<PrismaClientOptions, never, DefaultArgs>'.
+
+[7m12[0m       const data = await context.prisma.abandonedCart.findMany({
+[7m  [0m [91m                                        ~~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts[0m:[93m15[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'startDate' does not exist on type 'DateRangeOutput'.
+
+[7m15[0m             gte: dateRange.startDate,
+[7m  [0m [91m                           ~~~~~~~~~[0m
+[96msrc/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts[0m:[93m16[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'endDate' does not exist on type 'DateRangeOutput'.
+
+[7m16[0m             lte: dateRange.endDate,
+[7m  [0m [91m                           ~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts[0m:[93m12[0m:[93m41[0m - [91merror[0m[90m TS2339: [0mProperty 'abandonedCart' does not exist on type 'PrismaClient<PrismaClientOptions, never, DefaultArgs>'.
+
+[7m12[0m       const data = await context.prisma.abandonedCart.findMany({
+[7m  [0m [91m                                        ~~~~~~~~~~~~~[0m
+[96msrc/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts[0m:[93m15[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'startDate' does not exist on type 'DateRangeOutput'.
+
+[7m15[0m             gte: dateRange.startDate,
+[7m  [0m [91m                           ~~~~~~~~~[0m
+[96msrc/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts[0m:[93m16[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'endDate' does not exist on type 'DateRangeOutput'.
+
+[7m16[0m             lte: dateRange.endDate,
+[7m  [0m [91m                           ~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/resolver.ts:11:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-22T16:26:27.654Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts[0m:[93m11[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'services' does not exist on type 'Context'.
+
+[7m11[0m       const { cartService } = context.services; // Access CartService from context
+[7m  [0m [91m                                      ~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts[0m:[93m11[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'services' does not exist on type 'Context'.
+
+[7m11[0m       const { cartService } = context.services; // Access CartService from context
+[7m  [0m [91m                                      ~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/resolver.ts:11:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-22T16:26:40.636Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts[0m:[93m11[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'services' does not exist on type 'Context'.
+
+[7m11[0m       const { cartService } = context.services;
+[7m  [0m [91m                                      ~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/analytics/graphql/resolvers/abandonedCartAnalytics.ts[0m:[93m11[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'services' does not exist on type 'Context'.
+
+[7m11[0m       const { cartService } = context.services;
+[7m  [0m [91m                                      ~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/analytics/graphql/resolver.ts:11:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-04-22T18:33:53.709Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/product.routes.ts[0m:[93m22[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'updateProduct' does not exist on type 'ProductController'.
+
+[7m22[0m   productController.updateProduct
+[7m  [0m [91m                    ~~~~~~~~~~~~~[0m
+[96msrc/modules/product/product.routes.ts[0m:[93m30[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'createProduct' does not exist on type 'ProductController'.
+
+[7m30[0m   productController.createProduct
+[7m  [0m [91m                    ~~~~~~~~~~~~~[0m
+[96msrc/modules/product/product.routes.ts[0m:[93m37[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'bulkCreateProducts' does not exist on type 'ProductController'.
+
+[7m37[0m   productController.bulkCreateProducts
+[7m  [0m [91m                    ~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/product.routes.ts[0m:[93m51[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'deleteProduct' does not exist on type 'ProductController'.
+
+[7m51[0m   productController.deleteProduct
+[7m  [0m [91m                    ~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/product.routes.ts[0m:[93m22[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'updateProduct' does not exist on type 'ProductController'.
+
+[7m22[0m   productController.updateProduct
+[7m  [0m [91m                    ~~~~~~~~~~~~~[0m
+[96msrc/modules/product/product.routes.ts[0m:[93m30[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'createProduct' does not exist on type 'ProductController'.
+
+[7m30[0m   productController.createProduct
+[7m  [0m [91m                    ~~~~~~~~~~~~~[0m
+[96msrc/modules/product/product.routes.ts[0m:[93m37[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'bulkCreateProducts' does not exist on type 'ProductController'.
+
+[7m37[0m   productController.bulkCreateProducts
+[7m  [0m [91m                    ~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/product.routes.ts[0m:[93m51[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'deleteProduct' does not exist on type 'ProductController'.
+
+[7m51[0m   productController.deleteProduct
+[7m  [0m [91m                    ~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T18:34:09.688Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/product.controller.ts[0m:[93m108[0m:[93m3[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m108[0m   );
+[7m   [0m [91m  ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/product.controller.ts[0m:[93m108[0m:[93m3[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m108[0m   );
+[7m   [0m [91m  ~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

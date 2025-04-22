@@ -39,7 +39,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
         >
           {showTitle && (
             <div className="flex items-center space-x-3">
-              <div className="h-6 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-600"></div>
+              <div className="h-6 w-1 rounded-full bg-primary"></div>
               <span className="ml-2 text-md font-semibold tracking-wider text-gray-700 uppercase">
                 {title}
               </span>
@@ -52,21 +52,6 @@ const ProductSection: React.FC<ProductSectionProps> = ({
           )}
         </motion.div>
       )}
-
-      {/* {showPagination && data && (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-sm text-gray-600 mb-6"
-        >
-          Showing {data.totalResults} results
-          {data.currentPage && ` (Page ${data.currentPage})`}
-          {data.totalResults > 0 && data.resultsPerPage
-            ? `, ${data.resultsPerPage} items per page`
-            : ""}
-        </motion.p>
-      )} */}
 
       {loading && (
         <div className="text-center py-12">

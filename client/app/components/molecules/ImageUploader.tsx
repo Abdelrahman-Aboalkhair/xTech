@@ -20,8 +20,11 @@ const ImageUploader = ({
   label,
   existingImages,
 }: ImageUploaderProps) => {
-  const images = watch("images") || [];
+  const images = watch("images");
+  console.log("exisitng images => ", existingImages);
+  console.log("images => ", images);
   const [previews, setPreviews] = useState(existingImages || []);
+  console.log("previews => ", previews);
 
   useEffect(() => {
     if (existingImages && existingImages.length > 0) {
@@ -72,7 +75,7 @@ const ImageUploader = ({
               className="relative group w-24 h-24 rounded-lg border border-gray-200 overflow-hidden"
             >
               <Image
-                src={img}
+                src={img || "../../assets/images/iphone.png"}
                 alt={`Uploaded ${index}`}
                 width={200}
                 height={200}

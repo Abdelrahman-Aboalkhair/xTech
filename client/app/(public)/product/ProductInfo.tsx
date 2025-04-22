@@ -80,11 +80,11 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
         <button
           disabled={!stock}
           onClick={handleAddToCart}
-          className={`w-full sm:w-auto px-8 py-3 text-sm font-medium text-white rounded-xl transition duration-300 ${
+          className={`w-full sm:w-auto px-12 py-3 text-sm font-medium text-white rounded transition duration-300 ${
             isLoading ? "opacity-50 cursor-not-allowed" : ""
           } ${
             stock
-              ? "bg-indigo-600 hover:bg-indigo-700"
+              ? "bg-green-600 hover:bg-green-700"
               : "bg-gray-400 cursor-not-allowed"
           }`}
         >
@@ -92,9 +92,9 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
         </button>
         <button
           disabled={!stock}
-          className={`w-full sm:w-auto px-8 py-3 text-sm font-medium border-[2px] rounded-xl transition duration-300 ${
+          className={`w-full sm:w-auto px-12 py-3 text-sm font-medium border-[2px] rounded transition duration-300 ${
             stock
-              ? "border-indigo-600 text-indigo-600 hover:bg-gray-100"
+              ? "border-green-600 text-green-600 hover:bg-gray-100"
               : "border-gray-300 text-gray-400 cursor-not-allowed"
           }`}
         >
@@ -109,7 +109,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
           <span>Free Delivery on orders over $50</span>
         </div>
         <div className="flex items-center gap-2">
-          <RotateCcw size={18} className="text-blue-600" />
+          <RotateCcw size={18} className="text-green-600" />
           <span>30-Day Hassle-Free Returns</span>
         </div>
         <div className="flex items-center gap-2">

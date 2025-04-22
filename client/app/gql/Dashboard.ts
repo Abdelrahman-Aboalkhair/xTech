@@ -104,6 +104,12 @@ export const GET_ALL_ANALYTICS = gql`
         viewCount
       }
     }
+
+    abandonedCartAnalytics(params: $params) {
+      totalAbandonedCarts
+      abandonmentRate
+      potentialRevenueLost
+    }
   }
 `;
 

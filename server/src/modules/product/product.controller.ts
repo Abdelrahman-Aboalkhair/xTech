@@ -56,9 +56,26 @@ export class ProductController {
 
   createProduct = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
-      const { name, description, price, discount, stock, categoryId } =
-        req.body;
+      const {
+        name,
+        description,
+        price,
+        discount,
+        stock,
+        categoryId,
+        sku,
+        isNew,
+        isFeatured,
+        isTrending,
+        isBestSeller,
+      } = req.body;
       const slugifiedName = slugify(name);
+
+      const formattedIsNew = isNew === "true";
+      const formattedIsFeatured = isFeatured === "true";
+      const formattedIsTrending = isTrending === "true";
+      const formattedIsBestSeller = isBestSeller === "true";
+
       const files = req.files as Express.Multer.File[];
 
       const formattedPrice = Number(price);
@@ -73,6 +90,11 @@ export class ProductController {
 
       const { product } = await this.productService.createProduct({
         name,
+        sku,
+        isNew: formattedIsNew,
+        isFeatured: formattedIsFeatured,
+        isTrending: formattedIsTrending,
+        isBestSeller: formattedIsBestSeller,
         slug: slugifiedName,
         description,
         price: formattedPrice,

@@ -8,6 +8,7 @@ import { searchDashboardResolver } from "./resolvers/searchDashboard";
 import orderAnalytics from "./resolvers/orderAnalytics";
 import revenueAnalytics from "./resolvers/revenueAnalytics";
 import userAnalytics from "./resolvers/userAnalytics";
+import abandonedCartAnalytics from "./resolvers/abandonedCartAnalytics";
 
 export interface Context {
   prisma: PrismaClient;
@@ -25,5 +26,6 @@ export const analyticsResolvers = {
     ...interactionAnalytics.Query,
     ...productPerformance.Query,
     ...searchDashboardResolver.Query,
+    ...abandonedCartAnalytics.Query,
   },
 };
