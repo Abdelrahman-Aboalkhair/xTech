@@ -8,6 +8,7 @@ import { makeLogsService } from "../logs/logs.factory";
 
 export class CheckoutController {
   private logsService = makeLogsService();
+
   constructor(
     private checkoutService: CheckoutService,
     private cartService: CartService
@@ -31,6 +32,8 @@ export class CheckoutController {
     });
     const start = Date.now();
     const end = Date.now();
+
+    this.cartService.logCartEvent(cart.id, "CHECKOUT_STARTED", userId);
 
     this.logsService.info("Checkout initiated", {
       userId: req.user?.id,

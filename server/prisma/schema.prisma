@@ -62,6 +62,7 @@ model User {
   reports                         Report[]
   reviews                         Review[]
   carts                           Cart[] 
+  cartEvents                      CartEvent[]
   createdAt                       DateTime      @default(now())
   updatedAt                       DateTime      @updatedAt
 
@@ -79,10 +80,10 @@ model Product {
   stock         Int
   salesCount    Int           @default(0)
   sku           String?
-  bestSeller    Boolean       @default(false)
-  featured      Boolean       @default(false)
-  promotional   Boolean       @default(false)
-  newArrival    Boolean       @default(false)
+  isNew    Boolean       @default(false)
+  isFeatured    Boolean       @default(false)
+  isTrending    Boolean       @default(false)
+  isBestSeller  Boolean       @default(false)
   averageRating Float         @default(0)
   reviewCount   Int           @default(0)
   category      Category?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
@@ -205,7 +206,8 @@ model Cart {
   userId    String? 
   sessionId String?     @unique
   cartItems CartItem[]
-  status    CART_STATUS @default(ABANDONED)
+  cartEvents CartEvent[]
+  status    CART_STATUS @default(ACTIVE)
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
 
@@ -224,6 +226,25 @@ model CartItem {
 
   @@unique([cartId, productId])
   @@index([cartId, productId])
+}
+
+enum CART_EVENT {
+  PENDING
+  ADD
+  CHECKOUT_STARTED
+  CHECKOUT_COMPLETED
+
+}
+
+model CartEvent {
+  id          String   @id @default(uuid())
+  cartId      String
+  userId      String?
+  sessionId   String?
+  eventType   CART_EVENT @default(PENDING)
+  timestamp   DateTime @default(now())
+  cart        Cart     @relation(fields: [cartId], references: [id])
+  user        User?     @relation(fields: [userId], references: [id])
 }
 
 model Category {

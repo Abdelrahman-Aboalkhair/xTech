@@ -33,7 +33,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault();
     try {
-      await addToCart({ productId: id, quantity: 1 }).unwrap();
+      await addToCart({ productId: id, quantity: 1 });
     } catch (error: any) {
       showToast(error.data.message, "error");
       console.error("Error adding to cart:", error);

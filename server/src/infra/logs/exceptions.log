@@ -496,3 +496,491 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:14:28.821Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m52[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'prisma' does not exist on type 'CartService'.
+
+[7m52[0m     const cartEvents = await this.prisma.cartEvent.findMany({
+[7m  [0m [91m                                  ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m68[0m:[93m51[0m - [91merror[0m[90m TS7006: [0mParameter 'acc' implicitly has an 'any' type.
+
+[7m68[0m     const cartEventsByCartId = cartEvents.reduce((acc, event) => {
+[7m  [0m [91m                                                  ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m68[0m:[93m56[0m - [91merror[0m[90m TS7006: [0mParameter 'event' implicitly has an 'any' type.
+
+[7m68[0m     const cartEventsByCartId = cartEvents.reduce((acc, event) => {
+[7m  [0m [91m                                                       ~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m81[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m81[0m       const hasAddToCart = events.some((e) => e.eventType === "add_to_cart");
+[7m  [0m [91m                                        ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m83[0m:[93m10[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m83[0m         (e) => e.eventType === "checkout_completed"
+[7m  [0m [91m         ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m95[0m:[93m12[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m95[0m           (e) => e.eventType === "add_to_cart"
+[7m  [0m [91m           ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m105[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'sum' implicitly has an 'any' type.
+
+[7m105[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m             ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m105[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'item' implicitly has an 'any' type.
+
+[7m105[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m                  ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m52[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'prisma' does not exist on type 'CartService'.
+
+[7m52[0m     const cartEvents = await this.prisma.cartEvent.findMany({
+[7m  [0m [91m                                  ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m68[0m:[93m51[0m - [91merror[0m[90m TS7006: [0mParameter 'acc' implicitly has an 'any' type.
+
+[7m68[0m     const cartEventsByCartId = cartEvents.reduce((acc, event) => {
+[7m  [0m [91m                                                  ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m68[0m:[93m56[0m - [91merror[0m[90m TS7006: [0mParameter 'event' implicitly has an 'any' type.
+
+[7m68[0m     const cartEventsByCartId = cartEvents.reduce((acc, event) => {
+[7m  [0m [91m                                                       ~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m81[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m81[0m       const hasAddToCart = events.some((e) => e.eventType === "add_to_cart");
+[7m  [0m [91m                                        ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m83[0m:[93m10[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m83[0m         (e) => e.eventType === "checkout_completed"
+[7m  [0m [91m         ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m95[0m:[93m12[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m95[0m           (e) => e.eventType === "add_to_cart"
+[7m  [0m [91m           ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m105[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'sum' implicitly has an 'any' type.
+
+[7m105[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m             ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m105[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'item' implicitly has an 'any' type.
+
+[7m105[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m                  ~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:15:04.408Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m80[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m80[0m       const hasAddToCart = events.some((e) => e.eventType === "add_to_cart");
+[7m  [0m [91m                                        ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m82[0m:[93m10[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m82[0m         (e) => e.eventType === "checkout_completed"
+[7m  [0m [91m         ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m94[0m:[93m12[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m94[0m           (e) => e.eventType === "add_to_cart"
+[7m  [0m [91m           ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m104[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'sum' implicitly has an 'any' type.
+
+[7m104[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m             ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m104[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'item' implicitly has an 'any' type.
+
+[7m104[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m                  ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m80[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m80[0m       const hasAddToCart = events.some((e) => e.eventType === "add_to_cart");
+[7m  [0m [91m                                        ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m82[0m:[93m10[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m82[0m         (e) => e.eventType === "checkout_completed"
+[7m  [0m [91m         ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m94[0m:[93m12[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m94[0m           (e) => e.eventType === "add_to_cart"
+[7m  [0m [91m           ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m104[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'sum' implicitly has an 'any' type.
+
+[7m104[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m             ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m104[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'item' implicitly has an 'any' type.
+
+[7m104[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m                  ~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:15:56.011Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m80[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m80[0m       const hasAddToCart = events.some((e) => e.eventType === "add_to_cart");
+[7m  [0m [91m                                        ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m82[0m:[93m10[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m82[0m         (e) => e.eventType === "checkout_completed"
+[7m  [0m [91m         ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m94[0m:[93m12[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m94[0m           (e) => e.eventType === "add_to_cart"
+[7m  [0m [91m           ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m104[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'sum' implicitly has an 'any' type.
+
+[7m104[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m             ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m104[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'item' implicitly has an 'any' type.
+
+[7m104[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m                  ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m80[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m80[0m       const hasAddToCart = events.some((e) => e.eventType === "add_to_cart");
+[7m  [0m [91m                                        ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m82[0m:[93m10[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m82[0m         (e) => e.eventType === "checkout_completed"
+[7m  [0m [91m         ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m94[0m:[93m12[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m94[0m           (e) => e.eventType === "add_to_cart"
+[7m  [0m [91m           ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m104[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'sum' implicitly has an 'any' type.
+
+[7m104[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m             ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m104[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'item' implicitly has an 'any' type.
+
+[7m104[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m                  ~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:16:06.824Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m79[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m79[0m       const hasAddToCart = events.some((e) => e.eventType === "add_to_cart");
+[7m  [0m [91m                                        ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m81[0m:[93m10[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m81[0m         (e) => e.eventType === "checkout_completed"
+[7m  [0m [91m         ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m93[0m:[93m12[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m93[0m           (e) => e.eventType === "add_to_cart"
+[7m  [0m [91m           ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m103[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'sum' implicitly has an 'any' type.
+
+[7m103[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m             ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m103[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'item' implicitly has an 'any' type.
+
+[7m103[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m                  ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m79[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m79[0m       const hasAddToCart = events.some((e) => e.eventType === "add_to_cart");
+[7m  [0m [91m                                        ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m81[0m:[93m10[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m81[0m         (e) => e.eventType === "checkout_completed"
+[7m  [0m [91m         ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m93[0m:[93m12[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m93[0m           (e) => e.eventType === "add_to_cart"
+[7m  [0m [91m           ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m103[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'sum' implicitly has an 'any' type.
+
+[7m103[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m             ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m103[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'item' implicitly has an 'any' type.
+
+[7m103[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m                  ~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:16:10.979Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m79[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m79[0m       const hasAddToCart = events.some((e) => e.eventType === "add_to_cart");
+[7m  [0m [91m                                        ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m93[0m:[93m12[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m93[0m           (e) => e.eventType === "add_to_cart"
+[7m  [0m [91m           ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m103[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'sum' implicitly has an 'any' type.
+
+[7m103[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m             ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m103[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'item' implicitly has an 'any' type.
+
+[7m103[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m                  ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m79[0m:[93m41[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m79[0m       const hasAddToCart = events.some((e) => e.eventType === "add_to_cart");
+[7m  [0m [91m                                        ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m93[0m:[93m12[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m93[0m           (e) => e.eventType === "add_to_cart"
+[7m  [0m [91m           ~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m103[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'sum' implicitly has an 'any' type.
+
+[7m103[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m             ~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m103[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'item' implicitly has an 'any' type.
+
+[7m103[0m             (sum, item) => sum + item.quantity * item.price,
+[7m   [0m [91m                  ~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:22:02.991Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m132[0m:[93m29[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+[7m132[0m     await this.logCartEvent(userId, cart.id, "ADD");
+[7m   [0m [91m                            ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m132[0m:[93m29[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+[7m132[0m     await this.logCartEvent(userId, cart.id, "ADD");
+[7m   [0m [91m                            ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:23:02.102Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m138[0m:[93m29[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+[7m138[0m     await this.logCartEvent(userId, cart.id, "ADD");
+[7m   [0m [91m                            ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m138[0m:[93m29[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+[7m138[0m     await this.logCartEvent(userId, cart.id, "ADD");
+[7m   [0m [91m                            ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:23:07.790Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS1016: [0mA required parameter cannot follow an optional parameter.
+
+[7m31[0m     cartId: string,
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m35[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string | undefined; cartId: string; eventType: $Enums.CART_EVENT; }' is not assignable to type 'Exact<(Without<CartEventCreateInput, CartEventUncheckedCreateInput> & CartEventUncheckedCreateInput) | (Without<...> & CartEventCreateInput), (Without<...> & CartEventUncheckedCreateInput) | (Without<...> & CartEventCreateInput)>'.
+  Types of property 'userId' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+
+[7m35[0m       data: {
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m16596[0m:[93m5[0m
+    [7m16596[0m     data: XOR<CartEventCreateInput, CartEventUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartEventSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartEventSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS1016: [0mA required parameter cannot follow an optional parameter.
+
+[7m31[0m     cartId: string,
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/cart/cart.service.ts[0m:[93m35[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string | undefined; cartId: string; eventType: $Enums.CART_EVENT; }' is not assignable to type 'Exact<(Without<CartEventCreateInput, CartEventUncheckedCreateInput> & CartEventUncheckedCreateInput) | (Without<...> & CartEventCreateInput), (Without<...> & CartEventUncheckedCreateInput) | (Without<...> & CartEventCreateInput)>'.
+  Types of property 'userId' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+
+[7m35[0m       data: {
+[7m  [0m [91m      ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m16596[0m:[93m5[0m
+    [7m16596[0m     data: XOR<CartEventCreateInput, CartEventUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartEventSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartEventSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:24:56.048Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m138[0m:[93m29[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+[7m138[0m     await this.logCartEvent(userId, cart.id, "ADD");
+[7m   [0m [91m                            ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.service.ts[0m:[93m138[0m:[93m29[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+[7m138[0m     await this.logCartEvent(userId, cart.id, "ADD");
+[7m   [0m [91m                            ~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:29:30.532Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/checkout/checkout.controller.ts[0m:[93m36[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'logCartEvent' does not exist on type 'CheckoutController'.
+
+[7m36[0m     this.logCartEvent(userId, cartId, "checkout_completed");
+[7m  [0m [91m         ~~~~~~~~~~~~[0m
+[96msrc/modules/checkout/checkout.controller.ts[0m:[93m36[0m:[93m31[0m - [91merror[0m[90m TS2552: [0mCannot find name 'cartId'. Did you mean 'cart'?
+
+[7m36[0m     this.logCartEvent(userId, cartId, "checkout_completed");
+[7m  [0m [91m                              ~~~~~~[0m
+
+  [96msrc/modules/checkout/checkout.controller.ts[0m:[93m24[0m:[93m11[0m
+    [7m24[0m     const cart = await this.cartService.getOrCreateCart(userId);
+    [7m  [0m [96m          ~~~~[0m
+    'cart' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/checkout/checkout.controller.ts[0m:[93m36[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'logCartEvent' does not exist on type 'CheckoutController'.
+
+[7m36[0m     this.logCartEvent(userId, cartId, "checkout_completed");
+[7m  [0m [91m         ~~~~~~~~~~~~[0m
+[96msrc/modules/checkout/checkout.controller.ts[0m:[93m36[0m:[93m31[0m - [91merror[0m[90m TS2552: [0mCannot find name 'cartId'. Did you mean 'cart'?
+
+[7m36[0m     this.logCartEvent(userId, cartId, "checkout_completed");
+[7m  [0m [91m                              ~~~~~~[0m
+
+  [96msrc/modules/checkout/checkout.controller.ts[0m:[93m24[0m:[93m11[0m
+    [7m24[0m     const cart = await this.cartService.getOrCreateCart(userId);
+    [7m  [0m [96m          ~~~~[0m
+    'cart' is declared here.
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:29:43.162Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/checkout/checkout.controller.ts[0m:[93m36[0m:[93m43[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'CART_EVENT'.
+
+[7m36[0m     this.cartService.logCartEvent(userId, cart.id, "checkout_completed");
+[7m  [0m [91m                                          ~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/checkout/checkout.controller.ts[0m:[93m36[0m:[93m43[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'CART_EVENT'.
+
+[7m36[0m     this.cartService.logCartEvent(userId, cart.id, "checkout_completed");
+[7m  [0m [91m                                          ~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-04-22T14:29:58.012Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/checkout/checkout.controller.ts[0m:[93m36[0m:[93m43[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'CART_EVENT'.
+
+[7m36[0m     this.cartService.logCartEvent(userId, cart.id, "CHECKOUT_STARTED");
+[7m  [0m [91m                                          ~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/checkout/checkout.controller.ts[0m:[93m36[0m:[93m43[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string' is not assignable to parameter of type 'CART_EVENT'.
+
+[7m36[0m     this.cartService.logCartEvent(userId, cart.id, "CHECKOUT_STARTED");
+[7m  [0m [91m                                          ~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

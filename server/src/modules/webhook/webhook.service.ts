@@ -8,11 +8,15 @@ import stripe from "@/infra/payment/stripe";
 import AppError from "@/shared/errors/AppError";
 import redisClient from "@/infra/cache/redis";
 import { makeLogsService } from "../logs/logs.factory";
+import { CartService } from "../cart/cart.service";
+import { CartRepository } from "../cart/cart.repository";
 
 const prisma = new PrismaClient();
 
 export class WebhookService {
   private logsService = makeLogsService();
+  private repo = new CartRepository();
+  private cartService = new CartService(this.repo);
 
   private async calculateOrderAmount(cart: any) {
     return cart.cartItems.reduce(
@@ -183,6 +187,8 @@ export class WebhookService {
     await redisClient.del("dashboard:year-range");
     const keys = await redisClient.keys("dashboard:stats:*");
     if (keys.length > 0) await redisClient.del(keys);
+
+    this.cartService.logCartEvent(cart.id, "CHECKOUT_COMPLETED", userId);
 
     this.logsService.info("Webhook - Order processed successfully", {
       userId,

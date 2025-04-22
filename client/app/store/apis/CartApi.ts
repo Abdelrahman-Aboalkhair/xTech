@@ -17,6 +17,7 @@ export const cartApi = apiSlice.injectEndpoints({
         method: "GET",
         credentials: "include",
       }),
+      providesTags: ["Cart"],
     }),
 
     addToCart: builder.mutation({
