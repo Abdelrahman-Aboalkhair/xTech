@@ -1,8 +1,8 @@
-import { useDispatch } from "react-redux";
 import { addToast, removeToast, Toast } from "@/app/store/slices/ToastSlice";
+import { useAppDispatch } from "../state/useRedux";
 
 const useToast = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const showToast = (message: string | undefined, type: Toast["type"]) => {
     dispatch(addToast({ message, type }));

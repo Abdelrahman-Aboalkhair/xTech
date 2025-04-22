@@ -1,7 +1,7 @@
 "use client";
 import { useCreateInteractionMutation } from "@/app/store/apis/AnalyticsApi";
 import { useCallback, useRef } from "react";
-import { useAppSelector } from "../state/useRedux";
+// import { useGetMeQuery } from "@/app/store/apis/UserApi";
 
 interface TrackInteractionOptions {
   debounceMs?: number;
@@ -10,17 +10,14 @@ interface TrackInteractionOptions {
 const useTrackInteraction = ({
   debounceMs = 500,
 }: TrackInteractionOptions = {}) => {
+  // const { data } = useGetMeQuery(undefined);
+  const user = { id: "3423" };
+
   const [createInteraction] = useCreateInteractionMutation();
-  const user = useAppSelector((state) => state.auth.user);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const trackInteraction = useCallback(
     async (productId: string | undefined, type: "view" | "click" | "other") => {
-      if (!user?.id) {
-        console.warn("No authenticated user found for tracking interaction.");
-        return;
-      }
-
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }

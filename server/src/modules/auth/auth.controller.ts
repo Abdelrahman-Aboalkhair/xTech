@@ -45,9 +45,7 @@ export class AuthController {
           user: {
             id: user.id,
             name: user.name,
-            email: user.email,
             role: user.role,
-            emailVerified: user.emailVerified,
             avatar: user.avatar || null,
           },
         },
@@ -115,6 +113,7 @@ export class AuthController {
       data: {
         user: {
           id: user.id,
+          name: user.name,
           role: user.role,
           avatar: user.avatar,
         },

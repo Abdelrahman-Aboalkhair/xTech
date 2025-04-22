@@ -4,43 +4,40 @@ import Link from "next/link";
 import Image from "next/image";
 import UserMenu from "../molecules/UserMenu";
 import { User, ShoppingCart, Menu, X } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import SearchBar from "../molecules/SearchBar";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
 import { useGetCartQuery } from "@/app/store/apis/CartApi";
-import { useAppSelector } from "@/app/store/hooks";
 import Topbar from "./Topbar";
+import { useGetMeQuery } from "@/app/store/apis/UserApi";
+
+const publicRoutes = ["/sign-in", "/sign-up", "/about", "/contact"];
 
 const Navbar = () => {
   const { updateQuery } = useQueryParams();
-  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
-  console.log("user state from navbar: ", user);
-  console.log("isLoggedIn: ", isLoggedIn);
+  const pathname = usePathname();
+  const isPublicRoute = publicRoutes.includes(pathname);
+  const isLoggedOut = localStorage.getItem("isLoggedOut") === "true";
+  const { data, isLoading } = useGetMeQuery(undefined, {
+    skip: isPublicRoute || isLoggedOut,
+  });
+  const user = data?.user;
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef(null);
-  const router = useRouter();
-  const pathname = usePathname();
-  const { data } = useGetCartQuery({});
-  console.log("cart data => ", data);
-  const cartItemCount = data?.cart?.cartItems?.length || 0;
+  const { data: cartData } = useGetCartQuery({}, { skip: !user });
+  const cartItemCount = cartData?.cart?.cartItems?.length || 0;
 
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Close menu when clicking outside
@@ -52,16 +49,14 @@ const Navbar = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const onSearch = (data) => {
     const query = new URLSearchParams();
     query.set("searchQuery", data.searchQuery);
     if (pathname !== "/shop") {
-      router.push(`/shop?${query.toString()}`);
+      window.location.href = `/shop?${query.toString()}`;
     } else {
       updateQuery({ searchQuery: data.searchQuery });
     }
@@ -97,7 +92,7 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              href="/"
+              href="/about"
               className={`relative text-gray-700 hover:text-indigo-600 font-medium text-sm transition-colors duration-200 py-2 ${
                 pathname === "/about"
                   ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-indigo-600"
@@ -107,9 +102,9 @@ const Navbar = () => {
               About Us
             </Link>
             <Link
-              href="/"
+              href="/contact"
               className={`relative text-gray-700 hover:text-indigo-600 font-medium text-sm transition-colors duration-200 py-2 ${
-                pathname === "/about"
+                pathname === "/contact"
                   ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-indigo-600"
                   : ""
               }`}
@@ -122,7 +117,6 @@ const Navbar = () => {
           <div className="flex items-center space-x-4 md:space-x-6">
             <SearchBar onSearch={onSearch} />
 
-            {/* Cart */}
             <Link
               href="/cart"
               className="relative text-gray-700 hover:text-indigo-600 transition-colors"
@@ -137,7 +131,7 @@ const Navbar = () => {
             </Link>
 
             {/* User Menu */}
-            {isLoggedIn ? (
+            {!isLoggedOut && user ? (
               <div className="relative" ref={menuRef}>
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
@@ -154,7 +148,6 @@ const Navbar = () => {
                         className="rounded-full object-cover"
                         onError={(e) => {
                           e.currentTarget.style.display = "none";
-                          e.currentTarget.nextSibling.style.display = "block";
                         }}
                       />
                     ) : (
@@ -165,6 +158,7 @@ const Navbar = () => {
 
                 {menuOpen && (
                   <UserMenu
+                    user={user}
                     menuOpen={menuOpen}
                     closeMenu={() => setMenuOpen(false)}
                   />
@@ -217,7 +211,6 @@ const Navbar = () => {
           </div>
 
           <div className="py-4 px-4 space-y-4">
-            {/* Home link for mobile */}
             <Link
               href="/"
               className={`block py-2 px-4 rounded-md ${
@@ -228,6 +221,28 @@ const Navbar = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
+            </Link>
+            <Link
+              href="/about"
+              className={`block py-2 px-4 rounded-md ${
+                pathname === "/about"
+                  ? "bg-indigo-50 text-indigo-600 font-medium"
+                  : "text-gray-800"
+              }`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About Us
+            </Link>
+            <Link
+              href="/contact"
+              className={`block py-2 px-4 rounded-md ${
+                pathname === "/contact"
+                  ? "bg-indigo-50 text-indigo-600 font-medium"
+                  : "text-gray-800"
+              }`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact Us
             </Link>
 
             <div className="pt-4 mt-4 border-t border-gray-200">

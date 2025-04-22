@@ -12,6 +12,15 @@ export const authApi = apiSlice.injectEndpoints({
         method: "POST",
         body: credentials,
       }),
+      onQueryStarted: async (_, { queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          // Clear logout flag on successful sign-in
+          localStorage.removeItem("isLoggedOut");
+        } catch (error) {
+          console.error("Sign-in failed:", error);
+        }
+      },
     }),
     signup: builder.mutation<{ user: User; success: boolean }, FormData>({
       query: (data) => ({
@@ -19,48 +28,57 @@ export const authApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      onQueryStarted: async (_, { queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          // Clear logout flag on successful signup
+          localStorage.removeItem("isLoggedOut");
+        } catch (error) {
+          console.error("Signup failed:", error);
+        }
+      },
     }),
     signOut: builder.mutation<void, void>({
       query: () => ({
         url: "/auth/sign-out",
         method: "GET",
       }),
+      onQueryStarted: async (_, { queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          // Set logout flag on successful sign-out
+          localStorage.setItem("isLoggedOut", "true");
+        } catch (error) {
+          console.error("Sign-out failed:", error);
+        }
+      },
     }),
-
     verifyEmail: builder.mutation<void, { emailVerificationCode: string }>({
-      query: ({ emailVerificationCode }) => {
-        return {
-          url: "/auth/verify-email",
-          method: "POST",
-          body: { emailVerificationCode },
-        };
-      },
+      query: ({ emailVerificationCode }) => ({
+        url: "/auth/verify-email",
+        method: "POST",
+        body: { emailVerificationCode },
+      }),
     }),
-
     forgotPassword: builder.mutation<void, { email: string }>({
-      query: ({ email }) => {
-        return {
-          url: "/auth/forgot-password",
-          method: "POST",
-          body: { email },
-        };
-      },
+      query: ({ email }) => ({
+        url: "/auth/forgot-password",
+        method: "POST",
+        body: { email },
+      }),
     }),
-
     resetPassword: builder.mutation<
       void,
       { token: string; newPassword: string }
     >({
-      query: ({ token, newPassword }) => {
-        return {
-          url: "/auth/reset-password",
-          method: "POST",
-          body: { newPassword, token },
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-      },
+      query: ({ token, newPassword }) => ({
+        url: "/auth/reset-password",
+        method: "POST",
+        body: { newPassword, token },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
     }),
   }),
 });

@@ -13,18 +13,13 @@ import {
   ChevronRight,
   Shield,
 } from "lucide-react";
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
-import { clearUser } from "@/app/store/slices/AuthSlice";
 import { useSignOutMutation } from "@/app/store/apis/AuthApi";
 
-const UserMenu = ({ menuOpen, closeMenu }) => {
+const UserMenu = ({ menuOpen, closeMenu, user }) => {
   const [signout] = useSignOutMutation();
-  const { user } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
   const router = useRouter();
   const menuRef = useRef(null);
 
-  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -44,7 +39,6 @@ const UserMenu = ({ menuOpen, closeMenu }) => {
     try {
       const res = await signout();
       console.log("res => ", res);
-      dispatch(clearUser());
       router.push("/sign-in");
     } catch (error) {
       console.error("Error signing out:", error);
@@ -171,7 +165,10 @@ const UserMenu = ({ menuOpen, closeMenu }) => {
                           size={16}
                           className="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity"
                         />
-                        <span className="absolute left-0 top-0 bottom-0 w-0.5 bg-transparent group-hover:bg-indigo-500 transition-all duration-200 transform scale-y-0 group-hover:scale-y-100 origin-center"></span>
+                        <span
+                          className="absolute left-0 top-0 bottom-0 w-0.5 bg-transparent group-hover:bg-indigo-500 transition-all
+                         duration-200 transform scale-y-0 group-hover:scale-y-100 origin-center"
+                        ></span>
                       </Link>
                     </motion.div>
                   ))}
@@ -180,7 +177,6 @@ const UserMenu = ({ menuOpen, closeMenu }) => {
             })}
           </div>
 
-          {/* Sign out button */}
           <motion.div
             variants={itemVariants}
             className="mt-1 border-t border-gray-100"

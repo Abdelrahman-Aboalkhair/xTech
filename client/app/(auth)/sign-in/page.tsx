@@ -9,8 +9,6 @@ import GirlShoppingImage from "@/app/assets/images/girl_shopping.png";
 import { Loader2 } from "lucide-react";
 import LoginButtons from "../(oAuth)/LoginButtons";
 import { useSignInMutation } from "@/app/store/apis/AuthApi";
-import { useAppDispatch } from "@/app/store/hooks";
-import { setUser } from "@/app/store/slices/AuthSlice";
 
 interface InputForm {
   name: string;
@@ -20,7 +18,6 @@ interface InputForm {
 }
 
 const SignIn = () => {
-  const dispatch = useAppDispatch();
   const [signIn, { error, isLoading }] = useSignInMutation();
   console.log("error: ", error);
   const router = useRouter();
@@ -42,7 +39,6 @@ const SignIn = () => {
       console.log("sign in result =>  ", result);
       console.log("result: ", result);
       if (result.success) {
-        dispatch(setUser(result.user));
         router.push("/");
       }
     } catch (error) {

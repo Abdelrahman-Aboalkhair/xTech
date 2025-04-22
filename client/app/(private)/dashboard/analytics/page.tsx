@@ -23,6 +23,7 @@ import { useLazyExportAnalyticsQuery } from "@/app/store/apis/AnalyticsApi";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_ANALYTICS } from "@/app/gql/Dashboard";
 import CustomLoader from "@/app/components/feedback/CustomLoader";
+import RevenueOverTimeChart from "@/app/components/charts/RevenueOverTimeChart";
 
 interface FormData {
   timePeriod: string;
@@ -249,7 +250,7 @@ const AnalyticsDashboard = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatsCard
             title="Total Revenue"
             value={formatPrice(data?.revenueAnalytics?.totalRevenue || 0)}
@@ -309,7 +310,7 @@ const AnalyticsDashboard = () => {
         </div>
 
         {/* Charts */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           <AreaChart
             title="Order Trends"
             data={data?.revenueAnalytics?.monthlyTrends?.orders || []}
@@ -355,6 +356,7 @@ const AnalyticsDashboard = () => {
             data={interactionByType.data}
             labels={interactionByType.labels}
           />
+          <RevenueOverTimeChart startDate="2023-01-01" endDate="2023-12-31" />
         </div>
 
         {/* Lists */}

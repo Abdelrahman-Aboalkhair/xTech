@@ -6,8 +6,6 @@ import { useRouter, usePathname } from "next/navigation";
 
 import useStorage from "@/app/hooks/state/useStorage";
 import { useSignOutMutation } from "@/app/store/apis/AuthApi";
-import { useAppDispatch } from "@/app/store/hooks";
-import { clearUser } from "@/app/store/slices/AuthSlice";
 
 import {
   LayoutDashboard,
@@ -27,7 +25,6 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useStorage<boolean>("sidebarOpen", true, "local");
   const pathname = usePathname();
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const [signout] = useSignOutMutation();
 
   const sections = useMemo(
@@ -67,7 +64,6 @@ const Sidebar = () => {
   const handleSignOut = async () => {
     try {
       await signout().unwrap();
-      dispatch(clearUser());
       router.push("/sign-in");
     } catch (error) {
       console.error("Error signing out:", error);

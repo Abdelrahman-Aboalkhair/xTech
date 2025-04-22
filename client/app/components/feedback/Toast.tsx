@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef } from "react";
 import { X, Check, Info, AlertTriangle } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
