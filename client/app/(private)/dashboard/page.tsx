@@ -3,7 +3,7 @@ import ProtectedRoute from "@/app/components/auth/ProtectedRoute";
 import AreaChart from "@/app/components/charts/AreaChart";
 import StatsCard from "@/app/components/organisms/StatsCard";
 import Dropdown from "@/app/components/molecules/Dropdown";
-import { DollarSign, ShoppingCart, Users } from "lucide-react";
+import { BarChart2, DollarSign, LineChart, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { Controller, useForm } from "react-hook-form";
 import React from "react";
@@ -12,6 +12,8 @@ import { useQuery } from "@apollo/client";
 import { GET_ANALYTICS_OVERVIEW } from "@/app/gql/Dashboard";
 import CustomLoader from "@/app/components/feedback/CustomLoader";
 import RevenueOverTimeChart from "@/app/components/charts/RevenueOverTimeChart";
+import ListCard from "@/app/components/organisms/ListCard";
+import BarChart from "@/app/components/charts/BarChart";
 
 interface FormData {
   timePeriod: string;
@@ -47,6 +49,20 @@ const Dashboard = () => {
     variables: { params: queryParams },
   });
 
+  const topItems =
+    data?.productPerformance?.slice(0, 10).map((p) => ({
+      id: p.id,
+      name: p.name,
+      quantity: p.quantity,
+      revenue: formatPrice(p.revenue),
+    })) || [];
+  console.log("topItems: ", topItems);
+
+  const salesByProduct = {
+    categories: data?.productPerformance?.map((p) => p.name) || [],
+    data: data?.productPerformance?.map((p) => p.revenue) || [],
+  };
+
   console.log("Analytics Overview => ", data);
 
   if (loading) {
@@ -61,7 +77,7 @@ const Dashboard = () => {
   return (
     <ProtectedRoute requiredRoles={["ADMIN", "SUPERADMIN"]}>
       <motion.div
-        className="p-2 min-h-screen space-y-4 "
+        className="p-2 min-h-screen space-y-4"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -93,18 +109,18 @@ const Dashboard = () => {
             icon={<DollarSign className="w-5 h-5" />}
           />
           <StatsCard
-            title="Total Revenue"
-            value={formatPrice(data?.revenueAnalytics?.totalRevenue || 0)}
-            percentage={data?.revenueAnalytics?.changes?.revenue}
+            title="Total Sales"
+            value={data?.orderAnalytics?.totalSales || 0}
+            percentage={data?.orderAnalytics?.changes?.sales}
             caption="since last period"
-            icon={<DollarSign className="w-5 h-5" />}
+            icon={<BarChart2 className="w-5 h-5" />}
           />
           <StatsCard
-            title="Total Orders"
-            value={data?.orderAnalytics?.totalOrders || 0}
-            percentage={data?.orderAnalytics?.changes?.orders}
-            caption="since last period"
-            icon={<ShoppingCart className="w-5 h-5" />}
+            title="Total Interactions"
+            value={data?.interactionAnalytics?.totalInteractions || 0}
+            percentage={0} // ! HARD CODED
+            caption="all interactions"
+            icon={<LineChart className="w-5 h-5" />}
           />
           <StatsCard
             title="Total Users"
@@ -123,6 +139,18 @@ const Dashboard = () => {
             percentageChange={data?.revenueAnalytics?.changes?.revenue}
           />
           <RevenueOverTimeChart startDate="2023-01-01" endDate="2023-12-31" />
+          <ListCard
+            title="Top Products"
+            viewAllLink="/shop"
+            items={topItems}
+            itemType="product"
+          />
+          <BarChart
+            title="Sales by Product"
+            data={salesByProduct.data}
+            categories={salesByProduct.categories}
+            color="#4CAF50"
+          />
         </div>
       </motion.div>
     </ProtectedRoute>

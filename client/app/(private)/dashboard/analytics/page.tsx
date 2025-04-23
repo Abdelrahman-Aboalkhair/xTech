@@ -250,7 +250,7 @@ const AnalyticsDashboard = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
           <StatsCard
             title="Total Revenue"
             value={formatPrice(data?.revenueAnalytics?.totalRevenue || 0)}
@@ -303,14 +303,14 @@ const AnalyticsDashboard = () => {
           <StatsCard
             title="Total Interactions"
             value={data?.interactionAnalytics?.totalInteractions || 0}
-            percentage={null}
+            percentage={0} // ! HARD CODED
             caption="all interactions"
             icon={<BarChart2 className="w-5 h-5" />}
           />
         </div>
 
         {/* Charts */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
           <AreaChart
             title="Order Trends"
             data={data?.revenueAnalytics?.monthlyTrends?.orders || []}
@@ -344,7 +344,7 @@ const AnalyticsDashboard = () => {
             data={data?.userAnalytics?.interactionTrends?.views || []}
             categories={data?.userAnalytics?.interactionTrends?.labels || []}
             color="#8b5cf6"
-            percentageChange={null}
+            percentageChange={data?.interactionAnalytics?.changes?.views}
           />
           <DonutChart
             title="Top 10 Products by Quantity"
@@ -360,7 +360,7 @@ const AnalyticsDashboard = () => {
         </div>
 
         {/* Lists */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           <ListCard
             title="Top Products"
             viewAllLink="/shop"

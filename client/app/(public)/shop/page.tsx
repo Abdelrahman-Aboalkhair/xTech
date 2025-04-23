@@ -122,7 +122,7 @@ const ShopPage: React.FC = () => {
 
         <div className="flex flex-col md:flex-row gap-6">
           {/* Desktop Sidebar */}
-          <div className="hidden md:block w-full md:min-w-[350px]">
+          <div className="hidden md:block w-full md:max-w-[350px]">
             <ProductFilters
               initialFilters={initialFilters}
               onFilterChange={updateFilters}

@@ -101,7 +101,7 @@ const ProductSummary: React.FC<ProductSummaryProps> = ({
                   <p className="text-sm text-gray-600">
                     Discount: {product.discount}%
                   </p>
-                  <p className="font-medium text-teal-600">
+                  <p className="font-medium text-indigo-600">
                     Final Price: {discountedPrice}
                   </p>
                 </>
@@ -117,7 +117,7 @@ const ProductSummary: React.FC<ProductSummaryProps> = ({
           <div className="flex flex-col gap-2">
             <button
               type="button"
-              className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors disabled:opacity-50"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50"
               onClick={onSave}
               disabled={isUpdating}
             >

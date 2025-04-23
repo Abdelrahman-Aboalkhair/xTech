@@ -68,12 +68,12 @@ const RevenueOverTimeChart: React.FC<RevenueOverTimeChartProps> = ({
     {
       name: "Total Revenue",
       data: revenue,
-      color: "#10B981",
+      color: "#6366F1",
     },
     {
       name: "Total Target",
       data: targetData,
-      color: "#f59e0b",
+      color: "#FBBF24",
     },
   ];
 
@@ -81,18 +81,6 @@ const RevenueOverTimeChart: React.FC<RevenueOverTimeChartProps> = ({
     chart: {
       type: "line",
       height: 350,
-      toolbar: {
-        show: true,
-        tools: {
-          download: true,
-          selection: false,
-          zoom: false,
-          zoomin: false,
-          zoomout: false,
-          pan: false,
-          reset: false,
-        },
-      },
     },
     stroke: {
       curve: "smooth",
@@ -159,7 +147,7 @@ const RevenueOverTimeChart: React.FC<RevenueOverTimeChartProps> = ({
             </span>
           </div>
           <div className="flex items-center">
-            <span className="w-4 h-4 rounded-full bg-orange-500 mr-2"></span>
+            <span className="w-4 h-4 rounded-full bg-[#FBBF24] mr-2"></span>
             <span className="text-sm font-medium text-gray-700">
               Total Target: $
               {totalTarget.toLocaleString("en-US", {

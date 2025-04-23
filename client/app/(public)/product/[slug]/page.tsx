@@ -30,7 +30,7 @@ const ProductDetailsPage = () => {
         <BreadCrumb />
       </div>
 
-      <div className="w-[84%] mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-10 pt-[3rem]">
+      <div className="w-[84%] mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-10 pt-[3rem] bg-white rounded">
         <ProductImageGallery images={product.images} name={product.name} />
         <ProductInfo
           id={product.id}

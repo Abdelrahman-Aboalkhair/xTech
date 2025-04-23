@@ -21,18 +21,7 @@ const AreaChart: React.FC<Props> = ({
   const options = {
     chart: {
       id: "area-chart",
-      toolbar: {
-        show: true,
-        tools: {
-          download: true,
-          selection: false,
-          zoom: false,
-          zoomin: false,
-          zoomout: false,
-          pan: false,
-          reset: false,
-        },
-      },
+
       zoom: { enabled: false },
     },
     colors: [color],
@@ -64,7 +53,7 @@ const AreaChart: React.FC<Props> = ({
   ];
 
   return (
-    <div className="p-4 rounded-2xl shadow-sm w-full">
+    <div className="p-4 rounded-2xl shadow-sm w-full bg-white">
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-black text-lg font-semibold">{title}</h2>
         {percentageChange !== undefined && (

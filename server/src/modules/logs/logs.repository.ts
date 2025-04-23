@@ -9,7 +9,10 @@ export class LogsRepository {
   }
 
   async getLogs() {
-    return this.prisma.log.findMany();
+    return this.prisma.log.findMany({
+      take: 100,
+      orderBy: { createdAt: "desc" },
+    });
   }
 
   async getLogById(id: string) {

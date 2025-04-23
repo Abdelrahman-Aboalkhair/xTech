@@ -36,8 +36,8 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
     >
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div className="flex items-center gap-3">
-          <div className="bg-teal-50 p-3 rounded-full">
-            <Package className="text-teal-600" size={24} />
+          <div className="bg-indigo-50 p-3 rounded-full">
+            <Package className="text-indigo-600" size={24} />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-gray-800">{product.name}</h1>
@@ -50,7 +50,7 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
                   <span className="text-sm text-gray-500 line-through">
                     {formattedPrice}
                   </span>
-                  <span className="text-sm bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full">
+                  <span className="text-sm bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full">
                     {product.discount}% OFF
                   </span>
                 </>

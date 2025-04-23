@@ -68,15 +68,11 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
   };
 
   return (
-    <div
-      className={`relative ${
-        isFullScreen ? "fixed inset-0 z-50 bg-white p-4" : ""
-      }`}
-    >
+    <div className={`relative ${isFullScreen ? "fixed inset-0 z-50 p-4" : ""}`}>
       {isFullScreen && (
         <button
           onClick={handleFullScreenToggle}
-          className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100"
+          className="absolute top-4 right-4 z-10 rounded-full p-2 shadow-md hover:bg-gray-100"
         >
           <Maximize2 size={20} />
         </button>
@@ -101,8 +97,8 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
               onClick={() => handleImageSelect(img, index)}
               className={`relative border-2 rounded-xl p-1 transition-all duration-200 ${
                 selectedImage === img
-                  ? "border-green-600 shadow-md"
-                  : "border-gray-200 hover:border-green-400"
+                  ? "border-indigo-600 shadow-md"
+                  : "border-gray-200 hover:border-indigo-400"
               }`}
             >
               <div className="relative w-20 h-20">
@@ -129,7 +125,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
           <div className="absolute inset-y-0 left-2 flex items-center z-10">
             <button
               onClick={handlePrevImage}
-              className="bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-md transition-all transform hover:scale-105"
+              className=" bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-md transition-all transform hover:scale-105"
               aria-label="Previous image"
             >
               <ChevronLeft size={20} />
@@ -139,7 +135,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
           <div className="absolute inset-y-0 right-2 flex items-center z-10">
             <button
               onClick={handleNextImage}
-              className="bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-md transition-all transform hover:scale-105"
+              className=" bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-md transition-all transform hover:scale-105"
               aria-label="Next image"
             >
               <ChevronRight size={20} />
@@ -150,8 +146,8 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
           <div className="absolute top-4 right-4 flex gap-2 z-10">
             <button
               onClick={handleZoomToggle}
-              className={`bg-white rounded-full p-2 shadow-md transition-all ${
-                isZoomed ? "bg-green-100 text-green-600" : "hover:bg-gray-100"
+              className={` rounded-full p-2 shadow-md transition-all ${
+                isZoomed ? "bg-indigo-100 text-indigo-600" : "hover:bg-gray-100"
               }`}
               aria-label={isZoomed ? "Exit zoom" : "Zoom image"}
             >
@@ -161,7 +157,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
             {!isFullScreen && (
               <button
                 onClick={handleFullScreenToggle}
-                className="bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-all"
+                className=" rounded-full p-2 shadow-md hover:bg-gray-100 transition-all"
                 aria-label="View fullscreen"
               >
                 <Maximize2 size={20} />
@@ -205,7 +201,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
           </div>
 
           {/* Image Counter */}
-          <div className="absolute bottom-6 left-6 bg-white bg-opacity-80 px-3 py-1 rounded-full text-sm text-gray-700 shadow-sm">
+          <div className="absolute bottom-6 left-6  bg-opacity-80 px-3 py-1 rounded-full text-sm text-gray-700 shadow-sm">
             {selectedIndex + 1} / {images.length}
           </div>
         </div>

@@ -111,7 +111,7 @@ const ProductReviews = ({ reviews, productId }) => {
     );
 
   return (
-    <div className="mt-16 mb-12">
+    <div className="mt-16 mb-12 bg-white p-6 rounded shadow-sm">
       <div className="border-b border-gray-200 pb-4 mb-8">
         <h2 className="text-2xl font-bold mb-2 flex items-center">
           <MessageSquare className="mr-2" size={24} />
@@ -160,7 +160,7 @@ const ProductReviews = ({ reviews, productId }) => {
 
       {/* Review Form */}
       {userId ? (
-        <div className="bg-white p-6 rounded-xl mb-10 shadow-md border border-gray-100">
+        <div className="p-6 rounded-xl mb-10 border border-gray-100">
           <h3 className="text-lg font-semibold mb-4 flex items-center">
             <ThumbsUp className="mr-2" size={18} />
             Write Your Review

@@ -6,7 +6,6 @@ import {
   useGetAllProductsQuery,
   useUpdateProductMutation,
 } from "@/app/store/apis/ProductApi";
-import Image from "next/image";
 import { useState } from "react";
 import ProductModal from "./ProductModal";
 import { Trash2, Edit, Upload, X } from "lucide-react";
@@ -251,10 +250,10 @@ const ProductsDashboard = () => {
         <div className="flex space-x-3">
           <button
             onClick={() => setIsFileUploadOpen(!isFileUploadOpen)}
-            className="px-4 py-2 bg-primary text-white rounded-md hover:bg-green-800 flex items-center"
+            className="px-4 py-2 bg-[#5d8a02] text-white rounded-md flex items-center"
           >
             <Upload className="mr-2 h-4 w-4" />
-            Bulk Import
+            Upload Spreadsheet
           </button>
           <button
             onClick={() => {

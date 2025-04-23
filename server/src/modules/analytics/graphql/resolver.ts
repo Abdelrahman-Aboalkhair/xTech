@@ -26,6 +26,6 @@ export const analyticsResolvers = {
     ...interactionAnalytics.Query,
     ...productPerformance.Query,
     ...searchDashboardResolver.Query,
-    ...abandonedCartAnalytics.Query,
+    // ...abandonedCartAnalytics.Query,
   },
 };

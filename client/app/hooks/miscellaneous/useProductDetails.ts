@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import {
-  useGetAllProductsQuery,
   useUpdateProductMutation,
   useDeleteProductMutation,
+  useGetProductByIdQuery,
 } from "@/app/store/apis/ProductApi";
 import { useGetAllCategoriesQuery } from "@/app/store/apis/CategoryApi";
 import useToast from "@/app/hooks/ui/useToast";
@@ -13,20 +13,20 @@ import { ProductFormData } from "@/app/(private)/dashboard/products/page";
 
 export const useProductDetail = () => {
   const { id } = useParams();
+  console.log("product id from params: ", id);
   const router = useRouter();
   const { showToast } = useToast();
 
-  // Fetch product and categories
   const {
-    data: productsData,
+    data: product,
     isLoading: productsLoading,
     error: productsError,
-    refetch,
-  } = useGetAllProductsQuery({});
+  } = useGetProductByIdQuery(id);
+  console.log("found product => ", product);
+
   const { data: categoriesData, isLoading: categoriesLoading } =
     useGetAllCategoriesQuery({});
 
-  const product = productsData?.products.find((p) => p.id === id);
   const categories =
     categoriesData?.categories.map((c) => ({
       label: c.name,

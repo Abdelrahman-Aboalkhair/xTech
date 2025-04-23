@@ -14,7 +14,9 @@ export const GET_ANALYTICS_OVERVIEW = gql`
     }
     orderAnalytics(params: $params) {
       totalOrders
+      totalSales
       changes {
+        sales
         orders
       }
     }
@@ -27,6 +29,22 @@ export const GET_ANALYTICS_OVERVIEW = gql`
     yearRange {
       minYear
       maxYear
+    }
+
+    interactionAnalytics(params: $params) {
+      totalInteractions
+      byType {
+        views
+        clicks
+        others
+      }
+    }
+
+    productPerformance(params: $params) {
+      id
+      name
+      quantity
+      revenue
     }
   }
 `;
@@ -105,11 +123,11 @@ export const GET_ALL_ANALYTICS = gql`
       }
     }
 
-    abandonedCartAnalytics(params: $params) {
-      totalAbandonedCarts
-      abandonmentRate
-      potentialRevenueLost
-    }
+    # abandonedCartAnalytics(params: $params) {
+    #   totalAbandonedCarts
+    #   abandonmentRate
+    #   potentialRevenueLost
+    # }
   }
 `;
 

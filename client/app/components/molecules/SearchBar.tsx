@@ -15,6 +15,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES, GET_TRENDING_PRODUCTS } from "@/app/gql/Product";
+import useEventListener from "@/app/hooks/dom/useEventListener";
 
 type SearchFormValues = {
   searchQuery: string;
@@ -59,20 +60,16 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const trendingProducts = trendingProductsData?.trendingProducts?.products;
   console.log("trendingProductsData: ", trendingProductsData);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        formRef.current &&
-        !formRef.current.contains(event.target as Node) &&
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsFocused(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  useEventListener("mousedown", (event) => {
+    if (
+      formRef.current &&
+      !formRef.current.contains(event.target as Node) &&
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setIsFocused(false);
+    }
+  });
 
   const handleSearch = (data: SearchFormValues) => {
     const query = data.searchQuery.trim();
@@ -106,7 +103,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const showSearchResults = isFocused || isHoveringDropdown;
 
   return (
-    <div className="relative w-full max-w-xl">
+    <div className="relative w-full max-w-3xl">
       <form
         ref={formRef}
         onSubmit={handleSubmit(handleSearch)}
@@ -125,7 +122,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <input
               type="text"
               placeholder={placeholder}
-              className="w-full py-2.5 pl-10 pr-12 bg-white rounded-full text-gray-800 placeholder-gray-600 border border-gray-400 focus:border-secondary focus:outline-none focus:ring-1 text-sm transition-all duration-200 hover:border-gray-300"
+              className="w-full py-2.5 pl-10 pr-12 bg-white rounded-full text-gray-800 placeholder-gray-600 border-2 border-gray-200
+               focus:border-secondary focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm transition-all duration-200 hover:border-gray-300"
               {...register("searchQuery")}
               onFocus={() => setIsFocused(true)}
               ref={(e) => {

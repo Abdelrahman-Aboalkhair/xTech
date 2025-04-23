@@ -27,7 +27,7 @@ const ProductDetailPage = () => {
   if (productsLoading || categoriesLoading) {
     return (
       <div className="min-h-screen bg-gray-50 p-4 md:p-8 flex flex-col items-center justify-center">
-        <div className="w-16 h-16 border-4 border-t-teal-600 border-r-teal-200 border-b-teal-200 border-l-teal-200 rounded-full animate-spin"></div>
+        <div className="w-16 h-16 border-4 border-t-indigo-600 border-r-indigo-200 border-b-indigo-200 border-l-indigo-200 rounded-full animate-spin"></div>
         <p className="mt-4 text-gray-600 font-medium">
           Loading product details...
         </p>
@@ -49,7 +49,7 @@ const ProductDetailPage = () => {
           </p>
           <button
             onClick={() => router.push("/dashboard/products")}
-            className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
+            className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
           >
             Return to Products
           </button>
@@ -66,12 +66,10 @@ const ProductDetailPage = () => {
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
             Product Not Found
           </h2>
-          <p className="text-gray-600 mb-6">
-            The product with ID: {id} could not be found.
-          </p>
+          <p className="text-gray-600 mb-6">The product could not be found.</p>
           <button
             onClick={() => router.push("/dashboard/products")}
-            className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
+            className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
           >
             Return to Products
           </button>
@@ -91,7 +89,7 @@ const ProductDetailPage = () => {
         >
           <button
             onClick={() => router.push("/dashboard/products")}
-            className="flex items-center gap-2 text-teal-600 hover:text-teal-800 font-medium transition-colors"
+            className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
           >
             <ArrowLeft size={18} />
             <span>Back to Products</span>

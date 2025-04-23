@@ -61,7 +61,7 @@ const Navbar = () => {
           </div>
 
           {/* Right section - Search, Cart, User */}
-          <div className="flex items-center">
+          <div className="flex items-center w-full justify-end">
             <SearchBar />
 
             <Link
@@ -90,8 +90,8 @@ const Navbar = () => {
                       <Image
                         src={user.avatar}
                         alt="User Profile"
-                        width={50}
-                        height={50}
+                        width={40}
+                        height={40}
                         className="rounded-full object-cover"
                         onError={(e) => {
                           e.currentTarget.style.display = "none";

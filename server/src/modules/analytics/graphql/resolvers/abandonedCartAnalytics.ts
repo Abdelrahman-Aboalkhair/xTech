@@ -10,21 +10,16 @@ const abandonedCartAnalytics = {
       const { startDate, endDate } = args;
       const { prisma } = context;
 
-      // Validate date range
-      if (!startDate || !endDate) {
-        throw new Error("Start date and end date are required");
-      }
-
       const start = new Date(startDate);
       const end = new Date(endDate);
 
-      if (isNaN(start.getTime()) || isNaN(end.getTime())) {
-        throw new Error("Invalid date format");
-      }
+      // if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+      //   throw new Error("Invalid date format");
+      // }
 
-      if (start > end) {
-        throw new Error("Start date must be before end date");
-      }
+      // if (start > end) {
+      //   throw new Error("Start date must be before end date");
+      // }
 
       // Fetch cart events
       const cartEvents = await prisma.cartEvent.findMany({
