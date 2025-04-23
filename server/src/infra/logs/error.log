@@ -1343,3 +1343,6 @@ Foreign key constraint violated: `Interaction_productId_fkey (index)`
 [2025-04-23T11:57:41.624Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-23T12:22:59.173Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-23T12:38:44.734Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T12:51:16.985Z] [31MERROR[39M: Product not found
+[2025-04-23T12:51:35.800Z] [31MERROR[39M: Product not found
+[2025-04-23T12:53:58.332Z] [31MERROR[39M: Invalid access token, please log in

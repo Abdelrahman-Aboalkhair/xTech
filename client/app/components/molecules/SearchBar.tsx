@@ -103,7 +103,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const showSearchResults = isFocused || isHoveringDropdown;
 
   return (
-    <div className="relative w-full max-w-3xl">
+    <div className="relative w-full max-w-xl">
       <form
         ref={formRef}
         onSubmit={handleSubmit(handleSearch)}

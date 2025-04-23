@@ -217,6 +217,7 @@ const TransactionsDashboard = () => {
         totalResults={data?.totalResults}
         resultsPerPage={data?.resultsPerPage}
         currentPage={data?.currentPage}
+        showHeader={false}
       />
 
       <ConfirmModal
