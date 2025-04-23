@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_ALL_PRODUCTS = gql`
-  query GetAllProducts($first: Int, $skip: Int) {
-    products(first: $first, skip: $skip) {
+  query GetAllProducts($first: Int, $skip: Int, $filters: ProductFilters) {
+    products(first: $first, skip: $skip, filters: $filters) {
       products {
         id
         slug
@@ -15,6 +15,11 @@ export const GET_ALL_PRODUCTS = gql`
         isFeatured
         isTrending
         isBestSeller
+        category {
+          id
+          name
+          slug
+        }
       }
       hasMore
       totalCount
@@ -36,6 +41,11 @@ export const GET_SINGLE_PRODUCT = gql`
       isFeatured
       isTrending
       isBestSeller
+      category {
+        id
+        name
+        slug
+      }
       reviews {
         id
         rating
@@ -117,6 +127,17 @@ export const GET_BEST_SELLER_PRODUCTS = gql`
       }
       hasMore
       totalCount
+    }
+  }
+`;
+
+export const GET_CATEGORIES = gql`
+  query GetCategories {
+    categories {
+      id
+      slug
+      name
+      description
     }
   }
 `;

@@ -12,26 +12,20 @@ import { useForm } from "react-hook-form";
 import useStorage from "@/app/hooks/state/useStorage";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useQuery } from "@apollo/client";
+import { GET_CATEGORIES, GET_TRENDING_PRODUCTS } from "@/app/gql/Product";
 
 type SearchFormValues = {
   searchQuery: string;
 };
 
 interface SearchBarProps {
-  onSearch: (data: SearchFormValues) => void;
   placeholder?: string;
-  suggestedCategories?: string[];
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
-  onSearch,
   placeholder = "Search products, brands...",
-  suggestedCategories = [
-    "New Arrivals",
-    "Best Sellers",
-    "Sale Items",
-    "Gift Ideas",
-  ],
 }) => {
   const { register, handleSubmit, setValue, watch } = useForm<SearchFormValues>(
     {
@@ -51,31 +45,21 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchQuery = watch("searchQuery");
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const router = useRouter();
 
-  // Sample trending products for the dropdown
-  const trendingProducts = [
-    {
-      id: 1,
-      name: "Wireless Headphones",
-      category: "Electronics",
-      image: "/api/placeholder/60/60",
-    },
-    {
-      id: 2,
-      name: "Summer Dress",
-      category: "Women",
-      image: "/api/placeholder/60/60",
-    },
-    {
-      id: 3,
-      name: "Smart Watch",
-      category: "Accessories",
-      image: "/api/placeholder/60/60",
-    },
-  ];
+  // Fetch categories
+  const { data: categoriesData } = useQuery(GET_CATEGORIES);
+  console.log("categoriesData: ", categoriesData);
+  const suggestedCategories =
+    categoriesData?.categories.map((cat: any) => cat.name) || [];
+
+  const { data: trendingProductsData } = useQuery(GET_TRENDING_PRODUCTS, {
+    variables: { first: 4, skip: 0 },
+  });
+  const trendingProducts = trendingProductsData?.trendingProducts?.products;
+  console.log("trendingProductsData: ", trendingProductsData);
 
   useEffect(() => {
-    // Handle clicks outside search component
     const handleClickOutside = (event: MouseEvent) => {
       if (
         formRef.current &&
@@ -86,35 +70,30 @@ const SearchBar: React.FC<SearchBarProps> = ({
         setIsFocused(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSearch = (data: SearchFormValues) => {
     const query = data.searchQuery.trim();
-    if (query && !recentQueries.includes(query)) {
-      const updatedQueries = [query, ...recentQueries.slice(0, 4)];
-      setRecentQueries(updatedQueries);
+    if (query) {
+      if (!recentQueries.includes(query)) {
+        setRecentQueries([query, ...recentQueries.slice(0, 4)]);
+      }
+      // Navigate to shop page with search query
+      router.push(`/shop?search=${encodeURIComponent(query)}`);
     }
     setIsFocused(false);
-    onSearch(data);
   };
 
   const handleSelectRecentQuery = (query: string) => {
     setValue("searchQuery", query);
-    setTimeout(() => {
-      handleSubmit(handleSearch)();
-    }, 100);
+    setTimeout(() => handleSubmit(handleSearch)(), 100);
   };
 
   const clearSearch = () => {
     setValue("searchQuery", "");
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    if (inputRef.current) inputRef.current.focus();
   };
 
   const removeRecentQuery = (index: number, e: React.MouseEvent) => {
@@ -127,7 +106,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const showSearchResults = isFocused || isHoveringDropdown;
 
   return (
-    <div className="relative w-full min-w-xl">
+    <div className="relative w-full max-w-xl">
       <form
         ref={formRef}
         onSubmit={handleSubmit(handleSearch)}
@@ -143,25 +122,19 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 size={18}
               />
             </span>
-
             <input
               type="text"
               placeholder={placeholder}
-              className="w-full py-2.5 pl-10 pr-12 bg-white rounded-full text-gray-800 placeholder-gray-600
-                border border-gray-400 focus:border-secondary focus:outline-none focus:ring-1 
-                text-sm transition-all duration-200 hover:border-gray-300"
+              className="w-full py-2.5 pl-10 pr-12 bg-white rounded-full text-gray-800 placeholder-gray-600 border border-gray-400 focus:border-secondary focus:outline-none focus:ring-1 text-sm transition-all duration-200 hover:border-gray-300"
               {...register("searchQuery")}
               onFocus={() => setIsFocused(true)}
               ref={(e) => {
                 inputRef.current = e;
                 const { ref } = register("searchQuery");
-                if (typeof ref === "function") {
-                  ref(e);
-                }
+                if (typeof ref === "function") ref(e);
               }}
               autoComplete="off"
             />
-
             <AnimatePresence>
               {searchQuery && (
                 <motion.button
@@ -176,7 +149,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 </motion.button>
               )}
             </AnimatePresence>
-
             <button
               type="submit"
               className="absolute right-2 p-1.5 rounded-full bg-primary text-white transition-all duration-300"

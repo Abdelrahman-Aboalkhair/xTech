@@ -6,15 +6,15 @@ import UserMenu from "../molecules/UserMenu";
 import { User, ShoppingCart, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import SearchBar from "../molecules/SearchBar";
-import useQueryParams from "@/app/hooks/network/useQueryParams";
 import { useGetCartCountQuery } from "@/app/store/apis/CartApi";
 import Topbar from "./Topbar";
 import { useGetMeQuery } from "@/app/store/apis/UserApi";
+import useClickOutside from "@/app/hooks/dom/useClickOutside";
+import useEventListener from "@/app/hooks/dom/useEventListener";
 
 const publicRoutes = ["/sign-in", "/sign-up", "/about", "/contact"];
 
 const Navbar = () => {
-  const { updateQuery } = useQueryParams();
   const pathname = usePathname();
   const isPublicRoute = publicRoutes.includes(pathname);
   const [isLoggedOut, setIsLoggedOut] = useState(false);
@@ -24,12 +24,9 @@ const Navbar = () => {
   });
   const user = data?.user;
 
-  const { data: cartData, error: cartError } = useGetCartCountQuery(undefined);
-  console.log("cartError => ", cartError);
-  console.log("cartData => ", cartData);
+  const { data: cartData } = useGetCartCountQuery(undefined);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef(null);
 
@@ -38,38 +35,11 @@ const Navbar = () => {
     setIsLoggedOut(storedLogoutState === "true");
   }, []);
 
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+  useEventListener("scroll", () => {
+    setScrolled(window.scrollY > 20);
+  });
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Close menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const onSearch = (data) => {
-    const query = new URLSearchParams();
-    query.set("searchQuery", data.searchQuery);
-    if (pathname !== "/shop") {
-      window.location.href = `/shop?${query.toString()}`;
-    } else {
-      updateQuery({ searchQuery: data.searchQuery });
-    }
-    setShowSearch(false);
-  };
+  useClickOutside(menuRef, () => setMenuOpen(false));
 
   return (
     <>
@@ -92,7 +62,7 @@ const Navbar = () => {
 
           {/* Right section - Search, Cart, User */}
           <div className="flex items-center">
-            <SearchBar onSearch={onSearch} />
+            <SearchBar />
 
             <Link
               href="/cart"
@@ -162,79 +132,6 @@ const Navbar = () => {
             </button>
           </div>
         </nav>
-
-        {/* Mobile Navigation Menu */}
-        <div
-          className={`fixed inset-0 bg-gray-900 bg-opacity-50 z-40 md:hidden transition-opacity duration-300 ${
-            mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-          onClick={() => setMobileMenuOpen(false)}
-        />
-
-        <div
-          className={`fixed right-0 top-0 h-full w-64 bg-white z-50 shadow-xl transform transition-transform duration-300 ease-in-out md:hidden ${
-            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          <div className="flex justify-between items-center p-4 border-b">
-            <span className="font-bold text-lg">Menu</span>
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-gray-500 hover:text-gray-700"
-              aria-label="Close menu"
-            >
-              <X size={20} />
-            </button>
-          </div>
-
-          <div className="py-4 px-4 space-y-4">
-            <Link
-              href="/"
-              className={`block py-2 px-4 rounded-md ${
-                pathname === "/"
-                  ? "bg-indigo-50 text-indigo-600 font-medium"
-                  : "text-gray-800"
-              }`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className={`block py-2 px-4 rounded-md ${
-                pathname === "/about"
-                  ? "bg-indigo-50 text-indigo-600 font-medium"
-                  : "text-gray-800"
-              }`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              About Us
-            </Link>
-            <Link
-              href="/contact"
-              className={`block py-2 px-4 rounded-md ${
-                pathname === "/contact"
-                  ? "bg-indigo-50 text-indigo-600 font-medium"
-                  : "text-gray-800"
-              }`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Contact Us
-            </Link>
-
-            <div className="pt-4 mt-4 border-t border-gray-200">
-              {!user && (
-                <Link
-                  href="/sign-in"
-                  className="block w-full py-2 px-4 bg-indigo-600 text-white text-center rounded-md hover:bg-indigo-700 transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Sign in
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
       </header>
     </>
   );

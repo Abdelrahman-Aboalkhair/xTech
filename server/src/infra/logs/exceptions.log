@@ -1,0 +1,18 @@
+[2025-04-23T11:01:45.098Z] [31MERROR[39M: uncaughtException: Syntax Error: Expected ":", found "!".
+GraphQLError: Syntax Error: Expected ":", found "!".
+    at syntaxError (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/error/syntaxError.js:15:10)
+    at Parser.expectToken (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:1406:40)
+    at Parser.parseFieldDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:847:10)
+    at Parser.optionalMany (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:1501:28)
+    at Parser.parseFieldsDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:831:17)
+    at Parser.parseObjectTypeDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:803:25)
+    at Parser.parseDefinition (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:181:23)
+    at Parser.many (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:1520:26)
+    at Parser.parseDocument (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:131:25)
+    at Object.parse (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql/language/parser.js:32:27)
+    at parseDocument (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql-tag/src/index.ts:96:20)
+    at gql (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/graphql-tag/src/index.ts:134:10)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/src/modules/product/graphql/schema.ts:5:21)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/code/full-stack-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)

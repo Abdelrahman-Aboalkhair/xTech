@@ -1314,3 +1314,29 @@ Foreign key constraint violated: `Interaction_productId_fkey (index)`
 [2025-04-23T10:24:01.634Z] [31MERROR[39M: Refresh token not found
 [2025-04-23T10:24:01.643Z] [31MERROR[39M: Refresh token not found
 [2025-04-23T10:24:01.653Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T10:42:51.478Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.161Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.170Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.176Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.182Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.187Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.190Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.239Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.254Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.261Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.269Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.270Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.271Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:03:31.347Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T11:03:31.358Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T11:03:31.363Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T11:03:31.368Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T11:03:31.374Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T11:03:31.382Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T11:03:31.388Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T11:03:31.396Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T11:03:31.404Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T11:03:31.409Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T11:03:31.415Z] [31MERROR[39M: Refresh token not found
+[2025-04-23T11:24:03.863Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-23T11:39:09.227Z] [31MERROR[39M: Invalid access token, please log in

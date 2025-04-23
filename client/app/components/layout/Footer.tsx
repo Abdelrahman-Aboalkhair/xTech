@@ -32,8 +32,8 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-gray-800 to-gray-950 text-white pt-16 pb-8 relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 via-purple-500 to-pink-500"></div>
-      <div className="absolute -top-32 -right-32 w-64 h-64 rounded-full bg-green-500/10 blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+      <div className="absolute -top-32 -right-32 w-64 h-64 rounded-full bg-indigo-500/10 blur-3xl"></div>
       <div className="absolute -bottom-48 -left-48 w-96 h-96 rounded-full bg-purple-600/10 blur-3xl"></div>
 
       <div className="max-w-8xl mx-auto px-6 lg:px-8 relative z-10">
@@ -44,7 +44,7 @@ const Footer = () => {
               <div className="text-white mr-2">
                 <FooterLogo />
               </div>
-              <div className="h-6 w-1 rounded-full bg-gradient-to-b from-green-500 to-purple-600"></div>
+              <div className="h-6 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-600"></div>
               <span className="ml-2 text-sm font-medium tracking-wider text-gray-400 uppercase">
                 Premium Store
               </span>
@@ -60,7 +60,7 @@ const Footer = () => {
               <div className="flex items-start">
                 <MapPin
                   size={18}
-                  className="text-green-400 mr-3 mt-0.5 flex-shrink-0"
+                  className="text-indigo-400 mr-3 mt-0.5 flex-shrink-0"
                 />
                 <p className="text-sm text-gray-400">
                   123 Commerce Street, Shopping District, 10001
@@ -69,12 +69,15 @@ const Footer = () => {
               <div className="flex items-center">
                 <Phone
                   size={18}
-                  className="text-green-400 mr-3 flex-shrink-0"
+                  className="text-indigo-400 mr-3 flex-shrink-0"
                 />
                 <p className="text-sm text-gray-400">+1 (555) 123-4567</p>
               </div>
               <div className="flex items-center">
-                <Mail size={18} className="text-green-400 mr-3 flex-shrink-0" />
+                <Mail
+                  size={18}
+                  className="text-indigo-400 mr-3 flex-shrink-0"
+                />
                 <p className="text-sm text-gray-400">support@NexsyMart.com</p>
               </div>
             </div>
@@ -121,7 +124,7 @@ const Footer = () => {
                 <div key={index}>
                   <h3 className="font-semibold text-lg text-white mb-6 relative inline-block">
                     {section.title}
-                    <span className="absolute -bottom-2 left-0 h-0.5 w-8 bg-green-500"></span>
+                    <span className="absolute -bottom-2 left-0 h-0.5 w-8 bg-indigo-500"></span>
                   </h3>
                   <ul className="space-y-3">
                     {section.links.map((link, idx) => (
@@ -130,7 +133,7 @@ const Footer = () => {
                           href="#"
                           className="text-gray-400 hover:text-white text-sm flex items-center group transition-all duration-200"
                         >
-                          <span className="h-1 w-0 bg-green-500 rounded-full mr-0 group-hover:w-2 group-hover:mr-2 transition-all duration-200"></span>
+                          <span className="h-1 w-0 bg-indigo-500 rounded-full mr-0 group-hover:w-2 group-hover:mr-2 transition-all duration-200"></span>
                           {link}
                         </Link>
                       </li>
@@ -145,7 +148,7 @@ const Footer = () => {
           <div className="col-span-1 lg:col-span-1">
             <h3 className="font-semibold text-lg text-white mb-6 relative inline-block">
               Stay Updated
-              <span className="absolute -bottom-2 left-0 h-0.5 w-8 bg-green-500"></span>
+              <span className="absolute -bottom-2 left-0 h-0.5 w-8 bg-indigo-500"></span>
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Subscribe to get exclusive offers and updates on new products.
@@ -155,11 +158,11 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Your email address"
-                  className="w-full bg-gray-800/50 border border-gray-700 rounded-lg p-3 pl-4 pr-12 text-white text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                  className="w-full bg-gray-800/50 border border-gray-700 rounded-lg p-3 pl-4 pr-12 text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                 />
                 <button
                   type="submit"
-                  className="absolute right-1.5 top-1/2 -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white p-1.5 rounded-md transition-colors"
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 bg-indigo-600 hover:bg-indigo-700 text-white p-1.5 rounded-md transition-colors"
                 >
                   <Send size={16} />
                 </button>

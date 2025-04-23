@@ -16,6 +16,7 @@ const typeDefs = gql`
     isTrending: Boolean!
     isBestSeller: Boolean!
     reviews: [Review!]
+    category: Category
   }
 
   type Review {
@@ -24,20 +25,38 @@ const typeDefs = gql`
     comment: String
   }
 
-  # Pagination
+  type Category {
+    id: String!
+    slug: String!
+    name: String!
+    description: String
+  }
+
   type ProductConnection {
     products: [Product!]!
     hasMore: Boolean!
     totalCount: Int!
   }
 
+  input ProductFilters {
+    search: String
+    isNew: Boolean
+    isFeatured: Boolean
+    isTrending: Boolean
+    isBestSeller: Boolean
+    minPrice: Float
+    maxPrice: Float
+    categoryId: String
+  }
+
   type Query {
-    products(first: Int, skip: Int): ProductConnection!
+    products(first: Int, skip: Int, filters: ProductFilters): ProductConnection!
     product(slug: String!): Product
     newProducts(first: Int, skip: Int): ProductConnection!
     featuredProducts(first: Int, skip: Int): ProductConnection!
     trendingProducts(first: Int, skip: Int): ProductConnection!
     bestSellerProducts(first: Int, skip: Int): ProductConnection!
+    categories: [Category!]!
   }
 `;
 
