@@ -17,25 +17,17 @@ const Home = () => {
         title="Featured"
         query={GET_FEATURED_PRODUCTS}
         showTitle
-        showPagination
       />
       <ProductSection
         title="Trending"
         query={GET_TRENDING_PRODUCTS}
         showTitle
-        showPagination
       />
-      <ProductSection
-        title="New Arrivals"
-        query={GET_NEW_PRODUCTS}
-        showTitle
-        showPagination
-      />
+      <ProductSection title="New Arrivals" query={GET_NEW_PRODUCTS} showTitle />
       <ProductSection
         title="Best Sellers"
         query={GET_BEST_SELLER_PRODUCTS}
         showTitle
-        showPagination
       />
     </MainLayout>
   );

@@ -24,13 +24,20 @@ const typeDefs = gql`
     comment: String
   }
 
+  # Pagination
+  type ProductConnection {
+    products: [Product!]!
+    hasMore: Boolean!
+    totalCount: Int!
+  }
+
   type Query {
-    products: [Product!]
+    products(first: Int, skip: Int): ProductConnection!
     product(slug: String!): Product
-    newProducts: [Product!]
-    featuredProducts: [Product!]
-    trendingProducts: [Product!]
-    bestSellerProducts: [Product!]
+    newProducts(first: Int, skip: Int): ProductConnection!
+    featuredProducts(first: Int, skip: Int): ProductConnection!
+    trendingProducts(first: Int, skip: Int): ProductConnection!
+    bestSellerProducts(first: Int, skip: Int): ProductConnection!
   }
 `;
 

@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import {
   ChevronRight,
-  X,
   Gift,
   Truck,
   Clock,
@@ -144,7 +143,7 @@ const Topbar = ({
           {/* Shop CTA */}
           <a
             href={shopLink}
-            className={`flex items-center gap-1 bg-indigo-700 font-medium hover:underline transition-colors px-3 py-1 rounded-full`}
+            className={`flex items-center gap-1 bg-primary font-medium hover:underline transition-colors px-3 py-1 rounded-full`}
           >
             {shopText}
             <ExternalLink size={14} />

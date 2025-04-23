@@ -119,6 +119,7 @@ export class ProductService {
     if (records.length === 0) {
       throw new AppError(400, "File is empty");
     }
+    console.log("RECORDS => ", records);
 
     // Validate and transform records
     const products = records.map((record) => {
@@ -141,6 +142,12 @@ export class ProductService {
           : [],
         stock: Number(record.stock),
         categoryId: record.categoryId ? String(record.categoryId) : undefined,
+        isNew: record.isNew ? Boolean(record.isNew) : false,
+        isTrending: record.isTrending ? Boolean(record.isTrending) : false,
+        isBestSeller: record.isBestSeller
+          ? Boolean(record.isBestSeller)
+          : false,
+        isFeatured: record.isFeatured ? Boolean(record.isFeatured) : false,
       };
     });
 

@@ -169,16 +169,6 @@ const ProductsDashboard = () => {
       sortable: true,
       render: (row: any) => (
         <div className="flex items-center space-x-2">
-          <Image
-            src={row.images[0] || "/placeholder-image.jpg"}
-            alt={row.name}
-            width={40}
-            height={40}
-            className="object-cover rounded-md"
-            onError={(e) => {
-              e.currentTarget.src = "/placeholder-image.jpg";
-            }}
-          />
           <span>{row.name}</span>
         </div>
       ),
@@ -261,7 +251,7 @@ const ProductsDashboard = () => {
         <div className="flex space-x-3">
           <button
             onClick={() => setIsFileUploadOpen(!isFileUploadOpen)}
-            className="px-4 py-2 bg-green-700 text-white rounded-md hover:bg-green-800 flex items-center"
+            className="px-4 py-2 bg-primary text-white rounded-md hover:bg-green-800 flex items-center"
           >
             <Upload className="mr-2 h-4 w-4" />
             Bulk Import

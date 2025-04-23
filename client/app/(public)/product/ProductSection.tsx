@@ -11,32 +11,77 @@ interface ProductSectionProps {
   title: string;
   query: DocumentNode;
   showTitle?: boolean;
-  viewAllButton?: boolean;
-  showPagination?: boolean;
 }
 
 const ProductSection: React.FC<ProductSectionProps> = ({
   title,
   query,
   showTitle = false,
-  viewAllButton = false,
 }) => {
-  const { data, loading, error } = useQuery(query);
+  const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
+  const [skip, setSkip] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
+  const pageSize = 8;
 
-  const products = data
-    ? data.products ||
-      data.newProducts ||
-      data.featuredProducts ||
-      data.trendingProducts ||
-      data.bestSellerProducts
-    : [];
+  const { data, loading, error, fetchMore } = useQuery(query, {
+    variables: { first: pageSize, skip: 0 },
+    onCompleted: (data) => {
+      const products = data
+        ? data.products?.products ||
+          data.newProducts?.products ||
+          data.featuredProducts?.products ||
+          data.trendingProducts?.products ||
+          data.bestSellerProducts?.products
+        : [];
+      setDisplayedProducts(products);
+      setHasMore(data?.[Object.keys(data)[0]]?.hasMore || false);
+    },
+  });
 
-  const noProductsFound = products?.length === 0;
+  console.log("data => ", data);
+
+  const noProductsFound = displayedProducts.length === 0 && !loading && !error;
+
+  const handleShowMore = () => {
+    setIsFetchingMore(true);
+    const newSkip = skip + pageSize;
+    fetchMore({
+      variables: { first: pageSize, skip: newSkip },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        const queryKey = Object.keys(fetchMoreResult)[0];
+        const newProducts = fetchMoreResult[queryKey].products;
+        const newHasMore = fetchMoreResult[queryKey].hasMore;
+
+        setDisplayedProducts((prevProducts) => [
+          ...prevProducts,
+          ...newProducts,
+        ]);
+        setSkip(newSkip);
+        setHasMore(newHasMore);
+        setIsFetchingMore(false);
+
+        return {
+          [queryKey]: {
+            ...fetchMoreResult[queryKey],
+            products: [...prev[queryKey].products, ...newProducts],
+          },
+        };
+      },
+    });
+  };
+
+  const handleShowLess = () => {
+    setDisplayedProducts(displayedProducts.slice(0, pageSize));
+    setSkip(0);
+    setHasMore(data?.[Object.keys(data)[0]]?.hasMore || false);
+  };
 
   return (
     <div className="w-full p-12">
-      {(showTitle || viewAllButton) && (
+      {showTitle && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -51,15 +96,10 @@ const ProductSection: React.FC<ProductSectionProps> = ({
               </span>
             </div>
           )}
-          {viewAllButton && (
-            <button className="bg-indigo-500 text-white px-6 py-2 rounded-lg hover:bg-indigo-600 transition-colors duration-300 font-medium">
-              ViewTriggered All
-            </button>
-          )}
         </motion.div>
       )}
 
-      {loading && (
+      {loading && !displayedProducts.length && (
         <div className="text-center py-12">
           <Package
             size={48}
@@ -73,7 +113,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
           <p className="text-lg text-red-500">Error loading products</p>
         </div>
       )}
-      {noProductsFound && !loading && !error && (
+      {noProductsFound && (
         <div className="text-center py-12">
           <Package size={48} className="mx-auto text-gray-400 mb-4" />
           <p className="text-lg text-gray-600">No products found</p>
@@ -81,18 +121,48 @@ const ProductSection: React.FC<ProductSectionProps> = ({
       )}
 
       {/* Product Grid */}
-      {!loading && !error && !noProductsFound && (
+      {!noProductsFound && (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-            {products.map((product: Product) => (
-              <ProductCard
+            {displayedProducts.map((product: Product) => (
+              <motion.div
                 key={product.id}
-                product={product}
-                hoveredProductId={hoveredProductId}
-                setHoveredProductId={setHoveredProductId}
-              />
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ProductCard
+                  product={product}
+                  hoveredProductId={hoveredProductId}
+                  setHoveredProductId={setHoveredProductId}
+                />
+              </motion.div>
             ))}
           </div>
+
+          {(hasMore || displayedProducts.length > pageSize) && (
+            <div className="mt-8 text-center space-x-4">
+              {hasMore && (
+                <button
+                  onClick={handleShowMore}
+                  disabled={isFetchingMore}
+                  className={`bg-primary text-white px-8 py-3 rounded transition-colors duration-300 font-medium ${
+                    isFetchingMore ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                >
+                  {isFetchingMore ? "Loading..." : "Show More"}
+                </button>
+              )}
+              {displayedProducts.length > pageSize && (
+                <button
+                  onClick={handleShowLess}
+                  className="bg-gray-200 text-gray-700 px-8 py-3 rounded transition-colors duration-300 font-medium"
+                >
+                  Show Less
+                </button>
+              )}
+            </div>
+          )}
         </>
       )}
     </div>

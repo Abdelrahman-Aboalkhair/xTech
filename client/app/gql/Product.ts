@@ -1,19 +1,23 @@
 import { gql } from "@apollo/client";
 
 export const GET_ALL_PRODUCTS = gql`
-  query GetAllProducts {
-    products {
-      id
-      slug
-      name
-      price
-      discount
-      stock
-      images
-      isNew
-      isFeatured
-      isTrending
-      isBestSeller
+  query GetAllProducts($first: Int, $skip: Int) {
+    products(first: $first, skip: $skip) {
+      products {
+        id
+        slug
+        name
+        price
+        discount
+        stock
+        images
+        isNew
+        isFeatured
+        isTrending
+        isBestSeller
+      }
+      hasMore
+      totalCount
     }
   }
 `;
@@ -42,61 +46,77 @@ export const GET_SINGLE_PRODUCT = gql`
 `;
 
 export const GET_NEW_PRODUCTS = gql`
-  query GetNewProducts {
-    newProducts {
-      id
-      slug
-      name
-      price
-      discount
-      stock
-      images
-      isNew
+  query GetNewProducts($first: Int, $skip: Int) {
+    newProducts(first: $first, skip: $skip) {
+      products {
+        id
+        slug
+        name
+        price
+        discount
+        stock
+        images
+        isNew
+      }
+      hasMore
+      totalCount
     }
   }
 `;
 
 export const GET_FEATURED_PRODUCTS = gql`
-  query GetFeaturedProducts {
-    featuredProducts {
-      id
-      slug
-      name
-      price
-      discount
-      stock
-      images
-      isFeatured
+  query GetFeaturedProducts($first: Int, $skip: Int) {
+    featuredProducts(first: $first, skip: $skip) {
+      products {
+        id
+        slug
+        name
+        price
+        discount
+        stock
+        images
+        isFeatured
+      }
+      hasMore
+      totalCount
     }
   }
 `;
 
 export const GET_TRENDING_PRODUCTS = gql`
-  query GetTrendingProducts {
-    trendingProducts {
-      id
-      slug
-      name
-      price
-      discount
-      stock
-      images
-      isTrending
+  query GetTrendingProducts($first: Int, $skip: Int) {
+    trendingProducts(first: $first, skip: $skip) {
+      products {
+        id
+        slug
+        name
+        price
+        discount
+        stock
+        images
+        isTrending
+      }
+      hasMore
+      totalCount
     }
   }
 `;
 
 export const GET_BEST_SELLER_PRODUCTS = gql`
-  query GetBestSellerProducts {
-    bestSellerProducts {
-      id
-      slug
-      name
-      price
-      discount
-      stock
-      images
-      isBestSeller
+  query GetBestSellerProducts($first: Int, $skip: Int) {
+    bestSellerProducts(first: $first, skip: $skip) {
+      products {
+        id
+        slug
+        name
+        price
+        discount
+        stock
+        images
+        isBestSeller
+      }
+      hasMore
+      totalCount
     }
   }
 `;

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import { debounce } from "lodash";
 import useQueryParams from "@/app/hooks/network/useQueryParams";
 import { Loader2, ArrowUpDown, FileText, RefreshCw } from "lucide-react";
-import SearchBar from "../molecules/SearchBar";
 import PaginationComponent from "../organisms/Pagination";
 
 interface Column {
@@ -122,7 +121,6 @@ const Table: React.FC<TableProps> = ({
           </p>
 
           <div className="flex items-center gap-2 self-end sm:self-auto">
-            {showSearchBar && <SearchBar onSearch={handleSearch} />}
             {onRefresh && (
               <button
                 onClick={onRefresh}
