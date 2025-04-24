@@ -10,7 +10,7 @@ export class ChatService {
 
   async createChat(userId: string): Promise<Chat> {
     const chat = await this.chatRepository.createChat(userId);
-    this.io.emit("chatCreated", chat);
+    this.io.to("admin").emit("chatCreated", chat);
     return chat;
   }
 
@@ -20,12 +20,12 @@ export class ChatService {
     return chat;
   }
 
-  async getUserChats(userId: string): Promise<Chat[]> {
-    return this.chatRepository.finduserChats(userId);
+  async getChatsByUser(userId: string): Promise<Chat[]> {
+    return this.chatRepository.findChatsByUser(userId);
   }
 
-  async getAllChats(): Promise<Chat[]> {
-    return this.chatRepository.findAllChats();
+  async getAllChats(status?: "OPEN" | "RESOLVED"): Promise<Chat[]> {
+    return this.chatRepository.findAllChats(status);
   }
 
   async sendMessage(
@@ -50,7 +50,7 @@ export class ChatService {
     status: "OPEN" | "RESOLVED"
   ): Promise<Chat> {
     const chat = await this.chatRepository.updateChatStatus(chatId, status);
-    this.io.emit("chatStatusUpdated", chat);
+    this.io.to("admin").emit("chatStatusUpdated", chat);
     return chat;
   }
 }

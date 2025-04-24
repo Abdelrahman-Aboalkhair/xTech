@@ -48,8 +48,11 @@ export class ChatController {
 
   getAllChats = asyncHandler(async (req: Request, res: Response) => {
     const user = req.user!;
+    const { status } = req.query;
 
-    const chats = await this.chatService.getAllChats();
+    const chats = await this.chatService.getAllChats(
+      status as "OPEN" | "RESOLVED"
+    );
 
     sendResponse(res, 200, {
       data: { chats },

@@ -37,10 +37,10 @@ export class ChatRepository {
     });
   }
 
-  async findAllChats(): Promise<Chat[]> {
+  async findAllChats(status?: "OPEN" | "RESOLVED"): Promise<Chat[]> {
     return prisma.chat.findMany({
-      include: { user: true, messages: { include: { sender: true } } },
-      orderBy: { updatedAt: "desc" },
+      where: status ? { status } : {},
+      include: { messages: { include: { sender: true } } },
     });
   }
 
