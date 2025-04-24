@@ -19,16 +19,21 @@ import { cookieParserOptions } from "./shared/constants";
 import AppError from "./shared/errors/AppError";
 import globalError from "./shared/errors/globalError";
 import { logRequest } from "./shared/middlewares/logRequest";
-import mainRouter from "./routes";
+import { configureRoutes } from "./routes";
 import { configureGraphQL, allowedOrigins } from "./graphql";
 import webhookRoutes from "./modules/webhook/webhook.routes";
 import { Server as HTTPServer } from "http";
+import { SocketManager } from "@/infra/socket/socket";
 
 dotenv.config();
 
 export const createApp = async () => {
   const app = express();
   const httpServer = new HTTPServer(app);
+
+  // Initialize Socket.IO
+  const socketManager = new SocketManager(httpServer);
+  const io = socketManager.getIO();
 
   // Basic
   app.use(
@@ -105,7 +110,7 @@ export const createApp = async () => {
   app.use(compression());
 
   // Routes
-  app.use("/api", mainRouter);
+  app.use("/api", configureRoutes(io));
 
   // GraphQL setup
   await configureGraphQL(app);

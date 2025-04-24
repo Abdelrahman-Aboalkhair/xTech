@@ -1,10 +1,13 @@
 import express from "express";
-import v1Routes from "./v1";
+import { Server as SocketIOServer } from "socket.io";
+import { configureV1Routes } from "./v1";
 
-const router = express.Router();
+export const configureRoutes = (io: SocketIOServer) => {
+  const router = express.Router();
 
-router.use("/v1", v1Routes);
+  router.use("/v1", configureV1Routes(io));
 
-// ** V2 ROUTES HERE **
+  // ** V2 ROUTES HERE **
 
-export default router;
+  return router;
+};

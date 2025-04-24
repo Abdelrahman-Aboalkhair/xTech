@@ -8,8 +8,8 @@ export const chatApi = apiSlice.injectEndpoints({
     }),
 
     // GET /chat/user/:userId
-    getChatsByUser: builder.query({
-      query: (userId: string) => `/chat/user/${userId}`,
+    getUserChats: builder.query({
+      query: () => `/chat/user`,
     }),
 
     // GET /chat
@@ -19,10 +19,9 @@ export const chatApi = apiSlice.injectEndpoints({
 
     // POST /chat
     createChat: builder.mutation({
-      query: (userId: string) => ({
+      query: () => ({
         url: "/chat",
         method: "POST",
-        body: { userId },
       }),
     }),
 
@@ -54,7 +53,7 @@ export const chatApi = apiSlice.injectEndpoints({
 
 export const {
   useGetChatQuery,
-  useGetChatsByUserQuery,
+  useGetUserChatsQuery,
   useGetAllChatsQuery,
   useCreateChatMutation,
   useSendMessageMutation,

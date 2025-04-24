@@ -25,11 +25,15 @@ export class ChatController {
     });
   });
 
-  getChatsByUser = asyncHandler(async (req: Request, res: Response) => {
-    const { userId } = req.params;
-    const user = req.user!;
+  getUserChats = asyncHandler(async (req: Request, res: Response) => {
+    if (!req.user) {
+      throw new Error("User not found");
+    }
 
-    const chats = await this.chatService.getChatsByUser(userId);
+    const userId = req.user.id;
+    console.log("userId => ", userId);
+    const chats = await this.chatService.getUserChats(userId);
+    console.log("chats => ", chats);
 
     sendResponse(res, 200, {
       data: { chats },
@@ -37,7 +41,7 @@ export class ChatController {
     });
 
     this.logsService.info("Chats fetched by user", {
-      userId: user.id,
+      userId,
       targetUserId: userId,
     });
   });

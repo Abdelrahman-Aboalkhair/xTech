@@ -12,6 +12,7 @@ import {
   Settings,
   ChevronRight,
   Shield,
+  LifeBuoy,
 } from "lucide-react";
 import { useSignOutMutation } from "@/app/store/apis/AuthApi";
 
@@ -70,6 +71,12 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
           href: "/settings",
           label: "Settings",
           icon: <Settings size={18} className="text-gray-500" />,
+          show: true,
+        },
+        {
+          href: "/support",
+          label: "Support",
+          icon: <LifeBuoy size={18} className="text-gray-500" />,
           show: true,
         },
       ],

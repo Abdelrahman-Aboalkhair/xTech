@@ -1412,3 +1412,82 @@ Foreign key constraint violated: `Interaction_productId_fkey (index)`
 [2025-04-23T21:39:46.975Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-23T22:54:47.332Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-23T23:47:12.513Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:03.750Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.053Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.412Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.434Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.436Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.439Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.443Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.445Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.484Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.487Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.489Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.492Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.494Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.495Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.511Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.527Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.529Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.531Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.533Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.540Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.573Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.576Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.597Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.600Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.602Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.606Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.671Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.674Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.676Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.681Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.683Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.685Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.722Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.723Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.725Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T21:37:04.729Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.744Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.755Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.763Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.771Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.780Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.788Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.798Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.808Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.817Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.826Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.835Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.842Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.850Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.857Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.867Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.876Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.886Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.895Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.907Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.916Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.925Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.934Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.943Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.949Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.958Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.965Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.974Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.982Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.990Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T21:37:04.999Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-04-24T22:02:34.167Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T22:16:30.483Z] [31MERROR[39M: Chat not found
+[2025-04-24T22:16:44.126Z] [31MERROR[39M: Chat not found
+[2025-04-24T22:18:34.910Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T22:18:34.913Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-24T22:18:34.959Z] [31MERROR[39M: Chat not found
+[2025-04-24T22:18:38.199Z] [31MERROR[39M: Chat not found
+[2025-04-24T22:20:13.393Z] [31MERROR[39M: Chat not found
+[2025-04-24T22:20:34.667Z] [31MERROR[39M: Chat not found
+[2025-04-24T22:21:46.966Z] [31MERROR[39M: Chat not found
+[2025-04-24T22:22:24.508Z] [31MERROR[39M: Chat not found
+[2025-04-24T22:22:55.462Z] [31MERROR[39M: Chat not found
+[2025-04-24T22:23:39.546Z] [31MERROR[39M: Chat not found

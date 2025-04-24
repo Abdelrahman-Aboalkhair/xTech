@@ -20,8 +20,8 @@ export class ChatService {
     return chat;
   }
 
-  async getChatsByUser(userId: string): Promise<Chat[]> {
-    return this.chatRepository.findChatsByUser(userId);
+  async getUserChats(userId: string): Promise<Chat[]> {
+    return this.chatRepository.finduserChats(userId);
   }
 
   async getAllChats(): Promise<Chat[]> {
