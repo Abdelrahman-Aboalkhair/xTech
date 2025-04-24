@@ -25,6 +25,7 @@ const Navbar = () => {
   const user = data?.user;
 
   const { data: cartData } = useGetCartCountQuery(undefined);
+  console.log("cartData => ", cartData);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -64,18 +65,23 @@ const Navbar = () => {
           <div className="flex items-center w-full justify-end">
             <SearchBar />
 
-            <Link
-              href="/cart"
-              className="relative text-gray-700 transition-colors mx-9"
-              aria-label="Shopping cart"
-            >
-              <ShoppingCart size={28} />
-              {cartData?.cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 text-white text-xs font-medium rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
-                  {cartData?.cartCount}
-                </span>
-              )}
-            </Link>
+            {cartData && (
+              <Link
+                href="/cart"
+                className="relative text-gray-700 transition-colors mx-9"
+                aria-label="Shopping cart"
+              >
+                <ShoppingCart size={28} />
+                {cartData?.cartCount > 0 && (
+                  <span
+                    className="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs font-medium 
+                  rounded-full w-5 h-5 flex items-center justify-center"
+                  >
+                    {cartData?.cartCount}
+                  </span>
+                )}
+              </Link>
+            )}
 
             {/* User Menu */}
             {!isLoggedOut && user ? (

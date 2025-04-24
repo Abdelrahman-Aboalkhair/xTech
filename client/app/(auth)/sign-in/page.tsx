@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import MainLayout from "@/app/components/templates/MainLayout";
 import Image from "next/image";
-import GirlShoppingImage from "@/app/assets/images/girl_shopping.png";
+import GuyShopping from "@/app/assets/images/guy-shopping-vector.png";
 import { Loader2 } from "lucide-react";
 import { useSignInMutation } from "@/app/store/apis/AuthApi";
 import GoogleIcon from "@/app/assets/icons/google.png";
@@ -154,7 +154,7 @@ const SignIn = () => {
           </div>
         </main>
         <Image
-          src={GirlShoppingImage}
+          src={GuyShopping}
           alt="Girl Shopping"
           className="object-cover w-[600px]"
         />

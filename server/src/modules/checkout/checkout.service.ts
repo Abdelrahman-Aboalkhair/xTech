@@ -40,7 +40,7 @@ export class CheckoutService {
         allowed_countries: ["US", "CA", "MX", "EG"],
       },
       mode: "payment",
-      success_url: `${process.env.CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${process.env.CLIENT_URL}/orders`,
       cancel_url: `${process.env.CLIENT_URL}/cancel`,
       metadata: { userId },
     });

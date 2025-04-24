@@ -89,6 +89,39 @@ export class ProductService {
     return { product };
   }
 
+  async restockProduct(
+    productId: string,
+    quantity: number,
+    notes?: string,
+    userId?: string
+  ) {
+    // Validate quantity
+    if (quantity <= 0) {
+      throw new Error("Quantity must be positive");
+    }
+
+    // Create restock record
+    const restock = await this.productRepository.createRestock({
+      productId,
+      quantity,
+      notes,
+      userId,
+    });
+
+    // Update product stock
+    await this.productRepository.updateProductStock(productId, quantity);
+
+    // Log stock movement
+    await this.productRepository.createStockMovement({
+      productId,
+      quantity,
+      reason: "restock",
+      userId,
+    });
+
+    return restock;
+  }
+
   async bulkCreateProducts(file: Express.Multer.File) {
     if (!file) {
       throw new AppError(400, "No file uploaded");

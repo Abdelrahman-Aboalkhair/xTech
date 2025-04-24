@@ -30,7 +30,7 @@ const QuantitySelector = ({
   };
 
   return (
-    <div className="flex items-center gap-2 rounded-full max-w-fit border border-gray-300 bg-white px-2 py-1 shadow-sm transition-all hover:shadow-md">
+    <div className="flex items-center gap-2 rounded-full max-w-fit border border-gray-300 bg-white px-2 py-1">
       <Button
         type="button"
         onClick={() => handleUpdate(value - 1)}

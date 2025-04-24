@@ -11,13 +11,11 @@ interface CartSummaryProps {
   totalItems: number;
   cartId: string;
 }
-
 const CartSummary: React.FC<CartSummaryProps> = ({
   subtotal,
   shippingRate = 0.01,
   currency = "$",
   totalItems,
-  cartId,
 }) => {
   const { showToast } = useToast();
   const stripePromise = loadStripe(
@@ -33,7 +31,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
 
   const handleInitiateCheckout = async () => {
     try {
-      const res = await initiateCheckout({ cartId }).unwrap();
+      const res = await initiateCheckout(undefined).unwrap();
       const stripe = await stripePromise;
       const result = await stripe?.redirectToCheckout({
         sessionId: res.sessionId,
@@ -54,7 +52,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.4 }}
-      className=" bg-white rounded-xl shadow-md p-12 w-[430px] border border-gray-100 sticky top-8"
+      className=" bg-white rounded-xl p-12 w-[430px] border border-gray-200 sticky top-8"
     >
       <h2 className="text-xl font-bold text-gray-800 mb-6">Order Summary</h2>
       <div className="space-y-4">

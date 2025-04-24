@@ -54,10 +54,33 @@ export class ProductRepository {
     });
   }
 
-  async updateProductStock(id: string, stock: number) {
+  async createRestock(data: {
+    productId: string;
+    quantity: number;
+    notes?: string;
+    userId?: string;
+  }) {
+    return prisma.restock.create({
+      data,
+      include: { product: true },
+    });
+  }
+
+  async updateProductStock(productId: string, quantity: number) {
     return prisma.product.update({
-      where: { id },
-      data: { stock },
+      where: { id: productId },
+      data: { stock: { increment: quantity } },
+    });
+  }
+
+  async createStockMovement(data: {
+    productId: string;
+    quantity: number;
+    reason: string;
+    userId?: string;
+  }) {
+    return prisma.stockMovement.create({
+      data,
     });
   }
 

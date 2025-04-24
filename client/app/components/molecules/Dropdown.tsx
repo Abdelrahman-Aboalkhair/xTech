@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown, Loader2, X } from "lucide-react";
 import useClickOutside from "@/app/hooks/dom/useClickOutside";
 
 interface DropdownOption {
@@ -16,6 +16,7 @@ interface DropdownProps {
   onChange: (value: string | null) => void;
   className?: string;
   disabled?: boolean;
+  isLoading?: boolean;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -25,6 +26,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   onChange,
   className,
   disabled,
+  isLoading,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownWidth, setDropdownWidth] = useState<number | null>(null);
@@ -60,11 +62,13 @@ const Dropdown: React.FC<DropdownProps> = ({
         aria-disabled={disabled}
       >
         <span className="text-sm font-medium text-gray-700 truncate">
-          {selectedLabel}
+          {isLoading ? "Loading..." : selectedLabel}
         </span>
 
         <div className="flex items-center">
-          {value ? (
+          {isLoading ? (
+            <Loader2 size={16} className="animate-spin text-gray-400 ml-2" />
+          ) : value ? (
             <X
               size={16}
               className="text-gray-400 hover:text-gray-600 transition-colors duration-200 ml-2"

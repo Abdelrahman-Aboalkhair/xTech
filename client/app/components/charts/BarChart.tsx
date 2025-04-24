@@ -15,7 +15,7 @@ const BarChart: React.FC<Props> = ({
   title,
   data,
   categories,
-  color = "#3b82f6",
+  color = "#6366f1",
   percentageChange,
 }) => {
   const options = {

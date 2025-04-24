@@ -7,7 +7,7 @@ import { Loader2 } from "lucide-react";
 import PasswordField from "@/app/components/molecules/PasswordField";
 import { z } from "zod";
 import MainLayout from "@/app/components/templates/MainLayout";
-import GirlShoppingImage from "@/app/assets/images/girl_shopping.png";
+import GuyShopping from "@/app/assets/images/guy-shopping-vector.png";
 import Image from "next/image";
 import { useSignupMutation } from "@/app/store/apis/AuthApi";
 import GoogleIcon from "@/app/assets/icons/google.png";
@@ -160,7 +160,7 @@ const Signup = () => {
           </div>
         </main>
         <Image
-          src={GirlShoppingImage}
+          src={GuyShopping}
           alt="Girl Shopping"
           className="object-cover w-[600px]"
         />

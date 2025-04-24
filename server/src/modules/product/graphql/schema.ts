@@ -19,6 +19,38 @@ const typeDefs = gql`
     category: Category
   }
 
+  type StockMovement {
+    id: ID!
+    product: Product!
+    quantity: Int!
+    reason: String!
+    userId: String
+    createdAt: DateTime!
+  }
+
+  type Restock {
+    id: ID!
+    product: Product!
+    quantity: Int!
+    notes: String
+    userId: String
+    createdAt: DateTime!
+  }
+
+  type InventorySummary {
+    product: Product!
+    stock: Int!
+    lowStock: Boolean!
+  }
+
+  type Mutation {
+    restockProduct(productId: ID!, quantity: Int!, notes: String): Restock!
+    # Log manual stock adjustments (e.g., for damages or corrections).
+    adjustStock(productId: ID!, quantity: Int!, reason: String!): StockMovement!
+  }
+
+  scalar DateTime
+
   type Review {
     id: String!
     rating: Float!
@@ -57,6 +89,13 @@ const typeDefs = gql`
     trendingProducts(first: Int, skip: Int): ProductConnection!
     bestSellerProducts(first: Int, skip: Int): ProductConnection!
     categories: [Category!]!
+    stockMovements(
+      productId: ID
+      startDate: DateTime
+      endDate: DateTime
+    ): [StockMovement!]!
+    restocks(productId: ID, startDate: DateTime, endDate: DateTime): [Restock!]!
+    inventorySummary: [InventorySummary!]!
   }
 `;
 

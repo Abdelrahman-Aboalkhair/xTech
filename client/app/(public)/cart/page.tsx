@@ -70,7 +70,7 @@ const Cart = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow duration-300 flex items-center space-x-4"
+                  className="bg-white rounded-xl p-6 border border-gray-200 flex items-center space-x-4"
                 >
                   {/* Product Image */}
                   <div className="w-20 h-20 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden shadow-sm">

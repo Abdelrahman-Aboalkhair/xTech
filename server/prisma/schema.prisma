@@ -33,7 +33,6 @@ enum PAYMENT_STATUS {
   PARTIALLY_REFUNDED
 }
 
-
 enum CART_STATUS {
   ACTIVE
   ABANDONED
@@ -61,7 +60,7 @@ model User {
   interactions                    Interaction[]
   reports                         Report[]
   reviews                         Review[]
-  carts                           Cart[] 
+  carts                           Cart[]
   cartEvents                      CartEvent[]
   createdAt                       DateTime      @default(now())
   updatedAt                       DateTime      @updatedAt
@@ -70,32 +69,57 @@ model User {
 }
 
 model Product {
-  id            String        @id @default(uuid())
-  name          String        @unique
-  description   String?
-  price         Float
-  discount      Float         @default(0)
-  slug          String        @unique
-  images        String[]
-  stock         Int
-  salesCount    Int           @default(0)
-  sku           String?
-  isNew    Boolean       @default(false)
-  isFeatured    Boolean       @default(false)
-  isTrending    Boolean       @default(false)
-  isBestSeller  Boolean       @default(false)
-  averageRating Float         @default(0)
-  reviewCount   Int           @default(0)
-  category      Category?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  categoryId    String?
-  orderItems    OrderItem[]
-  cartItems     CartItem[]
-  interactions  Interaction[]
-  reviews       Review[]
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  id             String          @id @default(uuid())
+  name           String          @unique
+  description    String?
+  price          Float
+  discount       Float           @default(0)
+  slug           String          @unique
+  images         String[]
+  stock          Int
+  salesCount     Int             @default(0)
+  sku            String?
+  isNew          Boolean         @default(false)
+  isFeatured     Boolean         @default(false)
+  isTrending     Boolean         @default(false)
+  isBestSeller   Boolean         @default(false)
+  averageRating  Float           @default(0)
+  reviewCount    Int             @default(0)
+  category       Category?       @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId     String?
+  orderItems     OrderItem[]
+  cartItems      CartItem[]
+  interactions   Interaction[]
+  reviews        Review[]
+  stockMovements StockMovement[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  Restock        Restock[]
 
   @@index([name, slug])
+}
+
+// Logs all stock changes (restocks, orders, adjustments) with quantity, reason, and timestamp.
+model StockMovement {
+  id        String   @id @default(uuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  reason    String // e.g., "restock", "order", "adjustment", "damage"
+  userId    String?
+  createdAt DateTime @default(now())
+}
+
+
+// Tracks restock events specifically, with optional notes for context (e.g., “Manual restock for promotion”).
+model Restock {
+  id        String   @id @default(uuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  notes     String? // Optional notes for restock
+  userId    String? // Optional, for admin tracking
+  createdAt DateTime @default(now())
 }
 
 model Review {
@@ -104,7 +128,7 @@ model Review {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   productId String
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  rating    Int 
+  rating    Int
   comment   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -122,7 +146,7 @@ model Order {
   payment     Payment?     @relation("OrderPayment")
   address     Address?     @relation("OrderAddress")
   shipment    Shipment?    @relation("OrderShipment")
-  transaction Transaction? @relation("OrderTransaction") 
+  transaction Transaction? @relation("OrderTransaction")
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 
@@ -144,16 +168,16 @@ model OrderItem {
 }
 
 model Payment {
-  id        String   @id @default(uuid())
+  id        String         @id @default(uuid())
   method    String
   amount    Float
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
-  order     Order?   @relation("OrderPayment", fields: [orderId], references: [id], onDelete: SetNull)
-  orderId   String?  @unique
+  order     Order?         @relation("OrderPayment", fields: [orderId], references: [id], onDelete: SetNull)
+  orderId   String?        @unique
   status    PAYMENT_STATUS @default(PENDING)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
 
   @@index([userId, orderId])
 }
@@ -190,26 +214,27 @@ model Shipment {
 }
 
 model Transaction {
-  id              String       @id @default(uuid())
-  order           Order        @relation("OrderTransaction", fields: [orderId], references: [id], onDelete: Cascade)
-  orderId         String       @unique 
-  status          TRANSACTION_STATUS @default(PENDING) 
-  transactionDate DateTime     @default(now())
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
+  id              String             @id @default(uuid())
+  order           Order              @relation("OrderTransaction", fields: [orderId], references: [id], onDelete: Cascade)
+  orderId         String             @unique
+  status          TRANSACTION_STATUS @default(PENDING)
+  transactionDate DateTime           @default(now())
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
   @@index([orderId])
 }
 
 model Cart {
-  id        String      @id @default(uuid())
-  user      User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
-  userId    String? 
-  sessionId String?     @unique
-  cartItems CartItem[]
+  id         String      @id @default(uuid())
+  user       User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId     String?
+  sessionId  String?     @unique
+  cartItems  CartItem[]
   cartEvents CartEvent[]
-  status    CART_STATUS @default(ACTIVE)
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  status     CART_STATUS @default(ACTIVE)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
 
   @@index([userId, sessionId])
 }
@@ -233,25 +258,24 @@ enum CART_EVENT {
   ADD
   CHECKOUT_STARTED
   CHECKOUT_COMPLETED
-
 }
 
 model CartEvent {
-  id          String   @id @default(uuid())
-  cartId      String
-  userId      String?
-  sessionId   String?
-  eventType   CART_EVENT @default(PENDING)
-  timestamp   DateTime @default(now())
-  cart        Cart     @relation(fields: [cartId], references: [id])
-  user        User?     @relation(fields: [userId], references: [id])
+  id        String     @id @default(uuid())
+  cartId    String
+  userId    String?
+  sessionId String?
+  eventType CART_EVENT @default(PENDING)
+  timestamp DateTime   @default(now())
+  cart      Cart       @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  user      User?      @relation(fields: [userId], references: [id])
 }
 
 model Category {
   id          String    @id @default(uuid())
   slug        String    @unique
   name        String
-  description String? 
+  description String?
   products    Product[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -263,12 +287,13 @@ model Interaction {
   id        String   @id @default(uuid())
   userId    String?
   user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  sessionId String?  
+  sessionId String?
   productId String?
   product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
   type      String
   createdAt DateTime @default(now())
-  @@index([userId, sessionId, productId]) 
+
+  @@index([userId, sessionId, productId])
 }
 
 model Report {
@@ -284,12 +309,11 @@ model Report {
   @@index([userId])
 }
 
-
 model Log {
   id        String   @id @default(uuid())
-  level     String   // e.g., "info", "error", "warn", "debug"
+  level     String // e.g., "info", "error", "warn", "debug"
   message   String
-  context   Json?    // Optional: Additional data (e.g., userId, request details)
+  context   Json? // Optional: Additional data (e.g., userId, request details)
   createdAt DateTime @default(now())
 }
 
@@ -301,15 +325,15 @@ enum SECTION_TYPE {
 }
 
 model Section {
-  id            Int          @id @unique @default(autoincrement())
-  type          SECTION_TYPE @default(HERO)
-  title         String?
-  description   String?
-  images        String[]     @default([]) 
-  icons         String?
-  link          String?
-  ctaText       String?
-  isVisible     Boolean?     @default(false)
-  primaryColor  String?
+  id             Int          @id @unique @default(autoincrement())
+  type           SECTION_TYPE @default(HERO)
+  title          String?
+  description    String?
+  images         String[]     @default([])
+  icons          String?
+  link           String?
+  ctaText        String?
+  isVisible      Boolean?     @default(false)
+  primaryColor   String?
   secondaryColor String?
 }

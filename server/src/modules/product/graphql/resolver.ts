@@ -166,6 +166,10 @@ export const productResolvers = {
       return context.prisma.category.findMany();
     },
   },
+
+  Mutation: {
+    // TODO: Create the mutaitons for restockProduct, adjustRestock
+  },
   Product: {
     reviews: (parent: any, _: any, context: Context) => {
       return context.prisma.review.findMany({

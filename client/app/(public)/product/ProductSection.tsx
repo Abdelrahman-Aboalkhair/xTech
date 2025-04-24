@@ -123,7 +123,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
       {/* Product Grid */}
       {!noProductsFound && (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {displayedProducts.map((product: Product) => (
               <motion.div
                 key={product.id}
