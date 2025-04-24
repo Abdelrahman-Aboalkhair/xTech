@@ -39,6 +39,11 @@ enum CART_STATUS {
   CONVERTED
 }
 
+enum CHAT_STATUS {
+  OPEN
+  RESOLVED
+}
+
 model User {
   id                              String        @id @default(uuid())
   googleId                        String?
@@ -62,6 +67,8 @@ model User {
   reviews                         Review[]
   carts                           Cart[]
   cartEvents                      CartEvent[]
+  chats                           Chat[]        @relation("UserChats")
+  messages                        ChatMessage[]
   createdAt                       DateTime      @default(now())
   updatedAt                       DateTime      @updatedAt
 
@@ -99,26 +106,23 @@ model Product {
   @@index([name, slug])
 }
 
-// Logs all stock changes (restocks, orders, adjustments) with quantity, reason, and timestamp.
 model StockMovement {
   id        String   @id @default(uuid())
   productId String
   product   Product  @relation(fields: [productId], references: [id])
   quantity  Int
-  reason    String // e.g., "restock", "order", "adjustment", "damage"
+  reason    String
   userId    String?
   createdAt DateTime @default(now())
 }
 
-
-// Tracks restock events specifically, with optional notes for context (e.g., “Manual restock for promotion”).
 model Restock {
   id        String   @id @default(uuid())
   productId String
   product   Product  @relation(fields: [productId], references: [id])
   quantity  Int
-  notes     String? // Optional notes for restock
-  userId    String? // Optional, for admin tracking
+  notes     String?
+  userId    String?
   createdAt DateTime @default(now())
 }
 
@@ -311,9 +315,9 @@ model Report {
 
 model Log {
   id        String   @id @default(uuid())
-  level     String // e.g., "info", "error", "warn", "debug"
+  level     String
   message   String
-  context   Json? // Optional: Additional data (e.g., userId, request details)
+  context   Json?
   createdAt DateTime @default(now())
 }
 
@@ -336,4 +340,28 @@ model Section {
   isVisible      Boolean?     @default(false)
   primaryColor   String?
   secondaryColor String?
+}
+
+model Chat {
+  id        String        @id @default(uuid())
+  userId    String
+  user      User          @relation("UserChats", fields: [userId], references: [id], onDelete: Cascade)
+  status    CHAT_STATUS   @default(OPEN)
+  messages  ChatMessage[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([userId])
+}
+
+model ChatMessage {
+  id        String   @id @default(uuid())
+  chatId    String
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  senderId  String
+  sender    User     @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([chatId, senderId])
 }

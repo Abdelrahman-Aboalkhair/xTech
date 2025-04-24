@@ -15,6 +15,7 @@ import shipmentRoutes from "@/modules/shipment/shipment.routes";
 import transactionRoutes from "@/modules/transaction/transaction.routes";
 import logRoutes from "@/modules/logs/logs.routes";
 import sectionRoutes from "@/modules/section/section.routes";
+import chatRoutes from "@/modules/chat/chat.routes";
 
 const router = Router();
 
@@ -34,5 +35,6 @@ router.use("/shipment", shipmentRoutes);
 router.use("/payments", paymentRoutes);
 router.use("/addresses", addressRoutes);
 router.use("/sections", sectionRoutes);
+router.use("/chat", chatRoutes);
 
 export default router;

@@ -22,11 +22,13 @@ import { logRequest } from "./shared/middlewares/logRequest";
 import mainRouter from "./routes";
 import { configureGraphQL, allowedOrigins } from "./graphql";
 import webhookRoutes from "./modules/webhook/webhook.routes";
+import { Server as HTTPServer } from "http";
 
 dotenv.config();
 
 export const createApp = async () => {
   const app = express();
+  const httpServer = new HTTPServer(app);
 
   // Basic
   app.use(
@@ -43,7 +45,7 @@ export const createApp = async () => {
       store: new RedisStore({ client: redisClient }),
       secret: process.env.SESSION_SECRET!,
       resave: false,
-      saveUninitialized: true, //** set to true to track new sessions for interactions */
+      saveUninitialized: true,
       cookie: {
         secure: process.env.NODE_ENV === "production",
         maxAge: 1000 * 60 * 60 * 24 * 7,
@@ -57,7 +59,7 @@ export const createApp = async () => {
   app.use(helmet());
   app.use(helmet.frameguard({ action: "deny" }));
 
-  // CORS - already handled again in `configureGraphQL` for /api/v1/graphql
+  // CORS
   app.use(
     cors({
       origin: (origin, callback) => {
@@ -112,5 +114,5 @@ export const createApp = async () => {
   app.use(globalError);
   app.use(logRequest);
 
-  return app;
+  return { app, httpServer };
 };
