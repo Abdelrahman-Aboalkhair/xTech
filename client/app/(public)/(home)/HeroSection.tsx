@@ -10,7 +10,6 @@ import BlueShirt from "@/app/assets/images/products/blue-shirt.jpg";
 import BlackSmartWatch from "@/app/assets/images/products/black-smart-watch.jpg";
 import AirPods from "@/app/assets/images/products/airpods.jpg";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import CategoryBox from "./CategoryBox";

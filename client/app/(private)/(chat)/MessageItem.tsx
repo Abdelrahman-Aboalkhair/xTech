@@ -46,7 +46,9 @@ const MessageItem: React.FC<MessageItemProps> = ({
               className="object-cover rounded-lg"
             />
           )}
-          {message.type === "VOICE" && <AudioPlayer src={message.url} />}
+          {message.type === "VOICE" && message.url && (
+            <AudioPlayer src={message.url} />
+          )}
 
           <div
             className={`text-xs mt-1 ${

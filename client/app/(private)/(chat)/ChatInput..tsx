@@ -4,12 +4,14 @@ interface ChatInputProps {
   message: string;
   setMessage: (message: string) => void;
   onSendMessage: (file?: File) => void;
+  disabled?: boolean;
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({
   message,
   setMessage,
   onSendMessage,
+  disabled,
 }) => {
   const [recording, setRecording] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
@@ -71,9 +73,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
           onChange={handleFileChange}
           className="hidden"
           id="file-upload"
+          disabled={disabled}
         />
         <button
           onClick={() => fileInputRef.current?.click()}
+          disabled={disabled}
           className="p-2 text-gray-500 hover:text-blue-600"
         >
           <svg
@@ -96,6 +100,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           className={`p-2 ${
             recording ? "text-red-600" : "text-gray-500 hover:text-blue-600"
           }`}
+          disabled={disabled}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -118,6 +123,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."
           className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          disabled={disabled}
         />
         <button
           onClick={() => onSendMessage()}

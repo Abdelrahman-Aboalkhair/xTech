@@ -12,6 +12,8 @@ import ChatStatus from "./ChatStatus";
 import ChatInput from "./ChatInput.";
 import CustomLoader from "@/app/components/feedback/CustomLoader";
 import { useGetMeQuery } from "@/app/store/apis/UserApi";
+import { useWebRTCCall } from "./useWebRTCCall";
+import { PhoneCall } from "lucide-react";
 
 interface ChatProps {
   chatId: string;
@@ -34,6 +36,11 @@ const ChatContainer: React.FC<ChatProps> = ({ chatId }) => {
   const { messages, message, setMessage, handleSendMessage, isTyping } =
     useChatMessages(chatId, user, chat, socket, sendMessage);
   console.log("messages => ", messages);
+
+  const { callStatus, startCall, endCall, audioRef } = useWebRTCCall({
+    chatId,
+    socket,
+  });
 
   const handleResolveChat = async () => {
     try {
@@ -72,6 +79,33 @@ const ChatContainer: React.FC<ChatProps> = ({ chatId }) => {
       <MessageList messages={messages} currentUserId={user.id} />
 
       {isTyping && <ChatStatus isTyping={true} />}
+
+      {callStatus === "idle" && chat?.status === "OPEN" && (
+        <button
+          onClick={startCall}
+          className="flex items-center gap-2 p-4 w-fit hover:bg-green-800 bg-green-700 text-white rounded-lg m-4"
+        >
+          <PhoneCall size={20} />
+          Start Call
+        </button>
+      )}
+      {callStatus === "calling" && (
+        <div className="p-4 text-yellow-600">Connecting call...</div>
+      )}
+      {callStatus === "in-call" && (
+        <div className="p-4 flex items-center space-x-2">
+          <span className="text-green-600">Call in progress</span>
+          <button
+            onClick={endCall}
+            className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+          >
+            End Call
+          </button>
+        </div>
+      )}
+      {callStatus === "ended" && (
+        <div className="p-4 text-gray-600">Call ended</div>
+      )}
 
       {chat?.status === "OPEN" && (
         <ChatInput
