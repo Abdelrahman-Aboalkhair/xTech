@@ -34,33 +34,38 @@ export const useChatMessages = (
   useEffect(() => {
     if (!socket) return;
 
-    // Listen for new messages
     socket.on("newMessage", (newMessage) => {
       setMessages((prev) => {
-        // Avoid duplicates
-        if (prev.some((msg) => msg.id === newMessage.id)) return prev;
-        return [...prev, newMessage].sort(
+        // Normalize sender field
+        const normalizedMessage = {
+          ...newMessage,
+          sender: newMessage.sender || { id: newMessage.senderId },
+        };
+        // Update existing message or append new one
+        const existingIndex = prev.findIndex(
+          (msg) => msg.id === normalizedMessage.id
+        );
+        if (existingIndex !== -1) {
+          // Replace existing message with normalized version
+          const updatedMessages = [...prev];
+          updatedMessages[existingIndex] = normalizedMessage;
+          return updatedMessages.sort(
+            (a, b) =>
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          );
+        }
+        // Append new message
+        return [...prev, normalizedMessage].sort(
           (a, b) =>
             new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
         );
       });
     });
 
-    // Handle typing indicators
     socket.on("userTyping", (typingUser) => {
       if (typingUser.id !== user.id) {
         setIsTyping(true);
-
-        // Clear previous timeout
-        if (typingTimeout) {
-          clearTimeout(typingTimeout);
-        }
-
-        // Set new timeout to clear typing indicator
-        const timeout = setTimeout(() => {
-          setIsTyping(false);
-        }, 3000);
-
+        const timeout = setTimeout(() => setIsTyping(false), 3000);
         setTypingTimeoutRef(timeout);
       }
     });
@@ -68,10 +73,7 @@ export const useChatMessages = (
     return () => {
       socket.off("newMessage");
       socket.off("userTyping");
-
-      if (typingTimeout) {
-        clearTimeout(typingTimeout);
-      }
+      if (typingTimeout) clearTimeout(typingTimeout);
     };
   }, [socket, user.id, typingTimeout]);
 

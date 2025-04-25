@@ -10,6 +10,8 @@ const MessageList: React.FC<MessageListProps> = ({
   messages,
   currentUserId,
 }) => {
+  console.log("currentUserId => ", currentUserId);
+  console.log("messages from MessageList => ", messages);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to latest message
@@ -43,13 +45,21 @@ const MessageList: React.FC<MessageListProps> = ({
               </div>
             </div>
 
-            {dateMessages.map((msg: any) => (
-              <MessageItem
-                key={msg.id}
-                message={msg}
-                isCurrentUser={msg.sender.id === currentUserId}
-              />
-            ))}
+            {dateMessages.map((msg: any) => {
+              console.log("msg => ", msg);
+              console.log(
+                "isCurrentUser => ",
+                msg?.sender?.id === currentUserId
+              );
+
+              return (
+                <MessageItem
+                  key={msg.id}
+                  message={msg}
+                  isCurrentUser={msg?.sender?.id === currentUserId}
+                />
+              );
+            })}
           </div>
         )
       )}

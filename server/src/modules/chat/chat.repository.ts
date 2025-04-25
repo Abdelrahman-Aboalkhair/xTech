@@ -60,6 +60,7 @@ export class ChatRepository {
         url,
         createdAt: new Date(),
       },
+      include: { sender: true },
     });
   }
 

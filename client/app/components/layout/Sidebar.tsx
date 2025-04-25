@@ -19,6 +19,7 @@ import {
   ClipboardPlus,
   ClipboardCheck,
   Section,
+  ChartArea,
 } from "lucide-react";
 
 const Sidebar = () => {
@@ -43,6 +44,7 @@ const Sidebar = () => {
           { name: "Categories", href: "/categories", icon: Boxes },
           { name: "Sections", href: "/sections", icon: Section },
           { name: "Users", href: "/users", icon: Users },
+          { name: "Chats", href: "/chats", icon: ChartArea },
         ],
       },
 

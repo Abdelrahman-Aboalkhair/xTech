@@ -12,13 +12,14 @@ const MessageItem: React.FC<MessageItemProps> = ({
   message,
   isCurrentUser,
 }) => {
+  console.log("message from message item => ", message);
   return (
     <div className={`flex ${isCurrentUser ? "justify-end" : "justify-start"}`}>
       <div className="flex max-w-xs md:max-w-md space-x-2">
         {!isCurrentUser && (
           <div className="flex-shrink-0">
             <div className="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center text-blue-600 text-sm font-medium">
-              {message.sender.name.charAt(0)}
+              {message?.sender?.name?.charAt(0)}
             </div>
           </div>
         )}
@@ -33,10 +34,10 @@ const MessageItem: React.FC<MessageItemProps> = ({
           }`}
         >
           {!isCurrentUser && (
-            <p className="text-xs font-medium mb-1">{message.sender.name}</p>
+            <p className="text-xs font-medium mb-1">{message?.sender?.name}</p>
           )}
 
-          {message.type === "TEXT" && <p>{message.content}</p>}
+          {message.type === "TEXT" && <p>{message?.content}</p>}
           {message.type === "IMAGE" && (
             <Image
               src={message.url}
@@ -55,7 +56,7 @@ const MessageItem: React.FC<MessageItemProps> = ({
               isCurrentUser ? "text-indigo-500" : "text-gray-500"
             }`}
           >
-            {formatMessageTime(message.createdAt)}
+            {formatMessageTime(message?.createdAt)}
           </div>
         </div>
       </div>

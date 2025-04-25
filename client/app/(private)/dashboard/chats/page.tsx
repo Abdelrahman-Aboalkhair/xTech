@@ -13,6 +13,7 @@ const AdminChatsPage = () => {
   const user = data?.user;
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
   const { data: chats, isLoading, refetch } = useGetAllChatsQuery("OPEN");
+  console.log("chats => ", chats);
 
   // Listen for admin socket events
   useAdminSocketEvents(
