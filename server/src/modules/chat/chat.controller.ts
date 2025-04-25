@@ -85,11 +85,14 @@ export class ChatController {
   sendMessage = asyncHandler(async (req: Request, res: Response) => {
     const { chatId, content } = req.body;
     const user = req.user!;
+    const file = req.file;
+    console.log("file => ", file);
 
     const message = await this.chatService.sendMessage(
       chatId,
-      content,
-      user.id
+      content || null,
+      user.id,
+      file
     );
 
     sendResponse(res, 200, {
@@ -100,6 +103,7 @@ export class ChatController {
     this.logsService.info("Message sent", {
       userId: user.id,
       chatId,
+      type: message.type,
     });
   });
 

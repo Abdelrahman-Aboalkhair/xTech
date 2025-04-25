@@ -47,15 +47,19 @@ export class ChatRepository {
   async createMessage(
     chatId: string,
     senderId: string,
-    content: string
+    content: string | null,
+    type: "TEXT" | "IMAGE" | "VOICE" = "TEXT",
+    url?: string
   ): Promise<ChatMessage> {
     return prisma.chatMessage.create({
       data: {
         chatId,
         senderId,
         content,
+        type,
+        url,
+        createdAt: new Date(),
       },
-      include: { sender: true, chat: true },
     });
   }
 

@@ -62,7 +62,7 @@ const ChatContainer: React.FC<ChatProps> = ({ chatId }) => {
     chat?.status === "OPEN";
 
   return (
-    <div className="flex flex-col h-screen max-w-lg mx-auto bg-gray-50 shadow-lg rounded-lg overflow-hidden">
+    <div className="flex flex-col h-[70vh] max-w-3xl mx-auto bg-gray-50 shadow-lg rounded-lg overflow-hidden">
       <ChatHeader
         chat={chat}
         onResolve={handleResolveChat}

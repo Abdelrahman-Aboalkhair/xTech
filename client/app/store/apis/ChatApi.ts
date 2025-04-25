@@ -27,13 +27,29 @@ export const chatApi = apiSlice.injectEndpoints({
 
     // POST /chat/:chatId/message
     sendMessage: builder.mutation({
-      query: ({ chatId, content }: { chatId: string; content: string }) => ({
-        url: `/chat/${chatId}/message`,
-        method: "POST",
-        body: { chatId, content },
-      }),
+      query: ({
+        chatId,
+        content,
+        file,
+      }: {
+        chatId: string;
+        content?: string;
+        file?: File;
+      }) => {
+        const formData = new FormData();
+        formData.append("chatId", chatId);
+        if (content) formData.append("content", content);
+        if (file) formData.append("file", file);
+        return {
+          url: `/chat/${chatId}/message`,
+          method: "POST",
+          body: formData,
+        };
+      },
+      invalidatesTags: (result, error, { chatId }) => [
+        { type: "Chat", id: chatId },
+      ],
     }),
-
     // PATCH /chat/:chatId/status
     updateChatStatus: builder.mutation({
       query: ({

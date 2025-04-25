@@ -83,20 +83,27 @@ export const useChatMessages = (
   }, [message, socket, chatId, user]);
 
   // Send a message
-  const handleSendMessage = async () => {
-    if (!message.trim()) return;
+  const handleSendMessage = async (file?: File) => {
+    if (!message.trim() && !file) return;
 
     try {
       const result = await sendMessage({
         chatId,
-        content: message,
+        content: message || undefined,
+        file,
       }).unwrap();
       console.log("result => ", result);
-
       setMessage("");
     } catch (err) {
       console.error("Failed to send message:", err);
     }
+  };
+  return {
+    messages,
+    message,
+    setMessage,
+    handleSendMessage,
+    isTyping,
   };
 
   return {

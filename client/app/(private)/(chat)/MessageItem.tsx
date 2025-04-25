@@ -1,5 +1,7 @@
 import { formatMessageTime } from "@/app/utils/messageFormatter";
+import Image from "next/image";
 import React from "react";
+import AudioPlayer from "./AudioPlayer";
 
 interface MessageItemProps {
   message: any;
@@ -23,7 +25,9 @@ const MessageItem: React.FC<MessageItemProps> = ({
 
         <div
           className={`p-3 rounded-2xl ${
-            isCurrentUser
+            message.type === "IMAGE" || message.type === "VOICE"
+              ? "p-0 bg-transparent"
+              : isCurrentUser
               ? "bg-blue-600 text-white rounded-br-none"
               : "bg-white text-gray-800 rounded-bl-none shadow-sm"
           }`}
@@ -32,11 +36,21 @@ const MessageItem: React.FC<MessageItemProps> = ({
             <p className="text-xs font-medium mb-1">{message.sender.name}</p>
           )}
 
-          <p className="whitespace-pre-wrap break-words">{message.content}</p>
+          {message.type === "TEXT" && <p>{message.content}</p>}
+          {message.type === "IMAGE" && (
+            <Image
+              src={message.url}
+              alt="Chat image"
+              width={500}
+              height={300}
+              className="object-cover rounded-lg"
+            />
+          )}
+          {message.type === "VOICE" && <AudioPlayer src={message.url} />}
 
           <div
             className={`text-xs mt-1 ${
-              isCurrentUser ? "text-blue-200" : "text-gray-500"
+              isCurrentUser ? "text-indigo-500" : "text-gray-500"
             }`}
           >
             {formatMessageTime(message.createdAt)}

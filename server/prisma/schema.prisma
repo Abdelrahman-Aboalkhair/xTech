@@ -360,7 +360,9 @@ model ChatMessage {
   chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
   senderId  String
   sender    User     @relation(fields: [senderId], references: [id], onDelete: Cascade)
-  content   String
+  content   String?
+  type      String @default("TEXT")
+  url       String?  // URL for media
   createdAt DateTime @default(now())
 
   @@index([chatId, senderId])

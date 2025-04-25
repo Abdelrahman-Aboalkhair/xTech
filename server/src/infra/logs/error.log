@@ -1491,3 +1491,11 @@ Foreign key constraint violated: `Interaction_productId_fkey (index)`
 [2025-04-24T22:22:24.508Z] [31MERROR[39M: Chat not found
 [2025-04-24T22:22:55.462Z] [31MERROR[39M: Chat not found
 [2025-04-24T22:23:39.546Z] [31MERROR[39M: Chat not found
+[2025-04-25T00:01:17.317Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-25T00:06:20.704Z] [31MERROR[39M: Missing required parameter - file
+[2025-04-25T00:06:30.932Z] [31MERROR[39M: Missing required parameter - file
+[2025-04-25T00:07:14.496Z] [31MERROR[39M: Missing required parameter - file
+[2025-04-25T00:08:35.704Z] [31MERROR[39M: Missing required parameter - file
+[2025-04-25T00:16:39.164Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-25T00:16:39.249Z] [31MERROR[39M: Invalid file type. Only JPEG, PNG, and GIF are allowed
+[2025-04-25T00:18:02.769Z] [31MERROR[39M: Invalid file type. Only JPEG, PNG, and GIF are allowed

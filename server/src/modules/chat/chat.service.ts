@@ -1,6 +1,8 @@
 import { ChatRepository } from "./chat.repository";
 import { Chat, ChatMessage } from "@prisma/client";
 import { Server as SocketIOServer } from "socket.io";
+import { v2 as cloudinary } from "cloudinary";
+import { Readable } from "stream";
 
 export class ChatService {
   constructor(
@@ -20,7 +22,7 @@ export class ChatService {
     return chat;
   }
 
-  async getChatsByUser(userId: string): Promise<Chat[]> {
+  async getUserChats(userId: string): Promise<Chat[]> {
     return this.chatRepository.findChatsByUser(userId);
   }
 
@@ -30,16 +32,58 @@ export class ChatService {
 
   async sendMessage(
     chatId: string,
-    content: string,
-    senderId: string
+    content: string | null,
+    senderId: string,
+    file?: Express.Multer.File
   ): Promise<ChatMessage> {
     const chat = await this.chatRepository.findChatById(chatId);
     if (!chat) throw new Error("Chat not found");
 
+    let type: "TEXT" | "IMAGE" | "VOICE" = "TEXT";
+    let url: string | undefined;
+
+    if (file) {
+      console.log("File received:", {
+        mimetype: file.mimetype,
+        size: file.size,
+        originalname: file.originalname,
+      });
+
+      try {
+        const uploadResult = await new Promise<any>((resolve, reject) => {
+          const stream = cloudinary.uploader.upload_stream(
+            {
+              resource_type: file.mimetype.startsWith("image/")
+                ? "image"
+                : "video",
+              folder: "chat_media",
+            },
+            (error, result) => {
+              if (error) reject(error);
+              else resolve(result);
+            }
+          );
+          const bufferStream = new Readable();
+          bufferStream.push(file.buffer);
+          bufferStream.push(null);
+          bufferStream.pipe(stream);
+        });
+
+        console.log("Cloudinary upload result:", uploadResult);
+        type = file.mimetype.startsWith("image/") ? "IMAGE" : "VOICE";
+        url = uploadResult.secure_url;
+      } catch (error) {
+        console.error("Cloudinary upload failed:", error);
+        throw new Error("Failed to upload file");
+      }
+    }
+
     const message = await this.chatRepository.createMessage(
       chatId,
       senderId,
-      content
+      content,
+      type,
+      url
     );
     this.io.to(`chat:${chatId}`).emit("newMessage", message);
     return message;
