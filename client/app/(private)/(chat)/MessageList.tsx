@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import MessageItem from "./MessageItem";
 
 interface MessageListProps {
@@ -10,14 +10,12 @@ const MessageList: React.FC<MessageListProps> = ({
   messages,
   currentUserId,
 }) => {
-  console.log("currentUserId => ", currentUserId);
-  console.log("messages from MessageList => ", messages);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to latest message
-  // useEffect(() => {
-  //   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  // }, [messages]);
+  // Scroll to bottom on new messages
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   // Group messages by date
   const groupedMessages = messages.reduce((groups: any, message: any) => {
@@ -30,12 +28,12 @@ const MessageList: React.FC<MessageListProps> = ({
   }, {});
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-6">
+    <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-gray-50">
       {Object.entries(groupedMessages).map(
         ([date, dateMessages]: [string, any]) => (
           <div key={date} className="space-y-4">
             <div className="flex justify-center">
-              <div className="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-xs">
+              <div className="bg-white text-gray-500 px-4 py-1 rounded-full text-sm shadow-sm">
                 {date === new Date().toLocaleDateString()
                   ? "Today"
                   : date ===
@@ -44,22 +42,13 @@ const MessageList: React.FC<MessageListProps> = ({
                   : date}
               </div>
             </div>
-
-            {dateMessages.map((msg: any) => {
-              console.log("msg => ", msg);
-              console.log(
-                "isCurrentUser => ",
-                msg?.sender?.id === currentUserId
-              );
-
-              return (
-                <MessageItem
-                  key={msg.id}
-                  message={msg}
-                  isCurrentUser={msg?.sender?.id === currentUserId}
-                />
-              );
-            })}
+            {dateMessages.map((msg: any) => (
+              <MessageItem
+                key={msg.id}
+                message={msg}
+                isCurrentUser={msg?.sender?.id === currentUserId}
+              />
+            ))}
           </div>
         )
       )}

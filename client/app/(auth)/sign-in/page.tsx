@@ -50,6 +50,7 @@ const SignIn = () => {
 
   const handleOAuthLogin = (provider) => {
     window.location.href = `http://localhost:5000/api/v1/auth/${provider}`;
+    localStorage.removeItem("isLoggedOut");
   };
 
   return (

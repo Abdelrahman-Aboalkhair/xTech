@@ -18,11 +18,14 @@ const Navbar = () => {
   const pathname = usePathname();
   const isPublicRoute = publicRoutes.includes(pathname);
   const [isLoggedOut, setIsLoggedOut] = useState(false);
+  console.log("isLoggedOut => ", isLoggedOut);
 
-  const { data } = useGetMeQuery(undefined, {
+  const { data, error } = useGetMeQuery(undefined, {
     skip: isPublicRoute || isLoggedOut,
   });
   const user = data?.user;
+  console.log("user => ", user);
+  console.log("error => ", error);
 
   const { data: cartData } = useGetCartCountQuery(undefined);
   console.log("cartData => ", cartData);

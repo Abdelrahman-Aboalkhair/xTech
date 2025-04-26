@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
       "lh3.googleusercontent.com",
       "res.cloudinary.com",
       "pbs.twimg.com",
+      "store.storeimages.cdn-apple.com", // ✅ Added Apple CDN domain
     ],
   },
 };

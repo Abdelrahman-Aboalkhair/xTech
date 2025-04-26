@@ -4,7 +4,6 @@ import { Tag } from "lucide-react";
 export interface CategoryFormData {
   id?: string; // Optional for create, required for update
   name: string;
-  slug: string;
 }
 
 interface CategoryFormProps {
@@ -51,29 +50,6 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
         </div>
         {errors.name && (
           <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-        )}
-      </div>
-
-      {/* Slug */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Slug
-        </label>
-        <Controller
-          name="slug"
-          control={control}
-          rules={{ required: "Slug is required" }}
-          render={({ field }) => (
-            <input
-              {...field}
-              type="text"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-800"
-              placeholder="Enter slug"
-            />
-          )}
-        />
-        {errors.slug && (
-          <p className="text-red-500 text-sm mt-1">{errors.slug.message}</p>
         )}
       </div>
 

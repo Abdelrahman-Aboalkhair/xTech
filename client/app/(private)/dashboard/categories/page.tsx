@@ -28,18 +28,10 @@ const CategoriesDashboard = () => {
   const [categoryToDelete, setCategoryToDelete] = useState<string | null>(null);
 
   const form = useForm<CategoryFormData>({
-    defaultValues: { name: "", slug: "" },
+    defaultValues: { name: "" },
   });
 
   const columns = [
-    {
-      key: "slug",
-      label: "Slug",
-      sortable: true,
-      render: (row) => (
-        <span className="text-gray-600">{row?.slug || "N/A"}</span>
-      ),
-    },
     {
       key: "name",
       label: "Category Name",
@@ -89,7 +81,7 @@ const CategoriesDashboard = () => {
     try {
       await createCategory(formData).unwrap();
       setIsCreateModalOpen(false);
-      form.reset({ name: "", slug: "" });
+      form.reset({ name: "" });
       showToast("Category created successfully", "success");
     } catch (err) {
       console.error("Failed to create category:", err);
