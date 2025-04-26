@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import MessageItem from "./MessageItem";
 
 interface MessageListProps {
@@ -11,11 +11,6 @@ const MessageList: React.FC<MessageListProps> = ({
   currentUserId,
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  // Scroll to bottom on new messages
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
 
   // Group messages by date
   const groupedMessages = messages.reduce((groups: any, message: any) => {

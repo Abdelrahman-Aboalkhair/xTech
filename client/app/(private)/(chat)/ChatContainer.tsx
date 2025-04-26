@@ -10,6 +10,8 @@ import ChatHeader from "./ChatHeader";
 import MessageList from "./MessageList";
 import ChatStatus from "./ChatStatus";
 import ChatInput from "./ChatInput";
+import CallConnectingScreen from "./CallConnectingScreen";
+import CallInProgressScreen from "./CallInProgressScreen";
 import CustomLoader from "@/app/components/feedback/CustomLoader";
 import { useGetMeQuery } from "@/app/store/apis/UserApi";
 import { useWebRTCCall } from "./useWebRTCCall";
@@ -82,43 +84,14 @@ const ChatContainer: React.FC<ChatProps> = ({ chatId }) => {
         </button>
       )}
       {callStatus === "calling" && (
-        <div className="p-4 text-yellow-600 bg-yellow-50">
-          Connecting call...
-        </div>
+        <CallConnectingScreen chat={chat} onCancel={endCall} />
       )}
       {callStatus === "in-call" && (
-        <div className="p-4 flex flex-col space-y-4 bg-gray-50">
-          <div className="flex items-center space-x-2">
-            <span className="text-green-600 font-medium">
-              Video call in progress
-            </span>
-            <button
-              onClick={endCall}
-              className="p-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors"
-            >
-              End Call
-            </button>
-          </div>
-          <div className="flex space-x-4">
-            <div className="flex-1">
-              <p className="text-sm text-gray-500">You</p>
-              <video
-                ref={localVideoRef}
-                autoPlay
-                muted
-                className="w-full h-48 rounded-lg border border-gray-200 shadow-sm"
-              />
-            </div>
-            <div className="flex-1">
-              <p className="text-sm text-gray-500">Remote</p>
-              <video
-                ref={remoteVideoRef}
-                autoPlay
-                className="w-full h-48 rounded-lg border border-gray-200 shadow-sm"
-              />
-            </div>
-          </div>
-        </div>
+        <CallInProgressScreen
+          localVideoRef={localVideoRef}
+          remoteVideoRef={remoteVideoRef}
+          onEndCall={endCall}
+        />
       )}
       {callStatus === "ended" && (
         <div className="p-4 text-gray-600 bg-gray-50">Call ended</div>

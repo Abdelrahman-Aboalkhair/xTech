@@ -11,8 +11,9 @@ const MessageItem: React.FC<MessageItemProps> = ({
   message,
   isCurrentUser,
 }) => {
+  console.log("message => ", message);
   const isImage = message.type === "IMAGE";
-  const isAudio = message.type === "AUDIO";
+  const isAudio = message.type === "VOICE";
 
   return (
     <div
@@ -30,7 +31,9 @@ const MessageItem: React.FC<MessageItemProps> = ({
             width={200}
             height={200}
             className="max-w-full h-auto rounded-lg"
-            onError={(e) => console.error("Image failed to load:", message.url)}
+            onError={(e: any) =>
+              console.error("Image failed to load:", message.url)
+            }
           />
         ) : isAudio && message.url ? (
           <AudioPlayer src={message.url} />

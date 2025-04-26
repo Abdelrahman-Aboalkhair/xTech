@@ -2327,3 +2327,49 @@ Foreign key constraint violated: `Interaction_productId_fkey (index)`
 [2025-04-26T15:09:01.061Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-26T15:09:01.070Z] [31MERROR[39M: Invalid access token, please log in
 [2025-04-26T15:09:01.106Z] [31MERROR[39M: Refresh token not found
+[2025-04-26T15:29:17.030Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-26T15:42:07.970Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.chat.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/b2c-ecommerce/server/src/modules/chat/chat.repository.ts:33:24
+
+  30 }
+  31 
+  32 async findChatsByUser(userId: string): Promise<Chat[]> {
+→ 33   return prisma.chat.findMany(
+The column `Chat.userId` does not exist in the current database.
+[2025-04-26T15:42:09.092Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.chat.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/b2c-ecommerce/server/src/modules/chat/chat.repository.ts:8:24
+
+  5 constructor() {}
+  6 
+  7 async createChat(userId: string): Promise<Chat> {
+→ 8   return prisma.chat.create(
+The column `userId` does not exist in the current database.
+[2025-04-26T15:42:11.140Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.chat.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/b2c-ecommerce/server/src/modules/chat/chat.repository.ts:33:24
+
+  30 }
+  31 
+  32 async findChatsByUser(userId: string): Promise<Chat[]> {
+→ 33   return prisma.chat.findMany(
+The column `Chat.userId` does not exist in the current database.
+[2025-04-26T15:42:22.392Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.chat.findMany()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/b2c-ecommerce/server/src/modules/chat/chat.repository.ts:33:24
+
+  30 }
+  31 
+  32 async findChatsByUser(userId: string): Promise<Chat[]> {
+→ 33   return prisma.chat.findMany(
+The column `Chat.userId` does not exist in the current database.
+[2025-04-26T15:42:24.336Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.chat.create()` invocation in
+/home/abdelrahman-aboalkhair/Projects/WEB/code/b2c-ecommerce/server/src/modules/chat/chat.repository.ts:8:24
+
+  5 constructor() {}
+  6 
+  7 async createChat(userId: string): Promise<Chat> {
+→ 8   return prisma.chat.create(
+The column `userId` does not exist in the current database.
