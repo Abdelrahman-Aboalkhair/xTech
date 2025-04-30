@@ -6,11 +6,22 @@ export const uploadToCloudinary = async (files: any) => {
       (file: any) =>
         new Promise((resolve, reject) => {
           cloudinary.uploader
-            .upload_stream({ resource_type: "image" }, (error, result) => {
-              if (error) return reject(error);
-              if (!result) return reject(new Error("Upload failed"));
-              resolve({ url: result.secure_url, public_id: result.public_id });
-            })
+            .upload_stream(
+              {
+                resource_type: "image",
+                fetch_format: "webp",
+                quality: "auto",
+                flags: "progressive",
+              },
+              (error, result) => {
+                if (error) return reject(error);
+                if (!result) return reject(new Error("Upload failed"));
+                resolve({
+                  url: result.secure_url,
+                  public_id: result.public_id,
+                });
+              }
+            )
             .end(file.buffer);
         })
     );
@@ -18,7 +29,7 @@ export const uploadToCloudinary = async (files: any) => {
     const results = await Promise.allSettled(uploadPromises);
     const successfulUploads = results
       .filter((result) => result.status === "fulfilled")
-      .map((result) => result.value);
+      .map((result: any) => result.value);
 
     return successfulUploads;
   } catch (error) {

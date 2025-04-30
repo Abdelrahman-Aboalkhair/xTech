@@ -1,10 +1,11 @@
 import { User } from "@/app/types/authTypes";
 import { apiSlice } from "../slices/ApiSlice";
+import { clearAuthState, setAccessToken, setUser } from "../slices/AuthSlice";
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     signIn: builder.mutation<
-      { user: User; success: boolean },
+      { user: User; accessToken: string },
       { email: string; password: string }
     >({
       query: (credentials) => ({
@@ -12,47 +13,86 @@ export const authApi = apiSlice.injectEndpoints({
         method: "POST",
         body: credentials,
       }),
-      onQueryStarted: async (_, { queryFulfilled }) => {
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
-          await queryFulfilled;
-          // Clear logout flag on successful sign-in
-          localStorage.removeItem("isLoggedOut");
+          const { data } = await queryFulfilled;
+          console.log("data from sign in => ", data);
+          dispatch(setAccessToken(data.accessToken));
+          dispatch(setUser(data.user));
         } catch (error) {
-          console.error("Sign-in failed:", error);
+          console.error("Login failed:", error);
         }
       },
     }),
-    signup: builder.mutation<{ user: User; success: boolean }, FormData>({
+    signup: builder.mutation<{ user: User; accessToken: string }, FormData>({
       query: (data) => ({
         url: "/auth/register",
         method: "POST",
         body: data,
       }),
-      onQueryStarted: async (_, { queryFulfilled }) => {
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
-          await queryFulfilled;
-          // Clear logout flag on successful signup
-          localStorage.removeItem("isLoggedOut");
+          const { data } = await queryFulfilled;
+          console.log("data from sign in => ", data);
+          dispatch(setAccessToken(data.accessToken));
+          dispatch(setUser(data.user));
         } catch (error) {
-          console.error("Signup failed:", error);
+          console.error("Login failed:", error);
         }
       },
+    }),
+
+    applyForVendor: builder.mutation<
+      { vendor: any },
+      {
+        storeName: string;
+        description?: string;
+        contact?: string;
+        businessDetails?: {
+          taxId?: string;
+          businessLicense?: string;
+          otherDocuments?: string[];
+        };
+        logoFiles?: File[];
+      }
+    >({
+      query: (data) => ({
+        url: "/auth/apply-for-vendor",
+        method: "POST",
+        body: data,
+      }),
     }),
     signOut: builder.mutation<void, void>({
       query: () => ({
         url: "/auth/sign-out",
         method: "GET",
       }),
-      onQueryStarted: async (_, { queryFulfilled }) => {
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
-          // Set logout flag on successful sign-out
-          localStorage.setItem("isLoggedOut", "true");
+          dispatch(clearAuthState());
         } catch (error) {
-          console.error("Sign-out failed:", error);
+          console.error("Logout failed:", error);
         }
       },
     }),
+    refresh: builder.mutation<{ user: User; accessToken: string }, void>({
+      query: () => ({
+        url: "/auth/refresh-token",
+        method: "POST", // Changed to POST
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setAccessToken(data.accessToken));
+          dispatch(setUser(data.user));
+        } catch (error) {
+          console.error("error refreshing token => ", error); // Also changed to console.error
+          dispatch(clearAuthState());
+        }
+      },
+    }),
+
     verifyEmail: builder.mutation<void, { emailVerificationCode: string }>({
       query: ({ emailVerificationCode }) => ({
         url: "/auth/verify-email",
@@ -80,13 +120,34 @@ export const authApi = apiSlice.injectEndpoints({
         },
       }),
     }),
+
+    checkAuth: builder.mutation<{ user: User; accessToken: string }, void>({
+      query: () => ({
+        url: "/auth/refresh-token",
+        method: "POST",
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          console.log("data from check auth =>", data);
+          dispatch(setAccessToken(data.accessToken));
+          dispatch(setUser(data.user));
+        } catch (error) {
+          console.error("error checking auth =>", error);
+          dispatch(clearAuthState());
+        }
+      },
+    }),
   }),
 });
 
 export const {
   useSignInMutation,
   useSignupMutation,
+  useCheckAuthMutation,
+  useRefreshMutation,
   useSignOutMutation,
+  useApplyForVendorMutation,
   useVerifyEmailMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,

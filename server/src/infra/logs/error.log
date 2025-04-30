@@ -2373,3 +2373,14 @@ Invalid `prisma.chat.create()` invocation in
   7 async createChat(userId: string): Promise<Chat> {
 → 8   return prisma.chat.create(
 The column `userId` does not exist in the current database.
+[2025-04-28T19:52:19.442Z] [31MERROR[39M: Refresh token not found
+[2025-04-28T19:52:43.625Z] [31MERROR[39M: Email or password is incorrect.
+[2025-04-28T19:53:06.788Z] [31MERROR[39M: Refresh token not found
+[2025-04-28T20:01:26.845Z] [31MERROR[39M: Refresh token not found
+[2025-04-30T02:45:46.747Z] [31MERROR[39M: Refresh token not found
+[2025-04-30T02:45:46.907Z] [31MERROR[39M: Refresh token not found
+[2025-04-30T02:45:55.193Z] [31MERROR[39M: Refresh token not found
+[2025-04-30T02:45:55.215Z] [31MERROR[39M: Refresh token not found
+[2025-04-30T03:02:13.626Z] [31MERROR[39M: Invalid access token, please log in
+[2025-04-30T03:02:13.768Z] [31MERROR[39M: Validation errors:
+[2025-04-30T03:02:13.769Z] [31MERROR[39M: Validation failed

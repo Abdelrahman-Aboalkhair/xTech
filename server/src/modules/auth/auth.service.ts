@@ -225,9 +225,9 @@ export class AuthService {
     newAccessToken: string;
     newRefreshToken: string;
   }> {
-    if (await tokenUtils.isTokenBlacklisted(oldRefreshToken)) {
-      throw new NotFoundError("Refresh token");
-    }
+    // if (await tokenUtils.isTokenBlacklisted(oldRefreshToken)) {
+    //   throw new NotFoundError("Refresh token");
+    // }
 
     const decoded = jwt.verify(
       oldRefreshToken,

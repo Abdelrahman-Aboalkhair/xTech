@@ -4,6 +4,7 @@ import authorizeRole from "@/shared/middlewares/authorizeRole";
 import { validateDto } from "@/shared/middlewares/validateDto";
 import { CreateCategoryDto } from "./category.dto";
 import { makeCategoryController } from "./category.factory";
+import upload from "@/shared/middlewares/upload";
 
 const router = express.Router();
 const categoryController = makeCategoryController();
@@ -15,6 +16,7 @@ router.post(
   protect,
   authorizeRole("ADMIN", "SUPERADMIN"),
   validateDto(CreateCategoryDto),
+  upload.array("images", 5),
   categoryController.createCategory
 );
 router.delete(

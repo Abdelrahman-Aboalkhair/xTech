@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import UserMenu from "../molecules/UserMenu";
@@ -8,36 +8,19 @@ import { usePathname } from "next/navigation";
 import SearchBar from "../molecules/SearchBar";
 import { useGetCartCountQuery } from "@/app/store/apis/CartApi";
 import Topbar from "./Topbar";
-import { useGetMeQuery } from "@/app/store/apis/UserApi";
 import useClickOutside from "@/app/hooks/dom/useClickOutside";
 import useEventListener from "@/app/hooks/dom/useEventListener";
-
-const publicRoutes = ["/sign-in", "/sign-up", "/about", "/contact"];
+import { useAppSelector } from "@/app/store/hooks";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const isPublicRoute = publicRoutes.includes(pathname);
-  const [isLoggedOut, setIsLoggedOut] = useState(false);
-  console.log("isLoggedOut => ", isLoggedOut);
-
-  const { data, error } = useGetMeQuery(undefined, {
-    skip: isPublicRoute || isLoggedOut,
-  });
-  const user = data?.user;
-  console.log("user => ", user);
-  console.log("error => ", error);
+  const { isAuthenticated, user } = useAppSelector((state) => state.auth);
 
   const { data: cartData } = useGetCartCountQuery(undefined);
-  console.log("cartData => ", cartData);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef(null);
-
-  useEffect(() => {
-    const storedLogoutState = localStorage.getItem("isLoggedOut");
-    setIsLoggedOut(storedLogoutState === "true");
-  }, []);
 
   useEventListener("scroll", () => {
     setScrolled(window.scrollY > 20);
@@ -87,14 +70,14 @@ const Navbar = () => {
             )}
 
             {/* User Menu */}
-            {!isLoggedOut && user ? (
+            {isAuthenticated && user ? (
               <div className="relative" ref={menuRef}>
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
                   className="flex items-center focus:outline-none"
                   aria-label="User menu"
                 >
-                  <div className="rounded-full overflow-hidden flex items-center justify-center bg-gray-100">
+                  <div className="rounded-full overflow-hidden flex items-center justify-center bg-gray-200/70 p-3">
                     {user?.avatar ? (
                       <Image
                         src={user.avatar}

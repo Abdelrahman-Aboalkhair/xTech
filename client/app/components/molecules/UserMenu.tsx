@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -9,36 +9,33 @@ import {
   User,
   LogOut,
   ShoppingCart,
-  Settings,
   ChevronRight,
   Shield,
-  LifeBuoy,
 } from "lucide-react";
 import { useSignOutMutation } from "@/app/store/apis/AuthApi";
+import useClickOutside from "@/app/hooks/dom/useClickOutside";
+import useEventListener from "@/app/hooks/dom/useEventListener";
+import { useAppDispatch } from "@/app/store/hooks";
+import { clearAuthState } from "@/app/store/slices/AuthSlice";
 
 const UserMenu = ({ menuOpen, closeMenu, user }) => {
   const [signout] = useSignOutMutation();
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const menuRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        closeMenu();
-      }
-    };
-    if (menuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+  useClickOutside(menuRef, () => closeMenu());
+
+  useEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menuOpen) {
+      closeMenu();
     }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [menuOpen, closeMenu]);
+  });
 
   const handleSignOut = async () => {
     try {
-      const res = await signout();
-      console.log("res => ", res);
+      await signout();
+      dispatch(clearAuthState());
       router.push("/sign-in");
     } catch (error) {
       console.error("Error signing out:", error);
@@ -67,18 +64,6 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
           icon: <User size={18} className="text-blue-500" />,
           show: true,
         },
-        {
-          href: "/settings",
-          label: "Settings",
-          icon: <Settings size={18} className="text-gray-500" />,
-          show: true,
-        },
-        {
-          href: "/support",
-          label: "Support",
-          icon: <LifeBuoy size={18} className="text-gray-500" />,
-          show: true,
-        },
       ],
     },
     {
@@ -100,7 +85,6 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
     },
   ];
 
-  // ✨ Minimal animation variants
   const menuVariants = {
     hidden: { opacity: 0, y: -10 },
     visible: {

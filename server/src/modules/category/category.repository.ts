@@ -16,7 +16,12 @@ export class CategoryRepository {
     });
   }
 
-  async createCategory(data: { name: string; slug: string }) {
+  async createCategory(data: {
+    name: string;
+    slug: string;
+    description?: string;
+    images?: string[];
+  }) {
     return prisma.category.create({
       data,
     });

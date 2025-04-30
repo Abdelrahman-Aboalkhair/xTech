@@ -1,7 +1,7 @@
 "use client";
 import { useCreateInteractionMutation } from "@/app/store/apis/AnalyticsApi";
 import { useCallback, useRef } from "react";
-import { useGetMeQuery } from "@/app/store/apis/UserApi";
+import { useAppSelector } from "../state/useRedux";
 
 interface TrackInteractionOptions {
   debounceMs?: number;
@@ -10,10 +10,7 @@ interface TrackInteractionOptions {
 const useTrackInteraction = ({
   debounceMs = 500,
 }: TrackInteractionOptions = {}) => {
-  const { data } = useGetMeQuery(undefined, {
-    skip: typeof window === "undefined", // Avoid fetching on server-side
-  });
-  const user = data?.user;
+  const { user } = useAppSelector((state) => state.auth);
 
   const [createInteraction] = useCreateInteractionMutation();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -27,12 +24,12 @@ const useTrackInteraction = ({
       timeoutRef.current = setTimeout(async () => {
         try {
           await createInteraction({
-            ...(user?.id && { userId: user.id }), // Only include userId if available
+            userId: user.id,
             productId,
             type,
           }).unwrap();
-        } catch {
-          // Silently ignore errors for guests or failed tracking
+        } catch (error) {
+          console.error("Failed to track interaction:", error);
         }
       }, debounceMs);
     },

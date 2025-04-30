@@ -32,11 +32,13 @@ export class CategoryService {
     return { category };
   }
 
-  async createCategory(name: string) {
-    const category = await this.categoryRepository.createCategory({
-      name,
-      slug: slugify(name),
-    });
+  async createCategory(data: {
+    name: string;
+    slug: string;
+    description?: string;
+    images?: string[];
+  }) {
+    const category = await this.categoryRepository.createCategory(data);
     return { category };
   }
 

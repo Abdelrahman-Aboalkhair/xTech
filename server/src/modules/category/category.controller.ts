@@ -4,6 +4,8 @@ import sendResponse from "@/shared/utils/sendResponse";
 import CategoryService from "./category.service";
 import { CreateCategoryDto } from "./category.dto";
 import { makeLogsService } from "../logs/logs.factory";
+import { uploadToCloudinary } from "@/shared/utils/uploadToCloudinary";
+import slugify from "@/shared/utils/slugify";
 
 export class CategoryController {
   private logsService = makeLogsService();
@@ -31,12 +33,24 @@ export class CategoryController {
   );
 
   createCategory = asyncHandler(
-    async (
-      req: Request<any, any, CreateCategoryDto>,
-      res: Response
-    ): Promise<void> => {
-      const { name } = req.body;
-      const { category } = await this.categoryService.createCategory(name);
+    async (req: Request, res: Response): Promise<void> => {
+      const { name, description } = req.body;
+      const slugifiedName = slugify(name);
+
+      const files = req.files as Express.Multer.File[];
+
+      let imageUrls: string[] = [];
+      if (Array.isArray(files) && files.length > 0) {
+        const uploadedImages = await uploadToCloudinary(files);
+        imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
+      }
+
+      const { category } = await this.categoryService.createCategory({
+        name,
+        slug: slugifiedName,
+        description,
+        images: imageUrls.length > 0 ? imageUrls : undefined,
+      });
       sendResponse(res, 201, {
         data: { category },
         message: "Category created successfully",

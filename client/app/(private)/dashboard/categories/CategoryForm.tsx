@@ -1,9 +1,12 @@
 import { Controller, UseFormReturn } from "react-hook-form";
 import { Tag } from "lucide-react";
+import ImageUploader from "@/app/components/molecules/ImageUploader";
 
 export interface CategoryFormData {
-  id?: string; // Optional for create, required for update
+  id?: string;
   name: string;
+  description?: string;
+  images?: string[];
 }
 
 interface CategoryFormProps {
@@ -22,6 +25,8 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   const {
     control,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
   } = form;
 
@@ -51,6 +56,42 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
         {errors.name && (
           <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
         )}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Category Description
+        </label>
+        <div className="relative">
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <textarea
+                {...field}
+                className="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-800"
+                placeholder="Enter category description"
+              />
+            )}
+          />
+          <Tag className="absolute left-3 top-3.5 text-gray-400" size={18} />
+        </div>
+        {errors.name && (
+          <p className="text-red-500 text-sm mt-1">
+            {errors.description?.message}
+          </p>
+        )}
+      </div>
+
+      <div className="md:col-span-2">
+        <ImageUploader
+          label="Product Images"
+          control={control}
+          errors={errors}
+          setValue={setValue}
+          watch={watch}
+          existingImages={watch("images")}
+        />
       </div>
 
       {/* Submit */}

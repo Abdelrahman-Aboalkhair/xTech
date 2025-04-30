@@ -28,7 +28,7 @@ const CategoriesDashboard = () => {
   const [categoryToDelete, setCategoryToDelete] = useState<string | null>(null);
 
   const form = useForm<CategoryFormData>({
-    defaultValues: { name: "" },
+    defaultValues: { name: "", description: "", images: [] },
   });
 
   const columns = [
@@ -78,8 +78,26 @@ const CategoriesDashboard = () => {
   };
 
   const onSubmit = async (formData: CategoryFormData) => {
+    const payload = new FormData();
+
+    payload.append("name", formData.name || "");
+    payload.append("description", formData.description || "");
+
+    if (data.images && Array.isArray(data.images)) {
+      data.images.forEach((file: any) => {
+        if (file instanceof File) {
+          payload.append("images", file);
+        }
+      });
+    }
+
+    console.log("FormData payload:");
+    for (const [key, value] of payload.entries()) {
+      console.log(`${key}: ${value instanceof File ? value.name : value}`);
+    }
+
     try {
-      await createCategory(formData).unwrap();
+      await createCategory(payload).unwrap();
       setIsCreateModalOpen(false);
       form.reset({ name: "" });
       showToast("Category created successfully", "success");
