@@ -5,6 +5,7 @@ import slugify from "@/shared/utils/slugify";
 import { parse } from "csv-parse/sync";
 import * as XLSX from "xlsx";
 import prisma from "@/infra/database/database.config";
+import { AttributeRepository } from "../attribute/attribute.repository";
 
 type ProductUpdateData = Partial<{
   name: string;
@@ -17,7 +18,10 @@ type ProductUpdateData = Partial<{
 }>;
 
 export class ProductService {
-  constructor(private productRepository: ProductRepository) {}
+  constructor(
+    private productRepository: ProductRepository,
+    private attributeRepository: AttributeRepository
+  ) {}
   async getAllProducts(queryString: Record<string, any>) {
     const apiFeatures = new ApiFeatures(queryString)
       .filter()
@@ -84,9 +88,120 @@ export class ProductService {
     images?: string[];
     stock: number;
     categoryId?: string;
+    attributes?: {
+      attributeId: string;
+      valueId?: string;
+      customValue?: string;
+    }[];
   }) {
-    const product = await this.productRepository.createProduct(data);
-    return { product };
+    const { attributes, ...productData } = data;
+
+    // Validate attributes if provided
+    if (attributes) {
+      const attributeIds = attributes.map((attr) => attr.attributeId);
+      const existingAttributes = await prisma.attribute.findMany({
+        where: { id: { in: attributeIds } },
+      });
+      if (existingAttributes.length !== attributeIds.length) {
+        throw new AppError(400, "One or more attributes are invalid");
+      }
+
+      // Validate valueIds if provided
+      const valueIds = attributes
+        .filter((attr) => attr.valueId)
+        .map((attr) => attr.valueId!);
+      if (valueIds.length > 0) {
+        const existingValues = await prisma.attributeValue.findMany({
+          where: { id: { in: valueIds } },
+        });
+        if (existingValues.length !== valueIds.length) {
+          throw new AppError(400, "One or more attribute values are invalid");
+        }
+      }
+    }
+
+    // Create product
+    const product = await this.productRepository.createProduct(productData);
+
+    // Assign attributes
+    if (attributes) {
+      await Promise.all(
+        attributes.map((attr) =>
+          this.attributeRepository.assignAttributeToProduct({
+            productId: product.id,
+            attributeId: attr.attributeId,
+            valueId: attr.valueId,
+            customValue: attr.customValue,
+          })
+        )
+      );
+    }
+
+    // Fetch product with attributes
+    const productWithAttributes = await this.productRepository.findProductById(
+      product.id
+    );
+    return { product: productWithAttributes };
+  }
+
+  async updateProduct(
+    productId: string,
+    updatedData: Partial<{
+      name: string;
+      sku: string;
+      isNew: boolean;
+      isTrending: boolean;
+      isBestSeller: boolean;
+      isFeatured: boolean;
+      slug: string;
+      description?: string;
+      price: number;
+      discount: number;
+      images?: string[];
+      stock: number;
+      categoryId?: string;
+      attributes?: {
+        attributeId: string;
+        valueId?: string;
+        customValue?: string;
+      }[];
+    }>
+  ) {
+    const existingProduct = await this.productRepository.findProductById(
+      productId
+    );
+    if (!existingProduct) {
+      throw new AppError(404, "Product not found");
+    }
+
+    const { attributes, ...productData } = updatedData;
+
+    // Update product
+    const product = await this.productRepository.updateProduct(
+      productId,
+      productData
+    );
+
+    // Update attributes if provided
+    if (attributes) {
+      // Delete existing attributes
+      await prisma.productAttribute.deleteMany({ where: { productId } });
+
+      // Assign new attributes
+      await Promise.all(
+        attributes.map((attr) =>
+          this.attributeRepository.assignAttributeToProduct({
+            productId,
+            attributeId: attr.attributeId,
+            valueId: attr.valueId,
+            customValue: attr.customValue,
+          })
+        )
+      );
+    }
+
+    // Fetch updated product with attributes
+    return await this.productRepository.findProductById(productId);
   }
 
   async restockProduct(
@@ -205,21 +320,6 @@ export class ProductService {
     await this.productRepository.createManyProducts(products);
 
     return { count: products.length };
-  }
-
-  async updateProduct(productId: string, updatedData: ProductUpdateData) {
-    const existingProduct = await this.productRepository.findProductById(
-      productId
-    );
-    if (!existingProduct) {
-      throw new AppError(404, "Product not found");
-    }
-
-    const product = await this.productRepository.updateProduct(
-      productId,
-      updatedData
-    );
-    return product;
   }
 
   async deleteProduct(productId: string) {

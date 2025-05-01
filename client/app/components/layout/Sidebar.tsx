@@ -39,10 +39,11 @@ const Sidebar = () => {
       {
         title: "E-commerce",
         links: [
-          { name: "Transactions", href: "/transactions", icon: ShoppingCart },
           { name: "Products", href: "/products", icon: Layers },
+          { name: "Inventory", href: "/inventory", icon: Section },
+          { name: "Attributes", href: "/attributes", icon: Layers },
           { name: "Categories", href: "/categories", icon: Boxes },
-          { name: "Sections", href: "/sections", icon: Section },
+          { name: "Transactions", href: "/transactions", icon: ShoppingCart },
           { name: "Users", href: "/users", icon: Users },
           { name: "Chats", href: "/chats", icon: ChartArea },
         ],

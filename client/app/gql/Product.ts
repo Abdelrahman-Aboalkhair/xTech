@@ -20,6 +20,21 @@ export const GET_ALL_PRODUCTS = gql`
           name
           slug
         }
+        attributes {
+          id
+          attribute {
+            id
+            name
+            type
+            slug
+          }
+          value {
+            id
+            value
+            slug
+          }
+          customValue
+        }
       }
       hasMore
       totalCount
@@ -45,6 +60,21 @@ export const GET_SINGLE_PRODUCT = gql`
         id
         name
         slug
+      }
+
+      attributes {
+        id
+        attribute {
+          id
+          name
+          type
+          slug
+        }
+        value {
+          id
+          value
+          slug
+        }
       }
       reviews {
         id
@@ -139,5 +169,112 @@ export const GET_CATEGORIES = gql`
       name
       description
     }
+  }
+`;
+
+export const GET_ALL_ATTRIBUTES = gql`
+  query GetAllAttributes($first: Int, $skip: Int) {
+    attributes(first: $first, skip: $skip) {
+      id
+      name
+      slug
+      type
+      values {
+        id
+        value
+        slug
+      }
+    }
+  }
+`;
+
+export const GET_ATTRIBUTE = gql`
+  query GetAttribute($id: ID!) {
+    attribute(id: $id) {
+      id
+      name
+      slug
+      type
+      values {
+        id
+        value
+        slug
+      }
+    }
+  }
+`;
+
+export const CREATE_ATTRIBUTE = gql`
+  mutation CreateAttribute($name: String!, $type: String!) {
+    createAttribute(name: $name, type: $type) {
+      id
+      name
+      slug
+      type
+    }
+  }
+`;
+
+export const CREATE_ATTRIBUTE_VALUE = gql`
+  mutation CreateAttributeValue($attributeId: ID!, $value: String!) {
+    createAttributeValue(attributeId: $attributeId, value: $value) {
+      id
+      value
+      slug
+    }
+  }
+`;
+
+export const ASSIGN_ATTRIBUTE_TO_CATEGORY = gql`
+  mutation AssignAttributeToCategory(
+    $attributeId: ID!
+    $categoryId: ID!
+    $isRequired: Boolean!
+  ) {
+    assignAttributeToCategory(
+      attributeId: $attributeId
+      categoryId: $categoryId
+      isRequired: $isRequired
+    ) {
+      id
+      attribute {
+        id
+        name
+      }
+      isRequired
+    }
+  }
+`;
+
+export const ASSIGN_ATTRIBUTE_TO_PRODUCT = gql`
+  mutation AssignAttributeToProduct(
+    $attributeId: ID!
+    $productId: ID!
+    $valueId: ID
+    $customValue: String
+  ) {
+    assignAttributeToProduct(
+      attributeId: $attributeId
+      productId: $productId
+      valueId: $valueId
+      customValue: $customValue
+    ) {
+      id
+      attribute {
+        id
+        name
+      }
+      value {
+        id
+        value
+      }
+      customValue
+    }
+  }
+`;
+
+export const DELETE_ATTRIBUTE = gql`
+  mutation DeleteAttribute($id: ID!) {
+    deleteAttribute(id: $id)
   }
 `;

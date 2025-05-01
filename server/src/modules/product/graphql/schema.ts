@@ -3,6 +3,8 @@ import { makeExecutableSchema } from "@graphql-tools/schema";
 import { productResolvers } from "./resolver";
 
 const typeDefs = gql`
+  scalar DateTime
+
   type Product {
     id: String!
     slug: String!
@@ -16,6 +18,7 @@ const typeDefs = gql`
     isTrending: Boolean!
     isBestSeller: Boolean!
     reviews: [Review!]
+    attributes: [ProductAttribute!]!
     category: Category
   }
 
@@ -43,14 +46,6 @@ const typeDefs = gql`
     lowStock: Boolean!
   }
 
-  type Mutation {
-    restockProduct(productId: ID!, quantity: Int!, notes: String): Restock!
-    # Log manual stock adjustments (e.g., for damages or corrections).
-    adjustStock(productId: ID!, quantity: Int!, reason: String!): StockMovement!
-  }
-
-  scalar DateTime
-
   type Review {
     id: String!
     rating: Float!
@@ -62,12 +57,47 @@ const typeDefs = gql`
     slug: String!
     name: String!
     description: String
+    attributes: [CategoryAttribute!]!
   }
 
-  type ProductConnection {
-    products: [Product!]!
-    hasMore: Boolean!
-    totalCount: Int!
+  type Attribute {
+    id: ID!
+    name: String!
+    slug: String!
+    type: String!
+    values: [AttributeValue!]!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+  }
+
+  type AttributeValue {
+    id: ID!
+    value: String!
+    slug: String!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+  }
+
+  type ProductAttribute {
+    id: ID!
+    attribute: Attribute!
+    value: AttributeValue
+    customValue: String
+    createdAt: DateTime!
+    updatedAt: DateTime!
+  }
+
+  type CategoryAttribute {
+    id: ID!
+    attribute: Attribute!
+    isRequired: Boolean!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+  }
+
+  input AttributeFilterInput {
+    attributeSlug: String!
+    valueSlug: String!
   }
 
   input ProductFilters {
@@ -79,6 +109,13 @@ const typeDefs = gql`
     minPrice: Float
     maxPrice: Float
     categoryId: String
+    attributes: [AttributeFilterInput!]
+  }
+
+  type ProductConnection {
+    products: [Product!]!
+    hasMore: Boolean!
+    totalCount: Int!
   }
 
   type Query {
@@ -89,6 +126,8 @@ const typeDefs = gql`
     trendingProducts(first: Int, skip: Int): ProductConnection!
     bestSellerProducts(first: Int, skip: Int): ProductConnection!
     categories: [Category!]!
+    attributes(first: Int, skip: Int): [Attribute!]!
+    attribute(id: ID!): Attribute
     stockMovements(
       productId: ID
       startDate: DateTime
@@ -96,6 +135,25 @@ const typeDefs = gql`
     ): [StockMovement!]!
     restocks(productId: ID, startDate: DateTime, endDate: DateTime): [Restock!]!
     inventorySummary: [InventorySummary!]!
+  }
+
+  type Mutation {
+    restockProduct(productId: ID!, quantity: Int!, notes: String): Restock!
+    adjustStock(productId: ID!, quantity: Int!, reason: String!): StockMovement!
+    createAttribute(name: String!, type: String!): Attribute!
+    createAttributeValue(attributeId: ID!, value: String!): AttributeValue!
+    assignAttributeToCategory(
+      attributeId: ID!
+      categoryId: ID!
+      isRequired: Boolean!
+    ): CategoryAttribute!
+    assignAttributeToProduct(
+      attributeId: ID!
+      productId: ID!
+      valueId: ID
+      customValue: String
+    ): ProductAttribute!
+    deleteAttribute(id: ID!): Boolean!
   }
 `;
 

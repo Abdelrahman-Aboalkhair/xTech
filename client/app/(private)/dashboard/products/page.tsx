@@ -164,7 +164,7 @@ const ProductsDashboard = () => {
   const columns = [
     {
       key: "name",
-      label: "Product Name",
+      label: "Name",
       sortable: true,
       render: (row: any) => (
         <div className="flex items-center space-x-2">

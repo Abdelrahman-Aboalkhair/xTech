@@ -76,34 +76,92 @@ model User {
 }
 
 model Product {
-  id             String          @id @default(uuid())
-  name           String          @unique
-  description    String?
-  price          Float
-  discount       Float           @default(0)
-  slug           String          @unique
-  images         String[]
-  stock          Int
-  salesCount     Int             @default(0)
-  sku            String?
-  isNew          Boolean         @default(false)
-  isFeatured     Boolean         @default(false)
-  isTrending     Boolean         @default(false)
-  isBestSeller   Boolean         @default(false)
-  averageRating  Float           @default(0)
-  reviewCount    Int             @default(0)
-  category       Category?       @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  categoryId     String?
-  orderItems     OrderItem[]
-  cartItems      CartItem[]
-  interactions   Interaction[]
-  reviews        Review[]
-  stockMovements StockMovement[]
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  Restock        Restock[]
+  id               String             @id @default(uuid())
+  name             String             @unique
+  description      String?
+  price            Float
+  discount         Float              @default(0)
+  slug             String             @unique
+  images           String[]
+  stock            Int
+  salesCount       Int                @default(0)
+  sku              String?
+  isNew            Boolean            @default(false)
+  isFeatured       Boolean            @default(false)
+  isTrending       Boolean            @default(false)
+  isBestSeller     Boolean            @default(false)
+  averageRating    Float              @default(0)
+  reviewCount      Int                @default(0)
+  category         Category?          @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId       String?
+  orderItems       OrderItem[]
+  cartItems        CartItem[]
+  interactions     Interaction[]
+  reviews          Review[]
+  stockMovements   StockMovement[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  Restock          Restock[]
+  ProductAttribute ProductAttribute[]
 
   @@index([name, slug])
+}
+
+model Attribute {
+  id               String              @id @default(uuid())
+  name             String              @unique // e.g., "Color", "Size", "Gender"
+  slug             String              @unique // e.g., "color", "size", "gender"
+  type             String              @default("text") // e.g., "text", "select", "multiselect"
+  values           AttributeValue[] // Possible values for this attribute (e.g., "Red", "Blue" for Color)
+  categories       CategoryAttribute[] // Categories this attribute applies to
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  ProductAttribute ProductAttribute[]
+
+  @@index([name, slug])
+}
+
+model AttributeValue {
+  id               String             @id @default(uuid())
+  attributeId      String
+  attribute        Attribute          @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  value            String // e.g., "Red", "M", "Men"
+  slug             String             @unique // e.g., "red", "m", "men"
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  ProductAttribute ProductAttribute[]
+
+  @@index([attributeId, value])
+}
+
+model ProductAttribute {
+  id          String          @id @default(uuid())
+  productId   String
+  product     Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  attributeId String
+  attribute   Attribute       @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  valueId     String?
+  value       AttributeValue? @relation(fields: [valueId], references: [id], onDelete: SetNull)
+  customValue String? // For free-text values not in AttributeValue
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@unique([productId, attributeId])
+  @@index([productId, attributeId])
+}
+
+model CategoryAttribute {
+  id          String    @id @default(uuid())
+  categoryId  String
+  category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  attributeId String
+  attribute   Attribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  isRequired  Boolean   @default(false) // Whether this attribute is mandatory for products
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([categoryId, attributeId])
+  @@index([categoryId, attributeId])
 }
 
 model StockMovement {
@@ -276,14 +334,15 @@ model CartEvent {
 }
 
 model Category {
-  id          String    @id @default(uuid())
-  slug        String    @unique
-  name        String
-  description String?
-  images      String[]
-  products    Product[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id                String              @id @default(uuid())
+  slug              String              @unique
+  name              String
+  description       String?
+  images            String[]
+  products          Product[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  CategoryAttribute CategoryAttribute[]
 
   @@index([name, slug])
 }
@@ -362,8 +421,8 @@ model ChatMessage {
   senderId  String
   sender    User     @relation(fields: [senderId], references: [id], onDelete: Cascade)
   content   String?
-  type      String @default("TEXT")
-  url       String?  // URL for media
+  type      String   @default("TEXT")
+  url       String? // URL for media
   createdAt DateTime @default(now())
 
   @@index([chatId, senderId])

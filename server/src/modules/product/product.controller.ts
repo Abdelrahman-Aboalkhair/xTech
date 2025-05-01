@@ -54,6 +54,7 @@ export class ProductController {
     }
   );
 
+  // In createProduct
   createProduct = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
       const {
@@ -68,20 +69,19 @@ export class ProductController {
         isFeatured,
         isTrending,
         isBestSeller,
+        attributes, // New field: [{ attributeId, valueId, customValue }]
       } = req.body;
-      const slugifiedName = slugify(name);
 
+      const slugifiedName = slugify(name);
       const formattedIsNew = isNew === "true";
       const formattedIsFeatured = isFeatured === "true";
       const formattedIsTrending = isTrending === "true";
       const formattedIsBestSeller = isBestSeller === "true";
-
-      const files = req.files as Express.Multer.File[];
-
       const formattedPrice = Number(price);
       const formattedDiscount = Number(discount);
       const formattedStock = Number(stock);
 
+      const files = req.files as Express.Multer.File[];
       let imageUrls: string[] = [];
       if (Array.isArray(files) && files.length > 0) {
         const uploadedImages = await uploadToCloudinary(files);
@@ -102,19 +102,90 @@ export class ProductController {
         stock: formattedStock,
         images: imageUrls.length > 0 ? imageUrls : undefined,
         categoryId,
+        attributes, // Pass attributes
       });
 
       sendResponse(res, 201, {
-        data: product,
+        data: { product },
         message: "Product created successfully",
       });
-      const start = Date.now();
-      const end = Date.now();
-
       this.logsService.info("Product created", {
         userId: req.user?.id,
         sessionId: req.session.id,
-        timePeriod: end - start,
+      });
+    }
+  );
+
+  // In updateProduct
+  updateProduct = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id: productId } = req.params;
+      const {
+        name,
+        description,
+        price,
+        discount,
+        stock,
+        categoryId,
+        sku,
+        isNew,
+        isFeatured,
+        isTrending,
+        isBestSeller,
+        attributes, // New field
+      } = req.body;
+
+      const files = req.files as Express.Multer.File[];
+      const formattedIsNew = isNew === "true";
+      const formattedIsFeatured = isFeatured === "true";
+      const formattedIsTrending = isTrending === "true";
+      const formattedIsBestSeller = isBestSeller === "true";
+
+      const formattedPrice = price !== undefined ? Number(price) : undefined;
+      const formattedDiscount =
+        discount !== undefined ? Number(discount) : undefined;
+      const formattedStock = stock !== undefined ? Number(stock) : undefined;
+
+      let imageUrls: string[] = [];
+      if (Array.isArray(files) && files.length > 0) {
+        const uploadedImages = await uploadToCloudinary(files);
+        imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
+      }
+
+      const updatedData: any = {
+        ...(name && { name, slug: slugify(name) }),
+        ...(sku && { sku }),
+        ...(formattedIsNew !== undefined && { isNew: formattedIsNew }),
+        ...(formattedIsFeatured !== undefined && {
+          isFeatured: formattedIsFeatured,
+        }),
+        ...(formattedIsTrending !== undefined && {
+          isTrending: formattedIsTrending,
+        }),
+        ...(formattedIsBestSeller !== undefined && {
+          isBestSeller: formattedIsBestSeller,
+        }),
+        ...(description && { description }),
+        ...(formattedPrice !== undefined && { price: formattedPrice }),
+        ...(formattedDiscount !== undefined && { discount: formattedDiscount }),
+        ...(formattedStock !== undefined && { stock: formattedStock }),
+        ...(imageUrls.length > 0 && { images: imageUrls }),
+        ...(categoryId && { categoryId }),
+        ...(attributes && { attributes }), // Pass attributes
+      };
+
+      const product = await this.productService.updateProduct(
+        productId,
+        updatedData
+      );
+
+      sendResponse(res, 200, {
+        data: { product },
+        message: "Product updated successfully",
+      });
+      this.logsService.info("Product updated", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
       });
     }
   );
@@ -136,87 +207,6 @@ export class ProductController {
       timePeriod: end - start,
     });
   });
-
-  updateProduct = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
-      const { id: productId } = req.params;
-      const {
-        name,
-        description,
-        price,
-        discount,
-        stock,
-        categoryId,
-        sku,
-        isNew,
-        isFeatured,
-        isTrending,
-        isBestSeller,
-      } = req.body;
-      console.log("req.body => ", req.body);
-
-      const files = req.files as Express.Multer.File[];
-      console.log("files => ", files);
-
-      const formattedIsNew = isNew === "true";
-      const formattedIsFeatured = isFeatured === "true";
-      const formattedIsTrending = isTrending === "true";
-      const formattedIsBestSeller = isBestSeller === "true";
-
-      // Format number values
-      const formattedPrice = price !== undefined ? Number(price) : undefined;
-      const formattedDiscount =
-        discount !== undefined ? Number(discount) : undefined;
-      const formattedStock = stock !== undefined ? Number(stock) : undefined;
-
-      let imageUrls: string[] = [];
-      if (Array.isArray(files) && files.length > 0) {
-        const uploadedImages = await uploadToCloudinary(files);
-        imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
-      }
-
-      // Prepare update payload
-      const updatedData: any = {
-        ...(name && { name, slug: slugify(name) }),
-        ...(sku && { sku }),
-        ...(formattedIsNew !== undefined && { isNew: formattedIsNew }),
-        ...(formattedIsFeatured !== undefined && {
-          isFeatured: formattedIsFeatured,
-        }),
-        ...(formattedIsTrending !== undefined && {
-          isTrending: formattedIsTrending,
-        }),
-        ...(formattedIsBestSeller !== undefined && {
-          isBestSeller: formattedIsBestSeller,
-        }),
-        ...(description && { description }),
-        ...(formattedPrice !== undefined && { price: formattedPrice }),
-        ...(formattedDiscount !== undefined && { discount: formattedDiscount }),
-        ...(formattedStock !== undefined && { stock: formattedStock }),
-        ...(imageUrls.length > 0 && { images: imageUrls }),
-        ...(categoryId && { categoryId }),
-      };
-
-      const product = await this.productService.updateProduct(
-        productId,
-        updatedData
-      );
-
-      sendResponse(res, 200, {
-        data: product,
-        message: "Product updated successfully",
-      });
-
-      const start = Date.now();
-      const end = Date.now();
-
-      this.logsService.info("Product updated", {
-        userId: req.user?.id,
-        sessionId: req.session.id,
-        timePeriod: end - start,
-      });
-    }
-  );
 
   deleteProduct = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {

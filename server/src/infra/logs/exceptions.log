@@ -1,47 +1,14 @@
-[2025-04-28T20:07:39.607Z] [31MERROR[39M: uncaughtException: write EIO
-Error: write EIO
-    at afterWriteDispatched (node:internal/stream_base_commons:159:15)
-    at writeGeneric (node:internal/stream_base_commons:150:3)
-    at WriteStream.Socket._writeGeneric (node:net:971:11)
-    at WriteStream.Socket._write (node:net:983:8)
-    at writeOrBuffer (node:internal/streams/writable:570:12)
-    at _write (node:internal/streams/writable:499:10)
-    at WriteStream.Writable.write (node:internal/streams/writable:508:10)
-    at console.value (node:internal/console/constructor:298:16)
-    at console.log (node:internal/console/constructor:384:26)
-    at EventEmitter.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/src/infra/cache/redis.ts:50:32)
-    at EventEmitter.emit (node:events:507:28)
-    at EventEmitter.emit (node:domain:489:12)
-    at processTicksAndRejections (node:internal/process/task_queues:85:11)
-[2025-04-30T02:52:15.751Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.service.ts[0m:[93m41[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'void' is not assignable to type 'string'.
+[2025-05-01T01:09:13.721Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/product.routes.ts[0m:[93m5[0m:[93m46[0m - [91merror[0m[90m TS2307: [0mCannot find module '../recommendation/recommendation.factory' or its corresponding type declarations.
 
-[7m41[0m       name,
-[7m  [0m [91m      ~~~~[0m
-
-  [96msrc/modules/category/category.repository.ts[0m:[93m19[0m:[93m32[0m
-    [7m19[0m   async createCategory(data: { name: string; slug: string }) {
-    [7m  [0m [96m                               ~~~~[0m
-    The expected type comes from property 'name' which is declared here on type '{ name: string; slug: string; }'
-[96msrc/modules/category/category.service.ts[0m:[93m42[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type 'void' is not assignable to parameter of type 'string'.
-
-[7m42[0m       slug: slugify(name),
-[7m  [0m [91m                    ~~~~[0m
+[7m5[0m import { makeRecommendationController } from "../recommendation/recommendation.factory";
+[7m [0m [91m                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.service.ts[0m:[93m41[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'void' is not assignable to type 'string'.
+[96msrc/modules/product/product.routes.ts[0m:[93m5[0m:[93m46[0m - [91merror[0m[90m TS2307: [0mCannot find module '../recommendation/recommendation.factory' or its corresponding type declarations.
 
-[7m41[0m       name,
-[7m  [0m [91m      ~~~~[0m
-
-  [96msrc/modules/category/category.repository.ts[0m:[93m19[0m:[93m32[0m
-    [7m19[0m   async createCategory(data: { name: string; slug: string }) {
-    [7m  [0m [96m                               ~~~~[0m
-    The expected type comes from property 'name' which is declared here on type '{ name: string; slug: string; }'
-[96msrc/modules/category/category.service.ts[0m:[93m42[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type 'void' is not assignable to parameter of type 'string'.
-
-[7m42[0m       slug: slugify(name),
-[7m  [0m [91m                    ~~~~[0m
+[7m5[0m import { makeRecommendationController } from "../recommendation/recommendation.factory";
+[7m [0m [91m                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -53,35 +20,93 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-30T02:53:15.668Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.service.ts[0m:[93m41[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'void' is not assignable to type 'string'.
+[2025-05-01T01:21:51.174Z] [31MERROR[39M: uncaughtException: Unknown type "ProductAttribute".
+Error: Unknown type "ProductAttribute".
+    at assertValidSDL (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/graphql/validation/validate.js:135:11)
+    at buildASTSchema (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/graphql/utilities/buildASTSchema.js:44:34)
+    at makeExecutableSchema (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:73:47)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/src/modules/product/graphql/schema.ts:103:50)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+    at loadTS (node:internal/modules/cjs/loader:1815:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1458:32)
+    at Function._load (node:internal/modules/cjs/loader:1275:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/src/graphql/v1/schema.ts:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+[2025-05-01T01:27:59.700Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m93[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
 
-[7m41[0m       name,
-[7m  [0m [91m      ~~~~[0m
+[7m93[0m           attributes: {
+[7m  [0m [91m          ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m113[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
 
-  [96msrc/modules/category/category.repository.ts[0m:[93m19[0m:[93m32[0m
-    [7m19[0m   async createCategory(data: { name: string; slug: string }) {
-    [7m  [0m [96m                               ~~~~[0m
-    The expected type comes from property 'name' which is declared here on type '{ name: string; slug: string; }'
-[96msrc/modules/category/category.service.ts[0m:[93m42[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type 'void' is not assignable to parameter of type 'string'.
+[7m113[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
 
-[7m42[0m       slug: slugify(name),
-[7m  [0m [91m                    ~~~~[0m
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m5969[0m:[93m5[0m
+    [7m5969[0m     include?: ProductInclude<ExtArgs> | null
+    [7m    [0m [96m    ~~~~~~~[0m
+    The expected type comes from property 'include' which is declared here on type '{ select?: ProductSelect<DefaultArgs> | null | undefined; omit?: ProductOmit<DefaultArgs> | null | undefined; include?: ProductInclude<...> | ... 1 more ... | undefined; where: ProductWhereUniqueInput; }'
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m136[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
+
+[7m136[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m164[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
+
+[7m164[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m192[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
+
+[7m192[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m220[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
+
+[7m220[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m237[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'CategoryInclude<DefaultArgs>'.
+
+[7m237[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
 
 TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.service.ts[0m:[93m41[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'void' is not assignable to type 'string'.
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m93[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
 
-[7m41[0m       name,
-[7m  [0m [91m      ~~~~[0m
+[7m93[0m           attributes: {
+[7m  [0m [91m          ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m113[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
 
-  [96msrc/modules/category/category.repository.ts[0m:[93m19[0m:[93m32[0m
-    [7m19[0m   async createCategory(data: { name: string; slug: string }) {
-    [7m  [0m [96m                               ~~~~[0m
-    The expected type comes from property 'name' which is declared here on type '{ name: string; slug: string; }'
-[96msrc/modules/category/category.service.ts[0m:[93m42[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type 'void' is not assignable to parameter of type 'string'.
+[7m113[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
 
-[7m42[0m       slug: slugify(name),
-[7m  [0m [91m                    ~~~~[0m
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m5969[0m:[93m5[0m
+    [7m5969[0m     include?: ProductInclude<ExtArgs> | null
+    [7m    [0m [96m    ~~~~~~~[0m
+    The expected type comes from property 'include' which is declared here on type '{ select?: ProductSelect<DefaultArgs> | null | undefined; omit?: ProductOmit<DefaultArgs> | null | undefined; include?: ProductInclude<...> | ... 1 more ... | undefined; where: ProductWhereUniqueInput; }'
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m136[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
+
+[7m136[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m164[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
+
+[7m164[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m192[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
+
+[7m192[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m220[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'ProductInclude<DefaultArgs>'.
+
+[7m220[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/resolver.ts[0m:[93m237[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'attributes' does not exist in type 'CategoryInclude<DefaultArgs>'.
+
+[7m237[0m           attributes: {
+[7m   [0m [91m          ~~~~~~~~~~[0m
 
     at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
     at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
@@ -93,353 +118,9 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1458:32)
     at Function._load (node:internal/modules/cjs/loader:1275:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-30T02:53:21.126Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.service.ts[0m:[93m41[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'void' is not assignable to type 'string'.
-
-[7m41[0m       name,
-[7m  [0m [91m      ~~~~[0m
-
-  [96msrc/modules/category/category.repository.ts[0m:[93m19[0m:[93m32[0m
-    [7m19[0m   async createCategory(data: { name: string; slug: string }) {
-    [7m  [0m [96m                               ~~~~[0m
-    The expected type comes from property 'name' which is declared here on type '{ name: string; slug: string; }'
-[96msrc/modules/category/category.service.ts[0m:[93m42[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type 'void' is not assignable to parameter of type 'string'.
-
-[7m42[0m       slug: slugify(name),
-[7m  [0m [91m                    ~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.service.ts[0m:[93m41[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'void' is not assignable to type 'string'.
-
-[7m41[0m       name,
-[7m  [0m [91m      ~~~~[0m
-
-  [96msrc/modules/category/category.repository.ts[0m:[93m19[0m:[93m32[0m
-    [7m19[0m   async createCategory(data: { name: string; slug: string }) {
-    [7m  [0m [96m                               ~~~~[0m
-    The expected type comes from property 'name' which is declared here on type '{ name: string; slug: string; }'
-[96msrc/modules/category/category.service.ts[0m:[93m42[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type 'void' is not assignable to parameter of type 'string'.
-
-[7m42[0m       slug: slugify(name),
-[7m  [0m [91m                    ~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-30T02:53:34.751Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; description?: string | undefined; images?: string[] | undefined; slug: string; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; description?: string | undefined; images?: string[] | undefined; slug: string; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m39[0m:[93m5[0m
-    [7m39[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; description?: string | undefined; images?: string[] | undefined; slug: string; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; description?: string | undefined; images?: string[] | undefined; slug: string; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m39[0m:[93m5[0m
-    [7m39[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-30T02:53:41.357Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m37[0m:[93m5[0m
-    [7m37[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m37[0m:[93m5[0m
-    [7m37[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-30T02:53:57.047Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; images: string[] | undefined; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; slug: string; description?: string | undefined; images: string[] | undefined; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m37[0m:[93m5[0m
-    [7m37[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; images: string[] | undefined; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; slug: string; description?: string | undefined; images: string[] | undefined; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m37[0m:[93m5[0m
-    [7m37[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-30T02:54:11.592Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m37[0m:[93m5[0m
-    [7m37[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m37[0m:[93m5[0m
-    [7m37[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-30T02:54:38.256Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m37[0m:[93m5[0m
-    [7m37[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m37[0m:[93m5[0m
-    [7m37[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-30T02:54:57.714Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m37[0m:[93m5[0m
-    [7m37[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/category/category.controller.ts[0m:[93m48[0m:[93m70[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-  Property 'slug' is missing in type '{ name: any; description: any; images: string[] | undefined; }' but required in type '{ name: string; slug: string; description?: string | undefined; images?: string[] | undefined; }'.
-
-[7m 48[0m       const { category } = await this.categoryService.createCategory({
-[7m   [0m [91m                                                                     ~[0m
-[7m 49[0m         name,
-[7m   [0m [91m~~~~~~~~~~~~~[0m
-[7m...[0m 
-[7m 51[0m         images: imageUrls.length > 0 ? imageUrls : undefined,
-[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-[7m 52[0m       });
-[7m   [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/category/category.service.ts[0m:[93m37[0m:[93m5[0m
-    [7m37[0m     slug: string;
-    [7m  [0m [96m    ~~~~[0m
-    'slug' is declared here.
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-04-30T02:56:12.839Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/product/product.routes.ts[0m:[93m6[0m:[93m20[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/src/shared/middlewares/upload.ts' is not a module.
-
-[7m6[0m import upload from "@/shared/middlewares/upload";
-[7m [0m [91m                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/product/product.routes.ts[0m:[93m6[0m:[93m20[0m - [91merror[0m[90m TS2306: [0mFile '/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/src/shared/middlewares/upload.ts' is not a module.
-
-[7m6[0m import upload from "@/shared/middlewares/upload";
-[7m [0m [91m                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-    at createTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at loadTS (node:internal/modules/cjs/loader:1815:10)
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1458:32)
-    at Function._load (node:internal/modules/cjs/loader:1275:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1480:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/src/modules/product/graphql/schema.ts:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1723:14)
+    at Module.m._compile (/home/abdelrahman-aboalkhair/Projects/WEB/b2c-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)

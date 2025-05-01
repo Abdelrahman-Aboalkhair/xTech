@@ -67,6 +67,7 @@ const ProductDetailsPage = () => {
           price={product.price}
           discount={product.discount}
           description={product.description}
+          attributes={product.attributes}
         />
       </div>
 

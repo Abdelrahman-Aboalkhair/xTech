@@ -34,7 +34,15 @@ const CategoriesDashboard = () => {
   const columns = [
     {
       key: "name",
-      label: "Category Name",
+      label: "Name",
+      sortable: true,
+      render: (row) => (
+        <span className="font-medium text-gray-800">{row?.name || "N/A"}</span>
+      ),
+    },
+    {
+      key: "description",
+      label: "Description",
       sortable: true,
       render: (row) => (
         <span className="font-medium text-gray-800">{row?.name || "N/A"}</span>

@@ -17,6 +17,7 @@ import transactionRoutes from "@/modules/transaction/transaction.routes";
 import logRoutes from "@/modules/logs/logs.routes";
 import sectionRoutes from "@/modules/section/section.routes";
 import { configureChatRoutes } from "@/modules/chat/chat.routes";
+import attributesRoutes from "@/modules/attribute/attribute.routes";
 
 export const configureV1Routes = (io: SocketIOServer) => {
   const router = Router();
@@ -38,6 +39,7 @@ export const configureV1Routes = (io: SocketIOServer) => {
   router.use("/addresses", addressRoutes);
   router.use("/sections", sectionRoutes);
   router.use("/chat", configureChatRoutes(io));
+  router.use("/attributes", attributesRoutes);
 
   return router;
 };
