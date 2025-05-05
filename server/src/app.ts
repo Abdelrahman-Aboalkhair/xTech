@@ -25,6 +25,7 @@ import webhookRoutes from "./modules/webhook/webhook.routes";
 import { Server as HTTPServer } from "http";
 import { SocketManager } from "@/infra/socket/socket";
 import { connectDB } from "./infra/database/database.config";
+import { setupSwagger } from "./docs/swagger";
 
 dotenv.config();
 
@@ -41,6 +42,9 @@ export const createApp = async () => {
   // Initialize Socket.IO
   const socketManager = new SocketManager(httpServer);
   const io = socketManager.getIO();
+  
+    // Swagger Documentation
+    setupSwagger(app);
 
   // Basic
   app.use(
