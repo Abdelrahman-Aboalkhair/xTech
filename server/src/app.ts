@@ -24,11 +24,18 @@ import { configureGraphQL, allowedOrigins } from "./graphql";
 import webhookRoutes from "./modules/webhook/webhook.routes";
 import { Server as HTTPServer } from "http";
 import { SocketManager } from "@/infra/socket/socket";
+import { connectDB } from "./infra/database/database.config";
 
 dotenv.config();
 
 export const createApp = async () => {
   const app = express();
+
+  await connectDB().catch((err) => {
+    console.error("❌ Failed to connect to DB:", err);
+    process.exit(1);
+  });
+  
   const httpServer = new HTTPServer(app);
 
   // Initialize Socket.IO

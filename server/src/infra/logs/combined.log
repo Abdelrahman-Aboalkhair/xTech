@@ -16777,3 +16777,36 @@ The column `userId` does not exist in the current database.
 [2025-05-01T01:39:31.550Z] [32MINFO[39M: ::1 - - [01/May/2025:01:39:31 +0000] "POST /api/v1/auth/refresh-token HTTP/1.1" 200 406 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-05-01T01:40:28.685Z] [32MINFO[39M: ::1 - - [01/May/2025:01:40:28 +0000] "POST /api/v1/auth/refresh-token HTTP/1.1" 200 406 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 [2025-05-01T01:40:28.765Z] [32MINFO[39M: ::1 - - [01/May/2025:01:40:28 +0000] "POST /api/v1/graphql HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+[2025-05-04T21:53:43.583Z] [32MINFO[39M: ::1 - - [04/May/2025:21:53:43 +0000] "GET /?vscodeBrowserReqId=1746395623132 HTTP/1.1" 404 139 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.99.3 Chrome/132.0.6834.210 Electron/34.3.2 Safari/537.36"
+[2025-05-04T23:05:11.353Z] [32MINFO[39M: ::1 - - [04/May/2025:23:05:11 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+[2025-05-05T00:11:31.142Z] [32MINFO[39M: ::1 - - [05/May/2025:00:11:31 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+[2025-05-05T00:19:23.875Z] [31MERROR[39M: Refresh token not found
+[2025-05-05T01:41:46.410Z] [32MINFO[39M: ::1 - - [05/May/2025:01:41:46 +0000] "POST /api/v1/auth/sign-up HTTP/1.1" 404 159 "-" "PostmanRuntime/7.43.4"
+[2025-05-05T01:42:33.569Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/src/modules/auth/auth.repository.ts:6:24
+
+  3 
+  4 export class AuthRepository {
+  5   async findUserByEmail(email: string) {
+→ 6     return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.
+[2025-05-05T01:43:22.525Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/src/modules/auth/auth.repository.ts:6:24
+
+  3 
+  4 export class AuthRepository {
+  5   async findUserByEmail(email: string) {
+→ 6     return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.
+[2025-05-05T01:44:01.129Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/src/modules/auth/auth.repository.ts:6:24
+
+  3 
+  4 export class AuthRepository {
+  5   async findUserByEmail(email: string) {
+→ 6     return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.
+[2025-05-05T01:48:08.320Z] [32MINFO[39M: ::1 - - [05/May/2025:01:48:08 +0000] "POST /api/v1/auth/sign-up HTTP/1.1" 201 358 "-" "PostmanRuntime/7.43.4"

@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 export const allowedOrigins =
   process.env.NODE_ENV === "production"
     ? ["https://egwinch.com"]
-    : ["http://localhost:3000"];
+    : ["http://localhost:3000", "http://client:3000"];
 
 export async function configureGraphQL(app: express.Application) {
   // Create ApolloServer for GraphQL queries

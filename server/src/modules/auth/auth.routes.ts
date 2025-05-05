@@ -17,7 +17,7 @@ router.get("/facebook/callback", handleSocialLoginCallback("facebook"));
 router.get("/twitter", handleSocialLogin("twitter"));
 router.get("/twitter/callback", handleSocialLoginCallback("twitter"));
 
-router.post("/register", authController.register);
+router.post("/sign-up", authController.signup);
 router.post("/verify-email", authController.verifyEmail);
 router.get("/verification-email/:email", authController.getVerificationEmail);
 router.post("/sign-in", authController.signin);

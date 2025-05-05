@@ -2387,3 +2387,31 @@ The column `userId` does not exist in the current database.
 [2025-04-30T18:53:50.145Z] [31MERROR[39M: A name must be provided to slugify
 [2025-05-01T01:12:39.029Z] [31MERROR[39M: Validation errors:
 [2025-05-01T01:12:39.033Z] [31MERROR[39M: Validation failed
+[2025-05-05T00:19:23.875Z] [31MERROR[39M: Refresh token not found
+[2025-05-05T01:42:33.569Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/src/modules/auth/auth.repository.ts:6:24
+
+  3 
+  4 export class AuthRepository {
+  5   async findUserByEmail(email: string) {
+→ 6     return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.
+[2025-05-05T01:43:22.525Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/src/modules/auth/auth.repository.ts:6:24
+
+  3 
+  4 export class AuthRepository {
+  5   async findUserByEmail(email: string) {
+→ 6     return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.
+[2025-05-05T01:44:01.129Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/src/modules/auth/auth.repository.ts:6:24
+
+  3 
+  4 export class AuthRepository {
+  5   async findUserByEmail(email: string) {
+→ 6     return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.

@@ -18,10 +18,10 @@ export class AuthController {
     private cartService?: CartService
   ) {}
 
-  register = asyncHandler(
+  signup = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
-      const start = Date.now();
-      const end = Date.now();
+      // const start = Date.now();
+      // const end = Date.now();
       const { name, email, password, role } = req.body;
       const { user, accessToken, refreshToken } =
         await this.authService.registerUser({
@@ -50,11 +50,11 @@ export class AuthController {
           },
         },
       });
-      this.logsService.info("Register", {
-        userId,
-        sessionId: req.session.id,
-        timePeriod: end - start,
-      });
+      // this.logsService.info("Register", {
+      //   userId,
+      //   sessionId: req.session.id,
+      //   timePeriod: end - start,
+      // });
     }
   );
 
