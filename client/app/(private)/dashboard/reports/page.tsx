@@ -192,7 +192,7 @@ const ReportsDashboard: React.FC = () => {
                   id="startDate"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  max={endDate || format(new Date(), "yyyy-MM-dd")}
+                  // max={endDate || format(new Date(), "yyyy-MM-dd")}
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   required={timePeriod === "custom"}
                 />
@@ -210,7 +210,7 @@ const ReportsDashboard: React.FC = () => {
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
                   min={startDate}
-                  max={format(new Date(), "yyyy-MM-dd")}
+                  // max={format(new Date(), "yyyy-MM-dd")}
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   required={timePeriod === "custom"}
                 />

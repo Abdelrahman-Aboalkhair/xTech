@@ -39,7 +39,7 @@ const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
         }).finally(() => setIsLoading(false));
       }
     }, 300),
-    [searchDashboard]
+    [searchDashboard] // Add searchDashboard as a dependency
   );
 
   // Trigger search when query changes

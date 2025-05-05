@@ -35,7 +35,7 @@ export const useAudio = (src?: string, options: UseAudioOptions = {}) => {
       }
     };
 
-    const handleError = (e: ErrorEvent) => {
+    const handleError = () => {
       setError(new Error("Failed to load audio"));
       setLoading(false);
     };
@@ -62,7 +62,7 @@ export const useAudio = (src?: string, options: UseAudioOptions = {}) => {
       audio.removeEventListener("ended", handleEnded);
       audio.removeEventListener("error", handleError as EventListener);
     };
-  }, [src, options.autoPlay, options.onEnded]);
+  }, [src, options.autoPlay, options.onEnded, options]);
 
   const play = () => {
     if (audioRef.current) {

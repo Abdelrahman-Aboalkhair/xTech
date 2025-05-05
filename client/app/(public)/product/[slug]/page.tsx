@@ -7,14 +7,14 @@ import ProductInfo from "../ProductInfo";
 import ProductReviews from "../ProductReviews";
 import { useQuery } from "@apollo/client";
 import { GET_SINGLE_PRODUCT } from "@/app/gql/Product";
-import { useInitiateCheckoutMutation } from "@/app/store/apis/CheckoutApi";
+// import { useInitiateCheckoutMutation } from "@/app/store/apis/CheckoutApi";
 import { loadStripe } from "@stripe/stripe-js";
-import useToast from "@/app/hooks/ui/useToast";
+// import useToast from "@/app/hooks/ui/useToast";
 
 const ProductDetailsPage = () => {
-  const { showToast } = useToast();
+  // const { showToast } = useToast();
   const { slug } = useParams();
-  const [initiateCheckout] = useInitiateCheckoutMutation();
+  // const [initiateCheckout] = useInitiateCheckoutMutation();
   const { data, loading } = useQuery(GET_SINGLE_PRODUCT, {
     variables: { slug },
   });
@@ -23,23 +23,23 @@ const ProductDetailsPage = () => {
     "pk_test_51R9gs72KGvEXtMtXXTm7UscmmHYsvk9j3ktaM8vxRb3evNJgG1dpD05YWACweIfcPtpCgOIs4HkpGrTCKE1dZD0p00sLC6iIBg"
   );
 
-  const handleInitiateCheckout = async () => {
-    try {
-      const res = await initiateCheckout(undefined).unwrap();
-      const stripe = await stripePromise;
-      const result = await stripe?.redirectToCheckout({
-        sessionId: res.sessionId,
-      });
+  // const handleInitiateCheckout = async () => {
+  //   try {
+  //     const res = await initiateCheckout(undefined).unwrap();
+  //     const stripe = await stripePromise;
+  //     const result = await stripe?.redirectToCheckout({
+  //       sessionId: res.sessionId,
+  //     });
 
-      if (result?.error) {
-        showToast(result.error.message, "error");
-        console.error(result.error.message);
-      }
-    } catch (error) {
-      console.error("Error checking out:", error);
-      showToast("Failed to initiate checkout", "error");
-    }
-  };
+  //     if (result?.error) {
+  //       showToast(result.error.message, "error");
+  //       console.error(result.error.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error checking out:", error);
+  //     showToast("Failed to initiate checkout", "error");
+  //   }
+  // };
 
   if (loading)
     return (

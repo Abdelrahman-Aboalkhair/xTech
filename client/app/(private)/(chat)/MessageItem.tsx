@@ -31,9 +31,7 @@ const MessageItem: React.FC<MessageItemProps> = ({
             width={200}
             height={200}
             className="max-w-full h-auto rounded-lg"
-            onError={(e: any) =>
-              console.error("Image failed to load:", message.url)
-            }
+         
           />
         ) : isAudio && message.url ? (
           <AudioPlayer src={message.url} />

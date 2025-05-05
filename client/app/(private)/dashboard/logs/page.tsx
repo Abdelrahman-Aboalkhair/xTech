@@ -7,7 +7,6 @@ import {
 } from "@/app/store/apis/LogsApi";
 import React, { useState } from "react";
 import LogContext from "./LogContext";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const LogsDashboard = () => {
@@ -15,7 +14,6 @@ const LogsDashboard = () => {
   const [clearLogs, { isLoading: isClearingLogs }] = useClearLogsMutation();
   const [deleteLog, { isLoading: isDeletingLog }] = useDeleteLogMutation();
   const [showConfirmClear, setShowConfirmClear] = useState(false);
-  const router = useRouter();
 
   if (error) {
     console.log("error: ", error);
@@ -40,10 +38,7 @@ const LogsDashboard = () => {
     return `${id.substring(0, 8)}...`;
   };
 
-  // Handle row click to navigate to details page
-  const handleRowClick = (log) => {
-    router.push(`/logs/${log.id}`);
-  };
+
 
   // Handle delete single log
   const handleDeleteLog = (e, logId) => {
@@ -55,7 +50,7 @@ const LogsDashboard = () => {
 
   // Handle clear all logs
   const handleClearLogs = async () => {
-    await clearLogs();
+    await clearLogs(undefined);
     setShowConfirmClear(false);
   };
 
@@ -172,18 +167,9 @@ const LogsDashboard = () => {
             data={data.logs}
             columns={columns}
             isLoading={isLoading}
-            onRowClick={handleRowClick}
             showHeader={false}
             className="cursor-pointer hover:bg-gray-50"
-            rowClassName={(row) =>
-              row.level === "error"
-                ? "border-l-2 border-red-500"
-                : row.level === "warn"
-                ? "border-l-2 border-orange-500"
-                : row.level === "info"
-                ? "border-l-2 border-blue-500"
-                : ""
-            }
+        
           />
         </>
       ) : isLoading ? (

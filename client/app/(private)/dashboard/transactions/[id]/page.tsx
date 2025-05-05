@@ -68,7 +68,7 @@ const TransactionDetailPage = () => {
   if (error) {
     return (
       <ErrorState
-        message={error.message || "Failed to load transaction details"}
+        message={"Failed to load transaction details"}
         onBack={handleGoBack}
       />
     );

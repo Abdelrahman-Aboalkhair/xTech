@@ -29,11 +29,11 @@ const CategoryDetailPage = () => {
   const form = useForm<CategoryFormData>({
     defaultValues: category
       ? {
-          id: category.id,
-          name: category.name,
-          slug: category.slug,
-        }
-      : { name: "", slug: "" },
+        id: category.id,
+        name: category.name,
+        slug: category.slug,
+      }
+      : { id: "", name: "", slug: "" },
   });
 
   // Deletion state

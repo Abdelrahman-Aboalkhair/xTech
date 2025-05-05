@@ -18,7 +18,10 @@ const TransactionsDashboard = () => {
   const router = useRouter();
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
-  const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const [selectedTransaction, setSelectedTransaction] = useState({
+    id: "",
+    status: "",
+  });
   const [newStatus, setNewStatus] = useState("");
 
   const pathname = usePathname();

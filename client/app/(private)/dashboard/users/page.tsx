@@ -31,6 +31,7 @@ const UsersDashboard = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<UserFormData | null>(null);
+  console.log('editingUser => ', editingUser);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState<string | number | null>(
     null

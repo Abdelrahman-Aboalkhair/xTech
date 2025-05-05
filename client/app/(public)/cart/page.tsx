@@ -26,7 +26,7 @@ const Cart = () => {
       (sum, item) => sum + item.product.price * item.quantity,
       0
     );
-  }, [cartItems]);
+  }, []);
 
   const handleRemoveFromCart = async (id) => {
     try {

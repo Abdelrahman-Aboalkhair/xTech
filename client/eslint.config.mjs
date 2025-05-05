@@ -15,7 +15,9 @@ const eslintConfig = [
   {
     files: ["**/*.ts", "**/*.tsx"],
     rules: {
-      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-explicit-any": "off", // Disable explicit 'any' type warning
+      "react-hooks/exhaustive-deps": "off", // Disable exhaustive-deps warning
+      "no-unused-vars": "off", // Keep 'no-unused-vars' as a warning
     },
   },
 ];

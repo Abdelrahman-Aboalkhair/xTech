@@ -50,13 +50,14 @@ const ShopPage: React.FC = () => {
       setHasMore(data.products.hasMore);
     },
   });
+  console.log('data => ', data)
 
   // Update filters when URL changes
   useEffect(() => {
     setFilters(initialFilters);
     setSkip(0);
     setDisplayedProducts([]);
-  }, [searchParams]);
+  }, [searchParams, initialFilters]);
 
   const handleShowMore = () => {
     setIsFetchingMore(true);

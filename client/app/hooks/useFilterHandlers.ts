@@ -1,14 +1,9 @@
 import useQueryParams from "@/app/hooks/network/useQueryParams";
 import { Category } from "../types/productTypes";
 
-interface SortOption {
-  label: string;
-  value: string;
-}
 
 export const useFilterHandlers = (
   categories: Category[] = [],
-  sortOptions: SortOption[] = []
 ) => {
   const { query, updateQuery } = useQueryParams();
 

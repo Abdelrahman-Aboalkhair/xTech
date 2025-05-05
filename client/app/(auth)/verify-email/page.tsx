@@ -8,20 +8,18 @@ import { useState } from "react";
 const VerifyEmail = () => {
   const { showToast } = useToast();
   const [verifyEmail, { isLoading }] = useVerifyEmailMutation();
-  const [otp, setOtp] = useState();
+  const [otp, setOtp] = useState("");
   const router = useRouter();
 
   const handleVerifyEmail = async () => {
     try {
       const result = await verifyEmail({ emailVerificationCode: otp }).unwrap();
       console.log("Verification result:", result);
+      showToast("Email verified successfully", "success");
+      router.push("/");
 
-      if (result.success) {
-        showToast(result.message, "success");
-        router.push("/");
-      }
     } catch (error) {
-      showToast(`${error?.data?.message || "An error occurred"}`, "error");
+      showToast("An error occurred", "error");
       console.error("Error occurred while verifying email", error);
     }
   };

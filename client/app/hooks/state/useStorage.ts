@@ -34,7 +34,7 @@ function useStorage<T>(
     } catch (error) {
       console.warn(`Error setting storage key "${key}":`, error);
     }
-  }, [key, storedValue, storage]);
+  }, [key, storedValue, storage, isClient]);
 
   return [storedValue, setStoredValue] as const;
 }

@@ -54,9 +54,7 @@ const Signup = () => {
   const onSubmit = async (formData) => {
     try {
       const result = await signUp(formData).unwrap();
-      if (result.success) {
-        router.push("/");
-      }
+      router.push("/")
     } catch (error) {
       console.log("error: ", error);
     }
@@ -76,7 +74,8 @@ const Signup = () => {
           {error && (
             <div className="bg-red-100 border border-red-400 text-center text-red-700 w-full px-4 py-[18px] rounded relative mb-4">
               <span className="block sm:inline">
-                {error?.data?.message || "An unexpected error occurred"}
+                {"An unexpected error occurred"}
+                {/* {error?.data?.message || "An unexpected error occurred"} */}
               </span>
             </div>
           )}
@@ -112,9 +111,8 @@ const Signup = () => {
 
             <button
               type="submit"
-              className={`flex items-center justify-center w-full mx-auto py-[16px] bg-primary text-white rounded font-medium hover:opacity-90 ${
-                isLoading ? "cursor-not-allowed bg-gray-400 text-gray-800" : ""
-              }`}
+              className={`flex items-center justify-center w-full mx-auto py-[16px] bg-primary text-white rounded font-medium hover:opacity-90 ${isLoading ? "cursor-not-allowed bg-gray-400 text-gray-800" : ""
+                }`}
             >
               {isLoading ? (
                 <Loader2 className="animate-spin text-white" size={27} />

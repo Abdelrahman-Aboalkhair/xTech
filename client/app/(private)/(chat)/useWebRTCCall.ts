@@ -242,7 +242,7 @@ export const useWebRTCCall = ({ chatId, socket }: WebRTCCallProps) => {
     if (audioRef.current && remoteStreamRef.current) {
       audioRef.current.srcObject = remoteStreamRef.current;
     }
-  }, [remoteStreamRef.current]);
+  }, []);
 
   // Attach local and remote streams to video elements
   useEffect(() => {
@@ -252,7 +252,7 @@ export const useWebRTCCall = ({ chatId, socket }: WebRTCCallProps) => {
     if (remoteVideoRef.current && remoteStreamRef.current) {
       remoteVideoRef.current.srcObject = remoteStreamRef.current;
     }
-  }, [localStreamRef.current, remoteStreamRef.current]);
+  }, []);
 
   return {
     callStatus,

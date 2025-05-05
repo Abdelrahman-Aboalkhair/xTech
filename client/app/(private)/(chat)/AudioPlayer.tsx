@@ -106,7 +106,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }) => {
     const newTime = percent * duration;
 
     if (isFinite(newTime)) {
-      audioRef.current.currentTime = newTime;
+      // audioRef.current.currentTime = newTime;
     }
   };
 
@@ -136,9 +136,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }) => {
                   <div
                     key={index}
                     style={{ height: `${height}%` }}
-                    className={`w-1 rounded-full ${
-                      isPlayed ? "bg-blue-500" : "bg-gray-200"
-                    } transition-colors`}
+                    className={`w-1 rounded-full ${isPlayed ? "bg-blue-500" : "bg-gray-200"
+                      } transition-colors`}
                   />
                 );
               })}

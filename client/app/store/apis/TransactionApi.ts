@@ -12,7 +12,7 @@ export const transactionApi = apiSlice.injectEndpoints({
     }),
 
     updateTransactionStatus: builder.mutation({
-      query: ({ id, status }) => ({
+      query: ({ id, status }: { id: string; status: string }) => ({
         url: `/transactions/status/${id}`,
         method: "PUT",
         body: { status },

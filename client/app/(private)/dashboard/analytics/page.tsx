@@ -227,14 +227,14 @@ const AnalyticsDashboard = () => {
             <Dropdown
               options={exportTypeOptions}
               value={exportType}
-              onChange={(value) => setExportType(value)}
+              onChange={(value) => value !== null && setExportType(value)}
               label="Export Type"
               className="min-w-[150px] max-w-[200px]"
             />
             <Dropdown
               options={exportFormatOptions}
               value={exportFormat}
-              onChange={(value) => setExportFormat(value)}
+              onChange={(value) => setExportType(value ?? '')}
               label="Export Format"
               className="min-w-[150px] max-w-[200px]"
             />

@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import Input from "@/app/components/atoms/Input";
 import Button from "@/app/components/atoms/Button";
 import Link from "next/link";
@@ -18,10 +17,10 @@ const PasswordReset = () => {
     try {
       const res = await axiosInstance.post("/auth/forgot-password", data);
       console.log("res: ", res);
-
-      if (res.error) {
+  
+      if (res.data.error) {
         // API returned an error -> show error message
-        setErrorMessage(res.error.data?.message || "Something went wrong");
+        setErrorMessage(res.data.error.message || "Something went wrong");
         setSuccessMessage(""); // Clear success message in case of error
       } else {
         // API call succeeded -> show success message
@@ -73,9 +72,8 @@ const PasswordReset = () => {
         <Button
           type="submit"
           className="bg-primary mt-4 text-white w-full py-[12px] rounded"
-          disabled={isLoading}
         >
-          {isLoading ? "Sending..." : "Send password reset email"}
+          Send reset link
         </Button>
 
         <Link className="mt-4 hover:underline" href={"/sign-in"}>

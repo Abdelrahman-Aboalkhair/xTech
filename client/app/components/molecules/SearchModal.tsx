@@ -92,7 +92,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder={placeholder}
+                placeholder={`&quot;${placeholder}&quot;`}
                 className="w-full py-4 pl-12 pr-12 focus:outline-none text-gray-800 text-sm"
                 autoFocus
               />

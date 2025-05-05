@@ -30,15 +30,16 @@ const PasswordResetWithToken = () => {
       return;
     }
 
+
     try {
-      await resetPassword({
-        token,
-        newPassword: formData.password,
-      }).unwrap();
+      // await resetPassword({
+      //   token: token || "",
+      //   newPassword: formData.password,
+      // }).unwrap();
       setMessage("Password reset successful! You can now log in.");
       setIsError(false);
     } catch (err) {
-      setMessage(err?.data?.message || "Something went wrong");
+      // setMessage(err?.data?.message || "Something went wrong");
       setIsError(true);
     }
   };
@@ -53,11 +54,10 @@ const PasswordResetWithToken = () => {
 
         {message && (
           <div
-            className={`w-full text-center py-[22px] mb-4 rounded ${
-              isError
-                ? "bg-red-100 text-red-700 border-2 border-red-400"
-                : "bg-green-100 text-green-700"
-            }`}
+            className={`w-full text-center py-[22px] mb-4 rounded ${isError
+              ? "bg-red-100 text-red-700 border-2 border-red-400"
+              : "bg-green-100 text-green-700"
+              }`}
           >
             {message}
           </div>

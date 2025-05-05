@@ -88,8 +88,8 @@ const ChatContainer: React.FC<ChatProps> = ({ chatId }) => {
       )}
       {callStatus === "in-call" && (
         <CallInProgressScreen
-          localVideoRef={localVideoRef}
-          remoteVideoRef={remoteVideoRef}
+          // localVideoRef={localVideoRef}
+          // remoteVideoRef={remoteVideoRef}
           onEndCall={endCall}
         />
       )}

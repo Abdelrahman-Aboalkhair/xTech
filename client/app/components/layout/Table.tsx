@@ -88,7 +88,7 @@ const Table: React.FC<TableProps> = ({
     debounce((searchQuery: string) => {
       updateQuery({ searchQuery: searchQuery || "" });
     }, 300),
-    [updateQuery]
+    [updateQuery] // Add updateQuery as a dependency
   );
 
   const handleSearch = (data: { searchQuery: string }) => {
