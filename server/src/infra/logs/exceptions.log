@@ -1,22 +1,26 @@
-[2025-05-05T01:44:01.141Z] [31MERROR[39M: uncaughtException: 
+[2025-06-14T15:35:06.852Z] [31MERROR[39M: uncaughtException: 
 Invalid `prisma.log.create()` invocation in
-/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/src/modules/logs/logs.repository.ts:40:23
+/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/src/modules/logs/logs.repository.ts:39:23
 
-  37 }
-  38 
-  39 async createLog(data: LogEntry) {
-→ 40   return prisma.log.create(
-The table `public.Log` does not exist in the current database.
-PrismaClientKnownRequestError: 
+  36 }
+  37 
+  38 async createLog(data: LogEntry) {
+→ 39   return prisma.log.create(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+PrismaClientInitializationError: 
 Invalid `prisma.log.create()` invocation in
-/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/src/modules/logs/logs.repository.ts:40:23
+/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/src/modules/logs/logs.repository.ts:39:23
 
-  37 }
-  38 
-  39 async createLog(data: LogEntry) {
-→ 40   return prisma.log.create(
-The table `public.Log` does not exist in the current database.
-    at zn.handleRequestError (/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:7459)
+  36 }
+  37 
+  38 async createLog(data: LogEntry) {
+→ 39   return prisma.log.create(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at zn.handleRequestError (/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:7759)
     at zn.handleAndLogRequestError (/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:6784)
     at zn.request (/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:6491)
     at async l (/home/abdelrahman_aboalkhair/dev/personal/b2c-ecommerce/server/node_modules/@prisma/client/runtime/library.js:130:9778)

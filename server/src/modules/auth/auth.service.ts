@@ -1,6 +1,5 @@
 import crypto from "crypto";
 import AppError from "@/shared/errors/AppError";
-import emailQueue from "@/infra/queues/emailQueue";
 import sendEmail from "@/shared/utils/sendEmail";
 import passwordResetTemplate from "@/shared/templates/passwordReset";
 import { tokenUtils, passwordUtils } from "@/shared/utils/authUtils";
@@ -13,7 +12,7 @@ import BadRequestError from "@/shared/errors/BadRequestError";
 import NotFoundError from "@/shared/errors/NotFoundError";
 
 export class AuthService {
-  constructor(private authRepository: AuthRepository) {}
+  constructor(private authRepository: AuthRepository) { }
 
   async registerUser({
     name,
@@ -47,16 +46,6 @@ export class AuthService {
       emailVerified: false,
     });
 
-    await emailQueue
-      .add("sendVerificationEmail", {
-        to: email,
-        subject: "Verify Your Email - EgWinch",
-        text: `Your verification code is: ${emailVerificationToken}`,
-        html: `<p>Your verification code is: <strong>${emailVerificationToken}</strong></p>`,
-      })
-      .catch((error) => {
-        console.error("Failed to add email to queue:", error);
-      });
 
     const accessToken = tokenUtils.generateAccessToken(newUser.id);
     const refreshToken = tokenUtils.generateRefreshToken(newUser.id);
@@ -92,16 +81,7 @@ export class AuthService {
       emailVerificationTokenExpiresAt,
     });
 
-    await emailQueue
-      .add("sendVerificationEmail", {
-        to: email,
-        subject: "Verify Your Email - KgKraft",
-        text: `Your verification code is: ${emailVerificationToken}`,
-        html: `<p>Your verification code is: <strong>${emailVerificationToken}</strong></p>`,
-      })
-      .catch((error) => {
-        console.error("Failed to add email to queue:", error);
-      });
+
 
     return { message: "A new verification code has been sent to your email" };
   }

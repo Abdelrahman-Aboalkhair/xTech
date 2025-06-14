@@ -32,11 +32,10 @@ const Navbar = () => {
     <>
       <Topbar />
       <header
-        className={`w-full z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-white shadow-md py-2"
-            : "bg-white bg-opacity-95 backdrop-blur-sm py-4"
-        }`}
+        className={`w-full z-50 transition-all duration-300 ${scrolled
+          ? "bg-white shadow-md py-2"
+          : "bg-white bg-opacity-95 backdrop-blur-sm py-4"
+          }`}
       >
         <nav className="max-w-[80%] mx-auto flex items-center justify-between">
           <div className="flex justify-between items-center gap-8">
@@ -108,7 +107,7 @@ const Navbar = () => {
               pathname !== "/sign-in" && (
                 <Link
                   href="/sign-in"
-                  className="text-md font-medium text-gray-700 whitespace-nowrap"
+                  className="text-md font-medium text-gray-800 whitespace-nowrap pl-4"
                 >
                   Sign in
                 </Link>

@@ -36,15 +36,15 @@ export const createApp = async () => {
     console.error("❌ Failed to connect to DB:", err);
     process.exit(1);
   });
-  
+
   const httpServer = new HTTPServer(app);
 
   // Initialize Socket.IO
   const socketManager = new SocketManager(httpServer);
   const io = socketManager.getIO();
-  
-    // Swagger Documentation
-    setupSwagger(app);
+
+  // Swagger Documentation
+  setupSwagger(app);
 
   // Basic
   app.use(

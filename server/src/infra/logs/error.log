@@ -2415,3 +2415,8 @@ Invalid `prisma.user.findUnique()` invocation in
   5   async findUserByEmail(email: string) {
 → 6     return prisma.user.findUnique(
 The table `public.User` does not exist in the current database.
+[2025-05-28T12:51:27.851Z] [31MERROR[39M: Refresh token not found
+[2025-05-28T12:59:18.895Z] [31MERROR[39M: Refresh token not found
+[2025-05-28T12:59:36.678Z] [31MERROR[39M: Database initialization error. Please try again later.
+[2025-06-14T15:31:58.931Z] [31MERROR[39M: Refresh token not found
+[2025-06-14T15:35:06.712Z] [31MERROR[39M: Refresh token not found

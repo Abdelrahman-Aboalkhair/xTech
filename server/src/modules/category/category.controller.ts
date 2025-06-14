@@ -9,7 +9,7 @@ import slugify from "@/shared/utils/slugify";
 
 export class CategoryController {
   private logsService = makeLogsService();
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) { }
 
   getAllCategories = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {

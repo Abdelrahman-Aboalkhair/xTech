@@ -16810,3 +16810,10 @@ Invalid `prisma.user.findUnique()` invocation in
 → 6     return prisma.user.findUnique(
 The table `public.User` does not exist in the current database.
 [2025-05-05T01:48:08.320Z] [32MINFO[39M: ::1 - - [05/May/2025:01:48:08 +0000] "POST /api/v1/auth/sign-up HTTP/1.1" 201 358 "-" "PostmanRuntime/7.43.4"
+[2025-05-28T12:51:27.851Z] [31MERROR[39M: Refresh token not found
+[2025-05-28T12:59:18.895Z] [31MERROR[39M: Refresh token not found
+[2025-05-28T12:59:36.678Z] [31MERROR[39M: Database initialization error. Please try again later.
+[2025-05-28T12:59:36.703Z] [32MINFO[39M: ::1 - - [28/May/2025:12:59:36 +0000] "POST /api/v1/graphql HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+[2025-05-28T12:59:36.703Z] [32MINFO[39M: ::1 - - [28/May/2025:12:59:36 +0000] "POST /api/v1/graphql HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+[2025-06-14T15:31:58.931Z] [31MERROR[39M: Refresh token not found
+[2025-06-14T15:35:06.712Z] [31MERROR[39M: Refresh token not found
