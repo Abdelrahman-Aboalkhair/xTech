@@ -13,9 +13,7 @@ const DashboardHeader: React.FC = () => {
             Attributes Dashboard
           </h1>
         </div>
-        <button className="p-2 rounded-full hover:bg-gray-200 transition-colors">
-          <Settings size={20} className="text-gray-600" />
-        </button>
+
       </div>
       <p className="mt-2 text-gray-600 max-w-2xl">
         Create and manage product attributes, assign them to categories or

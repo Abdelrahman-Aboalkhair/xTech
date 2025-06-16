@@ -38,8 +38,8 @@ export const configureV1Routes = (io: SocketIOServer) => {
   router.use("/payments", paymentRoutes);
   router.use("/addresses", addressRoutes);
   router.use("/sections", sectionRoutes);
-  router.use("/chat", configureChatRoutes(io));
   router.use("/attributes", attributesRoutes);
+  router.use("/chat", configureChatRoutes(io));
 
   return router;
 };

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { DELETE_ATTRIBUTE, CREATE_ATTRIBUTE_VALUE } from "@/app/gql/Product";
 import { Trash2, Plus } from "lucide-react";
 import useToast from "@/app/hooks/ui/useToast";
 import AttributeValueItem from "./AttributeValueItem";
+import { useCreateAttributeValueMutation, useDeleteAttributeMutation } from "@/app/store/apis/AttributeApi";
 
 interface AttributeValue {
   id: string;
@@ -20,21 +19,15 @@ interface Attribute {
 
 interface AttributesListProps {
   attributes: Attribute[];
-  refetchAttributes: () => void;
 }
 
 const AttributesList: React.FC<AttributesListProps> = ({
   attributes,
-  refetchAttributes,
 }) => {
   const { showToast } = useToast();
 
-  const [createAttributeValue, { loading: isCreatingValue }] = useMutation(
-    CREATE_ATTRIBUTE_VALUE
-  );
-
-  const [deleteAttribute, { loading: isDeleting }] =
-    useMutation(DELETE_ATTRIBUTE);
+  const [createAttributeValue, { isLoading: isCreatingValue }] = useCreateAttributeValueMutation()
+  const [deleteAttribute, { isLoading: isDeleting }] = useDeleteAttributeMutation()
 
   const [newValue, setNewValue] = useState<{ [key: string]: string }>({});
   const [expandedAttribute, setExpandedAttribute] = useState<string | null>(
@@ -47,10 +40,13 @@ const AttributesList: React.FC<AttributesListProps> = ({
     if (!value) return;
 
     try {
-      await createAttributeValue({ variables: { attributeId, value } });
+      await createAttributeValue({
+        attributeId,
+        value,
+      });
       showToast("Attribute value created successfully", "success");
       setNewValue((prev) => ({ ...prev, [attributeId]: "" }));
-      refetchAttributes();
+
     } catch (err) {
       console.log("err => ", err);
 
@@ -64,7 +60,7 @@ const AttributesList: React.FC<AttributesListProps> = ({
       try {
         await deleteAttribute({ variables: { id } });
         showToast("Attribute deleted successfully", "success");
-        refetchAttributes();
+
       } catch (err) {
         console.log("err => ", err);
         showToast("Failed to delete attribute", "error");
@@ -143,7 +139,6 @@ const AttributesList: React.FC<AttributesListProps> = ({
                             key={value.id}
                             value={value}
                             attributeId={attr.id}
-                            refetchAttributes={refetchAttributes}
                           />
                         ))}
                       </div>

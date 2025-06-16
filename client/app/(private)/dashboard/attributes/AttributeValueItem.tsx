@@ -10,7 +10,6 @@ interface AttributeValue {
 interface AttributeValueItemProps {
   value: AttributeValue;
   attributeId: string;
-  refetchAttributes: () => void;
 }
 
 const AttributeValueItem: React.FC<AttributeValueItemProps> = ({ value }) => {

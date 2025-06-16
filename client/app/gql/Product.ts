@@ -349,22 +349,6 @@ export const RESTOCK_PRODUCT = gql`
   }
 `;
 
-export const ADJUST_STOCK = gql`
-  mutation AdjustStock($productId: ID!, $quantity: Int!, $reason: String!) {
-    adjustStock(productId: $productId, quantity: $quantity, reason: $reason) {
-      id
-      product {
-        id
-        name
-        stock
-      }
-      quantity
-      reason
-      createdAt
-    }
-  }
-`;
-
 export const SET_LOW_STOCK_THRESHOLD = gql`
   mutation SetLowStockThreshold($productId: ID!, $threshold: Int!) {
     setLowStockThreshold(productId: $productId, threshold: $threshold) {

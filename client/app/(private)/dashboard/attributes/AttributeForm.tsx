@@ -1,23 +1,19 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { CREATE_ATTRIBUTE } from "@/app/gql/Product";
 import { Plus } from "lucide-react";
 import useToast from "@/app/hooks/ui/useToast";
 import Dropdown from "@/app/components/molecules/Dropdown";
+import { useCreateAttributeMutation } from "@/app/store/apis/AttributeApi";
 
-interface AttributeFormProps {
-  refetchAttributes: () => void;
-}
-
-const AttributeForm: React.FC<AttributeFormProps> = ({ refetchAttributes }) => {
+const AttributeForm: React.FC<any> = () => {
   const { showToast } = useToast();
-  const [createAttribute, { loading: isCreatingAttribute }] =
-    useMutation(CREATE_ATTRIBUTE);
+  const [createAttribute, { isLoading: isCreatingAttribute, error }] = useCreateAttributeMutation()
+  console.log('Failed to create attribute', error)
 
   const [newAttribute, setNewAttribute] = useState({
     name: "",
     type: "select",
   });
+  console.log('new Attribute => ', newAttribute)
 
   const attributeTypeOptions = [
     { label: "Select", value: "select" },
@@ -28,10 +24,9 @@ const AttributeForm: React.FC<AttributeFormProps> = ({ refetchAttributes }) => {
   const handleCreateAttribute = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await createAttribute({ variables: newAttribute });
+      await createAttribute({ name: newAttribute.name, type: newAttribute.type });
       showToast("Attribute created successfully", "success");
       setNewAttribute({ name: "", type: "select" });
-      refetchAttributes();
     } catch (err) {
       console.log("error => ", err);
       showToast("Failed to create attribute", "error");

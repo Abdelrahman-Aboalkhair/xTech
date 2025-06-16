@@ -138,7 +138,7 @@ const Dashboard = () => {
             color="#22c55e"
             percentageChange={data?.revenueAnalytics?.changes?.revenue}
           />
-          <RevenueOverTimeChart startDate="2023-01-01" endDate="2023-12-31" />
+          {/* <RevenueOverTimeChart startDate="2023-01-01" endDate="2023-12-31" /> */}
           <ListCard
             title="Top Products"
             viewAllLink="/shop"

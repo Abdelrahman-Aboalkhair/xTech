@@ -1,111 +1,127 @@
-import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
-import {
-  ASSIGN_ATTRIBUTE_TO_CATEGORY,
-  ASSIGN_ATTRIBUTE_TO_PRODUCT,
-} from "@/app/gql/Product";
-import useToast from "@/app/hooks/ui/useToast";
-import { TagsIcon, Box } from "lucide-react";
-import Dropdown from "@/app/components/molecules/Dropdown";
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { TagsIcon, Box } from 'lucide-react';
+import useToast from '@/app/hooks/ui/useToast';
+import Dropdown from '@/app/components/molecules/Dropdown';
+import { useGetAllCategoriesQuery } from '@/app/store/apis/CategoryApi';
+import { useGetAllProductsQuery } from '@/app/store/apis/ProductApi';
+import { useAssignAttributeToCategoryMutation, useAssignAttributeToProductMutation } from '@/app/store/apis/AttributeApi';
 
 interface Attribute {
   id: string;
   name: string;
 }
 
-interface AttributeAssignmentProps {
-  attributes: Attribute[];
-  refetchAttributes: () => void;
+interface AssignFormData {
+  attributeId: string;
+  categoryId: string;
+  productId: string;
+  isRequired: boolean;
 }
 
-const AttributeAssignment: React.FC<AttributeAssignmentProps> = ({
-  attributes,
-  refetchAttributes,
-}) => {
-  const { showToast } = useToast();
-  const [assignAttributeToCategory, { loading: isAssigningToCategory }] =
-    useMutation(ASSIGN_ATTRIBUTE_TO_CATEGORY);
-  const [assignAttributeToProduct, { loading: isAssigningToProduct }] =
-    useMutation(ASSIGN_ATTRIBUTE_TO_PRODUCT);
+interface AttributeAssignmentProps {
+  attributes: Attribute[];
+}
 
-  const [assignData, setAssignData] = useState({
-    attributeId: "",
-    categoryId: "",
-    productId: "",
-    isRequired: false,
+const AttributeAssignment: React.FC<AttributeAssignmentProps> = ({ attributes }) => {
+  console.log('attributes => ', attributes)
+  const { showToast } = useToast();
+  const { control, handleSubmit, reset, watch, setValue } = useForm<AssignFormData>({
+    defaultValues: {
+      attributeId: '',
+      categoryId: '',
+      productId: '',
+      isRequired: false,
+    },
   });
 
-  // Format attributes for dropdown
-  const attributeOptions = attributes.map((attr) => ({
-    label: attr.name,
-    value: attr.id,
+  const { data: categoriesData } = useGetAllCategoriesQuery(undefined)
+
+  const { data: productsData } = useGetAllProductsQuery(undefined)
+  console.log('productsData => ', productsData)
+
+  // Mutations
+  const [assignAttributeToCategory, { isLoading: isAssigningToCategory }] = useAssignAttributeToCategoryMutation()
+  const [assignAttributeToProduct, { isLoading: isAssigningToProduct }] = useAssignAttributeToProductMutation()
+
+  // Dropdown options
+  const attributeOptions = attributes?.map((attr) => ({
+    label: attr?.name,
+    value: attr?.id,
   }));
 
-  // Handle assigning attribute to category
-  const handleAssignToCategory = async () => {
-    if (!assignData.attributeId || !assignData.categoryId) {
-      showToast("Please select an attribute and enter a category ID", "error");
+  const categoryOptions = categoriesData?.categories?.map((cat: any) => ({
+    label: cat.name,
+    value: cat.id,
+  })) || [];
+
+  const productOptions = productsData?.products?.map((prod: any) => ({
+    label: prod.name,
+    value: prod.id,
+  })) || [];
+  console.log('productsOptions => ', productOptions)
+
+  // Handle category assignment
+  const onAssignToCategory = async (data: AssignFormData) => {
+    if (!data.attributeId || !data.categoryId) {
+      showToast('Please select an attribute and category', 'error');
       return;
     }
-
     try {
       await assignAttributeToCategory({
-        variables: {
-          attributeId: assignData.attributeId,
-          categoryId: assignData.categoryId,
-          isRequired: assignData.isRequired,
-        },
+        categoryId: data.categoryId,
+        attributeId: data.attributeId,
+        isRequired: data.isRequired,
+
       });
-      showToast("Attribute assigned to category", "success");
-      setAssignData((prev) => ({ ...prev, categoryId: "", attributeId: "" }));
-      refetchAttributes();
+      showToast('Attribute assigned to category', 'success');
+      reset({ attributeId: '', categoryId: '', isRequired: false });
     } catch (err) {
-      console.log("err => ", err);
-      showToast("Failed to assign attribute to category", "error");
+      console.error('Error assigning to category:', err);
+      showToast('Failed to assign attribute to category', 'error');
     }
   };
 
-  // Handle assigning attribute to product
-  const handleAssignToProduct = async () => {
-    if (!assignData.attributeId || !assignData.productId) {
-      showToast("Please select an attribute and enter a product ID", "error");
+  // Handle product assignment
+  const onAssignToProduct = async (data: AssignFormData) => {
+    if (!data.attributeId || !data.productId) {
+      showToast('Please select an attribute and product', 'error');
       return;
     }
-
     try {
       await assignAttributeToProduct({
-        variables: {
-          attributeId: assignData.attributeId,
-          productId: assignData.productId,
-        },
+        attributeId: data.attributeId,
+        productId: data.productId,
       });
-      showToast("Attribute assigned to product", "success");
-      setAssignData((prev) => ({ ...prev, productId: "", attributeId: "" }));
-      refetchAttributes();
+      showToast('Attribute assigned to product', 'success');
+      reset({ attributeId: '', productId: '' });
     } catch (err) {
-      console.log("err => ", err);
-      showToast("Failed to assign attribute to product", "error");
+      console.error('Error assigning to product:', err);
+      showToast('Failed to assign attribute to product', 'error');
     }
   };
 
   return (
     <div className="bg-white shadow-sm rounded-xl p-6">
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">
-        Assign Attributes
-      </h2>
-
+      <h2 className="text-lg font-semibold text-gray-800 mb-4">Assign Attributes</h2>
       <div className="space-y-6">
-        {/* Attribute Selection - Common for both category and product */}
+        {/* Attribute Selection */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Select Attribute
-          </label>
-          <Dropdown
-            options={attributeOptions}
-            value={assignData.attributeId}
-            onChange={(value) =>
-              setAssignData((prev) => ({ ...prev, attributeId: value || "" }))
-            }
+          <label className="block text-sm font-medium text-gray-700 mb-1">Select Attribute</label>
+          <Controller
+            name="attributeId"
+            control={control}
+            render={({ field }) => (
+              <Dropdown
+                options={attributeOptions || []}
+                value={field.value}
+                onChange={(value) => {
+                  field.onChange(value);
+                  setValue('categoryId', '');
+                  setValue('productId', '');
+                }}
+              />
+            )}
           />
         </div>
 
@@ -115,59 +131,48 @@ const AttributeAssignment: React.FC<AttributeAssignmentProps> = ({
             <TagsIcon size={16} className="text-primary" />
             <h3 className="text-md font-medium">Assign to Category</h3>
           </div>
-
-          <div className="space-y-3">
+          <form onSubmit={handleSubmit(onAssignToCategory)} className="space-y-3">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Category ID
-              </label>
-              <input
-                type="text"
-                value={assignData.categoryId}
-                onChange={(e) =>
-                  setAssignData((prev) => ({
-                    ...prev,
-                    categoryId: e.target.value,
-                  }))
-                }
-                placeholder="Enter category ID"
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+              <Controller
+                name="categoryId"
+                control={control}
+                render={({ field }) => (
+                  <Dropdown
+                    options={categoryOptions || []}
+                    value={field.value}
+                    onChange={field.onChange}
+                    label="Select category"
+                  />
+                )}
               />
             </div>
-
             <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="isRequired"
-                checked={assignData.isRequired}
-                onChange={(e) =>
-                  setAssignData((prev) => ({
-                    ...prev,
-                    isRequired: e.target.checked,
-                  }))
-                }
-                className="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
+              <Controller
+                name="isRequired"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="checkbox"
+                    id="isRequired"
+                    checked={field.value}
+                    onChange={field.onChange}
+                    className="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
+                  />
+                )}
               />
-              <label
-                htmlFor="isRequired"
-                className="ml-2 text-sm text-gray-700"
-              >
+              <label htmlFor="isRequired" className="ml-2 text-sm text-gray-700">
                 Required attribute
               </label>
             </div>
-
             <button
-              onClick={handleAssignToCategory}
-              disabled={
-                isAssigningToCategory ||
-                !assignData.attributeId ||
-                !assignData.categoryId
-              }
+              type="submit"
+              disabled={isAssigningToCategory || !watch('attributeId') || !watch('categoryId')}
               className="w-full px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isAssigningToCategory ? "Assigning..." : "Assign to Category"}
+              {isAssigningToCategory ? 'Assigning...' : 'Assign to Category'}
             </button>
-          </div>
+          </form>
         </div>
 
         {/* Product Assignment */}
@@ -176,38 +181,30 @@ const AttributeAssignment: React.FC<AttributeAssignmentProps> = ({
             <Box size={16} className="text-primary" />
             <h3 className="text-md font-medium">Assign to Product</h3>
           </div>
-
-          <div className="space-y-3">
+          <form onSubmit={handleSubmit(onAssignToProduct)} className="space-y-3">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Product ID
-              </label>
-              <input
-                type="text"
-                value={assignData.productId}
-                onChange={(e) =>
-                  setAssignData((prev) => ({
-                    ...prev,
-                    productId: e.target.value,
-                  }))
-                }
-                placeholder="Enter product ID"
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              <label className="block text-sm font-medium text-gray-700 mb-1">Product</label>
+              <Controller
+                name="productId"
+                control={control}
+                render={({ field }) => (
+                  <Dropdown
+                    options={productOptions || []}
+                    value={field.value}
+                    onChange={field.onChange}
+                    label="Select product"
+                  />
+                )}
               />
             </div>
-
             <button
-              onClick={handleAssignToProduct}
-              disabled={
-                isAssigningToProduct ||
-                !assignData.attributeId ||
-                !assignData.productId
-              }
+              type="submit"
+              disabled={isAssigningToProduct || !watch('attributeId') || !watch('productId')}
               className="w-full px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isAssigningToProduct ? "Assigning..." : "Assign to Product"}
+              {isAssigningToProduct ? 'Assigning...' : 'Assign to Product'}
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
