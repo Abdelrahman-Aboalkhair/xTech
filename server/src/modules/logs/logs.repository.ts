@@ -7,7 +7,7 @@ export class LogsRepository {
   }
 
   async getLogs() {
-    
+
     return prisma.log.findMany({
       take: 100,
       orderBy: { createdAt: "desc" },

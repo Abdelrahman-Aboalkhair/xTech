@@ -1,18 +1,44 @@
-[2025-06-16T00:59:28.557Z] [31MERROR[39M: uncaughtException: Query.setLowStockThreshold defined in resolvers, but not in schema
-Error: Query.setLowStockThreshold defined in resolvers, but not in schema
-    at addResolversToSchema (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/@graphql-tools/schema/cjs/addResolversToSchema.js:83:39)
-    at makeExecutableSchema (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:76:65)
-    at Object.<anonymous> (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/product/graphql/schema.ts:162:50)
-    at Module._compile (node:internal/modules/cjs/loader:1730:14)
-    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-    at node:internal/modules/cjs/loader:1895:10
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1465:32)
-    at Function._load (node:internal/modules/cjs/loader:1282:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
-    at Module.require (node:internal/modules/cjs/loader:1487:12)
-    at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/graphql/v1/schema.ts:2:1)
-    at Module._compile (node:internal/modules/cjs/loader:1730:14)
-    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
+[2025-06-16T01:06:48.420Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.log.create()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/logs/logs.repository.ts:39:23
+
+  36 }
+  37 
+  38 async createLog(data: LogEntry) {
+→ 39   return prisma.log.create(
+The table `public.Log` does not exist in the current database.
+PrismaClientKnownRequestError: 
+Invalid `prisma.log.create()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/logs/logs.repository.ts:39:23
+
+  36 }
+  37 
+  38 async createLog(data: LogEntry) {
+→ 39   return prisma.log.create(
+The table `public.Log` does not exist in the current database.
+    at Zn.handleRequestError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:7459)
+    at Zn.handleAndLogRequestError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:6784)
+    at Zn.request (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:6491)
+    at async l (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/@prisma/client/runtime/library.js:130:9778)
+[2025-06-16T01:08:43.918Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.log.create()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/logs/logs.repository.ts:39:23
+
+  36 }
+  37 
+  38 async createLog(data: LogEntry) {
+→ 39   return prisma.log.create(
+The table `public.Log` does not exist in the current database.
+PrismaClientKnownRequestError: 
+Invalid `prisma.log.create()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/logs/logs.repository.ts:39:23
+
+  36 }
+  37 
+  38 async createLog(data: LogEntry) {
+→ 39   return prisma.log.create(
+The table `public.Log` does not exist in the current database.
+    at Zn.handleRequestError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:7459)
+    at Zn.handleAndLogRequestError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:6784)
+    at Zn.request (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/@prisma/client/runtime/library.js:121:6491)
+    at async l (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/@prisma/client/runtime/library.js:130:9778)

@@ -21,7 +21,7 @@ const FooterLogo = () => (
       fontWeight="bold"
       fill="currentColor"
     >
-      NexsyMart
+      SS-Commerce
     </text>
   </svg>
 );
@@ -41,7 +41,7 @@ const Footer = () => {
           {/* Logo and description */}
           <div className="col-span-1 lg:col-span-2">
             <div className="flex items-center">
-              <div className="text-white mr-2">
+              <div className="text-white mr-4">
                 <FooterLogo />
               </div>
               <div className="h-6 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-600"></div>

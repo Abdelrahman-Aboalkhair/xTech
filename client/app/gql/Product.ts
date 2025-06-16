@@ -61,7 +61,6 @@ export const GET_SINGLE_PRODUCT = gql`
         name
         slug
       }
-
       attributes {
         id
         attribute {
@@ -276,5 +275,90 @@ export const ASSIGN_ATTRIBUTE_TO_PRODUCT = gql`
 export const DELETE_ATTRIBUTE = gql`
   mutation DeleteAttribute($id: ID!) {
     deleteAttribute(id: $id)
+  }
+`;
+
+export const GET_INVENTORY_SUMMARY = gql`
+  query GetInventorySummary($first: Int, $skip: Int, $filter: InventoryFilterInput) {
+    inventorySummary(first: $first, skip: $skip, filter: $filter) {
+      product {
+        id
+        name
+        stock
+        lowStockThreshold
+      }
+      stock
+      lowStock
+    }
+  }
+`;
+
+export const GET_STOCK_MOVEMENTS = gql`
+  query GetStockMovementsByProduct(
+    $productId: ID
+    $startDate: DateTime
+    $endDate: DateTime
+    $first: Int
+    $skip: Int
+  ) {
+    stockMovementsByProduct(
+      productId: $productId
+      startDate: $startDate
+      endDate: $endDate
+      first: $first
+      skip: $skip
+    ) {
+      id
+      product {
+        id
+        name
+      }
+      quantity
+      reason
+      createdAt
+    }
+  }
+`;
+
+export const RESTOCK_PRODUCT = gql`
+  mutation RestockProduct($productId: ID!, $quantity: Int!, $notes: String) {
+    restockProduct(productId: $productId, quantity: $quantity, notes: $notes) {
+      id
+      product {
+        id
+        name
+        stock
+      }
+      quantity
+      notes
+      createdAt
+    }
+  }
+`;
+
+export const ADJUST_STOCK = gql`
+  mutation AdjustStock($productId: ID!, $quantity: Int!, $reason: String!) {
+    adjustStock(productId: $productId, quantity: $quantity, reason: $reason) {
+      id
+      product {
+        id
+        name
+        stock
+      }
+      quantity
+      reason
+      createdAt
+    }
+  }
+`;
+
+export const SET_LOW_STOCK_THRESHOLD = gql`
+  mutation SetLowStockThreshold($productId: ID!, $threshold: Int!) {
+    setLowStockThreshold(productId: $productId, threshold: $threshold) {
+      id
+      name
+      stock
+      lowStockThreshold
+    }
   }
 `;

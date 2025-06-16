@@ -2430,3 +2430,53 @@ The table `public.User` does not exist in the current database.
 [2025-06-15T00:59:10.329Z] [31MERROR[39M: Refresh token not found
 [2025-06-15T00:59:10.365Z] [31MERROR[39M: Refresh token not found
 [2025-06-15T01:18:05.596Z] [31MERROR[39M: Item already exists in cart
+[2025-06-16T01:06:36.850Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/auth/auth.repository.ts:12:24
+
+   9 }
+  10 
+  11 async findUserByEmailWithPassword(email: string) {
+→ 12   return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.
+[2025-06-16T01:06:48.411Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/auth/auth.repository.ts:12:24
+
+   9 }
+  10 
+  11 async findUserByEmailWithPassword(email: string) {
+→ 12   return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.
+[2025-06-16T01:08:43.889Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/auth/auth.repository.ts:12:24
+
+   9 }
+  10 
+  11 async findUserByEmailWithPassword(email: string) {
+→ 12   return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.
+[2025-06-16T01:19:10.160Z] [31MERROR[39M: No orders found for this user
+[2025-06-16T01:28:23.587Z] [31MERROR[39M: Invalid access token, please log in
+[2025-06-16T13:06:06.873Z] [31MERROR[39M: Unauthorized, please log in
+[2025-06-16T13:06:15.100Z] [31MERROR[39M: Unauthorized, please log in
+[2025-06-16T13:06:26.285Z] [31MERROR[39M: Unauthorized, please log in
+[2025-06-16T13:13:34.686Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.product.create()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/product/product.repository.ts:132:27
+
+  129   stock: number;
+  130   categoryId?: string;
+  131 }) {
+→ 132   return prisma.product.create(
+Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
+[2025-06-16T13:15:53.103Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.product.create()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/product/product.repository.ts:132:27
+
+  129   stock: number;
+  130   categoryId?: string;
+  131 }) {
+→ 132   return prisma.product.create(
+Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
