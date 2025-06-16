@@ -2480,3 +2480,4 @@ Invalid `prisma.product.create()` invocation in
   131 }) {
 → 132   return prisma.product.create(
 Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
+[2025-06-16T13:26:28.326Z] [31MERROR[39M: User not found

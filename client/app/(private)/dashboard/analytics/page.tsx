@@ -59,12 +59,14 @@ const AnalyticsDashboard = () => {
     endDate: useCustomRange && endDate ? endDate : undefined,
   };
 
-  const [exportType, setExportType] = useState<string>("all");
-  const [exportFormat, setExportFormat] = useState<string>("csv");
-
   const { data, loading, error } = useQuery(GET_ALL_ANALYTICS, {
     variables: { params: queryParams },
   });
+
+
+  const [exportType, setExportType] = useState<string>("all");
+  const [exportFormat, setExportFormat] = useState<string>("csv");
+
 
   console.log("Analytics data => ", data);
   console.log("error loading analytics => ", error);

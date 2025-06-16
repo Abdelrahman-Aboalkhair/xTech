@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import UserMenu from "../molecules/UserMenu";
-import { User, ShoppingCart, Menu, X } from "lucide-react";
+import { User, ShoppingCart, Menu, X, CircleUserRound } from "lucide-react";
 import { usePathname } from "next/navigation";
 import SearchBar from "../molecules/SearchBar";
 import { useGetCartCountQuery } from "@/app/store/apis/CartApi";
@@ -52,7 +52,7 @@ const Navbar = () => {
                 className="relative text-gray-700 transition-colors mx-9"
                 aria-label="Shopping cart"
               >
-                <ShoppingCart size={28} />
+                <ShoppingCart size={25} />
                 {cartData?.cartCount > 0 && (
                   <span
                     className="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs font-medium 
@@ -72,22 +72,22 @@ const Navbar = () => {
                   className="flex items-center focus:outline-none"
                   aria-label="User menu"
                 >
-                  <div className="rounded-full overflow-hidden flex items-center justify-center bg-gray-200/70 p-3">
-                    {user?.avatar ? (
-                      <Image
-                        src={user.avatar}
-                        alt="User Profile"
-                        width={40}
-                        height={40}
-                        className="rounded-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.style.display = "none";
-                        }}
-                      />
-                    ) : (
-                      <User size={20} className="text-gray-800" />
-                    )}
-                  </div>
+                  {/* <div className="rounded-full overflow-hidden flex items-center justify-center bg-gray-200/70 p-3"> */}
+                  {user?.avatar ? (
+                    <Image
+                      src={user.avatar}
+                      alt="User Profile"
+                      width={40}
+                      height={40}
+                      className="rounded-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  ) : (
+                    <CircleUserRound size={25} className="text-gray-800" />
+                  )}
+                  {/* </div> */}
                 </button>
 
                 {menuOpen && (

@@ -285,7 +285,6 @@ export const GET_INVENTORY_SUMMARY = gql`
         id
         name
         stock
-        lowStockThreshold
       }
       stock
       lowStock
@@ -294,19 +293,15 @@ export const GET_INVENTORY_SUMMARY = gql`
 `;
 
 export const GET_STOCK_MOVEMENTS = gql`
-  query GetStockMovementsByProduct(
+  query getStockMovements(
     $productId: ID
     $startDate: DateTime
     $endDate: DateTime
-    $first: Int
-    $skip: Int
   ) {
-    stockMovementsByProduct(
+    stockMovements(
       productId: $productId
       startDate: $startDate
       endDate: $endDate
-      first: $first
-      skip: $skip
     ) {
       id
       product {
@@ -315,10 +310,28 @@ export const GET_STOCK_MOVEMENTS = gql`
       }
       quantity
       reason
+      userId
       createdAt
     }
   }
 `;
+
+
+export const GET_RESTOCKS = gql`
+query getRestocks($productId: ID, $startDate: DateTime, $endDate: DateTime) {
+  restocks(productId: $productId, startDate: $startDate, endDate: $endDate) {
+    id
+    product {
+      id
+      name
+    }
+    quantity
+    notes
+    userId
+    createdAt
+  }
+}
+`
 
 export const RESTOCK_PRODUCT = gql`
   mutation RestockProduct($productId: ID!, $quantity: Int!, $notes: String) {
