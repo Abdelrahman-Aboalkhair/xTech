@@ -38,13 +38,9 @@ const Navbar = () => {
           }`}
       >
         <nav className="max-w-[80%] mx-auto flex items-center justify-between">
-          <div className="flex justify-between items-center gap-8">
-            <Link href="/" className="flex items-center">
-              <span className="font-black font-mono text-2xl text-gray-900 ">
-                NexsyMart
-              </span>
-            </Link>
-          </div>
+          <Link href="/" className="font-black text-xl whitespace-nowrap text-gray-900">
+            SS-Ecommerce
+          </Link>
 
           {/* Right section - Search, Cart, User */}
           <div className="flex items-center w-full justify-end">

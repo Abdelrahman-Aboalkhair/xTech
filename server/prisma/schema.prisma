@@ -76,51 +76,54 @@ model User {
 }
 
 model Product {
-  id               String             @id @default(uuid())
-  name             String             @unique
-  description      String?
-  price            Float
-  discount         Float              @default(0)
-  slug             String             @unique
-  images           String[]
-  stock            Int
-  salesCount       Int                @default(0)
-  sku              String?
-  isNew            Boolean            @default(false)
-  isFeatured       Boolean            @default(false)
-  isTrending       Boolean            @default(false)
-  isBestSeller     Boolean            @default(false)
-  averageRating    Float              @default(0)
-  reviewCount      Int                @default(0)
-  category         Category?          @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  categoryId       String?
-  orderItems       OrderItem[]
-  cartItems        CartItem[]
-  interactions     Interaction[]
-  reviews          Review[]
-  stockMovements   StockMovement[]
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  Restock          Restock[]
-  ProductAttribute ProductAttribute[]
+  id                String             @id @default(uuid())
+  name              String             @unique
+  description       String?
+  price             Float
+  discount          Float              @default(0)
+  slug              String             @unique
+  images            String[]
+  stock             Int
+  lowStockThreshold Int                @default(10)
+  salesCount        Int                @default(0)
+  sku               String?
+  isNew             Boolean            @default(false)
+  isFeatured        Boolean            @default(false)
+  isTrending        Boolean            @default(false)
+  isBestSeller      Boolean            @default(false)
+  averageRating     Float              @default(0)
+  reviewCount       Int                @default(0)
+  category          Category?          @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId        String?
+  orderItems        OrderItem[]
+  cartItems         CartItem[]
+  interactions      Interaction[]
+  reviews           Review[]
+  stockMovements    StockMovement[]
+  Restock           Restock[]
+  ProductAttribute  ProductAttribute[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
 
   @@index([name, slug])
 }
 
+// Main Attribute model (Color, Size, Brand, etc)
 model Attribute {
   id               String              @id @default(uuid())
-  name             String              @unique // e.g., "Color", "Size", "Gender"
-  slug             String              @unique // e.g., "color", "size", "gender"
+  name             String              @unique
+  slug             String              @unique
   type             String              @default("text") // e.g., "text", "select", "multiselect"
   values           AttributeValue[] // Possible values for this attribute (e.g., "Red", "Blue" for Color)
   categories       CategoryAttribute[] // Categories this attribute applies to
+  ProductAttribute ProductAttribute[]
   createdAt        DateTime            @default(now())
   updatedAt        DateTime            @updatedAt
-  ProductAttribute ProductAttribute[]
 
   @@index([name, slug])
 }
 
+// Holds values for each attribute (Color => red, green, etc)
 model AttributeValue {
   id               String             @id @default(uuid())
   attributeId      String
@@ -134,6 +137,7 @@ model AttributeValue {
   @@index([attributeId, value])
 }
 
+// Links products to their specific attribute values
 model ProductAttribute {
   id          String          @id @default(uuid())
   productId   String
@@ -150,6 +154,7 @@ model ProductAttribute {
   @@index([productId, attributeId])
 }
 
+// Determines which attributes apply to which categories (Clothing category, Tech, etc)
 model CategoryAttribute {
   id          String    @id @default(uuid())
   categoryId  String
@@ -164,6 +169,7 @@ model CategoryAttribute {
   @@index([categoryId, attributeId])
 }
 
+// Logs all stock changes.
 model StockMovement {
   id        String   @id @default(uuid())
   productId String
@@ -174,6 +180,7 @@ model StockMovement {
   createdAt DateTime @default(now())
 }
 
+// Tracks restock events specifically, with optional notes for context (e.g., “Manual restock for promotion”).
 model Restock {
   id        String   @id @default(uuid())
   productId String

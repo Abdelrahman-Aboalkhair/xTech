@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
-import slugify from "@/shared/utils/slugify";
 
 export interface Context {
   prisma: PrismaClient;
@@ -66,11 +65,16 @@ export const productResolvers = {
 
       // Attribute filters
       if (filters.attributes && filters.attributes.length > 0) {
+        // Look inside the attributes
         where.attributes = {
+          // We want at least one attribute
           some: {
+            // we're following any of the attribute filters to match (not all at once)
             OR: filters.attributes.map((attr) => ({
               AND: [
+                // For each attribute, the slug must match
                 { attribute: { slug: attr.attributeSlug } },
+                // And the value slug must match
                 {
                   OR: [
                     { value: { slug: attr.valueSlug } },
@@ -301,174 +305,97 @@ export const productResolvers = {
         include: { product: true },
       });
     },
-    inventorySummary: async (_: any, __: any, context: Context) => {
+    inventorySummary: async (
+      _: any,
+      { first = 10, skip = 0, filter = {} }: { first?: number; skip?: number; filter?: { lowStockOnly?: boolean; productName?: string } },
+      context: Context
+    ) => {
+      const where: any = {};
+      if (filter.productName) {
+        where.name = { contains: filter.productName, mode: "insensitive" };
+      }
       const products = await context.prisma.product.findMany({
-        select: {
-          id: true,
-          name: true,
-          stock: true,
-        },
+        where,
+        take: first,
+        skip,
+        select: { id: true, name: true, stock: true, lowStockThreshold: true },
       });
       return products.map((product) => ({
         product,
         stock: product.stock,
-        lowStock: product.stock < 10, // Example threshold
+        lowStock: product.stock < (product.lowStockThreshold || 10),
       }));
     },
+    stockMovementsByProduct: async (
+      _: any,
+      { productId, startDate, endDate, first = 10, skip = 0 }: { productId: string; startDate?: Date; endDate?: Date; first?: number; skip?: number },
+      context: Context
+    ) => {
+      const where: any = { productId };
+      if (startDate || endDate) {
+        where.createdAt = {};
+        if (startDate) where.createdAt.gte = startDate;
+        if (endDate) where.createdAt.lte = endDate;
+      }
+      return context.prisma.stockMovement.findMany({
+        where,
+        take: first,
+        skip,
+        include: { product: true },
+        orderBy: { createdAt: "desc" },
+      });
+    },
+
   },
 
   Mutation: {
     restockProduct: async (
       _: any,
-      {
-        productId,
-        quantity,
-        notes,
-      }: { productId: string; quantity: number; notes?: string },
+      { productId, quantity, notes }: { productId: string; quantity: number; notes?: string },
       context: Context
     ) => {
       if (quantity <= 0) throw new Error("Quantity must be positive");
 
-      const restock = await context.prisma.restock.create({
-        data: {
-          productId,
-          quantity,
-          notes,
-          userId: context.req.user?.id,
-        },
-        include: { product: true },
-      });
+      return context.prisma.$transaction(async (tx) => {
+        const restock = await tx.restock.create({
+          data: {
+            productId,
+            quantity,
+            notes,
+            userId: context.req.user?.id,
+          },
+          include: { product: true },
+        });
 
-      await context.prisma.product.update({
+        await tx.product.update({
+          where: { id: productId },
+          data: { stock: { increment: quantity } },
+        });
+
+        await tx.stockMovement.create({
+          data: {
+            productId,
+            quantity,
+            reason: "restock",
+            userId: context.req.user?.id,
+          },
+        });
+
+        return restock;
+      });
+    },
+    setLowStockThreshold: async (
+      _: any,
+      { productId, threshold }: { productId: string; threshold: number },
+      context: Context
+    ) => {
+      if (threshold < 0) throw new Error("Threshold cannot be negative");
+      return context.prisma.product.update({
         where: { id: productId },
-        data: { stock: { increment: quantity } },
+        data: { lowStockThreshold: threshold },
       });
+    },
 
-      await context.prisma.stockMovement.create({
-        data: {
-          productId,
-          quantity,
-          reason: "restock",
-          userId: context.req.user?.id,
-        },
-      });
-
-      return restock;
-    },
-    adjustStock: async (
-      _: any,
-      {
-        productId,
-        quantity,
-        reason,
-      }: { productId: string; quantity: number; reason: string },
-      context: Context
-    ) => {
-      const product = await context.prisma.product.findUnique({
-        where: { id: productId },
-      });
-      if (!product) throw new Error("Product not found");
-      if (product.stock + quantity < 0)
-        throw new Error("Stock cannot be negative");
-
-      const stockMovement = await context.prisma.stockMovement.create({
-        data: {
-          productId,
-          quantity,
-          reason,
-          userId: context.req.user?.id,
-        },
-        include: { product: true },
-      });
-
-      await context.prisma.product.update({
-        where: { id: productId },
-        data: { stock: { increment: quantity } },
-      });
-
-      return stockMovement;
-    },
-    createAttribute: async (
-      _: any,
-      { name, type }: { name: string; type: string },
-      context: Context
-    ) => {
-      return context.prisma.attribute.create({
-        data: {
-          name,
-          slug: slugify(name),
-          type,
-        },
-        include: { values: true },
-      });
-    },
-    createAttributeValue: async (
-      _: any,
-      { attributeId, value }: { attributeId: string; value: string },
-      context: Context
-    ) => {
-      return context.prisma.attributeValue.create({
-        data: {
-          attributeId,
-          value,
-          slug: slugify(value),
-        },
-      });
-    },
-    assignAttributeToCategory: async (
-      _: any,
-      {
-        attributeId,
-        categoryId,
-        isRequired,
-      }: { attributeId: string; categoryId: string; isRequired: boolean },
-      context: Context
-    ) => {
-      return context.prisma.categoryAttribute.create({
-        data: {
-          attributeId,
-          categoryId,
-          isRequired,
-        },
-        include: { attribute: true },
-      });
-    },
-    assignAttributeToProduct: async (
-      _: any,
-      {
-        attributeId,
-        productId,
-        valueId,
-        customValue,
-      }: {
-        attributeId: string;
-        productId: string;
-        valueId?: string;
-        customValue?: string;
-      },
-      context: Context
-    ) => {
-      return context.prisma.productAttribute.create({
-        data: {
-          attributeId,
-          productId,
-          valueId,
-          customValue,
-        },
-        include: {
-          attribute: true,
-          value: true,
-        },
-      });
-    },
-    deleteAttribute: async (
-      _: any,
-      { id }: { id: string },
-      context: Context
-    ) => {
-      await context.prisma.attribute.delete({ where: { id } });
-      return true;
-    },
   },
 
   Product: {

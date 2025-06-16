@@ -46,6 +46,11 @@ const typeDefs = gql`
     lowStock: Boolean!
   }
 
+  input InventoryFilterInput {
+  lowStockOnly: Boolean
+  productName: String
+}
+
   type Review {
     id: String!
     rating: Float!
@@ -134,26 +139,23 @@ const typeDefs = gql`
       endDate: DateTime
     ): [StockMovement!]!
     restocks(productId: ID, startDate: DateTime, endDate: DateTime): [Restock!]!
-    inventorySummary: [InventorySummary!]!
+    inventorySummary(
+    first: Int
+    skip: Int
+    filter: InventoryFilterInput
+  ): [InventorySummary!]!
+    stockMovementsByProduct(
+    productId: ID!
+    startDate: DateTime
+    endDate: DateTime
+    first: Int
+    skip: Int
+  ): [StockMovement!]!
   }
 
   type Mutation {
     restockProduct(productId: ID!, quantity: Int!, notes: String): Restock!
-    adjustStock(productId: ID!, quantity: Int!, reason: String!): StockMovement!
-    createAttribute(name: String!, type: String!): Attribute!
-    createAttributeValue(attributeId: ID!, value: String!): AttributeValue!
-    assignAttributeToCategory(
-      attributeId: ID!
-      categoryId: ID!
-      isRequired: Boolean!
-    ): CategoryAttribute!
-    assignAttributeToProduct(
-      attributeId: ID!
-      productId: ID!
-      valueId: ID
-      customValue: String
-    ): ProductAttribute!
-    deleteAttribute(id: ID!): Boolean!
+    setLowStockThreshold(productId: ID!, threshold: Int!): Product!
   }
 `;
 

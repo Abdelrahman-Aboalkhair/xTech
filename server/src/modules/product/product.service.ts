@@ -21,7 +21,7 @@ export class ProductService {
   constructor(
     private productRepository: ProductRepository,
     private attributeRepository: AttributeRepository
-  ) {}
+  ) { }
   async getAllProducts(queryString: Record<string, any>) {
     const apiFeatures = new ApiFeatures(queryString)
       .filter()
@@ -210,31 +210,32 @@ export class ProductService {
     notes?: string,
     userId?: string
   ) {
-    // Validate quantity
     if (quantity <= 0) {
-      throw new Error("Quantity must be positive");
+      throw new AppError(400, "Quantity must be positive");
     }
 
-    // Create restock record
-    const restock = await this.productRepository.createRestock({
-      productId,
-      quantity,
-      notes,
-      userId,
+    return prisma.$transaction(async (tx) => {
+      // Create restock record
+      const restock = await this.productRepository.createRestock({
+        productId,
+        quantity,
+        notes,
+        userId,
+      });
+
+      // Update product stock
+      await this.productRepository.updateProductStock(productId, quantity);
+
+      // Log stock movement
+      await this.productRepository.createStockMovement({
+        productId,
+        quantity,
+        reason: "restock",
+        userId,
+      });
+
+      return restock;
     });
-
-    // Update product stock
-    await this.productRepository.updateProductStock(productId, quantity);
-
-    // Log stock movement
-    await this.productRepository.createStockMovement({
-      productId,
-      quantity,
-      reason: "restock",
-      userId,
-    });
-
-    return restock;
   }
 
   async bulkCreateProducts(file: Express.Multer.File) {
@@ -285,8 +286,8 @@ export class ProductService {
         discount: record.discount ? Number(record.discount) : 0,
         images: record.images
           ? String(record.images)
-              .split(",")
-              .map((img: string) => img.trim())
+            .split(",")
+            .map((img: string) => img.trim())
           : [],
         stock: Number(record.stock),
         categoryId: record.categoryId ? String(record.categoryId) : undefined,

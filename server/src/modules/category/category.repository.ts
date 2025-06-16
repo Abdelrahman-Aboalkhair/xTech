@@ -13,6 +13,7 @@ export class CategoryRepository {
       orderBy,
       skip,
       take,
+      include: { CategoryAttribute: { include: { attribute: true } } },
     });
   }
 

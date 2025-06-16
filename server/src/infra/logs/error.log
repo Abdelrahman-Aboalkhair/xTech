@@ -2420,3 +2420,13 @@ The table `public.User` does not exist in the current database.
 [2025-05-28T12:59:36.678Z] [31MERROR[39M: Database initialization error. Please try again later.
 [2025-06-14T15:31:58.931Z] [31MERROR[39M: Refresh token not found
 [2025-06-14T15:35:06.712Z] [31MERROR[39M: Refresh token not found
+[2025-06-15T00:11:42.154Z] [31MERROR[39M: text.toLowerCase is not a function
+[2025-06-15T00:39:56.273Z] [31MERROR[39M: Invalid access token, please log in
+[2025-06-15T00:44:01.629Z] [31MERROR[39M: A name must be provided to slugify
+[2025-06-15T00:58:19.559Z] [31MERROR[39M: Refresh token not found
+[2025-06-15T00:58:19.613Z] [31MERROR[39M: Refresh token not found
+[2025-06-15T00:58:44.367Z] [31MERROR[39M: Refresh token not found
+[2025-06-15T00:58:44.401Z] [31MERROR[39M: Refresh token not found
+[2025-06-15T00:59:10.329Z] [31MERROR[39M: Refresh token not found
+[2025-06-15T00:59:10.365Z] [31MERROR[39M: Refresh token not found
+[2025-06-15T01:18:05.596Z] [31MERROR[39M: Item already exists in cart
