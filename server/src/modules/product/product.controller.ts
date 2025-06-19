@@ -5,10 +5,11 @@ import { ProductService } from "./product.service";
 import slugify from "@/shared/utils/slugify";
 import { makeLogsService } from "../logs/logs.factory";
 import { uploadToCloudinary } from "@/shared/utils/uploadToCloudinary";
+import AppError from "@/shared/errors/AppError";
 
 export class ProductController {
   private logsService = makeLogsService();
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) { }
 
   getAllProducts = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
@@ -54,7 +55,6 @@ export class ProductController {
     }
   );
 
-  // In createProduct
   createProduct = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
       const {
@@ -69,8 +69,33 @@ export class ProductController {
         isFeatured,
         isTrending,
         isBestSeller,
-        attributes, // New field: [{ attributeId, valueId, customValue }]
+        attributes,
       } = req.body;
+
+
+      let parsedAttributes;
+      if (attributes) {
+        try {
+          parsedAttributes = typeof attributes === 'string' ? JSON.parse(attributes) : attributes;
+          // Validate attributes structure
+          if (!Array.isArray(parsedAttributes)) {
+            throw new AppError(400, "Attributes must be an array");
+          }
+          parsedAttributes.forEach((attr: any) => {
+            if (!attr.attributeId || (!attr.valueId && !attr.valueIds && !attr.customValue)) {
+              throw new AppError(400, "Invalid attribute structure");
+            }
+            if (attr.valueIds && !Array.isArray(attr.valueIds)) {
+              throw new AppError(400, "valueIds must be an array");
+            }
+          });
+        } catch (error) {
+          throw new AppError(400, "Invalid attributes format");
+        }
+      }
+
+      console.log('parsedAttributes => ', parsedAttributes);
+
 
       const slugifiedName = slugify(name);
       const formattedIsNew = isNew === "true";
@@ -102,7 +127,7 @@ export class ProductController {
         stock: formattedStock,
         images: imageUrls.length > 0 ? imageUrls : undefined,
         categoryId,
-        attributes, // Pass attributes
+        attributes: parsedAttributes,
       });
 
       sendResponse(res, 201, {

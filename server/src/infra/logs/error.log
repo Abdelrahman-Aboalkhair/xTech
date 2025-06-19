@@ -2544,3 +2544,36 @@ Invalid `prisma.cart.findUnique()` invocation in
 The table `public.Cart` does not exist in the current database.
 [2025-06-19T01:09:05.595Z] [31MERROR[39M: Invalid access token, please log in
 [2025-06-19T01:31:27.370Z] [31MERROR[39M: Invalid access token, please log in
+[2025-06-19T16:45:48.573Z] [31MERROR[39M: attributes.map is not a function
+[2025-06-19T16:48:19.356Z] [31MERROR[39M: attributes.map is not a function
+[2025-06-19T17:01:29.346Z] [31MERROR[39M: Invalid access token, please log in
+[2025-06-19T17:01:38.469Z] [31MERROR[39M: attributes.map is not a function
+[2025-06-19T17:04:02.635Z] [31MERROR[39M: attributes.map is not a function
+[2025-06-19T17:14:34.509Z] [31MERROR[39M: Duplicate field value entered
+[2025-06-19T17:15:21.726Z] [31MERROR[39M: Invalid access token, please log in
+[2025-06-19T17:15:27.839Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/product/product.repository.ts:190:33
+
+  187 }
+  188 
+  189 async deleteProduct(id: string) {
+→ 190   return prisma.product.delete(
+Foreign key constraint violated on the constraint: `StockMovement_productId_fkey`
+[2025-06-19T17:16:44.282Z] [31MERROR[39M: Refresh token not found
+[2025-06-19T17:16:44.315Z] [31MERROR[39M: Refresh token not found
+[2025-06-19T18:02:35.983Z] [31MERROR[39M: Attribute not found
+[2025-06-19T18:03:05.368Z] [31MERROR[39M: Unauthorized, please log in
+[2025-06-19T18:03:05.399Z] [31MERROR[39M: Refresh token not found
+[2025-06-19T18:03:34.364Z] [31MERROR[39M: Prisma error: 
+Invalid `this.prisma.interaction.create()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/analytics/analytics.repository.ts:101:36
+
+   98   productId?: string;
+   99   type: string;
+  100 }) {
+→ 101   return this.prisma.interaction.create(
+Foreign key constraint violated on the constraint: `Interaction_productId_fkey`
+[2025-06-19T18:06:28.624Z] [31MERROR[39M: Duplicate field value entered
+[2025-06-19T18:07:02.792Z] [31MERROR[39M: attributes.map is not a function
+[2025-06-19T18:07:50.758Z] [31MERROR[39M: Duplicate field value entered

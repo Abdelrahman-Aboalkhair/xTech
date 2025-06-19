@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -24,6 +24,8 @@ const ProductModal: React.FC<ProductModalProps> = ({
   error,
 }) => {
   const { data } = useGetAllCategoriesQuery({});
+  console.log('categories data => ', data);
+  const [selectedCategoryAttributes, setSelectedCategoryAttributes] = useState<any[]>([]);
 
   const categories = data?.categories?.map((category) => ({
     label: category.name,
@@ -32,6 +34,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
 
   const form = useForm<ProductFormData>({
     defaultValues: {
+      id: "",
       name: "",
       sku: "",
       isNew: false,
@@ -44,25 +47,70 @@ const ProductModal: React.FC<ProductModalProps> = ({
       categoryId: "",
       description: "",
       images: [],
+      attributes: [], // Initialize as empty array
     },
   });
+
+  const watchedCategoryId = form.watch("categoryId");
+
+  useEffect(() => {
+    if (watchedCategoryId && data?.categories) {
+      const selectedCategory = data.categories.find(cat => cat.id === watchedCategoryId);
+      if (selectedCategory) {
+        setSelectedCategoryAttributes(selectedCategory.CategoryAttribute || []);
+        // Reset attributes when category changes
+        form.setValue("attributes", []);
+      }
+    } else {
+      setSelectedCategoryAttributes([]);
+      form.setValue("attributes", []);
+    }
+  }, [watchedCategoryId, data?.categories, form]);
 
   useEffect(() => {
     if (initialData) {
       console.log("initialData", initialData);
+      // Transform initialData.attributes if needed
+      const formattedAttributes = initialData.attributes
+        ? Array.isArray(initialData.attributes)
+          ? initialData.attributes
+          : Object.entries(initialData.attributes).map(([attributeId, valueId]) => ({
+            attributeId,
+            valueId,
+          }))
+        : [];
       form.reset({
-        ...initialData,
+        id: initialData.id || "",
+        name: initialData.name || "",
+        sku: initialData.sku || "",
+        isNew: initialData.isNew || false,
+        isTrending: initialData.isTrending || false,
+        isFeatured: initialData.isFeatured || false,
+        isBestSeller: initialData.isBestSeller || false,
+        price: initialData.price || 0,
+        discount: initialData.discount || 0,
+        stock: initialData.stock || 0,
+        categoryId: initialData.categoryId || "",
+        description: initialData.description || "",
         images: initialData.images || [],
+        attributes: formattedAttributes,
       });
     } else {
       form.reset({
+        id: "",
         name: "",
+        sku: "",
+        isNew: false,
+        isTrending: false,
+        isFeatured: false,
+        isBestSeller: false,
         price: 0,
         discount: 0,
         stock: 0,
         categoryId: "",
         description: "",
         images: [],
+        attributes: [],
       });
     }
   }, [initialData, form]);
@@ -102,9 +150,11 @@ const ProductModal: React.FC<ProductModalProps> = ({
               form={form}
               onSubmit={onSubmit}
               categories={categories}
+              categoryAttributes={selectedCategoryAttributes}
               isLoading={isLoading}
               error={error}
               submitLabel={initialData ? "Update" : "Create"}
+              existingImages={initialData?.images || []}
             />
           </motion.div>
         </motion.div>

@@ -28,6 +28,12 @@ export interface ProductFormData {
   categoryId: string;
   description: string;
   images: string[];
+  attributes: {
+    attributeId: string;
+    valueId?: string;
+    valueIds?: string[];
+    customValue?: string;
+  }[];
 }
 
 const ProductsDashboard = () => {
@@ -79,12 +85,16 @@ const ProductsDashboard = () => {
       });
     }
 
+    if (data.attributes && Array.isArray(data.attributes)) {
+      console.log('attributes => ', data.attributes);
+      payload.append("attributes", JSON.stringify(data.attributes));
+    }
+
     payload.append("categoryId", data.categoryId || "");
 
     try {
       await createProduct(payload).unwrap();
       setIsModalOpen(false);
-
       showToast("Product created successfully", "success");
     } catch (err) {
       console.error("Failed to create product:", err);
@@ -113,6 +123,10 @@ const ProductsDashboard = () => {
         // Include both File objects and existing URLs
         payload.append("images", file);
       });
+    }
+
+    if (data.attributes && Array.isArray(data.attributes)) {
+      payload.append("attributes", JSON.stringify(data.attributes));
     }
 
     // Log payload for debugging
@@ -159,7 +173,7 @@ const ProductsDashboard = () => {
     setProductToDelete(null);
   };
 
-  const handleFileUploadSuccess = () => {};
+  const handleFileUploadSuccess = () => { };
 
   const columns = [
     {
@@ -217,6 +231,7 @@ const ProductsDashboard = () => {
                 categoryId: row.categoryId,
                 description: row.description || "",
                 images: row.images || [""],
+                attributes: row.attributes || [],
               });
               setIsModalOpen(true);
             }}

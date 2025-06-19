@@ -5,8 +5,8 @@ export class ProductRepository {
   async findManyProducts(params: {
     where?: Prisma.ProductWhereInput & { categorySlug?: string };
     orderBy?:
-      | Prisma.ProductOrderByWithRelationInput
-      | Prisma.ProductOrderByWithRelationInput[];
+    | Prisma.ProductOrderByWithRelationInput
+    | Prisma.ProductOrderByWithRelationInput[];
     skip?: number;
     take?: number;
     select?: Prisma.ProductSelect;
@@ -25,15 +25,15 @@ export class ProductRepository {
       ...restWhere,
       ...(categorySlug
         ? {
-            category: {
-              is: {
-                slug: {
-                  equals: categorySlug,
-                  mode: "insensitive",
-                },
+          category: {
+            is: {
+              slug: {
+                equals: categorySlug,
+                mode: "insensitive",
               },
             },
-          }
+          },
+        }
         : {}),
     };
 
@@ -128,6 +128,12 @@ export class ProductRepository {
     images?: string[];
     stock: number;
     categoryId?: string;
+    attributes?: {
+      attributeId: string;
+      valueId?: string;
+      valueIds?: string[];
+      customValue?: string;
+    }[];
   }) {
     return prisma.product.create({ data });
   }

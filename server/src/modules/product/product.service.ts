@@ -91,6 +91,7 @@ export class ProductService {
     attributes?: {
       attributeId: string;
       valueId?: string;
+      valueIds?: string[];
       customValue?: string;
     }[];
   }) {
@@ -106,15 +107,15 @@ export class ProductService {
         throw new AppError(400, "One or more attributes are invalid");
       }
 
-      // Validate valueIds if provided
-      const valueIds = attributes
-        .filter((attr) => attr.valueId)
-        .map((attr) => attr.valueId!);
-      if (valueIds.length > 0) {
+      // Validate valueIds and valueId if provided
+      const allValueIds = attributes.flatMap((attr) =>
+        attr.valueIds ? attr.valueIds : attr.valueId ? [attr.valueId] : []
+      );
+      if (allValueIds.length > 0) {
         const existingValues = await prisma.attributeValue.findMany({
-          where: { id: { in: valueIds } },
+          where: { id: { in: allValueIds } },
         });
-        if (existingValues.length !== valueIds.length) {
+        if (existingValues.length !== allValueIds.length) {
           throw new AppError(400, "One or more attribute values are invalid");
         }
       }
@@ -126,14 +127,21 @@ export class ProductService {
     // Assign attributes
     if (attributes) {
       await Promise.all(
-        attributes.map((attr) =>
-          this.attributeRepository.assignAttributeToProduct({
-            productId: product.id,
-            attributeId: attr.attributeId,
-            valueId: attr.valueId,
-            customValue: attr.customValue,
-          })
-        )
+        attributes.flatMap((attr) => {
+          const valueIds = attr.valueIds
+            ? attr.valueIds
+            : attr.valueId
+              ? [attr.valueId]
+              : [];
+          return valueIds.map((valueId) =>
+            this.attributeRepository.assignAttributeToProduct({
+              productId: product.id,
+              attributeId: attr.attributeId,
+              valueId,
+              customValue: attr.customValue,
+            })
+          );
+        })
       );
     }
 

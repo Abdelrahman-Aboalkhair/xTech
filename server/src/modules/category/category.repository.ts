@@ -13,7 +13,9 @@ export class CategoryRepository {
       orderBy,
       skip,
       take,
-      include: { CategoryAttribute: { include: { attribute: true } } },
+      include: {
+        CategoryAttribute: { include: { attribute: { include: { values: true } } } },
+      },
     });
   }
 
@@ -31,6 +33,7 @@ export class CategoryRepository {
   async findCategoryById(id: string) {
     return prisma.category.findUnique({
       where: { id },
+      include: { CategoryAttribute: { include: { attribute: { include: { values: true } } } } },
     });
   }
 

@@ -44,7 +44,6 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
 
   const menuItems = [
     {
-      section: "Navigation",
       routes: [
         {
           href: "/",
@@ -67,7 +66,6 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
       ],
     },
     {
-      section: "Admin",
       routes: [
         {
           href: "/dashboard",
@@ -130,9 +128,7 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
 
               return (
                 <div key={sectionIndex} className="mb-2 last:mb-0">
-                  <div className="px-4 py-1 text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    {section.section}
-                  </div>
+
                   {visibleRoutes.map((route) => (
                     <motion.div key={route.href} variants={itemVariants}>
                       <Link

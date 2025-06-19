@@ -175,37 +175,7 @@ const AttributeAssignment: React.FC<AttributeAssignmentProps> = ({ attributes })
           </form>
         </div>
 
-        {/* Product Assignment */}
-        <div className="p-4 bg-gray-50 rounded-lg">
-          <div className="flex items-center gap-2 mb-3">
-            <Box size={16} className="text-primary" />
-            <h3 className="text-md font-medium">Assign to Product</h3>
-          </div>
-          <form onSubmit={handleSubmit(onAssignToProduct)} className="space-y-3">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Product</label>
-              <Controller
-                name="productId"
-                control={control}
-                render={({ field }) => (
-                  <Dropdown
-                    options={productOptions || []}
-                    value={field.value}
-                    onChange={field.onChange}
-                    label="Select product"
-                  />
-                )}
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={isAssigningToProduct || !watch('attributeId') || !watch('productId')}
-              className="w-full px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isAssigningToProduct ? 'Assigning...' : 'Assign to Product'}
-            </button>
-          </form>
-        </div>
+
       </div>
     </div>
   );

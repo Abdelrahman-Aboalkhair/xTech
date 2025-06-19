@@ -42,7 +42,7 @@ const Toast = () => {
         const timeoutId = setTimeout(() => {
           dispatch(removeToast(toast.id));
           delete timeoutRefs.current[toast.id];
-        }, toast.duration ?? 4000);
+        }, toast.duration ?? 1500);
         timeoutRefs.current[toast.id] = timeoutId;
       }
     });

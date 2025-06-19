@@ -141,17 +141,16 @@ model AttributeValue {
 model ProductAttribute {
   id          String          @id @default(uuid())
   productId   String
-  product     Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
   attributeId String
-  attribute   Attribute       @relation(fields: [attributeId], references: [id], onDelete: Cascade)
   valueId     String?
-  value       AttributeValue? @relation(fields: [valueId], references: [id], onDelete: SetNull)
-  customValue String? // For free-text values not in AttributeValue
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  customValue String?
+  product     Product         @relation(fields: [productId], references: [id])
+  attribute   Attribute       @relation(fields: [attributeId], references: [id])
+  value       AttributeValue? @relation(fields: [valueId], references: [id])
 
-  @@unique([productId, attributeId])
-  @@index([productId, attributeId])
+  @@unique([productId, attributeId, valueId]) // Allow multiple values per attribute
+  @@index([productId])
+  @@index([attributeId])
 }
 
 // Determines which attributes apply to which categories (Clothing category, Tech, etc)
@@ -167,6 +166,20 @@ model CategoryAttribute {
 
   @@unique([categoryId, attributeId])
   @@index([categoryId, attributeId])
+}
+
+model Category {
+  id                String              @id @default(uuid())
+  slug              String              @unique
+  name              String
+  description       String?
+  images            String[]
+  products          Product[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  CategoryAttribute CategoryAttribute[]
+
+  @@index([name, slug])
 }
 
 // Logs all stock changes.
@@ -338,20 +351,6 @@ model CartEvent {
   timestamp DateTime   @default(now())
   cart      Cart       @relation(fields: [cartId], references: [id], onDelete: Cascade)
   user      User?      @relation(fields: [userId], references: [id])
-}
-
-model Category {
-  id                String              @id @default(uuid())
-  slug              String              @unique
-  name              String
-  description       String?
-  images            String[]
-  products          Product[]
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
-  CategoryAttribute CategoryAttribute[]
-
-  @@index([name, slug])
 }
 
 model Interaction {

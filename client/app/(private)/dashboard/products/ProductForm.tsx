@@ -9,6 +9,7 @@ interface ProductFormProps {
   form: UseFormReturn<ProductFormData>;
   onSubmit: (data: ProductFormData) => void;
   categories?: { label: string; value: string }[];
+  categoryAttributes?: any[];
   isLoading?: boolean;
   error?: any;
   submitLabel?: string;
@@ -19,6 +20,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
   form,
   onSubmit,
   categories = [],
+  categoryAttributes = [],
   isLoading,
   error,
   submitLabel = "Save",
@@ -199,7 +201,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
             rules={{ required: "Category is required" }}
             render={({ field }) => (
               <Dropdown
-                onChange={field.onChange}
+                onChange={(value) => {
+                  field.onChange(value);
+                  setValue("attributes", []); // Reset attributes on category change
+                }}
                 options={categories}
                 value={field.value}
                 label="eg. Electronics"
@@ -214,6 +219,143 @@ const ProductForm: React.FC<ProductFormProps> = ({
           )}
         </div>
       </div>
+
+      {/* Product Attributes */}
+      {categoryAttributes.length > 0 && (
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Product Attributes
+          </label>
+          <div className="grid grid-cols-1 gap-4">
+            {categoryAttributes.map((categoryAttr) => (
+              <div key={categoryAttr.attribute.id} className="relative">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {categoryAttr.attribute.name}
+                  {categoryAttr.isRequired && (
+                    <span className="text-red-500 ml-1">*</span>
+                  )}
+                </label>
+                {categoryAttr.attribute.type === "multiselect" ? (
+                  <div className="space-y-2">
+                    <Controller
+                      name={`attributes`}
+                      control={control}
+                      rules={
+                        categoryAttr.isRequired
+                          ? {
+                            validate: (attributes) => {
+                              const attr = attributes.find(
+                                (a: any) => a.attributeId === categoryAttr.attribute.id
+                              );
+                              return attr && attr.valueIds && attr.valueIds.length > 0
+                                ? true
+                                : `${categoryAttr.attribute.name} requires at least one selection`;
+                            },
+                          }
+                          : {}
+                      }
+                      render={({ field }) => (
+                        <>
+                          {categoryAttr.attribute.values.map((value: any) => (
+                            <CheckBox
+                              key={value.id}
+                              name={`attributes.${categoryAttr.attribute.id}.${value.id}`}
+                              control={control}
+                              label={value.value}
+                              defaultValue={false}
+                              checked={
+                                field.value
+                                  ?.find((a: any) => a.attributeId === categoryAttr.attribute.id)
+                                  ?.valueIds?.includes(value.id) || false
+                              }
+                              onChangeExtra={(name, checked) => {
+                                const currentAttributes = Array.isArray(field.value)
+                                  ? field.value
+                                  : [];
+                                const existingAttr = currentAttributes.find(
+                                  (a: any) => a.attributeId === categoryAttr.attribute.id
+                                );
+                                const currentValueIds = existingAttr?.valueIds || [];
+                                const newValueIds = checked
+                                  ? [...currentValueIds, value.id]
+                                  : currentValueIds.filter((id: string) => id !== value.id);
+                                const newAttributes = [
+                                  ...currentAttributes.filter(
+                                    (a: any) => a.attributeId !== categoryAttr.attribute.id
+                                  ),
+                                  {
+                                    attributeId: categoryAttr.attribute.id,
+                                    valueIds: newValueIds,
+                                  },
+                                ].filter((a: any) => a.valueIds?.length > 0 || a.valueId);
+                                field.onChange(newAttributes);
+                              }}
+                            />
+                          ))}
+                        </>
+                      )}
+                    />
+                    {errors.attributes && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.attributes.message}
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <Controller
+                    name={`attributes`}
+                    control={control}
+                    rules={
+                      categoryAttr.isRequired
+                        ? {
+                          validate: (attributes) => {
+                            const attr = attributes.find(
+                              (a: any) => a.attributeId === categoryAttr.attribute.id
+                            );
+                            return attr && attr.valueId
+                              ? true
+                              : `${categoryAttr.attribute.name} is required`;
+                          },
+                        }
+                        : {}
+                    }
+                    render={({ field }) => (
+                      <Dropdown
+                        onChange={(value) => {
+                          const currentAttributes = Array.isArray(field.value)
+                            ? field.value
+                            : [];
+                          const newAttributes = [
+                            ...currentAttributes.filter(
+                              (a: any) => a.attributeId !== categoryAttr.attribute.id
+                            ),
+                            {
+                              attributeId: categoryAttr.attribute.id,
+                              valueId: value,
+                            },
+                          ].filter((a: any) => a.valueId || a.valueIds?.length > 0);
+                          field.onChange(newAttributes);
+                        }}
+                        options={categoryAttr.attribute.values.map((value: any) => ({
+                          label: value.value,
+                          value: value.id,
+                        }))}
+                        value={
+                          field.value?.find(
+                            (a: any) => a.attributeId === categoryAttr.attribute.id
+                          )?.valueId || ""
+                        }
+                        label={`Select ${categoryAttr.attribute.name.toLowerCase()}`}
+                        className="py-[14px]"
+                      />
+                    )}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Product Flags */}
       <div>
