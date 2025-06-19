@@ -7,7 +7,7 @@ import sendResponse from "@/shared/utils/sendResponse";
 
 export class TransactionController {
   private logsService = makeLogsService();
-  constructor(private transactionService: TransactionService) {}
+  constructor(private transactionService: TransactionService) { }
 
   getAllTransactions = asyncHandler(async (req: Request, res: Response) => {
     const transactions = await this.transactionService.getAllTransactions();

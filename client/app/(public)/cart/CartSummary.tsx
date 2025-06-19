@@ -17,6 +17,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
   currency = "$",
   totalItems,
 }) => {
+  console.log('subtotal => ', subtotal)
   const { showToast } = useToast();
   const stripePromise = loadStripe(
     "pk_test_51R9gs72KGvEXtMtXXTm7UscmmHYsvk9j3ktaM8vxRb3evNJgG1dpD05YWACweIfcPtpCgOIs4HkpGrTCKE1dZD0p00sLC6iIBg"
@@ -28,6 +29,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
     [subtotal, shippingRate]
   );
   const total = useMemo(() => subtotal + shippingFee, [subtotal, shippingFee]);
+  console.log('total => ', total)
 
   const handleInitiateCheckout = async () => {
     try {

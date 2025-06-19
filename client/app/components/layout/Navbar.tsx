@@ -38,7 +38,7 @@ const Navbar = () => {
           }`}
       >
         <nav className="max-w-[80%] mx-auto flex items-center justify-between">
-          <Link href="/" className="font-black text-xl whitespace-nowrap text-gray-900">
+          <Link href="/" className="font-semibold text-xl whitespace-nowrap text-gray-900">
             SS-Ecommerce
           </Link>
 

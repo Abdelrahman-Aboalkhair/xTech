@@ -4,7 +4,7 @@ import { TRANSACTION_STATUS } from "@prisma/client";
 
 export class TransactionService {
   private logsService = makeLogsService();
-  constructor(private transactionRepository: TransactionRepository) {}
+  constructor(private transactionRepository: TransactionRepository) { }
 
   async getAllTransactions() {
     const transactions = await this.transactionRepository.findMany();

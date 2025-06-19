@@ -2,7 +2,7 @@ import prisma from "@/infra/database/database.config";
 import { TRANSACTION_STATUS } from "@prisma/client";
 
 export class TransactionRepository {
-  constructor() {}
+  constructor() { }
   async findMany() {
     return prisma.transaction.findMany();
   }

@@ -36,25 +36,6 @@ const UserOrders = () => {
       ),
     },
     {
-      key: "status",
-      label: "Status",
-      sortable: true,
-      render: (row) => (
-        <span
-          className={`px-2 py-1 rounded-full text-sm font-medium ${row?.status === "DELIVERED"
-              ? "bg-green-100 text-green-600"
-              : row?.status === "SHIPPED"
-                ? "bg-blue-100 text-blue-600"
-                : row?.status === "PAID"
-                  ? "bg-yellow-100 text-yellow-600"
-                  : "bg-gray-100 text-gray-600"
-            }`}
-        >
-          {row?.status || "UNKNOWN"}
-        </span>
-      ),
-    },
-    {
       key: "track",
       label: "Track Order",
       render: (row) => (

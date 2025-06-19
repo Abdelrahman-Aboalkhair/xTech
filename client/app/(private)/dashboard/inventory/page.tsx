@@ -83,8 +83,14 @@ const InventoryDashboard = () => {
       label: 'Low Stock',
       sortable: true,
       width: '20%',
-      render: (row: any) => (row.lowStock ? 'Yes' : 'No'),
+      render: (row: any) => (
+        <span className={row.lowStock ? 'bg-red-100 text-red-800 font-medium px-2 py-1 rounded-lg' : 'bg-green-100 text-green-800 font-medium px-2 py-1 rounded-lg'}>
+          {row.lowStock ? 'Yes' : 'No'}
+        </span>
+      ),
     },
+
+
     {
       key: 'actions',
       label: 'Actions',

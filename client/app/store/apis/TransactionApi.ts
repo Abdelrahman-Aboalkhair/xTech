@@ -11,6 +11,7 @@ export const transactionApi = apiSlice.injectEndpoints({
       providesTags: (result, error, id) => [{ type: "Transactions", id }], // 👈 Tag for single transaction
     }),
 
+
     updateTransactionStatus: builder.mutation({
       query: ({ id, status }: { id: string; status: string }) => ({
         url: `/transactions/status/${id}`,

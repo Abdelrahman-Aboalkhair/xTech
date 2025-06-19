@@ -2543,3 +2543,4 @@ Invalid `prisma.cart.findUnique()` invocation in
 → 13   return prisma.cart.findUnique(
 The table `public.Cart` does not exist in the current database.
 [2025-06-19T01:09:05.595Z] [31MERROR[39M: Invalid access token, please log in
+[2025-06-19T01:31:27.370Z] [31MERROR[39M: Invalid access token, please log in

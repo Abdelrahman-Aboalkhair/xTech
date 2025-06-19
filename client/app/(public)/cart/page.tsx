@@ -27,6 +27,7 @@ const Cart = () => {
       0
     );
   }, []);
+  console.log('subtotal => ', subtotal)
 
   const handleRemoveFromCart = async (id) => {
     try {
