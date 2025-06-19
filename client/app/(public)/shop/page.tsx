@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@apollo/client";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,24 +14,26 @@ const ShopPage: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  // Memoize initialFilters to prevent recreation on every render
+  const initialFilters = useMemo(
+    () => ({
+      search: searchParams.get("search") || "",
+      isNew: searchParams.get("isNew") === "true" || undefined,
+      isFeatured: searchParams.get("isFeatured") === "true" || undefined,
+      isTrending: searchParams.get("isTrending") === "true" || undefined,
+      isBestSeller: searchParams.get("isBestSeller") === "true" || undefined,
+      minPrice: searchParams.get("minPrice")
+        ? parseFloat(searchParams.get("minPrice")!)
+        : undefined,
+      maxPrice: searchParams.get("maxPrice")
+        ? parseFloat(searchParams.get("maxPrice")!)
+        : undefined,
+      categoryId: searchParams.get("categoryId") || undefined,
+    }),
+    [searchParams]
+  );
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const initialFilters = {
-    search: searchParams.get("search") || "",
-    isNew: searchParams.get("isNew") === "true" || undefined,
-    isFeatured: searchParams.get("isFeatured") === "true" || undefined,
-    isTrending: searchParams.get("isTrending") === "true" || undefined,
-    isBestSeller: searchParams.get("isBestSeller") === "true" || undefined,
-    minPrice: searchParams.get("minPrice")
-      ? parseFloat(searchParams.get("minPrice")!)
-      : undefined,
-    maxPrice: searchParams.get("maxPrice")
-      ? parseFloat(searchParams.get("maxPrice")!)
-      : undefined,
-    categoryId: searchParams.get("categoryId") || undefined,
-  };
-
-  // State for products display
   const [filters, setFilters] = useState<FilterValues>(initialFilters);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [skip, setSkip] = useState(0);
@@ -48,18 +50,20 @@ const ShopPage: React.FC = () => {
     onCompleted: (data) => {
       setDisplayedProducts(data.products.products);
       setHasMore(data.products.hasMore);
+      setSkip(0); // Reset skip when filters change
     },
   });
-  console.log('data => ', data)
 
-  // Update filters when URL changes
+  // Update filters only when searchParams change meaningfully
   useEffect(() => {
     setFilters(initialFilters);
-    setSkip(0);
     setDisplayedProducts([]);
-  }, [searchParams, initialFilters]);
+    setSkip(0);
+    setHasMore(true);
+  }, [initialFilters]);
 
   const handleShowMore = () => {
+    if (isFetchingMore) return;
     setIsFetchingMore(true);
     const newSkip = skip + pageSize;
     fetchMore({
@@ -89,7 +93,6 @@ const ShopPage: React.FC = () => {
 
   const updateFilters = (newFilters: FilterValues) => {
     const query = new URLSearchParams();
-
     if (newFilters.search) query.set("search", newFilters.search);
     if (newFilters.isNew) query.set("isNew", "true");
     if (newFilters.isFeatured) query.set("isFeatured", "true");
@@ -109,9 +112,7 @@ const ShopPage: React.FC = () => {
   return (
     <MainLayout>
       <div className="container py-8 mx-auto">
-        {/* Page Header */}
         <div className="flex justify-between items-center mb-8">
-          {/* Mobile Filter Button */}
           <button
             onClick={() => setSidebarOpen(true)}
             className="md:hidden flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
@@ -122,7 +123,6 @@ const ShopPage: React.FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row gap-6">
-          {/* Desktop Sidebar */}
           <div className="hidden md:block w-full md:max-w-[350px]">
             <ProductFilters
               initialFilters={initialFilters}
@@ -131,7 +131,6 @@ const ShopPage: React.FC = () => {
             />
           </div>
 
-          {/* Mobile Sidebar */}
           <AnimatePresence>
             {sidebarOpen && (
               <motion.div
@@ -161,9 +160,7 @@ const ShopPage: React.FC = () => {
             )}
           </AnimatePresence>
 
-          {/* Products Area */}
           <div className="flex-grow">
-            {/* Loading State */}
             {loading && !displayedProducts.length && (
               <div className="text-center py-12">
                 <Package
@@ -174,14 +171,12 @@ const ShopPage: React.FC = () => {
               </div>
             )}
 
-            {/* Error State */}
             {error && (
               <div className="text-center py-12">
                 <p className="text-lg text-red-500">Error loading products</p>
               </div>
             )}
 
-            {/* Empty State */}
             {noProductsFound && (
               <div className="text-center py-12 bg-gray-50 rounded-xl border border-gray-100">
                 <Package size={48} className="mx-auto text-gray-400 mb-4" />
@@ -190,7 +185,6 @@ const ShopPage: React.FC = () => {
               </div>
             )}
 
-            {/* Products Grid */}
             {!noProductsFound && (
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -204,21 +198,19 @@ const ShopPage: React.FC = () => {
                       <ProductCard
                         product={product}
                         hoveredProductId={null}
-                        setHoveredProductId={() => {}}
+                        setHoveredProductId={() => { }}
                       />
                     </motion.div>
                   ))}
                 </div>
 
-                {/* Load More Button */}
                 {hasMore && (
                   <div className="mt-12 text-center">
                     <button
                       onClick={handleShowMore}
                       disabled={isFetchingMore}
-                      className={`bg-indigo-500 text-white px-6 py-3 rounded-lg hover:bg-indigo-600 transition-colors duration-300 font-medium ${
-                        isFetchingMore ? "opacity-50 cursor-not-allowed" : ""
-                      }`}
+                      className={`bg-indigo-500 text-white px-6 py-3 rounded-lg hover:bg-indigo-600 transition-colors duration-300 font-medium ${isFetchingMore ? "opacity-50 cursor-not-allowed" : ""
+                        }`}
                     >
                       {isFetchingMore ? "Loading..." : "Show More Products"}
                     </button>

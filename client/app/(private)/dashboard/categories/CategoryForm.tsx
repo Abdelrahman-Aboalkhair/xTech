@@ -15,6 +15,7 @@ interface CategoryFormProps {
   onSubmit: (data: CategoryFormData) => void;
   isLoading?: boolean;
   submitLabel?: string;
+  existingImages?: string[];
 }
 
 const CategoryForm: React.FC<CategoryFormProps> = ({
@@ -22,6 +23,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   onSubmit,
   isLoading,
   submitLabel = "Save",
+  existingImages = [],
 }) => {
   const {
     control,
@@ -86,12 +88,15 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
 
       <div className="md:col-span-2">
         <ImageUploader
-          label="Product Images"
+          label="Category Images"
           control={control}
           errors={errors}
           setValue={setValue}
           watch={watch}
-          existingImages={watch("images")}
+          name="images"
+          maxFiles={5}
+          existingImages={existingImages}
+          disabled={isLoading}
         />
       </div>
 

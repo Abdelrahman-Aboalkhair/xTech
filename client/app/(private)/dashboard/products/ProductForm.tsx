@@ -12,6 +12,7 @@ interface ProductFormProps {
   isLoading?: boolean;
   error?: any;
   submitLabel?: string;
+  existingImages?: string[];
 }
 
 const ProductForm: React.FC<ProductFormProps> = ({
@@ -21,6 +22,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
   isLoading,
   error,
   submitLabel = "Save",
+  existingImages = [],
 }) => {
   const {
     control,
@@ -267,12 +269,15 @@ const ProductForm: React.FC<ProductFormProps> = ({
 
       <div className="md:col-span-2">
         <ImageUploader
-          label="Product Images"
+          label="Category Images"
           control={control}
           errors={errors}
           setValue={setValue}
           watch={watch}
-          existingImages={watch("images")}
+          name="images"
+          maxFiles={5}
+          existingImages={existingImages}
+          disabled={isLoading}
         />
       </div>
 
@@ -290,11 +295,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
         <button
           type="submit"
           disabled={isLoading}
-          className={`px-6 py-3 text-white rounded-lg shadow-md font-medium flex items-center justify-center min-w-24 ${
-            isLoading
-              ? "bg-blue-400 cursor-not-allowed"
-              : "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
-          } transition-all duration-200`}
+          className={`px-6 py-3 text-white rounded-lg shadow-md font-medium flex items-center justify-center min-w-24 ${isLoading
+            ? "bg-blue-400 cursor-not-allowed"
+            : "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+            } transition-all duration-200`}
         >
           {isLoading ? "Saving..." : submitLabel}
         </button>

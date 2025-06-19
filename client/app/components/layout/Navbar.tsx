@@ -77,8 +77,8 @@ const Navbar = () => {
                     <Image
                       src={user.avatar}
                       alt="User Profile"
-                      width={40}
-                      height={40}
+                      width={30}
+                      height={30}
                       className="rounded-full object-cover"
                       onError={(e) => {
                         e.currentTarget.style.display = "none";

@@ -59,7 +59,7 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
           show: true,
         },
         {
-          href: "/me",
+          href: "/profile",
           label: "Profile",
           icon: <User size={18} className="text-blue-500" />,
           show: true,

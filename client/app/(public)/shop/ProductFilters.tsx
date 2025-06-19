@@ -96,11 +96,10 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 
   return (
     <aside
-      className={`bg-white rounded-xl shadow-sm border border-gray-100 p-5 ${
-        isMobile
+      className={`bg-white rounded-xl shadow-sm border border-gray-100 p-5 ${isMobile
           ? "fixed inset-0 z-50 overflow-y-auto"
           : "sticky top-24 h-fit max-h-[calc(100vh-120px)] overflow-y-auto"
-      }`}
+        }`}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Header */}
@@ -232,7 +231,6 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
                 name="isNew"
                 control={control}
                 label="New"
-                icon={<Tag size={12} />}
               />
               <CheckBox name="isFeatured" control={control} label="Featured" />
               <CheckBox name="isTrending" control={control} label="Trending" />
@@ -240,7 +238,6 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
                 name="isBestSeller"
                 control={control}
                 label="Best Seller"
-                icon={<Percent size={12} />}
               />
             </div>
           </div>

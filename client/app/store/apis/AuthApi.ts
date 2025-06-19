@@ -133,8 +133,9 @@ export const authApi = apiSlice.injectEndpoints({
           dispatch(setAccessToken(data.accessToken));
           dispatch(setUser(data.user));
         } catch (error) {
-          console.error("error checking auth =>", error);
           dispatch(clearAuthState());
+          // Return a resolved promise to prevent the error from propagating
+          return Promise.resolve();
         }
       },
     }),

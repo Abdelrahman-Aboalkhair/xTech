@@ -2482,3 +2482,64 @@ Invalid `prisma.product.create()` invocation in
 Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-06-16T13:26:28.326Z] [31MERROR[39M: User not found
 [2025-06-16T23:07:26.003Z] [31MERROR[39M: Attribute not found
+[2025-06-17T15:55:42.798Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-06-17T15:55:42.860Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-06-17T15:55:43.817Z] [31MERROR[39M: Unauthorized, please log in
+[2025-06-17T15:55:43.838Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-06-17T18:59:48.081Z] [31MERROR[39M: No orders found for this user
+[2025-06-18T00:52:53.419Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/product/product.repository.ts:185:33
+
+  182 }
+  183 
+  184 async deleteProduct(id: string) {
+→ 185   return prisma.product.delete(
+Foreign key constraint violated on the constraint: `StockMovement_productId_fkey`
+[2025-06-18T00:53:34.485Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/product/product.repository.ts:185:33
+
+  182 }
+  183 
+  184 async deleteProduct(id: string) {
+→ 185   return prisma.product.delete(
+Foreign key constraint violated on the constraint: `StockMovement_productId_fkey`
+[2025-06-18T00:57:43.176Z] [31MERROR[39M: User no longer exists.
+[2025-06-18T00:57:43.206Z] [31MERROR[39M: User not found
+[2025-06-18T00:57:44.852Z] [31MERROR[39M: Unauthorized, please log in
+[2025-06-18T00:57:44.876Z] [31MERROR[39M: User not found
+[2025-06-18T00:57:50.888Z] [31MERROR[39M: User not found
+[2025-06-18T00:58:20.388Z] [31MERROR[39M: User not found
+[2025-06-18T00:59:06.589Z] [31MERROR[39M: User not found
+[2025-06-18T00:59:29.387Z] [31MERROR[39M: User not found
+[2025-06-18T00:59:32.238Z] [31MERROR[39M: User not found
+[2025-06-18T01:27:10.003Z] [31MERROR[39M: Unauthorized, please log in
+[2025-06-19T00:39:56.941Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/auth/auth.repository.ts:27:24
+
+  24 }
+  25 
+  26 async findUserById(id: string) {
+→ 27   return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.
+[2025-06-19T00:40:37.699Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/auth/auth.repository.ts:27:24
+
+  24 }
+  25 
+  26 async findUserById(id: string) {
+→ 27   return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.
+[2025-06-19T00:40:37.703Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.cart.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/cart/cart.repository.ts:13:24
+
+  10 }
+  11 
+  12 async getCartBySessionId(sessionId: string) {
+→ 13   return prisma.cart.findUnique(
+The table `public.Cart` does not exist in the current database.
+[2025-06-19T01:09:05.595Z] [31MERROR[39M: Invalid access token, please log in
