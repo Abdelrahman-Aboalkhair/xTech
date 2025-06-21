@@ -24,19 +24,6 @@ export default function DashboardLayout({
           <div className="flex items-center gap-6">
             <DashboardSearchBar />
             <div className="flex items-center gap-2">
-              {/* {user?.avatar?.trim() ? (
-                <Image
-                  src={user.avatar}
-                  alt="Profile"
-                  width={36}
-                  height={36}
-                  className="rounded-full object-cover"
-                />
-              ) : (
-                <div className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100">
-                  <User className="w-5 h-5 text-gray-500" />
-                </div>
-              )} */}
               <div className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100">
                 <User className="w-5 h-5 text-gray-500" />
               </div>

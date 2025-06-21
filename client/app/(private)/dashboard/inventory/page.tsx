@@ -1,12 +1,12 @@
 'use client';
-import { useState } from 'react';
-import { useQuery, useMutation, gql } from '@apollo/client';
+import { useState, useMemo } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
 import {
   GET_INVENTORY_SUMMARY,
-  GET_STOCK_MOVEMENTS,
   GET_RESTOCKS,
   RESTOCK_PRODUCT,
   GET_ALL_PRODUCTS,
+  GET_PRODUCT_ATTRIBUTES,
 } from '@/app/gql/Product';
 import Table from '@/app/components/layout/Table';
 import { Plus, Download } from 'lucide-react';
@@ -14,58 +14,23 @@ import useToast from '@/app/hooks/ui/useToast';
 import { exportToCSV } from '@/app/utils/export';
 import Modal from '@/app/components/organisms/Modal';
 
-const GET_PRODUCT_ATTRIBUTES = gql`
-  query GetProductAttributes($productId: String!) {
-    getProductAttributes(productId: $productId) {
-      id
-      attributeId
-      valueId
-      stock
-      attribute {
-        id
-        name
-        type
-        values {
-          id
-          value
-        }
-      }
-      value {
-        id
-        value
-      }
-    }
-  }
-`;
-
 const InventoryDashboard = () => {
   const { showToast } = useToast();
   const [isRestockModalOpen, setIsRestockModalOpen] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
+  const [selectedAttributes, setSelectedAttributes] = useState<{ attributeId: string; valueId: string }[]>([]);
   const [formData, setFormData] = useState({
     productId: '',
     quantity: 0,
     notes: '',
-    attributes: [] as { attributeId: string; valueIds: string[] }[],
+    attributes: [] as { attributeId: string; valueIds: string[]; quantity: number }[],
   });
 
   // Fetch inventory summary
   const { data: inventoryData, loading: inventoryLoading, error: inventoryError } = useQuery(GET_INVENTORY_SUMMARY, {
-    variables: { params: { first: 10, skip: 0, filter: { lowStockOnly: false, productName: null } } },
+    variables: { params: { first: 100, skip: 0, filter: { lowStockOnly: false, productName: null } } },
   });
-
-  // Fetch stock movements
-  const { data: stockMovementsData, loading: movementsLoading, error: movementsError } = useQuery(GET_STOCK_MOVEMENTS, {
-    variables: {
-      params: {
-        first: 10,
-        skip: 0,
-        productId: null,
-        startDate: null,
-        endDate: null,
-      },
-    },
-  });
+  console.log('inventoryData => ', inventoryData);
 
   // Fetch restocks
   const { data: restocksData, loading: restocksLoading, error: restocksError } = useQuery(GET_RESTOCKS, {
@@ -74,11 +39,12 @@ const InventoryDashboard = () => {
         first: 10,
         skip: 0,
         productId: null,
-        startDate: null,
-        endDate: null,
+        startDate: "2024-01-01T00:00:00.000Z",
+        endDate: "2025-12-31T23:59:59.999Z",
       },
     },
   });
+  console.log('restocksData => ', restocksData);
 
   // Fetch products for restock modal dropdown
   const { data: productsData } = useQuery(GET_ALL_PRODUCTS, {
@@ -90,18 +56,58 @@ const InventoryDashboard = () => {
     variables: { productId: selectedProductId || '' },
     skip: !selectedProductId,
   });
+  console.log('productAttributesData => ', productAttributesData);
 
   // Restock mutation
   const [restockProduct, { loading: isRestocking }] = useMutation(RESTOCK_PRODUCT, {
-    refetchQueries: [{ query: GET_INVENTORY_SUMMARY }, { query: GET_STOCK_MOVEMENTS }, { query: GET_RESTOCKS }],
+    refetchQueries: [{ query: GET_INVENTORY_SUMMARY }, { query: GET_RESTOCKS }],
     onError: (error) => showToast(`Failed to restock product: ${error.message}`, 'error'),
     onCompleted: () => {
       showToast('Product restocked successfully', 'success');
       setIsRestockModalOpen(false);
       setFormData({ productId: '', quantity: 0, notes: '', attributes: [] });
       setSelectedProductId(null);
+      setSelectedAttributes([]);
     },
   });
+
+  // Transform inventory data to show attribute-specific rows
+  const attributeInventoryData = useMemo(() => {
+    if (!inventoryData?.inventorySummary) return [];
+    const result: any[] = [];
+    inventoryData.inventorySummary.forEach((item: any) => {
+      if (item.product?.attributes?.length) {
+        const attributeCombinations = item.product.attributes.reduce(
+          (acc: any[], attr: any) => {
+            const values = attr.valueId ? [attr.valueId] : attr.valueIds || [];
+            if (!acc.length) {
+              return values.map((valueId: string) => [{ attributeId: attr.attributeId, valueId }]);
+            }
+            return acc.flatMap((combo: any[]) =>
+              values.map((valueId: string) => [...combo, { attributeId: attr.attributeId, valueId }])
+            );
+          },
+          []
+        );
+        attributeCombinations.forEach((combo: any[]) => {
+          const stock = item.product.attributes
+            .filter((attr: any) =>
+              combo.some((c: any) => c.attributeId === attr.attributeId && (attr.valueId === c.valueId || attr.valueIds?.includes(c.valueId)))
+            )
+            .reduce((sum: number, attr: any) => sum + (attr.stock || 0), 0);
+          result.push({
+            product: item.product,
+            stock,
+            lowStock: stock < item.product.lowStockThreshold,
+            attributeCombo: combo,
+          });
+        });
+      } else {
+        result.push(item);
+      }
+    });
+    return result;
+  }, [inventoryData]);
 
   // Inventory summary table columns
   const inventoryColumns = [
@@ -113,25 +119,17 @@ const InventoryDashboard = () => {
       render: (row: any) => row.product?.name || '-',
     },
     {
-      key: 'product.attributes',
+      key: 'attributes',
       label: 'Attributes',
       sortable: false,
       width: '25%',
       render: (row: any) => {
-        if (!row.product?.attributes) return '-';
-        return row.product.attributes
-          .map((attr: any) => {
-            const values = attr.valueIds
-              ? attr.valueIds
-                .map((id: string) =>
-                  attr.attribute.values.find((v: any) => v.id === id)?.value
-                )
-                .filter(Boolean)
-                .join(', ')
-              : attr.valueId
-                ? attr.attribute.values.find((v: any) => v.id === attr.valueId)?.value
-                : attr.customValue || '-';
-            return `${attr.attribute.name}: ${values}`;
+        if (!row.attributeCombo) return '-';
+        return row.attributeCombo
+          .map((combo: any) => {
+            const attr = row.product.attributes.find((a: any) => a.attributeId === combo.attributeId);
+            const value = attr?.attribute.values.find((v: any) => v.id === combo.valueId)?.value || '-';
+            return `${attr?.attribute.name}: ${value}`;
           })
           .join('; ');
       },
@@ -149,7 +147,9 @@ const InventoryDashboard = () => {
       sortable: true,
       width: '15%',
       render: (row: any) => (
-        <span className={row.lowStock ? 'bg-red-100 text-red-800 font-medium px-2 py-1 rounded-lg' : 'bg-green-100 text-green-800 font-medium px-2 py-1 rounded-lg'}>
+        <span
+          className={row.lowStock ? 'bg-red-100 text-red-800 font-medium px-2 py-1 rounded-lg' : 'bg-green-100 text-green-800 font-medium px-2 py-1 rounded-lg'}
+        >
           {row.lowStock ? 'Yes' : 'No'}
         </span>
       ),
@@ -162,7 +162,15 @@ const InventoryDashboard = () => {
         <button
           onClick={() => {
             setSelectedProductId(row.product.id);
-            setFormData({ ...formData, productId: row.product.id });
+            setSelectedAttributes(row.attributeCombo || []);
+            setFormData({
+              productId: row.product.id,
+              quantity: 0,
+              notes: '',
+              attributes: row.attributeCombo
+                ? [{ attributeId: row.attributeCombo[0].attributeId, valueIds: [row.attributeCombo[0].valueId], quantity: 0 }]
+                : [],
+            });
             setIsRestockModalOpen(true);
           }}
           className="text-indigo-600 hover:text-indigo-800"
@@ -173,77 +181,70 @@ const InventoryDashboard = () => {
     },
   ];
 
-  // Stock movements table columns
-  const movementColumns = [
-    {
-      key: 'product.name',
-      label: 'Product',
-      sortable: true,
-      width: '30%',
-      render: (row: any) => row.product?.name || '-',
-    },
-    {
-      key: 'quantity',
-      label: 'Quantity',
-      sortable: true,
-      width: '20%',
-      render: (row: any) => row.quantity ?? '-',
-    },
-    {
-      key: 'reason',
-      label: 'Reason',
-      sortable: true,
-      width: '30%',
-      render: (row: any) => row.reason || '-',
-    },
-    {
-      key: 'createdAt',
-      label: 'Date',
-      sortable: true,
-      width: '20%',
-      render: (row: any) => (row.createdAt ? new Date(row.createdAt).toLocaleString() : '-'),
-    },
-  ];
-
   // Restocks table columns
   const restockColumns = [
     {
       key: 'product.name',
       label: 'Product',
       sortable: true,
-      width: '30%',
+      width: '25%',
       render: (row: any) => row.product?.name || '-',
+    },
+    {
+      key: 'attributes',
+      label: 'Attributes',
+      sortable: false,
+      width: '25%',
+      render: (row: any) =>
+        row.attributes
+          ?.map((attr: any) => {
+            const values =
+              attr.valueIds
+                ?.map((id: string) =>
+                  attr.values?.find((v: any) => v.id === id)?.value ||
+                  attr.attribute?.values?.find((v: any) => v.id === id)?.value
+                )
+                .filter(Boolean)
+                .join(', ') ||
+              (attr.valueId
+                ? attr.values?.find((v: any) => v.id === attr.valueId)?.value ||
+                attr.attribute?.values?.find((v: any) => v.id === attr.valueId)?.value ||
+                attr.valueId
+                : '-');
+            return `${attr.attribute?.name || 'Unknown'}: ${values}`;
+          })
+          .join('; ') || '-',
     },
     {
       key: 'quantity',
       label: 'Quantity',
       sortable: true,
-      width: '20%',
+      width: '15%',
       render: (row: any) => row.quantity ?? '-',
     },
     {
       key: 'notes',
       label: 'Notes',
       sortable: true,
-      width: '30%',
+      width: '20%',
       render: (row: any) => row.notes || '-',
     },
     {
       key: 'createdAt',
       label: 'Date',
       sortable: true,
-      width: '20%',
+      width: '15%',
       render: (row: any) => (row.createdAt ? new Date(row.createdAt).toLocaleString() : '-'),
     },
   ];
 
   // Handle attribute selection
-  const handleAttributeChange = (attributeId: string, valueIds: string[]) => {
-    setFormData(prev => {
-      const existingAttrs = prev.attributes.filter(attr => attr.attributeId !== attributeId);
+  const handleAttributeChange = (attributeId: string, valueIds: string[], quantity: number) => {
+    setFormData((prev) => {
+      const existingAttrs = prev.attributes.filter((attr) => attr.attributeId !== attributeId);
       return {
         ...prev,
-        attributes: [...existingAttrs, { attributeId, valueIds }],
+        attributes: [...existingAttrs, { attributeId, valueIds, quantity }],
       };
     });
   };
@@ -251,21 +252,29 @@ const InventoryDashboard = () => {
   // Handle restock form submission
   const handleRestock = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.quantity <= 0 || !formData.productId) {
-      showToast('Please select a product and enter a valid quantity', 'error');
+    if (!formData.productId) {
+      showToast('Please select a product', 'error');
       return;
     }
     if (!formData.attributes.length) {
-      showToast('Please select at least one attribute value to restock', 'error');
+      showToast('Please select at least one attribute combination', 'error');
       return;
     }
+    if (formData.attributes.some((attr) => attr.quantity <= 0)) {
+      showToast('Please enter a valid quantity for each attribute combination', 'error');
+      return;
+    }
+    const attributesInput = formData.attributes.map(({ attributeId, valueIds }) => ({
+      attributeId,
+      valueIds,
+    }));
     await restockProduct({
       variables: {
         input: {
           productId: formData.productId,
-          quantity: formData.quantity,
+          quantity: formData.attributes.reduce((sum, attr) => sum + attr.quantity, 0),
           notes: formData.notes || null,
-          attributes: formData.attributes,
+          attributes: attributesInput,
         },
       },
     });
@@ -275,23 +284,13 @@ const InventoryDashboard = () => {
   const handleExport = (data: any[]) => {
     const exportData = data.map((item) => ({
       Product: item.product?.name || '-',
-      Attributes: item.product?.attributes
-        ? item.product.attributes
-          .map((attr: any) => {
-            const values = attr.valueIds
-              ? attr.valueIds
-                .map((id: string) =>
-                  attr.attribute.values.find((v: any) => v.id === id)?.value
-                )
-                .filter(Boolean)
-                .join(', ')
-              : attr.valueId
-                ? attr.attribute.values.find((v: any) => v.id === attr.valueId)?.value
-                : attr.customValue || '-';
-            return `${attr.attribute.name}: ${values}`;
-          })
-          .join('; ')
-        : '-',
+      Attributes: item.attributeCombo
+        ?.map((combo: any) => {
+          const attr = item.product.attributes.find((a: any) => a.attributeId === combo.attributeId);
+          const value = attr?.attribute.values.find((v: any) => v.id === combo.valueId)?.value || '-';
+          return `${attr?.attribute.name}: ${value}`;
+        })
+        .join('; ') || '-',
       Stock: item.stock ?? '-',
       'Low Stock': item.lowStock ? 'Yes' : 'No',
     }));
@@ -300,9 +299,26 @@ const InventoryDashboard = () => {
   };
 
   // Handle errors
-  if (inventoryError || movementsError || restocksError) {
+  if (inventoryError || restocksError) {
     showToast('Failed to load data', 'error');
   }
+
+  // Unique attributes for modal
+  const uniqueAttributes = useMemo(() => {
+    if (!productAttributesData?.getProductAttributes) return [];
+    const attrMap = new Map();
+    productAttributesData.getProductAttributes.forEach((attr: any) => {
+      if (!attrMap.has(attr.attributeId)) {
+        attrMap.set(attr.attributeId, {
+          attributeId: attr.attributeId,
+          name: attr.attribute.name,
+          type: attr.attribute.type,
+          values: attr.attribute.values,
+        });
+      }
+    });
+    return Array.from(attrMap.values());
+  }, [productAttributesData]);
 
   return (
     <div className="p-6">
@@ -313,14 +329,19 @@ const InventoryDashboard = () => {
         </div>
         <div className="flex space-x-3">
           <button
-            onClick={() => setIsRestockModalOpen(true)}
+            onClick={() => {
+              setSelectedProductId(null);
+              setSelectedAttributes([]);
+              setFormData({ productId: '', quantity: 0, notes: '', attributes: [] });
+              setIsRestockModalOpen(true);
+            }}
             className="px-4 py-2 bg-indigo-600 text-white rounded-md flex items-center"
           >
             <Plus className="mr-2 h-4 w-4" />
             Restock Product
           </button>
           <button
-            onClick={() => handleExport(inventoryData?.inventorySummary || [])}
+            onClick={() => handleExport(attributeInventoryData)}
             className="px-4 py-2 bg-green-600 text-white rounded-md flex items-center"
           >
             <Download className="mr-2 h-4 w-4" />
@@ -332,7 +353,7 @@ const InventoryDashboard = () => {
       <div className="mb-6">
         <h2 className="text-lg font-medium mb-2">Inventory Summary</h2>
         <Table
-          data={inventoryData?.inventorySummary || []}
+          data={attributeInventoryData}
           columns={inventoryColumns}
           isLoading={inventoryLoading}
           emptyMessage="No inventory data available"
@@ -340,25 +361,9 @@ const InventoryDashboard = () => {
           showSearchBar={true}
           showPaginationDetails={true}
           totalPages={1} // Adjust based on backend pagination
-          totalResults={inventoryData?.inventorySummary?.length || 0}
+          totalResults={attributeInventoryData.length}
           currentPage={1}
           onExport={handleExport}
-        />
-      </div>
-
-      <div className="mb-6">
-        <h2 className="text-lg font-medium mb-2">Stock Movement History</h2>
-        <Table
-          data={stockMovementsData?.stockMovements || []}
-          columns={movementColumns}
-          isLoading={movementsLoading}
-          emptyMessage="No stock movements recorded"
-          title="Stock Movements"
-          showSearchBar={true}
-          showPaginationDetails={true}
-          totalPages={1} // Adjust based on backend pagination
-          totalResults={stockMovementsData?.stockMovements?.length || 0}
-          currentPage={1}
         />
       </div>
 
@@ -388,9 +393,9 @@ const InventoryDashboard = () => {
               onChange={(e) => {
                 setFormData({ ...formData, productId: e.target.value, attributes: [] });
                 setSelectedProductId(e.target.value);
+                setSelectedAttributes([]);
               }}
               className="w-full border rounded-md p-2 mt-1"
-              disabled={!!selectedProductId}
               required
             >
               <option value="">Select Product</option>
@@ -401,43 +406,45 @@ const InventoryDashboard = () => {
               ))}
             </select>
           </div>
-          {productAttributesData?.getProductAttributes?.length > 0 && (
+          {uniqueAttributes.length > 0 && (
             <div>
               <label className="block text-sm font-medium text-gray-700">Attributes</label>
-              {[...new Map(productAttributesData.getProductAttributes.map(attr => [attr.attributeId, attr])).values()].map((attr: any) => (
+              {uniqueAttributes.map((attr: any) => (
                 <div key={attr.attributeId} className="mt-2">
-                  <label className="block text-sm font-medium text-gray-600">{attr.attribute.name}</label>
+                  <label className="block text-sm font-medium text-gray-600">{attr.name}</label>
                   <select
-                    multiple={attr.attribute.type === 'multiselect'}
-                    onChange={(e) =>
-                      handleAttributeChange(
-                        attr.attributeId,
-                        Array.from(e.target.selectedOptions).map(opt => opt.value)
-                      )
-                    }
+                    multiple={attr.type === 'multiselect'}
+                    onChange={(e) => {
+                      const valueIds = Array.from(e.target.selectedOptions).map((opt) => opt.value);
+                      const quantity = formData.attributes.find((a) => a.attributeId === attr.attributeId)?.quantity || 0;
+                      handleAttributeChange(attr.attributeId, valueIds, quantity);
+                    }}
                     className="w-full border rounded-md p-2 mt-1"
+                    value={
+                      formData.attributes.find((a) => a.attributeId === attr.attributeId)?.valueIds || selectedAttributes.find((a) => a.attributeId === attr.attributeId)?.valueId || []
+                    }
                   >
-                    {attr.attribute.values.map((val: any) => (
+                    {attr.values.map((val: any) => (
                       <option key={val.id} value={val.id}>
-                        {val.value} (Stock: {productAttributesData.getProductAttributes.find((pa: any) => pa.valueId === val.id)?.stock || 0})
+                        {val.value} (Stock: {productAttributesData?.getProductAttributes.find((pa: any) => pa.valueId === val.id)?.stock || 0})
                       </option>
                     ))}
                   </select>
+                  <input
+                    type="number"
+                    placeholder="Quantity"
+                    value={formData.attributes.find((a) => a.attributeId === attr.attributeId)?.quantity || 0}
+                    onChange={(e) => {
+                      const valueIds = formData.attributes.find((a) => a.attributeId === attr.attributeId)?.valueIds || [];
+                      handleAttributeChange(attr.attributeId, valueIds, Number(e.target.value));
+                    }}
+                    className="w-full border rounded-md p-2 mt-1"
+                    min="0"
+                  />
                 </div>
               ))}
             </div>
           )}
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Quantity</label>
-            <input
-              type="number"
-              value={formData.quantity}
-              onChange={(e) => setFormData({ ...formData, quantity: Number(e.target.value) })}
-              className="w-full border rounded-md p-2 mt-1"
-              min="1"
-              required
-            />
-          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Notes (Optional)</label>
             <textarea

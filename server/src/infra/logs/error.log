@@ -2607,3 +2607,4 @@ Invalid `prisma.product.delete()` invocation in
   190 async deleteProduct(id: string) {
 → 191   return prisma.product.delete(
 Foreign key constraint violated on the constraint: `ProductAttribute_productId_fkey`
+[2025-06-21T04:32:50.811Z] [31MERROR[39M: User not found

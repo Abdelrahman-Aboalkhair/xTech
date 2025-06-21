@@ -289,20 +289,17 @@ export const productResolvers = {
       return context.prisma.productAttribute.findMany({
         where: { productId },
         include: {
-          attribute: true,
+          attribute: { include: { values: true } },
           value: true,
         },
       });
     },
     restocks: async (
       _: any,
-      {
-        productId,
-        startDate,
-        endDate,
-      }: { productId?: string; startDate?: Date; endDate?: Date },
+      { params }: { params: { first: number; skip: number; productId?: string; startDate?: Date; endDate?: Date } },
       context: Context
     ) => {
+      const { first, skip, productId, startDate, endDate } = params;
       const where: any = {};
       if (productId) where.productId = productId;
       if (startDate || endDate) {
@@ -312,30 +309,48 @@ export const productResolvers = {
       }
       return context.prisma.restock.findMany({
         where,
+        take: first,
+        skip,
         include: { product: true },
+        orderBy: { createdAt: 'desc' },
       });
     },
     inventorySummary: async (
       _: any,
-      { first = 10, skip = 0, filter = {} }:
-        {
-          first?: number; skip?: number; filter?:
-          { lowStockOnly?: boolean; productName?: string, attributeFilters?: { attributeId: string, valueId: string, valueIds: string[] }[] }
-        },
+      { params }: {
+        params: {
+          first?: number;
+          skip?: number;
+          filter?: {
+            lowStockOnly?: boolean;
+            productName?: string;
+            attributeFilters?: { attributeId: string; valueId?: string; valueIds?: string[] }[];
+          };
+        }
+      },
       context: Context
     ) => {
+      const { first = 10, skip = 0, filter = {} } = params;
       const where: any = {};
       if (filter.productName) {
-        where.name = { contains: filter.productName, mode: "insensitive" };
+        where.name = { contains: filter.productName, mode: 'insensitive' };
       }
 
       if (filter?.attributeFilters?.length) {
-        where.attributes = {
+        where.ProductAttribute = {
           some: {
             OR: filter.attributeFilters.map(attr => ({
               attributeId: attr.attributeId,
               valueId: attr.valueIds?.length ? { in: attr.valueIds } : attr.valueId,
             })),
+          },
+        };
+      }
+
+      if (filter.lowStockOnly) {
+        where.ProductAttribute = {
+          some: {
+            stock: { lt: context.prisma.product.fields.lowStockThreshold },
           },
         };
       }
@@ -347,7 +362,7 @@ export const productResolvers = {
         include: {
           ProductAttribute: {
             include: {
-              attribute: true,
+              attribute: { include: { values: true } },
               value: true,
             },
           },
@@ -357,7 +372,7 @@ export const productResolvers = {
       return products.map(product => ({
         product,
         stock: product.ProductAttribute.reduce((sum, attr) => sum + (attr.stock || 0), 0),
-        lowStock: product.ProductAttribute.some(attr => (attr.stock || 0) < 10), // Adjust threshold as needed
+        lowStock: product.ProductAttribute.some(attr => (attr.stock || 0) < product.lowStockThreshold),
       }));
     },
     stockMovementsByProduct: async (
@@ -383,12 +398,18 @@ export const productResolvers = {
   },
 
   Mutation: {
-    restockProduct: async (_: any, { input }: {
-      input: {
-        productId: string; quantity: number; notes?:
-        string; attributes?: { attributeId: string; valueId?: string; valueIds?: string[] }[]
-      }
-    }, context: Context) => {
+    restockProduct: async (
+      _: any,
+      { input }: {
+        input: {
+          productId: string;
+          quantity: number;
+          notes?: string;
+          attributes?: { attributeId: string; valueId?: string; valueIds?: string[] }[];
+        };
+      },
+      context: Context
+    ) => {
       const { productId, quantity, notes, attributes } = input;
 
       if (quantity <= 0) {
@@ -445,7 +466,7 @@ export const productResolvers = {
           )
         );
       } else {
-        // Update total product stock (optional)
+        // Update total product stock
         await context.prisma.product.update({
           where: { id: productId },
           data: { stock: { increment: quantity } },

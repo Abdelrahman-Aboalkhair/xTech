@@ -142,7 +142,7 @@ export const configureChatRoutes = (io: SocketIOServer) => {
    *     responses:
    *       200:
    *         description: Chat status updated successfully.
-   *        404:
+   *       404:
    *         description: Chat not found.
    */
   router.patch("/:chatId/status", protect, chatController.updateChatStatus);

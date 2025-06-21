@@ -64,7 +64,7 @@ const typeDefs = gql`
     id: ID!
     name: String!
     type: String!
-    values: [AttributeValue!]!
+    values: [AttributeValue!] # Nullable to allow empty arrays
   }
 
   type AttributeValue {

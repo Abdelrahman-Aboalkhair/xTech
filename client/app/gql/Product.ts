@@ -171,120 +171,34 @@ export const GET_CATEGORIES = gql`
   }
 `;
 
-export const GET_ALL_ATTRIBUTES = gql`
-  query GetAllAttributes($first: Int, $skip: Int) {
-    attributes(first: $first, skip: $skip) {
-      id
-      name
-      slug
-      type
-      values {
-        id
-        value
-        slug
-      }
-    }
-  }
-`;
 
-export const GET_ATTRIBUTE = gql`
-  query GetAttribute($id: ID!) {
-    attribute(id: $id) {
-      id
-      name
-      slug
-      type
-      values {
-        id
-        value
-        slug
-      }
-    }
-  }
-`;
-
-export const CREATE_ATTRIBUTE = gql`
-  mutation CreateAttribute($name: String!, $type: String!) {
-    createAttribute(name: $name, type: $type) {
-      id
-      name
-      slug
-      type
-    }
-  }
-`;
-
-export const CREATE_ATTRIBUTE_VALUE = gql`
-  mutation CreateAttributeValue($attributeId: ID!, $value: String!) {
-    createAttributeValue(attributeId: $attributeId, value: $value) {
-      id
-      value
-      slug
-    }
-  }
-`;
-
-export const ASSIGN_ATTRIBUTE_TO_CATEGORY = gql`
-  mutation AssignAttributeToCategory(
-    $attributeId: ID!
-    $categoryId: ID!
-    $isRequired: Boolean!
-  ) {
-    assignAttributeToCategory(
-      attributeId: $attributeId
-      categoryId: $categoryId
-      isRequired: $isRequired
-    ) {
-      id
-      attribute {
-        id
-        name
-      }
-      isRequired
-    }
-  }
-`;
-
-export const ASSIGN_ATTRIBUTE_TO_PRODUCT = gql`
-  mutation AssignAttributeToProduct(
-    $attributeId: ID!
-    $productId: ID!
-    $valueId: ID
-    $customValue: String
-  ) {
-    assignAttributeToProduct(
-      attributeId: $attributeId
-      productId: $productId
-      valueId: $valueId
-      customValue: $customValue
-    ) {
-      id
-      attribute {
-        id
-        name
-      }
-      value {
-        id
-        value
-      }
-      customValue
-    }
-  }
-`;
-
-export const DELETE_ATTRIBUTE = gql`
-  mutation DeleteAttribute($id: ID!) {
-    deleteAttribute(id: $id)
-  }
-`;
 
 export const GET_INVENTORY_SUMMARY = gql`
-  query GetInventorySummary($first: Int, $skip: Int, $filter: InventoryFilterInput) {
-    inventorySummary(first: $first, skip: $skip, filter: $filter) {
+  query GetInventorySummary($params: InventorySummaryParamsInput!) {
+    inventorySummary(params: $params) {
       product {
         id
         name
         stock
+        attributes {
+          id
+          attributeId
+          valueId
+          stock
+          attribute {
+            id
+            name
+            type
+            values {
+              id
+              value
+            }
+          }
+          value {
+            id
+            value
+          }
+        }
       }
       stock
       lowStock
@@ -318,20 +232,38 @@ export const GET_STOCK_MOVEMENTS = gql`
 
 
 export const GET_RESTOCKS = gql`
-query getRestocks($productId: ID, $startDate: DateTime, $endDate: DateTime) {
-  restocks(productId: $productId, startDate: $startDate, endDate: $endDate) {
-    id
-    product {
+  query GetRestocks($params: RestockParamsInput!) {
+    restocks(params: $params) {
       id
-      name
+      product {
+        id
+        name
+      }
+      quantity
+      notes
+      userId
+      createdAt
+      attributes {
+        attributeId
+        valueId
+        valueIds
+        attribute {
+          id
+          name
+          type
+          values {
+            id
+            value
+          }
+        }
+        values {
+          id
+          value
+        }
+      }
     }
-    quantity
-    notes
-    userId
-    createdAt
   }
-}
-`
+`;
 
 export const RESTOCK_PRODUCT = gql`
   mutation RestockProduct($productId: ID!, $quantity: Int!, $notes: String) {
@@ -356,6 +288,30 @@ export const SET_LOW_STOCK_THRESHOLD = gql`
       name
       stock
       lowStockThreshold
+    }
+  }
+`;
+
+export const GET_PRODUCT_ATTRIBUTES = gql`
+  query GetProductAttributes($productId: String!) {
+    getProductAttributes(productId: $productId) {
+      id
+      attributeId
+      valueId
+      stock
+      attribute {
+        id
+        name
+        type
+        values {
+          id
+          value
+        }
+      }
+      value {
+        id
+        value
+      }
     }
   }
 `;
