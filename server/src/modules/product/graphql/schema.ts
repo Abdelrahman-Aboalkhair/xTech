@@ -46,11 +46,6 @@ const typeDefs = gql`
     lowStock: Boolean!
   }
 
-  input InventoryFilterInput {
-  lowStockOnly: Boolean
-  productName: String
-}
-
   type Review {
     id: String!
     rating: Float!
@@ -68,28 +63,23 @@ const typeDefs = gql`
   type Attribute {
     id: ID!
     name: String!
-    slug: String!
     type: String!
     values: [AttributeValue!]!
-    createdAt: DateTime!
-    updatedAt: DateTime!
   }
 
   type AttributeValue {
     id: ID!
     value: String!
-    slug: String!
-    createdAt: DateTime!
-    updatedAt: DateTime!
   }
 
   type ProductAttribute {
     id: ID!
+    attributeId: String!
+    valueId: String
+    customValue: String
+    stock: Int!
     attribute: Attribute!
     value: AttributeValue
-    customValue: String
-    createdAt: DateTime!
-    updatedAt: DateTime!
   }
 
   type CategoryAttribute {
@@ -98,6 +88,40 @@ const typeDefs = gql`
     isRequired: Boolean!
     createdAt: DateTime!
     updatedAt: DateTime!
+  }
+
+  input AttributeInput {
+    attributeId: String!
+    valueId: String
+    valueIds: [String!]
+    customValue: String
+  }
+
+  input RestockProductInput {
+    productId: String!
+    quantity: Int!
+    notes: String
+    attributes: [AttributeInput!]
+  }
+
+  input RestockParamsInput {
+    first: Int
+    skip: Int
+    productId: String
+    startDate: DateTime
+    endDate: DateTime
+  }
+
+  input InventorySummaryParamsInput {
+    first: Int
+    skip: Int
+    filter: InventoryFilterInput
+  }
+
+  input InventoryFilterInput {
+    lowStockOnly: Boolean
+    productName: String
+    attributeFilters: [AttributeInput!]
   }
 
   input AttributeFilterInput {
@@ -133,28 +157,25 @@ const typeDefs = gql`
     categories: [Category!]!
     attributes(first: Int, skip: Int): [Attribute!]!
     attribute(id: ID!): Attribute
+    getProductAttributes(productId: String!): [ProductAttribute!]!
     stockMovements(
       productId: ID
       startDate: DateTime
       endDate: DateTime
     ): [StockMovement!]!
-    restocks(productId: ID, startDate: DateTime, endDate: DateTime): [Restock!]!
-    inventorySummary(
-    first: Int
-    skip: Int
-    filter: InventoryFilterInput
-  ): [InventorySummary!]!
+    restocks(params: RestockParamsInput!): [Restock!]!
+    inventorySummary(params: InventorySummaryParamsInput!): [InventorySummary!]!
     stockMovementsByProduct(
-    productId: ID!
-    startDate: DateTime
-    endDate: DateTime
-    first: Int
-    skip: Int
-  ): [StockMovement!]!
+      productId: ID!
+      startDate: DateTime
+      endDate: DateTime
+      first: Int
+      skip: Int
+    ): [StockMovement!]!
   }
 
   type Mutation {
-    restockProduct(productId: ID!, quantity: Int!, notes: String): Restock!
+    restockProduct(input: RestockProductInput!): Restock!
     setLowStockThreshold(productId: ID!, threshold: Int!): Product!
   }
 `;

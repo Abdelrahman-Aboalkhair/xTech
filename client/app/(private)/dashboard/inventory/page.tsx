@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation, gql } from '@apollo/client';
 import {
   GET_INVENTORY_SUMMARY,
   GET_STOCK_MOVEMENTS,
@@ -14,6 +14,30 @@ import useToast from '@/app/hooks/ui/useToast';
 import { exportToCSV } from '@/app/utils/export';
 import Modal from '@/app/components/organisms/Modal';
 
+const GET_PRODUCT_ATTRIBUTES = gql`
+  query GetProductAttributes($productId: String!) {
+    getProductAttributes(productId: $productId) {
+      id
+      attributeId
+      valueId
+      stock
+      attribute {
+        id
+        name
+        type
+        values {
+          id
+          value
+        }
+      }
+      value {
+        id
+        value
+      }
+    }
+  }
+`;
+
 const InventoryDashboard = () => {
   const { showToast } = useToast();
   const [isRestockModalOpen, setIsRestockModalOpen] = useState(false);
@@ -22,13 +46,13 @@ const InventoryDashboard = () => {
     productId: '',
     quantity: 0,
     notes: '',
+    attributes: [] as { attributeId: string; valueIds: string[] }[],
   });
 
   // Fetch inventory summary
   const { data: inventoryData, loading: inventoryLoading, error: inventoryError } = useQuery(GET_INVENTORY_SUMMARY, {
     variables: { params: { first: 10, skip: 0, filter: { lowStockOnly: false, productName: null } } },
   });
-  console.log('inventoryData => ', inventoryData);
 
   // Fetch stock movements
   const { data: stockMovementsData, loading: movementsLoading, error: movementsError } = useQuery(GET_STOCK_MOVEMENTS, {
@@ -42,8 +66,6 @@ const InventoryDashboard = () => {
       },
     },
   });
-
-  console.log('stock movements => ', stockMovementsData);
 
   // Fetch restocks
   const { data: restocksData, loading: restocksLoading, error: restocksError } = useQuery(GET_RESTOCKS, {
@@ -63,6 +85,12 @@ const InventoryDashboard = () => {
     variables: { first: 100, skip: 0 },
   });
 
+  // Fetch attributes for selected product
+  const { data: productAttributesData } = useQuery(GET_PRODUCT_ATTRIBUTES, {
+    variables: { productId: selectedProductId || '' },
+    skip: !selectedProductId,
+  });
+
   // Restock mutation
   const [restockProduct, { loading: isRestocking }] = useMutation(RESTOCK_PRODUCT, {
     refetchQueries: [{ query: GET_INVENTORY_SUMMARY }, { query: GET_STOCK_MOVEMENTS }, { query: GET_RESTOCKS }],
@@ -70,7 +98,7 @@ const InventoryDashboard = () => {
     onCompleted: () => {
       showToast('Product restocked successfully', 'success');
       setIsRestockModalOpen(false);
-      setFormData({ productId: '', quantity: 0, notes: '' });
+      setFormData({ productId: '', quantity: 0, notes: '', attributes: [] });
       setSelectedProductId(null);
     },
   });
@@ -81,21 +109,45 @@ const InventoryDashboard = () => {
       key: 'product.name',
       label: 'Product',
       sortable: true,
-      width: '30%',
+      width: '25%',
       render: (row: any) => row.product?.name || '-',
+    },
+    {
+      key: 'product.attributes',
+      label: 'Attributes',
+      sortable: false,
+      width: '25%',
+      render: (row: any) => {
+        if (!row.product?.attributes) return '-';
+        return row.product.attributes
+          .map((attr: any) => {
+            const values = attr.valueIds
+              ? attr.valueIds
+                .map((id: string) =>
+                  attr.attribute.values.find((v: any) => v.id === id)?.value
+                )
+                .filter(Boolean)
+                .join(', ')
+              : attr.valueId
+                ? attr.attribute.values.find((v: any) => v.id === attr.valueId)?.value
+                : attr.customValue || '-';
+            return `${attr.attribute.name}: ${values}`;
+          })
+          .join('; ');
+      },
     },
     {
       key: 'stock',
       label: 'Stock',
       sortable: true,
-      width: '20%',
+      width: '15%',
       render: (row: any) => row.stock ?? '-',
     },
     {
       key: 'lowStock',
       label: 'Low Stock',
       sortable: true,
-      width: '20%',
+      width: '15%',
       render: (row: any) => (
         <span className={row.lowStock ? 'bg-red-100 text-red-800 font-medium px-2 py-1 rounded-lg' : 'bg-green-100 text-green-800 font-medium px-2 py-1 rounded-lg'}>
           {row.lowStock ? 'Yes' : 'No'}
@@ -105,7 +157,7 @@ const InventoryDashboard = () => {
     {
       key: 'actions',
       label: 'Actions',
-      width: '30%',
+      width: '20%',
       render: (row: any) => (
         <button
           onClick={() => {
@@ -185,6 +237,17 @@ const InventoryDashboard = () => {
     },
   ];
 
+  // Handle attribute selection
+  const handleAttributeChange = (attributeId: string, valueIds: string[]) => {
+    setFormData(prev => {
+      const existingAttrs = prev.attributes.filter(attr => attr.attributeId !== attributeId);
+      return {
+        ...prev,
+        attributes: [...existingAttrs, { attributeId, valueIds }],
+      };
+    });
+  };
+
   // Handle restock form submission
   const handleRestock = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -192,11 +255,18 @@ const InventoryDashboard = () => {
       showToast('Please select a product and enter a valid quantity', 'error');
       return;
     }
+    if (!formData.attributes.length) {
+      showToast('Please select at least one attribute value to restock', 'error');
+      return;
+    }
     await restockProduct({
       variables: {
-        productId: formData.productId,
-        quantity: formData.quantity,
-        notes: formData.notes || null,
+        input: {
+          productId: formData.productId,
+          quantity: formData.quantity,
+          notes: formData.notes || null,
+          attributes: formData.attributes,
+        },
       },
     });
   };
@@ -205,6 +275,23 @@ const InventoryDashboard = () => {
   const handleExport = (data: any[]) => {
     const exportData = data.map((item) => ({
       Product: item.product?.name || '-',
+      Attributes: item.product?.attributes
+        ? item.product.attributes
+          .map((attr: any) => {
+            const values = attr.valueIds
+              ? attr.valueIds
+                .map((id: string) =>
+                  attr.attribute.values.find((v: any) => v.id === id)?.value
+                )
+                .filter(Boolean)
+                .join(', ')
+              : attr.valueId
+                ? attr.attribute.values.find((v: any) => v.id === attr.valueId)?.value
+                : attr.customValue || '-';
+            return `${attr.attribute.name}: ${values}`;
+          })
+          .join('; ')
+        : '-',
       Stock: item.stock ?? '-',
       'Low Stock': item.lowStock ? 'Yes' : 'No',
     }));
@@ -259,6 +346,21 @@ const InventoryDashboard = () => {
         />
       </div>
 
+      <div className="mb-6">
+        <h2 className="text-lg font-medium mb-2">Stock Movement History</h2>
+        <Table
+          data={stockMovementsData?.stockMovements || []}
+          columns={movementColumns}
+          isLoading={movementsLoading}
+          emptyMessage="No stock movements recorded"
+          title="Stock Movements"
+          showSearchBar={true}
+          showPaginationDetails={true}
+          totalPages={1} // Adjust based on backend pagination
+          totalResults={stockMovementsData?.stockMovements?.length || 0}
+          currentPage={1}
+        />
+      </div>
 
       <div>
         <h2 className="text-lg font-medium mb-2">Restock History</h2>
@@ -283,7 +385,10 @@ const InventoryDashboard = () => {
             <label className="block text-sm font-medium text-gray-700">Product</label>
             <select
               value={formData.productId}
-              onChange={(e) => setFormData({ ...formData, productId: e.target.value })}
+              onChange={(e) => {
+                setFormData({ ...formData, productId: e.target.value, attributes: [] });
+                setSelectedProductId(e.target.value);
+              }}
               className="w-full border rounded-md p-2 mt-1"
               disabled={!!selectedProductId}
               required
@@ -296,6 +401,32 @@ const InventoryDashboard = () => {
               ))}
             </select>
           </div>
+          {productAttributesData?.getProductAttributes?.length > 0 && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Attributes</label>
+              {[...new Map(productAttributesData.getProductAttributes.map(attr => [attr.attributeId, attr])).values()].map((attr: any) => (
+                <div key={attr.attributeId} className="mt-2">
+                  <label className="block text-sm font-medium text-gray-600">{attr.attribute.name}</label>
+                  <select
+                    multiple={attr.attribute.type === 'multiselect'}
+                    onChange={(e) =>
+                      handleAttributeChange(
+                        attr.attributeId,
+                        Array.from(e.target.selectedOptions).map(opt => opt.value)
+                      )
+                    }
+                    className="w-full border rounded-md p-2 mt-1"
+                  >
+                    {attr.attribute.values.map((val: any) => (
+                      <option key={val.id} value={val.id}>
+                        {val.value} (Stock: {productAttributesData.getProductAttributes.find((pa: any) => pa.valueId === val.id)?.stock || 0})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ))}
+            </div>
+          )}
           <div>
             <label className="block text-sm font-medium text-gray-700">Quantity</label>
             <input

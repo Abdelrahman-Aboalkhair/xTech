@@ -83,7 +83,7 @@ model Product {
   discount          Float              @default(0)
   slug              String             @unique
   images            String[]
-  stock             Int
+  stock             Int // Total Stock for reference
   lowStockThreshold Int                @default(10)
   salesCount        Int                @default(0)
   sku               String?
@@ -141,11 +141,10 @@ model ProductAttribute {
   attributeId String
   valueId     String?
   customValue String?
-  product     Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
-  attribute   Attribute       @relation(fields: [attributeId], references: [id], onDelete: Cascade)
-  value       AttributeValue? @relation(fields: [valueId], references: [id], onDelete: SetNull)
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  stock       Int             @default(0) // Stock for this attribute value (4 for red-cotton shirt)
+  product     Product         @relation(fields: [productId], references: [id])
+  attribute   Attribute       @relation(fields: [attributeId], references: [id])
+  value       AttributeValue? @relation(fields: [valueId], references: [id])
 
   @@unique([productId, attributeId, valueId])
   @@index([productId])

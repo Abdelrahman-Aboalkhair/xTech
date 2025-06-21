@@ -1,3 +1,4 @@
+import AppError from "@/shared/errors/AppError";
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 
@@ -284,6 +285,15 @@ export const productResolvers = {
         include: { product: true },
       });
     },
+    getProductAttributes: async (_: any, { productId }: { productId: string }, context: Context) => {
+      return context.prisma.productAttribute.findMany({
+        where: { productId },
+        include: {
+          attribute: true,
+          value: true,
+        },
+      });
+    },
     restocks: async (
       _: any,
       {
@@ -307,23 +317,47 @@ export const productResolvers = {
     },
     inventorySummary: async (
       _: any,
-      { first = 10, skip = 0, filter = {} }: { first?: number; skip?: number; filter?: { lowStockOnly?: boolean; productName?: string } },
+      { first = 10, skip = 0, filter = {} }:
+        {
+          first?: number; skip?: number; filter?:
+          { lowStockOnly?: boolean; productName?: string, attributeFilters?: { attributeId: string, valueId: string, valueIds: string[] }[] }
+        },
       context: Context
     ) => {
       const where: any = {};
       if (filter.productName) {
         where.name = { contains: filter.productName, mode: "insensitive" };
       }
+
+      if (filter?.attributeFilters?.length) {
+        where.attributes = {
+          some: {
+            OR: filter.attributeFilters.map(attr => ({
+              attributeId: attr.attributeId,
+              valueId: attr.valueIds?.length ? { in: attr.valueIds } : attr.valueId,
+            })),
+          },
+        };
+      }
+
       const products = await context.prisma.product.findMany({
         where,
         take: first,
         skip,
-        select: { id: true, name: true, stock: true, lowStockThreshold: true },
+        include: {
+          ProductAttribute: {
+            include: {
+              attribute: true,
+              value: true,
+            },
+          },
+        },
       });
-      return products.map((product) => ({
+
+      return products.map(product => ({
         product,
-        stock: product.stock,
-        lowStock: product.stock < (product.lowStockThreshold || 10),
+        stock: product.ProductAttribute.reduce((sum, attr) => sum + (attr.stock || 0), 0),
+        lowStock: product.ProductAttribute.some(attr => (attr.stock || 0) < 10), // Adjust threshold as needed
       }));
     },
     stockMovementsByProduct: async (
@@ -349,40 +383,86 @@ export const productResolvers = {
   },
 
   Mutation: {
-    restockProduct: async (
-      _: any,
-      { productId, quantity, notes }: { productId: string; quantity: number; notes?: string },
-      context: Context
-    ) => {
-      if (quantity <= 0) throw new Error("Quantity must be positive");
+    restockProduct: async (_: any, { input }: {
+      input: {
+        productId: string; quantity: number; notes?:
+        string; attributes?: { attributeId: string; valueId?: string; valueIds?: string[] }[]
+      }
+    }, context: Context) => {
+      const { productId, quantity, notes, attributes } = input;
 
-      return context.prisma.$transaction(async (tx) => {
-        const restock = await tx.restock.create({
-          data: {
-            productId,
-            quantity,
-            notes,
-            userId: context.req.user?.id,
-          },
-          include: { product: true },
-        });
+      if (quantity <= 0) {
+        throw new AppError(400, 'Quantity must be positive');
+      }
 
-        await tx.product.update({
+      const product = await context.prisma.product.findUnique({
+        where: { id: productId },
+        include: { ProductAttribute: true },
+      });
+
+      if (!product) {
+        throw new AppError(404, 'Product not found');
+      }
+
+      let updatedAttributes;
+
+      if (attributes?.length) {
+        // Validate attributes
+        for (const attr of attributes) {
+          const valueIds = attr.valueIds || (attr.valueId ? [attr.valueId] : []);
+          if (!valueIds.length) {
+            throw new AppError(400, `No value provided for attribute ${attr.attributeId}`);
+          }
+          const existingAttrs = await context.prisma.productAttribute.findMany({
+            where: {
+              productId,
+              attributeId: attr.attributeId,
+              valueId: { in: valueIds },
+            },
+          });
+          if (existingAttrs.length !== valueIds.length) {
+            throw new AppError(400, `Invalid attribute values for ${attr.attributeId}`);
+          }
+        }
+
+        // Update stock for specified attributes
+        updatedAttributes = await context.prisma.$transaction(
+          attributes.flatMap(attr =>
+            (attr.valueIds || (attr.valueId ? [attr.valueId] : [])).map(valueId =>
+              context.prisma.productAttribute.update({
+                where: {
+                  productId_attributeId_valueId: {
+                    productId,
+                    attributeId: attr.attributeId,
+                    valueId,
+                  },
+                },
+                data: {
+                  stock: { increment: quantity },
+                },
+              })
+            )
+          )
+        );
+      } else {
+        // Update total product stock (optional)
+        await context.prisma.product.update({
           where: { id: productId },
           data: { stock: { increment: quantity } },
         });
+      }
 
-        await tx.stockMovement.create({
-          data: {
-            productId,
-            quantity,
-            reason: "restock",
-            userId: context.req.user?.id,
-          },
-        });
-
-        return restock;
+      // Create restock record
+      const restock = await context.prisma.restock.create({
+        data: {
+          productId,
+          quantity,
+          notes,
+        },
+        include: { product: true },
       });
+
+      return restock;
     },
     setLowStockThreshold: async (
       _: any,
