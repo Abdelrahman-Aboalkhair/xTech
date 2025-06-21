@@ -38,6 +38,16 @@ const typeDefs = gql`
     notes: String
     userId: String
     createdAt: DateTime!
+    attributes: [RestockAttribute!]! # Added to store attribute details
+  }
+
+  type RestockAttribute {
+    id: ID!
+    attributeId: String!
+    valueId: String
+    valueIds: [String!]
+    attribute: Attribute!
+    values: [AttributeValue!]
   }
 
   type InventorySummary {

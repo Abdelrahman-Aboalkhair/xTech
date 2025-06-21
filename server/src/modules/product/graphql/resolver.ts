@@ -311,7 +311,17 @@ export const productResolvers = {
         where,
         take: first,
         skip,
-        include: { product: true },
+        include: {
+          product: true,
+          attributes: {
+            include: {
+              attribute: {
+                include: { values: true },
+              },
+              value: true,
+            },
+          },
+        },
         orderBy: { createdAt: 'desc' },
       });
     },

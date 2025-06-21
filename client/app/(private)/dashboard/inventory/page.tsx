@@ -118,22 +118,22 @@ const InventoryDashboard = () => {
       width: '25%',
       render: (row: any) => row.product?.name || '-',
     },
-    {
-      key: 'attributes',
-      label: 'Attributes',
-      sortable: false,
-      width: '25%',
-      render: (row: any) => {
-        if (!row.attributeCombo) return '-';
-        return row.attributeCombo
-          .map((combo: any) => {
-            const attr = row.product.attributes.find((a: any) => a.attributeId === combo.attributeId);
-            const value = attr?.attribute.values.find((v: any) => v.id === combo.valueId)?.value || '-';
-            return `${attr?.attribute.name}: ${value}`;
-          })
-          .join('; ');
-      },
-    },
+    // {
+    //   key: 'attributes',
+    //   label: 'Attributes',
+    //   sortable: false,
+    //   width: '25%',
+    //   render: (row: any) => {
+    //     if (!row.attributeCombo) return '-';
+    //     return row.attributeCombo
+    //       .map((combo: any) => {
+    //         const attr = row.product.attributes.find((a: any) => a.attributeId === combo.attributeId);
+    //         const value = attr?.attribute.values.find((v: any) => v.id === combo.valueId)?.value || '-';
+    //         return `${attr?.attribute.name}: ${value}`;
+    //       })
+    //       .join('; ');
+    //   },
+    // },
     {
       key: 'stock',
       label: 'Stock',

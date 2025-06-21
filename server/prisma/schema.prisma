@@ -118,6 +118,7 @@ model Attribute {
   ProductAttribute ProductAttribute[]
   createdAt        DateTime            @default(now())
   updatedAt        DateTime            @updatedAt
+  RestockAttribute RestockAttribute[]
 
   @@index([name, slug])
 }
@@ -131,6 +132,7 @@ model AttributeValue {
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
   ProductAttribute ProductAttribute[]
+  RestockAttribute RestockAttribute[]
 
   @@index([attributeId, value])
 }
@@ -190,13 +192,27 @@ model StockMovement {
 }
 
 model Restock {
-  id        String   @id @default(uuid())
-  productId String
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  quantity  Int
-  notes     String?
-  userId    String?
-  createdAt DateTime @default(now())
+  id         String             @id @default(uuid())
+  productId  String
+  product    Product            @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity   Int
+  notes      String?
+  userId     String?
+  createdAt  DateTime           @default(now())
+  attributes RestockAttribute[] // Added relation to RestockAttribute
+}
+
+model RestockAttribute {
+  id          String          @id @default(uuid())
+  restockId   String
+  restock     Restock         @relation(fields: [restockId], references: [id], onDelete: Cascade)
+  attributeId String
+  attribute   Attribute       @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  valueId     String?
+  value       AttributeValue? @relation(fields: [valueId], references: [id], onDelete: SetNull)
+  createdAt   DateTime        @default(now())
+
+  @@index([restockId, attributeId])
 }
 
 model Review {
