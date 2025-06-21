@@ -28,6 +28,7 @@ const InventoryDashboard = () => {
   const { data: inventoryData, loading: inventoryLoading, error: inventoryError } = useQuery(GET_INVENTORY_SUMMARY, {
     variables: { params: { first: 10, skip: 0, filter: { lowStockOnly: false, productName: null } } },
   });
+  console.log('inventoryData => ', inventoryData);
 
   // Fetch stock movements
   const { data: stockMovementsData, loading: movementsLoading, error: movementsError } = useQuery(GET_STOCK_MOVEMENTS, {
@@ -76,8 +77,20 @@ const InventoryDashboard = () => {
 
   // Inventory summary table columns
   const inventoryColumns = [
-    { key: 'product.name', label: 'Product', sortable: true, width: '30%' },
-    { key: 'stock', label: 'Stock', sortable: true, width: '20%' },
+    {
+      key: 'product.name',
+      label: 'Product',
+      sortable: true,
+      width: '30%',
+      render: (row: any) => row.product?.name || '-',
+    },
+    {
+      key: 'stock',
+      label: 'Stock',
+      sortable: true,
+      width: '20%',
+      render: (row: any) => row.stock ?? '-',
+    },
     {
       key: 'lowStock',
       label: 'Low Stock',
@@ -89,8 +102,6 @@ const InventoryDashboard = () => {
         </span>
       ),
     },
-
-
     {
       key: 'actions',
       label: 'Actions',
@@ -112,29 +123,65 @@ const InventoryDashboard = () => {
 
   // Stock movements table columns
   const movementColumns = [
-    { key: 'product.name', label: 'Product', sortable: true, width: '30%' },
-    { key: 'quantity', label: 'Quantity', sortable: true, width: '20%' },
-    { key: 'reason', label: 'Reason', sortable: true, width: '30%' },
+    {
+      key: 'product.name',
+      label: 'Product',
+      sortable: true,
+      width: '30%',
+      render: (row: any) => row.product?.name || '-',
+    },
+    {
+      key: 'quantity',
+      label: 'Quantity',
+      sortable: true,
+      width: '20%',
+      render: (row: any) => row.quantity ?? '-',
+    },
+    {
+      key: 'reason',
+      label: 'Reason',
+      sortable: true,
+      width: '30%',
+      render: (row: any) => row.reason || '-',
+    },
     {
       key: 'createdAt',
       label: 'Date',
       sortable: true,
       width: '20%',
-      render: (row: any) => new Date(row.createdAt).toLocaleString(),
+      render: (row: any) => (row.createdAt ? new Date(row.createdAt).toLocaleString() : '-'),
     },
   ];
 
   // Restocks table columns
   const restockColumns = [
-    { key: 'product.name', label: 'Product', sortable: true, width: '30%' },
-    { key: 'quantity', label: 'Quantity', sortable: true, width: '20%' },
-    { key: 'notes', label: 'Notes', sortable: true, width: '30%' },
+    {
+      key: 'product.name',
+      label: 'Product',
+      sortable: true,
+      width: '30%',
+      render: (row: any) => row.product?.name || '-',
+    },
+    {
+      key: 'quantity',
+      label: 'Quantity',
+      sortable: true,
+      width: '20%',
+      render: (row: any) => row.quantity ?? '-',
+    },
+    {
+      key: 'notes',
+      label: 'Notes',
+      sortable: true,
+      width: '30%',
+      render: (row: any) => row.notes || '-',
+    },
     {
       key: 'createdAt',
       label: 'Date',
       sortable: true,
       width: '20%',
-      render: (row: any) => new Date(row.createdAt).toLocaleString(),
+      render: (row: any) => (row.createdAt ? new Date(row.createdAt).toLocaleString() : '-'),
     },
   ];
 
@@ -157,8 +204,8 @@ const InventoryDashboard = () => {
   // Handle CSV export
   const handleExport = (data: any[]) => {
     const exportData = data.map((item) => ({
-      Product: item.product.name,
-      Stock: item.stock,
+      Product: item.product?.name || '-',
+      Stock: item.stock ?? '-',
       'Low Stock': item.lowStock ? 'Yes' : 'No',
     }));
     exportToCSV(exportData, 'inventory_summary.csv');
@@ -212,21 +259,6 @@ const InventoryDashboard = () => {
         />
       </div>
 
-      {/* <div className="mb-6">
-        <h2 className="text-lg font-medium mb-2">Stock Movement History</h2>
-        <Table
-          data={stockMovementsData?.stockMovements || []}
-          columns={movementColumns}
-          isLoading={movementsLoading}
-          emptyMessage="No stock movements recorded"
-          title="Stock Movements"
-          showSearchBar={true}
-          showPaginationDetails={true}
-          totalPages={1} // Adjust based on backend pagination
-          totalResults={stockMovementsData?.stockMovementsByProduct?.length || 0}
-          currentPage={1}
-        />
-      </div> */}
 
       <div>
         <h2 className="text-lg font-medium mb-2">Restock History</h2>

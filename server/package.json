@@ -23,7 +23,7 @@
     "@apollo/server": "^4.12.0",
     "@graphql-tools/schema": "^10.0.23",
     "@ngneat/falso": "^7.3.0",
-    "@prisma/client": "^6.9.0",
+    "@prisma/client": "^6.10.1",
     "@types/uuid": "^10.0.0",
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
@@ -101,7 +101,7 @@
     "@types/winston": "^2.4.4",
     "@types/ws": "^8.18.1",
     "nodemon": "^3.1.9",
-    "prisma": "^6.9.0",
+    "prisma": "^6.10.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }

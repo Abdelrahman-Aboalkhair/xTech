@@ -108,14 +108,13 @@ model Product {
   @@index([name, slug])
 }
 
-// Main Attribute model (Color, Size, Brand, etc)
 model Attribute {
   id               String              @id @default(uuid())
   name             String              @unique
   slug             String              @unique
-  type             String              @default("text") // e.g., "text", "select", "multiselect"
-  values           AttributeValue[] // Possible values for this attribute (e.g., "Red", "Blue" for Color)
-  categories       CategoryAttribute[] // Categories this attribute applies to
+  type             String              @default("text")
+  values           AttributeValue[]
+  categories       CategoryAttribute[]
   ProductAttribute ProductAttribute[]
   createdAt        DateTime            @default(now())
   updatedAt        DateTime            @updatedAt
@@ -123,13 +122,12 @@ model Attribute {
   @@index([name, slug])
 }
 
-// Holds values for each attribute (Color => red, green, etc)
 model AttributeValue {
   id               String             @id @default(uuid())
   attributeId      String
   attribute        Attribute          @relation(fields: [attributeId], references: [id], onDelete: Cascade)
-  value            String // e.g., "Red", "M", "Men"
-  slug             String             @unique // e.g., "red", "m", "men"
+  value            String
+  slug             String             @unique
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
   ProductAttribute ProductAttribute[]
@@ -137,30 +135,30 @@ model AttributeValue {
   @@index([attributeId, value])
 }
 
-// Links products to their specific attribute values
 model ProductAttribute {
   id          String          @id @default(uuid())
   productId   String
   attributeId String
   valueId     String?
   customValue String?
-  product     Product         @relation(fields: [productId], references: [id])
-  attribute   Attribute       @relation(fields: [attributeId], references: [id])
-  value       AttributeValue? @relation(fields: [valueId], references: [id])
+  product     Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  attribute   Attribute       @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  value       AttributeValue? @relation(fields: [valueId], references: [id], onDelete: SetNull)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
 
-  @@unique([productId, attributeId, valueId]) // Allow multiple values per attribute
+  @@unique([productId, attributeId, valueId])
   @@index([productId])
   @@index([attributeId])
 }
 
-// Determines which attributes apply to which categories (Clothing category, Tech, etc)
 model CategoryAttribute {
   id          String    @id @default(uuid())
   categoryId  String
   category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   attributeId String
   attribute   Attribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
-  isRequired  Boolean   @default(false) // Whether this attribute is mandatory for products
+  isRequired  Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
@@ -182,22 +180,20 @@ model Category {
   @@index([name, slug])
 }
 
-// Logs all stock changes.
 model StockMovement {
   id        String   @id @default(uuid())
   productId String
-  product   Product  @relation(fields: [productId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   quantity  Int
   reason    String
   userId    String?
   createdAt DateTime @default(now())
 }
 
-// Tracks restock events specifically, with optional notes for context (e.g., “Manual restock for promotion”).
 model Restock {
   id        String   @id @default(uuid())
   productId String
-  product   Product  @relation(fields: [productId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   quantity  Int
   notes     String?
   userId    String?
@@ -350,13 +346,14 @@ model CartEvent {
   eventType CART_EVENT @default(PENDING)
   timestamp DateTime   @default(now())
   cart      Cart       @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  user      User?      @relation(fields: [userId], references: [id])
+  user      User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt DateTime   @default(now())
 }
 
 model Interaction {
   id        String   @id @default(uuid())
   userId    String?
-  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
   sessionId String?
   productId String?
   product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
@@ -428,7 +425,7 @@ model ChatMessage {
   sender    User     @relation(fields: [senderId], references: [id], onDelete: Cascade)
   content   String?
   type      String   @default("TEXT")
-  url       String? // URL for media
+  url       String?
   createdAt DateTime @default(now())
 
   @@index([chatId, senderId])

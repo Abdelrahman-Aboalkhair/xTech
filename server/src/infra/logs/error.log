@@ -2577,3 +2577,33 @@ Foreign key constraint violated on the constraint: `Interaction_productId_fkey`
 [2025-06-19T18:06:28.624Z] [31MERROR[39M: Duplicate field value entered
 [2025-06-19T18:07:02.792Z] [31MERROR[39M: attributes.map is not a function
 [2025-06-19T18:07:50.758Z] [31MERROR[39M: Duplicate field value entered
+[2025-06-21T00:19:02.796Z] [31MERROR[39M: Refresh token not found
+[2025-06-21T00:19:02.859Z] [31MERROR[39M: Refresh token not found
+[2025-06-21T00:22:26.831Z] [31MERROR[39M: Duplicate field value entered
+[2025-06-21T00:22:09.413Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/product/product.repository.ts:191:33
+
+  188 }
+  189 
+  190 async deleteProduct(id: string) {
+→ 191   return prisma.product.delete(
+Foreign key constraint violated on the constraint: `ProductAttribute_productId_fkey`
+[2025-06-21T00:22:14.544Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/product/product.repository.ts:191:33
+
+  188 }
+  189 
+  190 async deleteProduct(id: string) {
+→ 191   return prisma.product.delete(
+Foreign key constraint violated on the constraint: `ProductAttribute_productId_fkey`
+[2025-06-21T00:23:12.740Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.product.delete()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/product/product.repository.ts:191:33
+
+  188 }
+  189 
+  190 async deleteProduct(id: string) {
+→ 191   return prisma.product.delete(
+Foreign key constraint violated on the constraint: `ProductAttribute_productId_fkey`

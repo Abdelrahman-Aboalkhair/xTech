@@ -268,7 +268,7 @@ const ProductsDashboard = () => {
             className="px-4 py-2 bg-[#5d8a02] text-white rounded-md flex items-center"
           >
             <Upload className="mr-2 h-4 w-4" />
-            Upload Spreadsheet
+            Excel Sheet
           </button>
           <button
             onClick={() => {
