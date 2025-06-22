@@ -2,9 +2,12 @@
 
 :root {
   /* Color Theme */
-  --color-primary: #6366f1; /* Olive Green */
-  --color-secondary: #d2b48c; /* Tan */
-  --color-accent: #8f9779; /* Artichoke */
+  --color-primary: #6366f1;
+  /* Olive Green */
+  --color-secondary: #d2b48c;
+  /* Tan */
+  --color-accent: #8f9779;
+  /* Artichoke */
   --color-background: #f7f7f7dd;
   --color-text: #2e2e2e;
 
@@ -23,9 +26,13 @@
 }
 
 body {
-  @apply bg-[var(--background)] text-[var(--foreground)] font-normal antialiased;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
   font-family: var(--font-poppins);
 }
+
 
 .bg-primary {
   background-color: var(--primary);
@@ -58,6 +65,7 @@ body {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
