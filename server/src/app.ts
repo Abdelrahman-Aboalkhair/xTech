@@ -12,8 +12,8 @@ import logger from "./infra/winston/logger";
 import compression from "compression";
 import passport from "passport";
 import session from "express-session";
-import { RedisStore } from "connect-redis";
-import redisClient from "./infra/cache/redis";
+// import { RedisStore } from "connect-redis";
+// import redisClient from "./infra/cache/redis";
 import configurePassport from "./infra/passport/passport";
 import { cookieParserOptions } from "./shared/constants";
 import AppError from "./shared/errors/AppError";
@@ -58,7 +58,7 @@ export const createApp = async () => {
 
   app.use(
     session({
-      store: new RedisStore({ client: redisClient }),
+      // store: new RedisStore({ client: redisClient }),
       secret: process.env.SESSION_SECRET!,
       resave: false,
       saveUninitialized: true,

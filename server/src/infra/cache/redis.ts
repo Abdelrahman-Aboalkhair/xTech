@@ -24,7 +24,7 @@ interface RedisConfig {
 const redisClient: RedisConfig = {
   connection: {
     host: process.env.REDIS_HOST || "localhost",
-    port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT) : 6379,    
+    port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT) : 6379,
   },
   defaultJobOptions: {
     attempts: 3,
@@ -35,7 +35,7 @@ const redisClient: RedisConfig = {
   },
   client: new Redis({
     host: process.env.REDIS_HOST || "localhost",
-    port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT) : 6379,    
+    port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT) : 6379,
     retryStrategy: (times) => {
       return Math.min(times * 50, 2000);
     },
@@ -51,3 +51,4 @@ redisClient.client
   .on("error", (err) => console.error("Redis error:", err));
 
 export default redisClient.client;
+
