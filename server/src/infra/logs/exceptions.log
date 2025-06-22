@@ -138,3 +138,1127 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1465:32)
     at Function._load (node:internal/modules/cjs/loader:1282:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-06-22T06:10:07.898Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/graphql/schema.ts[0m:[93m1[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'scalar'.
+
+[7m1[0m scalar DateTime
+[7m [0m [91m~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m1[0m:[93m8[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m1[0m scalar DateTime
+[7m [0m [91m       ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m7[0m:[93m10[0m - [91merror[0m[90m TS2552: [0mCannot find name 'Float'. Did you mean 'GLfloat'?
+
+[7m7[0m   price: Float!
+[7m [0m [91m         ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m8[0m:[93m13[0m - [91merror[0m[90m TS2552: [0mCannot find name 'Float'. Did you mean 'GLfloat'?
+
+[7m8[0m   discount: Float!
+[7m [0m [91m            ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m10[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m10[0m   stock: Int!
+[7m  [0m [91m         ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m21[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m21[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m23[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m23[0m   quantity: Int!
+[7m  [0m [91m            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m26[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m26[0m   createdAt: DateTime!
+[7m  [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m30[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m30[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m32[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m32[0m   quantity: Int!
+[7m  [0m [91m            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m35[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m35[0m   createdAt: DateTime!
+[7m  [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m40[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m40[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m50[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m50[0m   stock: Int!
+[7m  [0m [91m         ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m42[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Added'.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                         ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m52[0m - [91merror[0m[90m TS2304: [0mCannot find name 'combination'.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                                   ~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m64[0m - [91merror[0m[90m TS2304: [0mCannot find name 'details'.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                                               ~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m29[0m - [91merror[0m[90m TS2304: [0mCannot find name 'New'.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m33[0m - [91merror[0m[90m TS2304: [0mCannot find name 'type'.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                ~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m42[0m - [91merror[0m[90m TS2304: [0mCannot find name 'attribute'.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                         ~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m52[0m - [91merror[0m[90m TS2304: [0mCannot find name 'combinations'.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                                   ~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m56[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'attributes'.
+
+[7m56[0m   attributes: [ProductAttribute!]!
+[7m  [0m [91m  ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m56[0m:[93m16[0m - [91merror[0m[90m TS2693: [0m'ProductAttribute' only refers to a type, but is being used as a value here.
+
+[7m56[0m   attributes: [ProductAttribute!]!
+[7m  [0m [91m               ~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m57[0m:[93m8[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m57[0m stock: Int!
+[7m  [0m [91m       ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m62[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Float'.
+
+[7m62[0m   rating: Float!
+[7m  [0m [91m          ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m75[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m75[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m82[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m82[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m87[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m87[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m91[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m91[0m   stock: Int!
+[7m  [0m [91m         ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m97[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m97[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m100[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m100[0m   createdAt: DateTime!
+[7m   [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m101[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m101[0m   updatedAt: DateTime!
+[7m   [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m104[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m104[0m input AttributeInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m104[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AttributeInput'.
+
+[7m104[0m input AttributeInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m111[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m111[0m input RestockProductInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m111[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'RestockProductInput'.
+
+[7m111[0m input RestockProductInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m113[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m113[0m   quantity: Int!
+[7m   [0m [91m            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m115[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AttributeInput'.
+
+[7m115[0m   attributes: [AttributeInput!]
+[7m   [0m [91m               ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m118[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m118[0m input RestockParamsInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m118[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'RestockParamsInput'.
+
+[7m118[0m input RestockParamsInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m119[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m119[0m   first: Int
+[7m   [0m [91m         ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m120[0m:[93m9[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m120[0m   skip: Int
+[7m   [0m [91m        ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m122[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m122[0m   startDate: DateTime
+[7m   [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m123[0m:[93m12[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m123[0m   endDate: DateTime
+[7m   [0m [91m           ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m126[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m126[0m input InventorySummaryParamsInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m126[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'InventorySummaryParamsInput'.
+
+[7m126[0m input InventorySummaryParamsInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m127[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m127[0m   first: Int
+[7m   [0m [91m         ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m128[0m:[93m9[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m128[0m   skip: Int
+[7m   [0m [91m        ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m129[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'InventoryFilterInput'.
+
+[7m129[0m   filter: InventoryFilterInput
+[7m   [0m [91m          ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m132[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m132[0m input InventoryFilterInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m132[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'InventoryFilterInput'.
+
+[7m132[0m input InventoryFilterInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m135[0m:[93m22[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AttributeInput'.
+
+[7m135[0m   attributeFilters: [AttributeInput!]
+[7m   [0m [91m                     ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m138[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m138[0m input AttributeFilterInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m138[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AttributeFilterInput'.
+
+[7m138[0m input AttributeFilterInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m143[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m143[0m input ProductFilters {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m143[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ProductFilters'.
+
+[7m143[0m input ProductFilters {
+[7m   [0m [91m      ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m149[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Float'.
+
+[7m149[0m   minPrice: Float
+[7m   [0m [91m            ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m150[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Float'.
+
+[7m150[0m   maxPrice: Float
+[7m   [0m [91m            ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m152[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AttributeFilterInput'.
+
+[7m152[0m   attributes: [AttributeFilterInput!]
+[7m   [0m [91m               ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m158[0m:[93m15[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m158[0m   totalCount: Int!
+[7m   [0m [91m              ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m162[0m:[93m19[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m162[0m   products(first: Int, skip: Int, filters: ProductFilters): ProductConnection!
+[7m   [0m [91m                  ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m162[0m:[93m30[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m162[0m   products(first: Int, skip: Int, filters: ProductFilters): ProductConnection!
+[7m   [0m [91m                             ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m162[0m:[93m44[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ProductFilters'.
+
+[7m162[0m   products(first: Int, skip: Int, filters: ProductFilters): ProductConnection!
+[7m   [0m [91m                                           ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m164[0m:[93m22[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m164[0m   newProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                     ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m164[0m:[93m33[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m164[0m   newProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                                ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m165[0m:[93m27[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m165[0m   featuredProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                          ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m165[0m:[93m38[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m165[0m   featuredProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                                     ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m166[0m:[93m27[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m166[0m   trendingProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                          ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m166[0m:[93m38[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m166[0m   trendingProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                                     ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m167[0m:[93m29[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m167[0m   bestSellerProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m167[0m:[93m40[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m167[0m   bestSellerProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                                       ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m169[0m:[93m21[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m169[0m   attributes(first: Int, skip: Int): [Attribute!]!
+[7m   [0m [91m                    ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m169[0m:[93m32[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m169[0m   attributes(first: Int, skip: Int): [Attribute!]!
+[7m   [0m [91m                               ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m170[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m170[0m   attribute(id: ID!): Attribute
+[7m   [0m [91m                ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m173[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m173[0m     productId: ID
+[7m   [0m [91m               ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m174[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m174[0m     startDate: DateTime
+[7m   [0m [91m               ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m175[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m175[0m     endDate: DateTime
+[7m   [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m177[0m:[93m20[0m - [91merror[0m[90m TS2304: [0mCannot find name 'RestockParamsInput'.
+
+[7m177[0m   restocks(params: RestockParamsInput!): [Restock!]!
+[7m   [0m [91m                   ~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m178[0m:[93m28[0m - [91merror[0m[90m TS2304: [0mCannot find name 'InventorySummaryParamsInput'.
+
+[7m178[0m   inventorySummary(params: InventorySummaryParamsInput!): [InventorySummary!]!
+[7m   [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m180[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m180[0m     productId: ID!
+[7m   [0m [91m               ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m181[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m181[0m     startDate: DateTime
+[7m   [0m [91m               ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m182[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m182[0m     endDate: DateTime
+[7m   [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m183[0m:[93m12[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m183[0m     first: Int
+[7m   [0m [91m           ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m184[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m184[0m     skip: Int
+[7m   [0m [91m          ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m189[0m:[93m25[0m - [91merror[0m[90m TS2304: [0mCannot find name 'RestockProductInput'.
+
+[7m189[0m   restockProduct(input: RestockProductInput!): Restock!
+[7m   [0m [91m                        ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m190[0m:[93m35[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m190[0m   setLowStockThreshold(productId: ID!, threshold: Int!): Product!
+[7m   [0m [91m                                  ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m190[0m:[93m51[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m190[0m   setLowStockThreshold(productId: ID!, threshold: Int!): Product!
+[7m   [0m [91m                                                  ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m193[0m:[93m30[0m - [91merror[0m[90m TS2304: [0mCannot find name 'makeExecutableSchema'.
+
+[7m193[0m export const productSchema = makeExecutableSchema({
+[7m   [0m [91m                             ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m194[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'typeDefs'.
+
+[7m194[0m   typeDefs: typeDefs,
+[7m   [0m [91m            ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m195[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'productResolvers'.
+
+[7m195[0m   resolvers: productResolvers,
+[7m   [0m [91m             ~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m1[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m1[0m scalar DateTime
+[7m [0m [91m~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m3[0m:[93m14[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m3[0m type Product {
+[7m [0m [91m             ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m20[0m:[93m20[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m20[0m type StockMovement {
+[7m  [0m [91m                   ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m29[0m:[93m14[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m29[0m type Restock {
+[7m  [0m [91m             ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m39[0m:[93m23[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m39[0m type RestockAttribute {
+[7m  [0m [91m                      ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m48[0m:[93m23[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m48[0m type InventorySummary {
+[7m  [0m [91m                      ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m40[0m - [91merror[0m[90m TS1127: [0mInvalid character.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                       ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m42[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                         ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m52[0m - [91merror[0m[90m TS1005: [0m'(' expected.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                                   ~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m64[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                                               ~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m53[0m:[93m1[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m53[0m }
+[7m  [0m [91m~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m25[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                        ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m27[0m - [91merror[0m[90m TS1127: [0mInvalid character.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                          ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m29[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m38[0m - [91merror[0m[90m TS2457: [0mType alias name cannot be 'for'.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                     ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m42[0m - [91merror[0m[90m TS1005: [0m'(' expected.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                         ~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m52[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                                   ~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m56[0m:[93m3[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m56[0m   attributes: [ProductAttribute!]!
+[7m  [0m [91m  ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m56[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m')' expected.
+
+[7m56[0m   attributes: [ProductAttribute!]!
+[7m  [0m [91m            ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m58[0m:[93m1[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m58[0m }
+[7m  [0m [91m~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m60[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m60[0m type Review {
+[7m  [0m [91m            ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m66[0m:[93m15[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m66[0m type Category {
+[7m  [0m [91m              ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m74[0m:[93m16[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m74[0m type Attribute {
+[7m  [0m [91m               ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m81[0m:[93m21[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m81[0m type AttributeValue {
+[7m  [0m [91m                    ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m86[0m:[93m23[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m86[0m type ProductAttribute {
+[7m  [0m [91m                      ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m96[0m:[93m24[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m96[0m type CategoryAttribute {
+[7m  [0m [91m                       ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m104[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m104[0m input AttributeInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m104[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m104[0m input AttributeInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m111[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m111[0m input RestockProductInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m111[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m111[0m input RestockProductInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m118[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m118[0m input RestockParamsInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m118[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m118[0m input RestockParamsInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m126[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m126[0m input InventorySummaryParamsInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m126[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m126[0m input InventorySummaryParamsInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m132[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m132[0m input InventoryFilterInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m132[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m132[0m input InventoryFilterInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m138[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m138[0m input AttributeFilterInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m138[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m138[0m input AttributeFilterInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m143[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m143[0m input ProductFilters {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m143[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m143[0m input ProductFilters {
+[7m   [0m [91m      ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m155[0m:[93m24[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m155[0m type ProductConnection {
+[7m   [0m [91m                       ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m161[0m:[93m12[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m161[0m type Query {
+[7m   [0m [91m           ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m174[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m174[0m     startDate: DateTime
+[7m   [0m [91m    ~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m175[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m175[0m     endDate: DateTime
+[7m   [0m [91m    ~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m181[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m181[0m     startDate: DateTime
+[7m   [0m [91m    ~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m182[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m182[0m     endDate: DateTime
+[7m   [0m [91m    ~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m183[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m183[0m     first: Int
+[7m   [0m [91m    ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m184[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m184[0m     skip: Int
+[7m   [0m [91m    ~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m188[0m:[93m15[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m188[0m type Mutation {
+[7m   [0m [91m              ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/graphql/schema.ts[0m:[93m1[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'scalar'.
+
+[7m1[0m scalar DateTime
+[7m [0m [91m~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m1[0m:[93m8[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m1[0m scalar DateTime
+[7m [0m [91m       ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m7[0m:[93m10[0m - [91merror[0m[90m TS2552: [0mCannot find name 'Float'. Did you mean 'GLfloat'?
+
+[7m7[0m   price: Float!
+[7m [0m [91m         ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m8[0m:[93m13[0m - [91merror[0m[90m TS2552: [0mCannot find name 'Float'. Did you mean 'GLfloat'?
+
+[7m8[0m   discount: Float!
+[7m [0m [91m            ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m10[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m10[0m   stock: Int!
+[7m  [0m [91m         ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m21[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m21[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m23[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m23[0m   quantity: Int!
+[7m  [0m [91m            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m26[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m26[0m   createdAt: DateTime!
+[7m  [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m30[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m30[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m32[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m32[0m   quantity: Int!
+[7m  [0m [91m            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m35[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m35[0m   createdAt: DateTime!
+[7m  [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m40[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m40[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m50[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m50[0m   stock: Int!
+[7m  [0m [91m         ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m42[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Added'.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                         ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m52[0m - [91merror[0m[90m TS2304: [0mCannot find name 'combination'.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                                   ~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m64[0m - [91merror[0m[90m TS2304: [0mCannot find name 'details'.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                                               ~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m29[0m - [91merror[0m[90m TS2304: [0mCannot find name 'New'.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m33[0m - [91merror[0m[90m TS2304: [0mCannot find name 'type'.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                ~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m42[0m - [91merror[0m[90m TS2304: [0mCannot find name 'attribute'.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                         ~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m52[0m - [91merror[0m[90m TS2304: [0mCannot find name 'combinations'.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                                   ~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m56[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'attributes'.
+
+[7m56[0m   attributes: [ProductAttribute!]!
+[7m  [0m [91m  ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m56[0m:[93m16[0m - [91merror[0m[90m TS2693: [0m'ProductAttribute' only refers to a type, but is being used as a value here.
+
+[7m56[0m   attributes: [ProductAttribute!]!
+[7m  [0m [91m               ~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m57[0m:[93m8[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m57[0m stock: Int!
+[7m  [0m [91m       ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m62[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Float'.
+
+[7m62[0m   rating: Float!
+[7m  [0m [91m          ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m75[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m75[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m82[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m82[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m87[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m87[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m91[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m91[0m   stock: Int!
+[7m  [0m [91m         ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m97[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m97[0m   id: ID!
+[7m  [0m [91m      ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m100[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m100[0m   createdAt: DateTime!
+[7m   [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m101[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m101[0m   updatedAt: DateTime!
+[7m   [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m104[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m104[0m input AttributeInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m104[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AttributeInput'.
+
+[7m104[0m input AttributeInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m111[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m111[0m input RestockProductInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m111[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'RestockProductInput'.
+
+[7m111[0m input RestockProductInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m113[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m113[0m   quantity: Int!
+[7m   [0m [91m            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m115[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AttributeInput'.
+
+[7m115[0m   attributes: [AttributeInput!]
+[7m   [0m [91m               ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m118[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m118[0m input RestockParamsInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m118[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'RestockParamsInput'.
+
+[7m118[0m input RestockParamsInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m119[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m119[0m   first: Int
+[7m   [0m [91m         ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m120[0m:[93m9[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m120[0m   skip: Int
+[7m   [0m [91m        ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m122[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m122[0m   startDate: DateTime
+[7m   [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m123[0m:[93m12[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m123[0m   endDate: DateTime
+[7m   [0m [91m           ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m126[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m126[0m input InventorySummaryParamsInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m126[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'InventorySummaryParamsInput'.
+
+[7m126[0m input InventorySummaryParamsInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m127[0m:[93m10[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m127[0m   first: Int
+[7m   [0m [91m         ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m128[0m:[93m9[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m128[0m   skip: Int
+[7m   [0m [91m        ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m129[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'InventoryFilterInput'.
+
+[7m129[0m   filter: InventoryFilterInput
+[7m   [0m [91m          ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m132[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m132[0m input InventoryFilterInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m132[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'InventoryFilterInput'.
+
+[7m132[0m input InventoryFilterInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m135[0m:[93m22[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AttributeInput'.
+
+[7m135[0m   attributeFilters: [AttributeInput!]
+[7m   [0m [91m                     ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m138[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m138[0m input AttributeFilterInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m138[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AttributeFilterInput'.
+
+[7m138[0m input AttributeFilterInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m143[0m:[93m1[0m - [91merror[0m[90m TS2304: [0mCannot find name 'input'.
+
+[7m143[0m input ProductFilters {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m143[0m:[93m7[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ProductFilters'.
+
+[7m143[0m input ProductFilters {
+[7m   [0m [91m      ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m149[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Float'.
+
+[7m149[0m   minPrice: Float
+[7m   [0m [91m            ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m150[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Float'.
+
+[7m150[0m   maxPrice: Float
+[7m   [0m [91m            ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m152[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AttributeFilterInput'.
+
+[7m152[0m   attributes: [AttributeFilterInput!]
+[7m   [0m [91m               ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m158[0m:[93m15[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m158[0m   totalCount: Int!
+[7m   [0m [91m              ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m162[0m:[93m19[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m162[0m   products(first: Int, skip: Int, filters: ProductFilters): ProductConnection!
+[7m   [0m [91m                  ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m162[0m:[93m30[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m162[0m   products(first: Int, skip: Int, filters: ProductFilters): ProductConnection!
+[7m   [0m [91m                             ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m162[0m:[93m44[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ProductFilters'.
+
+[7m162[0m   products(first: Int, skip: Int, filters: ProductFilters): ProductConnection!
+[7m   [0m [91m                                           ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m164[0m:[93m22[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m164[0m   newProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                     ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m164[0m:[93m33[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m164[0m   newProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                                ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m165[0m:[93m27[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m165[0m   featuredProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                          ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m165[0m:[93m38[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m165[0m   featuredProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                                     ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m166[0m:[93m27[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m166[0m   trendingProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                          ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m166[0m:[93m38[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m166[0m   trendingProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                                     ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m167[0m:[93m29[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m167[0m   bestSellerProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m167[0m:[93m40[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m167[0m   bestSellerProducts(first: Int, skip: Int): ProductConnection!
+[7m   [0m [91m                                       ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m169[0m:[93m21[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m169[0m   attributes(first: Int, skip: Int): [Attribute!]!
+[7m   [0m [91m                    ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m169[0m:[93m32[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m169[0m   attributes(first: Int, skip: Int): [Attribute!]!
+[7m   [0m [91m                               ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m170[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m170[0m   attribute(id: ID!): Attribute
+[7m   [0m [91m                ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m173[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m173[0m     productId: ID
+[7m   [0m [91m               ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m174[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m174[0m     startDate: DateTime
+[7m   [0m [91m               ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m175[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m175[0m     endDate: DateTime
+[7m   [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m177[0m:[93m20[0m - [91merror[0m[90m TS2304: [0mCannot find name 'RestockParamsInput'.
+
+[7m177[0m   restocks(params: RestockParamsInput!): [Restock!]!
+[7m   [0m [91m                   ~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m178[0m:[93m28[0m - [91merror[0m[90m TS2304: [0mCannot find name 'InventorySummaryParamsInput'.
+
+[7m178[0m   inventorySummary(params: InventorySummaryParamsInput!): [InventorySummary!]!
+[7m   [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m180[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m180[0m     productId: ID!
+[7m   [0m [91m               ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m181[0m:[93m16[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m181[0m     startDate: DateTime
+[7m   [0m [91m               ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m182[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'DateTime'.
+
+[7m182[0m     endDate: DateTime
+[7m   [0m [91m             ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m183[0m:[93m12[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m183[0m     first: Int
+[7m   [0m [91m           ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m184[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m184[0m     skip: Int
+[7m   [0m [91m          ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m189[0m:[93m25[0m - [91merror[0m[90m TS2304: [0mCannot find name 'RestockProductInput'.
+
+[7m189[0m   restockProduct(input: RestockProductInput!): Restock!
+[7m   [0m [91m                        ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m190[0m:[93m35[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ID'.
+
+[7m190[0m   setLowStockThreshold(productId: ID!, threshold: Int!): Product!
+[7m   [0m [91m                                  ~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m190[0m:[93m51[0m - [91merror[0m[90m TS2304: [0mCannot find name 'Int'.
+
+[7m190[0m   setLowStockThreshold(productId: ID!, threshold: Int!): Product!
+[7m   [0m [91m                                                  ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m193[0m:[93m30[0m - [91merror[0m[90m TS2304: [0mCannot find name 'makeExecutableSchema'.
+
+[7m193[0m export const productSchema = makeExecutableSchema({
+[7m   [0m [91m                             ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m194[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'typeDefs'.
+
+[7m194[0m   typeDefs: typeDefs,
+[7m   [0m [91m            ~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m195[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'productResolvers'.
+
+[7m195[0m   resolvers: productResolvers,
+[7m   [0m [91m             ~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m1[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m1[0m scalar DateTime
+[7m [0m [91m~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m3[0m:[93m14[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m3[0m type Product {
+[7m [0m [91m             ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m20[0m:[93m20[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m20[0m type StockMovement {
+[7m  [0m [91m                   ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m29[0m:[93m14[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m29[0m type Restock {
+[7m  [0m [91m             ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m39[0m:[93m23[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m39[0m type RestockAttribute {
+[7m  [0m [91m                      ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m48[0m:[93m23[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m48[0m type InventorySummary {
+[7m  [0m [91m                      ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m40[0m - [91merror[0m[90m TS1127: [0mInvalid character.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                       ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m42[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                         ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m52[0m - [91merror[0m[90m TS1005: [0m'(' expected.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                                   ~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m52[0m:[93m64[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m52[0m   combinations: [ProductCombination!]! # Added for combination details
+[7m  [0m [91m                                                               ~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m53[0m:[93m1[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m53[0m }
+[7m  [0m [91m~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m25[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                        ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m27[0m - [91merror[0m[90m TS1127: [0mInvalid character.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                          ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m29[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                            ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m38[0m - [91merror[0m[90m TS2457: [0mType alias name cannot be 'for'.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                     ~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m42[0m - [91merror[0m[90m TS1005: [0m'(' expected.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                         ~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m55[0m:[93m52[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m55[0m type ProductCombination { # New type for attribute combinations
+[7m  [0m [91m                                                   ~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m56[0m:[93m3[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m56[0m   attributes: [ProductAttribute!]!
+[7m  [0m [91m  ~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m56[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m')' expected.
+
+[7m56[0m   attributes: [ProductAttribute!]!
+[7m  [0m [91m            ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m58[0m:[93m1[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m58[0m }
+[7m  [0m [91m~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m60[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m60[0m type Review {
+[7m  [0m [91m            ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m66[0m:[93m15[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m66[0m type Category {
+[7m  [0m [91m              ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m74[0m:[93m16[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m74[0m type Attribute {
+[7m  [0m [91m               ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m81[0m:[93m21[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m81[0m type AttributeValue {
+[7m  [0m [91m                    ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m86[0m:[93m23[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m86[0m type ProductAttribute {
+[7m  [0m [91m                      ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m96[0m:[93m24[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m96[0m type CategoryAttribute {
+[7m  [0m [91m                       ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m104[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m104[0m input AttributeInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m104[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m104[0m input AttributeInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m111[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m111[0m input RestockProductInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m111[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m111[0m input RestockProductInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m118[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m118[0m input RestockParamsInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m118[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m118[0m input RestockParamsInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m126[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m126[0m input InventorySummaryParamsInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m126[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m126[0m input InventorySummaryParamsInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m132[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m132[0m input InventoryFilterInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m132[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m132[0m input InventoryFilterInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m138[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m138[0m input AttributeFilterInput {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m138[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m138[0m input AttributeFilterInput {
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m143[0m:[93m1[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m143[0m input ProductFilters {
+[7m   [0m [91m~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m143[0m:[93m7[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m143[0m input ProductFilters {
+[7m   [0m [91m      ~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m155[0m:[93m24[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m155[0m type ProductConnection {
+[7m   [0m [91m                       ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m161[0m:[93m12[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m161[0m type Query {
+[7m   [0m [91m           ~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m174[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m174[0m     startDate: DateTime
+[7m   [0m [91m    ~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m175[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m175[0m     endDate: DateTime
+[7m   [0m [91m    ~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m181[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m181[0m     startDate: DateTime
+[7m   [0m [91m    ~~~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m182[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m182[0m     endDate: DateTime
+[7m   [0m [91m    ~~~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m183[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m183[0m     first: Int
+[7m   [0m [91m    ~~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m184[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m184[0m     skip: Int
+[7m   [0m [91m    ~~~~[0m
+[96msrc/modules/product/graphql/schema.ts[0m:[93m188[0m:[93m15[0m - [91merror[0m[90m TS1005: [0m'=' expected.
+
+[7m188[0m type Mutation {
+[7m   [0m [91m              ~[0m
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/graphql/v1/schema.ts:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)

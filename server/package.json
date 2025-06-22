@@ -10,9 +10,11 @@
   },
   "scripts": {
     "start": "node dist/app.js",
-    "build": "tsc",
     "dev": "nodemon",
-    "prisma:migrate": "npx prisma migrate dev --name auto && npx prisma generate",
+    "migrate:dev": "npx prisma migrate dev",
+    "migrate:deploy": "npx prisma migrate deploy",
+    "generate": "npx prisma generate",
+    "build": "npx prisma generate && tsc",
     "seed": "npx ts-node prisma/seeds/seed.ts"
   },
   "keywords": [],

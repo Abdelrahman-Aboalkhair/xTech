@@ -92,6 +92,7 @@ export class ProductService {
       stock: number;
     }[];
   }) {
+    // Let the combos be: (Black/Small/Cotton, White/Small/Cotton, White/Medium/Polyester).
     const { attributeCombinations, ...productData } = data;
 
     // Validate attributeCombinations
@@ -99,7 +100,7 @@ export class ProductService {
       throw new AppError(400, 'At least one attribute combination is required');
     }
 
-    // Validate category requirements
+    // Ensures each combination includes all required attributes for the product’s category (e.g., Size, Material, Color for Clothing).
     if (productData.categoryId) {
       const requiredAttributes = await prisma.categoryAttribute.findMany({
         where: { categoryId: productData.categoryId, isRequired: true },
@@ -121,7 +122,8 @@ export class ProductService {
       });
     }
 
-    // Validate attributes and values
+    // Ensures all attributeIds in the combinations exist in the Attribute table.
+    // ? Flattens the nested attributeCombinations and attributes arrays into a list of attributeIds.
     const allAttributeIds = [...new Set(attributeCombinations.flatMap((c) => c.attributes.map((a) => a.attributeId)))];
     const existingAttributes = await prisma.attribute.findMany({
       where: { id: { in: allAttributeIds } },
@@ -138,11 +140,31 @@ export class ProductService {
       throw new AppError(400, 'One or more attribute values are invalid');
     }
 
-    // Aggregate stock for ProductAttribute records
-    const attributeStockMap: { [key: string]: number } = {};
+    /* Aggregates stock for each attribute-value pair 
+    (e.g., Color: Black) across all combinations, as 
+    ProductAttribute stores stock per attribute value, not per combination. */
+
+    /* 
+    
+    Combinations:
+Black/Small/Cotton: stock: 3
+White/Small/Cotton: stock: 1
+White/Medium/Polyester: stock: 1
+
+    {
+  "ad0a8b6f-6a56-434f-a514-400515a72154:280068ea-cd02-410b-9020-2dc650f4ba10": 3, // Color: Black
+  "eda5945f-012c-498a-a9e9-d537d1e871ab:c1299294-12fd-47f6-90c5-a60df0f925fa": 4, // Size: Small (3 + 1)
+  "e5a73400-7705-4065-b5a3-16c60176cfcb:5e4b8d2c-05d8-4da7-8804-d406bbd1e86c": 4, // Material: Cotton (3 + 1)
+  "ad0a8b6f-6a56-434f-a514-400515a72154:9362b1f4-64ac-43e0-95f8-d27ac6c36dd0": 2, // Color: White (1 + 1)
+  "eda5945f-012c-498a-a9e9-d537d1e871ab:66842bf5-25bf-4ac2-9ca1-edcdd3ac4483": 1, // Size: Medium
+  "e5a73400-7705-4065-b5a3-16c60176cfcb:f4f3cafd-6ff8-4404-b447-f713f45d32bb": 1 // Material: Polyester
+}
+  
+    */
+    const attributeStockMap: { [key: string]: number } = {}; // {attributeId:valueId:stock}
     attributeCombinations.forEach((combo) => {
       combo.attributes.forEach((attr) => {
-        const key = `${attr.attributeId}:${attr.valueId}`;
+        const key = `${attr.attributeId}:${attr.valueId}`; // e.g. Color: Black
         attributeStockMap[key] = (attributeStockMap[key] || 0) + combo.stock;
       });
     });

@@ -1,4 +1,5 @@
 import AppError from "@/shared/errors/AppError";
+import getCombinations from "@/shared/utils/getCombinations";
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 
@@ -315,9 +316,7 @@ export const productResolvers = {
           product: true,
           attributes: {
             include: {
-              attribute: {
-                include: { values: true },
-              },
+              attribute: { include: { values: true } },
               value: true,
             },
           },
@@ -376,13 +375,22 @@ export const productResolvers = {
               value: true,
             },
           },
+          category: true,
         },
       });
 
-      return products.map(product => ({
-        product,
-        stock: product.ProductAttribute.reduce((sum, attr) => sum + (attr.stock || 0), 0),
-        lowStock: product.ProductAttribute.some(attr => (attr.stock || 0) < product.lowStockThreshold),
+      return Promise.all(products.map(async product => {
+        const combinations = await getCombinations(product, context.prisma);
+        const totalStock = product.stock; // Use Product.stock from creation
+        const lowStock = product.ProductAttribute.some(
+          (attr: any) => (attr.stock || 0) < product.lowStockThreshold
+        );
+        return {
+          product,
+          stock: totalStock,
+          lowStock,
+          combinations,
+        };
       }));
     },
     stockMovementsByProduct: async (
