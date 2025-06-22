@@ -2608,3 +2608,15 @@ Invalid `prisma.product.delete()` invocation in
 → 191   return prisma.product.delete(
 Foreign key constraint violated on the constraint: `ProductAttribute_productId_fkey`
 [2025-06-21T04:32:50.811Z] [31MERROR[39M: User not found
+[2025-06-21T16:44:11.418Z] [31MERROR[39M: User not found
+[2025-06-22T05:14:23.247Z] [31MERROR[39M: Expected ',' or '}' after property value in JSON at position 80 (line 3 column 22)
+[2025-06-22T05:22:46.269Z] [31MERROR[39M: Invalid access token, please log in
+[2025-06-22T05:22:57.696Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.product.create()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/product/product.repository.ts:147:27
+
+  144 }) {
+  145   const { attributes, ...productData } = data;
+  146 
+→ 147   return prisma.product.create(
+Foreign key constraint violated on the constraint: `Product_categoryId_fkey`

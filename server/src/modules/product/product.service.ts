@@ -86,69 +86,85 @@ export class ProductService {
     price: number;
     discount: number;
     images?: string[];
-    stock: number;
     categoryId?: string;
-    attributes?: {
-      attributeId: string;
-      valueId?: string;
-      valueIds?: string[];
-      customValue?: string;
+    attributeCombinations: {
+      attributes: { attributeId: string; valueId: string }[];
+      stock: number;
     }[];
   }) {
-    const { attributes, ...productData } = data;
+    const { attributeCombinations, ...productData } = data;
 
-    // Validate attributes if provided
-    if (attributes) {
-      const attributeIds = attributes.map((attr) => attr.attributeId);
-      const existingAttributes = await prisma.attribute.findMany({
-        where: { id: { in: attributeIds } },
-      });
-      if (existingAttributes.length !== attributeIds.length) {
-        throw new AppError(400, "One or more attributes are invalid");
-      }
-
-      // Validate valueIds and valueId if provided
-      const allValueIds = attributes.flatMap((attr) =>
-        attr.valueIds ? attr.valueIds : attr.valueId ? [attr.valueId] : []
-      );
-      if (allValueIds.length > 0) {
-        const existingValues = await prisma.attributeValue.findMany({
-          where: { id: { in: allValueIds } },
-        });
-        if (existingValues.length !== allValueIds.length) {
-          throw new AppError(400, "One or more attribute values are invalid");
-        }
-      }
+    // Validate attributeCombinations
+    if (!attributeCombinations || attributeCombinations.length === 0) {
+      throw new AppError(400, 'At least one attribute combination is required');
     }
+
+    // Validate category requirements
+    if (productData.categoryId) {
+      const requiredAttributes = await prisma.categoryAttribute.findMany({
+        where: { categoryId: productData.categoryId, isRequired: true },
+        select: { attributeId: true },
+      });
+      const requiredAttributeIds = requiredAttributes.map((attr) => attr.attributeId);
+
+      attributeCombinations.forEach((combo, index) => {
+        const comboAttributeIds = combo.attributes.map((attr) => attr.attributeId);
+        const missingAttributes = requiredAttributeIds.filter(
+          (id) => !comboAttributeIds.includes(id)
+        );
+        if (missingAttributes.length > 0) {
+          throw new AppError(
+            400,
+            `Combination at index ${index} is missing required attributes: ${missingAttributes.join(', ')}`
+          );
+        }
+      });
+    }
+
+    // Validate attributes and values
+    const allAttributeIds = [...new Set(attributeCombinations.flatMap((c) => c.attributes.map((a) => a.attributeId)))];
+    const existingAttributes = await prisma.attribute.findMany({
+      where: { id: { in: allAttributeIds } },
+    });
+    if (existingAttributes.length !== allAttributeIds.length) {
+      throw new AppError(400, 'One or more attributes are invalid');
+    }
+
+    const allValueIds = [...new Set(attributeCombinations.flatMap((c) => c.attributes.map((a) => a.valueId)))];
+    const existingValues = await prisma.attributeValue.findMany({
+      where: { id: { in: allValueIds } },
+    });
+    if (existingValues.length !== allValueIds.length) {
+      throw new AppError(400, 'One or more attribute values are invalid');
+    }
+
+    // Aggregate stock for ProductAttribute records
+    const attributeStockMap: { [key: string]: number } = {};
+    attributeCombinations.forEach((combo) => {
+      combo.attributes.forEach((attr) => {
+        const key = `${attr.attributeId}:${attr.valueId}`;
+        attributeStockMap[key] = (attributeStockMap[key] || 0) + combo.stock;
+      });
+    });
+
+    // Calculate total stock
+    const totalStock = attributeCombinations.reduce((sum, combo) => sum + combo.stock, 0);
+
+    // Prepare ProductAttribute data
+    const productAttributes = Object.entries(attributeStockMap).map(([key, stock]) => {
+      const [attributeId, valueId] = key.split(':');
+      return { attributeId, valueId, stock };
+    });
 
     // Create product
-    const product = await this.productRepository.createProduct(productData);
-
-    // Assign attributes
-    if (attributes) {
-      await Promise.all(
-        attributes.flatMap((attr) => {
-          const valueIds = attr.valueIds
-            ? attr.valueIds
-            : attr.valueId
-              ? [attr.valueId]
-              : [];
-          return valueIds.map((valueId) =>
-            this.attributeRepository.assignAttributeToProduct({
-              productId: product.id,
-              attributeId: attr.attributeId,
-              valueId,
-              customValue: attr.customValue,
-            })
-          );
-        })
-      );
-    }
+    const product = await this.productRepository.createProduct({
+      ...productData,
+      stock: totalStock,
+      attributes: productAttributes,
+    });
 
     // Fetch product with attributes
-    const productWithAttributes = await this.productRepository.findProductById(
-      product.id
-    );
+    const productWithAttributes = await this.productRepository.findProductById(product.id);
     return { product: productWithAttributes };
   }
 
@@ -166,47 +182,97 @@ export class ProductService {
       price: number;
       discount: number;
       images?: string[];
-      stock: number;
       categoryId?: string;
-      attributes?: {
-        attributeId: string;
-        valueId?: string;
-        customValue?: string;
+      attributeCombinations: {
+        attributes: { attributeId: string; valueId: string }[];
+        stock: number;
       }[];
     }>
   ) {
-    const existingProduct = await this.productRepository.findProductById(
-      productId
-    );
+    const existingProduct = await this.productRepository.findProductById(productId);
     if (!existingProduct) {
-      throw new AppError(404, "Product not found");
+      throw new AppError(404, 'Product not found');
     }
 
-    const { attributes, ...productData } = updatedData;
+    const { attributeCombinations, ...productData } = updatedData;
+
+    // Default to existing stock if no attributeCombinations provided
+    let totalStock = existingProduct.stock;
+    let productAttributes;
+
+    if (attributeCombinations) {
+      if (attributeCombinations.length === 0) {
+        throw new AppError(400, 'At least one attribute combination is required');
+      }
+
+      // Validate category requirements
+      const categoryId = productData.categoryId || existingProduct.categoryId;
+      if (categoryId) {
+        const requiredAttributes = await prisma.categoryAttribute.findMany({
+          where: { categoryId, isRequired: true },
+          select: { attributeId: true },
+        });
+        const requiredAttributeIds = requiredAttributes.map((attr) => attr.attributeId);
+
+        attributeCombinations.forEach((combo, index) => {
+          const comboAttributeIds = combo.attributes.map((attr) => attr.attributeId);
+          const missingAttributes = requiredAttributeIds.filter(
+            (id) => !comboAttributeIds.includes(id)
+          );
+          if (missingAttributes.length > 0) {
+            throw new AppError(
+              400,
+              `Combination at index ${index} is missing required attributes: ${missingAttributes.join(', ')}`
+            );
+          }
+        });
+      }
+
+      // Validate attributes and values
+      const allAttributeIds = [...new Set(attributeCombinations.flatMap((c) => c.attributes.map((a) => a.attributeId)))];
+      const existingAttributes = await prisma.attribute.findMany({
+        where: { id: { in: allAttributeIds } },
+      });
+      if (existingAttributes.length !== allAttributeIds.length) {
+        throw new AppError(400, 'One or more attributes are invalid');
+      }
+
+      const allValueIds = [...new Set(attributeCombinations.flatMap((c) => c.attributes.map((a) => a.valueId)))];
+      const existingValues = await prisma.attributeValue.findMany({
+        where: { id: { in: allValueIds } },
+      });
+      if (existingValues.length !== allValueIds.length) {
+        throw new AppError(400, 'One or more attribute values are invalid');
+      }
+
+      // Aggregate stock for ProductAttribute records
+      const attributeStockMap: { [key: string]: number } = {};
+      attributeCombinations.forEach((combo) => {
+        combo.attributes.forEach((attr) => {
+          const key = `${attr.attributeId}:${attr.valueId}`;
+          attributeStockMap[key] = (attributeStockMap[key] || 0) + combo.stock;
+        });
+      });
+
+      // Calculate total stock
+      totalStock = attributeCombinations.reduce((sum, combo) => sum + combo.stock, 0);
+
+      // Prepare ProductAttribute data
+      productAttributes = Object.entries(attributeStockMap).map(([key, stock]) => {
+        const [attributeId, valueId] = key.split(':');
+        return { attributeId, valueId, stock };
+      });
+
+      // Delete existing ProductAttribute records
+      await prisma.productAttribute.deleteMany({ where: { productId } });
+    }
 
     // Update product
-    const product = await this.productRepository.updateProduct(
-      productId,
-      productData
-    );
-
-    // Update attributes if provided
-    if (attributes) {
-      // Delete existing attributes
-      await prisma.productAttribute.deleteMany({ where: { productId } });
-
-      // Assign new attributes
-      await Promise.all(
-        attributes.map((attr) =>
-          this.attributeRepository.assignAttributeToProduct({
-            productId,
-            attributeId: attr.attributeId,
-            valueId: attr.valueId,
-            customValue: attr.customValue,
-          })
-        )
-      );
-    }
+    const product = await this.productRepository.updateProduct(productId, {
+      ...productData,
+      stock: totalStock,
+      attributes: productAttributes,
+    });
 
     // Fetch updated product with attributes
     return await this.productRepository.findProductById(productId);

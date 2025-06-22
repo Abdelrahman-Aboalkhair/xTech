@@ -74,38 +74,65 @@ const InventoryDashboard = () => {
   // Transform inventory data to show attribute-specific rows
   const attributeInventoryData = useMemo(() => {
     if (!inventoryData?.inventorySummary) return [];
+
     const result: any[] = [];
     inventoryData.inventorySummary.forEach((item: any) => {
-      if (item.product?.attributes?.length) {
-        const attributeCombinations = item.product.attributes.reduce(
-          (acc: any[], attr: any) => {
-            const values = attr.valueId ? [attr.valueId] : attr.valueIds || [];
-            if (!acc.length) {
-              return values.map((valueId: string) => [{ attributeId: attr.attributeId, valueId }]);
-            }
-            return acc.flatMap((combo: any[]) =>
-              values.map((valueId: string) => [...combo, { attributeId: attr.attributeId, valueId }])
-            );
-          },
-          []
-        );
-        attributeCombinations.forEach((combo: any[]) => {
-          const stock = item.product.attributes
-            .filter((attr: any) =>
-              combo.some((c: any) => c.attributeId === attr.attributeId && (attr.valueId === c.valueId || attr.valueIds?.includes(c.valueId)))
-            )
-            .reduce((sum: number, attr: any) => sum + (attr.stock || 0), 0);
-          result.push({
-            product: item.product,
-            stock,
-            lowStock: stock < item.product.lowStockThreshold,
-            attributeCombo: combo,
-          });
-        });
-      } else {
+      if (!item.product?.attributes?.length) {
         result.push(item);
+        return;
       }
+
+      // Group attributes by attributeId
+      const attributesById = item.product.attributes.reduce((acc: any, attr: any) => {
+        if (!acc[attr.attributeId]) {
+          acc[attr.attributeId] = {
+            attribute: attr.attribute,
+            values: [],
+          };
+        }
+        acc[attr.attributeId].values.push({
+          valueId: attr.valueId,
+          stock: attr.stock || 0,
+          value: attr.value,
+        });
+        return acc;
+      }, {});
+
+      // Generate valid combinations (Cartesian product with one value per attributeId)
+      const generateCombinations = (attrIds: string[], index: number = 0, currentCombo: any[] = []): any[] => {
+        if (index === attrIds.length) {
+          return [currentCombo];
+        }
+        const attrId = attrIds[index];
+        const { values } = attributesById[attrId];
+        return values.flatMap((val: any) =>
+          generateCombinations(attrIds, index + 1, [
+            ...currentCombo,
+            { attributeId: attrId, valueId: val.valueId },
+          ])
+        );
+      };
+
+      const attributeCombinations = generateCombinations(Object.keys(attributesById));
+
+      // Process each combination
+      attributeCombinations.forEach((combo: any[]) => {
+        const stock = combo.reduce((sum: number, c: any) => {
+          const attr = item.product.attributes.find(
+            (a: any) => a.attributeId === c.attributeId && a.valueId === c.valueId
+          );
+          return sum + (attr?.stock || 0);
+        }, 0);
+
+        result.push({
+          product: item.product,
+          stock,
+          lowStock: stock < item.product.lowStockThreshold,
+          attributeCombo: combo,
+        });
+      });
     });
+
     return result;
   }, [inventoryData]);
 
@@ -118,22 +145,23 @@ const InventoryDashboard = () => {
       width: '25%',
       render: (row: any) => row.product?.name || '-',
     },
-    // {
-    //   key: 'attributes',
-    //   label: 'Attributes',
-    //   sortable: false,
-    //   width: '25%',
-    //   render: (row: any) => {
-    //     if (!row.attributeCombo) return '-';
-    //     return row.attributeCombo
-    //       .map((combo: any) => {
-    //         const attr = row.product.attributes.find((a: any) => a.attributeId === combo.attributeId);
-    //         const value = attr?.attribute.values.find((v: any) => v.id === combo.valueId)?.value || '-';
-    //         return `${attr?.attribute.name}: ${value}`;
-    //       })
-    //       .join('; ');
-    //   },
-    // },
+    {
+      key: 'attributes',
+      label: 'Attributes',
+      sortable: false,
+      width: '25%',
+      render: (row: any) => {
+        console.log('attribute combo => ', row.attributeCombo);
+        if (!row.attributeCombo) return '-';
+        return row.attributeCombo
+          .map((combo: any) => {
+            const attr = row.product.attributes.find((a: any) => a.attributeId === combo.attributeId);
+            const value = attr?.value?.value || '-'; // Use attr.value.value instead of attr.attribute.values
+            return `${attr?.attribute?.name || 'Unknown'}: ${value}`;
+          })
+          .join('; ');
+      },
+    },
     {
       key: 'stock',
       label: 'Stock',

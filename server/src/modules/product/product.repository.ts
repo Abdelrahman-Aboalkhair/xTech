@@ -1,5 +1,5 @@
-import { Prisma } from "@prisma/client";
-import prisma from "@/infra/database/database.config";
+import { Prisma } from '@prisma/client';
+import prisma from '@/infra/database/database.config';
 
 export class ProductRepository {
   async findManyProducts(params: {
@@ -13,7 +13,7 @@ export class ProductRepository {
   }) {
     const {
       where = {},
-      orderBy = { createdAt: "desc" },
+      orderBy = { createdAt: 'desc' },
       skip = 0,
       take = 10,
       select,
@@ -29,7 +29,7 @@ export class ProductRepository {
             is: {
               slug: {
                 equals: categorySlug,
-                mode: "insensitive",
+                mode: 'insensitive',
               },
             },
           },
@@ -87,7 +87,15 @@ export class ProductRepository {
   async findProductById(id: string) {
     return prisma.product.findUnique({
       where: { id },
-      include: { category: true },
+      include: {
+        category: true,
+        ProductAttribute: {
+          include: {
+            attribute: true,
+            value: true,
+          },
+        },
+      },
     });
   }
 
@@ -130,12 +138,34 @@ export class ProductRepository {
     categoryId?: string;
     attributes?: {
       attributeId: string;
-      valueId?: string;
-      valueIds?: string[];
-      customValue?: string;
+      valueId: string;
+      stock: number;
     }[];
   }) {
-    return prisma.product.create({ data });
+    const { attributes, ...productData } = data;
+
+    return prisma.product.create({
+      data: {
+        ...productData,
+        ProductAttribute: attributes
+          ? {
+            create: attributes.map((attr) => ({
+              attributeId: attr.attributeId,
+              valueId: attr.valueId,
+              stock: attr.stock,
+            })),
+          }
+          : undefined,
+      },
+      include: {
+        ProductAttribute: {
+          include: {
+            attribute: true,
+            value: true,
+          },
+        },
+      },
+    });
   }
 
   async createManyProducts(
@@ -179,11 +209,37 @@ export class ProductRepository {
       images?: string[];
       stock: number;
       categoryId?: string;
+      attributes?: {
+        attributeId: string;
+        valueId: string;
+        stock: number;
+      }[];
     }>
   ) {
+    const { attributes, ...productData } = data;
+
     return prisma.product.update({
       where: { id },
-      data,
+      data: {
+        ...productData,
+        ProductAttribute: attributes
+          ? {
+            create: attributes.map((attr) => ({
+              attributeId: attr.attributeId,
+              valueId: attr.valueId,
+              stock: attr.stock,
+            })),
+          }
+          : undefined,
+      },
+      include: {
+        ProductAttribute: {
+          include: {
+            attribute: true,
+            value: true,
+          },
+        },
+      },
     });
   }
 

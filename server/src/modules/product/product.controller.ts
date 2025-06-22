@@ -55,165 +55,195 @@ export class ProductController {
     }
   );
 
-  createProduct = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
-      const {
-        name,
-        description,
-        price,
-        discount,
-        stock,
-        categoryId,
-        sku,
-        isNew,
-        isFeatured,
-        isTrending,
-        isBestSeller,
-        attributes,
-      } = req.body;
+  createProduct = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const {
+      name,
+      description,
+      price,
+      discount,
+      categoryId,
+      sku,
+      isNew,
+      isFeatured,
+      isTrending,
+      isBestSeller,
+      attributeCombinations,
+    } = req.body;
 
-
-      let parsedAttributes;
-      if (attributes) {
-        try {
-          parsedAttributes = typeof attributes === 'string' ? JSON.parse(attributes) : attributes;
-          // Validate attributes structure
-          if (!Array.isArray(parsedAttributes)) {
-            throw new AppError(400, "Attributes must be an array");
+    // Validate attributeCombinations
+    let parsedAttributeCombinations;
+    if (attributeCombinations) {
+      try {
+        parsedAttributeCombinations = typeof attributeCombinations === 'string' ? JSON.parse(attributeCombinations) : attributeCombinations;
+        if (!Array.isArray(parsedAttributeCombinations)) {
+          throw new AppError(400, 'attributeCombinations must be an array');
+        }
+        parsedAttributeCombinations.forEach((combo: any, index: number) => {
+          if (!combo.attributes || !Array.isArray(combo.attributes)) {
+            throw new AppError(400, `Combination at index ${index} must have an attributes array`);
           }
-          parsedAttributes.forEach((attr: any) => {
-            if (!attr.attributeId || (!attr.valueId && !attr.valueIds && !attr.customValue)) {
-              throw new AppError(400, "Invalid attribute structure");
-            }
-            if (attr.valueIds && !Array.isArray(attr.valueIds)) {
-              throw new AppError(400, "valueIds must be an array");
+          if (typeof combo.stock !== 'number' || combo.stock < 0) {
+            throw new AppError(400, `Combination at index ${index} must have a valid non-negative stock number`);
+          }
+          combo.attributes.forEach((attr: any) => {
+            if (!attr.attributeId || !attr.valueId) {
+              throw new AppError(400, `Invalid attribute structure in combination at index ${index}`);
             }
           });
-        } catch (error) {
-          throw new AppError(400, "Invalid attributes format");
+          // Check for duplicate attributes in the same combination
+          const attributeIds = combo.attributes.map((attr: any) => attr.attributeId);
+          if (new Set(attributeIds).size !== attributeIds.length) {
+            throw new AppError(400, `Duplicate attributes in combination at index ${index}`);
+          }
+        });
+        // Check for duplicate combinations
+        const comboKeys = parsedAttributeCombinations.map((combo: any) =>
+          combo.attributes.map((attr: any) => `${attr.attributeId}:${attr.valueId}`).sort().join('|')
+        );
+        if (new Set(comboKeys).size !== comboKeys.length) {
+          throw new AppError(400, 'Duplicate attribute combinations detected');
         }
+      } catch (error) {
+        throw new AppError(400, 'Invalid attributeCombinations format');
       }
-
-      console.log('parsedAttributes => ', parsedAttributes);
-
-
-      const slugifiedName = slugify(name);
-      const formattedIsNew = isNew === "true";
-      const formattedIsFeatured = isFeatured === "true";
-      const formattedIsTrending = isTrending === "true";
-      const formattedIsBestSeller = isBestSeller === "true";
-      const formattedPrice = Number(price);
-      const formattedDiscount = Number(discount);
-      const formattedStock = Number(stock);
-
-      const files = req.files as Express.Multer.File[];
-      let imageUrls: string[] = [];
-      if (Array.isArray(files) && files.length > 0) {
-        const uploadedImages = await uploadToCloudinary(files);
-        imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
-      }
-
-      const { product } = await this.productService.createProduct({
-        name,
-        sku,
-        isNew: formattedIsNew,
-        isFeatured: formattedIsFeatured,
-        isTrending: formattedIsTrending,
-        isBestSeller: formattedIsBestSeller,
-        slug: slugifiedName,
-        description,
-        price: formattedPrice,
-        discount: formattedDiscount,
-        stock: formattedStock,
-        images: imageUrls.length > 0 ? imageUrls : undefined,
-        categoryId,
-        attributes: parsedAttributes,
-      });
-
-      sendResponse(res, 201, {
-        data: { product },
-        message: "Product created successfully",
-      });
-      this.logsService.info("Product created", {
-        userId: req.user?.id,
-        sessionId: req.session.id,
-      });
+    } else {
+      throw new AppError(400, 'attributeCombinations are required');
     }
-  );
 
-  // In updateProduct
-  updateProduct = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
-      const { id: productId } = req.params;
-      const {
-        name,
-        description,
-        price,
-        discount,
-        stock,
-        categoryId,
-        sku,
-        isNew,
-        isFeatured,
-        isTrending,
-        isBestSeller,
-        attributes, // New field
-      } = req.body;
+    const formattedIsNew = isNew === 'true';
+    const formattedIsFeatured = isFeatured === 'true';
+    const formattedIsTrending = isTrending === 'true';
+    const formattedIsBestSeller = isBestSeller === 'true';
+    const formattedPrice = Number(price);
+    const formattedDiscount = Number(discount);
 
-      const files = req.files as Express.Multer.File[];
-      const formattedIsNew = isNew === "true";
-      const formattedIsFeatured = isFeatured === "true";
-      const formattedIsTrending = isTrending === "true";
-      const formattedIsBestSeller = isBestSeller === "true";
-
-      const formattedPrice = price !== undefined ? Number(price) : undefined;
-      const formattedDiscount =
-        discount !== undefined ? Number(discount) : undefined;
-      const formattedStock = stock !== undefined ? Number(stock) : undefined;
-
-      let imageUrls: string[] = [];
-      if (Array.isArray(files) && files.length > 0) {
-        const uploadedImages = await uploadToCloudinary(files);
-        imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
-      }
-
-      const updatedData: any = {
-        ...(name && { name, slug: slugify(name) }),
-        ...(sku && { sku }),
-        ...(formattedIsNew !== undefined && { isNew: formattedIsNew }),
-        ...(formattedIsFeatured !== undefined && {
-          isFeatured: formattedIsFeatured,
-        }),
-        ...(formattedIsTrending !== undefined && {
-          isTrending: formattedIsTrending,
-        }),
-        ...(formattedIsBestSeller !== undefined && {
-          isBestSeller: formattedIsBestSeller,
-        }),
-        ...(description && { description }),
-        ...(formattedPrice !== undefined && { price: formattedPrice }),
-        ...(formattedDiscount !== undefined && { discount: formattedDiscount }),
-        ...(formattedStock !== undefined && { stock: formattedStock }),
-        ...(imageUrls.length > 0 && { images: imageUrls }),
-        ...(categoryId && { categoryId }),
-        ...(attributes && { attributes }), // Pass attributes
-      };
-
-      const product = await this.productService.updateProduct(
-        productId,
-        updatedData
-      );
-
-      sendResponse(res, 200, {
-        data: { product },
-        message: "Product updated successfully",
-      });
-      this.logsService.info("Product updated", {
-        userId: req.user?.id,
-        sessionId: req.session.id,
-      });
+    const files = req.files as Express.Multer.File[];
+    let imageUrls: string[] = [];
+    if (Array.isArray(files) && files.length > 0) {
+      const uploadedImages = await uploadToCloudinary(files);
+      imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
     }
-  );
+
+    const { product } = await this.productService.createProduct({
+      name,
+      sku,
+      isNew: formattedIsNew,
+      isTrending: formattedIsTrending,
+      isBestSeller: formattedIsBestSeller,
+      isFeatured: formattedIsFeatured,
+      slug: slugify(name),
+      description,
+      price: formattedPrice,
+      discount: formattedDiscount,
+      images: imageUrls.length > 0 ? imageUrls : undefined,
+      categoryId,
+      attributeCombinations: parsedAttributeCombinations,
+    });
+
+    sendResponse(res, 201, {
+      data: { product },
+      message: 'Product created successfully',
+    });
+    this.logsService.info('Product created', {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+    });
+  });
+
+  updateProduct = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const { id: productId } = req.params;
+    const {
+      name,
+      description,
+      price,
+      discount,
+      categoryId,
+      sku,
+      isNew,
+      isFeatured,
+      isTrending,
+      isBestSeller,
+      attributeCombinations,
+    } = req.body;
+
+    // Validate attributeCombinations
+    let parsedAttributeCombinations;
+    if (attributeCombinations) {
+      try {
+        parsedAttributeCombinations = typeof attributeCombinations === 'string' ? JSON.parse(attributeCombinations) : attributeCombinations;
+        if (!Array.isArray(parsedAttributeCombinations)) {
+          throw new AppError(400, 'attributeCombinations must be an array');
+        }
+        parsedAttributeCombinations.forEach((combo: any, index: number) => {
+          if (!combo.attributes || !Array.isArray(combo.attributes)) {
+            throw new AppError(400, `Combination at index ${index} must have an attributes array`);
+          }
+          if (typeof combo.stock !== 'number' || combo.stock < 0) {
+            throw new AppError(400, `Combination at index ${index} must have a valid non-negative stock number`);
+          }
+          combo.attributes.forEach((attr: any) => {
+            if (!attr.attributeId || !attr.valueId) {
+              throw new AppError(400, `Invalid attribute structure in combination at index ${index}`);
+            }
+          });
+          // Check for duplicate attributes in the same combination
+          const attributeIds = combo.attributes.map((attr: any) => attr.attributeId);
+          if (new Set(attributeIds).size !== attributeIds.length) {
+            throw new AppError(400, `Duplicate attributes in combination at index ${index}`);
+          }
+        });
+        // Check for duplicate combinations
+        const comboKeys = parsedAttributeCombinations.map((combo: any) =>
+          combo.attributes.map((attr: any) => `${attr.attributeId}:${attr.valueId}`).sort().join('|')
+        );
+        if (new Set(comboKeys).size !== comboKeys.length) {
+          throw new AppError(400, 'Duplicate attribute combinations detected');
+        }
+      } catch (error) {
+        throw new AppError(400, 'Invalid attributeCombinations format');
+      }
+    }
+
+    const formattedIsNew = isNew === 'true';
+    const formattedIsFeatured = isFeatured === 'true';
+    const formattedIsTrending = isTrending === 'true';
+    const formattedIsBestSeller = isBestSeller === 'true';
+    const formattedPrice = price !== undefined ? Number(price) : undefined;
+    const formattedDiscount = discount !== undefined ? Number(discount) : undefined;
+
+    const files = req.files as Express.Multer.File[];
+    let imageUrls: string[] = [];
+    if (Array.isArray(files) && files.length > 0) {
+      const uploadedImages = await uploadToCloudinary(files);
+      imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
+    }
+
+    const updatedData: any = {
+      ...(name && { name, slug: slugify(name) }),
+      ...(sku && { sku }),
+      ...(formattedIsNew !== undefined && { isNew: formattedIsNew }),
+      ...(formattedIsFeatured !== undefined && { isFeatured: formattedIsFeatured }),
+      ...(formattedIsTrending !== undefined && { isTrending: formattedIsTrending }),
+      ...(formattedIsBestSeller !== undefined && { isBestSeller: formattedIsBestSeller }),
+      ...(description && { description }),
+      ...(formattedPrice !== undefined && { price: formattedPrice }),
+      ...(formattedDiscount !== undefined && { discount: formattedDiscount }),
+      ...(imageUrls.length > 0 && { images: imageUrls }),
+      ...(categoryId && { categoryId }),
+      ...(parsedAttributeCombinations && { attributeCombinations: parsedAttributeCombinations }),
+    };
+
+    const product = await this.productService.updateProduct(productId, updatedData);
+
+    sendResponse(res, 200, {
+      data: { product },
+      message: 'Product updated successfully',
+    });
+    this.logsService.info('Product updated', {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+    });
+  });
 
   bulkCreateProducts = asyncHandler(async (req: Request, res: Response) => {
     const file = req.file;
