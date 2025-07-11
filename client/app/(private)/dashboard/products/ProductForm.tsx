@@ -1,3 +1,5 @@
+'use client'
+
 import { Controller, UseFormReturn } from "react-hook-form";
 import { DollarSign, Package, Tag, Hash } from "lucide-react";
 import Dropdown from "@/app/components/molecules/Dropdown";

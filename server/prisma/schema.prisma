@@ -76,94 +76,108 @@ model User {
 }
 
 model Product {
-  id                String               @id @default(uuid())
-  name              String               @unique
-  description       String?
-  price             Float
-  discount          Float                @default(0)
-  slug              String               @unique
-  images            String[]
-  stock             Int // Total Stock for reference
-  lowStockThreshold Int                  @default(10)
-  salesCount        Int                  @default(0)
-  sku               String?
-  isNew             Boolean              @default(false)
-  isFeatured        Boolean              @default(false)
-  isTrending        Boolean              @default(false)
-  isBestSeller      Boolean              @default(false)
-  averageRating     Float                @default(0)
-  reviewCount       Int                  @default(0)
-  category          Category?            @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  categoryId        String?
-  orderItems        OrderItem[]
-  cartItems         CartItem[]
-  interactions      Interaction[]
-  reviews           Review[]
-  stockMovements    StockMovement[]
-  Restock           Restock[]
-  ProductAttribute  ProductAttribute[]
-  combinations      ProductCombination[]
-  createdAt         DateTime             @default(now())
-  updatedAt         DateTime             @updatedAt
+  id             String           @id @default(uuid())
+  name           String           @unique
+  description    String?
+  basePrice      Float
+  discount       Float            @default(0)
+  slug           String           @unique
+  images         String[]
+  salesCount     Int              @default(0)
+  isNew          Boolean          @default(false)
+  isFeatured     Boolean          @default(false)
+  isTrending     Boolean          @default(false)
+  isBestSeller   Boolean          @default(false)
+  averageRating  Float            @default(0)
+  reviewCount    Int              @default(0)
+  category       Category?        @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId     String?
+  variants       ProductVariant[]
+  orderItems     OrderItem[]
+  cartItems      CartItem[]
+  interactions   Interaction[]
+  reviews        Review[]
+  stockMovements StockMovement[]
+  restocks       Restock[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
 
   @@index([name, slug])
 }
 
-model ProductCombination {
-  id         String             @id @default(uuid())
-  productId  String
-  product    Product            @relation(fields: [productId], references: [id])
-  attributes ProductAttribute[]
-  stock      Int
-  createdAt  DateTime           @default(now())
-  updatedAt  DateTime           @updatedAt
+model ProductVariant {
+  id                String                    @id @default(uuid())
+  productId         String
+  product           Product                   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  sku               String                    @unique // e.g., TSH-RED-S
+  price             Float
+  stock             Int
+  lowStockThreshold Int                       @default(10)
+  barcode           String?
+  warehouseLocation String?
+  attributes        ProductVariantAttribute[]
+  orderItems        OrderItem[]
+  cartItems         CartItem[]
+  stockMovements    StockMovement[]
+  restocks          Restock[]
+  createdAt         DateTime                  @default(now())
+  updatedAt         DateTime                  @updatedAt
+
+  @@index([productId, sku])
 }
 
 model Attribute {
-  id               String              @id @default(uuid())
-  name             String              @unique
-  slug             String              @unique
-  type             String              @default("text")
-  values           AttributeValue[]
-  categories       CategoryAttribute[]
-  ProductAttribute ProductAttribute[]
-  createdAt        DateTime            @default(now())
-  updatedAt        DateTime            @updatedAt
-  RestockAttribute RestockAttribute[]
+  id                String                    @id @default(uuid())
+  name              String                    @unique // e.g., Size, Color
+  slug              String                    @unique
+  values            AttributeValue[]
+  categories        CategoryAttribute[]
+  variantAttributes ProductVariantAttribute[]
+  createdAt         DateTime                  @default(now())
+  updatedAt         DateTime                  @updatedAt
 
   @@index([name, slug])
 }
 
 model AttributeValue {
-  id               String             @id @default(uuid())
-  attributeId      String
-  attribute        Attribute          @relation(fields: [attributeId], references: [id], onDelete: Cascade)
-  value            String
-  slug             String             @unique
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  ProductAttribute ProductAttribute[]
-  RestockAttribute RestockAttribute[]
+  id                String                    @id @default(uuid())
+  attributeId       String
+  attribute         Attribute                 @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  value             String // e.g., Red, S
+  slug              String                    @unique
+  variantAttributes ProductVariantAttribute[]
+  createdAt         DateTime                  @default(now())
+  updatedAt         DateTime                  @updatedAt
 
   @@index([attributeId, value])
 }
 
-model ProductAttribute {
-  id                   String              @id @default(uuid())
-  productId            String
-  attributeId          String
-  valueId              String?
-  customValue          String?
-  stock                Int                 @default(0) // Stock for this attribute value (4 for red-cotton shirt)
-  product              Product             @relation(fields: [productId], references: [id])
-  attribute            Attribute           @relation(fields: [attributeId], references: [id])
-  value                AttributeValue?     @relation(fields: [valueId], references: [id])
-  ProductCombination   ProductCombination? @relation(fields: [productCombinationId], references: [id])
-  productCombinationId String?
+model ProductVariantAttribute {
+  id          String         @id @default(uuid())
+  variantId   String
+  variant     ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  attributeId String
+  attribute   Attribute      @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  valueId     String
+  value       AttributeValue @relation(fields: [valueId], references: [id], onDelete: Cascade)
+  createdAt   DateTime       @default(now())
 
-  @@unique([productId, attributeId, valueId])
-  @@index([productId])
-  @@index([attributeId])
+  @@unique([variantId, attributeId, valueId])
+  @@index([variantId, attributeId])
+}
+
+model Category {
+  id          String              @id @default(uuid())
+  slug        String              @unique
+  name        String
+  description String?
+  images      String[]
+  products    Product[]
+  attributes  CategoryAttribute[]
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+
+  @@index([name, slug])
 }
 
 model CategoryAttribute {
@@ -180,52 +194,32 @@ model CategoryAttribute {
   @@index([categoryId, attributeId])
 }
 
-model Category {
-  id                String              @id @default(uuid())
-  slug              String              @unique
-  name              String
-  description       String?
-  images            String[]
-  products          Product[]
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
-  CategoryAttribute CategoryAttribute[]
-
-  @@index([name, slug])
-}
-
 model StockMovement {
-  id        String   @id @default(uuid())
-  productId String
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  id        String         @id @default(uuid())
+  variantId String
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
   quantity  Int
   reason    String
   userId    String?
-  createdAt DateTime @default(now())
+  createdAt DateTime       @default(now())
+  Product   Product?       @relation(fields: [productId], references: [id])
+  productId String?
+
+  @@index([variantId])
 }
 
 model Restock {
-  id         String             @id @default(uuid())
-  productId  String
-  product    Product            @relation(fields: [productId], references: [id], onDelete: Cascade)
-  quantity   Int
-  notes      String?
-  userId     String?
-  createdAt  DateTime           @default(now())
-  attributes RestockAttribute[] // Added relation to RestockAttribute
-}
+  id        String         @id @default(uuid())
+  variantId String
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  quantity  Int
+  notes     String?
+  userId    String?
+  createdAt DateTime       @default(now())
+  Product   Product?       @relation(fields: [productId], references: [id])
+  productId String?
 
-model RestockAttribute {
-  id          String          @id @default(uuid())
-  restockId   String
-  restock     Restock         @relation(fields: [restockId], references: [id], onDelete: Cascade)
-  attributeId String
-  attribute   Attribute       @relation(fields: [attributeId], references: [id], onDelete: Cascade)
-  valueId     String?
-  value       AttributeValue? @relation(fields: [valueId], references: [id], onDelete: SetNull)
-  createdAt   DateTime        @default(now())
-
-  @@index([restockId, attributeId])
+  @@index([variantId])
 }
 
 model Review {
@@ -260,17 +254,19 @@ model Order {
 }
 
 model OrderItem {
-  id        String   @id @default(uuid())
-  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  id        String         @id @default(uuid())
+  order     Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId   String
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  productId String
-  quantity  Int      @default(1)
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  variantId String
+  quantity  Int            @default(1)
   price     Float
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  Product   Product?       @relation(fields: [productId], references: [id])
+  productId String?
 
-  @@index([orderId, productId])
+  @@index([orderId, variantId])
 }
 
 model Payment {
@@ -346,17 +342,19 @@ model Cart {
 }
 
 model CartItem {
-  id        String   @id @default(uuid())
-  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  id        String         @id @default(uuid())
+  cart      Cart           @relation(fields: [cartId], references: [id], onDelete: Cascade)
   cartId    String
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  productId String
-  quantity  Int      @default(1)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  variantId String
+  quantity  Int            @default(1)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  Product   Product?       @relation(fields: [productId], references: [id])
+  productId String?
 
-  @@unique([cartId, productId])
-  @@index([cartId, productId])
+  @@unique([cartId, variantId])
+  @@index([cartId, variantId])
 }
 
 enum CART_EVENT {

@@ -42,3 +42,1305 @@ Error: write EIO
     at /home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:31:13
     at Generator.next (<anonymous>)
     at fulfilled (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:5:58)
+[2025-07-11T18:29:19.145Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
+Error: EIO: i/o error, write
+    at writeSync (node:fs:924:3)
+    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+    at _write (node:internal/streams/writable:501:10)
+    at SyncWriteStream.Writable.write (node:internal/streams/writable:510:10)
+    at console.value (node:internal/console/constructor:298:16)
+    at console.log (node:internal/console/constructor:384:26)
+    at /home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:31:13
+    at Generator.next (<anonymous>)
+    at fulfilled (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:5:58)
+[2025-07-11T18:59:58.901Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+src/modules/cart/cart.repository.ts(8,42): error TS2561: Object literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+src/modules/cart/cart.repository.ts(15,42): error TS2561: Object literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+src/modules/cart/cart.repository.ts(40,45): error TS2322: Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+src/modules/cart/cart.repository.ts(79,11): error TS2322: Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+TSError: ⨯ Unable to compile TypeScript:
+src/modules/cart/cart.repository.ts(8,42): error TS2561: Object literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+src/modules/cart/cart.repository.ts(15,42): error TS2561: Object literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+src/modules/cart/cart.repository.ts(40,45): error TS2322: Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+src/modules/cart/cart.repository.ts(79,11): error TS2322: Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T18:59:58.931Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:00:05.960Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:00:11.649Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:00:22.377Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:00:32.338Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:02:22.742Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:02:30.783Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:03:02.200Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:03:20.290Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:07:20.428Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:07:37.620Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:08:04.780Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:08:51.939Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-11T19:09:04.547Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/cart/cart.repository.ts[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m8[0m       include: { cartItems: { include: { product: true } } },
+[7m [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m15[0m:[93m42[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'product' does not exist in type 'CartItemInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { cart?: Exact<boolean | CartDefaultArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; variant?: Exact<...>; Product?: Exact<...>; }'. Did you mean to write 'Product'?
+
+[7m15[0m       include: { cartItems: { include: { product: true } } },
+[7m  [0m [91m                                         ~~~~~~~[0m
+[96msrc/modules/cart/cart.repository.ts[0m:[93m40[0m:[93m45[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m40[0m       return await prisma.cartItem.create({ data });
+[7m  [0m [91m                                            ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+[96msrc/modules/cart/cart.repository.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type 'Exact<(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput), (Without<...> & CartItemUncheckedCreateInput) | (Without<...> & CartItemCreateInput)>'.
+  Type '{ cartId: string; productId: string | null; quantity: number; }' is not assignable to type '(Without<CartItemCreateInput, CartItemUncheckedCreateInput> & CartItemUncheckedCreateInput) | { ...; }'.
+    Property 'variantId' is missing in type '{ cartId: string; productId: string | null; quantity: number; }' but required in type '{ cart?: undefined; Product?: undefined; variant?: undefined; id?: Exact<string | undefined, string | undefined>; cartId: string; variantId: string; quantity?: Exact<number | undefined, number | undefined>; createdAt?: Exact<...>; updatedAt?: Exact<...>; productId?: Exact<...>; }'.
+
+[7m79[0m           data: {
+[7m  [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m37721[0m:[93m5[0m
+    [7m37721[0m     variantId: string
+    [7m     [0m [96m    ~~~~~~~~~[0m
+    'variantId' is declared here.
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m25861[0m:[93m5[0m
+    [7m25861[0m     data: XOR<CartItemCreateInput, CartItemUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: Exact<CartItemSelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CartItemSelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; data: Exact<...>; }'
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

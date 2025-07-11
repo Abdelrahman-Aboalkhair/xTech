@@ -1,3 +1,5 @@
+'use client'
+
 import { Controller, UseFormReturn } from "react-hook-form";
 import { Tag } from "lucide-react";
 import ImageUploader from "@/app/components/molecules/ImageUploader";

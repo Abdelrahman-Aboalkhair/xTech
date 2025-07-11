@@ -1,3 +1,4 @@
+'use client'
 import { useState } from "react";
 import { BaggageClaim, ChevronRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
@@ -124,9 +125,8 @@ const ListItem = ({
             <p className="text-xs text-gray-500">{item.secondaryInfo}</p>
           </div>
           <ChevronRight
-            className={`w-4 h-4 transition-colors ${
-              isHovered ? "text-indigo-600" : "text-gray-400"
-            }`}
+            className={`w-4 h-4 transition-colors ${isHovered ? "text-indigo-600" : "text-gray-400"
+              }`}
           />
         </div>
       </div>

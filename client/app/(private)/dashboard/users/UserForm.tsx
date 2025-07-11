@@ -1,3 +1,5 @@
+'use client'
+
 import { Controller, UseFormReturn } from "react-hook-form";
 import { Users } from "lucide-react";
 
@@ -136,9 +138,8 @@ const UserForm: React.FC<UserFormProps> = ({
         <button
           type="submit"
           disabled={isLoading}
-          className={`px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 ${
-            isLoading ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className={`px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 ${isLoading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
         >
           {isLoading ? "Saving..." : submitLabel}
         </button>

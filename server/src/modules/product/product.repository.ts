@@ -1,12 +1,12 @@
-import { Prisma } from '@prisma/client';
 import prisma from '@/infra/database/database.config';
+import { Prisma } from '@prisma/client';
 
 export class ProductRepository {
   async findManyProducts(params: {
     where?: Prisma.ProductWhereInput & { categorySlug?: string };
     orderBy?:
-    | Prisma.ProductOrderByWithRelationInput
-    | Prisma.ProductOrderByWithRelationInput[];
+      | Prisma.ProductOrderByWithRelationInput
+      | Prisma.ProductOrderByWithRelationInput[];
     skip?: number;
     take?: number;
     select?: Prisma.ProductSelect;
@@ -25,15 +25,15 @@ export class ProductRepository {
       ...restWhere,
       ...(categorySlug
         ? {
-          category: {
-            is: {
-              slug: {
-                equals: categorySlug,
-                mode: 'insensitive',
+            category: {
+              is: {
+                slug: {
+                  equals: categorySlug,
+                  mode: 'insensitive',
+                },
               },
             },
-          },
-        }
+          }
         : {}),
     };
 
@@ -43,45 +43,26 @@ export class ProductRepository {
       skip,
       take,
       select,
+      include: select?.variants
+        ? {
+            variants: {
+              include: {
+                attributes: {
+                  include: {
+                    attribute: true,
+                    value: true,
+                  },
+                },
+              },
+            },
+          }
+        : undefined,
     });
   }
 
   async countProducts(params: { where?: Prisma.ProductWhereInput }) {
     const { where = {} } = params;
-
-    return prisma.product.count({
-      where,
-    });
-  }
-
-  async createRestock(data: {
-    productId: string;
-    quantity: number;
-    notes?: string;
-    userId?: string;
-  }) {
-    return prisma.restock.create({
-      data,
-      include: { product: true },
-    });
-  }
-
-  async updateProductStock(productId: string, quantity: number) {
-    return prisma.product.update({
-      where: { id: productId },
-      data: { stock: { increment: quantity } },
-    });
-  }
-
-  async createStockMovement(data: {
-    productId: string;
-    quantity: number;
-    reason: string;
-    userId?: string;
-  }) {
-    return prisma.stockMovement.create({
-      data,
-    });
+    return prisma.product.count({ where });
   }
 
   async findProductById(id: string) {
@@ -89,10 +70,14 @@ export class ProductRepository {
       where: { id },
       include: {
         category: true,
-        ProductAttribute: {
+        variants: {
           include: {
-            attribute: true,
-            value: true,
+            attributes: {
+              include: {
+                attribute: true,
+                value: true,
+              },
+            },
           },
         },
       },
@@ -103,10 +88,11 @@ export class ProductRepository {
     return prisma.product.findUnique({
       where: { name },
       select: {
-        sku: true,
-        price: true,
-        images: true,
+        id: true,
+        name: true,
         slug: true,
+        basePrice: true,
+        images: true,
       },
     });
   }
@@ -114,56 +100,47 @@ export class ProductRepository {
   async findProductBySlug(slug: string) {
     return prisma.product.findUnique({
       where: { slug },
+      include: {
+        category: true,
+        variants: {
+          include: {
+            attributes: {
+              include: {
+                attribute: true,
+                value: true,
+              },
+            },
+          },
+        },
+      },
     });
   }
 
   async findProductNameById(id: string): Promise<string | null> {
-    const product = await this.findProductById(id);
+    const product = await prisma.product.findUnique({
+      where: { id },
+      select: { name: true },
+    });
     return product?.name || null;
   }
 
   async createProduct(data: {
     name: string;
-    sku: string;
-    isNew: boolean;
-    isTrending: boolean;
-    isBestSeller: boolean;
-    isFeatured: boolean;
     slug: string;
     description?: string;
-    price: number;
-    discount: number;
+    basePrice: number;
+    discount?: number;
     images?: string[];
-    stock: number;
+    isNew?: boolean;
+    isTrending?: boolean;
+    isBestSeller?: boolean;
+    isFeatured?: boolean;
     categoryId?: string;
-    attributes?: {
-      attributeId: string;
-      valueId: string;
-      stock: number;
-    }[];
   }) {
-    const { attributes, ...productData } = data;
-
     return prisma.product.create({
-      data: {
-        ...productData,
-        ProductAttribute: attributes
-          ? {
-            create: attributes.map((attr) => ({
-              attributeId: attr.attributeId,
-              valueId: attr.valueId,
-              stock: attr.stock,
-            })),
-          }
-          : undefined,
-      },
+      data,
       include: {
-        ProductAttribute: {
-          include: {
-            attribute: true,
-            value: true,
-          },
-        },
+        category: true,
       },
     });
   }
@@ -173,10 +150,13 @@ export class ProductRepository {
       name: string;
       slug: string;
       description?: string;
-      price: number;
-      discount: number;
-      images: string[];
-      stock: number;
+      basePrice: number;
+      discount?: number;
+      images?: string[];
+      isNew?: boolean;
+      isTrending?: boolean;
+      isBestSeller?: boolean;
+      isFeatured?: boolean;
       categoryId?: string;
     }[]
   ) {
@@ -197,46 +177,31 @@ export class ProductRepository {
     id: string,
     data: Partial<{
       name: string;
-      sku: string;
-      isNew: boolean;
-      isTrending: boolean;
-      isBestSeller: boolean;
-      isFeatured: boolean;
       slug: string;
       description?: string;
-      price: number;
-      discount: number;
+      basePrice: number;
+      discount?: number;
       images?: string[];
-      stock: number;
+      isNew?: boolean;
+      isTrending?: boolean;
+      isBestSeller?: boolean;
+      isFeatured?: boolean;
       categoryId?: string;
-      attributes?: {
-        attributeId: string;
-        valueId: string;
-        stock: number;
-      }[];
     }>
   ) {
-    const { attributes, ...productData } = data;
-
     return prisma.product.update({
       where: { id },
-      data: {
-        ...productData,
-        ProductAttribute: attributes
-          ? {
-            create: attributes.map((attr) => ({
-              attributeId: attr.attributeId,
-              valueId: attr.valueId,
-              stock: attr.stock,
-            })),
-          }
-          : undefined,
-      },
+      data,
       include: {
-        ProductAttribute: {
+        category: true,
+        variants: {
           include: {
-            attribute: true,
-            value: true,
+            attributes: {
+              include: {
+                attribute: true,
+                value: true,
+              },
+            },
           },
         },
       },

@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { X } from 'lucide-react';

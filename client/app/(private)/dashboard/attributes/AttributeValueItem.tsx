@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import { X, Edit, Check } from "lucide-react";
 import useToast from "@/app/hooks/ui/useToast";

@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from "react";
 import { Trash2, Plus } from "lucide-react";
 import useToast from "@/app/hooks/ui/useToast";

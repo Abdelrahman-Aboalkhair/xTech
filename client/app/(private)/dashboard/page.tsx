@@ -1,5 +1,4 @@
 "use client";
-import ProtectedRoute from "@/app/components/auth/ProtectedRoute";
 import AreaChart from "@/app/components/charts/AreaChart";
 import StatsCard from "@/app/components/organisms/StatsCard";
 import Dropdown from "@/app/components/molecules/Dropdown";
@@ -11,7 +10,6 @@ import useFormatPrice from "@/app/hooks/ui/useFormatPrice";
 import { useQuery } from "@apollo/client";
 import { GET_ANALYTICS_OVERVIEW } from "@/app/gql/Dashboard";
 import CustomLoader from "@/app/components/feedback/CustomLoader";
-import RevenueOverTimeChart from "@/app/components/charts/RevenueOverTimeChart";
 import ListCard from "@/app/components/organisms/ListCard";
 import BarChart from "@/app/components/charts/BarChart";
 
@@ -56,26 +54,22 @@ const Dashboard = () => {
       quantity: p.quantity,
       revenue: formatPrice(p.revenue),
     })) || [];
-  console.log("topItems: ", topItems);
 
   const salesByProduct = {
     categories: data?.productPerformance?.map((p) => p.name) || [],
     data: data?.productPerformance?.map((p) => p.revenue) || [],
   };
 
-  console.log("Analytics Overview => ", data);
 
   if (loading) {
     return <CustomLoader />;
   }
 
   if (error) {
-    console.error("GraphQL Error:", error);
     return <div>Error loading dashboard data</div>;
   }
 
   return (
-    // <ProtectedRoute requiredRoles={["ADMIN", "SUPERADMIN"]}>
     <motion.div
       className="p-2 min-h-screen space-y-4"
       initial={{ opacity: 0, y: -20 }}
@@ -138,7 +132,6 @@ const Dashboard = () => {
           color="#22c55e"
           percentageChange={data?.revenueAnalytics?.changes?.revenue}
         />
-        {/* <RevenueOverTimeChart startDate="2023-01-01" endDate="2023-12-31" /> */}
         <ListCard
           title="Top Products"
           viewAllLink="/shop"
@@ -153,7 +146,6 @@ const Dashboard = () => {
         />
       </div>
     </motion.div>
-    // </ProtectedRoute>
   );
 };
 

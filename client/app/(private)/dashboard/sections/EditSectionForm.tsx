@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Check, X } from "lucide-react";
@@ -156,11 +158,10 @@ const EditSectionForm = ({ section, onUpdate, onCancel, isLoading }) => {
           </button>
           <button
             type="submit"
-            className={`flex items-center gap-2 px-6 py-2 rounded-lg font-medium transition-colors duration-200 ${
-              isLoading
+            className={`flex items-center gap-2 px-6 py-2 rounded-lg font-medium transition-colors duration-200 ${isLoading
                 ? "bg-gray-300 text-gray-600 cursor-not-allowed"
                 : "bg-indigo-600 hover:bg-indigo-700 text-white"
-            }`}
+              }`}
             disabled={isLoading}
           >
             {isLoading ? (

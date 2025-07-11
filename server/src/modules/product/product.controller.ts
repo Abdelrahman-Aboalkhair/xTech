@@ -9,113 +9,103 @@ import AppError from "@/shared/errors/AppError";
 
 export class ProductController {
   private logsService = makeLogsService();
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
-  getAllProducts = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
-      const {
-        products,
-        totalResults,
-        totalPages,
-        currentPage,
-        resultsPerPage,
-      } = await this.productService.getAllProducts(req.query);
-      sendResponse(res, 200, {
-        data: {
-          products,
-          totalResults,
-          totalPages,
-          currentPage,
-          resultsPerPage,
-        },
-        message: "Products fetched successfully",
-      });
-    }
-  );
+  getAllProducts = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const { products, totalResults, totalPages, currentPage, resultsPerPage } =
+      await this.productService.getAllProducts(req.query);
+    sendResponse(res, 200, {
+      data: { products, totalResults, totalPages, currentPage, resultsPerPage },
+      message: "Products fetched successfully",
+    });
+  });
 
-  getProductById = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
-      const { id: productId } = req.params;
-      const product = await this.productService.getProductById(productId);
-      sendResponse(res, 200, {
-        data: product,
-        message: "Product fetched successfully",
-      });
-    }
-  );
+  getProductById = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const { id: productId } = req.params;
+    const product = await this.productService.getProductById(productId);
+    sendResponse(res, 200, {
+      data: product,
+      message: "Product fetched successfully",
+    });
+  });
 
-  getProductBySlug = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
-      const { slug: productSlug } = req.params;
-      const product = await this.productService.getProductBySlug(productSlug);
-      sendResponse(res, 200, {
-        data: product,
-        message: "Product fetched successfully",
-      });
-    }
-  );
+  getProductBySlug = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const { slug: productSlug } = req.params;
+    const product = await this.productService.getProductBySlug(productSlug);
+    sendResponse(res, 200, {
+      data: product,
+      message: "Product fetched successfully",
+    });
+  });
 
   createProduct = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const {
       name,
       description,
-      price,
+      basePrice,
       discount,
       categoryId,
-      sku,
       isNew,
       isFeatured,
       isTrending,
       isBestSeller,
-      attributeCombinations,
+      variants,
     } = req.body;
 
-    // Validate attributeCombinations
-    let parsedAttributeCombinations;
-    if (attributeCombinations) {
+    // Validate variants
+    let parsedVariants;
+    if (variants) {
       try {
-        parsedAttributeCombinations = typeof attributeCombinations === 'string' ? JSON.parse(attributeCombinations) : attributeCombinations;
-        if (!Array.isArray(parsedAttributeCombinations)) {
-          throw new AppError(400, 'attributeCombinations must be an array');
+        parsedVariants = typeof variants === "string" ? JSON.parse(variants) : variants;
+        if (!Array.isArray(parsedVariants)) {
+          throw new AppError(400, "Variants must be an array");
         }
-        parsedAttributeCombinations.forEach((combo: any, index: number) => {
-          if (!combo.attributes || !Array.isArray(combo.attributes)) {
-            throw new AppError(400, `Combination at index ${index} must have an attributes array`);
+        parsedVariants.forEach((variant: any, index: number) => {
+          if (!variant.sku || typeof variant.price !== "number" || typeof variant.stock !== "number") {
+            throw new AppError(400, `Variant at index ${index} must have sku, price, and stock`);
           }
-          if (typeof combo.stock !== 'number' || combo.stock < 0) {
-            throw new AppError(400, `Combination at index ${index} must have a valid non-negative stock number`);
+          if (!variant.attributes || !Array.isArray(variant.attributes)) {
+            throw new AppError(400, `Variant at index ${index} must have an attributes array`);
           }
-          combo.attributes.forEach((attr: any) => {
+          if (typeof variant.stock !== "number" || variant.stock < 0) {
+            throw new AppError(400, `Variant at index ${index} must have a valid non-negative stock number`);
+          }
+          variant.attributes.forEach((attr: any) => {
             if (!attr.attributeId || !attr.valueId) {
-              throw new AppError(400, `Invalid attribute structure in combination at index ${index}`);
+              throw new AppError(400, `Invalid attribute structure in variant at index ${index}`);
             }
           });
-          // Check for duplicate attributes in the same combination
-          const attributeIds = combo.attributes.map((attr: any) => attr.attributeId);
+          // Check for duplicate attributes in the same variant
+          const attributeIds = variant.attributes.map((attr: any) => attr.attributeId);
           if (new Set(attributeIds).size !== attributeIds.length) {
-            throw new AppError(400, `Duplicate attributes in combination at index ${index}`);
+            throw new AppError(400, `Duplicate attributes in variant at index ${index}`);
           }
         });
-        // Check for duplicate combinations
-        const comboKeys = parsedAttributeCombinations.map((combo: any) =>
-          combo.attributes.map((attr: any) => `${attr.attributeId}:${attr.valueId}`).sort().join('|')
+        // Check for duplicate SKUs
+        const skuKeys = parsedVariants.map((variant: any) => variant.sku);
+        if (new Set(skuKeys).size !== skuKeys.length) {
+          throw new AppError(400, "Duplicate SKUs detected");
+        }
+        // Check for duplicate attribute combinations
+        const comboKeys = parsedVariants.map((variant: any) =>
+          variant.attributes.map((attr: any) => `${attr.attributeId}:${attr.valueId}`).sort().join("|")
         );
         if (new Set(comboKeys).size !== comboKeys.length) {
-          throw new AppError(400, 'Duplicate attribute combinations detected');
+          throw new AppError(400, "Duplicate attribute combinations detected");
         }
       } catch (error) {
-        throw new AppError(400, 'Invalid attributeCombinations format');
+        throw new AppError(400, "Invalid variants format");
       }
     } else {
-      throw new AppError(400, 'attributeCombinations are required');
+      throw new AppError(400, "Variants are required");
     }
 
-    const formattedIsNew = isNew === 'true';
-    const formattedIsFeatured = isFeatured === 'true';
-    const formattedIsTrending = isTrending === 'true';
-    const formattedIsBestSeller = isBestSeller === 'true';
-    const formattedPrice = Number(price);
-    const formattedDiscount = Number(discount);
+    const formattedIsNew = isNew === "true";
+    const formattedIsFeatured = isFeatured === "true";
+    const formattedIsTrending = isTrending === "true";
+    const formattedIsBestSeller = isBestSeller === "true";
+    const formattedBasePrice = Number(basePrice);
+    const formattedDiscount = discount ? Number(discount) : undefined;
 
     const files = req.files as Express.Multer.File[];
     let imageUrls: string[] = [];
@@ -124,27 +114,25 @@ export class ProductController {
       imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
     }
 
-    const { product } = await this.productService.createProduct({
+    const product = await this.productService.createProduct({
       name,
-      sku,
+      description,
+      basePrice: formattedBasePrice,
+      discount: formattedDiscount,
+      images: imageUrls.length > 0 ? imageUrls : undefined,
       isNew: formattedIsNew,
       isTrending: formattedIsTrending,
       isBestSeller: formattedIsBestSeller,
       isFeatured: formattedIsFeatured,
-      slug: slugify(name),
-      description,
-      price: formattedPrice,
-      discount: formattedDiscount,
-      images: imageUrls.length > 0 ? imageUrls : undefined,
       categoryId,
-      attributeCombinations: parsedAttributeCombinations,
+      variants: parsedVariants,
     });
 
     sendResponse(res, 201, {
       data: { product },
-      message: 'Product created successfully',
+      message: "Product created successfully",
     });
-    this.logsService.info('Product created', {
+    this.logsService.info("Product created", {
       userId: req.user?.id,
       sessionId: req.session.id,
     });
@@ -155,60 +143,67 @@ export class ProductController {
     const {
       name,
       description,
-      price,
+      basePrice,
       discount,
       categoryId,
-      sku,
       isNew,
       isFeatured,
       isTrending,
       isBestSeller,
-      attributeCombinations,
+      variants,
     } = req.body;
 
-    // Validate attributeCombinations
-    let parsedAttributeCombinations;
-    if (attributeCombinations) {
+    // Validate variants
+    let parsedVariants;
+    if (variants) {
       try {
-        parsedAttributeCombinations = typeof attributeCombinations === 'string' ? JSON.parse(attributeCombinations) : attributeCombinations;
-        if (!Array.isArray(parsedAttributeCombinations)) {
-          throw new AppError(400, 'attributeCombinations must be an array');
+        parsedVariants = typeof variants === "string" ? JSON.parse(variants) : variants;
+        if (!Array.isArray(parsedVariants)) {
+          throw new AppError(400, "Variants must be an array");
         }
-        parsedAttributeCombinations.forEach((combo: any, index: number) => {
-          if (!combo.attributes || !Array.isArray(combo.attributes)) {
-            throw new AppError(400, `Combination at index ${index} must have an attributes array`);
+        parsedVariants.forEach((variant: any, index: number) => {
+          if (!variant.sku || typeof variant.price !== "number" || typeof variant.stock !== "number") {
+            throw new AppError(400, `Variant at index ${index} must have sku, price, and stock`);
           }
-          if (typeof combo.stock !== 'number' || combo.stock < 0) {
-            throw new AppError(400, `Combination at index ${index} must have a valid non-negative stock number`);
+          if (!variant.attributes || !Array.isArray(variant.attributes)) {
+            throw new AppError(400, `Variant at index ${index} must have an attributes array`);
           }
-          combo.attributes.forEach((attr: any) => {
+          if (typeof variant.stock !== "number" || variant.stock < 0) {
+            throw new AppError(400, `Variant at index ${index} must have a valid non-negative stock number`);
+          }
+          variant.attributes.forEach((attr: any) => {
             if (!attr.attributeId || !attr.valueId) {
-              throw new AppError(400, `Invalid attribute structure in combination at index ${index}`);
+              throw new AppError(400, `Invalid attribute structure in variant at index ${index}`);
             }
           });
-          // Check for duplicate attributes in the same combination
-          const attributeIds = combo.attributes.map((attr: any) => attr.attributeId);
+          // Check for duplicate attributes in the same variant
+          const attributeIds = variant.attributes.map((attr: any) => attr.attributeId);
           if (new Set(attributeIds).size !== attributeIds.length) {
-            throw new AppError(400, `Duplicate attributes in combination at index ${index}`);
+            throw new AppError(400, `Duplicate attributes in variant at index ${index}`);
           }
         });
-        // Check for duplicate combinations
-        const comboKeys = parsedAttributeCombinations.map((combo: any) =>
-          combo.attributes.map((attr: any) => `${attr.attributeId}:${attr.valueId}`).sort().join('|')
+        // Check for duplicate SKUs
+        const skuKeys = parsedVariants.map((variant: any) => variant.sku);
+        if (new Set(skuKeys).size !== skuKeys.length) {
+          throw new AppError(400, "Duplicate SKUs detected");
+        }
+        // Check for duplicate attribute combinations
+        const comboKeys = parsedVariants.map((variant: any) =>
+          variant.attributes.map((attr: any) => `${attr.attributeId}:${attr.valueId}`).sort().join("|")
         );
         if (new Set(comboKeys).size !== comboKeys.length) {
-          throw new AppError(400, 'Duplicate attribute combinations detected');
+          throw new AppError(400, "Duplicate attribute combinations detected");
         }
       } catch (error) {
-        throw new AppError(400, 'Invalid attributeCombinations format');
+        throw new AppError(400, "Invalid variants format");
       }
     }
 
-    const formattedIsNew = isNew === 'true';
-    const formattedIsFeatured = isFeatured === 'true';
-    const formattedIsTrending = isTrending === 'true';
-    const formattedIsBestSeller = isBestSeller === 'true';
-    const formattedPrice = price !== undefined ? Number(price) : undefined;
+    const formattedIsNew = isNew === "true";
+    const formattedIsFeatured = isFeatured === "true";
+    const formattedIsTrending = isTrending === "true";
+    const formattedIsBestSeller = isBestSeller === "true";
+    const formattedBasePrice = basePrice !== undefined ? Number(basePrice) : undefined;
     const formattedDiscount = discount !== undefined ? Number(discount) : undefined;
 
     const files = req.files as Express.Multer.File[];
@@ -220,26 +215,25 @@ export class ProductController {
 
     const updatedData: any = {
       ...(name && { name, slug: slugify(name) }),
-      ...(sku && { sku }),
+      ...(description && { description }),
+      ...(formattedBasePrice !== undefined && { basePrice: formattedBasePrice }),
+      ...(formattedDiscount !== undefined && { discount: formattedDiscount }),
+      ...(imageUrls.length > 0 && { images: imageUrls }),
       ...(formattedIsNew !== undefined && { isNew: formattedIsNew }),
       ...(formattedIsFeatured !== undefined && { isFeatured: formattedIsFeatured }),
       ...(formattedIsTrending !== undefined && { isTrending: formattedIsTrending }),
       ...(formattedIsBestSeller !== undefined && { isBestSeller: formattedIsBestSeller }),
-      ...(description && { description }),
-      ...(formattedPrice !== undefined && { price: formattedPrice }),
-      ...(formattedDiscount !== undefined && { discount: formattedDiscount }),
-      ...(imageUrls.length > 0 && { images: imageUrls }),
       ...(categoryId && { categoryId }),
-      ...(parsedAttributeCombinations && { attributeCombinations: parsedAttributeCombinations }),
+      ...(parsedVariants && { variants: parsedVariants }),
     };
 
     const product = await this.productService.updateProduct(productId, updatedData);
 
     sendResponse(res, 200, {
       data: { product },
-      message: 'Product updated successfully',
+      message: "Product updated successfully",
     });
-    this.logsService.info('Product updated', {
+    this.logsService.info("Product updated", {
       userId: req.user?.id,
       sessionId: req.session.id,
     });
@@ -263,20 +257,17 @@ export class ProductController {
     });
   });
 
-  deleteProduct = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
-      const { id: productId } = req.params;
-      console.log("productId: ", productId);
-      await this.productService.deleteProduct(productId);
-      sendResponse(res, 200, { message: "Product deleted successfully" });
-      const start = Date.now();
-      const end = Date.now();
+  deleteProduct = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const { id: productId } = req.params;
+    await this.productService.deleteProduct(productId);
+    sendResponse(res, 200, { message: "Product deleted successfully" });
+    const start = Date.now();
+    const end = Date.now();
 
-      this.logsService.info("Product deleted", {
-        userId: req.user?.id,
-        sessionId: req.session.id,
-        timePeriod: end - start,
-      });
-    }
-  );
+    this.logsService.info("Product deleted", {
+      userId: req.user?.id,
+      sessionId: req.session.id,
+      timePeriod: end - start,
+    });
+  });
 }

@@ -1,3 +1,4 @@
+'use client'
 import { cn } from "@/app/utils";
 import { TrendingUp, TrendingDown } from "lucide-react";
 

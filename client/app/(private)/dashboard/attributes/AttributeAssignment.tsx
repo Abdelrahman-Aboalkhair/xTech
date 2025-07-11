@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { TagsIcon, Box } from 'lucide-react';

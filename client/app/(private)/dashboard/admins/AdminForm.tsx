@@ -1,3 +1,4 @@
+'use client'
 import { Controller, UseFormReturn } from "react-hook-form";
 import { ShieldCheck } from "lucide-react";
 
@@ -112,9 +113,8 @@ const AdminForm: React.FC<AdminFormProps> = ({
         <button
           type="submit"
           disabled={isLoading}
-          className={`px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-300 ${
-            isLoading ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className={`px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-300 ${isLoading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
         >
           {isLoading ? "Saving..." : submitLabel}
         </button>
