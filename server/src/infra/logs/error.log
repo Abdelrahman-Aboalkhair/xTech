@@ -2623,3 +2623,8 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-06-22T05:56:35.613Z] [31MERROR[39M: User not found
 [2025-06-24T02:32:00.310Z] [31MERROR[39M: Refresh token not found
 [2025-06-24T02:32:00.394Z] [31MERROR[39M: Refresh token not found
+[2025-07-12T15:05:12.092Z] [31MERROR[39M: Invalid access token, please log in
+[2025-07-12T15:05:52.177Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-12T15:15:05.056Z] [31MERROR[39M: Variants are required
+[2025-07-12T15:21:41.169Z] [31MERROR[39M: Invalid access token, please log in
+[2025-07-12T15:21:50.532Z] [31MERROR[39M: One or more attribute IDs are invalid

@@ -42,8 +42,6 @@ export class ProductController {
     const {
       name,
       description,
-      basePrice,
-      discount,
       categoryId,
       isNew,
       isFeatured,
@@ -53,59 +51,47 @@ export class ProductController {
     } = req.body;
 
     // Validate variants
-    let parsedVariants;
-    if (variants) {
+    let parsedVariants = variants;
+    if (typeof variants === "string") {
       try {
-        parsedVariants = typeof variants === "string" ? JSON.parse(variants) : variants;
-        if (!Array.isArray(parsedVariants)) {
-          throw new AppError(400, "Variants must be an array");
-        }
-        parsedVariants.forEach((variant: any, index: number) => {
-          if (!variant.sku || typeof variant.price !== "number" || typeof variant.stock !== "number") {
-            throw new AppError(400, `Variant at index ${index} must have sku, price, and stock`);
-          }
-          if (!variant.attributes || !Array.isArray(variant.attributes)) {
-            throw new AppError(400, `Variant at index ${index} must have an attributes array`);
-          }
-          if (typeof variant.stock !== "number" || variant.stock < 0) {
-            throw new AppError(400, `Variant at index ${index} must have a valid non-negative stock number`);
-          }
-          variant.attributes.forEach((attr: any) => {
-            if (!attr.attributeId || !attr.valueId) {
-              throw new AppError(400, `Invalid attribute structure in variant at index ${index}`);
-            }
-          });
-          // Check for duplicate attributes in the same variant
-          const attributeIds = variant.attributes.map((attr: any) => attr.attributeId);
-          if (new Set(attributeIds).size !== attributeIds.length) {
-            throw new AppError(400, `Duplicate attributes in variant at index ${index}`);
-          }
-        });
-        // Check for duplicate SKUs
-        const skuKeys = parsedVariants.map((variant: any) => variant.sku);
-        if (new Set(skuKeys).size !== skuKeys.length) {
-          throw new AppError(400, "Duplicate SKUs detected");
-        }
-        // Check for duplicate attribute combinations
-        const comboKeys = parsedVariants.map((variant: any) =>
-          variant.attributes.map((attr: any) => `${attr.attributeId}:${attr.valueId}`).sort().join("|")
-        );
-        if (new Set(comboKeys).size !== comboKeys.length) {
-          throw new AppError(400, "Duplicate attribute combinations detected");
-        }
+        parsedVariants = JSON.parse(variants);
       } catch (error) {
-        throw new AppError(400, "Invalid variants format");
+        throw new AppError(400, "Invalid variants format: must be valid JSON");
       }
-    } else {
-      throw new AppError(400, "Variants are required");
     }
-
-    const formattedIsNew = isNew === "true";
-    const formattedIsFeatured = isFeatured === "true";
-    const formattedIsTrending = isTrending === "true";
-    const formattedIsBestSeller = isBestSeller === "true";
-    const formattedBasePrice = Number(basePrice);
-    const formattedDiscount = discount ? Number(discount) : undefined;
+    if (!Array.isArray(parsedVariants)) {
+      throw new AppError(400, "Variants must be an array");
+    }
+    parsedVariants.forEach((variant: any, index: number) => {
+      if (!variant.sku || typeof variant.price !== "number" || typeof variant.stock !== "number") {
+        throw new AppError(400, `Variant at index ${index} must have sku, price, and stock`);
+      }
+      if (!variant.attributes || !Array.isArray(variant.attributes)) {
+        throw new AppError(400, `Variant at index ${index} must have an attributes array`);
+      }
+      if (variant.stock < 0) {
+        throw new AppError(400, `Variant at index ${index} must have a non-negative stock number`);
+      }
+      variant.attributes.forEach((attr: any, attrIndex: number) => {
+        if (!attr.attributeId || !attr.valueId) {
+          throw new AppError(400, `Invalid attribute structure in variant at index ${index}, attribute index ${attrIndex}`);
+        }
+      });
+      const attributeIds = variant.attributes.map((attr: any) => attr.attributeId);
+      if (new Set(attributeIds).size !== attributeIds.length) {
+        throw new AppError(400, `Duplicate attributes in variant at index ${index}`);
+      }
+    });
+    const skuKeys = parsedVariants.map((variant: any) => variant.sku);
+    if (new Set(skuKeys).size !== skuKeys.length) {
+      throw new AppError(400, "Duplicate SKUs detected in request");
+    }
+    const comboKeys = parsedVariants.map((variant: any) =>
+      variant.attributes.map((attr: any) => `${attr.attributeId}:${attr.valueId}`).sort().join("|")
+    );
+    if (new Set(comboKeys).size !== comboKeys.length) {
+      throw new AppError(400, "Duplicate attribute combinations detected");
+    }
 
     const files = req.files as Express.Multer.File[];
     let imageUrls: string[] = [];
@@ -117,13 +103,11 @@ export class ProductController {
     const product = await this.productService.createProduct({
       name,
       description,
-      basePrice: formattedBasePrice,
-      discount: formattedDiscount,
       images: imageUrls.length > 0 ? imageUrls : undefined,
-      isNew: formattedIsNew,
-      isTrending: formattedIsTrending,
-      isBestSeller: formattedIsBestSeller,
-      isFeatured: formattedIsFeatured,
+      isNew: isNew ?? false,
+      isTrending: isTrending ?? false,
+      isBestSeller: isBestSeller ?? false,
+      isFeatured: isFeatured ?? false,
       categoryId,
       variants: parsedVariants,
     });
@@ -134,7 +118,8 @@ export class ProductController {
     });
     this.logsService.info("Product created", {
       userId: req.user?.id,
-      sessionId: req.session.id,
+      sessionId: req.session?.id,
+      timePeriod: 0,
     });
   });
 

@@ -1,0 +1,142 @@
+[2025-07-12T15:13:42.706Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/product.controller.ts[0m:[93m114[0m:[93m61[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; isNew: boolean; isTrending: boolean; isBestSeller: boolean; isFeatured: boolean; categoryId: any; variants: any[]; }' is not assignable to parameter of type '{ name: string; description?: string | undefined; basePrice: number; discount?: number | undefined; images?: string[] | undefined; isNew?: boolean | undefined; isTrending?: boolean | undefined; isBestSeller?: boolean | undefined; isFeatured?: boolean | undefined; categoryId?: string | undefined; variants?: { ...; }[...'.
+  Property 'basePrice' is missing in type '{ name: any; description: any; images: string[] | undefined; isNew: boolean; isTrending: boolean; isBestSeller: boolean; isFeatured: boolean; categoryId: any; variants: any[]; }' but required in type '{ name: string; description?: string | undefined; basePrice: number; discount?: number | undefined; images?: string[] | undefined; isNew?: boolean | undefined; isTrending?: boolean | undefined; isBestSeller?: boolean | undefined; isFeatured?: boolean | undefined; categoryId?: string | undefined; variants?: { ...; }[...'.
+
+[7m114[0m     const product = await this.productService.createProduct({
+[7m   [0m [91m                                                            ~[0m
+[7m115[0m       name,
+[7m   [0m [91m~~~~~~~~~~~[0m
+[7m...[0m 
+[7m123[0m       variants: parsedVariants,
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m124[0m     });
+[7m   [0m [91m~~~~~[0m
+
+  [96msrc/modules/product/product.service.ts[0m:[93m73[0m:[93m5[0m
+    [7m73[0m     basePrice: number;
+    [7m  [0m [96m    ~~~~~~~~~[0m
+    'basePrice' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/product.controller.ts[0m:[93m114[0m:[93m61[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; description: any; images: string[] | undefined; isNew: boolean; isTrending: boolean; isBestSeller: boolean; isFeatured: boolean; categoryId: any; variants: any[]; }' is not assignable to parameter of type '{ name: string; description?: string | undefined; basePrice: number; discount?: number | undefined; images?: string[] | undefined; isNew?: boolean | undefined; isTrending?: boolean | undefined; isBestSeller?: boolean | undefined; isFeatured?: boolean | undefined; categoryId?: string | undefined; variants?: { ...; }[...'.
+  Property 'basePrice' is missing in type '{ name: any; description: any; images: string[] | undefined; isNew: boolean; isTrending: boolean; isBestSeller: boolean; isFeatured: boolean; categoryId: any; variants: any[]; }' but required in type '{ name: string; description?: string | undefined; basePrice: number; discount?: number | undefined; images?: string[] | undefined; isNew?: boolean | undefined; isTrending?: boolean | undefined; isBestSeller?: boolean | undefined; isFeatured?: boolean | undefined; categoryId?: string | undefined; variants?: { ...; }[...'.
+
+[7m114[0m     const product = await this.productService.createProduct({
+[7m   [0m [91m                                                            ~[0m
+[7m115[0m       name,
+[7m   [0m [91m~~~~~~~~~~~[0m
+[7m...[0m 
+[7m123[0m       variants: parsedVariants,
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m124[0m     });
+[7m   [0m [91m~~~~~[0m
+
+  [96msrc/modules/product/product.service.ts[0m:[93m73[0m:[93m5[0m
+    [7m73[0m     basePrice: number;
+    [7m  [0m [96m    ~~~~~~~~~[0m
+    'basePrice' is declared here.
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-12T15:13:50.428Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/product.service.ts[0m:[93m172[0m:[93m66[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ slug: string; name: string; description?: string; images?: string[]; isNew?: boolean; isTrending?: boolean; isBestSeller?: boolean; isFeatured?: boolean; categoryId?: string; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; basePrice: number; discount?: number | undefined; images?: string[] | undefined; isNew?: boolean | undefined; isTrending?: boolean | undefined; isBestSeller?: boolean | undefined; isFeatured?: boolean | undefined; categoryId?: string | undefined; }'.
+  Property 'basePrice' is missing in type '{ slug: string; name: string; description?: string; images?: string[]; isNew?: boolean; isTrending?: boolean; isBestSeller?: boolean; isFeatured?: boolean; categoryId?: string; }' but required in type '{ name: string; slug: string; description?: string | undefined; basePrice: number; discount?: number | undefined; images?: string[] | undefined; isNew?: boolean | undefined; isTrending?: boolean | undefined; isBestSeller?: boolean | undefined; isFeatured?: boolean | undefined; categoryId?: string | undefined; }'.
+
+[7m172[0m       const product = await this.productRepository.createProduct({
+[7m   [0m [91m                                                                 ~[0m
+[7m173[0m         ...productData,
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m174[0m         slug: slugify(productData.name),
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m175[0m       });
+[7m   [0m [91m~~~~~~~[0m
+
+  [96msrc/modules/product/product.repository.ts[0m:[93m130[0m:[93m5[0m
+    [7m130[0m     basePrice: number;
+    [7m   [0m [96m    ~~~~~~~~~[0m
+    'basePrice' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/product.service.ts[0m:[93m172[0m:[93m66[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ slug: string; name: string; description?: string; images?: string[]; isNew?: boolean; isTrending?: boolean; isBestSeller?: boolean; isFeatured?: boolean; categoryId?: string; }' is not assignable to parameter of type '{ name: string; slug: string; description?: string | undefined; basePrice: number; discount?: number | undefined; images?: string[] | undefined; isNew?: boolean | undefined; isTrending?: boolean | undefined; isBestSeller?: boolean | undefined; isFeatured?: boolean | undefined; categoryId?: string | undefined; }'.
+  Property 'basePrice' is missing in type '{ slug: string; name: string; description?: string; images?: string[]; isNew?: boolean; isTrending?: boolean; isBestSeller?: boolean; isFeatured?: boolean; categoryId?: string; }' but required in type '{ name: string; slug: string; description?: string | undefined; basePrice: number; discount?: number | undefined; images?: string[] | undefined; isNew?: boolean | undefined; isTrending?: boolean | undefined; isBestSeller?: boolean | undefined; isFeatured?: boolean | undefined; categoryId?: string | undefined; }'.
+
+[7m172[0m       const product = await this.productRepository.createProduct({
+[7m   [0m [91m                                                                 ~[0m
+[7m173[0m         ...productData,
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m174[0m         slug: slugify(productData.name),
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m175[0m       });
+[7m   [0m [91m~~~~~~~[0m
+
+  [96msrc/modules/product/product.repository.ts[0m:[93m130[0m:[93m5[0m
+    [7m130[0m     basePrice: number;
+    [7m   [0m [96m    ~~~~~~~~~[0m
+    'basePrice' is declared here.
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-12T15:18:57.921Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/product.service.ts[0m:[93m127[0m:[93m20[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'CategoryAttribute' does not exist in type 'CategoryInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { products?: Exact<boolean | Category$productsArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; attributes?: Exact<...>; _count?: Exact<...>; }'.
+
+[7m127[0m         include: { CategoryAttribute: { where: { isRequired: true }, select: { attributeId: true } } },
+[7m   [0m [91m                   ~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m11790[0m:[93m5[0m
+    [7m11790[0m     include?: CategoryInclude<ExtArgs> | null
+    [7m     [0m [96m    ~~~~~~~[0m
+    The expected type comes from property 'include' which is declared here on type '{ select?: Exact<CategorySelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CategorySelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/product/product.service.ts[0m:[93m132[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'CategoryAttribute' does not exist on type '{ name: string; id: string; createdAt: Date; updatedAt: Date; description: string | null; slug: string; images: string[]; }'.
+
+[7m132[0m       requiredAttributeIds = category.CategoryAttribute.map((attr) => attr.attributeId);
+[7m   [0m [91m                                      ~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/product.service.ts[0m:[93m132[0m:[93m62[0m - [91merror[0m[90m TS7006: [0mParameter 'attr' implicitly has an 'any' type.
+
+[7m132[0m       requiredAttributeIds = category.CategoryAttribute.map((attr) => attr.attributeId);
+[7m   [0m [91m                                                             ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/product/product.service.ts[0m:[93m127[0m:[93m20[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'CategoryAttribute' does not exist in type 'CategoryInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | { products?: Exact<boolean | Category$productsArgs<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | undefined, boolean | ... 1 more ... | undefined>; attributes?: Exact<...>; _count?: Exact<...>; }'.
+
+[7m127[0m         include: { CategoryAttribute: { where: { isRequired: true }, select: { attributeId: true } } },
+[7m   [0m [91m                   ~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/.prisma/client/index.d.ts[0m:[93m11790[0m:[93m5[0m
+    [7m11790[0m     include?: CategoryInclude<ExtArgs> | null
+    [7m     [0m [96m    ~~~~~~~[0m
+    The expected type comes from property 'include' which is declared here on type '{ select?: Exact<CategorySelect<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }> | null | undefined, CategorySelect<InternalArgs & { ...; }> | null | undefined>; omit?: Exact<...>; include?: Exact<...>; where: Exact<...>; }'
+[96msrc/modules/product/product.service.ts[0m:[93m132[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'CategoryAttribute' does not exist on type '{ name: string; id: string; createdAt: Date; updatedAt: Date; description: string | null; slug: string; images: string[]; }'.
+
+[7m132[0m       requiredAttributeIds = category.CategoryAttribute.map((attr) => attr.attributeId);
+[7m   [0m [91m                                      ~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/product/product.service.ts[0m:[93m132[0m:[93m62[0m - [91merror[0m[90m TS7006: [0mParameter 'attr' implicitly has an 'any' type.
+
+[7m132[0m       requiredAttributeIds = category.CategoryAttribute.map((attr) => attr.attributeId);
+[7m   [0m [91m                                                             ~~~~[0m
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

@@ -123,12 +123,11 @@ export class ProductRepository {
     return product?.name || null;
   }
 
+
   async createProduct(data: {
     name: string;
     slug: string;
     description?: string;
-    basePrice: number;
-    discount?: number;
     images?: string[];
     isNew?: boolean;
     isTrending?: boolean;
@@ -140,6 +139,7 @@ export class ProductRepository {
       data,
       include: {
         category: true,
+        variants: { include: { attributes: { include: { attribute: true, value: true } } } },
       },
     });
   }
