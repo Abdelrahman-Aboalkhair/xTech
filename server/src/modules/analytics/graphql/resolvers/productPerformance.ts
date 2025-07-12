@@ -24,9 +24,9 @@ const productPerformance = {
             ...(yearStart && { gte: yearStart }),
             ...(yearEnd && { lte: yearEnd }),
           },
-          product: category ? { categoryId: category } : undefined,
+          // ! product: category ? { categoryId: category } : undefined, 
         },
-        include: { product: true },
+        include: { variant: true },
       });
 
       const productSales: {
@@ -39,18 +39,18 @@ const productPerformance = {
       } = {};
 
       for (const item of orderItems) {
-        const productId = item.productId;
+        const productId = item.variantId;
         if (!productSales[productId]) {
           productSales[productId] = {
             id: productId,
-            name: item.product.name || "Unknown",
+            name: item.variant.sku || "Unknown",
             quantity: 0,
             revenue: 0,
           };
         }
         productSales[productId].quantity += item.quantity;
         productSales[productId].revenue +=
-          item.quantity * (item.product.price || 0);
+          item.quantity * (item.variant.price || 0);
       }
 
       return Object.values(productSales).sort(

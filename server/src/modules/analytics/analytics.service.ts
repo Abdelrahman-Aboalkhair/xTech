@@ -125,15 +125,15 @@ export class AnalyticsService {
           },
         },
       },
-      include: { product: true },
+      include: { variant: true },
     });
 
     const productMap = new Map<string, ProductPerformance>();
     for (const item of orderItems) {
-      const productId = item.productId;
+      const productId = item.variantId;
       const existing = productMap.get(productId) || {
         id: productId,
-        name: item.product.name,
+        name: item.variant.sku,
         quantity: 0,
         revenue: 0,
       };

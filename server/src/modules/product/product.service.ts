@@ -6,13 +6,13 @@ import { parse } from "csv-parse/sync";
 import * as XLSX from "xlsx";
 import prisma from "@/infra/database/database.config";
 import { AttributeRepository } from "../attribute/attribute.repository";
-import { VariantRepository } from "../variant/variant.repository"; 
+import { VariantRepository } from "../variant/variant.repository";
 
 export class ProductService {
   constructor(
     private productRepository: ProductRepository,
     private attributeRepository: AttributeRepository,
-    private variantRepository: VariantRepository 
+    private variantRepository: VariantRepository
   ) {}
 
   async getAllProducts(queryString: Record<string, any>) {
@@ -78,7 +78,7 @@ export class ProductService {
     isBestSeller?: boolean;
     isFeatured?: boolean;
     categoryId?: string;
-    variants: {
+    variants?: {
       sku: string;
       price: number;
       stock: number;
@@ -94,29 +94,34 @@ export class ProductService {
       throw new AppError(400, "At least one variant is required");
     }
 
+    // Validate SKU format (alphanumeric with dashes, 3-50 characters)
+    const skuRegex = /^[a-zA-Z0-9-]+$/;
+    variants.forEach((variant, index) => {
+      if (!variant.sku || !skuRegex.test(variant.sku) || variant.sku.length < 3 || variant.sku.length > 50) {
+        throw new AppError(400, `Variant at index ${index} has an invalid SKU. Use alphanumeric characters and dashes, 3-50 characters.`);
+      }
+      if (variant.price <= 0) {
+        throw new AppError(400, `Variant at index ${index} must have a positive price`);
+      }
+      if (variant.stock < 0) {
+        throw new AppError(400, `Variant at index ${index} must have a non-negative stock`);
+      }
+      if (variant.lowStockThreshold && variant.lowStockThreshold < 0) {
+        throw new AppError(400, `Variant at index ${index} must have a non-negative lowStockThreshold`);
+      }
+    });
+
     // Validate category requirements
+    let requiredAttributeIds: string[] = [];
     if (productData.categoryId) {
       const requiredAttributes = await prisma.categoryAttribute.findMany({
         where: { categoryId: productData.categoryId, isRequired: true },
         select: { attributeId: true },
       });
-      const requiredAttributeIds = requiredAttributes.map((attr) => attr.attributeId);
-
-      variants.forEach((variant, index) => {
-        const variantAttributeIds = variant.attributes.map((attr) => attr.attributeId);
-        const missingAttributes = requiredAttributeIds.filter(
-          (id) => !variantAttributeIds.includes(id)
-        );
-        if (missingAttributes.length > 0) {
-          throw new AppError(
-            400,
-            `Variant at index ${index} is missing required attributes: ${missingAttributes.join(", ")}`
-          );
-        }
-      });
+      requiredAttributeIds = requiredAttributes.map((attr) => attr.attributeId);
     }
 
-    // Validate attributes and values
+    // Validate variants
     const allAttributeIds = [...new Set(variants.flatMap((v) => v.attributes.map((a) => a.attributeId)))];
     const existingAttributes = await prisma.attribute.findMany({
       where: { id: { in: allAttributeIds } },
@@ -133,11 +138,36 @@ export class ProductService {
       throw new AppError(400, "One or more attribute values are invalid");
     }
 
-    // Check for duplicate SKUs
+    // Validate unique SKUs
     const skuSet = new Set(variants.map((v) => v.sku));
     if (skuSet.size !== variants.length) {
       throw new AppError(400, "Duplicate SKUs detected");
     }
+
+    // Validate unique attribute combinations
+    const comboKeys = variants.map((variant) =>
+      variant.attributes
+        .map((attr) => `${attr.attributeId}:${attr.valueId}`)
+        .sort()
+        .join("|")
+    );
+    if (new Set(comboKeys).size !== variants.length) {
+      throw new AppError(400, "Duplicate attribute combinations detected");
+    }
+
+    // Validate required attributes
+    variants.forEach((variant, index) => {
+      const variantAttributeIds = variant.attributes.map((attr) => attr.attributeId);
+      const missingAttributes = requiredAttributeIds.filter(
+        (id) => !variantAttributeIds.includes(id)
+      );
+      if (missingAttributes.length > 0) {
+        throw new AppError(
+          400,
+          `Variant at index ${index} is missing required attributes: ${missingAttributes.join(", ")}`
+        );
+      }
+    });
 
     // Create product and variants in a transaction
     return prisma.$transaction(async (tx) => {
@@ -146,7 +176,6 @@ export class ProductService {
         slug: slugify(productData.name),
       });
 
-      // Create variants (delegate to VariantRepository)
       for (const variant of variants) {
         await this.variantRepository.createVariant({
           productId: product.id,
@@ -160,7 +189,6 @@ export class ProductService {
         });
       }
 
-      // Fetch product with variants
       return this.productRepository.findProductById(product.id);
     });
   }
@@ -196,70 +224,91 @@ export class ProductService {
 
     const { variants, ...productData } = updatedData;
 
-    // Update product and variants in a transaction
+    // Validate variants if provided
+    if (variants) {
+      if (variants.length === 0) {
+        throw new AppError(400, "At least one variant is required");
+      }
+
+      const skuRegex = /^[a-zA-Z0-9-]+$/;
+      variants.forEach((variant, index) => {
+        if (!variant.sku || !skuRegex.test(variant.sku) || variant.sku.length < 3 || variant.sku.length > 50) {
+          throw new AppError(400, `Variant at index ${index} has an invalid SKU. Use alphanumeric characters and dashes, 3-50 characters.`);
+        }
+        if (variant.price <= 0) {
+          throw new AppError(400, `Variant at index ${index} must have a positive price`);
+        }
+        if (variant.stock < 0) {
+          throw new AppError(400, `Variant at index ${index} must have a non-negative stock`);
+        }
+        if (variant.lowStockThreshold && variant.lowStockThreshold < 0) {
+          throw new AppError(400, `Variant at index ${index} must have a non-negative lowStockThreshold`);
+        }
+      });
+
+      const allAttributeIds = [...new Set(variants.flatMap((v) => v.attributes.map((a) => a.attributeId)))];
+      const existingAttributes = await prisma.attribute.findMany({
+        where: { id: { in: allAttributeIds } },
+      });
+      if (existingAttributes.length !== allAttributeIds.length) {
+        throw new AppError(400, "One or more attributes are invalid");
+      }
+
+      const allValueIds = [...new Set(variants.flatMap((v) => v.attributes.map((a) => a.valueId)))];
+      const existingValues = await prisma.attributeValue.findMany({
+        where: { id: { in: allValueIds } },
+      });
+      if (existingValues.length !== allValueIds.length) {
+        throw new AppError(400, "One or more attribute values are invalid");
+      }
+
+      const skuSet = new Set(variants.map((v) => v.sku));
+      if (skuSet.size !== variants.length) {
+        throw new AppError(400, "Duplicate SKUs detected");
+      }
+
+      const comboKeys = variants.map((variant) =>
+        variant.attributes
+          .map((attr) => `${attr.attributeId}:${attr.valueId}`)
+          .sort()
+          .join("|")
+      );
+      if (new Set(comboKeys).size !== variants.length) {
+        throw new AppError(400, "Duplicate attribute combinations detected");
+      }
+
+      const categoryId = productData.categoryId || existingProduct.categoryId;
+      let requiredAttributeIds: string[] = [];
+      if (categoryId) {
+        const requiredAttributes = await prisma.categoryAttribute.findMany({
+          where: { categoryId, isRequired: true },
+          select: { attributeId: true },
+        });
+        requiredAttributeIds = requiredAttributes.map((attr) => attr.attributeId);
+      }
+
+      variants.forEach((variant, index) => {
+        const variantAttributeIds = variant.attributes.map((attr) => attr.attributeId);
+        const missingAttributes = requiredAttributeIds.filter(
+          (id) => !variantAttributeIds.includes(id)
+        );
+        if (missingAttributes.length > 0) {
+          throw new AppError(
+            400,
+            `Variant at index ${index} is missing required attributes: ${missingAttributes.join(", ")}`
+          );
+        }
+      });
+    }
+
     return prisma.$transaction(async (tx) => {
-      // Update product
       const updatedProduct = await this.productRepository.updateProduct(productId, {
         ...productData,
         ...(productData.name && { slug: slugify(productData.name) }),
       });
 
-      // Update variants if provided
       if (variants) {
-        if (variants.length === 0) {
-          throw new AppError(400, "At least one variant is required");
-        }
-
-        // Validate category requirements
-        const categoryId = productData.categoryId || existingProduct.categoryId;
-        if (categoryId) {
-          const requiredAttributes = await prisma.categoryAttribute.findMany({
-            where: { categoryId, isRequired: true },
-            select: { attributeId: true },
-          });
-          const requiredAttributeIds = requiredAttributes.map((attr) => attr.attributeId);
-
-          variants.forEach((variant, index) => {
-            const variantAttributeIds = variant.attributes.map((attr) => attr.attributeId);
-            const missingAttributes = requiredAttributeIds.filter(
-              (id) => !variantAttributeIds.includes(id)
-            );
-            if (missingAttributes.length > 0) {
-              throw new AppError(
-                400,
-                `Variant at index ${index} is missing required attributes: ${missingAttributes.join(", ")}`
-              );
-            }
-          });
-        }
-
-        // Validate attributes and values
-        const allAttributeIds = [...new Set(variants.flatMap((v) => v.attributes.map((a) => a.attributeId)))];
-        const existingAttributes = await prisma.attribute.findMany({
-          where: { id: { in: allAttributeIds } },
-        });
-        if (existingAttributes.length !== allAttributeIds.length) {
-          throw new AppError(400, "One or more attributes are invalid");
-        }
-
-        const allValueIds = [...new Set(variants.flatMap((v) => v.attributes.map((a) => a.valueId)))];
-        const existingValues = await prisma.attributeValue.findMany({
-          where: { id: { in: allValueIds } },
-        });
-        if (existingValues.length !== allValueIds.length) {
-          throw new AppError(400, "One or more attribute values are invalid");
-        }
-
-        // Check for duplicate SKUs
-        const skuSet = new Set(variants.map((v) => v.sku));
-        if (skuSet.size !== variants.length) {
-          throw new AppError(400, "Duplicate SKUs detected");
-        }
-
-        // Delete existing variants
         await prisma.productVariant.deleteMany({ where: { productId } });
-
-        // Create new variants
         for (const variant of variants) {
           await this.variantRepository.createVariant({
             productId,
@@ -274,7 +323,6 @@ export class ProductService {
         }
       }
 
-      // Fetch updated product
       return this.productRepository.findProductById(productId);
     });
   }
@@ -310,7 +358,6 @@ export class ProductService {
       throw new AppError(400, "File is empty");
     }
 
-    // Validate and transform records
     const products = records.map((record) => {
       if (!record.name || !record.basePrice) {
         throw new AppError(400, `Invalid record: ${JSON.stringify(record)}`);
@@ -335,7 +382,6 @@ export class ProductService {
       };
     });
 
-    // Validate categoryIds (if provided)
     const categoryIds = products
       .filter((p) => p.categoryId)
       .map((p) => p.categoryId!);
@@ -352,7 +398,6 @@ export class ProductService {
       }
     }
 
-    // Create products (variants must be added separately)
     await this.productRepository.createManyProducts(products);
 
     return { count: products.length };

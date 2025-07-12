@@ -20,25 +20,19 @@ export class WebhookService {
 
   private async calculateOrderAmount(cart: any) {
     return cart.cartItems.reduce(
-      (sum: number, item: any) =>
-        sum +
-        item.product.price * (1 - item.product.discount / 100) * item.quantity,
+      (sum: number, item: any) => sum + item.variant.price * item.quantity,
       0
     );
   }
 
   async handleCheckoutCompletion(session: any) {
-    // Preliminary checks
     const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
-      expand: ["customer_details"],
+      expand: ["customer_details", "line_items"],
     });
 
-    // ? Make sure the event is not a duplicate. Stripe sends the same event twice due to network retries
     const existingOrder = await prisma.order.findFirst({
       where: { id: fullSession.id },
     });
-
-    console.log("EXISTING ORDER => ", existingOrder);
 
     if (existingOrder) {
       this.logsService.info("Webhook - Duplicate event ignored", {
@@ -52,47 +46,51 @@ export class WebhookService {
         address: null,
       };
     }
+
     const userId = fullSession?.metadata?.userId;
-    if (!userId) {
-      throw new AppError(400, "No userId in payment_intent metadata");
+    const cartId = fullSession?.metadata?.cartId;
+    if (!userId || !cartId) {
+      throw new AppError(400, "Missing userId or cartId in session metadata");
     }
 
-    const cart = await prisma.cart.findFirst({
-      where: { userId },
-      include: { cartItems: { include: { product: true } } },
+    const cart = await prisma.cart.findUnique({
+      where: { id: cartId },
+      include: { cartItems: { include: { variant: { include: { product: true } } } } },
     });
-    console.log("CART FOUND => ", cart);
     if (!cart || cart.cartItems.length === 0) {
       throw new AppError(400, "Cart is empty or not found");
     }
 
     const amount = await this.calculateOrderAmount(cart);
-
-    console.log("ORDER AMOUNT => ", amount);
     if (Math.abs(amount - (fullSession.amount_total ?? 0) / 100) > 0.01) {
       throw new AppError(400, "Amount mismatch between cart and session");
     }
 
-    // Execute atomic operations in a transaction
     const result = await prisma.$transaction(async (tx) => {
-      // 1. Create Order and OrderItems
+      // Validate stock
+      for (const item of cart.cartItems) {
+        if (item.variant.stock < item.quantity) {
+          throw new AppError(400, `Insufficient stock for variant ${item.variant.sku}: only ${item.variant.stock} available`);
+        }
+      }
+
+      // Create Order and OrderItems
       const order = await tx.order.create({
         data: {
+          id: fullSession.id,
           userId,
           amount,
           orderItems: {
             create: cart.cartItems.map((item: any) => ({
-              productId: item.productId,
+              variantId: item.variantId,
               quantity: item.quantity,
-              price: item.product.price * (1 - item.product.discount / 100),
+              price: item.variant.price,
             })),
           },
         },
       });
 
-      console.log("ORDER CREATED => ", order);
-
-      // 2. Create Address (if provided)
+      // Create Address
       let address;
       const customerAddress = fullSession.customer_details?.address;
       if (customerAddress) {
@@ -109,9 +107,7 @@ export class WebhookService {
         });
       }
 
-      console.log("ADDRESS CREATED => ", address);
-
-      // 3. Create Payment
+      // Create Payment
       const payment = await tx.payment.create({
         data: {
           orderId: order.id,
@@ -122,9 +118,7 @@ export class WebhookService {
         },
       });
 
-      console.log("PAYMENT CREATED => ", payment);
-
-      // 4. Create Transaction
+      // Create Transaction
       const transaction = await tx.transaction.create({
         data: {
           orderId: order.id,
@@ -133,9 +127,7 @@ export class WebhookService {
         },
       });
 
-      console.log("TRANSACTION CREATED => ", transaction);
-
-      // 5. Create Shipment
+      // Create Shipment
       const shipment = await tx.shipment.create({
         data: {
           orderId: order.id,
@@ -146,32 +138,26 @@ export class WebhookService {
         },
       });
 
-      console.log("SHIPMENT CREATED => ", shipment);
-
-      // 6. Update Product Stock
+      // Update Variant Stock and Product Sales Count
       for (const item of cart.cartItems) {
-        const product = await tx.product.findUnique({
-          where: { id: item.productId },
-          select: { stock: true, salesCount: true },
+        const variant = await tx.productVariant.findUnique({
+          where: { id: item.variantId },
+          select: { stock: true, product: { select: { id: true, salesCount: true } } },
         });
-        if (!product) {
-          throw new AppError(404, `Product not found: ${item.productId}`);
+        if (!variant) {
+          throw new AppError(404, `Variant not found: ${item.variantId}`);
         }
-        if (product.stock < item.quantity)
-          throw new AppError(400, "Insufficient stock");
-
-        const newStock = product.stock - item.quantity;
-
+        await tx.productVariant.update({
+          where: { id: item.variantId },
+          data: { stock: variant.stock - item.quantity },
+        });
         await tx.product.update({
-          where: { id: item.productId },
-          data: {
-            stock: newStock,
-            salesCount: product.salesCount + item.quantity,
-          },
+          where: { id: variant.product.id },
+          data: { salesCount: variant.product.salesCount + item.quantity },
         });
       }
 
-      // 7. Clear the Cart
+      // Clear the Cart
       await tx.cartItem.deleteMany({ where: { cartId: cart.id } });
       await tx.cart.update({
         where: { id: cart.id },
@@ -181,9 +167,7 @@ export class WebhookService {
       return { order, payment, transaction, shipment, address };
     });
 
-    console.log("TRANSACTION RESULT => ", result);
-
-    // Post-transaction actions (non-atomic)
+    // Post-transaction actions
     await redisClient.del("dashboard:year-range");
     const keys = await redisClient.keys("dashboard:stats:*");
     if (keys.length > 0) await redisClient.del(keys);

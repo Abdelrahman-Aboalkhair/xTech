@@ -39,4 +39,20 @@ export class OrderController {
       message: "Order details retrieved successfully",
     });
   });
+
+  createOrder = asyncHandler(async (req: Request, res: Response) => {
+    const userId = req.user?.id;
+    const { cartId } = req.body;
+    if (!userId) {
+      throw new AppError(400, "User not found");
+    }
+    if (!cartId) {
+      throw new AppError(400, "Cart ID is required");
+    }
+    const order = await this.orderService.createOrderFromCart(userId, cartId);
+    sendResponse(res, 201, {
+      data: { order },
+      message: "Order created successfully",
+    });
+  });
 }

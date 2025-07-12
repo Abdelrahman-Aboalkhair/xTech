@@ -6,15 +6,31 @@ export class CategoryRepository {
     orderBy?: Record<string, any> | Record<string, any>[];
     skip?: number;
     take?: number;
+    includeProducts?: boolean;
   }) {
-    const { where, orderBy, skip, take } = params;
+    const { where, orderBy, skip, take, includeProducts } = params;
     return prisma.category.findMany({
       where,
-      orderBy,
+      orderBy: orderBy || { createdAt: "desc" },
       skip,
       take,
       include: {
-        CategoryAttribute: { include: { attribute: { include: { values: true } } } },
+        attributes: { include: { attribute: { include: { values: true } } } },
+        products: includeProducts
+          ? { include: { variants: { select: { id: true, sku: true, price: true, stock: true } } } }
+          : false,
+      },
+    });
+  }
+
+  async findCategoryById(id: string, includeProducts: boolean = false) {
+    return prisma.category.findUnique({
+      where: { id },
+      include: {
+        attributes: { include: { attribute: { include: { values: true } } } },
+        products: includeProducts
+          ? { include: { variants: { select: { id: true, sku: true, price: true, stock: true } } } }
+          : false,
       },
     });
   }
@@ -24,22 +40,57 @@ export class CategoryRepository {
     slug: string;
     description?: string;
     images?: string[];
+    attributes?: { attributeId: string; isRequired: boolean }[];
   }) {
     return prisma.category.create({
-      data,
+      data: {
+        name: data.name,
+        slug: data.slug,
+        description: data.description,
+        images: data.images,
+        attributes: data.attributes
+          ? {
+              create: data.attributes.map((attr) => ({
+                attributeId: attr.attributeId,
+                isRequired: attr.isRequired,
+              })),
+            }
+          : undefined,
+      },
     });
   }
 
-  async findCategoryById(id: string) {
-    return prisma.category.findUnique({
+  async updateCategory(id: string, data: {
+    name?: string;
+    slug?: string;
+    description?: string;
+    images?: string[];
+  }) {
+    return prisma.category.update({
       where: { id },
-      include: { CategoryAttribute: { include: { attribute: { include: { values: true } } } } },
+      data,
     });
   }
 
   async deleteCategory(id: string) {
     return prisma.category.delete({
       where: { id },
+    });
+  }
+
+  async addCategoryAttribute(categoryId: string, attributeId: string, isRequired: boolean) {
+    return prisma.categoryAttribute.create({
+      data: {
+        categoryId,
+        attributeId,
+        isRequired,
+      },
+    });
+  }
+
+  async removeCategoryAttribute(categoryId: string, attributeId: string) {
+    return prisma.categoryAttribute.delete({
+      where: { categoryId_attributeId: { categoryId, attributeId } },
     });
   }
 }

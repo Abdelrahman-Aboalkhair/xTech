@@ -22,14 +22,14 @@ export class AttributeRepository {
     return prisma.categoryAttribute.create({ data });
   }
 
-  async assignAttributeToProduct(data: {
-    productId: string;
-    attributeId: string;
-    valueId?: string;
-    customValue?: string;
-  }) {
-    return prisma.productAttribute.create({ data });
-  }
+  // async assignAttributeToProduct(data: {
+  //   productId: string;
+  //   attributeId: string;
+  //   valueId?: string;
+  //   customValue?: string;
+  // }) {
+  //   return prisma.productAttribute.create({ data });
+  // }
 
   async findManyAttributes(params: {
     where?: Prisma.AttributeWhereInput;

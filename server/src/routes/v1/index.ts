@@ -18,6 +18,7 @@ import logRoutes from "@/modules/logs/logs.routes";
 import sectionRoutes from "@/modules/section/section.routes";
 import { configureChatRoutes } from "@/modules/chat/chat.routes";
 import attributesRoutes from "@/modules/attribute/attribute.routes";
+import variantsRoutes from '@/modules/variant/variant.routes'
 
 export const configureV1Routes = (io: SocketIOServer) => {
   const router = Router();
@@ -40,6 +41,7 @@ export const configureV1Routes = (io: SocketIOServer) => {
   router.use("/sections", sectionRoutes);
   router.use("/attributes", attributesRoutes);
   router.use("/chat", configureChatRoutes(io));
+  router.use('/variants', variantsRoutes)
 
   return router;
 };

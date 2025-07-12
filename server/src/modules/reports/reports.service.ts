@@ -60,7 +60,7 @@ export class ReportsService {
     } = {};
     for (const item of orderItems) {
       const product = await this.productRepository.findProductById(
-        item.productId
+        item.variantId
       );
       const categoryId = product?.categoryId || "uncategorized";
       const categoryName = product?.category?.name || "Uncategorized";
@@ -72,7 +72,7 @@ export class ReportsService {
         };
       }
       categorySales[categoryId].revenue +=
-        item.quantity * (item.product.price || 0);
+        item.quantity * ( item.variant.price || 0); 
       categorySales[categoryId].sales += item.quantity;
     }
     const byCategory = Object.entries(categorySales).map(
@@ -94,7 +94,7 @@ export class ReportsService {
       };
     } = {};
     for (const item of orderItems) {
-      const productId = item.productId;
+      const productId = item.variantId;
       if (!productSales[productId]) {
         const product = await this.productRepository.findProductById(productId);
         productSales[productId] = {
@@ -106,7 +106,7 @@ export class ReportsService {
       }
       productSales[productId].quantity += item.quantity;
       productSales[productId].revenue +=
-        item.quantity * (item.product.price || 0);
+        item.quantity * (item.variant.price || 0);
     }
     const topProducts = Object.values(productSales)
       .sort((a, b) => b.revenue - a.revenue)

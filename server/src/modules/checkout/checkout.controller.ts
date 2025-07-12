@@ -22,23 +22,22 @@ export class CheckoutController {
     }
 
     const cart = await this.cartService.getOrCreateCart(userId);
-    const session = await this.checkoutService.createStripeSession(
-      cart,
-      userId
-    );
+    if (!cart.cartItems || cart.cartItems.length === 0) {
+      throw new AppError(400, "Cart is empty");
+    }
+
+    const session = await this.checkoutService.createStripeSession(cart, userId);
     sendResponse(res, 200, {
       data: { sessionId: session.id },
       message: "Checkout initiated successfully",
     });
-    const start = Date.now();
-    const end = Date.now();
 
     this.cartService.logCartEvent(cart.id, "CHECKOUT_STARTED", userId);
 
     this.logsService.info("Checkout initiated", {
-      userId: req.user?.id,
-      sessionId: req.session.id,
-      timePeriod: end - start,
+      userId,
+      sessionId: session.id,
+      timePeriod: 0,
     });
   });
 }

@@ -91,7 +91,6 @@ export class ProductRepository {
         id: true,
         name: true,
         slug: true,
-        basePrice: true,
         images: true,
       },
     });

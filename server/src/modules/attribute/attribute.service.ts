@@ -27,14 +27,14 @@ export class AttributeService {
     return await this.attributeRepository.assignAttributeToCategory(data);
   }
 
-  async assignAttributeToProduct(data: {
-    productId: string;
-    attributeId: string;
-    valueId?: string;
-    customValue?: string;
-  }) {
-    return await this.attributeRepository.assignAttributeToProduct(data);
-  }
+  // async assignAttributeToProduct(data: {
+  //   productId: string;
+  //   attributeId: string;
+  //   valueId?: string;
+  //   customValue?: string;
+  // }) {
+  //   return await this.attributeRepository.assignAttributeToProduct(data);
+  // }
 
   async getAllAttributes(queryString: Record<string, any>) {
     const apiFeatures = new ApiFeatures(queryString)

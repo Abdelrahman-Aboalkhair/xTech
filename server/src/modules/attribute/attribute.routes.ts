@@ -9,7 +9,7 @@ router.get("/:id", controller.getAttribute);
 router.post("/", controller.createAttribute);
 router.post("/value", controller.createAttributeValue);
 router.post("/assign-category", controller.assignAttributeToCategory);
-router.post("/assign-product", controller.assignAttributeToProduct);
+// router.post("/assign-product", controller.assignAttributeToProduct);
 router.delete("/:id", controller.deleteAttribute);
 
 export default router;

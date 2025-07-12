@@ -1,4 +1,6 @@
 import stripe from "@/infra/payment/stripe";
+import AppError from "@/shared/errors/AppError";
+import prisma from "@/infra/database/database.config";
 
 const PLACEHOLDER_IMAGE = "https://via.placeholder.com/150";
 
@@ -14,19 +16,25 @@ export class CheckoutService {
   constructor() {}
 
   async createStripeSession(cart: any, userId: string) {
+    // Validate stock for all cart items
+    for (const item of cart.cartItems) {
+      if (item.variant.stock < item.quantity) {
+        throw new AppError(400, `Insufficient stock for variant ${item.variant.sku}: only ${item.variant.stock} available`);
+      }
+    }
+
     const lineItems = cart.cartItems.map((item: any) => {
-      const imageUrl = validImage(safeImage(item.product.images));
+      const imageUrl = validImage(safeImage(item.variant.product.images));
 
       return {
         price_data: {
           currency: "usd",
           product_data: {
-            name: item.product.name,
+            name: `${item.variant.product.name} (${item.variant.sku})`,
             images: [imageUrl],
+            metadata: { variantId: item.variantId },
           },
-          unit_amount: Math.round(
-            item.product.price * (1 - item.product.discount / 100) * 100
-          ),
+          unit_amount: Math.round(item.variant.price * 100),
         },
         quantity: item.quantity,
       };
@@ -42,7 +50,7 @@ export class CheckoutService {
       mode: "payment",
       success_url: `${process.env.CLIENT_URL}/orders`,
       cancel_url: `${process.env.CLIENT_URL}/cancel`,
-      metadata: { userId },
+      metadata: { userId, cartId: cart.id },
     });
 
     return session;

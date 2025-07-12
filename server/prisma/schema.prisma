@@ -76,31 +76,25 @@ model User {
 }
 
 model Product {
-  id             String           @id @default(uuid())
-  name           String           @unique
-  description    String?
-  basePrice      Float
-  discount       Float            @default(0)
-  slug           String           @unique
-  images         String[]
-  salesCount     Int              @default(0)
-  isNew          Boolean          @default(false)
-  isFeatured     Boolean          @default(false)
-  isTrending     Boolean          @default(false)
-  isBestSeller   Boolean          @default(false)
-  averageRating  Float            @default(0)
-  reviewCount    Int              @default(0)
-  category       Category?        @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  categoryId     String?
-  variants       ProductVariant[]
-  orderItems     OrderItem[]
-  cartItems      CartItem[]
-  interactions   Interaction[]
-  reviews        Review[]
-  stockMovements StockMovement[]
-  restocks       Restock[]
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
+  id            String           @id @default(uuid())
+  name          String           @unique
+  description   String?
+  slug          String           @unique
+  images        String[]
+  salesCount    Int              @default(0)
+  isNew         Boolean          @default(false)
+  isFeatured    Boolean          @default(false)
+  isTrending    Boolean          @default(false)
+  isBestSeller  Boolean          @default(false)
+  averageRating Float            @default(0)
+  reviewCount   Int              @default(0)
+  category      Category?        @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId    String?
+  variants      ProductVariant[]
+  interactions  Interaction[]
+  reviews       Review[]
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
 
   @@index([name, slug])
 }
@@ -109,7 +103,7 @@ model ProductVariant {
   id                String                    @id @default(uuid())
   productId         String
   product           Product                   @relation(fields: [productId], references: [id], onDelete: Cascade)
-  sku               String                    @unique // e.g., TSH-RED-S
+  sku               String                    @unique
   price             Float
   stock             Int
   lowStockThreshold Int                       @default(10)
@@ -128,7 +122,7 @@ model ProductVariant {
 
 model Attribute {
   id                String                    @id @default(uuid())
-  name              String                    @unique // e.g., Size, Color
+  name              String                    @unique
   slug              String                    @unique
   values            AttributeValue[]
   categories        CategoryAttribute[]
@@ -143,7 +137,7 @@ model AttributeValue {
   id                String                    @id @default(uuid())
   attributeId       String
   attribute         Attribute                 @relation(fields: [attributeId], references: [id], onDelete: Cascade)
-  value             String // e.g., Red, S
+  value             String
   slug              String                    @unique
   variantAttributes ProductVariantAttribute[]
   createdAt         DateTime                  @default(now())
@@ -202,8 +196,6 @@ model StockMovement {
   reason    String
   userId    String?
   createdAt DateTime       @default(now())
-  Product   Product?       @relation(fields: [productId], references: [id])
-  productId String?
 
   @@index([variantId])
 }
@@ -216,8 +208,6 @@ model Restock {
   notes     String?
   userId    String?
   createdAt DateTime       @default(now())
-  Product   Product?       @relation(fields: [productId], references: [id])
-  productId String?
 
   @@index([variantId])
 }
@@ -238,10 +228,11 @@ model Review {
 
 model Order {
   id          String       @id @default(uuid())
+  userId      String
   amount      Float
   orderDate   DateTime     @default(now())
-  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String
+  status      String       @default("PENDING")
+  user        User         @relation(fields: [userId], references: [id])
   orderItems  OrderItem[]
   payment     Payment?     @relation("OrderPayment")
   address     Address?     @relation("OrderAddress")
@@ -255,16 +246,14 @@ model Order {
 
 model OrderItem {
   id        String         @id @default(uuid())
-  order     Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId   String
-  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
   variantId String
-  quantity  Int            @default(1)
+  quantity  Int
   price     Float
+  order     Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  variant   ProductVariant @relation(fields: [variantId], references: [id])
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
-  Product   Product?       @relation(fields: [productId], references: [id])
-  productId String?
 
   @@index([orderId, variantId])
 }
@@ -345,13 +334,11 @@ model CartItem {
   id        String         @id @default(uuid())
   cart      Cart           @relation(fields: [cartId], references: [id], onDelete: Cascade)
   cartId    String
-  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
   variantId String
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
   quantity  Int            @default(1)
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
-  Product   Product?       @relation(fields: [productId], references: [id])
-  productId String?
 
   @@unique([cartId, variantId])
   @@index([cartId, variantId])

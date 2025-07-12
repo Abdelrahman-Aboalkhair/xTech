@@ -63,25 +63,25 @@ export class AttributeController {
     }
   );
 
-  assignAttributeToProduct = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
-      const { productId, attributeId, valueId, customValue } = req.body;
-      const result = await this.attributeService.assignAttributeToProduct({
-        productId,
-        attributeId,
-        valueId,
-        customValue,
-      });
-      sendResponse(res, 201, {
-        data: { result },
-        message: "Attribute assigned to product successfully",
-      });
-      this.logsService.info("Attribute assigned to product", {
-        userId: req.user?.id,
-        sessionId: req.session.id,
-      });
-    }
-  );
+  // assignAttributeToProduct = asyncHandler(
+  //   async (req: Request, res: Response): Promise<void> => {
+  //     const { productId, attributeId, valueId, customValue } = req.body;
+  //     const result = await this.attributeService.assignAttributeToProduct({
+  //       productId,
+  //       attributeId,
+  //       valueId,
+  //       customValue,
+  //     });
+  //     sendResponse(res, 201, {
+  //       data: { result },
+  //       message: "Attribute assigned to product successfully",
+  //     });
+  //     this.logsService.info("Attribute assigned to product", {
+  //       userId: req.user?.id,
+  //       sessionId: req.session.id,
+  //     });
+  //   }
+  // );
 
   getAllAttributes = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {

@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 import asyncHandler from "@/shared/utils/asyncHandler";
 import sendResponse from "@/shared/utils/sendResponse";
-import CategoryService from "./category.service";
-import { CreateCategoryDto } from "./category.dto";
 import { makeLogsService } from "../logs/logs.factory";
 import { uploadToCloudinary } from "@/shared/utils/uploadToCloudinary";
 import slugify from "@/shared/utils/slugify";
+import { CategoryService } from "./category.service";
 
 export class CategoryController {
   private logsService = makeLogsService();
@@ -47,7 +46,6 @@ export class CategoryController {
 
       const { category } = await this.categoryService.createCategory({
         name,
-        slug: slugifiedName,
         description,
         images: imageUrls.length > 0 ? imageUrls : undefined,
       });

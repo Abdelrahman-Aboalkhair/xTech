@@ -57,16 +57,15 @@ export class CartService {
       },
       include: {
         cart: {
-          include: { cartItems: true },
+          include: { cartItems: { include: { variant: true } } },
         },
         user: true,
       },
     });
 
-    // Group events by cartId
     const cartEventsByCartId = cartEvents.reduce((acc: any, event) => {
       if (!acc[event.cartId]) acc[event.cartId] = [];
-      acc[event.cartId].push(event); // * { cartId: [events] }
+      acc[event.cartId].push(event);
       return acc;
     }, {});
 
@@ -81,26 +80,22 @@ export class CartService {
         (e: any) => e.eventType === "CHECKOUT_COMPLETED"
       );
 
-      // Only count carts that have items
       const cart = events[0].cart;
       if (!cart || !cart.cartItems || cart.cartItems.length === 0) continue;
 
       totalCarts++;
 
-      // Check if cart is abandoned (has ADD but no CHECKOUT_COMPLETED events within 1 hour)
       if (hasAddToCart && !hasCheckoutCompleted) {
         const addToCartEvent = events.find((e: any) => e.eventType === "ADD");
         const oneHourLater = new Date(
-          addToCartEvent.timestamp.getTime() + 60 * 60 * 1000 // * 1 hour
+          addToCartEvent.timestamp.getTime() + 60 * 60 * 1000
         );
         const now = new Date();
 
-        //? if now is after 1 hour later, cart is abandoned
         if (now > oneHourLater) {
           totalAbandonedCarts++;
-          // ** calculate potential revenue lost
-          potentialRevenueLost += cart.items.reduce(
-            (sum: number, item: any) => sum + item.quantity * item.price,
+          potentialRevenueLost += cart.cartItems.reduce(
+            (sum: number, item: any) => sum + item.quantity * item.variant.price,
             0
           );
         }
@@ -123,24 +118,35 @@ export class CartService {
   }
 
   async addToCart(
-    productId: string,
+    variantId: string,
     quantity: number,
     userId?: string,
     sessionId?: string
   ) {
+    if (quantity <= 0) {
+      throw new AppError(400, "Quantity must be greater than 0");
+    }
     const cart = await this.getOrCreateCart(userId, sessionId);
+    const existingItem = await this.cartRepository.findCartItem(cart.id, variantId);
+    if (existingItem) {
+      const newQuantity = existingItem.quantity + quantity;
+      const updatedItem = await this.cartRepository.updateCartItemQuantity(existingItem.id, newQuantity);
+      await this.logCartEvent(cart.id, "ADD", userId);
+      return updatedItem;
+    }
     const item = await this.cartRepository.addItemToCart({
       cartId: cart.id,
-      productId,
+      variantId,
       quantity,
     });
-
     await this.logCartEvent(cart.id, "ADD", userId);
-
     return item;
   }
 
   async updateCartItemQuantity(itemId: string, quantity: number) {
+    if (quantity <= 0) {
+      throw new AppError(400, "Quantity must be greater than 0");
+    }
     return this.cartRepository.updateCartItemQuantity(itemId, quantity);
   }
 

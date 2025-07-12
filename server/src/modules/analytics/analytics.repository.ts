@@ -56,7 +56,7 @@ export class AnalyticsRepository {
           },
         }),
       },
-      include: { product: true },
+      include: { variant: true },
     });
   }
 
