@@ -103,7 +103,7 @@ export const variantApi = apiSlice.injectEndpoints({
 
     getRestockHistory: builder.query<GetRestockHistoryResponse, { variantId: string; page?: number; limit?: number }>({
       query: ({ variantId, page = 1, limit = 10 }) => ({
-        url: `/variants/${variantId}/restocks`,
+        url: `/variants/${variantId}/restock-history`,
         params: { page, limit },
       }),
       providesTags: (result, error, { variantId }) => [{ type: 'Variant', id: variantId }],

@@ -136,30 +136,32 @@ export class VariantController {
     });
   });
 
-  restockVariant = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const { id: variantId } = req.params;
-    const { quantity, notes } = req.body;
+restockVariant = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+  const { id: variantId } = req.params;
+  const { quantity, notes } = req.body;
+  console.log('req.body: ', req.body);
 
-    if (!quantity || typeof quantity !== "number" || quantity <= 0) {
-      throw new AppError(400, "Valid positive quantity is required");
-    }
+  const parsedQuantity = Number(quantity);
+  if (!quantity || isNaN(parsedQuantity) || parsedQuantity <= 0) {
+    throw new AppError(400, "Valid positive quantity is required");
+  }
 
-    const { restock, isLowStock } = await this.variantService.restockVariant(
-      variantId,
-      Number(quantity),
-      notes,
-      req.user?.id
-    );
+  const { restock, isLowStock } = await this.variantService.restockVariant(
+    variantId,
+    parsedQuantity,
+    notes,
+    req.user?.id
+  );
 
-    sendResponse(res, 200, {
-      data: { restock, isLowStock },
-      message: "Variant restocked successfully",
-    });
-    this.logsService.info("Variant restocked", {
-      userId: req.user?.id,
-      sessionId: req.session.id,
-    });
+  sendResponse(res, 200, {
+    data: { restock, isLowStock },
+    message: "Variant restocked successfully",
   });
+  this.logsService.info("Variant restocked", {
+    userId: req.user?.id,
+    sessionId: req.session.id,
+  });
+});
 
   deleteVariant = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const { id: variantId } = req.params;

@@ -2648,3 +2648,6 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-13T11:13:01.235Z] [31MERROR[39M: Duplicate SKUs detected: TSH-RED-M
 [2025-07-13T11:13:18.120Z] [31MERROR[39M: Invalid input. Please check your request data.
 [2025-07-13T11:13:35.921Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-13T11:17:57.844Z] [31MERROR[39M: Valid positive quantity is required
+[2025-07-13T11:20:15.559Z] [31MERROR[39M: Valid positive quantity is required
+[2025-07-13T11:22:06.358Z] [31MERROR[39M: Valid positive quantity is required
