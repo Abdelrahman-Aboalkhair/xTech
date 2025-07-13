@@ -40,11 +40,9 @@ export class CategoryService {
       throw new AppError(404, "Category not found");
     }
     return {
-      category: {
         ...category,
         productCount: category.products?.length || 0,
-        // variantCount: category.products?.reduce((sum, product) => sum + (product.variants?.length || 0), 0) || 0,
-      },
+      
     };
   }
 

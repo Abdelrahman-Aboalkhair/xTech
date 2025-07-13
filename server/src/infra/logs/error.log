@@ -2640,3 +2640,11 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-13T10:26:43.221Z] [31MERROR[39M: Invalid input. Please check your request data.
 [2025-07-13T10:27:21.800Z] [31MERROR[39M: Invalid input. Please check your request data.
 [2025-07-13T10:31:09.147Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-13T10:35:29.868Z] [31MERROR[39M: Valid positive quantity is required
+[2025-07-13T11:00:00.394Z] [31MERROR[39M: Variant at index 0 must have sku, price, and stock
+[2025-07-13T11:01:25.174Z] [31MERROR[39M: Variant at index 0 must have sku, price, and stock
+[2025-07-13T11:02:55.911Z] [31MERROR[39M: Variant at index 0 must have sku, price, and stock
+[2025-07-13T11:10:54.757Z] [31MERROR[39M: Variant at index 0 must have sku, price, and stock
+[2025-07-13T11:13:01.235Z] [31MERROR[39M: Duplicate SKUs detected: TSH-RED-M
+[2025-07-13T11:13:18.120Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-13T11:13:35.921Z] [31MERROR[39M: Invalid input. Please check your request data.

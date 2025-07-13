@@ -55,6 +55,12 @@ const ProductsDashboard = () => {
     }
     payload.append("variants", JSON.stringify(data.variants));
 
+    // Log the payload for debugging
+    console.log("Creating product with payload:", payload);
+    for (const [key, value] of payload.entries()) {
+      console.log(`${key}:`, value);
+    }
+
     try {
       await createProduct(payload).unwrap();
       setIsModalOpen(false);

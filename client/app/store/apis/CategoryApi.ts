@@ -42,21 +42,22 @@ export const categoriesApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Category"],
     }),
-       getCategoryAttributes: builder.query({
-      query: (categoryId: string) => `/categories/${categoryId}`,
-      transformResponse: (response: any) => ({
-        attributes: response.data.category.CategoryAttribute.map((ca: any) => ({
-          id: ca.attribute.id,
-          name: ca.attribute.name,
-          isRequired: ca.isRequired,
-          values: ca.attribute.values.map((v: any) => ({
-            id: v.id,
-            value: v.value,
-            slug: v.slug,
-          })),
-        })),
-      }),
-    }),
+
+getCategoryAttributes: builder.query({
+  query: (categoryId: string) => `/categories/${categoryId}`,
+  transformResponse: (response: any) => ({
+    attributes: response.category.attributes.map((atr: any) => ({
+      id: atr.attribute.id,
+      name: atr.attribute.name,
+      isRequired: atr.isRequired,
+      values: atr.attribute.values.map((v: any) => ({
+        id: v.id,
+        value: v.value,
+        slug: v.slug,
+      })),
+    })),
+  }),
+}),
   }),
 });
 

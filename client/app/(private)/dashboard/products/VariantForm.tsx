@@ -15,6 +15,7 @@ const VariantForm: React.FC<VariantFormProps> = ({ form, categoryAttributes }) =
     control,
     name: "variants",
   });
+  console.log('categoryAttributes:', categoryAttributes);
 
   return (
     <div className="space-y-4">
