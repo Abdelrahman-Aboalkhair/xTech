@@ -13,28 +13,7 @@ import ConfirmModal from "@/app/components/organisms/ConfirmModal";
 import useToast from "@/app/hooks/ui/useToast";
 import ProductFileUpload from "./ProductFileUpload";
 import { usePathname } from "next/navigation";
-
-export interface ProductFormData {
-  id: string;
-  name: string;
-  sku: string;
-  isNew: boolean;
-  isTrending: boolean;
-  isBestSeller: boolean;
-  isFeatured: boolean;
-  price: number;
-  discount: number;
-  stock: number;
-  categoryId: string;
-  description: string;
-  images: string[];
-  attributes: {
-    attributeId: string;
-    valueId?: string;
-    valueIds?: string[];
-    customValue?: string;
-  }[];
-}
+import { ProductFormData } from "./product.types";
 
 const ProductsDashboard = () => {
   const { showToast } = useToast();
@@ -45,52 +24,36 @@ const ProductsDashboard = () => {
   const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
 
   const pathname = usePathname();
-
   const shouldFetchProducts = pathname === "/dashboard/products";
 
-  const { data, isLoading } = useGetAllProductsQuery(undefined, {
-    skip: !shouldFetchProducts,
-  });
+  const { data, isLoading } = useGetAllProductsQuery(
+    { select: { variants: true } }, // Ensure variants are included
+    { skip: !shouldFetchProducts }
+  );
   const products = data?.products || [];
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<ProductFormData | null>(
-    null
-  );
-  console.log("editingProduct => ", editingProduct);
+  const [editingProduct, setEditingProduct] = useState<ProductFormData | null>(null);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
   const [isFileUploadOpen, setIsFileUploadOpen] = useState(false);
 
   const handleCreateProduct = async (data: ProductFormData) => {
-    console.log("submitted form data => ", data);
-
     const payload = new FormData();
-
     payload.append("name", data.name || "");
-    payload.append("price", data.price.toString());
-    payload.append("discount", data.discount.toString());
-    payload.append("stock", data.stock.toString());
     payload.append("description", data.description || "");
     payload.append("isNew", data.isNew.toString());
     payload.append("isTrending", data.isTrending.toString());
     payload.append("isBestSeller", data.isBestSeller.toString());
     payload.append("isFeatured", data.isFeatured.toString());
-    payload.append("sku", data.sku || "");
-
+    payload.append("categoryId", data.categoryId || "");
     if (data.images && Array.isArray(data.images)) {
-      data.images.forEach((file: any) => {
-        if (file instanceof File) {
+      data.images.forEach((file: File | string) => {
+        if (file instanceof File || typeof file === "string") {
           payload.append("images", file);
         }
       });
     }
-
-    if (data.attributes && Array.isArray(data.attributes)) {
-      console.log('attributes => ', data.attributes);
-      payload.append("attributes", JSON.stringify(data.attributes));
-    }
-
-    payload.append("categoryId", data.categoryId || "");
+    payload.append("variants", JSON.stringify(data.variants));
 
     try {
       await createProduct(payload).unwrap();
@@ -106,38 +69,25 @@ const ProductsDashboard = () => {
     if (!editingProduct) return;
 
     const payload = new FormData();
-
     payload.append("name", data.name || "");
-    payload.append("price", data.price.toString());
-    payload.append("discount", data.discount.toString());
-    payload.append("stock", data.stock.toString());
     payload.append("description", data.description || "");
     payload.append("isNew", data.isNew.toString());
     payload.append("isTrending", data.isTrending.toString());
     payload.append("isBestSeller", data.isBestSeller.toString());
     payload.append("isFeatured", data.isFeatured.toString());
-    payload.append("sku", data.sku || "");
-
+    payload.append("categoryId", data.categoryId || "");
     if (data.images && Array.isArray(data.images)) {
-      data.images.forEach((file: any) => {
-        // Include both File objects and existing URLs
-        payload.append("images", file);
+      data.images.forEach((file: File | string) => {
+        if (file instanceof File || typeof file === "string") {
+          payload.append("images", file);
+        }
       });
     }
-
-    if (data.attributes && Array.isArray(data.attributes)) {
-      payload.append("attributes", JSON.stringify(data.attributes));
-    }
-
-    // Log payload for debugging
-    console.log("FormData payload:");
-    for (const [key, value] of payload.entries()) {
-      console.log(`${key}: ${value instanceof File ? value.name : value}`);
-    }
+    payload.append("variants", JSON.stringify(data.variants));
 
     try {
       await updateProduct({
-        id: editingProduct.id,
+        id: editingProduct.id!,
         data: payload,
       }).unwrap();
       setIsModalOpen(false);
@@ -160,7 +110,6 @@ const ProductsDashboard = () => {
       await deleteProduct(productToDelete).unwrap();
       setIsConfirmModalOpen(false);
       setProductToDelete(null);
-
       showToast("Product deleted successfully", "success");
     } catch (err) {
       console.error("Failed to delete product:", err);
@@ -173,7 +122,7 @@ const ProductsDashboard = () => {
     setProductToDelete(null);
   };
 
-  const handleFileUploadSuccess = () => { };
+  const handleFileUploadSuccess = () => {};
 
   const columns = [
     {
@@ -187,22 +136,22 @@ const ProductsDashboard = () => {
       ),
     },
     {
-      key: "price",
-      label: "Price",
-      sortable: true,
-      render: (row: any) => `$${row.price.toFixed(2)}`,
-    },
-    {
-      key: "discount",
-      label: "Discount",
-      sortable: true,
-      render: (row: any) => `${row.discount}%`,
-    },
-    {
-      key: "stock",
-      label: "Stock",
-      sortable: true,
-      render: (row: any) => row.stock,
+      key: "variants",
+      label: "Variants",
+      sortable: false,
+      render: (row: any) => (
+        <div>
+          {row.variants?.length > 0 ? (
+            row.variants.map((v: any) => (
+              <span key={v.id} className="inline-block mr-2 bg-gray-100 px-2 py-1 rounded">
+                {v.sku}
+              </span>
+            ))
+          ) : (
+            <span className="text-gray-500">No variants</span>
+          )}
+        </div>
+      ),
     },
     {
       key: "salesCount",
@@ -220,18 +169,14 @@ const ProductsDashboard = () => {
               setEditingProduct({
                 id: row.id,
                 name: row.name,
-                sku: row.sku,
-                price: row.price,
-                discount: row.discount,
-                stock: row.stock,
                 isNew: row.isNew,
                 isTrending: row.isTrending,
                 isBestSeller: row.isBestSeller,
                 isFeatured: row.isFeatured,
                 categoryId: row.categoryId,
                 description: row.description || "",
-                images: row.images || [""],
-                attributes: row.attributes || [],
+                images: row.images || [],
+                variants: row.variants || [],
               });
               setIsModalOpen(true);
             }}
@@ -246,9 +191,7 @@ const ProductsDashboard = () => {
             disabled={isDeleting}
           >
             <Trash2 size={16} />
-            {isDeleting && productToDelete === row.id
-              ? "Deleting..."
-              : "Delete"}
+            {isDeleting && productToDelete === row.id ? "Deleting..." : "Delete"}
           </button>
         </div>
       ),
@@ -316,7 +259,7 @@ const ProductsDashboard = () => {
           setEditingProduct(null);
         }}
         onSubmit={editingProduct ? handleUpdateProduct : handleCreateProduct}
-        initialData={editingProduct!}
+        initialData={editingProduct || undefined}
         isLoading={editingProduct ? isUpdating : isCreating}
         error={editingProduct ? updateError : createError}
       />

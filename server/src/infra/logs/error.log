@@ -2628,3 +2628,15 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-12T15:15:05.056Z] [31MERROR[39M: Variants are required
 [2025-07-12T15:21:41.169Z] [31MERROR[39M: Invalid access token, please log in
 [2025-07-12T15:21:50.532Z] [31MERROR[39M: One or more attribute IDs are invalid
+[2025-07-12T15:38:14.959Z] [31MERROR[39M: Refresh token not found
+[2025-07-12T15:38:14.969Z] [31MERROR[39M: Refresh token not found
+[2025-07-12T15:38:14.999Z] [31MERROR[39M: Refresh token not found
+[2025-07-12T15:38:15.035Z] [31MERROR[39M: Refresh token not found
+[2025-07-12T15:38:40.276Z] [31MERROR[39M: Refresh token not found
+[2025-07-12T15:38:40.315Z] [31MERROR[39M: Refresh token not found
+[2025-07-12T15:58:12.962Z] [31MERROR[39M: Variant at index 0 must have sku, price, and stock
+[2025-07-13T09:57:35.800Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-13T10:26:40.276Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-13T10:26:43.221Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-13T10:27:21.800Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-13T10:31:09.147Z] [31MERROR[39M: Invalid input. Please check your request data.

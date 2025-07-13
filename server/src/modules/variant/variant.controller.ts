@@ -18,6 +18,17 @@ export class VariantController {
     });
   });
 
+  getRestockHistory = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const { id: variantId } = req.params;
+    const { page = '1', limit = '10' } = req.query;
+    const { restocks, totalResults, totalPages, currentPage, resultsPerPage } =
+      await this.variantService.getRestockHistory(variantId, parseInt(page as string), parseInt(limit as string));
+    sendResponse(res, 200, {
+      data: { restocks, totalResults, totalPages, currentPage, resultsPerPage },
+      message: "Restock history fetched successfully",
+    });
+  });
+
   getVariantById = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const { id: variantId } = req.params;
     const variant = await this.variantService.getVariantById(variantId);
@@ -40,7 +51,6 @@ export class VariantController {
     const { productId, sku, price, stock, lowStockThreshold, barcode, warehouseLocation, attributes } =
       req.body;
 
-    // Validate attributes
     let parsedAttributes;
     try {
       parsedAttributes = typeof attributes === "string" ? JSON.parse(attributes) : attributes;
@@ -52,7 +62,6 @@ export class VariantController {
           throw new AppError(400, `Invalid attribute structure at index ${index}`);
         }
       });
-      // Check for duplicate attributes
       const attributeIds = parsedAttributes.map((attr: any) => attr.attributeId);
       if (new Set(attributeIds).size !== attributeIds.length) {
         throw new AppError(400, "Duplicate attributes in variant");
@@ -86,7 +95,6 @@ export class VariantController {
     const { id: variantId } = req.params;
     const { sku, price, stock, lowStockThreshold, barcode, warehouseLocation, attributes } = req.body;
 
-    // Validate attributes if provided
     let parsedAttributes;
     if (attributes) {
       try {
@@ -99,7 +107,6 @@ export class VariantController {
             throw new AppError(400, `Invalid attribute structure at index ${index}`);
           }
         });
-        // Check for duplicate attributes
         const attributeIds = parsedAttributes.map((attr: any) => attr.attributeId);
         if (new Set(attributeIds).size !== attributeIds.length) {
           throw new AppError(400, "Duplicate attributes in variant");

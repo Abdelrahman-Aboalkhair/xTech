@@ -140,3 +140,53 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1465:32)
     at Function._load (node:internal/modules/cjs/loader:1282:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-13T10:23:23.293Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/variant/variant.repository.ts[0m:[93m104[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'user' does not exist in type 'RestockInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'.
+
+[7m104[0m         user: { select: { id: true, name: true } },
+[7m   [0m [91m        ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/variant/variant.repository.ts[0m:[93m104[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'user' does not exist in type 'RestockInclude<InternalArgs & { result: {}; model: {}; query: {}; client: {}; }>'.
+
+[7m104[0m         user: { select: { id: true, name: true } },
+[7m   [0m [91m        ~~~~[0m
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[2025-07-13T10:24:54.019Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/modules/variant/variant.factory.ts[0m:[93m4[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"./variant.service"' has no exported member 'VariantService'.
+
+[7m4[0m import { VariantService } from "./variant.service";
+[7m [0m [91m         ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/modules/variant/variant.factory.ts[0m:[93m4[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"./variant.service"' has no exported member 'VariantService'.
+
+[7m4[0m import { VariantService } from "./variant.service";
+[7m [0m [91m         ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/variant/variant.routes.ts:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)

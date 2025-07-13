@@ -46,6 +46,29 @@ export class VariantService {
     };
   }
 
+  async getRestockHistory(variantId: string, page: number = 1, limit: number = 10) {
+    const skip = (page - 1) * limit;
+    const take = limit;
+
+    const totalResults = await this.variantRepository.countRestocks({ variantId });
+    const totalPages = Math.ceil(totalResults / take);
+    const currentPage = page;
+
+    const restocks = await this.variantRepository.findRestockHistory({
+      variantId,
+      skip,
+      take,
+    });
+
+    return {
+      restocks,
+      totalResults,
+      totalPages,
+      currentPage,
+      resultsPerPage: take,
+    };
+  }
+
   async getVariantById(variantId: string) {
     const variant = await this.variantRepository.findVariantById(variantId);
     if (!variant) {
@@ -74,13 +97,11 @@ export class VariantService {
   }) {
     const { productId, attributes } = data;
 
-    // Validate product exists
     const product = await prisma.product.findUnique({ where: { id: productId } });
     if (!product) {
       throw new AppError(404, "Product not found");
     }
 
-    // Validate SKU uniqueness
     const existingVariant = await prisma.productVariant.findUnique({
       where: { sku: data.sku },
     });
@@ -88,12 +109,10 @@ export class VariantService {
       throw new AppError(400, "SKU already exists");
     }
 
-    // Validate attributes
     if (!attributes || attributes.length === 0) {
       throw new AppError(400, "At least one attribute is required");
     }
 
-    // Validate category requirements
     if (product.categoryId) {
       const requiredAttributes = await prisma.categoryAttribute.findMany({
         where: { categoryId: product.categoryId, isRequired: true },
@@ -112,7 +131,6 @@ export class VariantService {
       }
     }
 
-    // Validate attributes and values
     const allAttributeIds = [...new Set(attributes.map((a) => a.attributeId))];
     const existingAttributes = await prisma.attribute.findMany({
       where: { id: { in: allAttributeIds } },
@@ -129,12 +147,10 @@ export class VariantService {
       throw new AppError(400, "One or more attribute values are invalid");
     }
 
-    // Check for duplicate attributes in the same variant
     if (new Set(allAttributeIds).size !== allAttributeIds.length) {
       throw new AppError(400, "Duplicate attributes in variant");
     }
 
-    // Check for duplicate attribute combination within product
     const existingVariants = await prisma.productVariant.findMany({
       where: { productId },
       include: { attributes: true },
@@ -173,7 +189,6 @@ export class VariantService {
       throw new AppError(404, "Variant not found");
     }
 
-    // Validate SKU uniqueness if changed
     if (data.sku && data.sku !== existingVariant.sku) {
       const existingSku = await prisma.productVariant.findUnique({
         where: { sku: data.sku },
@@ -183,13 +198,11 @@ export class VariantService {
       }
     }
 
-    // Validate attributes if provided
     if (data.attributes) {
       if (data.attributes.length === 0) {
         throw new AppError(400, "At least one attribute is required");
       }
 
-      // Validate category requirements
       const product = await prisma.product.findUnique({
         where: { id: existingVariant.productId },
       });
@@ -211,7 +224,6 @@ export class VariantService {
         }
       }
 
-      // Validate attributes and values
       const allAttributeIds = [...new Set(data.attributes.map((a) => a.attributeId))];
       const existingAttributes = await prisma.attribute.findMany({
         where: { id: { in: allAttributeIds } },
@@ -228,12 +240,10 @@ export class VariantService {
         throw new AppError(400, "One or more attribute values are invalid");
       }
 
-      // Check for duplicate attributes in the same variant
       if (new Set(allAttributeIds).size !== allAttributeIds.length) {
         throw new AppError(400, "Duplicate attributes in variant");
       }
 
-      // Check for duplicate attribute combination within product
       const existingVariants = await prisma.productVariant.findMany({
         where: { productId: existingVariant.productId, id: { not: variantId } },
         include: { attributes: true },
@@ -267,7 +277,6 @@ export class VariantService {
     }
 
     return prisma.$transaction(async (tx) => {
-      // Create restock record
       const restock = await this.variantRepository.createRestock({
         variantId,
         quantity,
@@ -275,10 +284,8 @@ export class VariantService {
         userId,
       });
 
-      // Update variant stock
       await this.variantRepository.updateVariantStock(variantId, quantity);
 
-      // Log stock movement
       await this.variantRepository.createStockMovement({
         variantId,
         quantity,
@@ -286,7 +293,6 @@ export class VariantService {
         userId,
       });
 
-      // Check low stock threshold
       const updatedVariant = await this.variantRepository.findVariantById(variantId);
       const isLowStock = updatedVariant?.stock && updatedVariant.lowStockThreshold
         ? updatedVariant.stock <= updatedVariant.lowStockThreshold

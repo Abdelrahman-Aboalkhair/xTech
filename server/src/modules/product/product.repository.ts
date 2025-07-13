@@ -43,8 +43,8 @@ export class ProductRepository {
       skip,
       take,
       select,
-      include: select?.variants
-        ? {
+      include:
+         {
             variants: {
               include: {
                 attributes: {
@@ -56,7 +56,7 @@ export class ProductRepository {
               },
             },
           }
-        : undefined,
+        
     });
   }
 

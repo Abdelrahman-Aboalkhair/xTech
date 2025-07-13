@@ -76,6 +76,7 @@ export const apiSlice = createApi({
     "Transactions",
     "Logs",
     "Attribute",
+    "Variant"
   ],
   endpoints: () => ({}),
 });

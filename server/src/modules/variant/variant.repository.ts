@@ -4,9 +4,7 @@ import prisma from '@/infra/database/database.config';
 export class VariantRepository {
   async findManyVariants(params: {
     where?: Prisma.ProductVariantWhereInput & { productSlug?: string };
-    orderBy?:
-      | Prisma.ProductVariantOrderByWithRelationInput
-      | Prisma.ProductVariantOrderByWithRelationInput[];
+    orderBy?: Prisma.ProductVariantOrderByWithRelationInput | Prisma.ProductVariantOrderByWithRelationInput[];
     skip?: number;
     take?: number;
     select?: Prisma.ProductVariantSelect;
@@ -41,17 +39,16 @@ export class VariantRepository {
       skip,
       take,
       select,
-      include: select?.attributes
-        ? {
-            attributes: {
-              include: {
-                attribute: true,
-                value: true,
-              },
-            },
-            product: true,
-          }
-        : { product: true },
+      
+      include: {
+        product: true,
+        attributes: {
+          include: {
+            attribute: true,
+            value: true,
+          },
+        }
+      }
     });
   }
 
@@ -88,6 +85,28 @@ export class VariantRepository {
         },
       },
     });
+  }
+
+  async findRestockHistory(params: {
+    variantId: string;
+    skip?: number;
+    take?: number;
+  }) {
+    const { variantId, skip = 0, take = 10 } = params;
+    return prisma.restock.findMany({
+      where: { variantId },
+      orderBy: { createdAt: 'desc' },
+      skip,
+      take,
+      include: {
+        variant: true,
+        user: { select: { id: true, name: true } },
+      },
+    });
+  }
+
+  async countRestocks(params: { variantId: string }) {
+    return prisma.restock.count({ where: { variantId: params.variantId } });
   }
 
   async createVariant(data: {
