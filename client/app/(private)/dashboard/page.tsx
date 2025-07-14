@@ -46,6 +46,7 @@ const Dashboard = () => {
   const { data, loading, error } = useQuery(GET_ANALYTICS_OVERVIEW, {
     variables: { params: queryParams },
   });
+  console.log('data => ', data);
 
   const topItems =
     data?.productPerformance?.slice(0, 10).map((p) => ({

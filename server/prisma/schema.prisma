@@ -81,7 +81,7 @@ model Product {
   name          String           @unique
   description   String?
   slug          String           @unique
-  images        String[]
+  images        String[]         @default([])
   salesCount    Int              @default(0)
   isNew         Boolean          @default(false)
   isFeatured    Boolean          @default(false)

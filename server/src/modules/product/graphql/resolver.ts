@@ -1,5 +1,4 @@
 import AppError from "@/shared/errors/AppError";
-import getCombinations from "@/shared/utils/getCombinations";
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 
@@ -29,7 +28,6 @@ export const productResolvers = {
           minPrice?: number;
           maxPrice?: number;
           categoryId?: string;
-          attributes?: { attributeSlug: string; valueSlug: string }[];
         };
       },
       context: Context
@@ -46,45 +44,23 @@ export const productResolvers = {
 
       // Flag filters
       if (filters.isNew !== undefined) where.isNew = filters.isNew;
-      if (filters.isFeatured !== undefined)
-        where.isFeatured = filters.isFeatured;
-      if (filters.isTrending !== undefined)
-        where.isTrending = filters.isTrending;
-      if (filters.isBestSeller !== undefined)
-        where.isBestSeller = filters.isBestSeller;
-
-      // Price filters
-      if (filters.minPrice !== undefined || filters.maxPrice !== undefined) {
-        where.price = {};
-        if (filters.minPrice !== undefined) where.price.gte = filters.minPrice;
-        if (filters.maxPrice !== undefined) where.price.lte = filters.maxPrice;
-      }
+      if (filters.isFeatured !== undefined) where.isFeatured = filters.isFeatured;
+      if (filters.isTrending !== undefined) where.isTrending = filters.isTrending;
+      if (filters.isBestSeller !== undefined) where.isBestSeller = filters.isBestSeller;
 
       // Category filter
       if (filters.categoryId) {
         where.categoryId = filters.categoryId;
       }
 
-      // Attribute filters
-      if (filters.attributes && filters.attributes.length > 0) {
-        // Look inside the attributes
-        where.attributes = {
-          // We want at least one attribute
+      // Price filter (based on variants)
+      if (filters.minPrice !== undefined || filters.maxPrice !== undefined) {
+        where.variants = {
           some: {
-            // we're following any of the attribute filters to match (not all at once)
-            OR: filters.attributes.map((attr) => ({
-              AND: [
-                // For each attribute, the slug must match
-                { attribute: { slug: attr.attributeSlug } },
-                // And the value slug must match
-                {
-                  OR: [
-                    { value: { slug: attr.valueSlug } },
-                    { customValue: attr.valueSlug },
-                  ],
-                },
-              ],
-            })),
+            price: {
+              ...(filters.minPrice !== undefined && { gte: filters.minPrice }),
+              ...(filters.maxPrice !== undefined && { lte: filters.maxPrice }),
+            },
           },
         };
       }
@@ -96,11 +72,8 @@ export const productResolvers = {
         skip,
         include: {
           category: true,
-          variants: {
-            include: {
-              attributes: { },
-            },
-          },
+          variants: true,
+          reviews: true,
         },
       });
 
@@ -111,17 +84,18 @@ export const productResolvers = {
       };
     },
     product: async (_: any, { slug }: { slug: string }, context: Context) => {
-      return context.prisma.product.findUnique({
+      const product = await context.prisma.product.findUnique({
         where: { slug },
         include: {
           category: true,
-          variants: {
-            include: {
-              attributes: true,
-            },
-          },
+          variants: true,
+          reviews: true,
         },
       });
+      if (!product) {
+        throw new AppError(404, "Product not found");
+      }
+      return product;
     },
     newProducts: async (
       _: any,
@@ -137,11 +111,8 @@ export const productResolvers = {
         skip,
         include: {
           category: true,
-          variants: {
-            include: {
-              attributes: true,
-            },
-          },
+          variants: true,
+          reviews: true,
         },
       });
       return {
@@ -164,11 +135,8 @@ export const productResolvers = {
         skip,
         include: {
           category: true,
-          variants: {
-            include: {
-              attributes: true,
-            },
-          },
+          variants: true,
+          reviews: true,
         },
       });
       return {
@@ -191,11 +159,8 @@ export const productResolvers = {
         skip,
         include: {
           category: true,
-          variants: {
-            include: {
-              attributes: true,
-            },
-          },
+          variants: true,
+          reviews: true,
         },
       });
       return {
@@ -218,11 +183,8 @@ export const productResolvers = {
         skip,
         include: {
           category: true,
-          variants: {
-            include: {
-              attributes: true,
-            },
-          },
+          variants: true,
+          reviews: true,
         },
       });
       return {
@@ -242,10 +204,7 @@ export const productResolvers = {
         },
       });
     },
-
-
   },
-
 
   Product: {
     reviews: (parent: any, _: any, context: Context) => {
@@ -253,8 +212,5 @@ export const productResolvers = {
         where: { productId: parent.id },
       });
     },
-  
   },
-
-
 };

@@ -2,68 +2,41 @@ import gql from "graphql-tag";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { productResolvers } from "./resolver";
 
-const typeDefs = gql`scalar DateTime
+const typeDefs = gql`
+
+scalar DateTime
 
 type Product {
   id: String!
   slug: String!
   name: String!
-  price: Float!
-  discount: Float!
+  description: String
   images: [String!]!
-  stock: Int!
+  salesCount: Int!
   isNew: Boolean!
   isFeatured: Boolean!
   isTrending: Boolean!
   isBestSeller: Boolean!
-  reviews: [Review!]
-  attributes: [ProductAttribute!]!
+  averageRating: Float!
+  reviewCount: Int!
+  variants: [ProductVariant!]!
   category: Category
+  reviews: [Review!]!
 }
 
-type StockMovement {
-  id: ID!
-  product: Product!
-  quantity: Int!
-  reason: String!
-  userId: String
-  createdAt: DateTime!
-}
-
-type Restock {
-  id: ID!
-  product: Product!
-  quantity: Int!
-  notes: String
-  userId: String
-  createdAt: DateTime!
-  attributes: [RestockAttribute!]!
-}
-
-type RestockAttribute {
-  id: ID!
-  attributeId: String!
-  valueId: String
-  valueIds: [String!]
-  attribute: Attribute!
-  values: [AttributeValue!]
-}
-
-type InventorySummary {
-  product: Product!
+type ProductVariant {
+  id: String!
+  sku: String!
+  price: Float!
   stock: Int!
-  lowStock: Boolean!
-  combinations: [ProductCombination!]! # Added for combination details
-}
-
-type ProductCombination { # New type for attribute combinations
-  attributes: [ProductAttribute!]!
-  stock: Int!
+  lowStockThreshold: Int!
+  barcode: String
+  warehouseLocation: String
 }
 
 type Review {
   id: String!
-  rating: Float!
+  rating: Int!
   comment: String
 }
 
@@ -72,76 +45,12 @@ type Category {
   slug: String!
   name: String!
   description: String
-  attributes: [CategoryAttribute!]!
 }
 
-type Attribute {
-  id: ID!
-  name: String!
-  type: String!
-  values: [AttributeValue!]
-}
-
-type AttributeValue {
-  id: ID!
-  value: String!
-}
-
-type ProductAttribute {
-  id: ID!
-  attributeId: String!
-  valueId: String
-  customValue: String
-  stock: Int!
-  attribute: Attribute!
-  value: AttributeValue
-}
-
-type CategoryAttribute {
-  id: ID!
-  attribute: Attribute!
-  isRequired: Boolean!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-input AttributeInput {
-  attributeId: String!
-  valueId: String
-  valueIds: [String!]
-  customValue: String
-}
-
-input RestockProductInput {
-  productId: String!
-  quantity: Int!
-  notes: String
-  attributes: [AttributeInput!]
-}
-
-input RestockParamsInput {
-  first: Int
-  skip: Int
-  productId: String
-  startDate: DateTime
-  endDate: DateTime
-}
-
-input InventorySummaryParamsInput {
-  first: Int
-  skip: Int
-  filter: InventoryFilterInput
-}
-
-input InventoryFilterInput {
-  lowStockOnly: Boolean
-  productName: String
-  attributeFilters: [AttributeInput!]
-}
-
-input AttributeFilterInput {
-  attributeSlug: String!
-  valueSlug: String!
+type ProductConnection {
+  products: [Product!]!
+  hasMore: Boolean!
+  totalCount: Int!
 }
 
 input ProductFilters {
@@ -153,13 +62,6 @@ input ProductFilters {
   minPrice: Float
   maxPrice: Float
   categoryId: String
-  attributes: [AttributeFilterInput!]
-}
-
-type ProductConnection {
-  products: [Product!]!
-  hasMore: Boolean!
-  totalCount: Int!
 }
 
 type Query {
@@ -170,30 +72,7 @@ type Query {
   trendingProducts(first: Int, skip: Int): ProductConnection!
   bestSellerProducts(first: Int, skip: Int): ProductConnection!
   categories: [Category!]!
-  attributes(first: Int, skip: Int): [Attribute!]!
-  attribute(id: ID!): Attribute
-  getProductAttributes(productId: String!): [ProductAttribute!]!
-  stockMovements(
-    productId: ID
-    startDate: DateTime
-    endDate: DateTime
-  ): [StockMovement!]!
-  restocks(params: RestockParamsInput!): [Restock!]!
-  inventorySummary(params: InventorySummaryParamsInput!): [InventorySummary!]!
-  stockMovementsByProduct(
-    productId: ID!
-    startDate: DateTime
-    endDate: DateTime
-    first: Int
-    skip: Int
-  ): [StockMovement!]!
 }
-
-type Mutation {
-  restockProduct(input: RestockProductInput!): Restock!
-  setLowStockThreshold(productId: ID!, threshold: Int!): Product!
-}
-
 `;
 
 export const productSchema = makeExecutableSchema({

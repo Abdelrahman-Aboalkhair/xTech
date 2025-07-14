@@ -2651,3 +2651,5 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-13T11:17:57.844Z] [31MERROR[39M: Valid positive quantity is required
 [2025-07-13T11:20:15.559Z] [31MERROR[39M: Valid positive quantity is required
 [2025-07-13T11:22:06.358Z] [31MERROR[39M: Valid positive quantity is required
+[2025-07-13T11:34:24.696Z] [31MERROR[39M: No orders found for this user
+[2025-07-13T13:10:07.924Z] [31MERROR[39M: Attribute not found
