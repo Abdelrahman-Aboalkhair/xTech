@@ -11,8 +11,7 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
 
   const isAuthRoute = authRoutes.includes(pathname);
 
-  const [checkAuth, { error, isLoading }] = useCheckAuthMutation();
-  console.log("error => ", error);
+  const [checkAuth, { isLoading }] = useCheckAuthMutation();
 
   useEffect(() => {
     if (!isAuthRoute) {

@@ -3,18 +3,12 @@ import {
   Search,
   X,
   Clock,
-  Sparkles,
   ArrowRight,
-  TrendingUp,
-  Tag,
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import useStorage from "@/app/hooks/state/useStorage";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useQuery } from "@apollo/client";
-import { GET_CATEGORIES, GET_TRENDING_PRODUCTS } from "@/app/gql/Product";
 import useEventListener from "@/app/hooks/dom/useEventListener";
 
 type SearchFormValues = {
@@ -48,17 +42,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
 
-  // Fetch categories
-  const { data: categoriesData } = useQuery(GET_CATEGORIES);
-  console.log("categoriesData: ", categoriesData);
-  const suggestedCategories =
-    categoriesData?.categories.map((cat: any) => cat.name) || [];
-
-  const { data: trendingProductsData } = useQuery(GET_TRENDING_PRODUCTS, {
-    variables: { first: 4, skip: 0 },
-  });
-  const trendingProducts = trendingProductsData?.trendingProducts?.products;
-  console.log("trendingProductsData: ", trendingProductsData);
 
   useEventListener("mousedown", (event) => {
     if (
@@ -169,41 +152,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
             onMouseEnter={() => setIsHoveringDropdown(true)}
             onMouseLeave={() => setIsHoveringDropdown(false)}
           >
-            {/* Trending products section */}
-            <div className="p-3 border-b border-gray-100">
-              <div className="flex items-center text-sm text-gray-500 mb-2">
-                <TrendingUp size={14} className="mr-2 text-primary" />
-                <span className="font-medium">Trending Products</span>
-              </div>
-              <ul className="grid grid-cols-3 gap-2">
-                {trendingProducts.map((product) => (
-                  <li
-                    key={product.id}
-                    className="flex items-center p-1.5 cursor-pointer hover:bg-gray-50 rounded-md transition-colors duration-200"
-                    onClick={() => handleSelectRecentQuery(product.name)}
-                  >
-                    <div className="h-10 w-10 bg-gray-100 rounded overflow-hidden mr-3 flex-shrink-0">
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        width={40}
-                        height={40}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-sm text-gray-800 truncate">
-                        {product.name}
-                      </span>
-                      <span className="text-xs text-gray-500 flex items-center">
-                        <Tag size={10} className="mr-1" />
-                        {product.category}
-                      </span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
+       
 
             {/* Recent searches section */}
             {recentQueries.length > 0 && (
@@ -246,24 +195,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
               </div>
             )}
 
-            {/* Popular categories section */}
-            <div className="p-3">
-              <div className="flex items-center text-sm text-gray-500 mb-2">
-                <Sparkles size={14} className="mr-2 text-primary" />
-                <span className="font-medium">Popular Categories</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {suggestedCategories.map((category, index) => (
-                  <button
-                    key={index}
-                    className="px-3 py-1.5 bg-gray-50 hover:bg-primary text-gray-600 hover:text-primary rounded-full text-xs transition-colors duration-200"
-                    onClick={() => handleSelectRecentQuery(category)}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
+    
           </motion.div>
         )}
       </AnimatePresence>

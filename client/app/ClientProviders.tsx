@@ -6,17 +6,13 @@ import client from "./lib/apolloClient";
 import Toast from "./components/feedback/Toast";
 import AuthGate from "./AuthGate";
 
-export default function ClientProviders({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ClientProviders({ children }: { children: React.ReactNode }) {
   return (
-    <Provider store={store}>
-      <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
         <AuthGate>{children}</AuthGate>
-        <Toast />
-      </ApolloProvider>
-    </Provider>
+        {process.env.NODE_ENV !== "test" && <Toast />} 
+      </Provider>
+    </ApolloProvider>
   );
 }

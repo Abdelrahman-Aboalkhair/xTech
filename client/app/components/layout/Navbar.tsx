@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import UserMenu from "../molecules/UserMenu";
-import { User, ShoppingCart, Menu, X, CircleUserRound } from "lucide-react";
+import { ShoppingCart, Menu, X, CircleUserRound } from "lucide-react";
 import { usePathname } from "next/navigation";
 import SearchBar from "../molecules/SearchBar";
 import { useGetCartCountQuery } from "@/app/store/apis/CartApi";
