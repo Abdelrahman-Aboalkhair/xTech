@@ -20,7 +20,6 @@ const revenueAnalytics = {
         yearEnd,
       } = getDateRange({ timePeriod, year, startDate, endDate });
 
-      // Fetch current period data
       const currentOrders = await fetchData(
         prisma,
         "order",
@@ -39,10 +38,9 @@ const revenueAnalytics = {
         yearStart,
         yearEnd,
         undefined,
-        { product: true }
+        { variant: true } 
       );
 
-      // Fetch previous period data if needed
       const fetchPrevious = shouldFetchPreviousPeriod(timePeriod);
       const previousOrders = fetchPrevious
         ? await fetchData(
@@ -65,30 +63,15 @@ const revenueAnalytics = {
             yearStart,
             yearEnd,
             undefined,
-            { product: true }
+            { variant: true } 
           )
         : [];
 
-      // Calculate metrics for both periods
-      const currentMetrics = calculateMetrics(
-        currentOrders,
-        currentOrderItems,
-        []
-      );
-      const previousMetrics = calculateMetrics(
-        previousOrders,
-        previousOrderItems,
-        []
-      );
+      const currentMetrics = calculateMetrics(currentOrders, currentOrderItems, []);
+      const previousMetrics = calculateMetrics(previousOrders, previousOrderItems, []);
 
-      // Compute changes
-      const changes = calculateChanges(
-        currentMetrics,
-        previousMetrics,
-        fetchPrevious
-      );
+      const changes = calculateChanges(currentMetrics, previousMetrics, fetchPrevious);
 
-      // Fetch data for monthly trends
       const ordersForTrends = await fetchData(
         prisma,
         "order",
@@ -101,7 +84,8 @@ const revenueAnalytics = {
         "orderItem",
         "createdAt",
         yearStart,
-        yearEnd
+        yearEnd,
+        undefined,
       );
       const usersForTrends = await fetchData(
         prisma,
@@ -111,12 +95,7 @@ const revenueAnalytics = {
         yearEnd
       );
 
-      // Aggregate monthly trends
-      const monthlyTrends = aggregateMonthlyTrends(
-        ordersForTrends,
-        orderItemsForTrends,
-        usersForTrends
-      );
+      const monthlyTrends = aggregateMonthlyTrends(ordersForTrends, orderItemsForTrends, usersForTrends);
 
       return {
         totalRevenue: Number(currentMetrics.totalRevenue.toFixed(2)),

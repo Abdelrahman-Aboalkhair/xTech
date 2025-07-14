@@ -19,7 +19,6 @@ const orderAnalytics = {
         yearEnd,
       } = getDateRange({ timePeriod, year, startDate, endDate });
 
-      // Fetch current period data
       const currentOrders = await fetchData(
         prisma,
         "order",
@@ -38,10 +37,9 @@ const orderAnalytics = {
         yearStart,
         yearEnd,
         undefined,
-        { product: true }
+        { variant: true } // Updated to 'variant' for consistency
       );
 
-      // Fetch previous period data if needed
       const fetchPrevious = shouldFetchPreviousPeriod(timePeriod);
       const previousOrders = fetchPrevious
         ? await fetchData(
@@ -64,28 +62,14 @@ const orderAnalytics = {
             yearStart,
             yearEnd,
             undefined,
-            { product: true }
+            { variant: true } // Updated to 'variant' for consistency
           )
         : [];
 
-      // Calculate metrics for both periods
-      const currentMetrics = calculateMetrics(
-        currentOrders,
-        currentOrderItems,
-        []
-      );
-      const previousMetrics = calculateMetrics(
-        previousOrders,
-        previousOrderItems,
-        []
-      );
+      const currentMetrics = calculateMetrics(currentOrders, currentOrderItems, []);
+      const previousMetrics = calculateMetrics(previousOrders, previousOrderItems, []);
 
-      // Compute changes
-      const changes = calculateChanges(
-        currentMetrics,
-        previousMetrics,
-        fetchPrevious
-      );
+      const changes = calculateChanges(currentMetrics, previousMetrics, fetchPrevious);
 
       return {
         totalOrders: currentMetrics.totalOrders,

@@ -123,9 +123,7 @@ const typeDefs = gql`
     productPerformance(params: DateRangeQueryInput!): [ProductPerformance!]!
     interactionAnalytics(params: DateRangeQueryInput!): InteractionAnalytics!
     searchDashboard(params: SearchInput!): [SearchResult!]!
-    abandonedCartAnalytics(
-      params: DateRangeQueryInput!
-    ): AbandonedCartAnalytics!
+    abandonedCartAnalytics(params: DateRangeQueryInput!): AbandonedCartAnalytics!
   }
 `;
 

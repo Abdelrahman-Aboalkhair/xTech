@@ -24,7 +24,7 @@ const productPerformance = {
             ...(yearStart && { gte: yearStart }),
             ...(yearEnd && { lte: yearEnd }),
           },
-          // ! product: category ? { categoryId: category } : undefined, 
+          // category filter commented out; adjust if needed
         },
         include: { variant: true },
       });
@@ -53,9 +53,7 @@ const productPerformance = {
           item.quantity * (item.variant.price || 0);
       }
 
-      return Object.values(productSales).sort(
-        (a, b) => b.quantity - a.quantity
-      );
+      return Object.values(productSales).sort((a, b) => b.quantity - a.quantity);
     },
   },
 };

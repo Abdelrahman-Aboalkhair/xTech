@@ -1,32 +1,34 @@
+import { getDateRange } from "@/shared/utils/analytics";
 import { Context } from "../resolver";
 
 const abandonedCartAnalytics = {
   Query: {
     abandonedCartAnalytics: async (
-      parent: any,
-      args: { startDate: string; endDate: string },
-      context: Context
+      _: any,
+      { params }: { params: { timePeriod?: string; year?: number; startDate?: string; endDate?: string; category?: string } },
+      { prisma }: Context
     ) => {
-      const { startDate, endDate } = args;
-      const { prisma } = context;
+      const { timePeriod, year, startDate, endDate } = params;
 
-      const start = new Date(startDate);
-      const end = new Date(endDate);
+      // Compute date range using the utility function
+      const {
+        currentStartDate,
+        previousStartDate,
+        previousEndDate,
+        yearStart,
+        yearEnd,
+      } = getDateRange({ timePeriod, year, startDate, endDate });
 
-      // if (isNaN(start.getTime()) || isNaN(end.getTime())) {
-      //   throw new Error("Invalid date format");
-      // }
-
-      // if (start > end) {
-      //   throw new Error("Start date must be before end date");
-      // }
+      if (!currentStartDate || !previousStartDate) {
+        throw new Error("Invalid or missing date range. Please provide valid startDate and endDate or timePeriod.");
+      }
 
       // Fetch cart events
       const cartEvents = await prisma.cartEvent.findMany({
         where: {
           timestamp: {
-            gte: start,
-            lte: end,
+            gte: currentStartDate,
+            lte: previousEndDate,
           },
         },
         include: {
@@ -38,9 +40,9 @@ const abandonedCartAnalytics = {
       });
 
       // Group events by cartId
-      const cartEventsByCartId = cartEvents.reduce((acc: any, event) => {
+      const cartEventsByCartId = cartEvents.reduce((acc: { [key: string]: any[] }, event) => {
         if (!acc[event.cartId]) acc[event.cartId] = [];
-        acc[event.cartId].push(event); // { cartId: [events] }
+        acc[event.cartId].push(event);
         return acc;
       }, {});
 
@@ -55,39 +57,32 @@ const abandonedCartAnalytics = {
           (e: any) => e.eventType === "CHECKOUT_COMPLETED"
         );
 
-        // Only count carts that have items
         const cart = events[0].cart;
         if (!cart || !cart.cartItems || cart.cartItems.length === 0) continue;
 
         totalCarts++;
 
-        // Check if cart is abandoned (has ADD but no CHECKOUT_COMPLETED events within 1 hour)
         if (hasAddToCart && !hasCheckoutCompleted) {
           const addToCartEvent = events.find((e: any) => e.eventType === "ADD");
-          const oneHourLater = new Date(
-            addToCartEvent.timestamp.getTime() + 60 * 60 * 1000 // 1 hour
-          );
+          const oneHourLater = new Date(addToCartEvent.timestamp.getTime() + 60 * 60 * 1000); // 1 hour
           const now = new Date();
 
-          // If now is after 1 hour later, cart is abandoned
           if (now > oneHourLater) {
             totalAbandonedCarts++;
-            // Calculate potential revenue lost
             potentialRevenueLost += cart.cartItems.reduce(
-              (sum: number, item: any) => sum + item.quantity * item.price,
+              (sum: number, item: any) => sum + item.quantity * (item.variant?.price || 0), // Updated to use variant.price
               0
             );
           }
         }
       }
 
-      const abandonmentRate =
-        totalCarts > 0 ? (totalAbandonedCarts / totalCarts) * 100 : 0;
+      const abandonmentRate = totalCarts > 0 ? (totalAbandonedCarts / totalCarts) * 100 : 0;
 
       return {
         totalAbandonedCarts,
-        abandonmentRate,
-        potentialRevenueLost,
+        abandonmentRate: Number(abandonmentRate.toFixed(2)),
+        potentialRevenueLost: Number(potentialRevenueLost.toFixed(2)),
       };
     },
   },

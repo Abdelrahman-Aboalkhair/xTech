@@ -10,10 +10,9 @@ export const searchDashboardResolver = {
     ) => {
       const { searchQuery } = params;
 
-      // Define searchable fields for each model
       const transactions = await searchModel(
         "transaction",
-        [{ name: "status", isString: false }], // Status is an enum
+        [{ name: "status", isString: false }],
         searchQuery,
         prisma
       );
@@ -48,7 +47,6 @@ export const searchDashboardResolver = {
         prisma
       );
 
-      // Combine results
       const results = [
         ...transactions.map((t: any) => ({
           type: "transaction",
@@ -60,7 +58,7 @@ export const searchDashboardResolver = {
           type: "product",
           id: p.id,
           title: p.name,
-          description: p.description || `$${p.price || 0}`,
+          description: p.description || `$${p.variants?.[0]?.price || 0}`, // Updated to use variants
         })),
         ...categories.map((c: any) => ({
           type: "category",

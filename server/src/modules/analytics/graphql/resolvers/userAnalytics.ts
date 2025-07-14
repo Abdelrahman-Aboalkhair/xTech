@@ -16,7 +16,6 @@ const userAnalytics = {
   Query: {
     userAnalytics: async (_: any, { params }: any, { prisma }: Context) => {
       const { timePeriod, year, startDate, endDate } = params;
-      // Use getDateRange to compute date ranges, keeping date logic abstracted.
       const {
         currentStartDate,
         previousStartDate,
@@ -25,7 +24,6 @@ const userAnalytics = {
         yearEnd,
       } = getDateRange({ timePeriod, year, startDate, endDate });
 
-      // Fetch users and interactions for the current period
       const users = await fetchData(
         prisma,
         "user",
@@ -47,7 +45,6 @@ const userAnalytics = {
         yearEnd
       );
 
-      // Fetch previous period users only when needed
       const fetchPrevious = shouldFetchPreviousPeriod(timePeriod);
       const previousUsers = fetchPrevious
         ? await fetchData(
@@ -63,7 +60,6 @@ const userAnalytics = {
           )
         : [];
 
-      // Calculate user metrics
       const {
         totalCustomers: totalUsers,
         totalRevenue,
@@ -74,29 +70,23 @@ const userAnalytics = {
         ? calculateCustomerMetrics(previousUsers)
         : { totalCustomers: 0 };
 
-      // Calculate retention rate
       const retentionRate = fetchPrevious
         ? calculateRetentionRate(users, previousUsers)
         : 0;
 
-      // Compute engagement scores
       const { scores: engagementScores, averageScore: engagementScore } =
         calculateEngagementScores(interactions);
 
-      // Generate top users
       const topUsers = generateTopCustomers(users, engagementScores);
 
-      // Aggregate interaction trends
       const interactionTrends = aggregateInteractionTrends(interactions);
 
-      // Calculate changes for totalUsers
       const changes = calculateChanges(
         { totalUsers },
         { totalUsers: previousMetrics.totalCustomers },
         fetchPrevious
       );
 
-      // Return the response with rounded numbers
       return {
         totalUsers,
         totalRevenue: Number(totalRevenue.toFixed(2)),

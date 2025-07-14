@@ -30,10 +30,8 @@ const interactionAnalytics = {
 
       const totalInteractions = interactions.length;
       const byType = {
-        views: interactions.filter((i) => i.type.toLowerCase() === "view")
-          .length,
-        clicks: interactions.filter((i) => i.type.toLowerCase() === "click")
-          .length,
+        views: interactions.filter((i) => i.type.toLowerCase() === "view").length,
+        clicks: interactions.filter((i) => i.type.toLowerCase() === "click").length,
         others: interactions.filter(
           (i) => !["view", "click"].includes(i.type.toLowerCase())
         ).length,
@@ -43,10 +41,7 @@ const interactionAnalytics = {
         [productId: string]: { name: string; count: number };
       } = {};
       for (const interaction of interactions) {
-        if (
-          interaction.type.toLowerCase() === "view" &&
-          interaction.productId
-        ) {
+        if (interaction.type.toLowerCase() === "view" && interaction.productId) {
           if (!productViews[interaction.productId]) {
             productViews[interaction.productId] = {
               name: interaction.product?.name || "Unknown",
