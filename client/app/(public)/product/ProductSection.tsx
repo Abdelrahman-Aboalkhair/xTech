@@ -2,50 +2,40 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Package } from "lucide-react";
+import { ApolloError } from "@apollo/client";
 import ProductCard from "./ProductCard";
-import { useApolloClient } from "@apollo/client";
+import { Product } from "@/app/types/productTypes";
 
 interface ProductSectionProps {
   title: string;
-  dataKey: string;
+  products: Product[];
+  loading: boolean;
+  error: ApolloError | undefined;
   showTitle?: boolean;
 }
 
-const ProductSection: React.FC<ProductSectionProps> = ({ title, dataKey, showTitle = false }) => {
-  const client = useApolloClient();
-  const pageSize = 8;
-  const cachedData = client.readQuery({ query: GET_HOME_PAGE_DATA, variables: { first: pageSize, skip: 0 } }) as any;
-  const sectionData = cachedData?.[dataKey] as { products: any[]; hasMore: boolean } | undefined;
-  const products = sectionData?.products || [];
-  const hasMore = sectionData?.hasMore || false;
+const ProductSection: React.FC<ProductSectionProps> = ({ title, products, loading, error, showTitle = false }) => {
+  if (loading) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-lg text-gray-600">Loading...</p>
+      </div>
+    );
+  }
 
-  const handleShowMore = () => {
-    client.query({
-      query: GET_HOME_PAGE_DATA,
-      variables: { first: pageSize, skip: products.length },
-      fetchPolicy: "cache-first", // Use cache, fall back to network if needed
-    }).then((result) => {
-      const newSectionData = result.data?.[dataKey] as { products: any[]; hasMore: boolean } | undefined;
-      if (newSectionData) {
-        client.writeQuery({
-          query: GET_HOME_PAGE_DATA,
-          variables: { first: pageSize, skip: 0 },
-          data: {
-            [dataKey]: {
-              ...newSectionData,
-              products: [...products, ...newSectionData.products],
-            },
-          },
-        });
-      }
-    });
-  };
+  if (error) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-lg text-red-500">Error loading {title.toLowerCase()}: {error.message}</p>
+      </div>
+    );
+  }
 
   if (!products.length) {
     return (
       <div className="text-center py-12">
         <Package size={48} className="mx-auto text-gray-400 mb-4" />
-        <p className="text-lg text-gray-600">No products found</p>
+        <p className="text-lg text-gray-600">No {title.toLowerCase()} found</p>
       </div>
     );
   }
@@ -79,20 +69,8 @@ const ProductSection: React.FC<ProductSectionProps> = ({ title, dataKey, showTit
           </motion.div>
         ))}
       </div>
-      {hasMore && (
-        <div className="mt-8 text-center">
-          <button
-            onClick={handleShowMore}
-            className="bg-primary text-white px-8 py-3 rounded transition-colors duration-300 font-medium"
-          >
-            Show More
-          </button>
-        </div>
-      )}
     </div>
   );
 };
 
 export default React.memo(ProductSection);
-
-import { GET_HOME_PAGE_DATA } from "../../gql/queries"; // Add this import at the top

@@ -10,13 +10,10 @@ import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   product: Product;
-  hoveredProductId: string | null;
-  setHoveredProductId: (id: string | null) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  setHoveredProductId,
 }) => {
   const { trackInteraction } = useTrackInteraction();
   const router = useRouter();
@@ -33,8 +30,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div
       className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden relative h-full flex flex-col"
-      onMouseEnter={() => setHoveredProductId(product.id)}
-      onMouseLeave={() => setHoveredProductId(null)}
       onClick={handleClick}
     >
       {/* Image Container */}
@@ -86,11 +81,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-1.5">
               <span className="text-indigo-500 font-medium text-sm">
-                ${product.price.toFixed(2)}
+                ${product.price?.toFixed(2)}
               </span>
               {product.discount > 0 && (
                 <span className="text-gray-400 line-through text-xs">
-                  ${(product.price + product.discount).toFixed(2)}
+                  ${(product.price + product.discount)?.toFixed(2)}
                 </span>
               )}
             </div>

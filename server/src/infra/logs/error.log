@@ -2656,3 +2656,13 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-14T07:49:39.567Z] [31MERROR[39M: Your session has expired, please login again.
 [2025-07-14T07:49:39.623Z] [31MERROR[39M: Your session has expired, please login again.
 [2025-07-14T08:52:48.781Z] [31MERROR[39M: Invalid access token, please log in
+[2025-07-15T12:10:49.840Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-15T12:10:49.896Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-15T12:11:00.837Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-15T12:11:00.876Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-15T12:25:51.504Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-15T12:25:51.626Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-15T12:40:18.489Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-15T12:40:18.520Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-15T12:46:43.527Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-15T12:46:43.569Z] [31MERROR[39M: Your session has expired, please login again.

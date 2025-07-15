@@ -42,7 +42,7 @@ const Footer = () => {
           <div className="col-span-1 lg:col-span-2">
             <div className="flex items-center">
               <div className="text-white mr-4">
-                <FooterLogo />
+                {/* <FooterLogo /> */}
               </div>
               <div className="h-6 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-600"></div>
               <span className="ml-2 text-sm font-medium tracking-wider text-gray-400 uppercase">
