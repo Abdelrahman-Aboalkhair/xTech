@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { X, SlidersHorizontal, Tag, Percent } from "lucide-react";
+import { X, SlidersHorizontal,  } from "lucide-react";
 import Dropdown from "@/app/components/molecules/Dropdown";
 import CheckBox from "@/app/components/atoms/CheckBox";
 import { debounce } from "lodash";

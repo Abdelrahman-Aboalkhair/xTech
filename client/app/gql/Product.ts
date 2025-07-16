@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 
 export interface Product {
   id: string;
-  slug: string;
   name: string;
+  slug: string;
   images: string[];
   isNew: boolean;
   isFeatured: boolean;
@@ -17,14 +17,14 @@ export interface Product {
     price: number;
     stock: number;
     lowStockThreshold: number;
-    barcode: string;
-    warehouseLocation: string;
+    barcode: string | null;
+    warehouseLocation: string | null;
   }[];
   category: {
     id: string;
     name: string;
     slug: string;
-  };
+  } | null;
   reviews: {
     id: string;
     rating: number;
@@ -46,15 +46,15 @@ export const GET_PRODUCTS = gql`
         isBestSeller
         averageRating
         reviewCount
-        variants {
-          id
-          sku
-          price
-          stock
-          lowStockThreshold
-          barcode
-          warehouseLocation
-        }
+     variants {
+        id
+        sku
+        price
+        stock
+        lowStockThreshold
+        barcode
+        warehouseLocation
+      }
         category {
           id
           name
@@ -76,34 +76,28 @@ export const GET_SINGLE_PRODUCT = gql`
   query GetSingleProduct($slug: String!) {
     product(slug: $slug) {
       id
-      slug
       name
-      price
-      discount
-      stock
+      slug
       images
       isNew
       isFeatured
       isTrending
       isBestSeller
+      averageRating
+      reviewCount
+      variants {
+        id
+        sku
+        price
+        stock
+        lowStockThreshold
+        barcode
+        warehouseLocation
+      }
       category {
         id
         name
         slug
-      }
-      attributes {
-        id
-        attribute {
-          id
-          name
-          type
-          slug
-        }
-        value {
-          id
-          value
-          slug
-        }
       }
       reviews {
         id

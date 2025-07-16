@@ -11,16 +11,36 @@ import CustomLoader from "@/app/components/feedback/CustomLoader";
 
 const ProductDetailsPage = () => {
   const { slug } = useParams();
-  const { data, loading } = useQuery(GET_SINGLE_PRODUCT, {
+  const { data, loading, error } = useQuery(GET_SINGLE_PRODUCT, {
     variables: { slug },
+    fetchPolicy: "no-cache", // Avoid cache issues
   });
+
+  if (loading) return <CustomLoader />;
+
+  if (error) {
+    return (
+      <MainLayout>
+        <div className="text-center py-12">
+          <p className="text-lg text-red-500">
+            Error loading product: {error.message}
+          </p>
+        </div>
+      </MainLayout>
+    );
+  }
+
   const product = data?.product;
 
-
-  if (loading)
+  if (!product) {
     return (
-      <CustomLoader />
+      <MainLayout>
+        <div className="text-center py-12">
+          <p className="text-lg text-gray-600">Product not found</p>
+        </div>
+      </MainLayout>
     );
+  }
 
   return (
     <MainLayout>
@@ -35,11 +55,7 @@ const ProductDetailsPage = () => {
           name={product.name}
           averageRating={product.averageRating}
           reviewCount={product.reviewCount}
-          stock={product.stock}
-          price={product.price}
-          discount={product.discount}
-          description={product.description}
-          attributes={product.attributes}
+          description={product.description || ""} // Add description if available
         />
       </div>
 

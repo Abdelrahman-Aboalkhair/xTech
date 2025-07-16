@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@apollo/client";
 import { motion, AnimatePresence } from "framer-motion";
 import { Package, Filter } from "lucide-react";
-import { GET_ALL_PRODUCTS, GET_CATEGORIES } from "@/app/gql/Product";
+import { GET_PRODUCTS, GET_CATEGORIES } from "@/app/gql/Product";
 import { Product } from "@/app/types/productTypes";
 import ProductCard from "../product/ProductCard";
 import MainLayout from "@/app/components/templates/MainLayout";
@@ -44,15 +44,27 @@ const ShopPage: React.FC = () => {
   // Fetch categories
   const { data: categoriesData } = useQuery(GET_CATEGORIES);
   const categories = categoriesData?.categories || [];
+  console.log("Categories data:", categories);
 
-  const { data, loading, error, fetchMore } = useQuery(GET_ALL_PRODUCTS, {
-    variables: { first: pageSize, skip: 0, filters },
+  const {
+    data: productsData,
+    loading,
+    error,
+    fetchMore,
+  } = useQuery(GET_PRODUCTS, {
+    variables: { first: 10, skip: 0, filters },
+    fetchPolicy: "no-cache", // Avoid cache issues
+    onError: (err) => {
+      console.error("Error fetching products:", err);
+    },
     onCompleted: (data) => {
       setDisplayedProducts(data.products.products);
       setHasMore(data.products.hasMore);
       setSkip(0); // Reset skip when filters change
     },
   });
+  console.log("Products data:", productsData);
+  console.log("products error:", error);
 
   // Update filters only when searchParams change meaningfully
   useEffect(() => {
@@ -174,6 +186,9 @@ const ShopPage: React.FC = () => {
             {error && (
               <div className="text-center py-12">
                 <p className="text-lg text-red-500">Error loading products</p>
+                <p className="text-sm text-gray-500">
+                  Please try again or adjust your filters.
+                </p>
               </div>
             )}
 
@@ -195,11 +210,7 @@ const ShopPage: React.FC = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <ProductCard
-                        product={product}
-                        hoveredProductId={null}
-                        setHoveredProductId={() => { }}
-                      />
+                      <ProductCard product={product} />
                     </motion.div>
                   ))}
                 </div>
@@ -209,8 +220,9 @@ const ShopPage: React.FC = () => {
                     <button
                       onClick={handleShowMore}
                       disabled={isFetchingMore}
-                      className={`bg-indigo-500 text-white px-6 py-3 rounded-lg hover:bg-indigo-600 transition-colors duration-300 font-medium ${isFetchingMore ? "opacity-50 cursor-not-allowed" : ""
-                        }`}
+                      className={`bg-indigo-500 text-white px-6 py-3 rounded-lg hover:bg-indigo-600 transition-colors duration-300 font-medium ${
+                        isFetchingMore ? "opacity-50 cursor-not-allowed" : ""
+                      }`}
                     >
                       {isFetchingMore ? "Loading..." : "Show More Products"}
                     </button>
