@@ -18,31 +18,41 @@ export default function ShippingAddressCard({ order }) {
         {/* Country */}
         <div className="flex items-center space-x-2">
           <Globe size={16} />
-          <p className="font-medium">{order.address?.country}</p>
+          <p className="font-medium">
+            {order.address?.country || "Not provided"}
+          </p>
         </div>
 
         {/* State/Province */}
         <div className="flex items-center space-x-2">
           <Building size={16} />
-          <p className="text-gray-600">{order.address?.state}</p>
+          <p className="text-gray-600">
+            {order.address?.state || "Not provided"}
+          </p>
         </div>
 
         {/* City */}
         <div className="flex items-center space-x-2">
           <Map size={16} />
-          <p className="text-gray-600">{order.address?.city}</p>
+          <p className="text-gray-600">
+            {order.address?.city || "Not provided"}
+          </p>
         </div>
 
         {/* ZIP/Postal Code */}
         <div className="flex items-center space-x-2">
           <Mail size={16} />
-          <p className="text-gray-600">{order.address?.zip}</p>
+          <p className="text-gray-600">
+            {order.address?.zip || "Not provided"}
+          </p>
         </div>
 
         {/* Street */}
         <div className="flex items-center space-x-2">
           <MapPin size={28} />
-          <p className="text-gray-600">{order.address?.street}</p>
+          <p className="text-gray-600">
+            {order.address?.street || "Not provided"}
+          </p>
         </div>
       </div>
     </motion.div>

@@ -4,6 +4,16 @@ import Image from "next/image";
 import useFormatPrice from "@/app/hooks/ui/useFormatPrice";
 import { ShoppingCart } from "lucide-react";
 
+// Helper function to format variant name from SKU
+const formatVariantName = (item: any) => {
+  const { name } = item.variant.product;
+  const sku = item.variant.sku;
+  // Parse SKU (e.g., "TSH-BLUE-L" -> "Blue, Large")
+  const parts = sku.split("-").slice(1); // Remove prefix (e.g., "TSH")
+  const variantDetails = parts.join(", "); // Join color and size
+  return `${name} - ${variantDetails}`;
+};
+
 const OrderItems = ({ order }) => {
   const formatPrice = useFormatPrice();
 
@@ -25,31 +35,31 @@ const OrderItems = ({ order }) => {
             key={item.id}
             className="flex items-center border-b border-gray-100 pb-4 last:border-0 last:pb-0"
           >
-            {/* Product Image */}
+            {/* Variant Image */}
             <div className="flex items-center justify-center mr-4 overflow-hidden shadow-sm">
               <Image
-                src={item.product.images[0]}
-                alt={item.product.name}
+                src={item.variant.product.images[0]}
+                alt={formatVariantName(item)}
                 width={50}
                 height={50}
                 className="object-cover"
               />
             </div>
 
-            {/* Product Details */}
+            {/* Variant Details */}
             <div className="flex-1">
               <p className="font-semibold text-gray-800 text-sm">
-                {item.product.name}
+                {formatVariantName(item)}
               </p>
             </div>
 
             {/* Price */}
             <div className="text-right">
               <p className="font-medium text-gray-800">
-                {formatPrice(item.product.price * item.quantity)}
+                {formatPrice(item.variant.price * item.quantity)}
               </p>
               <p className="text-xs text-gray-500">
-                {item.quantity} x {formatPrice(item.product.price)}
+                {item.quantity} x {formatPrice(item.variant.price)}
               </p>
             </div>
           </div>

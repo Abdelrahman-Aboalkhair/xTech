@@ -85,7 +85,9 @@ const OrderStatus = ({ order }) => {
           </div>
           <span className="text-sm font-medium">Order Paid</span>
           <span className="text-xs text-gray-500">
-            {order.payment ? formatDate(order.payment.createdAt) : "N/A"}
+            {order.payment?.createdAt
+              ? formatDate(order.payment.createdAt)
+              : "N/A"}
           </span>
         </motion.div>
 
@@ -107,7 +109,7 @@ const OrderStatus = ({ order }) => {
           </div>
           <span className="text-sm font-medium">Shipped</span>
           <span className="text-xs text-gray-500">
-            {order.shipment.shippedDate
+            {order.shipment?.shippedDate
               ? formatDate(order.shipment.shippedDate)
               : "Pending"}
           </span>
@@ -131,7 +133,7 @@ const OrderStatus = ({ order }) => {
           </div>
           <span className="text-sm font-medium">Completed</span>
           <span className="text-xs text-gray-500">
-            {order.status === "DELIVERED"
+            {order.shipment?.deliveryDate
               ? formatDate(order.shipment.deliveryDate)
               : "Pending"}
           </span>

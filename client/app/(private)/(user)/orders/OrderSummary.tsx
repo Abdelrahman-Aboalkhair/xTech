@@ -30,7 +30,7 @@ const OrderSummary = ({ order }) => {
             <Package size={16} />
             <span className="font-medium text-gray-800">Tracking Number:</span>
             <ToggleableText
-              content={order?.shipment?.trackingNumber}
+              content={order?.shipment?.trackingNumber || "Not available"}
               truncateLength={10}
             />
           </div>
