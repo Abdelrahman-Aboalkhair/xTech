@@ -17,7 +17,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
   currency = "$",
   totalItems,
 }) => {
-  console.log('subtotal => ', subtotal)
+  console.log("subtotal => ", subtotal);
   const { showToast } = useToast();
   const stripePromise = loadStripe(
     "pk_test_51R9gs72KGvEXtMtXXTm7UscmmHYsvk9j3ktaM8vxRb3evNJgG1dpD05YWACweIfcPtpCgOIs4HkpGrTCKE1dZD0p00sLC6iIBg"
@@ -29,7 +29,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
     [subtotal, shippingRate]
   );
   const total = useMemo(() => subtotal + shippingFee, [subtotal, shippingFee]);
-  console.log('total => ', total)
+  console.log("total => ", total);
 
   const handleInitiateCheckout = async () => {
     try {
@@ -76,7 +76,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
             {shippingFee.toFixed(2)}
           </span>
         </div>
-        <div className="flex justify-between pt-4 border-t border-gray-100">
+        <div className="flex justify-between pt-4 border-t border-gray-200">
           <span className="font-semibold text-gray-800">Total</span>
           <span className="font-semibold text-gray-800">
             {currency}

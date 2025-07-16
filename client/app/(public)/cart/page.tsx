@@ -13,6 +13,16 @@ import {
 import QuantitySelector from "@/app/components/molecules/QuantitySelector";
 import { motion } from "framer-motion";
 
+// Helper function to format variant name from SKU
+const formatVariantName = (item: any) => {
+  const { name } = item.variant.product;
+  const sku = item.variant.sku;
+  // Parse SKU (e.g., "TSH-RED-M" -> "Red, Medium")
+  const parts = sku.split("-").slice(1); // Remove prefix (e.g., "TSH")
+  const variantDetails = parts.join(", "); // Join color and size
+  return `${name} - ${variantDetails}`;
+};
+
 const Cart = () => {
   const { control } = useForm();
   const { data, isLoading } = useGetCartQuery({});
@@ -23,11 +33,11 @@ const Cart = () => {
   const subtotal = useMemo(() => {
     if (!cartItems.length) return 0;
     return cartItems.reduce(
-      (sum, item) => sum + item.product.price * item.quantity,
+      (sum, item) => sum + item.variant.price * item.quantity,
       0
     );
-  }, []);
-  console.log('subtotal => ', subtotal)
+  }, [cartItems]);
+  console.log("subtotal => ", subtotal);
 
   const handleRemoveFromCart = async (id) => {
     try {
@@ -76,27 +86,27 @@ const Cart = () => {
                   {/* Product Image */}
                   <div className="w-20 h-20 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden shadow-sm">
                     <Image
-                      src={item.product.images[0]}
-                      alt={item.product.name}
+                      src={item.variant.product.images[0]}
+                      alt={formatVariantName(item)}
                       width={80}
                       height={80}
                       className="object-cover"
                     />
                   </div>
 
-                  {/* Product Details */}
+                  {/* Variant Details */}
                   <div className="flex-1">
                     <p className="font-semibold text-gray-800">
-                      {item.product.name}
+                      {formatVariantName(item)}
                     </p>
                     <p className="text-sm text-gray-500">
-                      ${item.product.price.toFixed(2)}
+                      ${item.variant.price.toFixed(2)}
                     </p>
                   </div>
 
                   {/* Quantity Selector */}
                   <Controller
-                    name={`quantity-${item.product.id}`}
+                    name={`quantity-${item.variant.id}`}
                     defaultValue={item.quantity}
                     control={control}
                     render={({ field }) => (
@@ -111,7 +121,7 @@ const Cart = () => {
                   {/* Subtotal and Remove */}
                   <div className="text-right space-y-2">
                     <p className="font-medium text-gray-800">
-                      ${(item.product.price * item.quantity).toFixed(2)}
+                      ${(item.variant.price * item.quantity).toFixed(2)}
                     </p>
                     <button
                       onClick={() => handleRemoveFromCart(item.id)}
