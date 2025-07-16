@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 
 export interface Product {
   id: string;
-  name: string;
   slug: string;
+  name: string;
   images: string[];
   isNew: boolean;
   isFeatured: boolean;
@@ -11,6 +11,7 @@ export interface Product {
   isBestSeller: boolean;
   averageRating: number;
   reviewCount: number;
+  description: string | null;
   variants: {
     id: string;
     sku: string;
@@ -19,6 +20,19 @@ export interface Product {
     lowStockThreshold: number;
     barcode: string | null;
     warehouseLocation: string | null;
+    attributes: {
+      id: string;
+      attribute: {
+        id: string;
+        name: string;
+        slug: string;
+      };
+      value: {
+        id: string;
+        value: string;
+        slug: string;
+      };
+    }[];
   }[];
   category: {
     id: string;
@@ -46,15 +60,15 @@ export const GET_PRODUCTS = gql`
         isBestSeller
         averageRating
         reviewCount
-     variants {
-        id
-        sku
-        price
-        stock
-        lowStockThreshold
-        barcode
-        warehouseLocation
-      }
+        variants {
+          id
+          sku
+          price
+          stock
+          lowStockThreshold
+          barcode
+          warehouseLocation
+        }
         category {
           id
           name
@@ -85,6 +99,7 @@ export const GET_SINGLE_PRODUCT = gql`
       isBestSeller
       averageRating
       reviewCount
+      description
       variants {
         id
         sku
@@ -93,6 +108,19 @@ export const GET_SINGLE_PRODUCT = gql`
         lowStockThreshold
         barcode
         warehouseLocation
+        attributes {
+          id
+          attribute {
+            id
+            name
+            slug
+          }
+          value {
+            id
+            value
+            slug
+          }
+        }
       }
       category {
         id

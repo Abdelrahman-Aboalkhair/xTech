@@ -44,9 +44,12 @@ export const productResolvers = {
 
       // Flag filters
       if (filters.isNew !== undefined) where.isNew = filters.isNew;
-      if (filters.isFeatured !== undefined) where.isFeatured = filters.isFeatured;
-      if (filters.isTrending !== undefined) where.isTrending = filters.isTrending;
-      if (filters.isBestSeller !== undefined) where.isBestSeller = filters.isBestSeller;
+      if (filters.isFeatured !== undefined)
+        where.isFeatured = filters.isFeatured;
+      if (filters.isTrending !== undefined)
+        where.isTrending = filters.isTrending;
+      if (filters.isBestSeller !== undefined)
+        where.isBestSeller = filters.isBestSeller;
 
       // Category filter
       if (filters.categoryId) {
@@ -88,7 +91,16 @@ export const productResolvers = {
         where: { slug },
         include: {
           category: true,
-          variants: true,
+          variants: {
+            include: {
+              attributes: {
+                include: {
+                  attribute: true,
+                  value: true,
+                },
+              },
+            },
+          },
           reviews: true,
         },
       });
