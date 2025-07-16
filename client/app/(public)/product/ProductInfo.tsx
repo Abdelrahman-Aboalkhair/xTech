@@ -14,11 +14,12 @@ interface ProductInfoProps {
   variants: Product["variants"];
   selectedVariant: Product["variants"][0] | null;
   onVariantChange: (attributeName: string, value: string) => void;
-  attributeGroups: Record<string, { type: string; values: Set<string> }>;
+  attributeGroups: Record<string, { values: Set<string> }>;
+  selectedAttributes: Record<string, string>;
 }
 
 const ProductInfo: React.FC<ProductInfoProps> = ({
-  // id,
+  id,
   name,
   averageRating,
   reviewCount,
@@ -27,6 +28,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
   selectedVariant,
   onVariantChange,
   attributeGroups,
+  selectedAttributes,
 }) => {
   const { showToast } = useToast();
   const [addToCart, { isLoading }] = useAddToCartMutation();
@@ -34,7 +36,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault();
     if (!selectedVariant) {
-      showToast("Please select a variant", "error");
+      showToast("Please select a valid variant", "error");
       return;
     }
     try {
@@ -85,6 +87,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
             <select
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
               onChange={(e) => onVariantChange(attributeName, e.target.value)}
+              value={selectedAttributes[attributeName] || ""}
             >
               <option value="">Select {attributeName}</option>
               {Array.from(values).map((value) => (

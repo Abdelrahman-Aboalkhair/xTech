@@ -2666,3 +2666,4 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-15T12:40:18.520Z] [31MERROR[39M: Your session has expired, please login again.
 [2025-07-15T12:46:43.527Z] [31MERROR[39M: Your session has expired, please login again.
 [2025-07-15T12:46:43.569Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-16T11:15:38.176Z] [31MERROR[39M: Invalid access token, please log in

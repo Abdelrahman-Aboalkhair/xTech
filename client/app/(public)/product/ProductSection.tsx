@@ -14,7 +14,13 @@ interface ProductSectionProps {
   showTitle?: boolean;
 }
 
-const ProductSection: React.FC<ProductSectionProps> = ({ title, products, loading, error, showTitle = false }) => {
+const ProductSection: React.FC<ProductSectionProps> = ({
+  title,
+  products,
+  loading,
+  error,
+  showTitle = false,
+}) => {
   if (loading) {
     return (
       <div className="text-center py-12">
@@ -26,7 +32,9 @@ const ProductSection: React.FC<ProductSectionProps> = ({ title, products, loadin
   if (error) {
     return (
       <div className="text-center py-12">
-        <p className="text-lg text-red-500">Error loading {title.toLowerCase()}: {error.message}</p>
+        <p className="text-lg text-red-500">
+          Error loading {title.toLowerCase()}: {error.message}
+        </p>
       </div>
     );
   }
@@ -50,7 +58,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({ title, products, loadin
           className="flex items-center justify-between mb-[2rem]"
         >
           <div className="flex items-center space-x-3">
-            <div className="h-6 w-1 rounded-full bg-primary"></div>
+            {/* <div className="h-6 w-1 rounded-full bg-primary"></div> */}
             <span className="ml-2 text-xl font-extrabold font-sans tracking-wide text-gray-700 capitalize">
               {title}
             </span>

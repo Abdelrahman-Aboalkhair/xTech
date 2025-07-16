@@ -19,10 +19,14 @@ const ProductDetailsPage = () => {
       fetchPolicy: "no-cache",
     }
   );
+  console.log("product data:", data);
 
   const [selectedVariant, setSelectedVariant] = useState<
     Product["variants"][0] | null
   >(null);
+  const [selectedAttributes, setSelectedAttributes] = useState<
+    Record<string, string>
+  >({}); // Like { color: "red", size: "M" }
 
   if (loading) return <CustomLoader />;
 
@@ -50,26 +54,40 @@ const ProductDetailsPage = () => {
     );
   }
 
-  // Group attributes by type for variant selection
+  // Compute valid attribute options based on current selections
   const attributeGroups = product.variants.reduce((acc, variant) => {
-    variant.attributes.forEach(({ attribute, value }) => {
-      if (!acc[attribute.name]) {
-        acc[attribute.name] = {
-          type: attribute.type,
-          values: new Set<string>(),
-        };
-      }
-      acc[attribute.name].values.add(value.value);
-    });
+    // Check if variant matches current selections (excluding the current attribute)
+    const matchesSelections = Object.entries(selectedAttributes).every(
+      ([attrName, attrValue]) =>
+        attrName === "" ||
+        variant.attributes.some(
+          (attr) =>
+            attr.attribute.name === attrName && attr.value.value === attrValue
+        )
+    );
+    if (matchesSelections) {
+      variant.attributes.forEach(({ attribute, value }) => {
+        if (!acc[attribute.name]) {
+          acc[attribute.name] = { values: new Set<string>() };
+        }
+        acc[attribute.name].values.add(value.value);
+      });
+    }
     return acc;
-  }, {} as Record<string, { type: string; values: Set<string> }>);
+  }, {} as Record<string, { values: Set<string> }>);
 
-  // Handle variant selection based on attribute values
+  // Handle variant selection
   const handleVariantChange = (attributeName: string, value: string) => {
+    const newSelections = { ...selectedAttributes, [attributeName]: value };
+    setSelectedAttributes(newSelections);
     const variant = product.variants.find((v) =>
-      v.attributes.some(
-        (attr) =>
-          attr.attribute.name === attributeName && attr.value.value === value
+      Object.entries(newSelections).every(
+        ([attrName, attrValue]) =>
+          attrName === "" ||
+          v.attributes.some(
+            (attr) =>
+              attr.attribute.name === attrName && attr.value.value === attrValue
+          )
       )
     );
     setSelectedVariant(variant || null);
@@ -94,6 +112,7 @@ const ProductDetailsPage = () => {
             selectedVariant={selectedVariant}
             onVariantChange={handleVariantChange}
             attributeGroups={attributeGroups}
+            selectedAttributes={selectedAttributes}
           />
         </div>
       </div>
