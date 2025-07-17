@@ -86,7 +86,7 @@ const Cart = () => {
                   {/* Product Image */}
                   <div className="w-20 h-20 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden shadow-sm">
                     <Image
-                      src={item.variant.product.images[0]}
+                      src={item.variant.images[0]}
                       alt={formatVariantName(item)}
                       width={80}
                       height={80}

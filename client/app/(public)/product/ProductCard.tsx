@@ -25,6 +25,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     router.push(`/product/${product.slug}`);
   };
 
+  // Compute lowest price among in-stock variants
+  const inStockVariants = product.variants.filter(
+    (variant) => variant.stock > 0
+  );
+  const lowestPrice =
+    inStockVariants.length > 0
+      ? Math.min(...inStockVariants.map((variant) => variant.price))
+      : 0;
+
   return (
     <div
       className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden relative h-full flex flex-col"
@@ -59,16 +68,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
           </Link>
         </div>
-
-        {/* Discount Badge */}
-        {product.discount > 0 && (
-          <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded">
-            {Math.round(
-              (product.discount / (product.price + product.discount)) * 100
-            )}
-            % OFF
-          </div>
-        )}
       </div>
 
       <div className="p-3 flex flex-col flex-grow">
@@ -78,12 +77,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </h3>
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-1.5">
-              <span className="text-indigo-500 font-medium text-sm">
-                ${product.price?.toFixed(2)}
-              </span>
-              {product.discount > 0 && (
-                <span className="text-gray-400 line-through text-xs">
-                  ${(product.price + product.discount)?.toFixed(2)}
+              {inStockVariants.length > 0 ? (
+                <span className="text-indigo-500 font-medium text-sm">
+                  From ${lowestPrice.toFixed(2)}
+                </span>
+              ) : (
+                <span className="text-gray-500 font-medium text-sm">
+                  Out of stock
                 </span>
               )}
             </div>

@@ -1,40 +1,11 @@
-[2025-07-16T12:52:05.025Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/attribute/attribute.controller.ts[0m:[93m14[0m:[93m69[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; }' is not assignable to parameter of type '{ name: string; type: string; }'.
-  Property 'type' is missing in type '{ name: any; }' but required in type '{ name: string; type: string; }'.
-
-[7m14[0m       const attribute = await this.attributeService.createAttribute({
-[7m  [0m [91m                                                                    ~[0m
-[7m15[0m         name,
-[7m  [0m [91m~~~~~~~~~~~~~[0m
-[7m16[0m       });
-[7m  [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/attribute/attribute.service.ts[0m:[93m9[0m:[93m47[0m
-    [7m9[0m   async createAttribute(data: { name: string; type: string }) {
-    [7m [0m [96m                                              ~~~~[0m
-    'type' is declared here.
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/attribute/attribute.controller.ts[0m:[93m14[0m:[93m69[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: any; }' is not assignable to parameter of type '{ name: string; type: string; }'.
-  Property 'type' is missing in type '{ name: any; }' but required in type '{ name: string; type: string; }'.
-
-[7m14[0m       const attribute = await this.attributeService.createAttribute({
-[7m  [0m [91m                                                                    ~[0m
-[7m15[0m         name,
-[7m  [0m [91m~~~~~~~~~~~~~[0m
-[7m16[0m       });
-[7m  [0m [91m~~~~~~~[0m
-
-  [96msrc/modules/attribute/attribute.service.ts[0m:[93m9[0m:[93m47[0m
-    [7m9[0m   async createAttribute(data: { name: string; type: string }) {
-    [7m [0m [96m                                              ~~~~[0m
-    'type' is declared here.
-
-    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
+[2025-07-17T09:16:33.625Z] [31MERROR[39M: uncaughtException: Unknown type "User".
+Error: Unknown type "User".
+    at assertValidSDL (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/graphql/validation/validate.js:135:11)
+    at buildASTSchema (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/graphql/utilities/buildASTSchema.js:44:34)
+    at makeExecutableSchema (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/@graphql-tools/schema/cjs/makeExecutableSchema.js:73:47)
+    at Object.<anonymous> (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/product/graphql/schema.ts:98:50)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
     at node:internal/modules/cjs/loader:1895:10
     at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
     at Module.load (node:internal/modules/cjs/loader:1465:32)
@@ -43,90 +14,5 @@ TSError: ⨯ Unable to compile TypeScript:
     at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
     at Module.require (node:internal/modules/cjs/loader:1487:12)
     at require (node:internal/modules/helpers:135:16)
-    at Object.<anonymous> (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/modules/attribute/attribute.factory.ts:1:1)
+    at Object.<anonymous> (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/graphql/v1/schema.ts:2:1)
     at Module._compile (node:internal/modules/cjs/loader:1730:14)
-    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1618:23)
-[2025-07-17T08:14:32.383Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/product/product.controller.ts[0m:[93m100[0m:[93m30[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Promise<any[]>' is not assignable to parameter of type 'string'.
-
-[7m100[0m               imageUrls.push(url);
-[7m   [0m [91m                             ~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/product/product.controller.ts[0m:[93m100[0m:[93m30[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Promise<any[]>' is not assignable to parameter of type 'string'.
-
-[7m100[0m               imageUrls.push(url);
-[7m   [0m [91m                             ~~~[0m
-
-    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at node:internal/modules/cjs/loader:1895:10
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1465:32)
-    at Function._load (node:internal/modules/cjs/loader:1282:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-07-17T08:14:58.358Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/product/product.controller.ts[0m:[93m99[0m:[93m27[0m - [91merror[0m[90m TS1308: [0m'await' expressions are only allowed within async functions and at the top levels of modules.
-
-[7m99[0m               const url = await uploadToCloudinary(file);
-[7m  [0m [91m                          ~~~~~[0m
-
-  [96msrc/modules/product/product.controller.ts[0m:[93m95[0m:[93m40[0m
-    [7m95[0m           variant.imageIndexes.forEach((index: number) => {
-    [7m  [0m [96m                                       ~~~~~~~~~~~~~~~~~~~~[0m
-    Did you mean to mark this function as 'async'?
-[96msrc/modules/product/product.controller.ts[0m:[93m100[0m:[93m30[0m - [91merror[0m[90m TS2345: [0mArgument of type 'any[]' is not assignable to parameter of type 'string'.
-
-[7m100[0m               imageUrls.push(url);
-[7m   [0m [91m                             ~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/product/product.controller.ts[0m:[93m99[0m:[93m27[0m - [91merror[0m[90m TS1308: [0m'await' expressions are only allowed within async functions and at the top levels of modules.
-
-[7m99[0m               const url = await uploadToCloudinary(file);
-[7m  [0m [91m                          ~~~~~[0m
-
-  [96msrc/modules/product/product.controller.ts[0m:[93m95[0m:[93m40[0m
-    [7m95[0m           variant.imageIndexes.forEach((index: number) => {
-    [7m  [0m [96m                                       ~~~~~~~~~~~~~~~~~~~~[0m
-    Did you mean to mark this function as 'async'?
-[96msrc/modules/product/product.controller.ts[0m:[93m100[0m:[93m30[0m - [91merror[0m[90m TS2345: [0mArgument of type 'any[]' is not assignable to parameter of type 'string'.
-
-[7m100[0m               imageUrls.push(url);
-[7m   [0m [91m                             ~~~[0m
-
-    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at node:internal/modules/cjs/loader:1895:10
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1465:32)
-    at Function._load (node:internal/modules/cjs/loader:1282:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
-[2025-07-17T08:15:11.003Z] [31MERROR[39M: uncaughtException: ⨯ Unable to compile TypeScript:
-[96msrc/modules/product/product.controller.ts[0m:[93m100[0m:[93m30[0m - [91merror[0m[90m TS2345: [0mArgument of type 'any[]' is not assignable to parameter of type 'string'.
-
-[7m100[0m               imageUrls.push(url);
-[7m   [0m [91m                             ~~~[0m
-
-TSError: ⨯ Unable to compile TypeScript:
-[96msrc/modules/product/product.controller.ts[0m:[93m100[0m:[93m30[0m - [91merror[0m[90m TS2345: [0mArgument of type 'any[]' is not assignable to parameter of type 'string'.
-
-[7m100[0m               imageUrls.push(url);
-[7m   [0m [91m                             ~~~[0m
-
-    at createTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1617:30)
-    at node:internal/modules/cjs/loader:1895:10
-    at Object.require.extensions.<computed> [as .ts] (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1465:32)
-    at Function._load (node:internal/modules/cjs/loader:1282:12)
-    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

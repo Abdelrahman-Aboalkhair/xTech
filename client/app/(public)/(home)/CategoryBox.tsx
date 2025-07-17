@@ -11,7 +11,7 @@ interface CategoryBoxProps {
   ctaLink: string;
 }
 
-const CategoryBox = ({ title, items, ctaText, ctaLink }: CategoryBoxProps) => {
+const CategoryBox = ({ title, items }: CategoryBoxProps) => {
   return (
     <div className="bg-white p-4 px-8 pb-8 rounded-lg shadow-md flex flex-col h-full">
       <h2 className="font-bold text-lg mb-2">{title}</h2>
@@ -32,12 +32,6 @@ const CategoryBox = ({ title, items, ctaText, ctaLink }: CategoryBoxProps) => {
           </div>
         ))}
       </div>
-      <Link
-        href={ctaLink}
-        className="text-sm text-primary hover:underline mt-3 block"
-      >
-        {ctaText}
-      </Link>
     </div>
   );
 };

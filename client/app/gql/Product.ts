@@ -131,6 +131,12 @@ export const GET_SINGLE_PRODUCT = gql`
         id
         rating
         comment
+        user {
+          id
+          name
+          email
+        }
+        createdAt
       }
     }
   }

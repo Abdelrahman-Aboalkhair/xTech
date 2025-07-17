@@ -11,21 +11,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-const FooterLogo = () => (
-  <svg viewBox="0 0 120 40" className="h-10">
-    <text
-      x="0"
-      y="28"
-      fontFamily="Arial"
-      fontSize="24"
-      fontWeight="bold"
-      fill="currentColor"
-    >
-      SS-Commerce
-    </text>
-  </svg>
-);
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -41,12 +26,10 @@ const Footer = () => {
           {/* Logo and description */}
           <div className="col-span-1 lg:col-span-2">
             <div className="flex items-center">
-              <div className="text-white mr-4">
-                {/* <FooterLogo /> */}
-              </div>
+              <div className="text-white mr-4">{/* <FooterLogo /> */}</div>
               <div className="h-6 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-600"></div>
               <span className="ml-2 text-sm font-medium tracking-wider text-gray-400 uppercase">
-                Premium Store
+                SS-Ecommerce
               </span>
             </div>
 

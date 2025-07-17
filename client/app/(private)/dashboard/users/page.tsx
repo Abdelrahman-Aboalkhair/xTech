@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import UserForm, { UserFormData } from "./UserForm";
 import ConfirmModal from "@/app/components/organisms/ConfirmModal";
 import { usePathname } from "next/navigation";
+import ToggleableText from "@/app/components/atoms/ToggleableText";
 
 const UsersDashboard = () => {
   const { showToast } = useToast();
@@ -31,7 +32,7 @@ const UsersDashboard = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<UserFormData | null>(null);
-  console.log('editingUser => ', editingUser);
+  console.log("editingUser => ", editingUser);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState<string | number | null>(
     null
@@ -53,7 +54,9 @@ const UsersDashboard = () => {
       label: "User ID",
       sortable: true,
       render: (row: any) => (
-        <span className="text-sm text-gray-600 font-mono">{row.id}</span>
+        <span className="text-sm text-gray-600 font-mono">
+          <ToggleableText content={row?.id || "N/A"} truncateLength={5} />
+        </span>
       ),
     },
     {
@@ -61,13 +64,6 @@ const UsersDashboard = () => {
       label: "Name",
       render: (row: any) => (
         <div className="flex items-center space-x-3">
-          <Image
-            src={row.avatar || "/default-avatar.png"}
-            alt={row.name}
-            width={36}
-            height={36}
-            className="object-cover rounded-full border border-gray-200 shadow-sm"
-          />
           <span className="text-sm font-medium text-gray-800">{row.name}</span>
         </div>
       ),

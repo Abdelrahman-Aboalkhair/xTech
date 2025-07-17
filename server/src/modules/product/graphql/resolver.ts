@@ -222,6 +222,9 @@ export const productResolvers = {
     reviews: (parent: any, _: any, context: Context) => {
       return context.prisma.review.findMany({
         where: { productId: parent.id },
+        include: {
+          user: true,
+        },
       });
     },
   },

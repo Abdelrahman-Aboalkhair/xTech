@@ -56,6 +56,15 @@ const typeDefs = gql`
     id: String!
     rating: Int!
     comment: String
+    user: User
+    createdAt: DateTime!
+  }
+
+  type User {
+    id: String!
+    name: String!
+    email: String!
+    avatar: String
   }
 
   type Category {
