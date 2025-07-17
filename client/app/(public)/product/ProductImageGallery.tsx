@@ -5,13 +5,17 @@ import { ChevronLeft, ChevronRight, ZoomIn, Maximize2 } from "lucide-react";
 interface ProductImageGalleryProps {
   images: string[];
   name: string;
+  defaultImage: string;
 }
 
 const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
   images,
   name,
+  defaultImage,
 }) => {
-  const [selectedImage, setSelectedImage] = useState(images[0]);
+  const [selectedImage, setSelectedImage] = useState(
+    defaultImage || images[0] || "/placeholder-image.jpg"
+  );
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -22,6 +26,8 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
     const index = images.findIndex((img) => img === selectedImage);
     if (index !== -1) {
       setSelectedIndex(index);
+    } else {
+      setSelectedIndex(0);
     }
   }, [selectedImage, images]);
 
@@ -34,7 +40,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
   const handlePrevImage = () => {
     const newIndex =
       selectedIndex === 0 ? images.length - 1 : selectedIndex - 1;
-    setSelectedImage(images[newIndex]);
+    setSelectedImage(images[newIndex] || defaultImage);
     setSelectedIndex(newIndex);
     setIsZoomed(false);
   };
@@ -42,7 +48,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
   const handleNextImage = () => {
     const newIndex =
       selectedIndex === images.length - 1 ? 0 : selectedIndex + 1;
-    setSelectedImage(images[newIndex]);
+    setSelectedImage(images[newIndex] || defaultImage);
     setSelectedIndex(newIndex);
     setIsZoomed(false);
   };
@@ -61,11 +67,26 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
 
     const { left, top, width, height } =
       e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - left) / width) * 100; // normalize to 0-100
+    const x = ((e.clientX - left) / width) * 100;
     const y = ((e.clientY - top) / height) * 100;
 
     setMousePosition({ x, y });
   };
+
+  if (images.length === 0) {
+    return (
+      <div className="relative bg-gray-50 rounded-2xl p-6 flex items-center justify-center h-[500px]">
+        <Image
+          src="/placeholder-image.jpg"
+          alt={name}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-contain rounded-xl"
+          priority
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={`relative ${isFullScreen ? "fixed inset-0 z-50 p-4" : ""}`}>
@@ -202,7 +223,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
 
           {/* Image Counter */}
           <div className="absolute bottom-6 left-6  bg-opacity-80 px-3 py-1 rounded-full text-sm text-gray-700 shadow-sm">
-            {selectedIndex + 1} / {images.length}
+            {selectedIndex + 1} / {images.length || 1}
           </div>
         </div>
       </div>

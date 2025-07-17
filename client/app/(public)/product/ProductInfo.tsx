@@ -1,9 +1,9 @@
 "use client";
 import Rating from "@/app/components/feedback/Rating";
-import { CheckCircle, Truck, RotateCcw } from "lucide-react";
 import { useAddToCartMutation } from "@/app/store/apis/CartApi";
 import useToast from "@/app/hooks/ui/useToast";
 import { Product } from "@/app/gql/Product";
+import { Palette, Ruler, Info, Package } from "lucide-react";
 
 interface ProductInfoProps {
   id: string;
@@ -16,6 +16,7 @@ interface ProductInfoProps {
   onVariantChange: (attributeName: string, value: string) => void;
   attributeGroups: Record<string, { values: Set<string> }>;
   selectedAttributes: Record<string, string>;
+  resetSelections: () => void;
 }
 
 const ProductInfo: React.FC<ProductInfoProps> = ({
@@ -29,6 +30,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
   onVariantChange,
   attributeGroups,
   selectedAttributes,
+  resetSelections,
 }) => {
   const { showToast } = useToast();
   const [addToCart, { isLoading }] = useAddToCartMutation();
@@ -58,6 +60,29 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
     ? selectedVariant.stock
     : variants[0]?.stock || 0;
 
+  // Compute available colors and sizes
+  const colorValues = new Set<string>();
+  const sizeValues = new Set<string>();
+  variants.forEach((variant) => {
+    variant.attributes.forEach(({ attribute, value }) => {
+      if (attribute.name.toLowerCase() === "color") {
+        colorValues.add(value.value);
+      } else if (attribute.name.toLowerCase() === "size") {
+        sizeValues.add(value.value);
+      }
+    });
+  });
+
+  // Generate attribute summary
+  const attributeSummary = Object.entries(attributeGroups)
+    .map(([attrName, { values }]) => {
+      const valueList = Array.from(values).join(", ");
+      return `${
+        attrName.charAt(0).toUpperCase() + attrName.slice(1)
+      }: ${valueList}`;
+    })
+    .join("; ");
+
   return (
     <div className="flex flex-col gap-4 px-4 md:px-8 py-6">
       {/* Product Name */}
@@ -75,6 +100,49 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
       {/* Price */}
       <div className="text-2xl font-semibold text-gray-900">
         ${price.toFixed(2)}
+      </div>
+
+      {/* Available Options */}
+
+      {/* Available Options */}
+      <div className="space-y-3">
+        {colorValues.size > 0 && (
+          <div className="flex items-center gap-3">
+            <Palette className="w-4 h-4 text-gray-500" />
+            <span className="text-gray-700 text-sm">
+              Available in {colorValues.size}{" "}
+              {colorValues.size === 1 ? "color" : "colors"}
+            </span>
+          </div>
+        )}
+
+        {sizeValues.size > 0 && (
+          <div className="flex items-center gap-3">
+            <Ruler className="w-4 h-4 text-gray-500" />
+            <span className="text-gray-700 text-sm">
+              Available in {sizeValues.size}{" "}
+              {sizeValues.size === 1 ? "size" : "sizes"}
+            </span>
+          </div>
+        )}
+
+        {attributeSummary && (
+          <div className="flex items-center gap-3">
+            <Info className="w-4 h-4 text-gray-500" />
+            <span className="text-gray-700 text-sm">{attributeSummary}</span>
+          </div>
+        )}
+
+        {colorValues.size === 0 &&
+          sizeValues.size === 0 &&
+          attributeSummary === "" && (
+            <div className="flex items-center gap-3">
+              <Package className="w-4 h-4 text-gray-400" />
+              <span className="text-gray-500 text-sm">
+                No options available
+              </span>
+            </div>
+          )}
       </div>
 
       {/* Variant Selection */}
@@ -98,6 +166,12 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
             </select>
           </div>
         ))}
+        <button
+          onClick={resetSelections}
+          className="mt-2 px-4 py-2 text-sm font-medium text-primary border border-primary rounded hover:bg-gray-100 transition duration-300"
+        >
+          Reset Selections
+        </button>
       </div>
 
       {/* Description */}
@@ -136,22 +210,6 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
         >
           Buy Now
         </button>
-      </div>
-
-      {/* Delivery & Return */}
-      <div className="mt-6 space-y-3 text-sm text-gray-600">
-        <div className="flex items-center gap-2">
-          <Truck size={18} className="text-green-600" />
-          <span>Free Delivery on orders over $50</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <RotateCcw size={18} className="text-green-600" />
-          <span>30-Day Hassle-Free Returns</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <CheckCircle size={18} className="text-primary" />
-          <span>100% Quality Guarantee</span>
-        </div>
       </div>
     </div>
   );

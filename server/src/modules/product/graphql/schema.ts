@@ -10,7 +10,6 @@ const typeDefs = gql`
     slug: String!
     name: String!
     description: String
-    images: [String!]!
     salesCount: Int!
     isNew: Boolean!
     isFeatured: Boolean!
@@ -26,6 +25,7 @@ const typeDefs = gql`
   type ProductVariant {
     id: String!
     sku: String!
+    images: [String!]!
     price: Float!
     stock: Int!
     lowStockThreshold: Int!

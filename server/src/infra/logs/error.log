@@ -2696,3 +2696,4 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-17T07:53:50.334Z] [31MERROR[39M: At least one variant is required
 [2025-07-17T08:16:11.210Z] [31MERROR[39M: Invalid input. Please check your request data.
 [2025-07-17T08:17:55.226Z] [31MERROR[39M: Duplicate field value entered
+[2025-07-17T08:41:27.532Z] [31MERROR[39M: Invalid access token, please log in

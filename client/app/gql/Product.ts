@@ -53,7 +53,6 @@ export const GET_PRODUCTS = gql`
         id
         name
         slug
-        images
         isNew
         isFeatured
         isTrending
@@ -64,6 +63,7 @@ export const GET_PRODUCTS = gql`
           id
           sku
           price
+          images
           stock
           lowStockThreshold
           barcode
@@ -92,7 +92,6 @@ export const GET_SINGLE_PRODUCT = gql`
       id
       name
       slug
-      images
       isNew
       isFeatured
       isTrending
@@ -104,6 +103,7 @@ export const GET_SINGLE_PRODUCT = gql`
         id
         sku
         price
+        images
         stock
         lowStockThreshold
         barcode

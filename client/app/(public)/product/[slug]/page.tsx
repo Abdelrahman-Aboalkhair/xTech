@@ -26,7 +26,7 @@ const ProductDetailsPage = () => {
   >(null);
   const [selectedAttributes, setSelectedAttributes] = useState<
     Record<string, string>
-  >({}); // Like { color: "red", size: "M" }
+  >({});
 
   if (loading) return <CustomLoader />;
 
@@ -54,17 +54,21 @@ const ProductDetailsPage = () => {
     );
   }
 
-  // Compute valid attribute options based on current selections
   const attributeGroups = product.variants.reduce((acc, variant) => {
-    // Check if variant matches current selections (excluding the current attribute)
-    const matchesSelections = Object.entries(selectedAttributes).every(
-      ([attrName, attrValue]) =>
-        attrName === "" ||
-        variant.attributes.some(
-          (attr) =>
-            attr.attribute.name === attrName && attr.value.value === attrValue
-        )
+    const hasSelections = Object.values(selectedAttributes).some(
+      (value) => value !== ""
     );
+    const matchesSelections = hasSelections
+      ? Object.entries(selectedAttributes).every(
+          ([attrName, attrValue]) =>
+            attrName === "" ||
+            variant.attributes.some(
+              (attr) =>
+                attr.attribute.name === attrName &&
+                attr.value.value === attrValue
+            )
+        )
+      : true;
     if (matchesSelections) {
       variant.attributes.forEach(({ attribute, value }) => {
         if (!acc[attribute.name]) {
@@ -76,7 +80,11 @@ const ProductDetailsPage = () => {
     return acc;
   }, {} as Record<string, { values: Set<string> }>);
 
-  // Handle variant selection
+  const resetSelections = () => {
+    setSelectedAttributes({});
+    setSelectedVariant(null);
+  };
+
   const handleVariantChange = (attributeName: string, value: string) => {
     const newSelections = { ...selectedAttributes, [attributeName]: value };
     setSelectedAttributes(newSelections);
@@ -100,7 +108,15 @@ const ProductDetailsPage = () => {
       </div>
 
       <div className="w-[84%] mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-10 pt-[3rem] bg-white rounded">
-        <ProductImageGallery images={product.images} name={product.name} />
+        <ProductImageGallery
+          images={product.variants.flatMap((v) => v.images)}
+          defaultImage={
+            selectedVariant?.images[0] ||
+            product.variants[0]?.images[0] ||
+            "/placeholder-image.jpg"
+          }
+          name={product.name}
+        />
         <div>
           <ProductInfo
             id={product.id}
@@ -113,6 +129,7 @@ const ProductDetailsPage = () => {
             onVariantChange={handleVariantChange}
             attributeGroups={attributeGroups}
             selectedAttributes={selectedAttributes}
+            resetSelections={resetSelections}
           />
         </div>
       </div>
