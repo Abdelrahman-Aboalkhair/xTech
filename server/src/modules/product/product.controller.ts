@@ -11,228 +11,358 @@ export class ProductController {
   private logsService = makeLogsService();
   constructor(private productService: ProductService) {}
 
-  getAllProducts = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const { products, totalResults, totalPages, currentPage, resultsPerPage } =
-      await this.productService.getAllProducts(req.query);
-    sendResponse(res, 200, {
-      data: { products, totalResults, totalPages, currentPage, resultsPerPage },
-      message: "Products fetched successfully",
-    });
-  });
-
-  getProductById = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const { id: productId } = req.params;
-    const product = await this.productService.getProductById(productId);
-    sendResponse(res, 200, {
-      data: product,
-      message: "Product fetched successfully",
-    });
-  });
-
-  getProductBySlug = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const { slug: productSlug } = req.params;
-    const product = await this.productService.getProductBySlug(productSlug);
-    sendResponse(res, 200, {
-      data: product,
-      message: "Product fetched successfully",
-    });
-  });
-
- createProduct = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-  const {
-    name,
-    description,
-    categoryId,
-    isNew,
-    isFeatured,
-    isTrending,
-    isBestSeller,
-    variants,
-  } = req.body;
-
-  console.log('req.body', req.body);
-
-  // Validate variants
-  let parsedVariants = variants;
-  if (typeof variants === "string") {
-    try {
-      parsedVariants = JSON.parse(variants);
-    } catch (error) {
-      throw new AppError(400, "Invalid variants format: must be valid JSON");
+  getAllProducts = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const {
+        products,
+        totalResults,
+        totalPages,
+        currentPage,
+        resultsPerPage,
+      } = await this.productService.getAllProducts(req.query);
+      sendResponse(res, 200, {
+        data: {
+          products,
+          totalResults,
+          totalPages,
+          currentPage,
+          resultsPerPage,
+        },
+        message: "Products fetched successfully",
+      });
     }
-  }
-  if (!Array.isArray(parsedVariants)) {
-    throw new AppError(400, "Variants must be an array");
-  }
-  parsedVariants.forEach((variant: any, index: number) => {
-    // Convert price and stock to numbers
-    const price = Number(variant.price);
-    const stock = Number(variant.stock);
-    if (!variant.sku || isNaN(price) || isNaN(stock)) {
-      throw new AppError(400, `Variant at index ${index} must have sku, price, and stock`);
-    }
-    if (!variant.attributes || !Array.isArray(variant.attributes)) {
-      throw new AppError(400, `Variant at index ${index} must have an attributes array`);
-    }
-    if (stock < 0) {
-      throw new AppError(400, `Variant at index ${index} must have a non-negative stock number`);
-    }
-    variant.attributes.forEach((attr: any, attrIndex: number) => {
-      if (!attr.attributeId || !attr.valueId) {
-        throw new AppError(400, `Invalid attribute structure in variant at index ${index}, attribute index ${attrIndex}`);
-      }
-    });
-    const attributeIds = variant.attributes.map((attr: any) => attr.attributeId);
-    if (new Set(attributeIds).size !== attributeIds.length) {
-      throw new AppError(400, `Duplicate attributes in variant at index ${index}`);
-    }
-    // Update variant with numeric values
-    variant.price = price;
-    variant.stock = stock;
-  });
-  const skuKeys = parsedVariants.map((variant: any) => variant.sku);
-  if (new Set(skuKeys).size !== skuKeys.length) {
-    throw new AppError(400, "Duplicate SKUs detected in request");
-  }
-  const comboKeys = parsedVariants.map((variant: any) =>
-    variant.attributes.map((attr: any) => `${attr.attributeId}:${attr.valueId}`).sort().join("|")
   );
-  if (new Set(comboKeys).size !== comboKeys.length) {
-    throw new AppError(400, "Duplicate attribute combinations detected");
-  }
 
-  const files = req.files as Express.Multer.File[];
-  let imageUrls: string[] = [];
-  if (Array.isArray(files) && files.length > 0) {
-    const uploadedImages = await uploadToCloudinary(files);
-    imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
-  }
+  getProductById = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id: productId } = req.params;
+      const product = await this.productService.getProductById(productId);
+      sendResponse(res, 200, {
+        data: product,
+        message: "Product fetched successfully",
+      });
+    }
+  );
 
-  console.log('parsedVariants', parsedVariants);
+  getProductBySlug = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { slug: productSlug } = req.params;
+      const product = await this.productService.getProductBySlug(productSlug);
+      sendResponse(res, 200, {
+        data: product,
+        message: "Product fetched successfully",
+      });
+    }
+  );
 
-  const product = await this.productService.createProduct({
-    name,
-    description,
-    images: imageUrls.length > 0 ? imageUrls : undefined,
-    isNew: Boolean(isNew),
-    isTrending: Boolean(isTrending),
-    isBestSeller: Boolean(isBestSeller),
-    isFeatured: Boolean(isFeatured),
-    categoryId,
-    variants: parsedVariants,
-  });
+  createProduct = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const {
+        name,
+        description,
+        isNew,
+        isTrending,
+        isBestSeller,
+        isFeatured,
+        categoryId,
+        variants: rawVariants,
+      } = req.body;
 
-  sendResponse(res, 201, {
-    data: { product },
-    message: "Product created successfully",
-  });
-  this.logsService.info("Product created", {
-    userId: req.user?.id,
-    sessionId: req.session?.id,
-    timePeriod: 0,
-  });
-});
+      // Log for debugging
+      console.log(
+        "req.body:",
+        JSON.stringify(req.body, null, 2),
+        "req.files:",
+        req.files
+      );
 
-  updateProduct = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const { id: productId } = req.params;
-    const {
-      name,
-      description,
-      basePrice,
-      discount,
-      categoryId,
-      isNew,
-      isFeatured,
-      isTrending,
-      isBestSeller,
-      variants,
-    } = req.body;
+      // Validate variants
+      const variants = rawVariants || [];
+      if (!Array.isArray(variants) || variants.length === 0) {
+        throw new AppError(400, "At least one variant is required");
+      }
 
-    // Validate variants
-    let parsedVariants;
-    if (variants) {
-      try {
-        parsedVariants = typeof variants === "string" ? JSON.parse(variants) : variants;
-        if (!Array.isArray(parsedVariants)) {
-          throw new AppError(400, "Variants must be an array");
+      // Upload images to Cloudinary
+      const files = (req.files as Express.Multer.File[]) || [];
+      let imageResults: { url: string; public_id: string }[] = [];
+      if (files.length > 0) {
+        try {
+          imageResults = await uploadToCloudinary(files);
+          if (imageResults.length === 0) {
+            throw new AppError(400, "Failed to upload images to Cloudinary");
+          }
+        } catch (error) {
+          console.error("Cloudinary upload error:", error);
+          throw new AppError(400, "Failed to upload images to Cloudinary");
         }
-        parsedVariants.forEach((variant: any, index: number) => {
-          if (!variant.sku || typeof variant.price !== "number" || typeof variant.stock !== "number") {
-            throw new AppError(400, `Variant at index ${index} must have sku, price, and stock`);
-          }
-          if (!variant.attributes || !Array.isArray(variant.attributes)) {
-            throw new AppError(400, `Variant at index ${index} must have an attributes array`);
-          }
-          if (typeof variant.stock !== "number" || variant.stock < 0) {
-            throw new AppError(400, `Variant at index ${index} must have a valid non-negative stock number`);
-          }
-          variant.attributes.forEach((attr: any) => {
-            if (!attr.attributeId || !attr.valueId) {
-              throw new AppError(400, `Invalid attribute structure in variant at index ${index}`);
+      }
+
+      // Process variants
+      const processedVariants = variants.map((variant: any, index: number) => {
+        // Parse JSON fields
+        let attributes = [];
+        let imageIndexes = [];
+        try {
+          attributes = JSON.parse(variant.attributes || "[]");
+          imageIndexes = JSON.parse(variant.imageIndexes || "[]");
+        } catch (error) {
+          console.error(`Error parsing JSON for variant ${index}:`, error);
+          throw new AppError(400, `Invalid JSON format in variant ${index}`);
+        }
+
+        // Map image URLs based on imageIndexes
+        const imageUrls = imageIndexes
+          .map((idx: number) => {
+            if (idx >= 0 && idx < imageResults.length) {
+              return imageResults[idx].url;
             }
-          });
-          // Check for duplicate attributes in the same variant
-          const attributeIds = variant.attributes.map((attr: any) => attr.attributeId);
-          if (new Set(attributeIds).size !== attributeIds.length) {
-            throw new AppError(400, `Duplicate attributes in variant at index ${index}`);
+            console.warn(`Invalid image index ${idx} for variant ${index}`);
+            return null;
+          })
+          .filter((url: string | null) => url !== null);
+
+        return {
+          ...variant,
+          price: parseFloat(variant.price),
+          stock: parseInt(variant.stock, 10),
+          lowStockThreshold: parseInt(variant.lowStockThreshold || "10", 10),
+          attributes,
+          images: imageUrls,
+        };
+      });
+
+      // Create product
+      const product = await this.productService.createProduct({
+        name,
+        description,
+        isNew: isNew === "true",
+        isTrending: isTrending === "true",
+        isBestSeller: isBestSeller === "true",
+        isFeatured: isFeatured === "true",
+        categoryId,
+        variants: processedVariants,
+      });
+
+      // Send response
+      res.status(201).json({
+        status: "success",
+        data: { product },
+        message: "Product created successfully",
+      });
+    }
+  );
+
+  updateProduct = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id: productId } = req.params;
+      const {
+        name,
+        description,
+        categoryId,
+        isNew,
+        isFeatured,
+        isTrending,
+        isBestSeller,
+      } = req.body;
+
+      console.log("req.body:", req.body, "req.files:", req.files);
+
+      // Parse variants from req.body
+      let parsedVariants: any[] = [];
+      for (const key in req.body) {
+        if (key.startsWith("variants[")) {
+          const match = key.match(/^variants\[(\d+)\]\[(\w+)\]$/);
+          if (match) {
+            const index = parseInt(match[1]);
+            const field = match[2];
+            if (!parsedVariants[index]) {
+              parsedVariants[index] = {};
+            }
+            parsedVariants[index][field] = req.body[key];
           }
-        });
+        }
+      }
+      parsedVariants = parsedVariants.filter(Boolean);
+
+      // Process files for each variant
+      const files = (req.files as Express.Multer.File[]) || [];
+      const processedVariants = parsedVariants.length
+        ? await Promise.all(
+            parsedVariants.map(async (variant: any, index: number) => {
+              // Try to get files from imageIndexes or variants[${index}][images][${fileIndex}]
+              let variantFiles: Express.Multer.File[] = [];
+              let imageIndexes: number[] = [];
+              try {
+                imageIndexes = variant.imageIndexes
+                  ? JSON.parse(variant.imageIndexes)
+                  : [];
+                if (Array.isArray(imageIndexes)) {
+                  variantFiles = imageIndexes
+                    .map((idx) =>
+                      files.find(
+                        (f) =>
+                          f.fieldname === `images` && files.indexOf(f) === idx
+                      )
+                    )
+                    .filter(Boolean) as Express.Multer.File[];
+                }
+              } catch {
+                // Fallback to old format
+                variantFiles = files.filter((f) =>
+                  f.fieldname.startsWith(`variants[${index}][images][`)
+                );
+              }
+
+              // Upload files to Cloudinary
+              let imageUrls: string[] = [];
+              if (variantFiles.length > 0) {
+                const uploadedImages = await uploadToCloudinary(variantFiles);
+                imageUrls = uploadedImages
+                  .map((img) => img.url)
+                  .filter(Boolean);
+              }
+
+              // Validate images from req.body
+              let bodyImages = variant.images || [];
+              if (typeof bodyImages === "string") {
+                try {
+                  bodyImages = JSON.parse(bodyImages);
+                } catch {
+                  throw new AppError(
+                    400,
+                    `Invalid images format at variant index ${index}`
+                  );
+                }
+              }
+              if (
+                !Array.isArray(bodyImages) ||
+                bodyImages.some((img: any) => img && typeof img !== "string")
+              ) {
+                throw new AppError(
+                  400,
+                  `Images at variant index ${index} must be an array of strings or empty`
+                );
+              }
+
+              // Combine uploaded images with body images
+              imageUrls = [
+                ...imageUrls,
+                ...bodyImages.filter((img: string) => img),
+              ];
+
+              // Validate other fields
+              if (
+                !variant.sku ||
+                typeof variant.price !== "number" ||
+                typeof variant.stock !== "number"
+              ) {
+                throw new AppError(
+                  400,
+                  `Variant at index ${index} must have sku, price, and stock`
+                );
+              }
+              if (variant.stock < 0) {
+                throw new AppError(
+                  400,
+                  `Variant at index ${index} must have a valid non-negative stock number`
+                );
+              }
+
+              // Validate attributes
+              let parsedAttributes;
+              try {
+                parsedAttributes =
+                  typeof variant.attributes === "string"
+                    ? JSON.parse(variant.attributes)
+                    : variant.attributes;
+                if (!Array.isArray(parsedAttributes)) {
+                  throw new AppError(
+                    400,
+                    `Variant at index ${index} must have an attributes array`
+                  );
+                }
+                parsedAttributes.forEach((attr: any, attrIndex: number) => {
+                  if (!attr.attributeId || !attr.valueId) {
+                    throw new AppError(
+                      400,
+                      `Invalid attribute structure in variant at index ${index}, attribute index ${attrIndex}`
+                    );
+                  }
+                });
+              } catch (error) {
+                throw new AppError(
+                  400,
+                  `Invalid attributes format at index ${index}`
+                );
+              }
+
+              // Check for duplicate attributes
+              const attributeIds = parsedAttributes.map(
+                (attr: any) => attr.attributeId
+              );
+              if (new Set(attributeIds).size !== attributeIds.length) {
+                throw new AppError(
+                  400,
+                  `Duplicate attributes in variant at index ${index}`
+                );
+              }
+
+              return {
+                ...variant,
+                images: imageUrls,
+                attributes: parsedAttributes,
+              };
+            })
+          )
+        : undefined;
+
+      if (processedVariants) {
         // Check for duplicate SKUs
-        const skuKeys = parsedVariants.map((variant: any) => variant.sku);
+        const skuKeys = processedVariants.map((variant: any) => variant.sku);
         if (new Set(skuKeys).size !== skuKeys.length) {
           throw new AppError(400, "Duplicate SKUs detected");
         }
+
         // Check for duplicate attribute combinations
-        const comboKeys = parsedVariants.map((variant: any) =>
-          variant.attributes.map((attr: any) => `${attr.attributeId}:${attr.valueId}`).sort().join("|")
+        const comboKeys = processedVariants.map((variant: any) =>
+          variant.attributes
+            .map((attr: any) => `${attr.attributeId}:${attr.valueId}`)
+            .sort()
+            .join("|")
         );
         if (new Set(comboKeys).size !== comboKeys.length) {
           throw new AppError(400, "Duplicate attribute combinations detected");
         }
-      } catch (error) {
-        throw new AppError(400, "Invalid variants format");
       }
+
+      const updatedData: any = {
+        ...(name && { name, slug: slugify(name) }),
+        ...(description && { description }),
+        ...(isNew !== undefined && { isNew: isNew === "true" }),
+        ...(isFeatured !== undefined && { isFeatured: isFeatured === "true" }),
+        ...(isTrending !== undefined && { isTrending: isTrending === "true" }),
+        ...(isBestSeller !== undefined && {
+          isBestSeller: isBestSeller === "true",
+        }),
+        ...(categoryId && { categoryId }),
+        ...(processedVariants && { variants: processedVariants }),
+      };
+
+      const product = await this.productService.updateProduct(
+        productId,
+        updatedData
+      );
+
+      sendResponse(res, 200, {
+        data: { product },
+        message: "Product updated successfully",
+      });
+      this.logsService.info("Product updated", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
+      });
     }
-
-    const formattedIsNew = isNew === "true";
-    const formattedIsFeatured = isFeatured === "true";
-    const formattedIsTrending = isTrending === "true";
-    const formattedIsBestSeller = isBestSeller === "true";
-    const formattedBasePrice = basePrice !== undefined ? Number(basePrice) : undefined;
-    const formattedDiscount = discount !== undefined ? Number(discount) : undefined;
-
-    const files = req.files as Express.Multer.File[];
-    let imageUrls: string[] = [];
-    if (Array.isArray(files) && files.length > 0) {
-      const uploadedImages = await uploadToCloudinary(files);
-      imageUrls = uploadedImages.map((img) => img.url).filter(Boolean);
-    }
-
-    const updatedData: any = {
-      ...(name && { name, slug: slugify(name) }),
-      ...(description && { description }),
-      ...(formattedBasePrice !== undefined && { basePrice: formattedBasePrice }),
-      ...(formattedDiscount !== undefined && { discount: formattedDiscount }),
-      ...(imageUrls.length > 0 && { images: imageUrls }),
-      ...(formattedIsNew !== undefined && { isNew: formattedIsNew }),
-      ...(formattedIsFeatured !== undefined && { isFeatured: formattedIsFeatured }),
-      ...(formattedIsTrending !== undefined && { isTrending: formattedIsTrending }),
-      ...(formattedIsBestSeller !== undefined && { isBestSeller: formattedIsBestSeller }),
-      ...(categoryId && { categoryId }),
-      ...(parsedVariants && { variants: parsedVariants }),
-    };
-
-    const product = await this.productService.updateProduct(productId, updatedData);
-
-    sendResponse(res, 200, {
-      data: { product },
-      message: "Product updated successfully",
-    });
-    this.logsService.info("Product updated", {
-      userId: req.user?.id,
-      sessionId: req.session.id,
-    });
-  });
+  );
 
   bulkCreateProducts = asyncHandler(async (req: Request, res: Response) => {
     const file = req.file;
@@ -252,17 +382,19 @@ export class ProductController {
     });
   });
 
-  deleteProduct = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const { id: productId } = req.params;
-    await this.productService.deleteProduct(productId);
-    sendResponse(res, 200, { message: "Product deleted successfully" });
-    const start = Date.now();
-    const end = Date.now();
+  deleteProduct = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id: productId } = req.params;
+      await this.productService.deleteProduct(productId);
+      sendResponse(res, 200, { message: "Product deleted successfully" });
+      const start = Date.now();
+      const end = Date.now();
 
-    this.logsService.info("Product deleted", {
-      userId: req.user?.id,
-      sessionId: req.session.id,
-      timePeriod: end - start,
-    });
-  });
+      this.logsService.info("Product deleted", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
+        timePeriod: end - start,
+      });
+    }
+  );
 }

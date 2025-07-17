@@ -1,130 +1,104 @@
 import { Trash2, Upload } from "lucide-react";
 import Image from "next/image";
-import { Controller, Control, FieldErrors, UseFormSetValue, UseFormWatch } from "react-hook-form";
-import { useEffect, useState, useCallback, useMemo } from "react";
+import {
+  Controller,
+  Control,
+  FieldErrors,
+  UseFormSetValue,
+} from "react-hook-form";
+import { useEffect, useState, useCallback } from "react";
 
 interface ImageUploaderProps {
   control: Control<any>;
   errors: FieldErrors<any>;
-  watch: UseFormWatch<any>;
   setValue: UseFormSetValue<any>;
   label: string;
   name?: string;
   maxFiles?: number;
-  existingImages?: string[];
   disabled?: boolean;
 }
 
 interface ImagePreview {
   url: string;
-  isFile: boolean;
-  file?: File;
+  file: File;
 }
 
 const ImageUploader = ({
   control,
   errors,
-  watch,
   setValue,
   label,
   name = "images",
-  maxFiles = 10,
-  existingImages = [],
+  maxFiles = 5,
   disabled = false,
 }: ImageUploaderProps) => {
-  const watchedImages = watch(name) || [];
   const [previews, setPreviews] = useState<ImagePreview[]>([]);
 
-  // Memoize the preview generation logic to prevent unnecessary recalculations
-  const generatedPreviews = useMemo(() => {
-    const newPreviews: ImagePreview[] = [];
-
-    // Add existing images (URLs from server)
-    if (existingImages.length > 0) {
-      existingImages.forEach(url => {
-        if (url && typeof url === 'string' && url.trim() !== '') {
-          newPreviews.push({ url, isFile: false });
-        }
-      });
-    }
-
-    // Add file previews
-    if (watchedImages.length > 0) {
-      watchedImages.forEach((item: any) => {
-        if (item instanceof File) {
-          const url = URL.createObjectURL(item);
-          newPreviews.push({ url, isFile: true, file: item });
-        } else if (typeof item === 'string' && item.trim() !== '') {
-          // Handle string URLs that might be in the form data
-          newPreviews.push({ url: item, isFile: false });
-        }
-      });
-    }
-
-    return newPreviews;
-  }, [watchedImages, existingImages]);
-
-  // Update previews only when the generated previews actually change
+  // Cleanup blob URLs on unmount
   useEffect(() => {
-    // Check if previews have actually changed to prevent unnecessary updates
-    const previewsChanged =
-      generatedPreviews.length !== previews.length ||
-      generatedPreviews.some((preview, index) =>
-        previews[index]?.url !== preview.url ||
-        previews[index]?.isFile !== preview.isFile
-      );
-
-    if (previewsChanged) {
-      // Cleanup old blob URLs before setting new previews
-      previews.forEach(preview => {
-        if (preview.isFile && preview.url.startsWith('blob:')) {
-          URL.revokeObjectURL(preview.url);
-        }
-      });
-
-      setPreviews(generatedPreviews);
-    }
-
-    // Cleanup function for blob URLs when component unmounts
     return () => {
-      generatedPreviews.forEach(preview => {
-        if (preview.isFile && preview.url.startsWith('blob:')) {
-          URL.revokeObjectURL(preview.url);
-        }
+      previews.forEach((preview) => {
+        URL.revokeObjectURL(preview.url);
       });
     };
-  }, [generatedPreviews]); // Only depend on the memoized previews
+  }, [previews]);
 
-  const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    if (!files.length) return;
+  const handleFileUpload = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const files = Array.from(e.target.files || []);
 
-    const currentImages = watchedImages || [];
-    const remainingSlots = maxFiles - currentImages.length;
-    const filesToAdd = files.slice(0, remainingSlots);
+      if (!files.length) return;
 
-    if (filesToAdd.length < files.length) {
-      alert(`Only ${remainingSlots} more files can be added. Maximum ${maxFiles} files allowed.`);
-    }
+      const currentFiles = previews.map((p) => p.file);
+      const remainingSlots = maxFiles - currentFiles.length;
+      const filesToAdd = files.slice(0, remainingSlots);
 
-    setValue(name, [...currentImages, ...filesToAdd]);
+      if (filesToAdd.length < files.length) {
+        alert(
+          `Only ${remainingSlots} more files can be added. Maximum ${maxFiles} files allowed.`
+        );
+      }
 
-    // Clear the input
-    e.target.value = '';
-  }, [watchedImages, setValue, name, maxFiles]);
+      const newPreviews = filesToAdd.map((file) => ({
+        url: URL.createObjectURL(file),
+        file,
+      }));
 
-  const removeImage = useCallback((index: number) => {
-    const currentImages = [...(watchedImages || [])];
-    const preview = previews[index];
+      const updatedFiles = [...currentFiles, ...filesToAdd];
+      console.log(
+        "handleFileUpload files:",
+        files,
+        "updatedFiles:",
+        updatedFiles
+      );
+      const updatedPreviews = [...previews, ...newPreviews];
 
-    // Revoke blob URL if it's a file
-    if (preview?.isFile && preview.url.startsWith('blob:')) {
-      URL.revokeObjectURL(preview.url);
-    }
+      setPreviews(updatedPreviews);
+      setValue(name, updatedFiles, { shouldValidate: true });
 
-    currentImages.splice(index, 1);
-    setValue(name, currentImages);
-  }, [watchedImages, previews, setValue, name]);
+      // Clear the input
+      e.target.value = "";
+    },
+    [previews, setValue, name, maxFiles]
+  );
+
+  const removeImage = useCallback(
+    (index: number) => {
+      const updatedPreviews = [...previews];
+      const removedPreview = updatedPreviews.splice(index, 1)[0];
+
+      // Revoke blob URL
+      URL.revokeObjectURL(removedPreview.url);
+
+      setPreviews(updatedPreviews);
+      setValue(
+        name,
+        updatedPreviews.map((p) => p.file),
+        { shouldValidate: true }
+      );
+    },
+    [previews, setValue, name]
+  );
 
   const canAddMore = previews.length < maxFiles;
   const errorMessage = errors[name]?.message as string;
@@ -168,11 +142,9 @@ const ImageUploader = ({
               </button>
 
               {/* File indicator */}
-              {preview.isFile && (
-                <div className="absolute bottom-1 left-1 bg-green-500 text-white text-xs px-1.5 py-0.5 rounded">
-                  New
-                </div>
-              )}
+              <div className="absolute bottom-1 left-1 bg-green-500 text-white text-xs px-1.5 py-0.5 rounded">
+                New
+              </div>
             </div>
           ))}
         </div>
@@ -197,18 +169,27 @@ const ImageUploader = ({
               htmlFor={`file-input-${name}`}
               className={`
                 flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg cursor-pointer transition-colors
-                ${disabled || !canAddMore
-                  ? 'border-gray-200 bg-gray-50 cursor-not-allowed'
-                  : 'border-gray-300 bg-gray-50 hover:bg-gray-100 hover:border-gray-400'
+                ${
+                  disabled || !canAddMore
+                    ? "border-gray-200 bg-gray-50 cursor-not-allowed"
+                    : "border-gray-300 bg-gray-50 hover:bg-gray-100 hover:border-gray-400"
                 }
               `}
             >
-              <Upload size={24} className={disabled || !canAddMore ? 'text-gray-400' : 'text-gray-500'} />
-              <p className={`mt-2 text-sm ${disabled || !canAddMore ? 'text-gray-400' : 'text-gray-600'}`}>
+              <Upload
+                size={24}
+                className={
+                  disabled || !canAddMore ? "text-gray-400" : "text-gray-500"
+                }
+              />
+              <p
+                className={`mt-2 text-sm ${
+                  disabled || !canAddMore ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
                 {!canAddMore
                   ? `Maximum ${maxFiles} files reached`
-                  : 'Click to upload images or drag and drop'
-                }
+                  : "Click to upload images or drag and drop"}
               </p>
               <p className="text-xs text-gray-500 mt-1">
                 PNG, JPG, GIF up to 10MB each

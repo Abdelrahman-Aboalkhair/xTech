@@ -2,7 +2,6 @@
 import { Controller, UseFormReturn } from "react-hook-form";
 import { Tag } from "lucide-react";
 import Dropdown from "@/app/components/molecules/Dropdown";
-import ImageUploader from "@/app/components/molecules/ImageUploader";
 import { ProductFormData } from "./product.types";
 import CheckBox from "@/app/components/atoms/CheckBox";
 import VariantForm from "./VariantForm";
@@ -11,11 +10,15 @@ interface ProductFormProps {
   form: UseFormReturn<ProductFormData>;
   onSubmit: (data: ProductFormData) => void;
   categories?: { label: string; value: string }[];
-  categoryAttributes?: { id: string; name: string; isRequired: boolean; values: { id: string; value: string; slug: string }[] }[];
+  categoryAttributes?: {
+    id: string;
+    name: string;
+    isRequired: boolean;
+    values: { id: string; value: string; slug: string }[];
+  }[];
   isLoading?: boolean;
   error?: any;
   submitLabel?: string;
-  existingImages?: string[];
 }
 
 const ProductForm: React.FC<ProductFormProps> = ({
@@ -26,13 +29,11 @@ const ProductForm: React.FC<ProductFormProps> = ({
   isLoading,
   error,
   submitLabel = "Save",
-  existingImages = [],
 }) => {
   const {
     control,
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
   } = form;
 
@@ -64,7 +65,9 @@ const ProductForm: React.FC<ProductFormProps> = ({
             <Tag className="absolute left-3 top-3.5 text-gray-400" size={18} />
           </div>
           {errors.name && (
-            <p className="text-red-500 text-xs mt-1 pl-10">{errors.name.message}</p>
+            <p className="text-red-500 text-xs mt-1 pl-10">
+              {errors.name.message}
+            </p>
           )}
         </div>
 
@@ -90,7 +93,9 @@ const ProductForm: React.FC<ProductFormProps> = ({
             )}
           />
           {errors.categoryId && (
-            <p className="text-red-500 text-xs mt-1">{errors.categoryId.message}</p>
+            <p className="text-red-500 text-xs mt-1">
+              {errors.categoryId.message}
+            </p>
           )}
         </div>
       </div>
@@ -142,20 +147,6 @@ const ProductForm: React.FC<ProductFormProps> = ({
               rows={3}
             />
           )}
-        />
-      </div>
-
-      <div className="md:col-span-2">
-        <ImageUploader
-          label="Product Images"
-          control={control}
-          errors={errors}
-          setValue={setValue}
-          watch={watch}
-          name="images"
-          maxFiles={5}
-          existingImages={existingImages}
-          disabled={isLoading}
         />
       </div>
 

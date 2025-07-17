@@ -2668,3 +2668,31 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-15T12:46:43.569Z] [31MERROR[39M: Your session has expired, please login again.
 [2025-07-16T11:15:38.176Z] [31MERROR[39M: Invalid access token, please log in
 [2025-07-16T11:56:00.412Z] [31MERROR[39M: No orders found for this user
+[2025-07-16T12:32:38.742Z] [31MERROR[39M: Product not found
+[2025-07-16T12:32:54.451Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-16T12:48:56.692Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-16T12:48:56.740Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-16T12:48:56.772Z] [31MERROR[39M: Unauthorized, please log in
+[2025-07-16T12:48:56.791Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-16T12:48:59.473Z] [31MERROR[39M: Unauthorized, please log in
+[2025-07-16T12:48:59.508Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-16T12:49:42.350Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-16T12:49:42.369Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-16T12:50:31.603Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-16T12:50:33.695Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-16T12:50:36.456Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-16T13:00:07.670Z] [31MERROR[39M: Images at index 0 must be an array of strings
+[2025-07-16T13:01:41.135Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-16T13:02:37.249Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-16T17:22:38.987Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-16T17:33:40.536Z] [31MERROR[39M: Invalid access token, please log in
+[2025-07-16T17:33:40.680Z] [31MERROR[39M: Unexpected field
+[2025-07-16T17:42:11.102Z] [31MERROR[39M: Unexpected field
+[2025-07-16T17:53:44.391Z] [31MERROR[39M: At least one variant is required
+[2025-07-16T18:02:54.836Z] [31MERROR[39M: At least one variant is required
+[2025-07-16T18:03:45.478Z] [31MERROR[39M: At least one variant is required
+[2025-07-17T07:47:48.985Z] [31MERROR[39M: Invalid access token, please log in
+[2025-07-17T07:47:56.725Z] [31MERROR[39M: At least one variant is required
+[2025-07-17T07:53:50.334Z] [31MERROR[39M: At least one variant is required
+[2025-07-17T08:16:11.210Z] [31MERROR[39M: Invalid input. Please check your request data.
+[2025-07-17T08:17:55.226Z] [31MERROR[39M: Duplicate field value entered

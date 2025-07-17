@@ -1,5 +1,5 @@
-import prisma from '@/infra/database/database.config';
-import { Prisma } from '@prisma/client';
+import prisma from "@/infra/database/database.config";
+import { Prisma } from "@prisma/client";
 
 export class ProductRepository {
   async findManyProducts(params: {
@@ -13,7 +13,7 @@ export class ProductRepository {
   }) {
     const {
       where = {},
-      orderBy = { createdAt: 'desc' },
+      orderBy = { createdAt: "desc" },
       skip = 0,
       take = 10,
       select,
@@ -29,7 +29,7 @@ export class ProductRepository {
               is: {
                 slug: {
                   equals: categorySlug,
-                  mode: 'insensitive',
+                  mode: "insensitive",
                 },
               },
             },
@@ -43,20 +43,18 @@ export class ProductRepository {
       skip,
       take,
       select,
-      include:
-         {
-            variants: {
+      include: {
+        variants: {
+          include: {
+            attributes: {
               include: {
-                attributes: {
-                  include: {
-                    attribute: true,
-                    value: true,
-                  },
-                },
+                attribute: true,
+                value: true,
               },
             },
-          }
-        
+          },
+        },
+      },
     });
   }
 
@@ -91,7 +89,6 @@ export class ProductRepository {
         id: true,
         name: true,
         slug: true,
-        images: true,
       },
     });
   }
@@ -123,12 +120,10 @@ export class ProductRepository {
     return product?.name || null;
   }
 
-
   async createProduct(data: {
     name: string;
     slug: string;
     description?: string;
-    images?: string[];
     isNew?: boolean;
     isTrending?: boolean;
     isBestSeller?: boolean;
@@ -139,7 +134,11 @@ export class ProductRepository {
       data,
       include: {
         category: true,
-        variants: { include: { attributes: { include: { attribute: true, value: true } } } },
+        variants: {
+          include: {
+            attributes: { include: { attribute: true, value: true } },
+          },
+        },
       },
     });
   }
@@ -151,7 +150,6 @@ export class ProductRepository {
       description?: string;
       basePrice: number;
       discount?: number;
-      images?: string[];
       isNew?: boolean;
       isTrending?: boolean;
       isBestSeller?: boolean;
@@ -180,7 +178,6 @@ export class ProductRepository {
       description?: string;
       basePrice: number;
       discount?: number;
-      images?: string[];
       isNew?: boolean;
       isTrending?: boolean;
       isBestSeller?: boolean;

@@ -1,17 +1,19 @@
-import { Prisma } from '@prisma/client';
-import prisma from '@/infra/database/database.config';
+import { Prisma } from "@prisma/client";
+import prisma from "@/infra/database/database.config";
 
 export class VariantRepository {
   async findManyVariants(params: {
     where?: Prisma.ProductVariantWhereInput & { productSlug?: string };
-    orderBy?: Prisma.ProductVariantOrderByWithRelationInput | Prisma.ProductVariantOrderByWithRelationInput[];
+    orderBy?:
+      | Prisma.ProductVariantOrderByWithRelationInput
+      | Prisma.ProductVariantOrderByWithRelationInput[];
     skip?: number;
     take?: number;
     select?: Prisma.ProductVariantSelect;
   }) {
     const {
       where = {},
-      orderBy = { createdAt: 'desc' },
+      orderBy = { createdAt: "desc" },
       skip = 0,
       take = 10,
       select,
@@ -26,7 +28,7 @@ export class VariantRepository {
             product: {
               slug: {
                 equals: productSlug,
-                mode: 'insensitive',
+                mode: "insensitive",
               },
             },
           }
@@ -39,7 +41,7 @@ export class VariantRepository {
       skip,
       take,
       select,
-      
+
       include: {
         product: true,
         attributes: {
@@ -47,8 +49,8 @@ export class VariantRepository {
             attribute: true,
             value: true,
           },
-        }
-      }
+        },
+      },
     });
   }
 
@@ -95,7 +97,7 @@ export class VariantRepository {
     const { variantId, skip = 0, take = 10 } = params;
     return prisma.restock.findMany({
       where: { variantId },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
       skip,
       take,
       include: {
@@ -113,6 +115,7 @@ export class VariantRepository {
     productId: string;
     sku: string;
     price: number;
+    images: string[];
     stock: number;
     lowStockThreshold?: number;
     barcode?: string;
@@ -147,6 +150,7 @@ export class VariantRepository {
     data: Partial<{
       sku: string;
       price: number;
+      images?: string[];
       stock: number;
       lowStockThreshold?: number;
       barcode?: string;

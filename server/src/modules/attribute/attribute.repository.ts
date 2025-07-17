@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import prisma from "@/infra/database/database.config";
 
 export class AttributeRepository {
-  async createAttribute(data: { name: string; slug: string; type: string }) {
+  async createAttribute(data: { name: string; slug: string }) {
     return prisma.attribute.create({ data });
   }
 

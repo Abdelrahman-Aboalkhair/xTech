@@ -3,7 +3,10 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useGetAllCategoriesQuery, useGetCategoryAttributesQuery } from "@/app/store/apis/CategoryApi";
+import {
+  useGetAllCategoriesQuery,
+  useGetCategoryAttributesQuery,
+} from "@/app/store/apis/CategoryApi";
 import { ProductFormData } from "./product.types";
 import ProductForm from "./ProductForm";
 
@@ -25,10 +28,11 @@ const ProductModal: React.FC<ProductModalProps> = ({
   error,
 }) => {
   const { data: categoriesData } = useGetAllCategoriesQuery({});
-  const categories = categoriesData?.categories?.map((category) => ({
-    label: category.name,
-    value: category.id,
-  })) || [];
+  const categories =
+    categoriesData?.categories?.map((category) => ({
+      label: category.name,
+      value: category.id,
+    })) || [];
 
   const form = useForm<ProductFormData>({
     defaultValues: {
@@ -40,15 +44,29 @@ const ProductModal: React.FC<ProductModalProps> = ({
       isBestSeller: false,
       categoryId: "",
       description: "",
-      images: [],
-      variants: [],
+      variants: [
+        {
+          id: "",
+          images: [],
+          lowStockThreshold: 10,
+          barcode: "",
+          warehouseLocation: "",
+          price: 0,
+          sku: "",
+          stock: 0,
+          attributes: [],
+        },
+      ],
     },
   });
 
   const selectedCategoryId = form.watch("categoryId");
-  const { data: categoryAttributesData } = useGetCategoryAttributesQuery(selectedCategoryId, {
-    skip: !selectedCategoryId,
-  });
+  const { data: categoryAttributesData } = useGetCategoryAttributesQuery(
+    selectedCategoryId,
+    {
+      skip: !selectedCategoryId,
+    }
+  );
   const categoryAttributes = categoryAttributesData?.attributes || [];
 
   useEffect(() => {
@@ -62,7 +80,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
         isBestSeller: initialData.isBestSeller || false,
         categoryId: initialData.categoryId || "",
         description: initialData.description || "",
-        images: initialData.images || [],
         variants: initialData.variants || [],
       });
     } else {
@@ -75,7 +92,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
         isBestSeller: false,
         categoryId: "",
         description: "",
-        images: [],
         variants: [],
       });
     }
@@ -120,7 +136,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
               isLoading={isLoading}
               error={error}
               submitLabel={initialData ? "Update" : "Create"}
-              existingImages={initialData?.images || []}
             />
           </motion.div>
         </motion.div>

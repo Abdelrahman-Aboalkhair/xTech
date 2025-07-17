@@ -81,7 +81,6 @@ model Product {
   name          String           @unique
   description   String?
   slug          String           @unique
-  images        String[]         @default([])
   salesCount    Int              @default(0)
   isNew         Boolean          @default(false)
   isFeatured    Boolean          @default(false)
@@ -105,6 +104,7 @@ model ProductVariant {
   productId         String
   product           Product                   @relation(fields: [productId], references: [id], onDelete: Cascade)
   sku               String                    @unique
+  images            String[]                  @default([])
   price             Float
   stock             Int
   lowStockThreshold Int                       @default(10)

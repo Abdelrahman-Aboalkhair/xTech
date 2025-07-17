@@ -6,14 +6,13 @@ import { makeLogsService } from "../logs/logs.factory";
 
 export class AttributeController {
   private logsService = makeLogsService();
-  constructor(private attributeService: AttributeService) { }
+  constructor(private attributeService: AttributeService) {}
 
   createAttribute = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
-      const { name, type } = req.body;
+      const { name } = req.body;
       const attribute = await this.attributeService.createAttribute({
         name,
-        type,
       });
       sendResponse(res, 201, {
         data: { attribute },
@@ -105,7 +104,6 @@ export class AttributeController {
       });
     }
   );
-
 
   deleteAttribute = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {

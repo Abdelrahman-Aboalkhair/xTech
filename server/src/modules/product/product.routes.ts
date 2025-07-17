@@ -152,7 +152,7 @@ router.post(
   "/",
   protect,
   authorizeRole("ADMIN", "SUPERADMIN"),
-  upload.array("images", 10),
+  upload.any(),
   productController.createProduct
 );
 

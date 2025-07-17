@@ -6,7 +6,7 @@ import ApiFeatures from "@/shared/utils/ApiFeatures";
 export class AttributeService {
   constructor(private attributeRepository: AttributeRepository) {}
 
-  async createAttribute(data: { name: string; type: string }) {
+  async createAttribute(data: { name: string }) {
     const slug = slugify(data.name);
     return await this.attributeRepository.createAttribute({ ...data, slug });
   }

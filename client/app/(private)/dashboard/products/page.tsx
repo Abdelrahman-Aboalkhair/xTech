@@ -32,7 +32,9 @@ const ProductsDashboard = () => {
   );
   const products = data?.products || [];
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<ProductFormData | null>(null);
+  const [editingProduct, setEditingProduct] = useState<ProductFormData | null>(
+    null
+  );
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
   const [isFileUploadOpen, setIsFileUploadOpen] = useState(false);
@@ -46,17 +48,49 @@ const ProductsDashboard = () => {
     payload.append("isBestSeller", data.isBestSeller.toString());
     payload.append("isFeatured", data.isFeatured.toString());
     payload.append("categoryId", data.categoryId || "");
-    if (data.images && Array.isArray(data.images)) {
-      data.images.forEach((file: File | string) => {
-        if (file instanceof File || typeof file === "string") {
-          payload.append("images", file);
-        }
-      });
-    }
-    payload.append("variants", JSON.stringify(data.variants));
+
+    // Track image indexes for each variant
+    let imageIndex = 0;
+    data.variants.forEach((variant, index) => {
+      payload.append(`variants[${index}][sku]`, variant.sku || "");
+      payload.append(`variants[${index}][price]`, variant.price.toString());
+      payload.append(`variants[${index}][stock]`, variant.stock.toString());
+      payload.append(
+        `variants[${index}][lowStockThreshold]`,
+        variant.lowStockThreshold?.toString() || "10"
+      );
+      payload.append(`variants[${index}][barcode]`, variant.barcode || "");
+      payload.append(
+        `variants[${index}][warehouseLocation]`,
+        variant.warehouseLocation || ""
+      );
+      // Append attributes as JSON
+      payload.append(
+        `variants[${index}][attributes]`,
+        JSON.stringify(variant.attributes || [])
+      );
+      // Track image indexes for this variant
+      if (Array.isArray(variant.images) && variant.images.length > 0) {
+        const imageIndexes = variant.images
+          .map((file, fileIndex) => {
+            if (file instanceof File) {
+              payload.append(`images`, file);
+              return imageIndex++;
+            }
+            return null;
+          })
+          .filter((idx) => idx !== null);
+        payload.append(
+          `variants[${index}][imageIndexes]`,
+          JSON.stringify(imageIndexes)
+        );
+      } else {
+        payload.append(`variants[${index}][imageIndexes]`, JSON.stringify([]));
+      }
+    });
 
     // Log the payload for debugging
-    console.log("Creating product with payload:", payload);
+    console.log("Creating product with payload:");
     for (const [key, value] of payload.entries()) {
       console.log(`${key}:`, value);
     }
@@ -82,13 +116,6 @@ const ProductsDashboard = () => {
     payload.append("isBestSeller", data.isBestSeller.toString());
     payload.append("isFeatured", data.isFeatured.toString());
     payload.append("categoryId", data.categoryId || "");
-    if (data.images && Array.isArray(data.images)) {
-      data.images.forEach((file: File | string) => {
-        if (file instanceof File || typeof file === "string") {
-          payload.append("images", file);
-        }
-      });
-    }
     payload.append("variants", JSON.stringify(data.variants));
 
     try {
@@ -149,7 +176,10 @@ const ProductsDashboard = () => {
         <div>
           {row.variants?.length > 0 ? (
             row.variants.map((v: any) => (
-              <span key={v.id} className="inline-block mr-2 bg-gray-100 px-2 py-1 rounded">
+              <span
+                key={v.id}
+                className="inline-block mr-2 bg-gray-100 px-2 py-1 rounded"
+              >
                 {v.sku}
               </span>
             ))
@@ -197,7 +227,9 @@ const ProductsDashboard = () => {
             disabled={isDeleting}
           >
             <Trash2 size={16} />
-            {isDeleting && productToDelete === row.id ? "Deleting..." : "Delete"}
+            {isDeleting && productToDelete === row.id
+              ? "Deleting..."
+              : "Delete"}
           </button>
         </div>
       ),

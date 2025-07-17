@@ -7,10 +7,11 @@ export interface ProductFormData {
   isTrending: boolean;
   isBestSeller: boolean;
   isFeatured: boolean;
-  images: (File | string)[];
   variants: {
+    id: string;
     sku: string;
     price: number;
+    images: File[];
     stock: number;
     lowStockThreshold?: number;
     barcode?: string;

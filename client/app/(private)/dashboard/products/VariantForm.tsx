@@ -2,35 +2,51 @@
 import { Controller, useFieldArray, UseFormReturn } from "react-hook-form";
 import { Trash2, Plus } from "lucide-react";
 import Dropdown from "@/app/components/molecules/Dropdown";
+import ImageUploader from "@/app/components/molecules/ImageUploader";
 import { ProductFormData } from "./product.types";
 
 interface VariantFormProps {
   form: UseFormReturn<ProductFormData>;
-  categoryAttributes: { id: string; name: string; isRequired: boolean; values: { id: string; value: string; slug: string }[] }[];
+  categoryAttributes: {
+    id: string;
+    name: string;
+    isRequired: boolean;
+    values: { id: string; value: string; slug: string }[];
+  }[];
 }
 
-const VariantForm: React.FC<VariantFormProps> = ({ form, categoryAttributes }) => {
-  const { control, formState: { errors } } = form;
+const VariantForm: React.FC<VariantFormProps> = ({
+  form,
+  categoryAttributes,
+}) => {
+  const {
+    control,
+    formState: { errors },
+    setValue,
+  } = form;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "variants",
   });
-  console.log('categoryAttributes:', categoryAttributes);
 
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <label className="block text-sm font-medium text-gray-700">Variants</label>
+        <label className="block text-sm font-medium text-gray-700">
+          Variants
+        </label>
         <button
           type="button"
           onClick={() =>
             append({
+              id: "",
               sku: "",
               price: 0,
               stock: 0,
               lowStockThreshold: 10,
               barcode: "",
               warehouseLocation: "",
+              images: [],
               attributes: categoryAttributes
                 .filter((attr) => attr.isRequired)
                 .map((attr) => ({ attributeId: attr.id, valueId: "" })),
@@ -44,7 +60,10 @@ const VariantForm: React.FC<VariantFormProps> = ({ form, categoryAttributes }) =
       </div>
 
       {fields.map((field, index) => (
-        <div key={field.id} className="border p-4 rounded-lg bg-gray-50 space-y-4">
+        <div
+          key={field.id}
+          className="border p-4 rounded-lg bg-gray-50 space-y-4"
+        >
           <div className="flex justify-between items-center">
             <h3 className="text-sm font-medium">Variant {index + 1}</h3>
             <button
@@ -58,11 +77,19 @@ const VariantForm: React.FC<VariantFormProps> = ({ form, categoryAttributes }) =
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">SKU</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                SKU
+              </label>
               <Controller
                 name={`variants.${index}.sku`}
                 control={control}
-                rules={{ required: "SKU is required", pattern: { value: /^[a-zA-Z0-9-]+$/, message: "SKU must be alphanumeric with dashes" } }}
+                rules={{
+                  required: "SKU is required",
+                  pattern: {
+                    value: /^[a-zA-Z0-9-]+$/,
+                    message: "SKU must be alphanumeric with dashes",
+                  },
+                }}
                 render={({ field }) => (
                   <input
                     {...field}
@@ -73,16 +100,23 @@ const VariantForm: React.FC<VariantFormProps> = ({ form, categoryAttributes }) =
                 )}
               />
               {errors.variants?.[index]?.sku && (
-                <p className="text-red-500 text-xs mt-1">{errors.variants[index].sku?.message}</p>
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.variants[index].sku?.message}
+                </p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Price</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Price
+              </label>
               <Controller
                 name={`variants.${index}.price`}
                 control={control}
-                rules={{ required: "Price is required", min: { value: 0.01, message: "Price must be positive" } }}
+                rules={{
+                  required: "Price is required",
+                  min: { value: 0.01, message: "Price must be positive" },
+                }}
                 render={({ field }) => (
                   <input
                     {...field}
@@ -94,16 +128,23 @@ const VariantForm: React.FC<VariantFormProps> = ({ form, categoryAttributes }) =
                 )}
               />
               {errors.variants?.[index]?.price && (
-                <p className="text-red-500 text-xs mt-1">{errors.variants[index].price?.message}</p>
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.variants[index].price?.message}
+                </p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Stock</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Stock
+              </label>
               <Controller
                 name={`variants.${index}.stock`}
                 control={control}
-                rules={{ required: "Stock is required", min: { value: 0, message: "Stock cannot be negative" } }}
+                rules={{
+                  required: "Stock is required",
+                  min: { value: 0, message: "Stock cannot be negative" },
+                }}
                 render={({ field }) => (
                   <input
                     {...field}
@@ -114,16 +155,25 @@ const VariantForm: React.FC<VariantFormProps> = ({ form, categoryAttributes }) =
                 )}
               />
               {errors.variants?.[index]?.stock && (
-                <p className="text-red-500 text-xs mt-1">{errors.variants[index].stock?.message}</p>
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.variants[index].stock?.message}
+                </p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Low Stock Threshold</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Low Stock Threshold
+              </label>
               <Controller
                 name={`variants.${index}.lowStockThreshold`}
                 control={control}
-                rules={{ min: { value: 0, message: "Low stock threshold cannot be negative" } }}
+                rules={{
+                  min: {
+                    value: 0,
+                    message: "Low stock threshold cannot be negative",
+                  },
+                }}
                 render={({ field }) => (
                   <input
                     {...field}
@@ -134,12 +184,16 @@ const VariantForm: React.FC<VariantFormProps> = ({ form, categoryAttributes }) =
                 )}
               />
               {errors.variants?.[index]?.lowStockThreshold && (
-                <p className="text-red-500 text-xs mt-1">{errors.variants[index].lowStockThreshold?.message}</p>
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.variants[index].lowStockThreshold?.message}
+                </p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Barcode</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Barcode
+              </label>
               <Controller
                 name={`variants.${index}.barcode`}
                 control={control}
@@ -155,7 +209,9 @@ const VariantForm: React.FC<VariantFormProps> = ({ form, categoryAttributes }) =
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Warehouse Location</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Warehouse Location
+              </label>
               <Controller
                 name={`variants.${index}.warehouseLocation`}
                 control={control}
@@ -169,33 +225,74 @@ const VariantForm: React.FC<VariantFormProps> = ({ form, categoryAttributes }) =
                 )}
               />
             </div>
+
+            <div className="col-span-2">
+              <ImageUploader
+                control={control}
+                errors={errors}
+                setValue={setValue}
+                label="Variant Images"
+                name={`variants.${index}.images`}
+                maxFiles={5}
+              />
+              {errors.variants?.[index]?.images && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.variants[index].images?.message}
+                </p>
+              )}
+            </div>
           </div>
 
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">Attributes</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Attributes
+            </label>
             {categoryAttributes.map((attr) => (
               <div key={attr.id}>
-                <label className="block text-sm font-medium text-gray-600 mb-1">{attr.name} {attr.isRequired && <span className="text-red-500">*</span>}</label>
+                <label className="block text-sm font-medium text-gray-600 mb-1">
+                  {attr.name}{" "}
+                  {attr.isRequired && <span className="text-red-500">*</span>}
+                </label>
                 <Controller
-                  name={`variants.${index}.attributes[${categoryAttributes.indexOf(attr)}].valueId`}
+                  name={`variants.${index}.attributes[${categoryAttributes.indexOf(
+                    attr
+                  )}].valueId`}
                   control={control}
-                  rules={attr.isRequired ? { required: `${attr.name} is required` } : undefined}
+                  rules={
+                    attr.isRequired
+                      ? { required: `${attr.name} is required` }
+                      : undefined
+                  }
                   render={({ field }) => (
                     <Dropdown
-                      options={attr.values.map((v) => ({ label: v.value, value: v.id }))}
+                      options={attr.values.map((v) => ({
+                        label: v.value,
+                        value: v.id,
+                      }))}
                       value={field.value}
                       onChange={(value) => {
                         field.onChange(value);
-                        form.setValue(`variants.${index}.attributes[${categoryAttributes.indexOf(attr)}].attributeId`, attr.id);
+                        form.setValue(
+                          `variants.${index}.attributes[${categoryAttributes.indexOf(
+                            attr
+                          )}].attributeId`,
+                          attr.id
+                        );
                       }}
                       label={`Select ${attr.name}`}
                       className="py-[14px]"
                     />
                   )}
                 />
-                {errors.variants?.[index]?.attributes?.[categoryAttributes.indexOf(attr)]?.valueId && (
+                {errors.variants?.[index]?.attributes?.[
+                  categoryAttributes.indexOf(attr)
+                ]?.valueId && (
                   <p className="text-red-500 text-xs mt-1">
-                    {errors.variants[index].attributes?.[categoryAttributes.indexOf(attr)]?.valueId?.message}
+                    {
+                      errors.variants[index].attributes?.[
+                        categoryAttributes.indexOf(attr)
+                      ]?.valueId?.message
+                    }
                   </p>
                 )}
               </div>
@@ -204,7 +301,9 @@ const VariantForm: React.FC<VariantFormProps> = ({ form, categoryAttributes }) =
         </div>
       ))}
       {errors.variants && !Array.isArray(errors.variants) && (
-        <p className="text-red-500 text-xs mt-1">At least one variant is required</p>
+        <p className="text-red-500 text-xs mt-1">
+          At least one variant is required
+        </p>
       )}
     </div>
   );

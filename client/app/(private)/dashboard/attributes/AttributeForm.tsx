@@ -1,34 +1,29 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
 import { Plus } from "lucide-react";
 import useToast from "@/app/hooks/ui/useToast";
-import Dropdown from "@/app/components/molecules/Dropdown";
 import { useCreateAttributeMutation } from "@/app/store/apis/AttributeApi";
 
 const AttributeForm: React.FC<any> = () => {
   const { showToast } = useToast();
-  const [createAttribute, { isLoading: isCreatingAttribute, error }] = useCreateAttributeMutation()
-  console.log('Failed to create attribute', error)
+  const [createAttribute, { isLoading: isCreatingAttribute, error }] =
+    useCreateAttributeMutation();
+  console.log("Failed to create attribute", error);
 
   const [newAttribute, setNewAttribute] = useState({
     name: "",
-    type: "select",
   });
-  console.log('new Attribute => ', newAttribute)
-
-  const attributeTypeOptions = [
-    { label: "Select", value: "select" },
-    { label: "Text", value: "text" },
-    { label: "Multi-Select", value: "multiselect" },
-  ];
+  console.log("new Attribute => ", newAttribute);
 
   const handleCreateAttribute = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await createAttribute({ name: newAttribute.name, type: newAttribute.type });
+      await createAttribute({
+        name: newAttribute.name,
+      });
       showToast("Attribute created successfully", "success");
-      setNewAttribute({ name: "", type: "select" });
+      setNewAttribute({ name: "" });
     } catch (err) {
       console.log("error => ", err);
       showToast("Failed to create attribute", "error");
@@ -54,19 +49,6 @@ const AttributeForm: React.FC<any> = () => {
             placeholder="e.g., Color, Size, Material"
             className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             required
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Attribute Type
-          </label>
-          <Dropdown
-            options={attributeTypeOptions}
-            value={newAttribute.type}
-            onChange={(value) =>
-              setNewAttribute((prev) => ({ ...prev, type: value || "select" }))
-            }
           />
         </div>
 

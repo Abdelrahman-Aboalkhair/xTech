@@ -46,11 +46,17 @@ export class VariantService {
     };
   }
 
-  async getRestockHistory(variantId: string, page: number = 1, limit: number = 10) {
+  async getRestockHistory(
+    variantId: string,
+    page: number = 1,
+    limit: number = 10
+  ) {
     const skip = (page - 1) * limit;
     const take = limit;
 
-    const totalResults = await this.variantRepository.countRestocks({ variantId });
+    const totalResults = await this.variantRepository.countRestocks({
+      variantId,
+    });
     const totalPages = Math.ceil(totalResults / take);
     const currentPage = page;
 
@@ -89,6 +95,7 @@ export class VariantService {
     productId: string;
     sku: string;
     price: number;
+    images: string[];
     stock: number;
     lowStockThreshold?: number;
     barcode?: string;
@@ -97,7 +104,9 @@ export class VariantService {
   }) {
     const { productId, attributes } = data;
 
-    const product = await prisma.product.findUnique({ where: { id: productId } });
+    const product = await prisma.product.findUnique({
+      where: { id: productId },
+    });
     if (!product) {
       throw new AppError(404, "Product not found");
     }
@@ -118,7 +127,9 @@ export class VariantService {
         where: { categoryId: product.categoryId, isRequired: true },
         select: { attributeId: true },
       });
-      const requiredAttributeIds = requiredAttributes.map((attr) => attr.attributeId);
+      const requiredAttributeIds = requiredAttributes.map(
+        (attr) => attr.attributeId
+      );
       const variantAttributeIds = attributes.map((attr) => attr.attributeId);
       const missingAttributes = requiredAttributeIds.filter(
         (id) => !variantAttributeIds.includes(id)
@@ -126,7 +137,9 @@ export class VariantService {
       if (missingAttributes.length > 0) {
         throw new AppError(
           400,
-          `Variant is missing required attributes: ${missingAttributes.join(", ")}`
+          `Variant is missing required attributes: ${missingAttributes.join(
+            ", "
+          )}`
         );
       }
     }
@@ -155,18 +168,23 @@ export class VariantService {
       where: { productId },
       include: { attributes: true },
     });
+
     const newComboKey = attributes
       .map((a) => `${a.attributeId}:${a.valueId}`)
       .sort()
       .join("|");
-    const isDuplicateCombo = existingVariants.some((v) =>
-      v.attributes
-        .map((a) => `${a.attributeId}:${a.valueId}`)
-        .sort()
-        .join("|") === newComboKey
+    const isDuplicateCombo = existingVariants.some(
+      (v) =>
+        v.attributes
+          .map((a) => `${a.attributeId}:${a.valueId}`)
+          .sort()
+          .join("|") === newComboKey
     );
     if (isDuplicateCombo) {
-      throw new AppError(400, "Duplicate attribute combination for this product");
+      throw new AppError(
+        400,
+        "Duplicate attribute combination for this product"
+      );
     }
 
     return this.variantRepository.createVariant(data);
@@ -177,6 +195,7 @@ export class VariantService {
     data: Partial<{
       sku: string;
       price: number;
+      images?: string[];
       stock: number;
       lowStockThreshold?: number;
       barcode?: string;
@@ -184,7 +203,9 @@ export class VariantService {
       attributes: { attributeId: string; valueId: string }[];
     }>
   ) {
-    const existingVariant = await this.variantRepository.findVariantById(variantId);
+    const existingVariant = await this.variantRepository.findVariantById(
+      variantId
+    );
     if (!existingVariant) {
       throw new AppError(404, "Variant not found");
     }
@@ -211,20 +232,28 @@ export class VariantService {
           where: { categoryId: product.categoryId, isRequired: true },
           select: { attributeId: true },
         });
-        const requiredAttributeIds = requiredAttributes.map((attr) => attr.attributeId);
-        const variantAttributeIds = data.attributes.map((attr) => attr.attributeId);
+        const requiredAttributeIds = requiredAttributes.map(
+          (attr) => attr.attributeId
+        );
+        const variantAttributeIds = data.attributes.map(
+          (attr) => attr.attributeId
+        );
         const missingAttributes = requiredAttributeIds.filter(
           (id) => !variantAttributeIds.includes(id)
         );
         if (missingAttributes.length > 0) {
           throw new AppError(
             400,
-            `Variant is missing required attributes: ${missingAttributes.join(", ")}`
+            `Variant is missing required attributes: ${missingAttributes.join(
+              ", "
+            )}`
           );
         }
       }
 
-      const allAttributeIds = [...new Set(data.attributes.map((a) => a.attributeId))];
+      const allAttributeIds = [
+        ...new Set(data.attributes.map((a) => a.attributeId)),
+      ];
       const existingAttributes = await prisma.attribute.findMany({
         where: { id: { in: allAttributeIds } },
       });
@@ -252,26 +281,37 @@ export class VariantService {
         .map((a) => `${a.attributeId}:${a.valueId}`)
         .sort()
         .join("|");
-      const isDuplicateCombo = existingVariants.some((v) =>
-        v.attributes
-          .map((a) => `${a.attributeId}:${a.valueId}`)
-          .sort()
-          .join("|") === newComboKey
+      const isDuplicateCombo = existingVariants.some(
+        (v) =>
+          v.attributes
+            .map((a) => `${a.attributeId}:${a.valueId}`)
+            .sort()
+            .join("|") === newComboKey
       );
       if (isDuplicateCombo) {
-        throw new AppError(400, "Duplicate attribute combination for this product");
+        throw new AppError(
+          400,
+          "Duplicate attribute combination for this product"
+        );
       }
     }
 
     return this.variantRepository.updateVariant(variantId, data);
   }
 
-  async restockVariant(variantId: string, quantity: number, notes?: string, userId?: string) {
+  async restockVariant(
+    variantId: string,
+    quantity: number,
+    notes?: string,
+    userId?: string
+  ) {
     if (quantity <= 0) {
       throw new AppError(400, "Quantity must be positive");
     }
 
-    const existingVariant = await this.variantRepository.findVariantById(variantId);
+    const existingVariant = await this.variantRepository.findVariantById(
+      variantId
+    );
     if (!existingVariant) {
       throw new AppError(404, "Variant not found");
     }
@@ -293,10 +333,13 @@ export class VariantService {
         userId,
       });
 
-      const updatedVariant = await this.variantRepository.findVariantById(variantId);
-      const isLowStock = updatedVariant?.stock && updatedVariant.lowStockThreshold
-        ? updatedVariant.stock <= updatedVariant.lowStockThreshold
-        : false;
+      const updatedVariant = await this.variantRepository.findVariantById(
+        variantId
+      );
+      const isLowStock =
+        updatedVariant?.stock && updatedVariant.lowStockThreshold
+          ? updatedVariant.stock <= updatedVariant.lowStockThreshold
+          : false;
 
       return { restock, isLowStock };
     });

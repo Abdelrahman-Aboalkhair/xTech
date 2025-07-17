@@ -67,11 +67,9 @@ export class ProductService {
     return product;
   }
 
-
   async createProduct(data: {
     name: string;
     description?: string;
-    images?: string[];
     isNew?: boolean;
     isTrending?: boolean;
     isBestSeller?: boolean;
@@ -80,6 +78,7 @@ export class ProductService {
     variants?: {
       sku: string;
       price: number;
+      images: string[];
       stock: number;
       lowStockThreshold?: number;
       barcode?: string;
@@ -96,45 +95,66 @@ export class ProductService {
     // Validate SKU format (alphanumeric with dashes, 3-50 characters)
     const skuRegex = /^[a-zA-Z0-9-]+$/;
     variants.forEach((variant, index) => {
-      if (!variant.sku || !skuRegex.test(variant.sku) || variant.sku.length < 3 || variant.sku.length > 50) {
-        throw new AppError(400, `Variant at index ${index} has invalid SKU. Use alphanumeric characters and dashes, 3-50 characters.`);
+      if (
+        !variant.sku ||
+        !skuRegex.test(variant.sku) ||
+        variant.sku.length < 3 ||
+        variant.sku.length > 50
+      ) {
+        throw new AppError(
+          400,
+          `Variant at index ${index} has invalid SKU. Use alphanumeric characters and dashes, 3-50 characters.`
+        );
       }
       if (variant.price <= 0) {
-        throw new AppError(400, `Variant at index ${index} must have a positive price`);
+        throw new AppError(
+          400,
+          `Variant at index ${index} must have a positive price`
+        );
       }
       if (variant.stock < 0) {
-        throw new AppError(400, `Variant at index ${index} must have non-negative stock`);
+        throw new AppError(
+          400,
+          `Variant at index ${index} must have non-negative stock`
+        );
       }
       if (variant.lowStockThreshold && variant.lowStockThreshold < 0) {
-        throw new AppError(400, `Variant at index ${index} must have non-negative lowStockThreshold`);
+        throw new AppError(
+          400,
+          `Variant at index ${index} must have non-negative lowStockThreshold`
+        );
       }
     });
-
-    // Validate images
-    if (productData.images) {
-      productData.images.forEach((url, index) => {
-        if (!url.startsWith("http") || url.length > 2048) {
-          throw new AppError(400, `Image URL at index ${index} is invalid or too long`);
-        }
-      });
-    }
 
     // Validate category and required attributes
     let requiredAttributeIds: string[] = [];
     if (productData.categoryId) {
       const category = await prisma.category.findUnique({
         where: { id: productData.categoryId },
-        include: { attributes: { where: { isRequired: true }, select: { attributeId: true } } },
+        include: {
+          attributes: {
+            where: { isRequired: true },
+            select: { attributeId: true },
+          },
+        },
       });
       if (!category) {
         throw new AppError(404, "Category not found");
       }
-      requiredAttributeIds = category.attributes.map((attr) => attr.attributeId);
+      requiredAttributeIds = category.attributes.map(
+        (attr) => attr.attributeId
+      );
     }
 
     // Validate attributes and values in one query
-    const allAttributeIds = [...new Set(variants.flatMap((v) => v.attributes.map((a) => a.attributeId)))];
-    const allValueIds = [...new Set(variants.flatMap((v) => v.attributes.map((a) => a.valueId)))];
+    const allAttributeIds = [
+      ...new Set(
+        variants.flatMap((v) => v.attributes.map((a) => a.attributeId))
+      ),
+    ];
+    const allValueIds = [
+      ...new Set(variants.flatMap((v) => v.attributes.map((a) => a.valueId))),
+    ];
     const [existingAttributes, existingValues] = await Promise.all([
       prisma.attribute.findMany({
         where: { id: { in: allAttributeIds } },
@@ -158,7 +178,10 @@ export class ProductService {
       variant.attributes.forEach((attr, attrIndex) => {
         const value = existingValues.find((v) => v.id === attr.valueId);
         if (!value || value.attributeId !== attr.attributeId) {
-          throw new AppError(400, `Attribute value at variant index ${index}, attribute index ${attrIndex} does not belong to the specified attribute`);
+          throw new AppError(
+            400,
+            `Attribute value at variant index ${index}, attribute index ${attrIndex} does not belong to the specified attribute`
+          );
         }
       });
     });
@@ -169,7 +192,10 @@ export class ProductService {
       select: { sku: true },
     });
     if (existingSkus.length > 0) {
-      throw new AppError(400, `Duplicate SKUs detected: ${existingSkus.map((s) => s.sku).join(", ")}`);
+      throw new AppError(
+        400,
+        `Duplicate SKUs detected: ${existingSkus.map((s) => s.sku).join(", ")}`
+      );
     }
 
     // Validate unique attribute combinations
@@ -185,10 +211,19 @@ export class ProductService {
 
     // Validate required attributes
     variants.forEach((variant, index) => {
-      const variantAttributeIds = variant.attributes.map((attr) => attr.attributeId);
-      const missingAttributes = requiredAttributeIds.filter((id) => !variantAttributeIds.includes(id));
+      const variantAttributeIds = variant.attributes.map(
+        (attr) => attr.attributeId
+      );
+      const missingAttributes = requiredAttributeIds.filter(
+        (id) => !variantAttributeIds.includes(id)
+      );
       if (missingAttributes.length > 0) {
-        throw new AppError(400, `Variant at index ${index} is missing required attributes: ${missingAttributes.join(", ")}`);
+        throw new AppError(
+          400,
+          `Variant at index ${index} is missing required attributes: ${missingAttributes.join(
+            ", "
+          )}`
+        );
       }
     });
 
@@ -209,6 +244,7 @@ export class ProductService {
           barcode: variant.barcode,
           warehouseLocation: variant.warehouseLocation,
           attributes: variant.attributes,
+          images: variant.images || [],
         });
       }
 
@@ -223,7 +259,6 @@ export class ProductService {
       description?: string;
       basePrice: number;
       discount?: number;
-      images?: string[];
       isNew?: boolean;
       isTrending?: boolean;
       isBestSeller?: boolean;
@@ -232,6 +267,7 @@ export class ProductService {
       variants?: {
         sku: string;
         price: number;
+        images: string[];
         stock: number;
         lowStockThreshold?: number;
         barcode?: string;
@@ -240,7 +276,9 @@ export class ProductService {
       }[];
     }>
   ) {
-    const existingProduct = await this.productRepository.findProductById(productId);
+    const existingProduct = await this.productRepository.findProductById(
+      productId
+    );
     if (!existingProduct) {
       throw new AppError(404, "Product not found");
     }
@@ -255,21 +293,42 @@ export class ProductService {
 
       const skuRegex = /^[a-zA-Z0-9-]+$/;
       variants.forEach((variant, index) => {
-        if (!variant.sku || !skuRegex.test(variant.sku) || variant.sku.length < 3 || variant.sku.length > 50) {
-          throw new AppError(400, `Variant at index ${index} has an invalid SKU. Use alphanumeric characters and dashes, 3-50 characters.`);
+        if (
+          !variant.sku ||
+          !skuRegex.test(variant.sku) ||
+          variant.sku.length < 3 ||
+          variant.sku.length > 50
+        ) {
+          throw new AppError(
+            400,
+            `Variant at index ${index} has an invalid SKU. Use alphanumeric characters and dashes, 3-50 characters.`
+          );
         }
         if (variant.price <= 0) {
-          throw new AppError(400, `Variant at index ${index} must have a positive price`);
+          throw new AppError(
+            400,
+            `Variant at index ${index} must have a positive price`
+          );
         }
         if (variant.stock < 0) {
-          throw new AppError(400, `Variant at index ${index} must have a non-negative stock`);
+          throw new AppError(
+            400,
+            `Variant at index ${index} must have a non-negative stock`
+          );
         }
         if (variant.lowStockThreshold && variant.lowStockThreshold < 0) {
-          throw new AppError(400, `Variant at index ${index} must have a non-negative lowStockThreshold`);
+          throw new AppError(
+            400,
+            `Variant at index ${index} must have a non-negative lowStockThreshold`
+          );
         }
       });
 
-      const allAttributeIds = [...new Set(variants.flatMap((v) => v.attributes.map((a) => a.attributeId)))];
+      const allAttributeIds = [
+        ...new Set(
+          variants.flatMap((v) => v.attributes.map((a) => a.attributeId))
+        ),
+      ];
       const existingAttributes = await prisma.attribute.findMany({
         where: { id: { in: allAttributeIds } },
       });
@@ -277,7 +336,9 @@ export class ProductService {
         throw new AppError(400, "One or more attributes are invalid");
       }
 
-      const allValueIds = [...new Set(variants.flatMap((v) => v.attributes.map((a) => a.valueId)))];
+      const allValueIds = [
+        ...new Set(variants.flatMap((v) => v.attributes.map((a) => a.valueId))),
+      ];
       const existingValues = await prisma.attributeValue.findMany({
         where: { id: { in: allValueIds } },
       });
@@ -307,28 +368,37 @@ export class ProductService {
           where: { categoryId, isRequired: true },
           select: { attributeId: true },
         });
-        requiredAttributeIds = requiredAttributes.map((attr) => attr.attributeId);
+        requiredAttributeIds = requiredAttributes.map(
+          (attr) => attr.attributeId
+        );
       }
 
       variants.forEach((variant, index) => {
-        const variantAttributeIds = variant.attributes.map((attr) => attr.attributeId);
+        const variantAttributeIds = variant.attributes.map(
+          (attr) => attr.attributeId
+        );
         const missingAttributes = requiredAttributeIds.filter(
           (id) => !variantAttributeIds.includes(id)
         );
         if (missingAttributes.length > 0) {
           throw new AppError(
             400,
-            `Variant at index ${index} is missing required attributes: ${missingAttributes.join(", ")}`
+            `Variant at index ${index} is missing required attributes: ${missingAttributes.join(
+              ", "
+            )}`
           );
         }
       });
     }
 
     return prisma.$transaction(async (tx) => {
-      const updatedProduct = await this.productRepository.updateProduct(productId, {
-        ...productData,
-        ...(productData.name && { slug: slugify(productData.name) }),
-      });
+      const updatedProduct = await this.productRepository.updateProduct(
+        productId,
+        {
+          ...productData,
+          ...(productData.name && { slug: slugify(productData.name) }),
+        }
+      );
 
       if (variants) {
         await prisma.productVariant.deleteMany({ where: { productId } });
@@ -342,6 +412,7 @@ export class ProductService {
             barcode: variant.barcode,
             warehouseLocation: variant.warehouseLocation,
             attributes: variant.attributes,
+            images: variant.images || [],
           });
         }
       }
@@ -389,17 +460,16 @@ export class ProductService {
       return {
         name: String(record.name),
         slug: slugify(record.name),
-        description: record.description ? String(record.description) : undefined,
+        description: record.description
+          ? String(record.description)
+          : undefined,
         basePrice: Number(record.basePrice),
         discount: record.discount ? Number(record.discount) : 0,
-        images: record.images
-          ? String(record.images)
-              .split(",")
-              .map((img: string) => img.trim())
-          : [],
         isNew: record.isNew ? Boolean(record.isNew) : false,
         isTrending: record.isTrending ? Boolean(record.isTrending) : false,
-        isBestSeller: record.isBestSeller ? Boolean(record.isBestSeller) : false,
+        isBestSeller: record.isBestSeller
+          ? Boolean(record.isBestSeller)
+          : false,
         isFeatured: record.isFeatured ? Boolean(record.isFeatured) : false,
         categoryId: record.categoryId ? String(record.categoryId) : undefined,
       };
