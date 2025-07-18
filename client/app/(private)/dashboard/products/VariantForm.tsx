@@ -29,12 +29,15 @@ const VariantForm: React.FC<VariantFormProps> = ({
     name: "variants",
   });
 
+  const inputStyles =
+    "w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-colors";
+
   return (
-    <div className="space-y-4">
+    <div className="space-y-6 p-6 bg-white rounded-xl shadow-sm">
       <div className="flex justify-between items-center">
-        <label className="block text-sm font-medium text-gray-700">
-          Variants
-        </label>
+        <h2 className="text-lg font-semibold text-gray-900">
+          Product Variants
+        </h2>
         <button
           type="button"
           onClick={() =>
@@ -52,30 +55,31 @@ const VariantForm: React.FC<VariantFormProps> = ({
                 .map((attr) => ({ attributeId: attr.id, valueId: "" })),
             })
           }
-          className="flex items-center text-blue-600 hover:text-blue-800"
+          className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
         >
-          <Plus size={16} className="mr-1" />
-          Add Variant
+          <Plus size={20} /> Add Variant
         </button>
       </div>
 
       {fields.map((field, index) => (
         <div
           key={field.id}
-          className="border p-4 rounded-lg bg-gray-50 space-y-4"
+          className="border border-gray-200 rounded-lg p-4 space-y-4"
         >
           <div className="flex justify-between items-center">
-            <h3 className="text-sm font-medium">Variant {index + 1}</h3>
+            <h3 className="text-base font-medium text-gray-800">
+              Variant {index + 1}
+            </h3>
             <button
               type="button"
               onClick={() => remove(index)}
-              className="text-red-600 hover:text-red-800"
+              className="text-red-500 hover:text-red-600"
             >
-              <Trash2 size={16} />
+              <Trash2 size={20} />
             </button>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 SKU
@@ -94,7 +98,7 @@ const VariantForm: React.FC<VariantFormProps> = ({
                   <input
                     {...field}
                     type="text"
-                    className="px-4 py-3 w-full border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={inputStyles}
                     placeholder="TSH-RED-S"
                   />
                 )}
@@ -122,7 +126,7 @@ const VariantForm: React.FC<VariantFormProps> = ({
                     {...field}
                     type="number"
                     step="0.01"
-                    className="px-4 py-3 w-full border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={inputStyles}
                     placeholder="19.99"
                   />
                 )}
@@ -149,7 +153,7 @@ const VariantForm: React.FC<VariantFormProps> = ({
                   <input
                     {...field}
                     type="number"
-                    className="px-4 py-3 w-full border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={inputStyles}
                     placeholder="50"
                   />
                 )}
@@ -168,17 +172,12 @@ const VariantForm: React.FC<VariantFormProps> = ({
               <Controller
                 name={`variants.${index}.lowStockThreshold`}
                 control={control}
-                rules={{
-                  min: {
-                    value: 0,
-                    message: "Low stock threshold cannot be negative",
-                  },
-                }}
+                rules={{ min: { value: 0, message: "Cannot be negative" } }}
                 render={({ field }) => (
                   <input
                     {...field}
                     type="number"
-                    className="px-4 py-3 w-full border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={inputStyles}
                     placeholder="10"
                   />
                 )}
@@ -201,7 +200,7 @@ const VariantForm: React.FC<VariantFormProps> = ({
                   <input
                     {...field}
                     type="text"
-                    className="px-4 py-3 w-full border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={inputStyles}
                     placeholder="123456789012"
                   />
                 )}
@@ -219,14 +218,14 @@ const VariantForm: React.FC<VariantFormProps> = ({
                   <input
                     {...field}
                     type="text"
-                    className="px-4 py-3 w-full border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={inputStyles}
                     placeholder="WH-A1"
                   />
                 )}
               />
             </div>
 
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <ImageUploader
                 control={control}
                 errors={errors}
@@ -243,20 +242,16 @@ const VariantForm: React.FC<VariantFormProps> = ({
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">
-              Attributes
-            </label>
-            {categoryAttributes.map((attr) => (
+          <div className="space-y-3">
+            <h4 className="text-sm font-medium text-gray-700">Attributes</h4>
+            {categoryAttributes.map((attr, attrIndex) => (
               <div key={attr.id}>
                 <label className="block text-sm font-medium text-gray-600 mb-1">
                   {attr.name}{" "}
                   {attr.isRequired && <span className="text-red-500">*</span>}
                 </label>
                 <Controller
-                  name={`variants.${index}.attributes[${categoryAttributes.indexOf(
-                    attr
-                  )}].valueId`}
+                  name={`variants.${index}.attributes[${attrIndex}].valueId`}
                   control={control}
                   rules={
                     attr.isRequired
@@ -273,25 +268,20 @@ const VariantForm: React.FC<VariantFormProps> = ({
                       onChange={(value) => {
                         field.onChange(value);
                         form.setValue(
-                          `variants.${index}.attributes[${categoryAttributes.indexOf(
-                            attr
-                          )}].attributeId`,
+                          `variants.${index}.attributes[${attrIndex}].attributeId`,
                           attr.id
                         );
                       }}
                       label={`Select ${attr.name}`}
-                      className="py-[14px]"
+                      className="p-2"
                     />
                   )}
                 />
-                {errors.variants?.[index]?.attributes?.[
-                  categoryAttributes.indexOf(attr)
-                ]?.valueId && (
+                {errors.variants?.[index]?.attributes?.[attrIndex]?.valueId && (
                   <p className="text-red-500 text-xs mt-1">
                     {
-                      errors.variants[index].attributes?.[
-                        categoryAttributes.indexOf(attr)
-                      ]?.valueId?.message
+                      errors.variants[index].attributes?.[attrIndex]?.valueId
+                        ?.message
                     }
                   </p>
                 )}
@@ -301,7 +291,7 @@ const VariantForm: React.FC<VariantFormProps> = ({
         </div>
       ))}
       {errors.variants && !Array.isArray(errors.variants) && (
-        <p className="text-red-500 text-xs mt-1">
+        <p className="text-red-500 text-xs mt-2">
           At least one variant is required
         </p>
       )}

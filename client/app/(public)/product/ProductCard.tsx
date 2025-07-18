@@ -78,7 +78,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-1.5">
               {inStockVariants.length > 0 ? (
-                <span className="text-indigo-500 font-medium text-sm">
+                <span className="text-indigo-700 font-medium text-sm">
                   From ${lowestPrice.toFixed(2)}
                 </span>
               ) : (
@@ -89,9 +89,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
             <div className="flex items-center">
               <Rating rating={product.averageRating} />
-              <span className="text-gray-500 text-xs ml-1">
+              {/* <span className="text-gray-500 text-xs ml-1">
                 ({product.reviewCount || 0} reviews)
-              </span>
+              </span> */}
             </div>
           </div>
         </Link>

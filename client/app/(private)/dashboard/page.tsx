@@ -46,7 +46,7 @@ const Dashboard = () => {
   const { data, loading, error } = useQuery(GET_ANALYTICS_OVERVIEW, {
     variables: { params: queryParams },
   });
-  console.log('data => ', data);
+  console.log("data => ", data);
 
   const topItems =
     data?.productPerformance?.slice(0, 10).map((p) => ({
@@ -60,7 +60,6 @@ const Dashboard = () => {
     categories: data?.productPerformance?.map((p) => p.name) || [],
     data: data?.productPerformance?.map((p) => p.revenue) || [],
   };
-
 
   if (loading) {
     return <CustomLoader />;

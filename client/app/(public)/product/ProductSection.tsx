@@ -59,7 +59,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
         >
           <div className="flex items-center space-x-3">
             {/* <div className="h-6 w-1 rounded-full bg-primary"></div> */}
-            <span className="ml-2 text-xl font-extrabold font-sans tracking-wide text-gray-700 capitalize">
+            <span className="ml-2 text-xl font-bold font-sans tracking-wide text-gray-700 capitalize">
               {title}
             </span>
           </div>

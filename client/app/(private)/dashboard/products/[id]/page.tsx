@@ -8,7 +8,7 @@ import ConfirmModal from "@/app/components/organisms/ConfirmModal";
 import { useProductDetail } from "@/app/hooks/miscellaneous/useProductDetails";
 import CustomLoader from "@/app/components/feedback/CustomLoader";
 
-const ProductDetailPage = () => {
+const ManageProduct = () => {
   const {
     product,
     categories,
@@ -23,6 +23,11 @@ const ProductDetailPage = () => {
     onSubmit,
     handleDelete,
     router,
+    selectedVariant,
+    handleVariantChange,
+    resetSelections,
+    attributeGroups,
+    selectedAttributes,
   } = useProductDetail();
 
   if (productsLoading || categoriesLoading) {
@@ -38,7 +43,7 @@ const ProductDetailPage = () => {
             Error Loading Product
           </h2>
           <p className="text-gray-600 mb-6">
-            We couldn&apos;t retrieve the product information. Please try again
+            We couldn't retrieve the product information. Please try again
             later.
           </p>
           <button
@@ -101,6 +106,11 @@ const ProductDetailPage = () => {
             <ProductSummary
               product={product}
               categories={categories}
+              selectedVariant={selectedVariant}
+              attributeGroups={attributeGroups}
+              selectedAttributes={selectedAttributes}
+              onVariantChange={handleVariantChange}
+              resetSelections={resetSelections}
               isUpdating={isUpdating}
               onSave={() => form.handleSubmit(onSubmit)()}
             />
@@ -127,4 +137,4 @@ const ProductDetailPage = () => {
   );
 };
 
-export default ProductDetailPage;
+export default ManageProduct;

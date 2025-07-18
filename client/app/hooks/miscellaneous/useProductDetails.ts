@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import {
@@ -9,11 +9,10 @@ import {
 } from "@/app/store/apis/ProductApi";
 import { useGetAllCategoriesQuery } from "@/app/store/apis/CategoryApi";
 import useToast from "@/app/hooks/ui/useToast";
-import { ProductFormData } from "@/app/(private)/dashboard/products/page";
+import { ProductFormData } from "@/app/(private)/dashboard/products/product.types";
 
 export const useProductDetail = () => {
   const { id } = useParams();
-  console.log("product id from params: ", id);
   const router = useRouter();
   const { showToast } = useToast();
 
@@ -22,7 +21,6 @@ export const useProductDetail = () => {
     isLoading: productsLoading,
     error: productsError,
   } = useGetProductByIdQuery(id);
-  console.log("found product => ", product);
 
   const { data: categoriesData, isLoading: categoriesLoading } =
     useGetAllCategoriesQuery({});
@@ -36,53 +34,126 @@ export const useProductDetail = () => {
   const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
   const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
 
-  // Form setup
+  // Variant selection state
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  const [selectedAttributes, setSelectedAttributes] = useState({});
+
+  // Form setup with initial empty default values
   const form = useForm<ProductFormData>({
-    defaultValues: product
-      ? {
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          discount: product.discount,
-          stock: product.stock,
-          categoryId: product.categoryId,
-          description: product.description || "",
-          images: product.images || [],
-        }
-      : undefined,
+    defaultValues: {
+      id: "",
+      name: "",
+      description: "",
+      categoryId: "",
+      isNew: false,
+      isTrending: false,
+      isBestSeller: false,
+      isFeatured: false,
+      variants: [],
+    },
   });
 
-  // Deletion state
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  // Reset form and selected variant when product data is fetched
+  useEffect(() => {
+    if (product) {
+      form.reset({
+        id: product.id || "",
+        name: product.name || "",
+        description: product.description || "",
+        categoryId: product.categoryId || "",
+        isNew: product.isNew || false,
+        isTrending: product.isTrending || false,
+        isBestSeller: product.isBestSeller || false,
+        isFeatured: product.isFeatured || false,
+        variants:
+          product.variants?.map((v) => ({
+            id: v.id || "",
+            sku: v.sku || "",
+            price: v.price || 0,
+            stock: v.stock || 0,
+            lowStockThreshold: v.lowStockThreshold || 10,
+            barcode: v.barcode || "",
+            warehouseLocation: v.warehouseLocation || "",
+            attributes: v.attributes || [],
+            images: v.images || [],
+          })) || [],
+      });
+      // Set default selected variant to the first one
+      setSelectedVariant(product.variants?.[0] || null);
+      setSelectedAttributes({});
+    }
+  }, [product, form]);
+
+  // Handle variant change based on attribute selections
+  const handleVariantChange = (attributeName, value) => {
+    const newSelections = { ...selectedAttributes, [attributeName]: value };
+    setSelectedAttributes(newSelections);
+
+    const variant = product?.variants.find((v) =>
+      Object.entries(newSelections).every(
+        ([attrName, attrValue]) =>
+          attrName === "" ||
+          v.attributes.some(
+            (attr) =>
+              attr.attribute?.name === attrName &&
+              attr.value?.value === attrValue
+          )
+      )
+    );
+    setSelectedVariant(variant || product?.variants?.[0] || null);
+  };
+
+  // Reset variant selections
+  const resetSelections = () => {
+    setSelectedAttributes({});
+    setSelectedVariant(product?.variants?.[0] || null);
+  };
 
   // Handle update
   const onSubmit = async (data: ProductFormData) => {
     const payload = new FormData();
     payload.append("name", data.name || "");
-    payload.append("price", data.price.toString());
-    payload.append("discount", data.discount.toString());
-    payload.append("stock", data.stock.toString());
     payload.append("description", data.description || "");
+    payload.append("isNew", data.isNew.toString());
+    payload.append("isTrending", data.isTrending.toString());
+    payload.append("isBestSeller", data.isBestSeller.toString());
+    payload.append("isFeatured", data.isFeatured.toString());
     payload.append("categoryId", data.categoryId || "");
 
-    if (data.images && Array.isArray(data.images)) {
-      data.images.forEach((file: any) => {
-        payload.append("images", file);
-      });
-    }
-
-    // Log payload for debugging
-    console.log("FormData payload:");
-    for (const [key, value] of payload.entries()) {
-      console.log(`${key}: ${value instanceof File ? value.name : value}`);
-    }
+    // Handle variants
+    data.variants.forEach((variant, index) => {
+      payload.append(`variants[${index}][id]`, variant.id || "");
+      payload.append(`variants[${index}][sku]`, variant.sku || "");
+      payload.append(`variants[${index}][price]`, variant.price.toString());
+      payload.append(`variants[${index}][stock]`, variant.stock.toString());
+      payload.append(
+        `variants[${index}][lowStockThreshold]`,
+        variant.lowStockThreshold?.toString() || "10"
+      );
+      payload.append(`variants[${index}][barcode]`, variant.barcode || "");
+      payload.append(
+        `variants[${index}][warehouseLocation]`,
+        variant.warehouseLocation || ""
+      );
+      payload.append(
+        `variants[${index}][attributes]`,
+        JSON.stringify(variant.attributes || [])
+      );
+      // Handle new image uploads
+      if (variant.images && variant.images.length > 0) {
+        variant.images.forEach((file, fileIndex) => {
+          if (file instanceof File) {
+            payload.append(`images`, file);
+          }
+        });
+      }
+    });
 
     try {
       await updateProduct({
         id: id as string,
         data: payload,
       }).unwrap();
-      refetch();
       showToast("Product updated successfully", "success");
     } catch (err) {
       console.error("Failed to update product:", err);
@@ -102,6 +173,35 @@ export const useProductDetail = () => {
     }
   };
 
+  // Compute attribute groups for variant selection
+  const attributeGroups = product?.variants.reduce((acc, variant) => {
+    const hasSelections = Object.values(selectedAttributes).some(
+      (value) => value !== ""
+    );
+    const matchesSelections = hasSelections
+      ? Object.entries(selectedAttributes).every(
+          ([attrName, attrValue]) =>
+            attrName === "" ||
+            variant.attributes.some(
+              (attr) =>
+                attr.attribute?.name === attrName &&
+                attr.value?.value === attrValue
+            )
+        )
+      : true;
+    if (matchesSelections) {
+      variant.attributes.forEach(({ attribute, value }) => {
+        if (!acc[attribute.name]) {
+          acc[attribute.name] = { values: new Set<string>() };
+        }
+        acc[attribute.name].values.add(value.value);
+      });
+    }
+    return acc;
+  }, {} as Record<string, { values: Set<string> }>);
+
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+
   return {
     product,
     categories,
@@ -116,5 +216,11 @@ export const useProductDetail = () => {
     onSubmit,
     handleDelete,
     router,
+    selectedVariant,
+    setSelectedVariant,
+    selectedAttributes,
+    handleVariantChange,
+    resetSelections,
+    attributeGroups,
   };
 };

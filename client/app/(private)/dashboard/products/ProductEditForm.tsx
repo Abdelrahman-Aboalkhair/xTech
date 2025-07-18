@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { UseFormReturn } from "react-hook-form";
 import ProductForm from "./ProductForm";
-import { ProductFormData } from "./page";
+import { ProductFormData } from "./product.types";
 
 interface ProductEditFormProps {
   form: UseFormReturn<ProductFormData>;

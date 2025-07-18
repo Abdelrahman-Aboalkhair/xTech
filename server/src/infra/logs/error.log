@@ -2717,3 +2717,4 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-17T19:03:02.180Z] [31MERROR[39M: Refresh token not found
 [2025-07-18T09:01:56.950Z] [31MERROR[39M: Refresh token not found
 [2025-07-18T09:01:57.025Z] [31MERROR[39M: Refresh token not found
+[2025-07-18T13:17:07.605Z] [31MERROR[39M: Invalid access token, please log in
