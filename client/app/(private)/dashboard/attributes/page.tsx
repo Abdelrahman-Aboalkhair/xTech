@@ -6,10 +6,11 @@ import AttributeAssignment from "./AttributeAssignment";
 import AttributesList from "./AttributesList";
 import DashboardHeader from "./DashboardHeader";
 import { useGetAllAttributesQuery } from "@/app/store/apis/AttributeApi";
+import AttributesBoardView from "./AttributesBoardView";
 
 const AttributesDashboard: React.FC = () => {
-  const { data, isLoading, error } = useGetAllAttributesQuery(undefined)
-  console.log('attributes data => ', data)
+  const { data, isLoading, error } = useGetAllAttributesQuery(undefined);
+  console.log("attributes data => ", data);
 
   if (isLoading) {
     return (
@@ -28,7 +29,7 @@ const AttributesDashboard: React.FC = () => {
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto bg-gray-50 min-h-screen">
+    <div className="p-6 min-w-full bg-gray-50 min-h-screen">
       {/* Header */}
       <DashboardHeader />
 
@@ -41,16 +42,10 @@ const AttributesDashboard: React.FC = () => {
 
         {/* Right Column - Assignment & List */}
         <div className="lg:col-span-2 space-y-6">
-          <AttributeAssignment
-            attributes={data?.attributes || []}
-
-          />
-          <AttributesList
-            attributes={data?.attributes || []}
-
-          />
+          <AttributeAssignment attributes={data?.attributes || []} />
         </div>
       </div>
+      <AttributesBoardView attributes={data?.attributes || []} />
     </div>
   );
 };

@@ -48,7 +48,7 @@ export class AttributeRepository {
       orderBy,
       skip,
       take,
-      include: { values: true },
+      include: { values: true, categories: { include: { category: true } } },
     });
   }
 

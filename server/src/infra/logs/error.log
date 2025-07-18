@@ -2697,3 +2697,23 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-17T08:16:11.210Z] [31MERROR[39M: Invalid input. Please check your request data.
 [2025-07-17T08:17:55.226Z] [31MERROR[39M: Duplicate field value entered
 [2025-07-17T08:41:27.532Z] [31MERROR[39M: Invalid access token, please log in
+[2025-07-17T18:56:49.647Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-17T18:56:49.715Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-17T18:56:50.995Z] [31MERROR[39M: Unauthorized, please log in
+[2025-07-17T18:56:51.010Z] [31MERROR[39M: Your session has expired, please login again.
+[2025-07-17T19:01:29.285Z] [31MERROR[39M: Unauthorized, please log in
+[2025-07-17T19:01:29.319Z] [31MERROR[39M: Refresh token not found
+[2025-07-17T19:01:34.212Z] [31MERROR[39M: Refresh token not found
+[2025-07-17T19:01:34.229Z] [31MERROR[39M: Refresh token not found
+[2025-07-17T19:01:34.898Z] [31MERROR[39M: Unauthorized, please log in
+[2025-07-17T19:01:34.917Z] [31MERROR[39M: Refresh token not found
+[2025-07-17T19:01:38.153Z] [31MERROR[39M: Refresh token not found
+[2025-07-17T19:01:38.202Z] [31MERROR[39M: Refresh token not found
+[2025-07-17T19:01:39.079Z] [31MERROR[39M: Unauthorized, please log in
+[2025-07-17T19:01:39.103Z] [31MERROR[39M: Refresh token not found
+[2025-07-17T19:02:10.481Z] [31MERROR[39M: Unauthorized, please log in
+[2025-07-17T19:02:10.504Z] [31MERROR[39M: Refresh token not found
+[2025-07-17T19:03:02.155Z] [31MERROR[39M: Refresh token not found
+[2025-07-17T19:03:02.180Z] [31MERROR[39M: Refresh token not found
+[2025-07-18T09:01:56.950Z] [31MERROR[39M: Refresh token not found
+[2025-07-18T09:01:57.025Z] [31MERROR[39M: Refresh token not found

@@ -17,6 +17,8 @@ const useTrackInteraction = ({
 
   const trackInteraction = useCallback(
     async (productId: string | undefined, type: "view" | "click" | "other") => {
+      if (!user?.id) return;
+
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
