@@ -20,7 +20,7 @@ const MessageItem: React.FC<MessageItemProps> = ({
       className={`flex ${isCurrentUser ? "justify-end" : "justify-start"} mb-4`}
     >
       <div
-        className={`max-w-xs md:max-w-md p-3 rounded-lg shadow-sm ${
+        className={`max-w-xs md:max-w-md py-2 px-4 rounded-lg shadow-sm ${
           isCurrentUser ? "bg-blue-500 text-white" : "bg-gray-100 text-gray-800"
         }`}
       >
@@ -31,14 +31,17 @@ const MessageItem: React.FC<MessageItemProps> = ({
             width={200}
             height={200}
             className="max-w-full h-auto rounded-lg"
-         
           />
         ) : isAudio && message.url ? (
           <AudioPlayer src={message.url} />
         ) : (
           <p>{message.content || "No content"}</p>
         )}
-        <span className="text-xs text-gray-400 mt-1 block">
+        <span
+          className={`text-[10px] ${
+            isCurrentUser ? "text-white" : ""
+          } mt-1 block`}
+        >
           {new Date(message.createdAt).toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",

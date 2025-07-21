@@ -2718,3 +2718,32 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-18T09:01:56.950Z] [31MERROR[39M: Refresh token not found
 [2025-07-18T09:01:57.025Z] [31MERROR[39M: Refresh token not found
 [2025-07-18T13:17:07.605Z] [31MERROR[39M: Invalid access token, please log in
+[2025-07-18T13:21:25.483Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:21:25.637Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:21:25.819Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:21:25.936Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:21:26.108Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:21:26.267Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:21:29.097Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:21:29.286Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:21:29.436Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:21:29.616Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:24:40.839Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:24:43.363Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:24:48.056Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:24:48.223Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:24:48.321Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-18T13:24:48.537Z] [31MERROR[39M: Insufficient stock: only 50 available
+[2025-07-19T17:54:29.697Z] [31MERROR[39M: Refresh token not found
+[2025-07-19T17:54:29.830Z] [31MERROR[39M: Refresh token not found
+[2025-07-20T14:32:26.211Z] [31MERROR[39M: Only images are allowed
+[2025-07-20T14:35:59.184Z] [31MERROR[39M: Refresh token not found
+[2025-07-20T14:35:59.283Z] [31MERROR[39M: Refresh token not found
+[2025-07-21T12:40:50.579Z] [31MERROR[39M: Attribute not found
+[2025-07-21T12:41:45.189Z] [31MERROR[39M: Attribute not found
+[2025-07-21T12:45:47.233Z] [31MERROR[39M: Attribute not found
+[2025-07-21T12:46:50.977Z] [31MERROR[39M: Attribute not found
+[2025-07-21T12:47:35.245Z] [31MERROR[39M: Attribute not found
+[2025-07-21T12:51:30.048Z] [31MERROR[39M: Attribute not found
+[2025-07-21T12:53:16.706Z] [31MERROR[39M: Attribute not found
+[2025-07-21T12:53:40.586Z] [31MERROR[39M: Attribute not found

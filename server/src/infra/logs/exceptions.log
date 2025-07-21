@@ -16,3 +16,51 @@ Error: Unknown type "User".
     at require (node:internal/modules/helpers:135:16)
     at Object.<anonymous> (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/graphql/v1/schema.ts:2:1)
     at Module._compile (node:internal/modules/cjs/loader:1730:14)
+[2025-07-18T14:00:08.032Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
+Error: EIO: i/o error, write
+    at writeSync (node:fs:924:3)
+    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+    at _write (node:internal/streams/writable:501:10)
+    at SyncWriteStream.Writable.write (node:internal/streams/writable:510:10)
+    at console.value (node:internal/console/constructor:298:16)
+    at console.log (node:internal/console/constructor:384:26)
+    at /home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:31:13
+    at Generator.next (<anonymous>)
+    at fulfilled (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:5:58)
+[2025-07-19T18:43:53.669Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
+Error: EIO: i/o error, write
+    at writeSync (node:fs:924:3)
+    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+    at _write (node:internal/streams/writable:501:10)
+    at SyncWriteStream.Writable.write (node:internal/streams/writable:510:10)
+    at console.value (node:internal/console/constructor:298:16)
+    at console.log (node:internal/console/constructor:384:26)
+    at /home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:31:13
+    at Generator.next (<anonymous>)
+    at fulfilled (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:5:58)
+[2025-07-20T14:09:59.898Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
+Error: EIO: i/o error, write
+    at writeSync (node:fs:924:3)
+    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+    at _write (node:internal/streams/writable:501:10)
+    at SyncWriteStream.Writable.write (node:internal/streams/writable:510:10)
+    at console.value (node:internal/console/constructor:298:16)
+    at console.log (node:internal/console/constructor:384:26)
+    at /home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:31:13
+    at Generator.next (<anonymous>)
+    at fulfilled (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:5:58)
+[2025-07-20T14:36:29.079Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
+Error: EIO: i/o error, write
+    at writeSync (node:fs:924:3)
+    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+    at _write (node:internal/streams/writable:501:10)
+    at SyncWriteStream.Writable.write (node:internal/streams/writable:510:10)
+    at console.value (node:internal/console/constructor:298:16)
+    at console.log (node:internal/console/constructor:384:26)
+    at /home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:31:13
+    at Generator.next (<anonymous>)
+    at fulfilled (/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/server/src/infra/database/database.config.ts:5:58)

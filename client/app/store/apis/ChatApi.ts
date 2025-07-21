@@ -46,9 +46,6 @@ export const chatApi = apiSlice.injectEndpoints({
           body: formData,
         };
       },
-      invalidatesTags: (result, error, { chatId }) => [
-        { type: "Chat", id: chatId },
-      ],
     }),
     // PATCH /chat/:chatId/status
     updateChatStatus: builder.mutation({

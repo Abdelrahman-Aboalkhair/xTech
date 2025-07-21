@@ -92,7 +92,10 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
       <div className="flex items-center gap-2 text-sm text-gray-600">
         <Rating rating={averageRating} />
         <span>({reviewCount || 0} reviews)</span>
-        <span className="text-primary font-medium ml-2">
+        <span
+          className={`ml-2 px-2 py-1 rounded text-sm font-medium
+    ${stock > 0 ? "bg-primary/10 text-primary" : "bg-red-100 text-red-600"}`}
+        >
           {stock > 0 ? `${stock} in stock` : "Out of stock"}
         </span>
       </div>
@@ -194,11 +197,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
               : "bg-gray-400 cursor-not-allowed"
           }`}
         >
-          {stock > 0 && selectedVariant
-            ? isLoading
-              ? "Adding..."
-              : "Add to Cart"
-            : "Select a Variant"}
+          {stock > 0 && selectedVariant ? "Add to Cart" : "Select a Variant"}
         </button>
         <button
           disabled={!stock || !selectedVariant}

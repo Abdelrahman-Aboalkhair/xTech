@@ -108,8 +108,9 @@ export class AttributeController {
   deleteAttribute = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
       const { id } = req.params;
+      console.log("icoming id => ", id);
       await this.attributeService.deleteAttribute(id);
-      sendResponse(res, 204, { message: "Attribute deleted successfully" });
+      sendResponse(res, 200, { message: "Attribute deleted successfully" });
       this.logsService.info("Attribute deleted", {
         userId: req.user?.id,
         sessionId: req.session.id,

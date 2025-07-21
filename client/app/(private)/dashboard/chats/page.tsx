@@ -57,7 +57,7 @@ const AdminChatsPage = () => {
                   }`}
                 >
                   <div className="font-medium">
-                    Chat #{chat.id.substring(0, 8)} (User: {chat.userId})
+                    Chat #{chat.id.substring(0, 8)}
                   </div>
                   <div className="text-sm text-gray-500 flex items-center">
                     <span

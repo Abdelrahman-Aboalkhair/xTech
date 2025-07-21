@@ -2,6 +2,7 @@
 import { Minus, Plus } from "lucide-react";
 import { useUpdateCartItemMutation } from "@/app/store/apis/CartApi";
 import Button from "../atoms/Button";
+import useToast from "@/app/hooks/ui/useToast";
 
 type QuantitySelectorProps = {
   value: number;
@@ -14,6 +15,7 @@ const QuantitySelector = ({
   onChange,
   itemId,
 }: QuantitySelectorProps) => {
+  const { showToast } = useToast();
   const [updateCartItem, { isLoading }] = useUpdateCartItemMutation();
 
   const handleUpdate = async (newQty: number) => {
@@ -23,8 +25,7 @@ const QuantitySelector = ({
     try {
       await updateCartItem({ id: itemId, quantity: newQty }).unwrap();
     } catch (err) {
-      console.error("Failed to update quantity:", err);
-      // Optional: Rollback on error
+      showToast(err.data?.message || "Failed to update quantity", "error");
       onChange(value);
     }
   };

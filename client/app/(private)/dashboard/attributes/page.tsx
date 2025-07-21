@@ -3,7 +3,6 @@ import React from "react";
 import { Loader2 } from "lucide-react";
 import AttributeForm from "./AttributeForm";
 import AttributeAssignment from "./AttributeAssignment";
-import AttributesList from "./AttributesList";
 import DashboardHeader from "./DashboardHeader";
 import { useGetAllAttributesQuery } from "@/app/store/apis/AttributeApi";
 import AttributesBoardView from "./AttributesBoardView";
@@ -30,7 +29,6 @@ const AttributesDashboard: React.FC = () => {
 
   return (
     <div className="p-6 min-w-full bg-gray-50 min-h-screen">
-      {/* Header */}
       <DashboardHeader />
 
       {/* Main Content */}

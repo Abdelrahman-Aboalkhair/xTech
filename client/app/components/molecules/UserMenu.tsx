@@ -11,6 +11,7 @@ import {
   ShoppingCart,
   ChevronRight,
   Shield,
+  Group,
 } from "lucide-react";
 import { useSignOutMutation } from "@/app/store/apis/AuthApi";
 import useClickOutside from "@/app/hooks/dom/useClickOutside";
@@ -61,6 +62,12 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
           href: "/profile",
           label: "Profile",
           icon: <User size={18} className="text-blue-500" />,
+          show: true,
+        },
+        {
+          href: "/support",
+          label: "Contact Support",
+          icon: <Group size={18} className="text-blue-500" />,
           show: true,
         },
       ],
@@ -128,7 +135,6 @@ const UserMenu = ({ menuOpen, closeMenu, user }) => {
 
               return (
                 <div key={sectionIndex} className="mb-2 last:mb-0">
-
                   {visibleRoutes.map((route) => (
                     <motion.div key={route.href} variants={itemVariants}>
                       <Link

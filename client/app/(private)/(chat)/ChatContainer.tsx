@@ -15,7 +15,6 @@ import CallInProgressScreen from "./CallInProgressScreen";
 import CustomLoader from "@/app/components/feedback/CustomLoader";
 import { useGetMeQuery } from "@/app/store/apis/UserApi";
 import { useWebRTCCall } from "./useWebRTCCall";
-import { PhoneCall } from "lucide-react";
 
 interface ChatProps {
   chatId: string;
@@ -36,8 +35,7 @@ const ChatContainer: React.FC<ChatProps> = ({ chatId }) => {
   const { messages, message, setMessage, handleSendMessage, isTyping } =
     useChatMessages(chatId, user, chat, socket, sendMessage);
 
-  const { callStatus, startCall, endCall, localVideoRef, remoteVideoRef } =
-    useWebRTCCall({ chatId, socket });
+  const { callStatus, endCall } = useWebRTCCall({ chatId, socket });
 
   const handleResolveChat = async () => {
     try {
@@ -74,7 +72,7 @@ const ChatContainer: React.FC<ChatProps> = ({ chatId }) => {
       />
       <MessageList messages={messages} currentUserId={user.id} />
       {isTyping && <ChatStatus isTyping={true} />}
-      {callStatus === "idle" && chat?.status === "OPEN" && (
+      {/* {callStatus === "idle" && chat?.status === "OPEN" && (
         <button
           onClick={startCall}
           className="flex items-center gap-2 p-3 w-fit mx-4 my-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors"
@@ -82,7 +80,7 @@ const ChatContainer: React.FC<ChatProps> = ({ chatId }) => {
           <PhoneCall size={20} />
           Start Call
         </button>
-      )}
+      )} */}
       {callStatus === "calling" && (
         <CallConnectingScreen chat={chat} onCancel={endCall} />
       )}
