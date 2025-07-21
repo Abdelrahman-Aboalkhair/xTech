@@ -62,4 +62,13 @@ export class AttributeService {
     }
     await this.attributeRepository.deleteAttribute(id);
   }
+
+  async deleteAttributeValue(id: string) {
+    const attributeValue =
+      await this.attributeRepository.findAttributeValueById(id);
+    if (!attributeValue) {
+      throw new AppError(404, "Attribute value not found");
+    }
+    await this.attributeRepository.deleteAttributeValue(id);
+  }
 }

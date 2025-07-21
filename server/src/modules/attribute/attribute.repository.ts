@@ -59,7 +59,18 @@ export class AttributeRepository {
     });
   }
 
+  async findAttributeValueById(id: string) {
+    return prisma.attributeValue.findUnique({
+      where: { id },
+      include: { attribute: true },
+    });
+  }
+
   async deleteAttribute(id: string) {
     return prisma.attribute.delete({ where: { id } });
+  }
+
+  async deleteAttributeValue(id: string) {
+    return prisma.attributeValue.delete({ where: { id } });
   }
 }

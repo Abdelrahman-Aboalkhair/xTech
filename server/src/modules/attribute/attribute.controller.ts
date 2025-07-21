@@ -117,4 +117,19 @@ export class AttributeController {
       });
     }
   );
+
+  deleteAttributeValue = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const { id } = req.params;
+      console.log("Incoming attribute value id => ", id);
+      await this.attributeService.deleteAttributeValue(id);
+      sendResponse(res, 200, {
+        message: "Attribute value deleted successfully",
+      });
+      this.logsService.info("Attribute value deleted", {
+        userId: req.user?.id,
+        sessionId: req.session.id,
+      });
+    }
+  );
 }

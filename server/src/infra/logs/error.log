@@ -2747,3 +2747,7 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-21T12:51:30.048Z] [31MERROR[39M: Attribute not found
 [2025-07-21T12:53:16.706Z] [31MERROR[39M: Attribute not found
 [2025-07-21T12:53:40.586Z] [31MERROR[39M: Attribute not found
+[2025-07-21T13:00:55.532Z] [31MERROR[39M: Attribute value not found
+[2025-07-21T13:01:28.172Z] [31MERROR[39M: Attribute value not found
+[2025-07-21T13:02:02.607Z] [31MERROR[39M: Attribute value not found
+[2025-07-21T13:02:56.690Z] [31MERROR[39M: Attribute value not found

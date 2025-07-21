@@ -7,6 +7,7 @@ import StatsCard from "@/app/components/organisms/StatsCard";
 import {
   useCreateAttributeValueMutation,
   useDeleteAttributeMutation,
+  useDeleteAttributeValueMutation,
 } from "@/app/store/apis/AttributeApi";
 import useToast from "@/app/hooks/ui/useToast";
 import ConfirmModal from "@/app/components/organisms/ConfirmModal";
@@ -17,16 +18,19 @@ const AttributesBoardView = ({ attributes = [] }) => {
     useCreateAttributeValueMutation();
   const [deleteAttribute, { error: deleteAttributeError }] =
     useDeleteAttributeMutation();
-  console.log("deleteAttributeError => ", deleteAttributeError);
+  const [deleteAttributeValue] = useDeleteAttributeValueMutation();
   const [newValue, setNewValue] = useState<Record<string, string>>({});
   const [deleteModal, setDeleteModal] = useState<{
     isOpen: boolean;
-    attributeId: string | null;
+    type: "attribute" | "value";
+    id: string | null;
   }>({
     isOpen: false,
-    attributeId: null,
+    type: "attribute",
+    id: null,
   });
   console.log("deleteModal => ", deleteModal);
+  console.log("deleteAttributeError => ", deleteAttributeError);
 
   // Handle adding a new value
   const handleAddValue = async (attributeId: string) => {
@@ -45,15 +49,20 @@ const AttributesBoardView = ({ attributes = [] }) => {
 
   // Handle confirming attribute deletion
   const handleConfirmDelete = async () => {
-    if (!deleteModal.attributeId) return;
+    if (!deleteModal.id) return;
     try {
-      await deleteAttribute(deleteModal.attributeId);
-      showToast("Attribute deleted successfully", "success");
+      if (deleteModal.type === "attribute") {
+        await deleteAttribute(deleteModal.id);
+        showToast("Attribute deleted successfully", "success");
+      } else if (deleteModal.type === "value") {
+        await deleteAttributeValue(deleteModal.id);
+        showToast("Attribute value deleted successfully", "success");
+      }
     } catch (err) {
-      console.error("Error deleting attribute:", err);
-      showToast("Failed to delete attribute", "error");
+      console.error(`Error deleting ${deleteModal.type}:`, err);
+      showToast(`Failed to delete ${deleteModal.type}`, "error");
     } finally {
-      setDeleteModal({ isOpen: false, attributeId: null });
+      setDeleteModal({ isOpen: false, type: "attribute", id: null });
     }
   };
 
@@ -121,7 +130,11 @@ const AttributesBoardView = ({ attributes = [] }) => {
                 key={attribute.id}
                 attribute={attribute}
                 onDelete={() =>
-                  setDeleteModal({ isOpen: true, attributeId: attribute.id })
+                  setDeleteModal({
+                    isOpen: true,
+                    type: "attribute",
+                    id: attribute.id,
+                  })
                 }
                 onAddValue={handleAddValue}
                 newValue={newValue[attribute.id] || ""}
@@ -129,6 +142,9 @@ const AttributesBoardView = ({ attributes = [] }) => {
                   setNewValue((prev) => ({ ...prev, [attribute.id]: value }))
                 }
                 isCreatingValue={isCreatingValue}
+                onDeleteValue={(valueId) =>
+                  setDeleteModal({ isOpen: true, type: "value", id: valueId })
+                }
               />
             ))}
           </div>
@@ -137,11 +153,15 @@ const AttributesBoardView = ({ attributes = [] }) => {
         {/* Delete Confirmation Modal */}
         <ConfirmModal
           isOpen={deleteModal.isOpen}
-          message="Are you sure you want to delete this attribute? This action cannot be undone."
+          message={`Are you sure you want to delete this ${deleteModal.type}? This action cannot be undone.`}
           onConfirm={handleConfirmDelete}
-          onCancel={() => setDeleteModal({ isOpen: false, attributeId: null })}
-          title="Confirm Delete"
-          type="danger"
+          onCancel={() =>
+            setDeleteModal({ isOpen: false, type: "attribute", id: null })
+          }
+          title={`Confirm Delete ${
+            deleteModal.type.charAt(0).toUpperCase() + deleteModal.type.slice(1)
+          }`}
+          type={deleteModal.type === "attribute" ? "danger" : "warning"}
         />
       </div>
     </div>

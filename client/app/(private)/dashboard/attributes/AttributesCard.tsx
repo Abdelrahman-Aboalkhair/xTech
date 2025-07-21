@@ -17,6 +17,7 @@ interface AttributeCardProps {
   newValue: string;
   setNewValue: (value: string) => void;
   isCreatingValue: boolean;
+  onDeleteValue: (valueId: string) => void;
 }
 
 const AttributeCard = ({
@@ -26,6 +27,7 @@ const AttributeCard = ({
   newValue,
   setNewValue,
   isCreatingValue,
+  onDeleteValue,
 }: AttributeCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -122,19 +124,7 @@ const AttributeCard = ({
                 >
                   <span className="text-sm text-gray-700">{value.value}</span>
                   <button
-                    onClick={() => {
-                      if (
-                        confirm("Are you sure you want to delete this value?")
-                      ) {
-                        console.log(
-                          "Deleting value:",
-                          value.id,
-                          "from attribute:",
-                          attribute.id
-                        );
-                        // Implementation for deleting value (to be added if backend supports it)
-                      }
-                    }}
+                    onClick={() => onDeleteValue(value.id)}
                     className="text-red-500 hover:text-red-700 p-1 rounded-full transition-colors"
                     aria-label={`Delete value ${value.value}`}
                   >
