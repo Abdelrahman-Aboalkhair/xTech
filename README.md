@@ -390,16 +390,6 @@ GraphQL API is available at:
 
 - URL: `http://localhost:5000/api/v1/graphql`
 
-## Testing
-
-<!-- Placeholder for testing instructions -->
-
-Tests are not yet implemented. To contribute tests:
-
-1. Add test files in `server/tests/` or `client/tests/`.
-2. Use Jest or your preferred testing framework.
-3. Update this section with setup instructions.
-
 ## 🧪 API Testing with Postman
 
 You can find Postman collections inside the [`/collections`](./collections) folder.
