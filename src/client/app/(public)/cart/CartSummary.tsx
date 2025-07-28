@@ -1,3 +1,4 @@
+"use client";
 import { useInitiateCheckoutMutation } from "@/app/store/apis/CheckoutApi";
 import React, { useMemo } from "react";
 import { loadStripe } from "@stripe/stripe-js";

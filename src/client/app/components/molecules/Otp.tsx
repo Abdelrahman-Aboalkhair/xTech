@@ -7,40 +7,40 @@ const OtpInput = ({ setOtp }: { setOtp: (otp: string) => void }) => {
     defaultValues: { otp: "" },
   });
 
-  const handleChange = (
-    index: number,
-    value: string,
-    moveNext: (index: number) => void
-  ) => {
-    if (/^\d$/.test(value)) {
-      const otpArray = getValues("otp").split("");
-      otpArray[index] = value;
-      const newOtp = otpArray.join("");
-      setValue("otp", newOtp);
-      setOtp(newOtp);
+  // const handleChange = (
+  //   index: number,
+  //   value: string,
+  //   moveNext: (index: number) => void
+  // ) => {
+  //   if (/^\d$/.test(value)) {
+  //     const otpArray = getValues("otp").split("");
+  //     otpArray[index] = value;
+  //     const newOtp = otpArray.join("");
+  //     setValue("otp", newOtp);
+  //     setOtp(newOtp);
 
-      if (index < 3) moveNext(index + 1);
-    } else if (value === "") {
-      const otpArray = getValues("otp").split("");
-      otpArray[index] = "";
-      const newOtp = otpArray.join("");
-      setValue("otp", newOtp);
-      setOtp(newOtp);
-    }
-  };
+  //     if (index < 3) moveNext(index + 1);
+  //   } else if (value === "") {
+  //     const otpArray = getValues("otp").split("");
+  //     otpArray[index] = "";
+  //     const newOtp = otpArray.join("");
+  //     setValue("otp", newOtp);
+  //     setOtp(newOtp);
+  //   }
+  // };
 
-  const handleKeyDown = (
-    index: number,
-    e: React.KeyboardEvent<HTMLInputElement>,
-    movePrev: (index: number) => void
-  ) => {
-    if (e.key === "Backspace") {
-      const otpArray = getValues("otp").split("");
-      if (!otpArray[index] && index > 0) {
-        movePrev(index - 1);
-      }
-    }
-  };
+  // const handleKeyDown = (
+  //   index: number,
+  //   e: React.KeyboardEvent<HTMLInputElement>,
+  //   movePrev: (index: number) => void
+  // ) => {
+  //   if (e.key === "Backspace") {
+  //     const otpArray = getValues("otp").split("");
+  //     if (!otpArray[index] && index > 0) {
+  //       movePrev(index - 1);
+  //     }
+  //   }
+  // };
 
   return (
     <div className="flex flex-col items-center">
@@ -57,16 +57,16 @@ const OtpInput = ({ setOtp }: { setOtp: (otp: string) => void }) => {
                 maxLength={1}
                 className="w-[65px] h-[55px] text-center text-lg font-bold border-2 border-gray-200 focus:border-green-600 focus:ring-2 focus:ring-primary rounded-md transition-all outline-none"
                 value={field.value[index] || ""}
-                onChange={(e) =>
-                  handleChange(index, e.target.value, (nextIndex) =>
-                    document.getElementById(`otp-${nextIndex}`)?.focus()
-                  )
-                }
-                onKeyDown={(e) =>
-                  handleKeyDown(index, e, (prevIndex) =>
-                    document.getElementById(`otp-${prevIndex}`)?.focus()
-                  )
-                }
+                // onChange={(e) =>
+                //   handleChange(index, e.target.value, (nextIndex) =>
+                //     document.getElementById(`otp-${nextIndex}`)?.focus()
+                //   )
+                // }
+                // onKeyDown={(e) =>
+                //   handleKeyDown(index, e, (prevIndex) =>
+                //     document.getElementById(`otp-${prevIndex}`)?.focus()
+                //   )
+                // }
                 id={`otp-${index}`}
                 as={motion.input}
                 initial={{ scale: 0.9, opacity: 0 }}

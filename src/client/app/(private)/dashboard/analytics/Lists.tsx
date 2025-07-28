@@ -1,6 +1,6 @@
 "use client";
+import BarChartComponent from "@/app/components/charts/BarChartComponent";
 import ListCard from "@/app/components/organisms/ListCard";
-import { BarChart } from "lucide-react";
 import React from "react";
 interface ListsProps {
   topItems: any[];
@@ -38,7 +38,7 @@ const Lists = ({
         items={mostViewedProducts}
         itemType="product"
       />
-      <BarChart
+      <BarChartComponent
         title="Sales by Product"
         data={salesByProduct.data}
         categories={salesByProduct.categories}

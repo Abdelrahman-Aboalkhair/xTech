@@ -17,7 +17,6 @@ export const initializeApollo = (initialState = null) => {
 
   // Create or reuse Apollo Client instance
   const client = new ApolloClient({
-    ssrMode: typeof window === "undefined", // Enable SSR mode on server
     link: from([errorLink, httpLink]),
     cache: new InMemoryCache({
       typePolicies: {

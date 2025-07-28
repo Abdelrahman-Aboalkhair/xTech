@@ -2761,3 +2761,23 @@ Foreign key constraint violated on the constraint: `Product_categoryId_fkey`
 [2025-07-22T23:51:07.331Z] [31MERROR[39M: Invalid type. Use: overview, products, users, or all
 [2025-07-25T11:31:14.778Z] [31MERROR[39M: Refresh token not found
 [2025-07-25T11:31:14.888Z] [31MERROR[39M: Refresh token not found
+[2025-07-27T23:45:35.006Z] [31MERROR[39M: Refresh token not found
+[2025-07-27T23:46:06.210Z] [31MERROR[39M: Refresh token not found
+[2025-07-27T23:46:40.877Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/src/server/src/modules/auth/auth.repository.ts:12:24
+
+   9 }
+  10 
+  11 async findUserByEmailWithPassword(email: string) {
+→ 12   return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.
+[2025-07-27T23:47:28.856Z] [31MERROR[39M: Prisma error: 
+Invalid `prisma.user.findUnique()` invocation in
+/home/abdelrahman_aboalkhair/dev/personal/ss-ecommerce/src/server/src/modules/auth/auth.repository.ts:6:24
+
+  3 
+  4 export class AuthRepository {
+  5   async findUserByEmail(email: string) {
+→ 6     return prisma.user.findUnique(
+The table `public.User` does not exist in the current database.

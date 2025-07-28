@@ -1,41 +1,41 @@
 "use client";
-import DonutChart from "@/app/components/charts/DonutChart";
+import AreaChartComponent from "@/app/components/charts/AreaChartComponent";
+import DonutChart from "@/app/components/charts/DonutChartComponent";
 import RevenueOverTimeChart from "@/app/components/charts/RevenueOverTimeChart";
-import { AreaChart } from "lucide-react";
 import React from "react";
 
 const Charts = ({ data, mostSoldProducts, interactionByType }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
-      <AreaChart
+      <AreaChartComponent
         title="Order Trends"
         data={data?.revenueAnalytics?.monthlyTrends?.orders || []}
         categories={data?.revenueAnalytics?.monthlyTrends?.labels || []}
         color="#ec4899"
         percentageChange={data?.orderAnalytics?.changes?.orders}
       />
-      <AreaChart
+      <AreaChartComponent
         title="Revenue Trends"
         data={data?.revenueAnalytics?.monthlyTrends?.revenue || []}
         categories={data?.revenueAnalytics?.monthlyTrends?.labels || []}
         color="#22c55e"
         percentageChange={data?.revenueAnalytics?.changes?.revenue}
       />
-      <AreaChart
+      <AreaChartComponent
         title="Sales Trends"
         data={data?.revenueAnalytics?.monthlyTrends?.sales || []}
         categories={data?.revenueAnalytics?.monthlyTrends?.labels || []}
         color="#3b82f6"
         percentageChange={data?.orderAnalytics?.changes?.sales}
       />
-      <AreaChart
+      <AreaChartComponent
         title="User Trends"
         data={data?.revenueAnalytics?.monthlyTrends?.users || []}
         categories={data?.revenueAnalytics?.monthlyTrends?.labels || []}
         color="#f59e0b"
         percentageChange={data?.userAnalytics?.changes?.users}
       />
-      <AreaChart
+      <AreaChartComponent
         title="Interaction Trends (Views)"
         data={data?.userAnalytics?.interactionTrends?.views || []}
         categories={data?.userAnalytics?.interactionTrends?.labels || []}

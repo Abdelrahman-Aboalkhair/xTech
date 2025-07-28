@@ -11,7 +11,7 @@ type Props = {
   percentageChange?: number;
 };
 
-const AreaChart: React.FC<Props> = ({
+const AreaChartComponent: React.FC<Props> = ({
   title,
   data,
   categories,
@@ -72,4 +72,4 @@ const AreaChart: React.FC<Props> = ({
   );
 };
 
-export default AreaChart;
+export default AreaChartComponent;

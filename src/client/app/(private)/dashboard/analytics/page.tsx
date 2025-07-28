@@ -1,9 +1,6 @@
 "use client";
+import dynamic from "next/dynamic";
 import ProtectedRoute from "@/app/components/auth/ProtectedRoute";
-import AreaChart from "@/app/components/charts/AreaChart";
-import BarChart from "@/app/components/charts/BarChart";
-import DonutChart from "@/app/components/charts/DonutChart";
-import ListCard from "@/app/components/organisms/ListCard";
 import StatsCard from "@/app/components/organisms/StatsCard";
 import Dropdown from "@/app/components/molecules/Dropdown";
 import DateRangePicker from "@/app/components/molecules/DateRangePicker";
@@ -23,7 +20,25 @@ import { useLazyExportAnalyticsQuery } from "@/app/store/apis/AnalyticsApi";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_ANALYTICS } from "@/app/gql/Dashboard";
 import CustomLoader from "@/app/components/feedback/CustomLoader";
-import RevenueOverTimeChart from "@/app/components/charts/RevenueOverTimeChart";
+import ListCard from "@/app/components/organisms/ListCard";
+
+// Dynamically import charting components with SSR disabled
+const AreaChart = dynamic(
+  () => import("@/app/components/charts/AreaChartComponent"),
+  { ssr: false }
+);
+const BarChart = dynamic(
+  () => import("@/app/components/charts/BarChartComponent"),
+  { ssr: false }
+);
+const DonutChart = dynamic(
+  () => import("@/app/components/charts/DonutChartComponent"),
+  { ssr: false }
+);
+const RevenueOverTimeChart = dynamic(
+  () => import("@/app/components/charts/RevenueOverTimeChart"),
+  { ssr: false }
+);
 
 interface FormData {
   timePeriod: string;
@@ -63,10 +78,8 @@ const AnalyticsDashboard = () => {
     variables: { params: queryParams },
   });
 
-
   const [exportType, setExportType] = useState<string>("all");
-  const [exportFormat, setExportFormat] = useState<string>("csv");
-
+  const [exportFormat] = useState<string>("csv");
 
   console.log("Analytics data => ", data);
   console.log("error loading analytics => ", error);
@@ -86,34 +99,7 @@ const AnalyticsDashboard = () => {
 
   console.log("export error => ", exportError);
 
-  // Handle export
-  const handleExport = async () => {
-    try {
-      await triggerExport({
-        type: exportType || "overview",
-        format: exportFormat || "csv",
-        timePeriod: queryParams.timePeriod,
-        year: queryParams.year,
-        startDate: queryParams.startDate,
-        endDate: queryParams.endDate,
-      });
-      if (exportData) {
-        const mimeTypes = {
-          csv: "text/csv",
-          pdf: "application/pdf",
-          xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        };
-        const blob = new Blob([exportData], { type: mimeTypes[exportFormat] });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = `analytics_${exportType}_${exportFormat}_${new Date().toISOString()}.${exportFormat}`;
-        link.click();
-      }
-    } catch (err) {
-      console.error("Export failed:", err);
-      alert("Failed to export data");
-    }
-  };
+  const handleExport = async () => {};
 
   if (loading) {
     return <CustomLoader />;
@@ -236,7 +222,7 @@ const AnalyticsDashboard = () => {
             <Dropdown
               options={exportFormatOptions}
               value={exportFormat}
-              onChange={(value) => setExportType(value ?? '')}
+              onChange={(value) => setExportType(value ?? "")}
               label="Export Format"
               className="min-w-[150px] max-w-[200px]"
             />
@@ -362,7 +348,7 @@ const AnalyticsDashboard = () => {
         </div>
 
         {/* Lists */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2Gap-2">
           <ListCard
             title="Top Products"
             viewAllLink="/shop"

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import {
   PhoneOff,
@@ -73,10 +75,11 @@ const CallInProgressScreen: React.FC<CallInProgressScreenProps> = ({
       <div className="bg-gray-900 p-4 flex justify-center items-center space-x-4">
         <button
           onClick={toggleMute}
-          className={`p-4 rounded-full transition-all ${isMuted
+          className={`p-4 rounded-full transition-all ${
+            isMuted
               ? "bg-red-500 text-white"
               : "bg-gray-700 text-white hover:bg-gray-600"
-            }`}
+          }`}
           aria-label={isMuted ? "Unmute" : "Mute"}
         >
           {isMuted ? <MicOff size={20} /> : <Mic size={20} />}
@@ -84,10 +87,11 @@ const CallInProgressScreen: React.FC<CallInProgressScreenProps> = ({
 
         <button
           onClick={toggleVideo}
-          className={`p-4 rounded-full transition-all ${isVideoOff
+          className={`p-4 rounded-full transition-all ${
+            isVideoOff
               ? "bg-red-500 text-white"
               : "bg-gray-700 text-white hover:bg-gray-600"
-            }`}
+          }`}
           aria-label={isVideoOff ? "Turn video on" : "Turn video off"}
         >
           {isVideoOff ? <VideoOff size={20} /> : <Video size={20} />}

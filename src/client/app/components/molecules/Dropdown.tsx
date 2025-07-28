@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Loader2, X } from "lucide-react";
-import useClickOutside from "@/app/hooks/dom/useClickOutside";
+// import useClickOutside from "@/app/hooks/dom/useClickOutside";
 
 interface DropdownOption {
   label: string;
@@ -40,7 +40,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     }
   }, [isOpen]);
 
-  useClickOutside(dropdownRef, () => setIsOpen(false));
+  // useClickOutside(dropdownRef, () => setIsOpen(false));
 
   const handleSelect = (selectedValue: string) => {
     onChange(selectedValue);
@@ -104,9 +104,10 @@ const Dropdown: React.FC<DropdownProps> = ({
                   key={option.value}
                   className={`px-3 py-2 text-sm transition-colors duration-150
                     cursor-pointer hover:bg-gray-50 
-                    ${value === option.value
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-gray-700"
+                    ${
+                      value === option.value
+                        ? "bg-blue-50 text-blue-600"
+                        : "text-gray-700"
                     }`}
                   onClick={() => handleSelect(option.value)}
                 >

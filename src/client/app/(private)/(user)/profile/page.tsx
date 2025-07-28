@@ -1,11 +1,12 @@
 "use client";
 import MainLayout from "@/app/components/templates/MainLayout";
 import { useGetMeQuery } from "@/app/store/apis/UserApi";
-import { User, Shield, Calendar, Clock } from "lucide-react";
+import { User, Shield, Clock } from "lucide-react";
+import Image from "next/image";
 
 const UserProfile = () => {
   const { data, isLoading, error } = useGetMeQuery({});
-  console.log('user => ', data);
+  console.log("user => ", data);
 
   if (isLoading) {
     return (
@@ -32,8 +33,12 @@ const UserProfile = () => {
               <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <User className="w-8 h-8 text-red-500" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Profile Error</h3>
-              <p className="text-red-600">Unable to fetch your profile. Please try again.</p>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                Profile Error
+              </h3>
+              <p className="text-red-600">
+                Unable to fetch your profile. Please try again.
+              </p>
             </div>
           </div>
         </div>
@@ -53,17 +58,6 @@ const UserProfile = () => {
     return role.charAt(0) + role.slice(1).toLowerCase();
   };
 
-  // Get role color scheme - simplified to use only indigo
-  const getRoleStyles = (role) => {
-    return {
-      bg: 'bg-indigo-600',
-      text: 'text-white',
-      icon: 'bg-indigo-100 text-indigo-600'
-    };
-  };
-
-  const roleStyles = getRoleStyles(user.role);
-
   return (
     <MainLayout>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-8 px-4">
@@ -76,8 +70,10 @@ const UserProfile = () => {
               <div className="absolute -bottom-12 left-8">
                 <div className="relative">
                   {user.avatar ? (
-                    <img
+                    <Image
                       src={user.avatar}
+                      width={96}
+                      height={96}
                       alt="Profile"
                       className="w-24 h-24 rounded-2xl border-4 border-white shadow-xl object-cover"
                     />
@@ -102,7 +98,9 @@ const UserProfile = () => {
                     <h1 className="text-3xl font-bold text-gray-800 mb-2">
                       User Profile
                     </h1>
-                    <p className="text-gray-600">Manage your account information</p>
+                    <p className="text-gray-600">
+                      Manage your account information
+                    </p>
                   </div>
 
                   {/* User Details Cards */}
@@ -136,7 +134,9 @@ const UserProfile = () => {
                           </h3>
                           <div className="flex items-center space-x-2">
                             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                            <span className="text-gray-800 font-medium">Active</span>
+                            <span className="text-gray-800 font-medium">
+                              Active
+                            </span>
                           </div>
                         </div>
                       </div>

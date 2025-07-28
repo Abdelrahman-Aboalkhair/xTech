@@ -1,3 +1,5 @@
+"use client";
+
 import { Trash2, Upload } from "lucide-react";
 import Image from "next/image";
 import {

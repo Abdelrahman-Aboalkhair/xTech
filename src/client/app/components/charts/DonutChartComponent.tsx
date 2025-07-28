@@ -9,7 +9,7 @@ type Props = {
   colorScheme?: string[];
 };
 
-const DonutChart: React.FC<Props> = ({
+const DonutChartComponent: React.FC<Props> = ({
   title,
   data,
   labels,
@@ -58,4 +58,4 @@ const DonutChart: React.FC<Props> = ({
   );
 };
 
-export default DonutChart;
+export default DonutChartComponent;

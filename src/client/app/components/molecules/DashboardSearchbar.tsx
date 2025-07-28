@@ -51,19 +51,19 @@ const DashboardSearchBar: React.FC<DashboardSearchBarProps> = ({
   }, [query, isOpen, debouncedSearch]);
 
   // Ctrl + K shortcut
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
-        e.preventDefault();
-        setIsOpen((prev) => !prev);
-        if (!isOpen) setQuery("");
-      } else if (e.key === "Escape" && isOpen) {
-        setIsOpen(false);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+  // useEffect(() => {
+  //   const handleKeyDown = (e: KeyboardEvent) => {
+  //     if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+  //       e.preventDefault();
+  //       setIsOpen((prev) => !prev);
+  //       if (!isOpen) setQuery("");
+  //     } else if (e.key === "Escape" && isOpen) {
+  //       setIsOpen(false);
+  //     }
+  //   };
+  //   window.addEventListener("keydown", handleKeyDown);
+  //   return () => window.removeEventListener("keydown", handleKeyDown);
+  // }, [isOpen]);
 
   // Clear query when closing
   useEffect(() => {

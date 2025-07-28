@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Eye, EyeOff } from "lucide-react";
 import useToggle from "@/app/hooks/state/useToggle";

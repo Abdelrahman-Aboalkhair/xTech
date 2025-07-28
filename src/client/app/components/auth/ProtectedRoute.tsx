@@ -19,12 +19,12 @@ export default function ProtectedRoute({
   requiredPermissions = [],
   fallbackPath = "/forbidden",
 }: ProtectedRouteProps) {
-  const isLoggedOut = localStorage.getItem("isLoggedOut") === "true";
+  // const isLoggedOut = localStorage.getItem("isLoggedOut") === "true";
   const { data, isLoading, isError } = useGetMeQuery(undefined, {
-    skip: isLoggedOut,
+    // skip: isLoggedOut,
   });
   const user = data?.user;
-  const router = useRouter();
+  // const router = useRouter();
 
   // Authorization checks
   const hasRequiredRole =
@@ -36,33 +36,33 @@ export default function ProtectedRoute({
       (perm) => user?.permissions?.includes(perm) ?? false
     );
 
-  useEffect(() => {
-    if (isLoading || isLoggedOut) return;
+  // useEffect(() => {
+  //   if (isLoading || isLoggedOut) return;
 
-    if (isError || !user) {
-      const currentPath = window.location.pathname;
-      if (currentPath !== redirectTo) {
-        localStorage.setItem("redirectAfterLogin", currentPath);
-      }
-      localStorage.setItem("isLoggedOut", "true");
-      router.push(redirectTo);
-      return;
-    }
+  //   if (isError || !user) {
+  //     const currentPath = window.location.pathname;
+  //     if (currentPath !== redirectTo) {
+  //       localStorage.setItem("redirectAfterLogin", currentPath);
+  //     }
+  //     localStorage.setItem("isLoggedOut", "true");
+  //     router.push(redirectTo);
+  //     return;
+  //   }
 
-    if (!hasRequiredRole || !hasRequiredPermissions) {
-      router.push(fallbackPath);
-    }
-  }, [
-    isLoading,
-    isError,
-    isLoggedOut,
-    user,
-    hasRequiredRole,
-    hasRequiredPermissions,
-    router,
-    redirectTo,
-    fallbackPath,
-  ]);
+  //   if (!hasRequiredRole || !hasRequiredPermissions) {
+  //     router.push(fallbackPath);
+  //   }
+  // }, [
+  //   isLoading,
+  //   isError,
+  //   isLoggedOut,
+  //   user,
+  //   hasRequiredRole,
+  //   hasRequiredPermissions,
+  //   router,
+  //   redirectTo,
+  //   fallbackPath,
+  // ]);
 
   if (isLoading) {
     return <CustomLoader />;

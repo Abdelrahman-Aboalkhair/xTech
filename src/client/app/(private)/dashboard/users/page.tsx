@@ -5,7 +5,6 @@ import {
   useUpdateUserMutation,
   useDeleteUserMutation,
 } from "@/app/store/apis/UserApi";
-import Image from "next/image";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Users, Loader2, AlertCircle, Pencil, Trash2, X } from "lucide-react";

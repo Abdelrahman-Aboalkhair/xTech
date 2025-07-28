@@ -16,8 +16,8 @@ const ReportsDashboard: React.FC = () => {
   const [year, setYear] = useState<string | null>(null);
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  const [successMessage, setSuccessMessage] = useState<string>("");
+  const [errorMessage] = useState<string>("");
+  const [successMessage] = useState<string>("");
 
   // Dropdown options
   const reportTypeOptions: DropdownOption[] = [
@@ -51,51 +51,53 @@ const ReportsDashboard: React.FC = () => {
   ];
 
   // Handle form submission
-  const handleGenerateReport = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorMessage("");
-    setSuccessMessage("");
+  // const handleGenerateReport = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setErrorMessage("");
+  //   setSuccessMessage("");
 
-    if (!reportType || !format || !timePeriod) {
-      setErrorMessage("Please select report type, format, and time period.");
-      return;
-    }
+  //   if (!reportType || !format || !timePeriod) {
+  //     setErrorMessage("Please select report type, format, and time period.");
+  //     return;
+  //   }
 
-    const query: Record<string, string> = {
-      type: reportType,
-      format,
-      timePeriod,
-    };
-    if (year) query.year = year;
-    if (timePeriod === "custom") {
-      if (!startDate || !endDate) {
-        setErrorMessage(
-          "Please provide both start and end dates for custom range."
-        );
-        return;
-      }
-      query.startDate = startDate;
-      query.endDate = endDate;
-    }
+  //   const query: Record<string, string> = {
+  //     type: reportType,
+  //     format,
+  //     timePeriod,
+  //   };
+  //   if (year) query.year = year;
+  //   if (timePeriod === "custom") {
+  //     if (!startDate || !endDate) {
+  //       setErrorMessage(
+  //         "Please provide both start and end dates for custom range."
+  //       );
+  //       return;
+  //     }
+  //     query.startDate = startDate;
+  //     query.endDate = endDate;
+  //   }
 
-    try {
-      const response = await generateReport(query).unwrap();
-      const blob = response; // Assuming API returns a Blob
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `${reportType}-report-${new Date().toISOString()}.${format}`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-      setSuccessMessage("Report generated successfully!");
-    } catch (err: any) {
-      setErrorMessage(
-        err?.data?.message || "Failed to generate report. Please try again."
-      );
-    }
-  };
+  //   try {
+  //     const response = await generateReport(query).unwrap();
+  //     const blob = response; // Assuming API returns a Blob
+  //     const url = window.URL.createObjectURL(blob);
+  //     const link = document.createElement("a");
+  //     link.href = url;
+  //     link.download = `${reportType}-report-${new Date().toISOString()}.${format}`;
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
+  //     window.URL.revokeObjectURL(url);
+  //     setSuccessMessage("Report generated successfully!");
+  //   } catch (err: any) {
+  //     setErrorMessage(
+  //       err?.data?.message || "Failed to generate report. Please try again."
+  //     );
+  //   }
+  // };
+
+  const handleGenerateReport = async (e: React.FormEvent) => {};
 
   // Clear custom dates when timePeriod changes
   useEffect(() => {

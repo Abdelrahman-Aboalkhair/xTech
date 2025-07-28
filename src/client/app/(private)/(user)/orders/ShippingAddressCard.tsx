@@ -1,3 +1,5 @@
+"use client";
+
 import { MapPin, Globe, Building, Map, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 

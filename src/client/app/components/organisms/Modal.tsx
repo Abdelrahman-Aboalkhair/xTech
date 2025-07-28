@@ -1,3 +1,5 @@
+"use client";
+
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useRef, useEffect } from "react";
@@ -11,26 +13,26 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
-        onClose();
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (
+  //       modalRef.current &&
+  //       !modalRef.current.contains(event.target as Node)
+  //     ) {
+  //       onClose();
+  //     }
+  //   };
 
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.body.style.overflow = "hidden"; // Prevent background scroll
-    }
+  //   if (open) {
+  //     document.addEventListener("mousedown", handleClickOutside);
+  //     document.body.style.overflow = "hidden"; // Prevent background scroll
+  //   }
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.body.style.overflow = "auto";
-    };
-  }, [open, onClose]);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //     document.body.style.overflow = "auto";
+  //   };
+  // }, [open, onClose]);
 
   // Animation variants for the backdrop
   const backdropVariants = {

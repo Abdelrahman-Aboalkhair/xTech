@@ -1,15 +1,12 @@
-import React, { useState, useRef, } from "react";
-import {
-  Search,
-  X,
-  Clock,
-  ArrowRight,
-} from "lucide-react";
+"use client";
+
+import React, { useState, useRef } from "react";
+import { Search, X, Clock, ArrowRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import useStorage from "@/app/hooks/state/useStorage";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import useEventListener from "@/app/hooks/dom/useEventListener";
+// import useEventListener from "@/app/hooks/dom/useEventListener";
 
 type SearchFormValues = {
   searchQuery: string;
@@ -42,17 +39,16 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
 
-
-  useEventListener("mousedown", (event) => {
-    if (
-      formRef.current &&
-      !formRef.current.contains(event.target as Node) &&
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
-    ) {
-      setIsFocused(false);
-    }
-  });
+  // useEventListener("mousedown", (event) => {
+  //   if (
+  //     formRef.current &&
+  //     !formRef.current.contains(event.target as Node) &&
+  //     dropdownRef.current &&
+  //     !dropdownRef.current.contains(event.target as Node)
+  //   ) {
+  //     setIsFocused(false);
+  //   }
+  // });
 
   const handleSearch = (data: SearchFormValues) => {
     const query = data.searchQuery.trim();
@@ -152,8 +148,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
             onMouseEnter={() => setIsHoveringDropdown(true)}
             onMouseLeave={() => setIsHoveringDropdown(false)}
           >
-       
-
             {/* Recent searches section */}
             {recentQueries.length > 0 && (
               <div className="p-3 border-b border-gray-100">
@@ -194,8 +188,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 </ul>
               </div>
             )}
-
-    
           </motion.div>
         )}
       </AnimatePresence>

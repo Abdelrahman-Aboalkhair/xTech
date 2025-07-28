@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useCallback } from "react";
 import { debounce } from "lodash";
 import useQueryParams from "@/app/hooks/network/useQueryParams";

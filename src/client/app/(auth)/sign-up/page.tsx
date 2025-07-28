@@ -53,7 +53,7 @@ const Signup = () => {
 
   const onSubmit = async (formData) => {
     try {
-      const result = await signUp(formData).unwrap();
+      await signUp(formData).unwrap();
       router.push("/");
     } catch (error) {
       console.log("error: ", error);

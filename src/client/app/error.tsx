@@ -1,6 +1,12 @@
 "use client";
 
-import { AlertTriangle, RefreshCw, Home, MessageCircle, Zap } from "lucide-react";
+import {
+  AlertTriangle,
+  RefreshCw,
+  Home,
+  MessageCircle,
+  Zap,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface GlobalErrorProps {
@@ -20,18 +26,18 @@ const GlobalError: React.FC<GlobalErrorProps> = ({ error, reset }) => {
   const handleRetry = async () => {
     setIsRetrying(true);
     // Simulate retry delay for better UX
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsRetrying(false);
     reset();
   };
 
   const handleGoHome = () => {
-    window.location.href = '/';
+    window.location.href = "/";
   };
 
   const handleReport = () => {
     // In a real app, this would open a support form or email
-    alert('Report functionality would open here');
+    alert("Report functionality would open here");
   };
 
   return (
@@ -39,9 +45,18 @@ const GlobalError: React.FC<GlobalErrorProps> = ({ error, reset }) => {
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-20 w-32 h-32 bg-red-200 rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 bg-orange-200 rounded-full opacity-20 animate-bounce" style={{animationDelay: '0.5s'}}></div>
-        <div className="absolute top-1/2 left-10 w-16 h-16 bg-yellow-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-1/3 left-1/3 w-20 h-20 bg-red-100 rounded-full opacity-20 animate-bounce" style={{animationDelay: '1.5s'}}></div>
+        <div
+          className="absolute bottom-20 right-20 w-24 h-24 bg-orange-200 rounded-full opacity-20 animate-bounce"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-10 w-16 h-16 bg-yellow-200 rounded-full opacity-20 animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-1/3 left-1/3 w-20 h-20 bg-red-100 rounded-full opacity-20 animate-bounce"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
       </div>
 
       {/* Main error content */}
@@ -61,13 +76,20 @@ const GlobalError: React.FC<GlobalErrorProps> = ({ error, reset }) => {
           <h1 className="text-3xl font-bold text-gray-800 mb-3 animate-fade-in">
             Oops! Something went wrong
           </h1>
-          <p className="text-gray-600 text-lg leading-relaxed animate-fade-in" style={{animationDelay: '0.2s'}}>
-            Don't worry, these things happen. We're here to help you get back on track.
+          <p
+            className="text-gray-600 text-lg leading-relaxed animate-fade-in"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Don't worry, these things happen. We're here to help you get back on
+            track.
           </p>
         </div>
 
         {/* Action buttons */}
-        <div className="space-y-4 animate-fade-in" style={{animationDelay: '0.4s'}}>
+        <div
+          className="space-y-4 animate-fade-in"
+          style={{ animationDelay: "0.4s" }}
+        >
           <button
             onClick={handleRetry}
             disabled={isRetrying}
@@ -94,7 +116,7 @@ const GlobalError: React.FC<GlobalErrorProps> = ({ error, reset }) => {
               <Home className="w-4 h-4" />
               Go Home
             </button>
-            
+
             <button
               onClick={handleReport}
               className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 hover:shadow-md"
@@ -106,14 +128,20 @@ const GlobalError: React.FC<GlobalErrorProps> = ({ error, reset }) => {
         </div>
 
         {/* Additional help section */}
-        <div className="mt-8 text-center animate-fade-in" style={{animationDelay: '0.6s'}}>
+        <div
+          className="mt-8 text-center animate-fade-in"
+          style={{ animationDelay: "0.6s" }}
+        >
           <div className="bg-white bg-opacity-70 backdrop-blur-sm rounded-xl p-4 shadow-sm">
             <div className="flex items-center justify-center gap-2 mb-2">
               <Zap className="w-4 h-4 text-orange-500" />
-              <span className="text-sm font-medium text-gray-600">Quick fixes</span>
+              <span className="text-sm font-medium text-gray-600">
+                Quick fixes
+              </span>
             </div>
             <p className="text-xs text-gray-500 leading-relaxed">
-              Try refreshing the page, clearing your cache, or check your internet connection
+              Try refreshing the page, clearing your cache, or check your
+              internet connection
             </p>
           </div>
         </div>
@@ -131,7 +159,7 @@ const GlobalError: React.FC<GlobalErrorProps> = ({ error, reset }) => {
             transform: translateY(0);
           }
         }
-        
+
         .animate-fade-in {
           animation: fade-in 0.6s ease-out forwards;
         }

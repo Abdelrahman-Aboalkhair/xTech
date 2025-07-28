@@ -11,7 +11,7 @@ type Props = {
   percentageChange?: number;
 };
 
-const BarChart: React.FC<Props> = ({
+const BarChartComponent: React.FC<Props> = ({
   title,
   data,
   categories,
@@ -76,4 +76,4 @@ const BarChart: React.FC<Props> = ({
   );
 };
 
-export default BarChart;
+export default BarChartComponent;

@@ -1,5 +1,5 @@
 "use client";
-import AreaChart from "@/app/components/charts/AreaChart";
+import dynamic from "next/dynamic";
 import StatsCard from "@/app/components/organisms/StatsCard";
 import Dropdown from "@/app/components/molecules/Dropdown";
 import { BarChart2, DollarSign, LineChart, Users } from "lucide-react";
@@ -11,7 +11,16 @@ import { useQuery } from "@apollo/client";
 import { GET_ANALYTICS_OVERVIEW } from "@/app/gql/Dashboard";
 import CustomLoader from "@/app/components/feedback/CustomLoader";
 import ListCard from "@/app/components/organisms/ListCard";
-import BarChart from "@/app/components/charts/BarChart";
+
+// Dynamically import charting components with SSR disabled
+const AreaChart = dynamic(
+  () => import("@/app/components/charts/AreaChartComponent"),
+  { ssr: false }
+);
+const BarChart = dynamic(
+  () => import("@/app/components/charts/BarChartComponent"),
+  { ssr: false }
+);
 
 interface FormData {
   timePeriod: string;

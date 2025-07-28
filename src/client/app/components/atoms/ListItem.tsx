@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
 import { Item } from "../organisms/ListCard";
 import Link from "next/link";

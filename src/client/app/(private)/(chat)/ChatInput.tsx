@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useEffect } from "react";
 import { X, Check, Mic, Image as ImageIcon, Send } from "lucide-react";
 import Image from "next/image";
@@ -146,7 +148,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           onChange={handleFileChange}
           className="hidden"
           id="file-upload"
-        // disabled={disabled || recording || selectedFile || audioBlob}
+          // disabled={disabled || recording || selectedFile || audioBlob}
         />
         <button
           onClick={() => fileInputRef.current?.click()}
@@ -158,10 +160,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
         <button
           onClick={recording ? stopRecording : startRecording}
           // disabled={disabled || selectedFile || audioBlob}
-          className={`p-2 ${recording
+          className={`p-2 ${
+            recording
               ? "text-red-500 animate-pulse"
               : "text-gray-500 hover:text-blue-600"
-            } disabled:text-gray-300`}
+          } disabled:text-gray-300`}
         >
           <Mic size={24} />
         </button>
@@ -171,7 +174,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."
           className="flex-1 p-2 border rounded-full bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
-        // disabled={disabled || selectedFile || audioBlob}
+          // disabled={disabled || selectedFile || audioBlob}
         />
         <button
           onClick={confirmSend}

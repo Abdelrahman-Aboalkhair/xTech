@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import { Upload, X } from "lucide-react";

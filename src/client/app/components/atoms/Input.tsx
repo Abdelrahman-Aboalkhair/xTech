@@ -1,3 +1,5 @@
+"use client";
+
 import { Controller } from "react-hook-form";
 import { LucideIcon } from "lucide-react";
 interface InputProps {
