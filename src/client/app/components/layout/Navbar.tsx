@@ -6,7 +6,6 @@ import UserMenu from "../molecules/UserMenu";
 import { ShoppingCart, Menu, X, CircleUserRound } from "lucide-react";
 import { usePathname } from "next/navigation";
 import SearchBar from "../molecules/SearchBar";
-import { useGetCartCountQuery } from "@/app/store/apis/CartApi";
 import Topbar from "./Topbar";
 // import useClickOutside from "@/app/hooks/dom/useClickOutside";
 // import useEventListener from "@/app/hooks/dom/useEventListener";
@@ -16,7 +15,6 @@ const Navbar = () => {
   const pathname = usePathname();
   const { isAuthenticated, user } = useAppSelector((state) => state.auth);
 
-  const { data: cartData } = useGetCartCountQuery(undefined);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -48,25 +46,7 @@ const Navbar = () => {
 
           {/* Right section - Search, Cart, User */}
           <div className="flex items-center w-full justify-end">
-            <SearchBar />
-
-            {cartData && (
-              <Link
-                href="/cart"
-                className="relative text-gray-700 transition-colors mx-9"
-                aria-label="Shopping cart"
-              >
-                <ShoppingCart size={25} />
-                {cartData?.cartCount > 0 && (
-                  <span
-                    className="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs font-medium 
-                  rounded-full w-5 h-5 flex items-center justify-center"
-                  >
-                    {cartData?.cartCount}
-                  </span>
-                )}
-              </Link>
-            )}
+            {/* <SearchBar /> */}
 
             {/* User Menu */}
             {isAuthenticated && user ? (
