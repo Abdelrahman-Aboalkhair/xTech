@@ -2,7 +2,7 @@ import express from "express";
 import protect from "@/shared/middlewares/protect";
 import authorizeRole from "@/shared/middlewares/authorizeRole";
 import { makeCategoryController } from "./category.factory";
-import upload from "@/shared/middlewares/upload";
+import { upload } from "@/shared/middlewares/upload";
 
 const router = express.Router();
 const categoryController = makeCategoryController();

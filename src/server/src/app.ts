@@ -19,13 +19,10 @@ import { cookieParserOptions } from "./shared/constants";
 import AppError from "./shared/errors/AppError";
 import globalError from "./shared/errors/globalError";
 import { logRequest } from "./shared/middlewares/logRequest";
-import { configureRoutes } from "./routes";
-import { configureGraphQL, allowedOrigins } from "./graphql";
-import webhookRoutes from "./modules/webhook/webhook.routes";
 import { Server as HTTPServer } from "http";
-import { SocketManager } from "@/infra/socket/socket";
 import { connectDB } from "./infra/database/database.config";
 import { setupSwagger } from "./docs/swagger";
+import v1Routes from "./routes/v1";
 
 dotenv.config();
 
@@ -39,19 +36,9 @@ export const createApp = async () => {
 
   const httpServer = new HTTPServer(app);
 
-  // Initialize Socket.IO
-  const socketManager = new SocketManager(httpServer);
-  const io = socketManager.getIO();
-
   // Swagger Documentation
   setupSwagger(app);
 
-  // Basic
-  app.use(
-    "/api/v1/webhook",
-    bodyParser.raw({ type: "application/json" }),
-    webhookRoutes
-  );
   app.use(express.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser(process.env.COOKIE_SECRET, cookieParserOptions));
@@ -75,6 +62,7 @@ export const createApp = async () => {
   app.use(helmet());
   app.use(helmet.frameguard({ action: "deny" }));
 
+  const allowedOrigins = ["http://localhost:3000", "https://xTech.com"];
   // CORS
   app.use(
     cors({
@@ -121,11 +109,7 @@ export const createApp = async () => {
   app.use(compression());
 
   // Routes
-  app.use("/api", configureRoutes(io));
-
-  // GraphQL setup
-  await configureGraphQL(app);
-
+  app.use("/api", v1Routes);
   // Error & Logging
   app.use(globalError);
   app.use(logRequest);
