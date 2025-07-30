@@ -1,3 +1,4 @@
+// server/src/modules/product/product.repository.ts
 import prisma from "@/infra/database/database.config";
 import { Prisma } from "@prisma/client";
 
@@ -26,11 +27,9 @@ export class ProductRepository {
       ...(categorySlug
         ? {
             category: {
-              is: {
-                slug: {
-                  equals: categorySlug,
-                  mode: "insensitive",
-                },
+              slug: {
+                equals: categorySlug,
+                mode: "insensitive",
               },
             },
           }
@@ -43,18 +42,7 @@ export class ProductRepository {
       skip,
       take,
       select,
-      include: {
-        variants: {
-          include: {
-            attributes: {
-              include: {
-                attribute: true,
-                value: true,
-              },
-            },
-          },
-        },
-      },
+      include: { category: true },
     });
   }
 
@@ -66,107 +54,36 @@ export class ProductRepository {
   async findProductById(id: string) {
     return prisma.product.findUnique({
       where: { id },
-      include: {
-        category: true,
-        variants: {
-          include: {
-            attributes: {
-              include: {
-                attribute: true,
-                value: true,
-              },
-            },
-          },
-        },
-      },
+      include: { category: true },
     });
   }
 
   async findProductByName(name: string) {
     return prisma.product.findUnique({
       where: { name },
-      select: {
-        id: true,
-        name: true,
-        slug: true,
-      },
+      select: { id: true, name: true, slug: true },
     });
   }
 
   async findProductBySlug(slug: string) {
     return prisma.product.findUnique({
       where: { slug },
-      include: {
-        category: true,
-        variants: {
-          include: {
-            attributes: {
-              include: {
-                attribute: true,
-                value: true,
-              },
-            },
-          },
-        },
-      },
+      include: { category: true },
     });
-  }
-
-  async findProductNameById(id: string): Promise<string | null> {
-    const product = await prisma.product.findUnique({
-      where: { id },
-      select: { name: true },
-    });
-    return product?.name || null;
   }
 
   async createProduct(data: {
     name: string;
     slug: string;
+    price: number;
     description?: string;
-    isNew?: boolean;
-    isTrending?: boolean;
-    isBestSeller?: boolean;
-    isFeatured?: boolean;
+    images?: string[];
+    videoUrl?: string;
     categoryId?: string;
   }) {
     return prisma.product.create({
       data,
-      include: {
-        category: true,
-        variants: {
-          include: {
-            attributes: { include: { attribute: true, value: true } },
-          },
-        },
-      },
-    });
-  }
-
-  async createManyProducts(
-    data: {
-      name: string;
-      slug: string;
-      description?: string;
-      basePrice: number;
-      discount?: number;
-      isNew?: boolean;
-      isTrending?: boolean;
-      isBestSeller?: boolean;
-      isFeatured?: boolean;
-      categoryId?: string;
-    }[]
-  ) {
-    return prisma.product.createMany({
-      data,
-      skipDuplicates: true,
-    });
-  }
-
-  async incrementSalesCount(id: string, quantity: number) {
-    return prisma.product.update({
-      where: { id },
-      data: { salesCount: { increment: quantity } },
+      include: { category: true },
     });
   }
 
@@ -175,32 +92,17 @@ export class ProductRepository {
     data: Partial<{
       name: string;
       slug: string;
+      price: number;
       description?: string;
-      basePrice: number;
-      discount?: number;
-      isNew?: boolean;
-      isTrending?: boolean;
-      isBestSeller?: boolean;
-      isFeatured?: boolean;
+      images?: string[];
+      videoUrl?: string;
       categoryId?: string;
     }>
   ) {
     return prisma.product.update({
       where: { id },
       data,
-      include: {
-        category: true,
-        variants: {
-          include: {
-            attributes: {
-              include: {
-                attribute: true,
-                value: true,
-              },
-            },
-          },
-        },
-      },
+      include: { category: true },
     });
   }
 
