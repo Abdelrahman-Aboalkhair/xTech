@@ -15,10 +15,7 @@ export class CategoryRepository {
       skip,
       take,
       include: {
-        attributes: { include: { attribute: { include: { values: true } } } },
-        products: includeProducts
-          ? { include: { variants: { select: { id: true, sku: true, price: true, stock: true } } } }
-          : false,
+        products: true,
       },
     });
   }
@@ -27,10 +24,7 @@ export class CategoryRepository {
     return prisma.category.findUnique({
       where: { id },
       include: {
-        attributes: { include: { attribute: { include: { values: true } } } },
-        products: includeProducts
-          ? { include: { variants: { select: { id: true, sku: true, price: true, stock: true } } } }
-          : false,
+        products: true,
       },
     });
   }
@@ -48,24 +42,19 @@ export class CategoryRepository {
         slug: data.slug,
         description: data.description,
         images: data.images,
-        attributes: data.attributes
-          ? {
-              create: data.attributes.map((attr) => ({
-                attributeId: attr.attributeId,
-                isRequired: attr.isRequired,
-              })),
-            }
-          : undefined,
       },
     });
   }
 
-  async updateCategory(id: string, data: {
-    name?: string;
-    slug?: string;
-    description?: string;
-    images?: string[];
-  }) {
+  async updateCategory(
+    id: string,
+    data: {
+      name?: string;
+      slug?: string;
+      description?: string;
+      images?: string[];
+    }
+  ) {
     return prisma.category.update({
       where: { id },
       data,
@@ -75,22 +64,6 @@ export class CategoryRepository {
   async deleteCategory(id: string) {
     return prisma.category.delete({
       where: { id },
-    });
-  }
-
-  async addCategoryAttribute(categoryId: string, attributeId: string, isRequired: boolean) {
-    return prisma.categoryAttribute.create({
-      data: {
-        categoryId,
-        attributeId,
-        isRequired,
-      },
-    });
-  }
-
-  async removeCategoryAttribute(categoryId: string, attributeId: string) {
-    return prisma.categoryAttribute.delete({
-      where: { categoryId_attributeId: { categoryId, attributeId } },
     });
   }
 }

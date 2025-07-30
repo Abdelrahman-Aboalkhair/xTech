@@ -1,12 +1,7 @@
 import prisma from "@/infra/database/database.config";
-import { CartRepository } from "@/modules/cart/cart.repository";
-import { CartService } from "@/modules/cart/cart.service";
 import { cookieOptions } from "@/shared/constants";
 import passport from "passport";
 import { generateAccessToken, generateRefreshToken } from "./tokenUtils";
-
-const cartRepo = new CartRepository();
-const cartService = new CartService(cartRepo);
 
 type OAuthProvider = "googleId" | "facebookId" | "twitterId";
 
@@ -135,10 +130,6 @@ export const handleSocialLoginCallback = (provider: string) => {
 
       res.cookie("refreshToken", refreshToken, cookieOptions);
       res.cookie("accessToken", accessToken, cookieOptions);
-
-      const userId = user.id;
-      const sessionId = req.session.id;
-      await cartService?.mergeCartsOnLogin(sessionId, userId);
 
       res.redirect("http://localhost:3000");
     },

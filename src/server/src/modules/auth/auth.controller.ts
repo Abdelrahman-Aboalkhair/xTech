@@ -6,57 +6,46 @@ import sendResponse from "@/shared/utils/sendResponse";
 import { AuthService } from "./auth.service";
 import { tokenUtils } from "@/shared/utils/authUtils";
 import AppError from "@/shared/errors/AppError";
-import { CartService } from "../cart/cart.service";
 import { makeLogsService } from "../logs/logs.factory";
 
 const { maxAge, ...clearCookieOptions } = cookieOptions;
 
 export class AuthController {
   private logsService = makeLogsService();
-  constructor(
-    private authService: AuthService,
-    private cartService?: CartService
-  ) {}
+  constructor(private authService: AuthService) {}
 
-  signup = asyncHandler(
-    async (req: Request, res: Response): Promise<void> => {
-      // const start = Date.now();
-      // const end = Date.now();
-      const { name, email, password, role } = req.body;
-      const { user, accessToken, refreshToken } =
-        await this.authService.registerUser({
-          name,
-          email,
-          password,
-          role,
-        });
-
-      res.cookie("refreshToken", refreshToken, cookieOptions);
-
-      const userId = user.id;
-      const sessionId = req.session.id;
-
-      await this.cartService?.mergeCartsOnLogin(sessionId, userId);
-
-      sendResponse(res, 201, {
-        message: "User registered successfully",
-        data: {
-          accessToken,
-          user: {
-            id: user.id,
-            name: user.name,
-            role: user.role,
-            avatar: user.avatar || null,
-          },
-        },
+  signup = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    // const start = Date.now();
+    // const end = Date.now();
+    const { name, email, password, role } = req.body;
+    const { user, accessToken, refreshToken } =
+      await this.authService.registerUser({
+        name,
+        email,
+        password,
+        role,
       });
-      // this.logsService.info("Register", {
-      //   userId,
-      //   sessionId: req.session.id,
-      //   timePeriod: end - start,
-      // });
-    }
-  );
+
+    res.cookie("refreshToken", refreshToken, cookieOptions);
+
+    sendResponse(res, 201, {
+      message: "User registered successfully",
+      data: {
+        accessToken,
+        user: {
+          id: user.id,
+          name: user.name,
+          role: user.role,
+          avatar: user.avatar || null,
+        },
+      },
+    });
+    // this.logsService.info("Register", {
+    //   userId,
+    //   sessionId: req.session.id,
+    //   timePeriod: end - start,
+    // });
+  });
 
   getVerificationEmail = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
@@ -101,12 +90,9 @@ export class AuthController {
       email,
       password,
     });
+    const userId = user.id;
 
     res.cookie("refreshToken", refreshToken, cookieOptions);
-
-    const userId = user.id;
-    const sessionId = req.session.id;
-    await this.cartService?.mergeCartsOnLogin(sessionId, userId);
 
     sendResponse(res, 200, {
       data: {
