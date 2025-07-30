@@ -1,3 +1,4 @@
+// client/app/components/organisms/ProductsDashboard.tsx
 "use client";
 import Table from "@/app/components/layout/Table";
 import {
@@ -8,12 +9,12 @@ import {
 } from "@/app/store/apis/ProductApi";
 import { useState } from "react";
 import ProductModal from "./ProductModal";
-import { Trash2, Edit, Upload, X } from "lucide-react";
+import { Trash2, Edit } from "lucide-react";
 import ConfirmModal from "@/app/components/organisms/ConfirmModal";
 import useToast from "@/app/hooks/ui/useToast";
-import ProductFileUpload from "./ProductFileUpload";
 import { usePathname } from "next/navigation";
 import { ProductFormData } from "./product.types";
+import Image from "next/image";
 
 const ProductsDashboard = () => {
   const { showToast } = useToast();
@@ -27,7 +28,7 @@ const ProductsDashboard = () => {
   const shouldFetchProducts = pathname === "/dashboard/products";
 
   const { data, isLoading } = useGetAllProductsQuery(
-    { select: { variants: true } }, // Ensure variants are included
+    { select: { category: true } }, // Include category
     { skip: !shouldFetchProducts }
   );
   const products = data?.products || [];
@@ -37,62 +38,26 @@ const ProductsDashboard = () => {
   );
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
-  const [isFileUploadOpen, setIsFileUploadOpen] = useState(false);
 
   const handleCreateProduct = async (data: ProductFormData) => {
     const payload = new FormData();
-    payload.append("name", data.name || "");
-    payload.append("description", data.description || "");
-    payload.append("isNew", data.isNew.toString());
-    payload.append("isTrending", data.isTrending.toString());
-    payload.append("isBestSeller", data.isBestSeller.toString());
-    payload.append("isFeatured", data.isFeatured.toString());
-    payload.append("categoryId", data.categoryId || "");
-
-    // Track image indexes for each variant
-    let imageIndex = 0;
-    data.variants.forEach((variant, index) => {
-      payload.append(`variants[${index}][sku]`, variant.sku || "");
-      payload.append(`variants[${index}][price]`, variant.price.toString());
-      payload.append(`variants[${index}][stock]`, variant.stock.toString());
-      payload.append(
-        `variants[${index}][lowStockThreshold]`,
-        variant.lowStockThreshold?.toString() || "10"
-      );
-      payload.append(`variants[${index}][barcode]`, variant.barcode || "");
-      payload.append(
-        `variants[${index}][warehouseLocation]`,
-        variant.warehouseLocation || ""
-      );
-      // Append attributes as JSON
-      payload.append(
-        `variants[${index}][attributes]`,
-        JSON.stringify(variant.attributes || [])
-      );
-      // Track image indexes for this variant
-      if (Array.isArray(variant.images) && variant.images.length > 0) {
-        const imageIndexes = variant.images
-          .map((file, fileIndex) => {
-            if (file instanceof File) {
-              payload.append(`images`, file);
-              return imageIndex++;
-            }
-            return null;
-          })
-          .filter((idx) => idx !== null);
-        payload.append(
-          `variants[${index}][imageIndexes]`,
-          JSON.stringify(imageIndexes)
-        );
-      } else {
-        payload.append(`variants[${index}][imageIndexes]`, JSON.stringify([]));
-      }
-    });
-
-    // Log the payload for debugging
-    console.log("Creating product with payload:");
-    for (const [key, value] of payload.entries()) {
-      console.log(`${key}:`, value);
+    payload.append("name", data.name);
+    payload.append("price", data.price.toString());
+    if (data.description) payload.append("description", data.description);
+    if (data.categoryId) payload.append("categoryId", data.categoryId);
+    if (data.images && Array.isArray(data.images)) {
+      data.images.forEach((image, index) => {
+        if (image instanceof File) {
+          payload.append("files", image);
+        } else {
+          payload.append(`images[${index}]`, image);
+        }
+      });
+    }
+    if (data.video instanceof File) {
+      payload.append("files", data.video);
+    } else if (data.video) {
+      payload.append("videoUrl", data.video);
     }
 
     try {
@@ -106,23 +71,30 @@ const ProductsDashboard = () => {
   };
 
   const handleUpdateProduct = async (data: ProductFormData) => {
-    if (!editingProduct) return;
+    if (!editingProduct?.id) return;
 
     const payload = new FormData();
-    payload.append("name", data.name || "");
-    payload.append("description", data.description || "");
-    payload.append("isNew", data.isNew.toString());
-    payload.append("isTrending", data.isTrending.toString());
-    payload.append("isBestSeller", data.isBestSeller.toString());
-    payload.append("isFeatured", data.isFeatured.toString());
-    payload.append("categoryId", data.categoryId || "");
-    payload.append("variants", JSON.stringify(data.variants));
+    if (data.name) payload.append("name", data.name);
+    if (data.price) payload.append("price", data.price.toString());
+    if (data.description) payload.append("description", data.description);
+    if (data.categoryId) payload.append("categoryId", data.categoryId);
+    if (data.images && Array.isArray(data.images)) {
+      data.images.forEach((image, index) => {
+        if (image instanceof File) {
+          payload.append("files", image);
+        } else {
+          payload.append(`images[${index}]`, image);
+        }
+      });
+    }
+    if (data.video instanceof File) {
+      payload.append("files", data.video);
+    } else if (data.video) {
+      payload.append("videoUrl", data.video);
+    }
 
     try {
-      await updateProduct({
-        id: editingProduct.id!,
-        data: payload,
-      }).unwrap();
+      await updateProduct({ id: editingProduct.id, data: payload }).unwrap();
       setIsModalOpen(false);
       setEditingProduct(null);
       showToast("Product updated successfully", "success");
@@ -155,8 +127,6 @@ const ProductsDashboard = () => {
     setProductToDelete(null);
   };
 
-  const handleFileUploadSuccess = () => {};
-
   const columns = [
     {
       key: "name",
@@ -164,36 +134,29 @@ const ProductsDashboard = () => {
       sortable: true,
       render: (row: any) => (
         <div className="flex items-center space-x-2">
+          {row.images?.[0] && (
+            <Image
+              src={row.images[0]}
+              alt={row.name}
+              fill
+              className="w-10 h-10 object-cover rounded"
+            />
+          )}
           <span>{row.name}</span>
         </div>
       ),
     },
     {
-      key: "variants",
-      label: "Variants",
-      sortable: false,
-      render: (row: any) => (
-        <div>
-          {row.variants?.length > 0 ? (
-            row.variants.map((v: any) => (
-              <span
-                key={v.id}
-                className="inline-block mr-2 bg-gray-100 px-2 py-1 rounded"
-              >
-                {v.sku}
-              </span>
-            ))
-          ) : (
-            <span className="text-gray-500">No variants</span>
-          )}
-        </div>
-      ),
+      key: "price",
+      label: "Price",
+      sortable: true,
+      render: (row: any) => `$${row.price.toFixed(2)}`,
     },
     {
-      key: "salesCount",
-      label: "Sales Count",
+      key: "category",
+      label: "Category",
       sortable: true,
-      render: (row: any) => row.salesCount,
+      render: (row: any) => row.category?.name || "Uncategorized",
     },
     {
       key: "actions",
@@ -205,14 +168,11 @@ const ProductsDashboard = () => {
               setEditingProduct({
                 id: row.id,
                 name: row.name,
-                isNew: row.isNew,
-                isTrending: row.isTrending,
-                isBestSeller: row.isBestSeller,
-                isFeatured: row.isFeatured,
-                categoryId: row.categoryId,
+                price: row.price,
                 description: row.description || "",
+                categoryId: row.categoryId || "",
                 images: row.images || [],
-                variants: row.variants || [],
+                video: row.videoUrl || "",
               });
               setIsModalOpen(true);
             }}
@@ -243,47 +203,22 @@ const ProductsDashboard = () => {
           <h1 className="text-xl font-semibold">Product List</h1>
           <p className="text-sm text-gray-500">Manage and view your products</p>
         </div>
-        <div className="flex space-x-3">
-          <button
-            onClick={() => setIsFileUploadOpen(!isFileUploadOpen)}
-            className="px-4 py-2 bg-[#5d8a02] text-white rounded-md flex items-center"
-          >
-            <Upload className="mr-2 h-4 w-4" />
-            Excel Sheet
-          </button>
-          <button
-            onClick={() => {
-              setEditingProduct(null);
-              setIsModalOpen(true);
-            }}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-          >
-            Create Product
-          </button>
-        </div>
+        <button
+          onClick={() => {
+            setEditingProduct(null);
+            setIsModalOpen(true);
+          }}
+          className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+        >
+          Create Product
+        </button>
       </div>
-
-      {isFileUploadOpen && (
-        <div className="mb-6 bg-white p-5 rounded-lg shadow-sm border border-gray-200">
-          <div className="flex justify-between items-center mb-3">
-            <h2 className="text-lg font-medium">Import Products</h2>
-            <button
-              onClick={() => setIsFileUploadOpen(false)}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              <X size={20} />
-            </button>
-          </div>
-          <ProductFileUpload onUploadSuccess={handleFileUploadSuccess} />
-        </div>
-      )}
 
       <Table
         data={products}
         columns={columns}
         isLoading={isLoading}
         emptyMessage="No products available"
-        onRefresh={() => console.log("refreshed")}
         totalPages={data?.totalPages}
         totalResults={data?.totalResults}
         resultsPerPage={data?.resultsPerPage}
@@ -297,7 +232,7 @@ const ProductsDashboard = () => {
           setEditingProduct(null);
         }}
         onSubmit={editingProduct ? handleUpdateProduct : handleCreateProduct}
-        initialData={editingProduct || undefined}
+        initialData={editingProduct ?? undefined}
         isLoading={editingProduct ? isUpdating : isCreating}
         error={editingProduct ? updateError : createError}
       />

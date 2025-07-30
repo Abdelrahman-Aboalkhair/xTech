@@ -2,7 +2,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Package } from "lucide-react";
-import { ApolloError } from "@apollo/client";
 import ProductCard from "./ProductCard";
 import { Product } from "@/app/types/productTypes";
 
@@ -10,7 +9,6 @@ interface ProductSectionProps {
   title: string;
   products: Product[];
   loading: boolean;
-  error: ApolloError | undefined;
   showTitle?: boolean;
 }
 
@@ -18,23 +16,12 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   title,
   products,
   loading,
-  error,
   showTitle = false,
 }) => {
   if (loading) {
     return (
       <div className="text-center py-12">
         <p className="text-lg text-gray-600">Loading...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-lg text-red-500">
-          Error loading {title.toLowerCase()}: {error.message}
-        </p>
       </div>
     );
   }

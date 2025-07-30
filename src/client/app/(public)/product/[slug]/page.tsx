@@ -1,48 +1,20 @@
 "use client";
-import { useState } from "react";
 import MainLayout from "@/app/components/templates/MainLayout";
 import BreadCrumb from "@/app/components/feedback/BreadCrumb";
 import { useParams } from "next/navigation";
 import ProductImageGallery from "../ProductImageGallery";
 import ProductInfo from "../ProductInfo";
-import ProductReviews from "../ProductReviews";
-import { useQuery } from "@apollo/client";
-import { GET_SINGLE_PRODUCT, Product } from "@/app/gql/Product";
-import CustomLoader from "@/app/components/feedback/CustomLoader";
 
 const ProductDetailsPage = () => {
   const { slug } = useParams();
-  const { data, loading, error } = useQuery<{ product: Product }>(
-    GET_SINGLE_PRODUCT,
-    {
-      variables: { slug: typeof slug === "string" ? slug : slug[0] },
-      fetchPolicy: "no-cache",
-    }
-  );
-  console.log("product data:", data);
 
-  const [selectedVariant, setSelectedVariant] = useState<
-    Product["variants"][0] | null
-  >(null);
-  const [selectedAttributes, setSelectedAttributes] = useState<
-    Record<string, string>
-  >({});
-
-  if (loading) return <CustomLoader />;
-
-  if (error) {
-    return (
-      <MainLayout>
-        <div className="text-center py-12">
-          <p className="text-lg text-red-500">
-            Error loading product: {error.message}
-          </p>
-        </div>
-      </MainLayout>
-    );
-  }
-
-  const product = data?.product;
+  const product = {
+    name: "Sample Product",
+    id: "1",
+    description: "This is a sample product description.",
+    price: 29.99,
+    images: [],
+  }; // Replace with actual product fetching logic
 
   if (!product) {
     return (
@@ -54,53 +26,6 @@ const ProductDetailsPage = () => {
     );
   }
 
-  const attributeGroups = product.variants.reduce((acc, variant) => {
-    const hasSelections = Object.values(selectedAttributes).some(
-      (value) => value !== ""
-    );
-    const matchesSelections = hasSelections
-      ? Object.entries(selectedAttributes).every(
-          ([attrName, attrValue]) =>
-            attrName === "" ||
-            variant.attributes.some(
-              (attr) =>
-                attr.attribute.name === attrName &&
-                attr.value.value === attrValue
-            )
-        )
-      : true;
-    if (matchesSelections) {
-      variant.attributes.forEach(({ attribute, value }) => {
-        if (!acc[attribute.name]) {
-          acc[attribute.name] = { values: new Set<string>() };
-        }
-        acc[attribute.name].values.add(value.value);
-      });
-    }
-    return acc;
-  }, {} as Record<string, { values: Set<string> }>);
-
-  const resetSelections = () => {
-    setSelectedAttributes({});
-    setSelectedVariant(null);
-  };
-
-  const handleVariantChange = (attributeName: string, value: string) => {
-    const newSelections = { ...selectedAttributes, [attributeName]: value };
-    setSelectedAttributes(newSelections);
-    const variant = product.variants.find((v) =>
-      Object.entries(newSelections).every(
-        ([attrName, attrValue]) =>
-          attrName === "" ||
-          v.attributes.some(
-            (attr) =>
-              attr.attribute.name === attrName && attr.value.value === attrValue
-          )
-      )
-    );
-    setSelectedVariant(variant || null);
-  };
-
   return (
     <MainLayout>
       <div className="flex items-start justify-start mt-8 px-[10%]">
@@ -109,33 +34,18 @@ const ProductDetailsPage = () => {
 
       <div className="w-[84%] mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-10 pt-[3rem] bg-white rounded">
         <ProductImageGallery
-          images={product.variants.flatMap((v) => v.images)}
-          defaultImage={
-            selectedVariant?.images[0] ||
-            product.variants[0]?.images[0] ||
-            "/placeholder-image.jpg"
-          }
+          images={product.images}
+          defaultImage={product.images[0]}
           name={product.name}
         />
         <div>
           <ProductInfo
             id={product.id}
             name={product.name}
-            averageRating={product.averageRating}
-            reviewCount={product.reviewCount}
             description={product.description || "No description available"}
-            variants={product.variants}
-            selectedVariant={selectedVariant}
-            onVariantChange={handleVariantChange}
-            attributeGroups={attributeGroups}
-            selectedAttributes={selectedAttributes}
-            resetSelections={resetSelections}
+            price={product.price}
           />
         </div>
-      </div>
-
-      <div className="w-[84%] mx-auto p-6">
-        <ProductReviews reviews={product.reviews} productId={product.id} />
       </div>
     </MainLayout>
   );
