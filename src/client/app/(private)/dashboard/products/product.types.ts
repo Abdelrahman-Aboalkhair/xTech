@@ -1,21 +1,9 @@
 export interface ProductFormData {
   id?: string;
   name: string;
+  price: number;
   description?: string;
-  categoryId: string;
-  isNew: boolean;
-  isTrending: boolean;
-  isBestSeller: boolean;
-  isFeatured: boolean;
-  variants: {
-    id: string;
-    sku: string;
-    price: number;
-    images: File[];
-    stock: number;
-    lowStockThreshold?: number;
-    barcode?: string;
-    warehouseLocation?: string;
-    attributes: { attributeId: string; valueId: string }[];
-  }[];
+  categoryId?: string;
+  images: File[] | string[]; // File[] for uploads, string[] for existing URLs
+  video?: File | string; // File for upload, string for existing videoUrl
 }

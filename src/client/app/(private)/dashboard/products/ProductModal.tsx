@@ -1,12 +1,10 @@
+// client/app/components/organisms/ProductModal.tsx
 "use client";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  useGetAllCategoriesQuery,
-  useGetCategoryAttributesQuery,
-} from "@/app/store/apis/CategoryApi";
+import { useGetAllCategoriesQuery } from "@/app/store/apis/CategoryApi";
 import { ProductFormData } from "./product.types";
 import ProductForm from "./ProductForm";
 
@@ -38,61 +36,34 @@ const ProductModal: React.FC<ProductModalProps> = ({
     defaultValues: {
       id: "",
       name: "",
-      isNew: false,
-      isTrending: false,
-      isFeatured: false,
-      isBestSeller: false,
+      price: 0,
+      images: [],
+      video: "",
       categoryId: "",
       description: "",
-      variants: [
-        {
-          id: "",
-          images: [],
-          lowStockThreshold: 10,
-          barcode: "",
-          warehouseLocation: "",
-          price: 0,
-          sku: "",
-          stock: 0,
-          attributes: [],
-        },
-      ],
     },
   });
-
-  const selectedCategoryId = form.watch("categoryId");
-  const { data: categoryAttributesData } = useGetCategoryAttributesQuery(
-    selectedCategoryId,
-    {
-      skip: !selectedCategoryId,
-    }
-  );
-  const categoryAttributes = categoryAttributesData?.attributes || [];
 
   useEffect(() => {
     if (initialData) {
       form.reset({
         id: initialData.id || "",
         name: initialData.name || "",
-        isNew: initialData.isNew || false,
-        isTrending: initialData.isTrending || false,
-        isFeatured: initialData.isFeatured || false,
-        isBestSeller: initialData.isBestSeller || false,
+        price: initialData.price || 0,
+        images: initialData.images || [],
+        video: initialData.video || "",
         categoryId: initialData.categoryId || "",
         description: initialData.description || "",
-        variants: initialData.variants || [],
       });
     } else {
       form.reset({
         id: "",
         name: "",
-        isNew: false,
-        isTrending: false,
-        isFeatured: false,
-        isBestSeller: false,
+        price: 0,
+        images: [],
+        video: "",
         categoryId: "",
         description: "",
-        variants: [],
       });
     }
   }, [initialData, form]);
@@ -103,7 +74,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -132,7 +103,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
               form={form}
               onSubmit={onSubmit}
               categories={categories}
-              categoryAttributes={categoryAttributes}
               isLoading={isLoading}
               error={error}
               submitLabel={initialData ? "Update" : "Create"}
