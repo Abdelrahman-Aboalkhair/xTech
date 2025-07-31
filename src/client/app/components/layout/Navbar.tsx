@@ -3,12 +3,8 @@ import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import UserMenu from "../molecules/UserMenu";
-import { ShoppingCart, Menu, X, CircleUserRound } from "lucide-react";
+import { Menu, X, CircleUserRound } from "lucide-react";
 import { usePathname } from "next/navigation";
-import SearchBar from "../molecules/SearchBar";
-import Topbar from "./Topbar";
-// import useClickOutside from "@/app/hooks/dom/useClickOutside";
-// import useEventListener from "@/app/hooks/dom/useEventListener";
 import { useAppSelector } from "@/app/store/hooks";
 
 const Navbar = () => {
@@ -17,24 +13,12 @@ const Navbar = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef(null);
-
-  // useEventListener("scroll", () => {
-  //   setScrolled(window.scrollY > 20);
-  // });
-
-  // useClickOutside(menuRef, () => setMenuOpen(false));
 
   return (
     <>
-      <Topbar />
       <header
-        className={`w-full z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-white shadow-md py-2"
-            : "bg-white bg-opacity-95 backdrop-blur-sm py-4"
-        }`}
+        className={`w-full z-50 transition-all duration-300 bg-white bg-opacity-95 backdrop-blur-sm py-4 `}
       >
         <nav className="max-w-[80%] mx-auto flex items-center justify-between">
           <Link

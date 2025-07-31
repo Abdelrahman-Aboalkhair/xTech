@@ -318,3 +318,59 @@ Error: EIO: i/o error, write
     at /home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/src/infra/database/database.config.ts:31:13
     at Generator.next (<anonymous>)
     at fulfilled (/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/src/infra/database/database.config.ts:5:58)
+[2025-07-30T23:10:48.446Z] [31MERROR[39M: uncaughtException: EIO: i/o error, write
+Error: EIO: i/o error, write
+    at writeSync (node:fs:924:3)
+    at SyncWriteStream._write (node:internal/fs/sync_write_stream:27:5)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+    at _write (node:internal/streams/writable:501:10)
+    at SyncWriteStream.Writable.write (node:internal/streams/writable:510:10)
+    at console.value (node:internal/console/constructor:298:16)
+    at console.log (node:internal/console/constructor:384:26)
+    at /home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/src/infra/database/database.config.ts:33:13
+    at Generator.throw (<anonymous>)
+    at rejected (/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/src/infra/database/database.config.ts:6:65)
+[2025-07-31T13:14:17.491Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.log.create()` invocation in
+/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/src/modules/logs/logs.repository.ts:39:23
+
+  36 }
+  37 
+  38 async createLog(data: LogEntry) {
+→ 39   return prisma.log.create(
+The table `public.Log` does not exist in the current database.
+PrismaClientKnownRequestError: 
+Invalid `prisma.log.create()` invocation in
+/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/src/modules/logs/logs.repository.ts:39:23
+
+  36 }
+  37 
+  38 async createLog(data: LogEntry) {
+→ 39   return prisma.log.create(
+The table `public.Log` does not exist in the current database.
+    at Xn.handleRequestError (/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/node_modules/@prisma/client/runtime/library.js:121:7459)
+    at Xn.handleAndLogRequestError (/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/node_modules/@prisma/client/runtime/library.js:121:6784)
+    at Xn.request (/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/node_modules/@prisma/client/runtime/library.js:121:6491)
+    at async l (/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/node_modules/@prisma/client/runtime/library.js:130:9812)
+[2025-07-31T13:22:35.043Z] [31MERROR[39M: uncaughtException: 
+Invalid `prisma.log.create()` invocation in
+/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/src/modules/logs/logs.repository.ts:39:23
+
+  36 }
+  37 
+  38 async createLog(data: LogEntry) {
+→ 39   return prisma.log.create(
+The table `public.Log` does not exist in the current database.
+PrismaClientKnownRequestError: 
+Invalid `prisma.log.create()` invocation in
+/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/src/modules/logs/logs.repository.ts:39:23
+
+  36 }
+  37 
+  38 async createLog(data: LogEntry) {
+→ 39   return prisma.log.create(
+The table `public.Log` does not exist in the current database.
+    at Xn.handleRequestError (/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/node_modules/@prisma/client/runtime/library.js:121:7459)
+    at Xn.handleAndLogRequestError (/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/node_modules/@prisma/client/runtime/library.js:121:6784)
+    at Xn.request (/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/node_modules/@prisma/client/runtime/library.js:121:6491)
+    at async l (/home/abdelrahman_aboalkhair/Dev/workspace/xTech/src/server/node_modules/@prisma/client/runtime/library.js:130:9812)
